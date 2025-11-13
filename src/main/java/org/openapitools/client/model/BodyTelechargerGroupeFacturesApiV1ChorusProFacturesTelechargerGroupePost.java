@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:03:40.898412228Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:09:20.432659262Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost {
   public static final String SERIALIZED_NAME_PAYLOAD = "payload";
   @SerializedName(SERIALIZED_NAME_PAYLOAD)
