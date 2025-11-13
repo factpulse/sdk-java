@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Soumission d&#39;une facture Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:09:20.432659262Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:12:07.026062851Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SoumettreFactureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
