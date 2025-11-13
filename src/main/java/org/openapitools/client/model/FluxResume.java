@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Résumé d&#39;un flux dans les résultats de recherche
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:19:48.871096880Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:22:39.259975886Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FluxResume {
   public static final String SERIALIZED_NAME_FLOW_ID = "flow_id";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)

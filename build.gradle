@@ -4,7 +4,7 @@ apply plugin: 'java'
 apply plugin: 'com.diffplug.spotless'
 
 group = 'fr.factpulse'
-version = '1.0.13'
+version = '1.0.14'
 
 buildscript {
     repositories {

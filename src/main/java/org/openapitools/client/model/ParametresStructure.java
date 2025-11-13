@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Paramètres obligatoires d&#39;une structure.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:19:48.871096880Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:22:39.259975886Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ParametresStructure {
   public static final String SERIALIZED_NAME_CODE_SERVICE_DOIT_ETRE_RENSEIGNE = "code_service_doit_etre_renseigne";
   @SerializedName(SERIALIZED_NAME_CODE_SERVICE_DOIT_ETRE_RENSEIGNE)
