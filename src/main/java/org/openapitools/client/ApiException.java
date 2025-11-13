@@ -22,7 +22,7 @@ import java.util.Locale;
  * <p>ApiException class.</p>
  */
 @SuppressWarnings("serial")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:12:07.026062851Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:19:48.871096880Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ApiException extends Exception {
     private static final long serialVersionUID = 1L;
 

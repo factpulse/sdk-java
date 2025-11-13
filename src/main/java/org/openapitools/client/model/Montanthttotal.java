@@ -53,7 +53,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:12:07.026062851Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:19:48.871096880Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Montanthttotal extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(Montanthttotal.class.getName());
 
