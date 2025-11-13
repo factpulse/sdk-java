@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Modèle Pydantic représentant les données de l&#39;utilisateur authentifié.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:22:39.259975886Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T12:17:54.365215650Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Utilisateur {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

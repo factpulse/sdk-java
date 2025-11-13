@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Description complète du statut d&#39;une tâche asynchrone.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:22:39.259975886Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T12:17:54.365215650Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class StatutTache {
   public static final String SERIALIZED_NAME_ID_TACHE = "id_tache";
   @SerializedName(SERIALIZED_NAME_ID_TACHE)
