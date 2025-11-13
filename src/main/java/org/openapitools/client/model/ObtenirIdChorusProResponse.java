@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * ID Chorus Pro trouvé.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T08:30:08.806402325Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T08:32:10.578521065Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ObtenirIdChorusProResponse {
   public static final String SERIALIZED_NAME_ID_STRUCTURE_CPP = "id_structure_cpp";
   @SerializedName(SERIALIZED_NAME_ID_STRUCTURE_CPP)
