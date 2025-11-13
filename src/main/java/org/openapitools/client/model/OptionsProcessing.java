@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.client.model.ProfilAPI;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,68 +51,12 @@ import org.openapitools.client.JSON;
 /**
  * Options de traitement pour la génération et la soumission.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T08:32:10.578521065Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:03:40.898412228Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class OptionsProcessing {
-  /**
-   * Profil Factur-X à utiliser
-   */
-  @JsonAdapter(ProfilFacturxEnum.Adapter.class)
-  public enum ProfilFacturxEnum {
-    MINIMUM("MINIMUM"),
-    
-    BASIC("BASIC"),
-    
-    EN16931("EN16931"),
-    
-    EXTENDED("EXTENDED");
-
-    private String value;
-
-    ProfilFacturxEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ProfilFacturxEnum fromValue(String value) {
-      for (ProfilFacturxEnum b : ProfilFacturxEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ProfilFacturxEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ProfilFacturxEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ProfilFacturxEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ProfilFacturxEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      ProfilFacturxEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PROFIL_FACTURX = "profil_facturx";
   @SerializedName(SERIALIZED_NAME_PROFIL_FACTURX)
   @javax.annotation.Nullable
-  private ProfilFacturxEnum profilFacturx = ProfilFacturxEnum.EN16931;
+  private ProfilAPI profilFacturx;
 
   public static final String SERIALIZED_NAME_AUTO_ENRICHIR = "auto_enrichir";
   @SerializedName(SERIALIZED_NAME_AUTO_ENRICHIR)
@@ -131,7 +76,7 @@ public class OptionsProcessing {
   public OptionsProcessing() {
   }
 
-  public OptionsProcessing profilFacturx(@javax.annotation.Nullable ProfilFacturxEnum profilFacturx) {
+  public OptionsProcessing profilFacturx(@javax.annotation.Nullable ProfilAPI profilFacturx) {
     this.profilFacturx = profilFacturx;
     return this;
   }
@@ -141,11 +86,11 @@ public class OptionsProcessing {
    * @return profilFacturx
    */
   @javax.annotation.Nullable
-  public ProfilFacturxEnum getProfilFacturx() {
+  public ProfilAPI getProfilFacturx() {
     return profilFacturx;
   }
 
-  public void setProfilFacturx(@javax.annotation.Nullable ProfilFacturxEnum profilFacturx) {
+  public void setProfilFacturx(@javax.annotation.Nullable ProfilAPI profilFacturx) {
     this.profilFacturx = profilFacturx;
   }
 
@@ -284,12 +229,9 @@ public class OptionsProcessing {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("profil_facturx") != null && !jsonObj.get("profil_facturx").isJsonNull()) && !jsonObj.get("profil_facturx").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `profil_facturx` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profil_facturx").toString()));
-      }
       // validate the optional field `profil_facturx`
       if (jsonObj.get("profil_facturx") != null && !jsonObj.get("profil_facturx").isJsonNull()) {
-        ProfilFacturxEnum.validateJsonElement(jsonObj.get("profil_facturx"));
+        ProfilAPI.validateJsonElement(jsonObj.get("profil_facturx"));
       }
   }
 

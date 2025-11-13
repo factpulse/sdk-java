@@ -10,7 +10,7 @@ Description complète du statut d'une tâche asynchrone.
 |------------ | ------------- | ------------- | -------------|
 |**idTache** | **String** |  |  |
 |**statut** | **String** |  |  |
-|**resultat** | [**AnyOf**](AnyOf.md) |  |  [optional] |
+|**resultat** | **Map&lt;String, Object&gt;** |  |  [optional] |
 
 
 

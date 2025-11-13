@@ -22,7 +22,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.AnyOf;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -52,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Description complète du statut d&#39;une tâche asynchrone.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T08:32:10.578521065Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:03:40.898412228Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class StatutTache {
   public static final String SERIALIZED_NAME_ID_TACHE = "id_tache";
   @SerializedName(SERIALIZED_NAME_ID_TACHE)
@@ -67,7 +68,7 @@ public class StatutTache {
   public static final String SERIALIZED_NAME_RESULTAT = "resultat";
   @SerializedName(SERIALIZED_NAME_RESULTAT)
   @javax.annotation.Nullable
-  private AnyOf resultat;
+  private Map<String, Object> resultat;
 
   public StatutTache() {
   }
@@ -110,8 +111,16 @@ public class StatutTache {
   }
 
 
-  public StatutTache resultat(@javax.annotation.Nullable AnyOf resultat) {
+  public StatutTache resultat(@javax.annotation.Nullable Map<String, Object> resultat) {
     this.resultat = resultat;
+    return this;
+  }
+
+  public StatutTache putResultatItem(String key, Object resultatItem) {
+    if (this.resultat == null) {
+      this.resultat = new HashMap<>();
+    }
+    this.resultat.put(key, resultatItem);
     return this;
   }
 
@@ -120,11 +129,11 @@ public class StatutTache {
    * @return resultat
    */
   @javax.annotation.Nullable
-  public AnyOf getResultat() {
+  public Map<String, Object> getResultat() {
     return resultat;
   }
 
-  public void setResultat(@javax.annotation.Nullable AnyOf resultat) {
+  public void setResultat(@javax.annotation.Nullable Map<String, Object> resultat) {
     this.resultat = resultat;
   }
 
@@ -227,10 +236,6 @@ public class StatutTache {
       }
       if (!jsonObj.get("statut").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `statut` to be a primitive type in the JSON string but got `%s`", jsonObj.get("statut").toString()));
-      }
-      // validate the optional field `resultat`
-      if (jsonObj.get("resultat") != null && !jsonObj.get("resultat").isJsonNull()) {
-        AnyOf.validateJsonElement(jsonObj.get("resultat"));
       }
   }
 

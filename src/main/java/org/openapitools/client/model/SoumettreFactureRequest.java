@@ -23,6 +23,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.ChorusProCredentials;
+import org.openapitools.client.model.MontantHtTotal1;
+import org.openapitools.client.model.MontantTtcTotal1;
+import org.openapitools.client.model.MontantTva1;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -52,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Soumission d&#39;une facture Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T08:32:10.578521065Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T11:03:40.898412228Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SoumettreFactureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
@@ -92,17 +95,17 @@ public class SoumettreFactureRequest {
   public static final String SERIALIZED_NAME_MONTANT_HT_TOTAL = "montant_ht_total";
   @SerializedName(SERIALIZED_NAME_MONTANT_HT_TOTAL)
   @javax.annotation.Nonnull
-  private String montantHtTotal;
+  private MontantHtTotal1 montantHtTotal;
 
   public static final String SERIALIZED_NAME_MONTANT_TVA = "montant_tva";
   @SerializedName(SERIALIZED_NAME_MONTANT_TVA)
   @javax.annotation.Nonnull
-  private String montantTva;
+  private MontantTva1 montantTva;
 
   public static final String SERIALIZED_NAME_MONTANT_TTC_TOTAL = "montant_ttc_total";
   @SerializedName(SERIALIZED_NAME_MONTANT_TTC_TOTAL)
   @javax.annotation.Nonnull
-  private String montantTtcTotal;
+  private MontantTtcTotal1 montantTtcTotal;
 
   public static final String SERIALIZED_NAME_PIECE_JOINTE_PRINCIPALE_ID = "piece_jointe_principale_id";
   @SerializedName(SERIALIZED_NAME_PIECE_JOINTE_PRINCIPALE_ID)
@@ -265,59 +268,59 @@ public class SoumettreFactureRequest {
   }
 
 
-  public SoumettreFactureRequest montantHtTotal(@javax.annotation.Nonnull String montantHtTotal) {
+  public SoumettreFactureRequest montantHtTotal(@javax.annotation.Nonnull MontantHtTotal1 montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
     return this;
   }
 
   /**
-   * Montant HT total
+   * Get montantHtTotal
    * @return montantHtTotal
    */
   @javax.annotation.Nonnull
-  public String getMontantHtTotal() {
+  public MontantHtTotal1 getMontantHtTotal() {
     return montantHtTotal;
   }
 
-  public void setMontantHtTotal(@javax.annotation.Nonnull String montantHtTotal) {
+  public void setMontantHtTotal(@javax.annotation.Nonnull MontantHtTotal1 montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
   }
 
 
-  public SoumettreFactureRequest montantTva(@javax.annotation.Nonnull String montantTva) {
+  public SoumettreFactureRequest montantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
     this.montantTva = montantTva;
     return this;
   }
 
   /**
-   * Montant TVA
+   * Get montantTva
    * @return montantTva
    */
   @javax.annotation.Nonnull
-  public String getMontantTva() {
+  public MontantTva1 getMontantTva() {
     return montantTva;
   }
 
-  public void setMontantTva(@javax.annotation.Nonnull String montantTva) {
+  public void setMontantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
     this.montantTva = montantTva;
   }
 
 
-  public SoumettreFactureRequest montantTtcTotal(@javax.annotation.Nonnull String montantTtcTotal) {
+  public SoumettreFactureRequest montantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal1 montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
     return this;
   }
 
   /**
-   * Montant TTC total
+   * Get montantTtcTotal
    * @return montantTtcTotal
    */
   @javax.annotation.Nonnull
-  public String getMontantTtcTotal() {
+  public MontantTtcTotal1 getMontantTtcTotal() {
     return montantTtcTotal;
   }
 
-  public void setMontantTtcTotal(@javax.annotation.Nonnull String montantTtcTotal) {
+  public void setMontantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal1 montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
   }
 
@@ -553,15 +556,12 @@ public class SoumettreFactureRequest {
       if ((jsonObj.get("numero_engagement") != null && !jsonObj.get("numero_engagement").isJsonNull()) && !jsonObj.get("numero_engagement").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `numero_engagement` to be a primitive type in the JSON string but got `%s`", jsonObj.get("numero_engagement").toString()));
       }
-      if (!jsonObj.get("montant_ht_total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montant_ht_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montant_ht_total").toString()));
-      }
-      if (!jsonObj.get("montant_tva").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montant_tva` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montant_tva").toString()));
-      }
-      if (!jsonObj.get("montant_ttc_total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montant_ttc_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montant_ttc_total").toString()));
-      }
+      // validate the required field `montant_ht_total`
+      MontantHtTotal1.validateJsonElement(jsonObj.get("montant_ht_total"));
+      // validate the required field `montant_tva`
+      MontantTva1.validateJsonElement(jsonObj.get("montant_tva"));
+      // validate the required field `montant_ttc_total`
+      MontantTtcTotal1.validateJsonElement(jsonObj.get("montant_ttc_total"));
       if ((jsonObj.get("piece_jointe_principale_designation") != null && !jsonObj.get("piece_jointe_principale_designation").isJsonNull()) && !jsonObj.get("piece_jointe_principale_designation").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `piece_jointe_principale_designation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piece_jointe_principale_designation").toString()));
       }
