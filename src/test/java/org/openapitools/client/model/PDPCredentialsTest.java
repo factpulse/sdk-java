@@ -20,6 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +44,14 @@ public class PDPCredentialsTest {
     @Test
     public void flowServiceUrlTest() {
         // TODO: test flowServiceUrl
+    }
+
+    /**
+     * Test the property 'directoryServiceUrl'
+     */
+    @Test
+    public void directoryServiceUrlTest() {
+        // TODO: test directoryServiceUrl
     }
 
     /**

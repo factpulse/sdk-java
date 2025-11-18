@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,12 +51,17 @@ import org.openapitools.client.JSON;
 /**
  * Credentials PDP pour la stratégie zero-storage (Strategy B).  Permet de fournir directement les credentials PDP dans la requête au lieu de les stocker dans Django.  Utile pour : - Tests ponctuels sans persister les credentials - Intégrations temporaires - Environnements de développement
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T10:33:55.532787019Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:14:59.597484975Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class PDPCredentials {
   public static final String SERIALIZED_NAME_FLOW_SERVICE_URL = "flow_service_url";
   @SerializedName(SERIALIZED_NAME_FLOW_SERVICE_URL)
   @javax.annotation.Nonnull
   private String flowServiceUrl;
+
+  public static final String SERIALIZED_NAME_DIRECTORY_SERVICE_URL = "directory_service_url";
+  @SerializedName(SERIALIZED_NAME_DIRECTORY_SERVICE_URL)
+  @javax.annotation.Nullable
+  private String directoryServiceUrl;
 
   public static final String SERIALIZED_NAME_TOKEN_URL = "token_url";
   @SerializedName(SERIALIZED_NAME_TOKEN_URL)
@@ -91,6 +97,25 @@ public class PDPCredentials {
 
   public void setFlowServiceUrl(@javax.annotation.Nonnull String flowServiceUrl) {
     this.flowServiceUrl = flowServiceUrl;
+  }
+
+
+  public PDPCredentials directoryServiceUrl(@javax.annotation.Nullable String directoryServiceUrl) {
+    this.directoryServiceUrl = directoryServiceUrl;
+    return this;
+  }
+
+  /**
+   * Get directoryServiceUrl
+   * @return directoryServiceUrl
+   */
+  @javax.annotation.Nullable
+  public String getDirectoryServiceUrl() {
+    return directoryServiceUrl;
+  }
+
+  public void setDirectoryServiceUrl(@javax.annotation.Nullable String directoryServiceUrl) {
+    this.directoryServiceUrl = directoryServiceUrl;
   }
 
 
@@ -162,14 +187,26 @@ public class PDPCredentials {
     }
     PDPCredentials pdPCredentials = (PDPCredentials) o;
     return Objects.equals(this.flowServiceUrl, pdPCredentials.flowServiceUrl) &&
+        Objects.equals(this.directoryServiceUrl, pdPCredentials.directoryServiceUrl) &&
         Objects.equals(this.tokenUrl, pdPCredentials.tokenUrl) &&
         Objects.equals(this.clientId, pdPCredentials.clientId) &&
         Objects.equals(this.clientSecret, pdPCredentials.clientSecret);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(flowServiceUrl, tokenUrl, clientId, clientSecret);
+    return Objects.hash(flowServiceUrl, directoryServiceUrl, tokenUrl, clientId, clientSecret);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -177,6 +214,7 @@ public class PDPCredentials {
     StringBuilder sb = new StringBuilder();
     sb.append("class PDPCredentials {\n");
     sb.append("    flowServiceUrl: ").append(toIndentedString(flowServiceUrl)).append("\n");
+    sb.append("    directoryServiceUrl: ").append(toIndentedString(directoryServiceUrl)).append("\n");
     sb.append("    tokenUrl: ").append(toIndentedString(tokenUrl)).append("\n");
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
     sb.append("    clientSecret: ").append(toIndentedString(clientSecret)).append("\n");
@@ -201,7 +239,7 @@ public class PDPCredentials {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("flow_service_url", "token_url", "client_id", "client_secret"));
+    openapiFields = new HashSet<String>(Arrays.asList("flow_service_url", "directory_service_url", "token_url", "client_id", "client_secret"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("flow_service_url", "token_url", "client_id", "client_secret"));
@@ -237,6 +275,9 @@ public class PDPCredentials {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("flow_service_url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `flow_service_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flow_service_url").toString()));
+      }
+      if ((jsonObj.get("directory_service_url") != null && !jsonObj.get("directory_service_url").isJsonNull()) && !jsonObj.get("directory_service_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `directory_service_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("directory_service_url").toString()));
       }
       if (!jsonObj.get("token_url").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `token_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token_url").toString()));

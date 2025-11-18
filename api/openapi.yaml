@@ -5362,6 +5362,7 @@ components:
       example:
         client_id: factpulse_prod_abc123
         client_secret: secret_xyz789
+        directory_service_url: https://api.pdp-example.fr/directory/v1
         flow_service_url: https://api.pdp-example.fr/flow/v1
         token_url: https://auth.pdp-example.fr/oauth/token
       properties:
@@ -5369,6 +5370,9 @@ components:
           description: URL de base du Flow Service AFNOR
           example: https://api.pdp-example.fr/flow/v1
           title: Flow Service Url
+          type: string
+        directory_service_url:
+          nullable: true
           type: string
         token_url:
           description: URL du serveur OAuth2

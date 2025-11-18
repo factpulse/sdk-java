@@ -9,6 +9,7 @@ Credentials PDP pour la stratégie zero-storage (Strategy B).  Permet de fournir
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**flowServiceUrl** | **String** | URL de base du Flow Service AFNOR |  |
+|**directoryServiceUrl** | **String** |  |  [optional] |
 |**tokenUrl** | **String** | URL du serveur OAuth2 |  |
 |**clientId** | **String** | Client ID OAuth2 |  |
 |**clientSecret** | **String** | Client Secret OAuth2 (sensible) |  |
