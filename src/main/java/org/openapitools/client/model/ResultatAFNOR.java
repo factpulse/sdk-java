@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Résultat de la soumission à AFNOR PDP.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:14:59.597484975Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ResultatAFNOR {
   public static final String SERIALIZED_NAME_FLOW_ID = "flow_id";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)

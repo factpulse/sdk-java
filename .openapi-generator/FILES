@@ -8,6 +8,7 @@ build.gradle
 build.sbt
 docs/AdresseElectronique.md
 docs/AdressePostale.md
+docs/AfnorDirectoryServiceMtierApi.md
 docs/AfnorPdpPaApi.md
 docs/AfnorPdpPaDirectoryServiceApi.md
 docs/AfnorPdpPaFlowServiceApi.md
@@ -17,6 +18,8 @@ docs/BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGe
 docs/BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost.md
 docs/BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost.md
 docs/BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost.md
+docs/BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.md
+docs/BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost.md
 docs/BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost.md
 docs/BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost.md
 docs/BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost.md
@@ -142,6 +145,7 @@ src/main/java/org/openapitools/client/ProgressResponseBody.java
 src/main/java/org/openapitools/client/ServerConfiguration.java
 src/main/java/org/openapitools/client/ServerVariable.java
 src/main/java/org/openapitools/client/StringUtil.java
+src/main/java/org/openapitools/client/api/AfnorDirectoryServiceMtierApi.java
 src/main/java/org/openapitools/client/api/AfnorPdpPaApi.java
 src/main/java/org/openapitools/client/api/AfnorPdpPaDirectoryServiceApi.java
 src/main/java/org/openapitools/client/api/AfnorPdpPaFlowServiceApi.java
@@ -162,6 +166,8 @@ src/main/java/org/openapitools/client/model/BodyListerServicesStructureApiV1Chor
 src/main/java/org/openapitools/client/model/BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost.java
 src/main/java/org/openapitools/client/model/BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost.java
 src/main/java/org/openapitools/client/model/BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost.java
+src/main/java/org/openapitools/client/model/BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.java
+src/main/java/org/openapitools/client/model/BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost.java
 src/main/java/org/openapitools/client/model/BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost.java
 src/main/java/org/openapitools/client/model/BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost.java
 src/main/java/org/openapitools/client/model/BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost.java
@@ -261,6 +267,7 @@ src/main/java/org/openapitools/client/model/Unite.java
 src/main/java/org/openapitools/client/model/Utilisateur.java
 src/main/java/org/openapitools/client/model/ValidationError.java
 src/main/java/org/openapitools/client/model/ValidationErrorLocInner.java
+src/test/java/org/openapitools/client/api/AfnorDirectoryServiceMtierApiTest.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaApiTest.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaDirectoryServiceApiTest.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaFlowServiceApiTest.java
@@ -276,6 +283,8 @@ src/test/java/org/openapitools/client/model/BodyListerServicesStructureApiV1Chor
 src/test/java/org/openapitools/client/model/BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostTest.java
 src/test/java/org/openapitools/client/model/BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostTest.java
 src/test/java/org/openapitools/client/model/BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPostTest.java
+src/test/java/org/openapitools/client/model/BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPostTest.java
+src/test/java/org/openapitools/client/model/BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPostTest.java
 src/test/java/org/openapitools/client/model/BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostTest.java
 src/test/java/org/openapitools/client/model/BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostTest.java
 src/test/java/org/openapitools/client/model/BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostTest.java

@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Requête pour soumettre une facture complète (génération + soumission).  Workflow : 1. Auto-enrichissement (optionnel) 2. Génération PDF Factur-X 3. Signature (optionnelle) 4. Soumission vers la destination
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:14:59.597484975Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SoumettreFactureCompleteRequest {
   public static final String SERIALIZED_NAME_DONNEES_FACTURE = "donnees_facture";
   @SerializedName(SERIALIZED_NAME_DONNEES_FACTURE)

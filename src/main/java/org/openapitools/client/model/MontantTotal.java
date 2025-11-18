@@ -57,7 +57,7 @@ import org.openapitools.client.JSON;
 /**
  * Contient tous les montants totaux de la facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:14:59.597484975Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class MontantTotal {
   public static final String SERIALIZED_NAME_MONTANT_HT_TOTAL = "montantHtTotal";
   @SerializedName(SERIALIZED_NAME_MONTANT_HT_TOTAL)

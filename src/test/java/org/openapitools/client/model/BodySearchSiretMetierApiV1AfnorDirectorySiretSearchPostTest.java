@@ -11,27 +11,50 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.model;
 
-import java.util.HashSet;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.openapitools.client.model.PDPCredentials;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
- * Representing a Server Variable for server URL template substitution.
+ * Model tests for BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class ServerVariable {
-    public String description;
-    public String defaultValue;
-    public HashSet<String> enumValues = null;
+public class BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPostTest {
+    private final BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost model = new BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost();
 
     /**
-     * @param description A description for the server variable.
-     * @param defaultValue The default value to use for substitution.
-     * @param enumValues An enumeration of string values to be used if the substitution options are from a limited set.
+     * Model tests for BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost
      */
-    public ServerVariable(String description, String defaultValue, HashSet<String> enumValues) {
-        this.description = description;
-        this.defaultValue = defaultValue;
-        this.enumValues = enumValues;
+    @Test
+    public void testBodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost() {
+        // TODO: test BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost
     }
+
+    /**
+     * Test the property 'criteria'
+     */
+    @Test
+    public void criteriaTest() {
+        // TODO: test criteria
+    }
+
+    /**
+     * Test the property 'pdpCredentials'
+     */
+    @Test
+    public void pdpCredentialsTest() {
+        // TODO: test pdpCredentials
+    }
+
 }

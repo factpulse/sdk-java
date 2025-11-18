@@ -11,27 +11,85 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.api;
 
-import java.util.HashSet;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.model.BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost;
+import org.openapitools.client.model.BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost;
+import org.openapitools.client.model.HTTPValidationError;
+import org.openapitools.client.model.PDPCredentials;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Representing a Server Variable for server URL template substitution.
+ * API tests for AfnorDirectoryServiceMtierApi
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class ServerVariable {
-    public String description;
-    public String defaultValue;
-    public HashSet<String> enumValues = null;
+@Disabled
+public class AfnorDirectoryServiceMtierApiTest {
+
+    private final AfnorDirectoryServiceMtierApi api = new AfnorDirectoryServiceMtierApi();
 
     /**
-     * @param description A description for the server variable.
-     * @param defaultValue The default value to use for substitution.
-     * @param enumValues An enumeration of string values to be used if the substitution options are from a limited set.
+     * Récupérer une entreprise par SIREN (multi-tenant)
+     *
+     * Récupère les informations d&#39;une entreprise dans le Directory Service AFNOR. Les credentials PDP sont récupérés automatiquement via le client_uid du JWT, ou peuvent être fournis directement dans le body (zero-storage).
+     *
+     * @throws ApiException if the Api call fails
      */
-    public ServerVariable(String description, String defaultValue, HashSet<String> enumValues) {
-        this.description = description;
-        this.defaultValue = defaultValue;
-        this.enumValues = enumValues;
+    @Test
+    public void getSirenMetierApiV1AfnorDirectorySirenSirenGetTest() throws ApiException {
+        String siren = null;
+        PDPCredentials pdPCredentials = null;
+        Object response = api.getSirenMetierApiV1AfnorDirectorySirenSirenGet(siren, pdPCredentials);
+        // TODO: test validations
     }
+
+    /**
+     * Récupérer un établissement par SIRET (multi-tenant)
+     *
+     * Récupère les informations d&#39;un établissement dans le Directory Service AFNOR. Les credentials PDP sont récupérés automatiquement via le client_uid du JWT, ou peuvent être fournis directement dans le body (zero-storage).
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getSiretMetierApiV1AfnorDirectorySiretSiretGetTest() throws ApiException {
+        String siret = null;
+        PDPCredentials pdPCredentials = null;
+        Object response = api.getSiretMetierApiV1AfnorDirectorySiretSiretGet(siret, pdPCredentials);
+        // TODO: test validations
+    }
+
+    /**
+     * Rechercher des entreprises (multi-tenant)
+     *
+     * Recherche multi-critères d&#39;entreprises dans le Directory Service AFNOR. Les credentials PDP sont récupérés automatiquement via le client_uid du JWT, ou peuvent être fournis directement dans le body (zero-storage).
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void searchSirenMetierApiV1AfnorDirectorySirenSearchPostTest() throws ApiException {
+        BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost bodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost = null;
+        Object response = api.searchSirenMetierApiV1AfnorDirectorySirenSearchPost(bodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost);
+        // TODO: test validations
+    }
+
+    /**
+     * Rechercher des établissements (multi-tenant)
+     *
+     * Recherche multi-critères d&#39;établissements dans le Directory Service AFNOR. Les credentials PDP sont récupérés automatiquement via le client_uid du JWT, ou peuvent être fournis directement dans le body (zero-storage).
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void searchSiretMetierApiV1AfnorDirectorySiretSearchPostTest() throws ApiException {
+        BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost bodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost = null;
+        Object response = api.searchSiretMetierApiV1AfnorDirectorySiretSearchPost(bodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost);
+        // TODO: test validations
+    }
+
 }

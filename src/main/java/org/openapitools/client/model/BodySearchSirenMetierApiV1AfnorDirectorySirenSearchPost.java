@@ -22,6 +22,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.openapitools.client.model.PDPCredentials;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -49,178 +52,66 @@ import java.util.Locale;
 import org.openapitools.client.JSON;
 
 /**
- * Réponse après soumission d&#39;un flux
+ * BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class ReponseSoumissionFlux {
-  public static final String SERIALIZED_NAME_FLOW_ID = "flow_id";
-  @SerializedName(SERIALIZED_NAME_FLOW_ID)
+public class BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost {
+  public static final String SERIALIZED_NAME_CRITERIA = "criteria";
+  @SerializedName(SERIALIZED_NAME_CRITERIA)
   @javax.annotation.Nonnull
-  private String flowId;
+  private Map<String, Object> criteria = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_TRACKING_ID = "tracking_id";
-  @SerializedName(SERIALIZED_NAME_TRACKING_ID)
+  public static final String SERIALIZED_NAME_PDP_CREDENTIALS = "pdp_credentials";
+  @SerializedName(SERIALIZED_NAME_PDP_CREDENTIALS)
   @javax.annotation.Nullable
-  private String trackingId;
+  private PDPCredentials pdpCredentials;
 
-  public static final String SERIALIZED_NAME_NOM = "nom";
-  @SerializedName(SERIALIZED_NAME_NOM)
-  @javax.annotation.Nonnull
-  private String nom;
-
-  public static final String SERIALIZED_NAME_SYNTAXE_FLUX = "syntaxe_flux";
-  @SerializedName(SERIALIZED_NAME_SYNTAXE_FLUX)
-  @javax.annotation.Nonnull
-  private String syntaxeFlux;
-
-  public static final String SERIALIZED_NAME_PROFIL_FLUX = "profil_flux";
-  @SerializedName(SERIALIZED_NAME_PROFIL_FLUX)
-  @javax.annotation.Nullable
-  private String profilFlux;
-
-  public static final String SERIALIZED_NAME_SHA256 = "sha256";
-  @SerializedName(SERIALIZED_NAME_SHA256)
-  @javax.annotation.Nonnull
-  private String sha256;
-
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  @javax.annotation.Nonnull
-  private String message;
-
-  public ReponseSoumissionFlux() {
+  public BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost() {
   }
 
-  public ReponseSoumissionFlux flowId(@javax.annotation.Nonnull String flowId) {
-    this.flowId = flowId;
+  public BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost criteria(@javax.annotation.Nonnull Map<String, Object> criteria) {
+    this.criteria = criteria;
+    return this;
+  }
+
+  public BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost putCriteriaItem(String key, Object criteriaItem) {
+    if (this.criteria == null) {
+      this.criteria = new HashMap<>();
+    }
+    this.criteria.put(key, criteriaItem);
     return this;
   }
 
   /**
-   * Identifiant unique du flux généré par la PDP
-   * @return flowId
+   * Get criteria
+   * @return criteria
    */
   @javax.annotation.Nonnull
-  public String getFlowId() {
-    return flowId;
+  public Map<String, Object> getCriteria() {
+    return criteria;
   }
 
-  public void setFlowId(@javax.annotation.Nonnull String flowId) {
-    this.flowId = flowId;
+  public void setCriteria(@javax.annotation.Nonnull Map<String, Object> criteria) {
+    this.criteria = criteria;
   }
 
 
-  public ReponseSoumissionFlux trackingId(@javax.annotation.Nullable String trackingId) {
-    this.trackingId = trackingId;
+  public BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost pdpCredentials(@javax.annotation.Nullable PDPCredentials pdpCredentials) {
+    this.pdpCredentials = pdpCredentials;
     return this;
   }
 
   /**
-   * Get trackingId
-   * @return trackingId
+   * Get pdpCredentials
+   * @return pdpCredentials
    */
   @javax.annotation.Nullable
-  public String getTrackingId() {
-    return trackingId;
+  public PDPCredentials getPdpCredentials() {
+    return pdpCredentials;
   }
 
-  public void setTrackingId(@javax.annotation.Nullable String trackingId) {
-    this.trackingId = trackingId;
-  }
-
-
-  public ReponseSoumissionFlux nom(@javax.annotation.Nonnull String nom) {
-    this.nom = nom;
-    return this;
-  }
-
-  /**
-   * Nom du flux
-   * @return nom
-   */
-  @javax.annotation.Nonnull
-  public String getNom() {
-    return nom;
-  }
-
-  public void setNom(@javax.annotation.Nonnull String nom) {
-    this.nom = nom;
-  }
-
-
-  public ReponseSoumissionFlux syntaxeFlux(@javax.annotation.Nonnull String syntaxeFlux) {
-    this.syntaxeFlux = syntaxeFlux;
-    return this;
-  }
-
-  /**
-   * Syntaxe du flux (CII, UBL, etc.)
-   * @return syntaxeFlux
-   */
-  @javax.annotation.Nonnull
-  public String getSyntaxeFlux() {
-    return syntaxeFlux;
-  }
-
-  public void setSyntaxeFlux(@javax.annotation.Nonnull String syntaxeFlux) {
-    this.syntaxeFlux = syntaxeFlux;
-  }
-
-
-  public ReponseSoumissionFlux profilFlux(@javax.annotation.Nullable String profilFlux) {
-    this.profilFlux = profilFlux;
-    return this;
-  }
-
-  /**
-   * Get profilFlux
-   * @return profilFlux
-   */
-  @javax.annotation.Nullable
-  public String getProfilFlux() {
-    return profilFlux;
-  }
-
-  public void setProfilFlux(@javax.annotation.Nullable String profilFlux) {
-    this.profilFlux = profilFlux;
-  }
-
-
-  public ReponseSoumissionFlux sha256(@javax.annotation.Nonnull String sha256) {
-    this.sha256 = sha256;
-    return this;
-  }
-
-  /**
-   * Hash SHA256 du fichier soumis
-   * @return sha256
-   */
-  @javax.annotation.Nonnull
-  public String getSha256() {
-    return sha256;
-  }
-
-  public void setSha256(@javax.annotation.Nonnull String sha256) {
-    this.sha256 = sha256;
-  }
-
-
-  public ReponseSoumissionFlux message(@javax.annotation.Nonnull String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Message de confirmation
-   * @return message
-   */
-  @javax.annotation.Nonnull
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(@javax.annotation.Nonnull String message) {
-    this.message = message;
+  public void setPdpCredentials(@javax.annotation.Nullable PDPCredentials pdpCredentials) {
+    this.pdpCredentials = pdpCredentials;
   }
 
 
@@ -233,14 +124,9 @@ public class ReponseSoumissionFlux {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReponseSoumissionFlux reponseSoumissionFlux = (ReponseSoumissionFlux) o;
-    return Objects.equals(this.flowId, reponseSoumissionFlux.flowId) &&
-        Objects.equals(this.trackingId, reponseSoumissionFlux.trackingId) &&
-        Objects.equals(this.nom, reponseSoumissionFlux.nom) &&
-        Objects.equals(this.syntaxeFlux, reponseSoumissionFlux.syntaxeFlux) &&
-        Objects.equals(this.profilFlux, reponseSoumissionFlux.profilFlux) &&
-        Objects.equals(this.sha256, reponseSoumissionFlux.sha256) &&
-        Objects.equals(this.message, reponseSoumissionFlux.message);
+    BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost bodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost = (BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost) o;
+    return Objects.equals(this.criteria, bodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.criteria) &&
+        Objects.equals(this.pdpCredentials, bodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.pdpCredentials);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -249,7 +135,7 @@ public class ReponseSoumissionFlux {
 
   @Override
   public int hashCode() {
-    return Objects.hash(flowId, trackingId, nom, syntaxeFlux, profilFlux, sha256, message);
+    return Objects.hash(criteria, pdpCredentials);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -262,14 +148,9 @@ public class ReponseSoumissionFlux {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ReponseSoumissionFlux {\n");
-    sb.append("    flowId: ").append(toIndentedString(flowId)).append("\n");
-    sb.append("    trackingId: ").append(toIndentedString(trackingId)).append("\n");
-    sb.append("    nom: ").append(toIndentedString(nom)).append("\n");
-    sb.append("    syntaxeFlux: ").append(toIndentedString(syntaxeFlux)).append("\n");
-    sb.append("    profilFlux: ").append(toIndentedString(profilFlux)).append("\n");
-    sb.append("    sha256: ").append(toIndentedString(sha256)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("class BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost {\n");
+    sb.append("    criteria: ").append(toIndentedString(criteria)).append("\n");
+    sb.append("    pdpCredentials: ").append(toIndentedString(pdpCredentials)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -291,60 +172,43 @@ public class ReponseSoumissionFlux {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("flow_id", "tracking_id", "nom", "syntaxe_flux", "profil_flux", "sha256", "message"));
+    openapiFields = new HashSet<String>(Arrays.asList("criteria", "pdp_credentials"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("flow_id", "nom", "syntaxe_flux", "sha256", "message"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("criteria"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ReponseSoumissionFlux
+   * @throws IOException if the JSON Element is invalid with respect to BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ReponseSoumissionFlux.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in ReponseSoumissionFlux is not found in the empty JSON string", ReponseSoumissionFlux.openapiRequiredFields.toString()));
+        if (!BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost is not found in the empty JSON string", BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ReponseSoumissionFlux.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ReponseSoumissionFlux` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ReponseSoumissionFlux.openapiRequiredFields) {
+      for (String requiredField : BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("flow_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `flow_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flow_id").toString()));
-      }
-      if ((jsonObj.get("tracking_id") != null && !jsonObj.get("tracking_id").isJsonNull()) && !jsonObj.get("tracking_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `tracking_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tracking_id").toString()));
-      }
-      if (!jsonObj.get("nom").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `nom` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nom").toString()));
-      }
-      if (!jsonObj.get("syntaxe_flux").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `syntaxe_flux` to be a primitive type in the JSON string but got `%s`", jsonObj.get("syntaxe_flux").toString()));
-      }
-      if ((jsonObj.get("profil_flux") != null && !jsonObj.get("profil_flux").isJsonNull()) && !jsonObj.get("profil_flux").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `profil_flux` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profil_flux").toString()));
-      }
-      if (!jsonObj.get("sha256").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `sha256` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sha256").toString()));
-      }
-      if (!jsonObj.get("message").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      // validate the optional field `pdp_credentials`
+      if (jsonObj.get("pdp_credentials") != null && !jsonObj.get("pdp_credentials").isJsonNull()) {
+        PDPCredentials.validateJsonElement(jsonObj.get("pdp_credentials"));
       }
   }
 
@@ -352,22 +216,22 @@ public class ReponseSoumissionFlux {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ReponseSoumissionFlux.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ReponseSoumissionFlux' and its subtypes
+       if (!BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ReponseSoumissionFlux> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ReponseSoumissionFlux.class));
+       final TypeAdapter<BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ReponseSoumissionFlux>() {
+       return (TypeAdapter<T>) new TypeAdapter<BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost>() {
            @Override
-           public void write(JsonWriter out, ReponseSoumissionFlux value) throws IOException {
+           public void write(JsonWriter out, BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ReponseSoumissionFlux read(JsonReader in) throws IOException {
+           public BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -378,18 +242,18 @@ public class ReponseSoumissionFlux {
   }
 
   /**
-   * Create an instance of ReponseSoumissionFlux given an JSON string
+   * Create an instance of BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ReponseSoumissionFlux
-   * @throws IOException if the JSON string is invalid with respect to ReponseSoumissionFlux
+   * @return An instance of BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost
+   * @throws IOException if the JSON string is invalid with respect to BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost
    */
-  public static ReponseSoumissionFlux fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ReponseSoumissionFlux.class);
+  public static BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.class);
   }
 
   /**
-   * Convert an instance of ReponseSoumissionFlux to an JSON string
+   * Convert an instance of BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost to an JSON string
    *
    * @return JSON string
    */
