@@ -1537,37 +1537,38 @@ paths:
       - AFNOR PDP/PA - Directory Service
       x-accepts:
       - application/json
-  /api/v1/afnor/directory/v1/companies/search:
+  /api/v1/afnor/directory/v1/siren/search:
     post:
-      description: Rechercher des entreprises dans l'annuaire AFNOR
-      operationId: search_companies_proxy_api_v1_afnor_directory_v1_companies_search_post
+      description: Recherche multi-critères d'entreprises (unités légales)
+      operationId: search_siren_proxy_api_v1_afnor_directory_v1_siren_search_post
       responses:
         "200":
           content:
             application/json:
               example:
-                companies:
+                data:
                 - siren: "123456789"
-                  name: ACME Corporation
-                  electronicAddresses:
-                  - address: 123456789_12345678901234_SERVICE01
-                    schemeId: FR:SIREN
-                total: 1
-                offset: 0
-                limit: 10
+                  businessName: ACME Corporation
+                  entityType: PM
+                  administrativeStatus: A
+                meta:
+                  total: 1
+                  offset: 0
+                  limit: 10
               schema: {}
-          description: Résultats de recherche
+          description: Retourne une ou plusieurs entreprises
         "401":
           description: Non authentifié
-      summary: Rechercher des entreprises
+      summary: SIREN search (or legal unit)
       tags:
       - AFNOR PDP/PA - Directory Service
       x-accepts:
       - application/json
-  /api/v1/afnor/directory/v1/companies/{siren}:
+  /api/v1/afnor/directory/v1/siren/code-insee:{siren}:
     get:
-      description: Récupérer les informations d'une entreprise par son SIREN
-      operationId: get_company_proxy_api_v1_afnor_directory_v1_companies__siren__get
+      description: Retourne les détails d'une entreprise (unité légale) identifiée
+        par son numéro SIREN
+      operationId: get_siren_by_code_insee_proxy_api_v1_afnor_directory_v1_siren_code_insee__siren__get
       parameters:
       - explode: false
         in: path
@@ -1583,10 +1584,9 @@ paths:
             application/json:
               example:
                 siren: "123456789"
-                name: ACME Corporation
-                electronicAddresses:
-                - address: 123456789_12345678901234_SERVICE01
-                  schemeId: FR:SIREN
+                businessName: ACME Corporation
+                entityType: PM
+                administrativeStatus: A
               schema: {}
           description: Informations de l'entreprise
         "404":
@@ -1599,7 +1599,541 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
-      summary: Récupérer une entreprise
+      summary: Consult a siren (legal unit) by SIREN number
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/siren/id-instance:{id_instance}:
+    get:
+      description: Obtenir une entreprise (unité légale) identifiée par son idInstance
+      operationId: get_siren_by_id_instance_proxy_api_v1_afnor_directory_v1_siren_id_instance__id_instance__get
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                siren: "123456789"
+                businessName: ACME Corporation
+                idInstance: 550e8400-e29b-41d4-a716-446655440000
+              schema: {}
+          description: Informations de l'entreprise
+        "404":
+          description: Entreprise non trouvée
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Gets a siren (legal unit) by instance ID
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/siret/search:
+    post:
+      description: Recherche multi-critères d'établissements
+      operationId: search_siret_proxy_api_v1_afnor_directory_v1_siret_search_post
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - siret: "12345678901234"
+                  siren: "123456789"
+                  name: ACME Corporation - Siège
+                  facilityType: SIEGE
+                meta:
+                  total: 1
+                  offset: 0
+                  limit: 10
+              schema: {}
+          description: Retourne un ou plusieurs établissements
+        "401":
+          description: Non authentifié
+      summary: Search for a SIRET (facility)
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/siret/code-insee:{siret}:
+    get:
+      description: Obtenir un établissement identifié par son numéro SIRET
+      operationId: get_siret_by_code_insee_proxy_api_v1_afnor_directory_v1_siret_code_insee__siret__get
+      parameters:
+      - explode: false
+        in: path
+        name: siret
+        required: true
+        schema:
+          title: Siret
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                siret: "12345678901234"
+                siren: "123456789"
+                name: ACME Corporation - Siège
+                facilityType: SIEGE
+              schema: {}
+          description: Informations de l'établissement
+        "404":
+          description: Établissement non trouvé
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Gets a siret (facility) by SIRET number
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/siret/id-instance:{id_instance}:
+    get:
+      description: Obtenir un établissement identifié par son idInstance
+      operationId: get_siret_by_id_instance_proxy_api_v1_afnor_directory_v1_siret_id_instance__id_instance__get
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                siret: "12345678901234"
+                siren: "123456789"
+                idInstance: 550e8400-e29b-41d4-a716-446655440000
+              schema: {}
+          description: Informations de l'établissement
+        "404":
+          description: Établissement non trouvé
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Gets a siret (facility) by id-instance
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/routing-code:
+    post:
+      description: Créer un code de routage dans l'annuaire
+      operationId: create_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_post
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "201":
+          description: Code de routage créé avec succès
+        "400":
+          description: Requête invalide
+        "401":
+          description: Non authentifié
+      summary: Create a routing code
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/routing-code/search:
+    post:
+      description: Rechercher des codes de routage selon des critères
+      operationId: search_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_search_post
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - siret: "12345678901234"
+                  routingIdentifier: SERVICE01
+                  idInstance: 550e8400-e29b-41d4-a716-446655440000
+                meta:
+                  total: 1
+                  offset: 0
+                  limit: 10
+              schema: {}
+          description: Résultats de recherche
+        "401":
+          description: Non authentifié
+      summary: Search for a routing code
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/routing-code/siret:{siret}/code:{routing_identifier}:
+    get:
+      description: Consulter un code de routage identifié par SIRET et identifiant
+        de routage
+      operationId: get_routing_code_by_siret_and_code_proxy_api_v1_afnor_directory_v1_routing_code_siret__siret__code__routing_identifier__get
+      parameters:
+      - explode: false
+        in: path
+        name: siret
+        required: true
+        schema:
+          title: Siret
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: routing_identifier
+        required: true
+        schema:
+          title: Routing Identifier
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                siret: "12345678901234"
+                routingIdentifier: SERVICE01
+                idInstance: 550e8400-e29b-41d4-a716-446655440000
+              schema: {}
+          description: Détails du code de routage
+        "404":
+          description: Code de routage non trouvé
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get a routing code by SIRET and routing identifier
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}:
+    get:
+      description: Obtenir un code de routage identifié par son idInstance
+      operationId: get_routing_code_by_id_instance_proxy_api_v1_afnor_directory_v1_routing_code_id_instance__id_instance__get
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                siret: "12345678901234"
+                routingIdentifier: SERVICE01
+                idInstance: 550e8400-e29b-41d4-a716-446655440000
+              schema: {}
+          description: Détails du code de routage
+        "404":
+          description: Code de routage non trouvé
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get a routing code by instance-id
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+    patch:
+      description: Mettre à jour partiellement un code de routage privé
+      operationId: patch_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_id_instance__id_instance__patch
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Code de routage mis à jour
+        "404":
+          description: Code de routage non trouvé
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Partially update a private routing code
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+    put:
+      description: Mettre à jour complètement un code de routage privé
+      operationId: put_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_id_instance__id_instance__put
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Code de routage mis à jour
+        "404":
+          description: Code de routage non trouvé
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Completely update a private routing code
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/directory-line:
+    post:
+      description: Créer une ligne dans l'annuaire
+      operationId: create_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_post
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "201":
+          description: Ligne d'annuaire créée avec succès
+        "400":
+          description: Requête invalide
+        "401":
+          description: Non authentifié
+      summary: Creating a directory line
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/directory-line/search:
+    post:
+      description: Rechercher des lignes d'annuaire selon des critères
+      operationId: search_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_search_post
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - addressingIdentifier: 123456789_12345678901234_SERVICE01
+                  siren: "123456789"
+                  siret: "12345678901234"
+                  routingIdentifier: SERVICE01
+                meta:
+                  total: 1
+                  offset: 0
+                  limit: 10
+              schema: {}
+          description: Résultats de recherche
+        "401":
+          description: Non authentifié
+      summary: Search for a directory line
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/directory-line/code:{addressing_identifier}:
+    get:
+      description: Obtenir une ligne d'annuaire identifiée par un identifiant d'adressage
+      operationId: get_directory_line_by_code_proxy_api_v1_afnor_directory_v1_directory_line_code__addressing_identifier__get
+      parameters:
+      - explode: false
+        in: path
+        name: addressing_identifier
+        required: true
+        schema:
+          title: Addressing Identifier
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                addressingIdentifier: 123456789_12345678901234_SERVICE01
+                siren: "123456789"
+                siret: "12345678901234"
+                routingIdentifier: SERVICE01
+              schema: {}
+          description: Détails de la ligne d'annuaire
+        "404":
+          description: Ligne d'annuaire non trouvée
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get a directory line
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}:
+    delete:
+      description: Supprimer une ligne d'annuaire
+      operationId: delete_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_id_instance__id_instance__delete
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "204":
+          description: Ligne d'annuaire supprimée
+        "404":
+          description: Ligne d'annuaire non trouvée
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Delete a directory line
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+    get:
+      description: Obtenir une ligne d'annuaire identifiée par son idInstance
+      operationId: get_directory_line_by_id_instance_proxy_api_v1_afnor_directory_v1_directory_line_id_instance__id_instance__get
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                addressingIdentifier: 123456789_12345678901234_SERVICE01
+                siren: "123456789"
+                siret: "12345678901234"
+                idInstance: 550e8400-e29b-41d4-a716-446655440000
+              schema: {}
+          description: Détails de la ligne d'annuaire
+        "404":
+          description: Ligne d'annuaire non trouvée
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get a directory line
+      tags:
+      - AFNOR PDP/PA - Directory Service
+      x-accepts:
+      - application/json
+    patch:
+      description: Mettre à jour partiellement une ligne d'annuaire
+      operationId: patch_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_id_instance__id_instance__patch
+      parameters:
+      - explode: false
+        in: path
+        name: id_instance
+        required: true
+        schema:
+          title: Id Instance
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Ligne d'annuaire mise à jour
+        "404":
+          description: Ligne d'annuaire non trouvée
+        "401":
+          description: Non authentifié
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Partially updates a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
       x-accepts:
@@ -4505,11 +5039,11 @@ components:
         unite:
           $ref: "#/components/schemas/Unite"
         montantUnitaireHt:
-          $ref: "#/components/schemas/Montantunitaireht"
+          $ref: "#/components/schemas/MontantUnitaireHt"
         montantRemiseHt:
           $ref: "#/components/schemas/LigneDePoste_montantRemiseHt"
         montantTotalLigneHt:
-          $ref: "#/components/schemas/LigneDePoste_montantTotalLigneHt"
+          $ref: "#/components/schemas/MontantTotalLigneHt"
         tauxTva:
           nullable: true
           type: string
@@ -4539,9 +5073,9 @@ components:
       description: Représente une ligne de totalisation par taux de TVA.
       properties:
         montantBaseHt:
-          $ref: "#/components/schemas/Montantbaseht"
+          $ref: "#/components/schemas/MontantBaseHt"
         montantTva:
-          $ref: "#/components/schemas/Montanttva"
+          $ref: "#/components/schemas/MontantTva"
         taux:
           nullable: true
           type: string
@@ -4576,17 +5110,17 @@ components:
       description: Contient tous les montants totaux de la facture.
       properties:
         montantHtTotal:
-          $ref: "#/components/schemas/Montanthttotal"
+          $ref: "#/components/schemas/MontantHtTotal"
         montantTva:
-          $ref: "#/components/schemas/Montanttva_1"
+          $ref: "#/components/schemas/MontantTva_1"
         montantTtcTotal:
-          $ref: "#/components/schemas/Montantttctotal"
+          $ref: "#/components/schemas/MontantTtcTotal"
         montantAPayer:
-          $ref: "#/components/schemas/Montantapayer"
+          $ref: "#/components/schemas/MontantAPayer"
         acompte:
           $ref: "#/components/schemas/MontantTotal_acompte"
         montantRemiseGlobaleTtc:
-          $ref: "#/components/schemas/MontantTotal_montantRemiseGlobaleTtc"
+          $ref: "#/components/schemas/MontantRemiseGlobaleTtc"
         motifRemiseGlobaleTtc:
           nullable: true
           type: string
@@ -5178,14 +5712,14 @@ components:
         type: string
       description: Quantité facturée pour cette ligne.
       title: Quantite
-    Montantunitaireht:
+    MontantUnitaireHt:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
           d{0,4}0*$)"
         type: string
       description: Montant unitaire Hors Taxes de l'article.
-      title: Montantunitaireht
+      title: MontantUnitaireHt
     LigneDePoste_montantRemiseHt:
       anyOf:
       - minimum: 0.0
@@ -5195,7 +5729,7 @@ components:
         type: string
       description: Montant de la remise HT.
       nullable: true
-    LigneDePoste_montantTotalLigneHt:
+    MontantTotalLigneHt:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5204,6 +5738,7 @@ components:
         type: string
       description: Montant total HT de la ligne (quantité × prix unitaire - remise).
       nullable: true
+      title: MontantTotalLigneHt
     LigneDePoste_tauxTvaManuel:
       anyOf:
       - minimum: 0.0
@@ -5213,7 +5748,7 @@ components:
         type: string
       description: Taux de TVA avec valeur manuelle.
       nullable: true
-    Montantbaseht:
+    MontantBaseHt:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5221,8 +5756,8 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant de la base HT pour cette ligne de TVA.
-      title: Montantbaseht
-    Montanttva:
+      title: MontantBaseHt
+    MontantTva:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5230,7 +5765,7 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant de la TVA pour cette ligne.
-      title: Montanttva
+      title: MontantTva
     Tauxmanuel:
       anyOf:
       - minimum: 0.0
@@ -5240,7 +5775,7 @@ components:
         type: string
       description: Taux de TVA avec valeur manuelle.
       title: Tauxmanuel
-    Montanthttotal:
+    MontantHtTotal:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5248,8 +5783,8 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant total HT.
-      title: Montanthttotal
-    Montanttva_1:
+      title: MontantHtTotal
+    MontantTva_1:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5257,8 +5792,8 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant total de la TVA.
-      title: Montanttva
-    Montantttctotal:
+      title: MontantTva
+    MontantTtcTotal:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5266,8 +5801,8 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant total TTC.
-      title: Montantttctotal
-    Montantapayer:
+      title: MontantTtcTotal
+    MontantAPayer:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5275,7 +5810,7 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant à payer.
-      title: Montantapayer
+      title: MontantAPayer
     MontantTotal_acompte:
       anyOf:
       - minimum: 0.0
@@ -5285,7 +5820,7 @@ components:
         type: string
       description: Acompte versé.
       nullable: true
-    MontantTotal_montantRemiseGlobaleTtc:
+    MontantRemiseGlobaleTtc:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5294,6 +5829,7 @@ components:
         type: string
       description: Montant de la remise globale TTC.
       nullable: true
+      title: MontantRemiseGlobaleTtc
   securitySchemes:
     HTTPBearer:
       scheme: bearer

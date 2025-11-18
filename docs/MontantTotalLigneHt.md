@@ -1,8 +1,8 @@
 
 
-# Montantapayer
+# MontantTotalLigneHt
 
-Montant à payer.
+Montant total HT de la ligne (quantité × prix unitaire - remise).
 
 ## Properties
 

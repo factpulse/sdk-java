@@ -1,8 +1,8 @@
 
 
-# Montanttva
+# MontantBaseHt
 
-Montant de la TVA pour cette ligne.
+Montant de la base HT pour cette ligne de TVA.
 
 ## Properties
 

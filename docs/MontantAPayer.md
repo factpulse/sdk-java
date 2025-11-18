@@ -1,8 +1,8 @@
 
 
-# Montanthttotal
+# MontantAPayer
 
-Montant total HT.
+Montant à payer.
 
 ## Properties
 

@@ -8,12 +8,12 @@ Contient tous les montants totaux de la facture.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**montantHtTotal** | [**Montanthttotal**](Montanthttotal.md) |  |  |
-|**montantTva** | [**Montanttva1**](Montanttva1.md) |  |  |
-|**montantTtcTotal** | [**Montantttctotal**](Montantttctotal.md) |  |  |
-|**montantAPayer** | [**Montantapayer**](Montantapayer.md) |  |  |
+|**montantHtTotal** | [**MontantHtTotal**](MontantHtTotal.md) |  |  |
+|**montantTva** | [**MontantTva1**](MontantTva1.md) |  |  |
+|**montantTtcTotal** | [**MontantTtcTotal**](MontantTtcTotal.md) |  |  |
+|**montantAPayer** | [**MontantAPayer**](MontantAPayer.md) |  |  |
 |**acompte** | [**MontantTotalAcompte**](MontantTotalAcompte.md) |  |  [optional] |
-|**montantRemiseGlobaleTtc** | [**MontantTotalMontantRemiseGlobaleTtc**](MontantTotalMontantRemiseGlobaleTtc.md) |  |  [optional] |
+|**montantRemiseGlobaleTtc** | [**MontantRemiseGlobaleTtc**](MontantRemiseGlobaleTtc.md) |  |  [optional] |
 |**motifRemiseGlobaleTtc** | **String** |  |  [optional] |
 
 

@@ -13,9 +13,9 @@ Représente une ligne de détail dans une facture.
 |**denomination** | **String** |  |  |
 |**quantite** | [**Quantite**](Quantite.md) |  |  |
 |**unite** | **Unite** |  |  |
-|**montantUnitaireHt** | [**Montantunitaireht**](Montantunitaireht.md) |  |  |
+|**montantUnitaireHt** | [**MontantUnitaireHt**](MontantUnitaireHt.md) |  |  |
 |**montantRemiseHt** | [**LigneDePosteMontantRemiseHt**](LigneDePosteMontantRemiseHt.md) |  |  [optional] |
-|**montantTotalLigneHt** | [**LigneDePosteMontantTotalLigneHt**](LigneDePosteMontantTotalLigneHt.md) |  |  [optional] |
+|**montantTotalLigneHt** | [**MontantTotalLigneHt**](MontantTotalLigneHt.md) |  |  [optional] |
 |**tauxTva** | **String** |  |  [optional] |
 |**tauxTvaManuel** | [**LigneDePosteTauxTvaManuel**](LigneDePosteTauxTvaManuel.md) |  |  [optional] |
 |**categorieTva** | **CategorieTVA** |  |  [optional] |

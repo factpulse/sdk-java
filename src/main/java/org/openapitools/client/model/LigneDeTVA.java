@@ -23,8 +23,8 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.CategorieTVA;
-import org.openapitools.client.model.Montantbaseht;
-import org.openapitools.client.model.Montanttva;
+import org.openapitools.client.model.MontantBaseHt;
+import org.openapitools.client.model.MontantTva;
 import org.openapitools.client.model.Tauxmanuel;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -55,17 +55,17 @@ import org.openapitools.client.JSON;
 /**
  * Représente une ligne de totalisation par taux de TVA.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T12:41:10.428569766Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T10:33:55.532787019Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class LigneDeTVA {
   public static final String SERIALIZED_NAME_MONTANT_BASE_HT = "montantBaseHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_BASE_HT)
   @javax.annotation.Nonnull
-  private Montantbaseht montantBaseHt;
+  private MontantBaseHt montantBaseHt;
 
   public static final String SERIALIZED_NAME_MONTANT_TVA = "montantTva";
   @SerializedName(SERIALIZED_NAME_MONTANT_TVA)
   @javax.annotation.Nonnull
-  private Montanttva montantTva;
+  private MontantTva montantTva;
 
   public static final String SERIALIZED_NAME_TAUX = "taux";
   @SerializedName(SERIALIZED_NAME_TAUX)
@@ -85,7 +85,7 @@ public class LigneDeTVA {
   public LigneDeTVA() {
   }
 
-  public LigneDeTVA montantBaseHt(@javax.annotation.Nonnull Montantbaseht montantBaseHt) {
+  public LigneDeTVA montantBaseHt(@javax.annotation.Nonnull MontantBaseHt montantBaseHt) {
     this.montantBaseHt = montantBaseHt;
     return this;
   }
@@ -95,16 +95,16 @@ public class LigneDeTVA {
    * @return montantBaseHt
    */
   @javax.annotation.Nonnull
-  public Montantbaseht getMontantBaseHt() {
+  public MontantBaseHt getMontantBaseHt() {
     return montantBaseHt;
   }
 
-  public void setMontantBaseHt(@javax.annotation.Nonnull Montantbaseht montantBaseHt) {
+  public void setMontantBaseHt(@javax.annotation.Nonnull MontantBaseHt montantBaseHt) {
     this.montantBaseHt = montantBaseHt;
   }
 
 
-  public LigneDeTVA montantTva(@javax.annotation.Nonnull Montanttva montantTva) {
+  public LigneDeTVA montantTva(@javax.annotation.Nonnull MontantTva montantTva) {
     this.montantTva = montantTva;
     return this;
   }
@@ -114,11 +114,11 @@ public class LigneDeTVA {
    * @return montantTva
    */
   @javax.annotation.Nonnull
-  public Montanttva getMontantTva() {
+  public MontantTva getMontantTva() {
     return montantTva;
   }
 
-  public void setMontantTva(@javax.annotation.Nonnull Montanttva montantTva) {
+  public void setMontantTva(@javax.annotation.Nonnull MontantTva montantTva) {
     this.montantTva = montantTva;
   }
 
@@ -278,9 +278,9 @@ public class LigneDeTVA {
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `montantBaseHt`
-      Montantbaseht.validateJsonElement(jsonObj.get("montantBaseHt"));
+      MontantBaseHt.validateJsonElement(jsonObj.get("montantBaseHt"));
       // validate the required field `montantTva`
-      Montanttva.validateJsonElement(jsonObj.get("montantTva"));
+      MontantTva.validateJsonElement(jsonObj.get("montantTva"));
       if ((jsonObj.get("taux") != null && !jsonObj.get("taux").isJsonNull()) && !jsonObj.get("taux").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `taux` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taux").toString()));
       }

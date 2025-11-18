@@ -22,12 +22,12 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.client.model.MontantAPayer;
+import org.openapitools.client.model.MontantHtTotal;
+import org.openapitools.client.model.MontantRemiseGlobaleTtc;
 import org.openapitools.client.model.MontantTotalAcompte;
-import org.openapitools.client.model.MontantTotalMontantRemiseGlobaleTtc;
-import org.openapitools.client.model.Montantapayer;
-import org.openapitools.client.model.Montanthttotal;
-import org.openapitools.client.model.Montantttctotal;
-import org.openapitools.client.model.Montanttva1;
+import org.openapitools.client.model.MontantTtcTotal;
+import org.openapitools.client.model.MontantTva1;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -57,27 +57,27 @@ import org.openapitools.client.JSON;
 /**
  * Contient tous les montants totaux de la facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T12:41:10.428569766Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T10:33:55.532787019Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class MontantTotal {
   public static final String SERIALIZED_NAME_MONTANT_HT_TOTAL = "montantHtTotal";
   @SerializedName(SERIALIZED_NAME_MONTANT_HT_TOTAL)
   @javax.annotation.Nonnull
-  private Montanthttotal montantHtTotal;
+  private MontantHtTotal montantHtTotal;
 
   public static final String SERIALIZED_NAME_MONTANT_TVA = "montantTva";
   @SerializedName(SERIALIZED_NAME_MONTANT_TVA)
   @javax.annotation.Nonnull
-  private Montanttva1 montantTva;
+  private MontantTva1 montantTva;
 
   public static final String SERIALIZED_NAME_MONTANT_TTC_TOTAL = "montantTtcTotal";
   @SerializedName(SERIALIZED_NAME_MONTANT_TTC_TOTAL)
   @javax.annotation.Nonnull
-  private Montantttctotal montantTtcTotal;
+  private MontantTtcTotal montantTtcTotal;
 
   public static final String SERIALIZED_NAME_MONTANT_A_PAYER = "montantAPayer";
   @SerializedName(SERIALIZED_NAME_MONTANT_A_PAYER)
   @javax.annotation.Nonnull
-  private Montantapayer montantAPayer;
+  private MontantAPayer montantAPayer;
 
   public static final String SERIALIZED_NAME_ACOMPTE = "acompte";
   @SerializedName(SERIALIZED_NAME_ACOMPTE)
@@ -87,7 +87,7 @@ public class MontantTotal {
   public static final String SERIALIZED_NAME_MONTANT_REMISE_GLOBALE_TTC = "montantRemiseGlobaleTtc";
   @SerializedName(SERIALIZED_NAME_MONTANT_REMISE_GLOBALE_TTC)
   @javax.annotation.Nullable
-  private MontantTotalMontantRemiseGlobaleTtc montantRemiseGlobaleTtc;
+  private MontantRemiseGlobaleTtc montantRemiseGlobaleTtc;
 
   public static final String SERIALIZED_NAME_MOTIF_REMISE_GLOBALE_TTC = "motifRemiseGlobaleTtc";
   @SerializedName(SERIALIZED_NAME_MOTIF_REMISE_GLOBALE_TTC)
@@ -97,7 +97,7 @@ public class MontantTotal {
   public MontantTotal() {
   }
 
-  public MontantTotal montantHtTotal(@javax.annotation.Nonnull Montanthttotal montantHtTotal) {
+  public MontantTotal montantHtTotal(@javax.annotation.Nonnull MontantHtTotal montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
     return this;
   }
@@ -107,16 +107,16 @@ public class MontantTotal {
    * @return montantHtTotal
    */
   @javax.annotation.Nonnull
-  public Montanthttotal getMontantHtTotal() {
+  public MontantHtTotal getMontantHtTotal() {
     return montantHtTotal;
   }
 
-  public void setMontantHtTotal(@javax.annotation.Nonnull Montanthttotal montantHtTotal) {
+  public void setMontantHtTotal(@javax.annotation.Nonnull MontantHtTotal montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
   }
 
 
-  public MontantTotal montantTva(@javax.annotation.Nonnull Montanttva1 montantTva) {
+  public MontantTotal montantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
     this.montantTva = montantTva;
     return this;
   }
@@ -126,16 +126,16 @@ public class MontantTotal {
    * @return montantTva
    */
   @javax.annotation.Nonnull
-  public Montanttva1 getMontantTva() {
+  public MontantTva1 getMontantTva() {
     return montantTva;
   }
 
-  public void setMontantTva(@javax.annotation.Nonnull Montanttva1 montantTva) {
+  public void setMontantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
     this.montantTva = montantTva;
   }
 
 
-  public MontantTotal montantTtcTotal(@javax.annotation.Nonnull Montantttctotal montantTtcTotal) {
+  public MontantTotal montantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
     return this;
   }
@@ -145,16 +145,16 @@ public class MontantTotal {
    * @return montantTtcTotal
    */
   @javax.annotation.Nonnull
-  public Montantttctotal getMontantTtcTotal() {
+  public MontantTtcTotal getMontantTtcTotal() {
     return montantTtcTotal;
   }
 
-  public void setMontantTtcTotal(@javax.annotation.Nonnull Montantttctotal montantTtcTotal) {
+  public void setMontantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
   }
 
 
-  public MontantTotal montantAPayer(@javax.annotation.Nonnull Montantapayer montantAPayer) {
+  public MontantTotal montantAPayer(@javax.annotation.Nonnull MontantAPayer montantAPayer) {
     this.montantAPayer = montantAPayer;
     return this;
   }
@@ -164,11 +164,11 @@ public class MontantTotal {
    * @return montantAPayer
    */
   @javax.annotation.Nonnull
-  public Montantapayer getMontantAPayer() {
+  public MontantAPayer getMontantAPayer() {
     return montantAPayer;
   }
 
-  public void setMontantAPayer(@javax.annotation.Nonnull Montantapayer montantAPayer) {
+  public void setMontantAPayer(@javax.annotation.Nonnull MontantAPayer montantAPayer) {
     this.montantAPayer = montantAPayer;
   }
 
@@ -192,7 +192,7 @@ public class MontantTotal {
   }
 
 
-  public MontantTotal montantRemiseGlobaleTtc(@javax.annotation.Nullable MontantTotalMontantRemiseGlobaleTtc montantRemiseGlobaleTtc) {
+  public MontantTotal montantRemiseGlobaleTtc(@javax.annotation.Nullable MontantRemiseGlobaleTtc montantRemiseGlobaleTtc) {
     this.montantRemiseGlobaleTtc = montantRemiseGlobaleTtc;
     return this;
   }
@@ -202,11 +202,11 @@ public class MontantTotal {
    * @return montantRemiseGlobaleTtc
    */
   @javax.annotation.Nullable
-  public MontantTotalMontantRemiseGlobaleTtc getMontantRemiseGlobaleTtc() {
+  public MontantRemiseGlobaleTtc getMontantRemiseGlobaleTtc() {
     return montantRemiseGlobaleTtc;
   }
 
-  public void setMontantRemiseGlobaleTtc(@javax.annotation.Nullable MontantTotalMontantRemiseGlobaleTtc montantRemiseGlobaleTtc) {
+  public void setMontantRemiseGlobaleTtc(@javax.annotation.Nullable MontantRemiseGlobaleTtc montantRemiseGlobaleTtc) {
     this.montantRemiseGlobaleTtc = montantRemiseGlobaleTtc;
   }
 
@@ -332,20 +332,20 @@ public class MontantTotal {
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `montantHtTotal`
-      Montanthttotal.validateJsonElement(jsonObj.get("montantHtTotal"));
+      MontantHtTotal.validateJsonElement(jsonObj.get("montantHtTotal"));
       // validate the required field `montantTva`
-      Montanttva1.validateJsonElement(jsonObj.get("montantTva"));
+      MontantTva1.validateJsonElement(jsonObj.get("montantTva"));
       // validate the required field `montantTtcTotal`
-      Montantttctotal.validateJsonElement(jsonObj.get("montantTtcTotal"));
+      MontantTtcTotal.validateJsonElement(jsonObj.get("montantTtcTotal"));
       // validate the required field `montantAPayer`
-      Montantapayer.validateJsonElement(jsonObj.get("montantAPayer"));
+      MontantAPayer.validateJsonElement(jsonObj.get("montantAPayer"));
       // validate the optional field `acompte`
       if (jsonObj.get("acompte") != null && !jsonObj.get("acompte").isJsonNull()) {
         MontantTotalAcompte.validateJsonElement(jsonObj.get("acompte"));
       }
       // validate the optional field `montantRemiseGlobaleTtc`
       if (jsonObj.get("montantRemiseGlobaleTtc") != null && !jsonObj.get("montantRemiseGlobaleTtc").isJsonNull()) {
-        MontantTotalMontantRemiseGlobaleTtc.validateJsonElement(jsonObj.get("montantRemiseGlobaleTtc"));
+        MontantRemiseGlobaleTtc.validateJsonElement(jsonObj.get("montantRemiseGlobaleTtc"));
       }
       if ((jsonObj.get("motifRemiseGlobaleTtc") != null && !jsonObj.get("motifRemiseGlobaleTtc").isJsonNull()) && !jsonObj.get("motifRemiseGlobaleTtc").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `motifRemiseGlobaleTtc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("motifRemiseGlobaleTtc").toString()));

@@ -18,17 +18,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for MontantTotalMontantRemiseGlobaleTtc
+ * Model tests for MontantUnitaireHt
  */
-public class MontantTotalMontantRemiseGlobaleTtcTest {
-    private final MontantTotalMontantRemiseGlobaleTtc model = new MontantTotalMontantRemiseGlobaleTtc();
+public class MontantUnitaireHtTest {
+    private final MontantUnitaireHt model = new MontantUnitaireHt();
 
     /**
-     * Model tests for MontantTotalMontantRemiseGlobaleTtc
+     * Model tests for MontantUnitaireHt
      */
     @Test
-    public void testMontantTotalMontantRemiseGlobaleTtc() {
-        // TODO: test MontantTotalMontantRemiseGlobaleTtc
+    public void testMontantUnitaireHt() {
+        // TODO: test MontantUnitaireHt
     }
 
 }

@@ -8,8 +8,8 @@ Représente une ligne de totalisation par taux de TVA.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**montantBaseHt** | [**Montantbaseht**](Montantbaseht.md) |  |  |
-|**montantTva** | [**Montanttva**](Montanttva.md) |  |  |
+|**montantBaseHt** | [**MontantBaseHt**](MontantBaseHt.md) |  |  |
+|**montantTva** | [**MontantTva**](MontantTva.md) |  |  |
 |**taux** | **String** |  |  [optional] |
 |**tauxManuel** | [**Tauxmanuel**](Tauxmanuel.md) |  |  [optional] |
 |**categorie** | **CategorieTVA** |  |  [optional] |

@@ -25,9 +25,9 @@ import java.util.Arrays;
 import org.openapitools.client.model.CategorieTVA;
 import org.openapitools.client.model.CodeRaisonReduction;
 import org.openapitools.client.model.LigneDePosteMontantRemiseHt;
-import org.openapitools.client.model.LigneDePosteMontantTotalLigneHt;
 import org.openapitools.client.model.LigneDePosteTauxTvaManuel;
-import org.openapitools.client.model.Montantunitaireht;
+import org.openapitools.client.model.MontantTotalLigneHt;
+import org.openapitools.client.model.MontantUnitaireHt;
 import org.openapitools.client.model.Quantite;
 import org.openapitools.client.model.Unite;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -59,7 +59,7 @@ import org.openapitools.client.JSON;
 /**
  * Représente une ligne de détail dans une facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T12:41:10.428569766Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T10:33:55.532787019Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class LigneDePoste {
   public static final String SERIALIZED_NAME_NUMERO = "numero";
   @SerializedName(SERIALIZED_NAME_NUMERO)
@@ -89,7 +89,7 @@ public class LigneDePoste {
   public static final String SERIALIZED_NAME_MONTANT_UNITAIRE_HT = "montantUnitaireHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_UNITAIRE_HT)
   @javax.annotation.Nonnull
-  private Montantunitaireht montantUnitaireHt;
+  private MontantUnitaireHt montantUnitaireHt;
 
   public static final String SERIALIZED_NAME_MONTANT_REMISE_HT = "montantRemiseHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_REMISE_HT)
@@ -99,7 +99,7 @@ public class LigneDePoste {
   public static final String SERIALIZED_NAME_MONTANT_TOTAL_LIGNE_HT = "montantTotalLigneHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_TOTAL_LIGNE_HT)
   @javax.annotation.Nullable
-  private LigneDePosteMontantTotalLigneHt montantTotalLigneHt;
+  private MontantTotalLigneHt montantTotalLigneHt;
 
   public static final String SERIALIZED_NAME_TAUX_TVA = "tauxTva";
   @SerializedName(SERIALIZED_NAME_TAUX_TVA)
@@ -234,7 +234,7 @@ public class LigneDePoste {
   }
 
 
-  public LigneDePoste montantUnitaireHt(@javax.annotation.Nonnull Montantunitaireht montantUnitaireHt) {
+  public LigneDePoste montantUnitaireHt(@javax.annotation.Nonnull MontantUnitaireHt montantUnitaireHt) {
     this.montantUnitaireHt = montantUnitaireHt;
     return this;
   }
@@ -244,11 +244,11 @@ public class LigneDePoste {
    * @return montantUnitaireHt
    */
   @javax.annotation.Nonnull
-  public Montantunitaireht getMontantUnitaireHt() {
+  public MontantUnitaireHt getMontantUnitaireHt() {
     return montantUnitaireHt;
   }
 
-  public void setMontantUnitaireHt(@javax.annotation.Nonnull Montantunitaireht montantUnitaireHt) {
+  public void setMontantUnitaireHt(@javax.annotation.Nonnull MontantUnitaireHt montantUnitaireHt) {
     this.montantUnitaireHt = montantUnitaireHt;
   }
 
@@ -272,7 +272,7 @@ public class LigneDePoste {
   }
 
 
-  public LigneDePoste montantTotalLigneHt(@javax.annotation.Nullable LigneDePosteMontantTotalLigneHt montantTotalLigneHt) {
+  public LigneDePoste montantTotalLigneHt(@javax.annotation.Nullable MontantTotalLigneHt montantTotalLigneHt) {
     this.montantTotalLigneHt = montantTotalLigneHt;
     return this;
   }
@@ -282,11 +282,11 @@ public class LigneDePoste {
    * @return montantTotalLigneHt
    */
   @javax.annotation.Nullable
-  public LigneDePosteMontantTotalLigneHt getMontantTotalLigneHt() {
+  public MontantTotalLigneHt getMontantTotalLigneHt() {
     return montantTotalLigneHt;
   }
 
-  public void setMontantTotalLigneHt(@javax.annotation.Nullable LigneDePosteMontantTotalLigneHt montantTotalLigneHt) {
+  public void setMontantTotalLigneHt(@javax.annotation.Nullable MontantTotalLigneHt montantTotalLigneHt) {
     this.montantTotalLigneHt = montantTotalLigneHt;
   }
 
@@ -552,14 +552,14 @@ public class LigneDePoste {
       // validate the required field `unite`
       Unite.validateJsonElement(jsonObj.get("unite"));
       // validate the required field `montantUnitaireHt`
-      Montantunitaireht.validateJsonElement(jsonObj.get("montantUnitaireHt"));
+      MontantUnitaireHt.validateJsonElement(jsonObj.get("montantUnitaireHt"));
       // validate the optional field `montantRemiseHt`
       if (jsonObj.get("montantRemiseHt") != null && !jsonObj.get("montantRemiseHt").isJsonNull()) {
         LigneDePosteMontantRemiseHt.validateJsonElement(jsonObj.get("montantRemiseHt"));
       }
       // validate the optional field `montantTotalLigneHt`
       if (jsonObj.get("montantTotalLigneHt") != null && !jsonObj.get("montantTotalLigneHt").isJsonNull()) {
-        LigneDePosteMontantTotalLigneHt.validateJsonElement(jsonObj.get("montantTotalLigneHt"));
+        MontantTotalLigneHt.validateJsonElement(jsonObj.get("montantTotalLigneHt"));
       }
       if ((jsonObj.get("tauxTva") != null && !jsonObj.get("tauxTva").isJsonNull()) && !jsonObj.get("tauxTva").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `tauxTva` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tauxTva").toString()));

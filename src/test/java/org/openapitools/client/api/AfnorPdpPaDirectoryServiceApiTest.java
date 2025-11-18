@@ -32,6 +32,46 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     private final AfnorPdpPaDirectoryServiceApi api = new AfnorPdpPaDirectoryServiceApi();
 
     /**
+     * Creating a directory line
+     *
+     * Créer une ligne dans l&#39;annuaire
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostTest() throws ApiException {
+        Object response = api.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost();
+        // TODO: test validations
+    }
+
+    /**
+     * Create a routing code
+     *
+     * Créer un code de routage dans l&#39;annuaire
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostTest() throws ApiException {
+        Object response = api.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost();
+        // TODO: test validations
+    }
+
+    /**
+     * Delete a directory line
+     *
+     * Supprimer une ligne d&#39;annuaire
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance);
+        // TODO: test validations
+    }
+
+    /**
      * Healthcheck Directory Service
      *
      * Vérifier la disponibilité du Directory Service
@@ -45,29 +85,209 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     }
 
     /**
-     * Récupérer une entreprise
+     * Get a directory line
      *
-     * Récupérer les informations d&#39;une entreprise par son SIREN
+     * Obtenir une ligne d&#39;annuaire identifiée par un identifiant d&#39;adressage
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getCompanyProxyApiV1AfnorDirectoryV1CompaniesSirenGetTest() throws ApiException {
-        String siren = null;
-        Object response = api.getCompanyProxyApiV1AfnorDirectoryV1CompaniesSirenGet(siren);
+    public void getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetTest() throws ApiException {
+        String addressingIdentifier = null;
+        Object response = api.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier);
         // TODO: test validations
     }
 
     /**
-     * Rechercher des entreprises
+     * Get a directory line
      *
-     * Rechercher des entreprises dans l&#39;annuaire AFNOR
+     * Obtenir une ligne d&#39;annuaire identifiée par son idInstance
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void searchCompaniesProxyApiV1AfnorDirectoryV1CompaniesSearchPostTest() throws ApiException {
-        Object response = api.searchCompaniesProxyApiV1AfnorDirectoryV1CompaniesSearchPost();
+    public void getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance);
+        // TODO: test validations
+    }
+
+    /**
+     * Get a routing code by instance-id
+     *
+     * Obtenir un code de routage identifié par son idInstance
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance);
+        // TODO: test validations
+    }
+
+    /**
+     * Get a routing code by SIRET and routing identifier
+     *
+     * Consulter un code de routage identifié par SIRET et identifiant de routage
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetTest() throws ApiException {
+        String siret = null;
+        String routingIdentifier = null;
+        Object response = api.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier);
+        // TODO: test validations
+    }
+
+    /**
+     * Consult a siren (legal unit) by SIREN number
+     *
+     * Retourne les détails d&#39;une entreprise (unité légale) identifiée par son numéro SIREN
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetTest() throws ApiException {
+        String siren = null;
+        Object response = api.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren);
+        // TODO: test validations
+    }
+
+    /**
+     * Gets a siren (legal unit) by instance ID
+     *
+     * Obtenir une entreprise (unité légale) identifiée par son idInstance
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance);
+        // TODO: test validations
+    }
+
+    /**
+     * Gets a siret (facility) by SIRET number
+     *
+     * Obtenir un établissement identifié par son numéro SIRET
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetTest() throws ApiException {
+        String siret = null;
+        Object response = api.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret);
+        // TODO: test validations
+    }
+
+    /**
+     * Gets a siret (facility) by id-instance
+     *
+     * Obtenir un établissement identifié par son idInstance
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance);
+        // TODO: test validations
+    }
+
+    /**
+     * Partially updates a directory line
+     *
+     * Mettre à jour partiellement une ligne d&#39;annuaire
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance);
+        // TODO: test validations
+    }
+
+    /**
+     * Partially update a private routing code
+     *
+     * Mettre à jour partiellement un code de routage privé
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance);
+        // TODO: test validations
+    }
+
+    /**
+     * Completely update a private routing code
+     *
+     * Mettre à jour complètement un code de routage privé
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutTest() throws ApiException {
+        String idInstance = null;
+        Object response = api.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance);
+        // TODO: test validations
+    }
+
+    /**
+     * Search for a directory line
+     *
+     * Rechercher des lignes d&#39;annuaire selon des critères
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostTest() throws ApiException {
+        Object response = api.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost();
+        // TODO: test validations
+    }
+
+    /**
+     * Search for a routing code
+     *
+     * Rechercher des codes de routage selon des critères
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostTest() throws ApiException {
+        Object response = api.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost();
+        // TODO: test validations
+    }
+
+    /**
+     * SIREN search (or legal unit)
+     *
+     * Recherche multi-critères d&#39;entreprises (unités légales)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostTest() throws ApiException {
+        Object response = api.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost();
+        // TODO: test validations
+    }
+
+    /**
+     * Search for a SIRET (facility)
+     *
+     * Recherche multi-critères d&#39;établissements
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostTest() throws ApiException {
+        Object response = api.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost();
         // TODO: test validations
     }
 

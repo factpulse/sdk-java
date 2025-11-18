@@ -1,8 +1,8 @@
 
 
-# Montantttctotal
+# MontantRemiseGlobaleTtc
 
-Montant total TTC.
+Montant de la remise globale TTC.
 
 ## Properties
 

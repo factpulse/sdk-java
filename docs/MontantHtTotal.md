@@ -2,6 +2,7 @@
 
 # MontantHtTotal
 
+Montant total HT.
 
 ## Properties
 

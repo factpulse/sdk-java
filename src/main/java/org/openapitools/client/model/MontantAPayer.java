@@ -53,24 +53,24 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-13T12:41:10.428569766Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class Montantttctotal extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(Montantttctotal.class.getName());
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T10:33:55.532787019Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+public class MontantAPayer extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(MontantAPayer.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!Montantttctotal.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'Montantttctotal' and its subtypes
+            if (!MontantAPayer.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'MontantAPayer' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<BigDecimal> adapterBigDecimal = gson.getDelegateAdapter(this, TypeToken.get(BigDecimal.class));
             final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<Montantttctotal>() {
+            return (TypeAdapter<T>) new TypeAdapter<MontantAPayer>() {
                 @Override
-                public void write(JsonWriter out, Montantttctotal value) throws IOException {
+                public void write(JsonWriter out, MontantAPayer value) throws IOException {
                     if (value == null || value.getActualInstance() == null) {
                         elementAdapter.write(out, null);
                         return;
@@ -92,7 +92,7 @@ public class Montantttctotal extends AbstractOpenApiSchema {
                 }
 
                 @Override
-                public Montantttctotal read(JsonReader in) throws IOException {
+                public MontantAPayer read(JsonReader in) throws IOException {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
@@ -106,7 +106,7 @@ public class Montantttctotal extends AbstractOpenApiSchema {
                             throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type Number in the JSON string but got `%s`", jsonElement.toString()));
                         }
                         actualAdapter = adapterBigDecimal;
-                        Montantttctotal ret = new Montantttctotal();
+                        MontantAPayer ret = new MontantAPayer();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
                     } catch (Exception e) {
@@ -121,7 +121,7 @@ public class Montantttctotal extends AbstractOpenApiSchema {
                             throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
                         }
                         actualAdapter = adapterString;
-                        Montantttctotal ret = new Montantttctotal();
+                        MontantAPayer ret = new MontantAPayer();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
                     } catch (Exception e) {
@@ -130,7 +130,7 @@ public class Montantttctotal extends AbstractOpenApiSchema {
                         log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
 
-                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for Montantttctotal: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for MontantAPayer: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
@@ -139,11 +139,11 @@ public class Montantttctotal extends AbstractOpenApiSchema {
     // store a list of schema names defined in anyOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
-    public Montantttctotal() {
+    public MontantAPayer() {
         super("anyOf", Boolean.FALSE);
     }
 
-    public Montantttctotal(Object o) {
+    public MontantAPayer(Object o) {
         super("anyOf", Boolean.FALSE);
         setActualInstance(o);
     }
@@ -155,7 +155,7 @@ public class Montantttctotal extends AbstractOpenApiSchema {
 
     @Override
     public Map<String, Class<?>> getSchemas() {
-        return Montantttctotal.schemas;
+        return MontantAPayer.schemas;
     }
 
     /**
@@ -218,7 +218,7 @@ public class Montantttctotal extends AbstractOpenApiSchema {
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Montantttctotal
+     * @throws IOException if the JSON Element is invalid with respect to MontantAPayer
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         // validate anyOf schemas one by one
@@ -243,22 +243,22 @@ public class Montantttctotal extends AbstractOpenApiSchema {
             errorMessages.add(String.format(Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for Montantttctotal with anyOf schemas: BigDecimal, String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+        throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for MontantAPayer with anyOf schemas: BigDecimal, String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
     }
 
     /**
-     * Create an instance of Montantttctotal given an JSON string
+     * Create an instance of MontantAPayer given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of Montantttctotal
-     * @throws IOException if the JSON string is invalid with respect to Montantttctotal
+     * @return An instance of MontantAPayer
+     * @throws IOException if the JSON string is invalid with respect to MontantAPayer
      */
-    public static Montantttctotal fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, Montantttctotal.class);
+    public static MontantAPayer fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, MontantAPayer.class);
     }
 
     /**
-     * Convert an instance of Montantttctotal to an JSON string
+     * Convert an instance of MontantAPayer to an JSON string
      *
      * @return JSON string
      */
