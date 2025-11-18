@@ -39,6 +39,7 @@ Créer une ligne dans l&#39;annuaire
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -46,6 +47,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     try {
@@ -71,7 +76,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -100,6 +105,7 @@ Créer un code de routage dans l&#39;annuaire
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -107,6 +113,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     try {
@@ -132,7 +142,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -161,6 +171,7 @@ Supprimer une ligne d&#39;annuaire
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -168,6 +179,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -197,7 +212,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -285,6 +300,7 @@ Obtenir une ligne d&#39;annuaire identifiée par un identifiant d&#39;adressage
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -292,6 +308,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String addressingIdentifier = "addressingIdentifier_example"; // String | 
@@ -321,7 +341,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -350,6 +370,7 @@ Obtenir une ligne d&#39;annuaire identifiée par son idInstance
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -357,6 +378,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -386,7 +411,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -415,6 +440,7 @@ Obtenir un code de routage identifié par son idInstance
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -422,6 +448,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -451,7 +481,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -480,6 +510,7 @@ Consulter un code de routage identifié par SIRET et identifiant de routage
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -487,6 +518,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String siret = "siret_example"; // String | 
@@ -518,7 +553,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -547,6 +582,7 @@ Retourne les détails d&#39;une entreprise (unité légale) identifiée par son 
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -554,6 +590,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String siren = "siren_example"; // String | 
@@ -583,7 +623,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -612,6 +652,7 @@ Obtenir une entreprise (unité légale) identifiée par son idInstance
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -619,6 +660,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -648,7 +693,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -677,6 +722,7 @@ Obtenir un établissement identifié par son numéro SIRET
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -684,6 +730,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String siret = "siret_example"; // String | 
@@ -713,7 +763,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -742,6 +792,7 @@ Obtenir un établissement identifié par son idInstance
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -749,6 +800,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -778,7 +833,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -807,6 +862,7 @@ Mettre à jour partiellement une ligne d&#39;annuaire
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -814,6 +870,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -843,7 +903,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -872,6 +932,7 @@ Mettre à jour partiellement un code de routage privé
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -879,6 +940,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -908,7 +973,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -937,6 +1002,7 @@ Mettre à jour complètement un code de routage privé
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -944,6 +1010,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | 
@@ -973,7 +1043,7 @@ public class Example {
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -1002,6 +1072,7 @@ Rechercher des lignes d&#39;annuaire selon des critères
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1009,6 +1080,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     try {
@@ -1034,7 +1109,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -1061,6 +1136,7 @@ Rechercher des codes de routage selon des critères
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1068,6 +1144,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     try {
@@ -1093,7 +1173,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -1120,6 +1200,7 @@ Recherche multi-critères d&#39;entreprises (unités légales)
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1127,6 +1208,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     try {
@@ -1152,7 +1237,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -1179,6 +1264,7 @@ Recherche multi-critères d&#39;établissements
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1186,6 +1272,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     try {
@@ -1211,7 +1301,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

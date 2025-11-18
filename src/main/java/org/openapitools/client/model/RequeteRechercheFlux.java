@@ -57,7 +57,7 @@ import org.openapitools.client.JSON;
 /**
  * Requête pour rechercher des flux soumis
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T14:06:46.039641398Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class RequeteRechercheFlux {
   public static final String SERIALIZED_NAME_DATE_MAJ_APRES = "date_maj_apres";
   @SerializedName(SERIALIZED_NAME_DATE_MAJ_APRES)

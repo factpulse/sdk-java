@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Représente une adresse de facturation électronique, composée d&#39;un identifiant et de son schéma (SchemeID) conformément à la norme EN16931. Exemple: { \&quot;identifiant\&quot;: \&quot;123456789\&quot;, \&quot;scheme_id\&quot;: \&quot;0225\&quot; }
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T13:48:04.391027420Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-18T14:06:46.039641398Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class AdresseElectronique {
   public static final String SERIALIZED_NAME_IDENTIFIANT = "identifiant";
   @SerializedName(SERIALIZED_NAME_IDENTIFIANT)

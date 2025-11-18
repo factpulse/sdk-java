@@ -1337,184 +1337,6 @@ paths:
       - AFNOR PDP/PA
       x-accepts:
       - application/json
-  /api/v1/afnor/directory/siren/{siren}:
-    get:
-      description: "Récupère les informations d'une entreprise dans le Directory Service\
-        \ AFNOR. Les credentials PDP sont récupérés automatiquement via le client_uid\
-        \ du JWT, ou peuvent être fournis directement dans le body (zero-storage)."
-      operationId: get_siren_metier_api_v1_afnor_directory_siren__siren__get
-      parameters:
-      - explode: false
-        in: path
-        name: siren
-        required: true
-        schema:
-          title: Siren
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PDPCredentials"
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                siren: "343309068"
-                businessName: ANTHROPIC FRANCE
-                entityType: PM
-                administrativeStatus: A
-              schema: {}
-          description: Entreprise trouvée
-        "404":
-          description: Entreprise non trouvée
-        "400":
-          description: Aucune config PDP fournie
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HTTPValidationError"
-          description: Validation Error
-      security:
-      - HTTPBearer: []
-      summary: Récupérer une entreprise par SIREN (multi-tenant)
-      tags:
-      - AFNOR - Directory Service (Métier)
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /api/v1/afnor/directory/siret/{siret}:
-    get:
-      description: "Récupère les informations d'un établissement dans le Directory\
-        \ Service AFNOR. Les credentials PDP sont récupérés automatiquement via le\
-        \ client_uid du JWT, ou peuvent être fournis directement dans le body (zero-storage)."
-      operationId: get_siret_metier_api_v1_afnor_directory_siret__siret__get
-      parameters:
-      - explode: false
-        in: path
-        name: siret
-        required: true
-        schema:
-          title: Siret
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PDPCredentials"
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                siret: "34330906800014"
-                siren: "343309068"
-                name: ANTHROPIC FRANCE - SIEGE
-                facilityType: SIEGE
-              schema: {}
-          description: Établissement trouvé
-        "404":
-          description: Établissement non trouvé
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HTTPValidationError"
-          description: Validation Error
-      security:
-      - HTTPBearer: []
-      summary: Récupérer un établissement par SIRET (multi-tenant)
-      tags:
-      - AFNOR - Directory Service (Métier)
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /api/v1/afnor/directory/siren/search:
-    post:
-      description: "Recherche multi-critères d'entreprises dans le Directory Service\
-        \ AFNOR. Les credentials PDP sont récupérés automatiquement via le client_uid\
-        \ du JWT, ou peuvent être fournis directement dans le body (zero-storage)."
-      operationId: search_siren_metier_api_v1_afnor_directory_siren_search_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Body_search_siren_metier_api_v1_afnor_directory_siren_search_post"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                data:
-                - siren: "343309068"
-                  businessName: ANTHROPIC FRANCE
-                  entityType: PM
-                meta:
-                  total: 1
-                  offset: 0
-                  limit: 10
-              schema: {}
-          description: Résultats de recherche
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HTTPValidationError"
-          description: Validation Error
-      security:
-      - HTTPBearer: []
-      summary: Rechercher des entreprises (multi-tenant)
-      tags:
-      - AFNOR - Directory Service (Métier)
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /api/v1/afnor/directory/siret/search:
-    post:
-      description: "Recherche multi-critères d'établissements dans le Directory Service\
-        \ AFNOR. Les credentials PDP sont récupérés automatiquement via le client_uid\
-        \ du JWT, ou peuvent être fournis directement dans le body (zero-storage)."
-      operationId: search_siret_metier_api_v1_afnor_directory_siret_search_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Body_search_siret_metier_api_v1_afnor_directory_siret_search_post"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                data:
-                - siret: "34330906800014"
-                  siren: "343309068"
-                  name: ANTHROPIC FRANCE - SIEGE
-                meta:
-                  total: 1
-                  offset: 0
-                  limit: 10
-              schema: {}
-          description: Résultats de recherche
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HTTPValidationError"
-          description: Validation Error
-      security:
-      - HTTPBearer: []
-      summary: Rechercher des établissements (multi-tenant)
-      tags:
-      - AFNOR - Directory Service (Métier)
-      x-content-type: application/json
-      x-accepts:
-      - application/json
   /api/v1/afnor/flow/v1/healthcheck:
     get:
       description: Vérifier la disponibilité du Flow Service
@@ -1737,6 +1559,8 @@ paths:
           description: Retourne une ou plusieurs entreprises
         "401":
           description: Non authentifié
+      security:
+      - HTTPBearer: []
       summary: SIREN search (or legal unit)
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -1777,6 +1601,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Consult a siren (legal unit) by SIREN number
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -1815,6 +1641,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Gets a siren (legal unit) by instance ID
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -1842,6 +1670,8 @@ paths:
           description: Retourne un ou plusieurs établissements
         "401":
           description: Non authentifié
+      security:
+      - HTTPBearer: []
       summary: Search for a SIRET (facility)
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -1881,6 +1711,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Gets a siret (facility) by SIRET number
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -1919,6 +1751,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Gets a siret (facility) by id-instance
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -1940,6 +1774,8 @@ paths:
           description: Requête invalide
         "401":
           description: Non authentifié
+      security:
+      - HTTPBearer: []
       summary: Create a routing code
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -1966,6 +1802,8 @@ paths:
           description: Résultats de recherche
         "401":
           description: Non authentifié
+      security:
+      - HTTPBearer: []
       summary: Search for a routing code
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2013,6 +1851,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Get a routing code by SIRET and routing identifier
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2051,6 +1891,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Get a routing code by instance-id
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2084,6 +1926,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Partially update a private routing code
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2117,6 +1961,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Completely update a private routing code
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2138,6 +1984,8 @@ paths:
           description: Requête invalide
         "401":
           description: Non authentifié
+      security:
+      - HTTPBearer: []
       summary: Creating a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2165,6 +2013,8 @@ paths:
           description: Résultats de recherche
         "401":
           description: Non authentifié
+      security:
+      - HTTPBearer: []
       summary: Search for a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2204,6 +2054,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Get a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2240,6 +2092,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Delete a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2278,6 +2132,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Get a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2311,6 +2167,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
           description: Validation Error
+      security:
+      - HTTPBearer: []
       summary: Partially updates a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -3210,28 +3068,6 @@ components:
       - payload
       - user_info
       title: Body_recycler_facture_api_v1_chorus_pro_factures_recycler_post
-    Body_search_siren_metier_api_v1_afnor_directory_siren_search_post:
-      properties:
-        criteria:
-          additionalProperties: true
-          title: Criteria
-          type: object
-        pdp_credentials:
-          $ref: "#/components/schemas/PDPCredentials"
-      required:
-      - criteria
-      title: Body_search_siren_metier_api_v1_afnor_directory_siren_search_post
-    Body_search_siret_metier_api_v1_afnor_directory_siret_search_post:
-      properties:
-        criteria:
-          additionalProperties: true
-          title: Criteria
-          type: object
-        pdp_credentials:
-          $ref: "#/components/schemas/PDPCredentials"
-      required:
-      - criteria
-      title: Body_search_siret_metier_api_v1_afnor_directory_siret_search_post
     Body_signer_pdf_api_v1_traitement_signer_pdf_post:
       properties:
         fichier_pdf:
@@ -4227,53 +4063,6 @@ components:
       - profil
       - taille
       title: PDFFacturXInfo
-    PDPCredentials:
-      description: |-
-        Credentials PDP pour la stratégie zero-storage (Strategy B).
-
-        Permet de fournir directement les credentials PDP dans la requête
-        au lieu de les stocker dans Django.
-
-        Utile pour :
-        - Tests ponctuels sans persister les credentials
-        - Intégrations temporaires
-        - Environnements de développement
-      example:
-        client_id: factpulse_prod_abc123
-        client_secret: secret_xyz789
-        directory_service_url: https://api.pdp-example.fr/directory/v1
-        flow_service_url: https://api.pdp-example.fr/flow/v1
-        token_url: https://auth.pdp-example.fr/oauth/token
-      properties:
-        flow_service_url:
-          description: URL de base du Flow Service AFNOR
-          example: https://api.pdp-example.fr/flow/v1
-          title: Flow Service Url
-          type: string
-        directory_service_url:
-          nullable: true
-          type: string
-        token_url:
-          description: URL du serveur OAuth2
-          example: https://auth.pdp-example.fr/oauth/token
-          title: Token Url
-          type: string
-        client_id:
-          description: Client ID OAuth2
-          example: factpulse_prod_abc123
-          title: Client Id
-          type: string
-        client_secret:
-          description: Client Secret OAuth2 (sensible)
-          example: secret_xyz789
-          title: Client Secret
-          type: string
-      required:
-      - client_id
-      - client_secret
-      - flow_service_url
-      - token_url
-      title: PDPCredentials
     ParametresSignature:
       description: |-
         Paramètres optionnels pour signer le PDF généré.
@@ -5595,6 +5384,53 @@ components:
       - numeroFacture
       - references
       title: FactureFacturX
+    PDPCredentials:
+      description: |-
+        Credentials PDP pour la stratégie zero-storage (Strategy B).
+
+        Permet de fournir directement les credentials PDP dans la requête
+        au lieu de les stocker dans Django.
+
+        Utile pour :
+        - Tests ponctuels sans persister les credentials
+        - Intégrations temporaires
+        - Environnements de développement
+      example:
+        client_id: factpulse_prod_abc123
+        client_secret: secret_xyz789
+        directory_service_url: https://api.pdp-example.fr/directory/v1
+        flow_service_url: https://api.pdp-example.fr/flow/v1
+        token_url: https://auth.pdp-example.fr/oauth/token
+      properties:
+        flow_service_url:
+          description: URL de base du Flow Service AFNOR
+          example: https://api.pdp-example.fr/flow/v1
+          title: Flow Service Url
+          type: string
+        directory_service_url:
+          nullable: true
+          type: string
+        token_url:
+          description: URL du serveur OAuth2
+          example: https://auth.pdp-example.fr/oauth/token
+          title: Token Url
+          type: string
+        client_id:
+          description: Client ID OAuth2
+          example: factpulse_prod_abc123
+          title: Client Id
+          type: string
+        client_secret:
+          description: Client Secret OAuth2 (sensible)
+          example: secret_xyz789
+          title: Client Secret
+          type: string
+      required:
+      - client_id
+      - client_secret
+      - flow_service_url
+      - token_url
+      title: PDPCredentials
     ProfilFlux:
       description: Profils de flux supportés
       enum:

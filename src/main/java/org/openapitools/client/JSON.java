@@ -115,8 +115,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodySearchSirenMetierApiV1AfnorDirectorySirenSearchPost.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost.CustomTypeAdapterFactory());
