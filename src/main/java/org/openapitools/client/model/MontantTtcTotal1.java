@@ -53,7 +53,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T15:21:40.682722075Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class MontantTtcTotal1 extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(MontantTtcTotal1.class.getName());
 
