@@ -68,112 +68,6 @@ info:
   version: 1.0.0
 servers:
 - url: /
-tags:
-- description: "\n## 📄 Génération et validation de factures électroniques\n\n**API\
-    \ principale pour la génération de factures Factur-X conformes aux normes europé\
-    ennes.**\n\n### Fonctionnalités\n\n- **Génération Factur-X** : Profils MINIMUM,\
-    \ BASIC, EN16931, EXTENDED\n- **Validation** : Schematron (45 à 210+ règles),\
-    \ VeraPDF (146+ règles PDF/A-3)\n- **Signature électronique** : PAdES-B-B, PAdES-B-T,\
-    \ PAdES-B-LT (niveaux eIDAS)\n- **Traitement asynchrone** : Support Celery pour\
-    \ gros fichiers\n- **Auto-enrichissement** : Données depuis Chorus Pro + API Entreprise\n\
-    \        "
-  name: Traitement Facture
-- description: "\n## 🔑 Authentification OAuth2 pour AFNOR PDP\n\n**Endpoint pour\
-    \ obtenir un token OAuth2 pour l'authentification auprès des Plateformes de Dé\
-    matérialisation Partenaires.**\n\n### Utilisation\n\nCet endpoint permet d'obtenir\
-    \ un access token OAuth2 nécessaire pour appeler les API Flow Service et Directory\
-    \ Service.\n\n**Type de requête** : `application/x-www-form-urlencoded`\n\n**Paramè\
-    tres** :\n- `grant_type` : `client_credentials` (requis)\n- `client_id` : ID client\
-    \ fourni par le PDP (requis)\n- `client_secret` : Secret client fourni par le\
-    \ PDP (requis)\n\n**Réponse** :\n```json\n{\n  \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\
-    ,\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600\n}\n```\n\n**Note** :\
-    \ Ce token doit être utilisé dans le header `Authorization: Bearer {access_token}`\
-    \ pour les appels aux API AFNOR.\n        "
-  name: AFNOR PDP/PA
-- description: "\n## 🔐 Modes d'authentification AFNOR PDP\n\n**Tous les endpoints\
-    \ AFNOR Flow Service supportent 2 modes d'authentification :**\n\n### Mode 1 :\
-    \ Stocké (Stored Credentials)\n- Les credentials PDP sont stockées chiffrées dans\
-    \ Django\n- Récupérées automatiquement via le `client_uid` du JWT\n- **Django\
-    \ décide** de l'environnement (test/production via les URLs configurées)\n- Pratique\
-    \ pour la production\n\n**Exemple** :\n```json\n{\n  \"name\": \"Facture FAC-2025-001\"\
-    ,\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\": \"EN16931\"\n}\n```\n\n**JWT\
-    \ doit contenir** : claim `client_uid` pointant vers une config PDP enregistré\
-    e\n\n---\n\n### Mode 2 : Zero-Trust (Zero-Storage)\n- Les credentials PDP sont\
-    \ passées dans le champ `pdp_credentials` de chaque requête\n- Jamais stockées\
-    \ en base de données\n- **Le client décide** de l'environnement via les URLs dans\
-    \ les credentials\n- Sécurité maximale, conformité RGPD\n\n**Exemple** :\n```json\n\
-    {\n  \"name\": \"Facture FAC-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\"\
-    : \"EN16931\",\n  \"pdp_credentials\": {\n    \"flow_service_url\": \"https://pdp-production.example.fr/flow/v1\"\
-    ,\n    \"token_url\": \"https://auth.example.fr/oauth/token\",\n    \"client_id\"\
-    : \"client_prod_123\",\n    \"client_secret\": \"secret_prod_456\",\n    \"directory_service_url\"\
-    : \"https://pdp-production.example.fr/directory/v1\"\n  }\n}\n```\n\n---\n\n**Sché\
-    ma PDPCredentials** :\n- `flow_service_url` : URL de l'API Flow Service (soumission/recherche\
-    \ de factures)\n- `token_url` : URL OAuth2 pour obtenir le token\n- `client_id`\
-    \ : Client ID OAuth2 fourni par le PDP\n- `client_secret` : Client Secret OAuth2\
-    \ fourni par le PDP\n- `directory_service_url` : (Optionnel) URL de l'API Directory\
-    \ Service (annuaire)\n\n**Note** : Tous les endpoints ci-dessous supportent ces\
-    \ 2 modes. Le champ `pdp_credentials` est optionnel dans chaque requête.\n\n📖\
-    \ **Documentation complète** : Voir `OPENAPI_AUTHENTICATION_MODES.md`\n      \
-    \  "
-  name: AFNOR PDP/PA - Flow Service
-- description: "\n## 🔐 Modes d'authentification AFNOR Directory Service\n\nSupporte\
-    \ les **mêmes 2 modes d'authentification** que Flow Service.\n\n### Mode 1 : Stocké\
-    \nJWT avec `client_uid` → Credentials récupérées depuis Django\n\n### Mode 2 :\
-    \ Zero-Trust\nCredentials PDP passées dans `pdp_credentials` (voir Flow Service)\n\
-    \n📖 **Documentation complète** : Voir tag \"AFNOR PDP/PA - Flow Service\" ci-dessus\n\
-    \        "
-  name: AFNOR PDP/PA - Directory Service
-- description: "\n## 🔐 Modes d'authentification Signature électronique\n\n**Tous\
-    \ les endpoints de signature électronique supportent 2 modes d'authentification\
-    \ :**\n\n### Mode 1 : Stocké (Stored Credentials)\n- Les certificats de signature\
-    \ sont stockés chiffrés dans Django\n- Récupérés automatiquement via le `client_uid`\
-    \ du JWT\n- **Django décide** de l'environnement (certificat test ou qualifié\
-    \ eIDAS)\n- Pratique pour la production\n\n**Exemple** :\n```json\n{\n  \"pdf_base64\"\
-    : \"JVBERi0xLjQKJeLjz9MK...\",\n  \"filename\": \"facture.pdf\",\n  \"signature_reason\"\
-    : \"Facture officielle\",\n  \"signature_location\": \"Paris, France\",\n  \"\
-    contact_info\": \"contact@entreprise.fr\"\n}\n```\n\n**JWT doit contenir** : claim\
-    \ `client_uid` pointant vers un certificat enregistré\n\n---\n\n### Mode 2 : Zero-Trust\n\
-    - Les credentials du certificat sont passées dans le champ `certificate_credentials`\
-    \ de chaque requête\n- Jamais stockées en base de données\n- **Le client décide**\
-    \ du type de certificat (test ou qualifié eIDAS)\n- Sécurité maximale, conformité\
-    \ RGPD\n\n**Exemple** :\n```json\n{\n  \"certificate_credentials\": {\n    \"\
-    certificate_base64\": \"MIIE...\",\n    \"private_key_base64\": \"MIIE...\",\n\
-    \    \"password\": \"cert_password\",\n    \"timestamp_url\": \"http://timestamp.digicert.com\"\
-    ,\n    \"use_qualified_certificate\": true\n  },\n  \"pdf_base64\": \"JVBERi0xLjQKJeLjz9MK...\"\
-    ,\n  \"filename\": \"facture.pdf\",\n  \"signature_reason\": \"Facture officielle\"\
-    ,\n  \"signature_location\": \"Paris, France\",\n  \"contact_info\": \"contact@entreprise.fr\"\
-    \n}\n```\n\n---\n\n**Schéma CertificateCredentials** :\n- `certificate_base64`\
-    \ : Certificat X.509 encodé en base64\n- `private_key_base64` : Clé privée encodé\
-    e en base64\n- `password` : Mot de passe de la clé privée (si chiffrée)\n- `timestamp_url`\
-    \ : URL du serveur d'horodatage (TSA)\n- `use_qualified_certificate` : `true`\
-    \ = certificat qualifié eIDAS, `false` = certificat test\n\n**Note** : Tous les\
-    \ endpoints ci-dessous supportent ces 2 modes. Le champ `certificate_credentials`\
-    \ est optionnel dans chaque requête.\n\n📖 **Documentation complète** : Voir `OPENAPI_AUTHENTICATION_MODES.md`\n\
-    \        "
-  name: Signature électronique
-- description: "\n## 🔐 Modes d'authentification Chorus Pro\n\n**Tous les endpoints\
-    \ Chorus Pro supportent 2 modes d'authentification :**\n\n### Mode 1 : Stocké\
-    \ (Stored Credentials)\n- Les credentials sont stockés chiffrés dans Django\n\
-    - Récupérés automatiquement via le `client_uid` du JWT\n- **Django décide** de\
-    \ l'environnement (sandbox/production)\n- Pratique pour la production\n\n**Exemple**\
-    \ :\n```json\n{\n  \"identifiant_structure\": \"12345678901234\",\n  \"type_identifiant_structure\"\
-    : \"SIRET\"\n}\n```\n\n**JWT doit contenir** : claim `client_uid` pointant vers\
-    \ une config Chorus Pro enregistrée\n\n---\n\n### Mode 2 : Zero-Trust\n- Les credentials\
-    \ sont passés dans le champ `credentials` de chaque requête\n- Jamais stockés\
-    \ en base de données\n- **Le client décide** de l'environnement via `\"sandbox\"\
-    : true/false`\n- Sécurité maximale, conformité RGPD\n\n**Exemple** :\n```json\n\
-    {\n  \"credentials\": {\n    \"piste_client_id\": \"mon_client_id\",\n    \"piste_client_secret\"\
-    : \"mon_secret\",\n    \"chorus_pro_login\": \"login@entreprise.fr\",\n    \"\
-    chorus_pro_password\": \"password\",\n    \"sandbox\": true\n  },\n  \"identifiant_structure\"\
-    : \"12345678901234\",\n  \"type_identifiant_structure\": \"SIRET\"\n}\n```\n\n\
-    ---\n\n**Schéma ChorusProCredentials** :\n- `piste_client_id` : Client ID PISTE\
-    \ (portail OAuth2 du gouvernement)\n- `piste_client_secret` : Client Secret PISTE\n\
-    - `chorus_pro_login` : Login Chorus Pro\n- `chorus_pro_password` : Mot de passe\
-    \ Chorus Pro\n- `sandbox` : `true` = environnement de test, `false` = production\n\
-    \n**Note** : Tous les endpoints ci-dessous supportent ces 2 modes. Le champ `credentials`\
-    \ est optionnel dans chaque requête.\n\n📖 **Documentation complète** : Voir `OPENAPI_AUTHENTICATION_MODES.md`\n\
-    \        "
-  name: Chorus Pro
 paths:
   /api/v1/traitement/generer-facture:
     post:
@@ -4938,6 +4832,60 @@ components:
       - msg
       - type
       title: ValidationError
+    FactureFacturX:
+      description: Modèle de données pour une facture destinée à être convertie en
+        Factur-X.
+      properties:
+        numeroFacture:
+          title: Numerofacture
+          type: string
+        dateEcheancePaiement:
+          title: Dateecheancepaiement
+          type: string
+        dateFacture:
+          title: Datefacture
+          type: string
+        modeDepot:
+          $ref: "#/components/schemas/ModeDepot"
+        destinataire:
+          $ref: "#/components/schemas/Destinataire"
+        fournisseur:
+          $ref: "#/components/schemas/Fournisseur"
+        cadreDeFacturation:
+          $ref: "#/components/schemas/CadreDeFacturation"
+        references:
+          $ref: "#/components/schemas/References"
+        montantTotal:
+          $ref: "#/components/schemas/MontantTotal"
+        lignesDePoste:
+          items:
+            $ref: "#/components/schemas/LigneDePoste"
+          type: array
+        lignesDeTva:
+          items:
+            $ref: "#/components/schemas/LigneDeTVA"
+          type: array
+        commentaire:
+          nullable: true
+          type: string
+        idUtilisateurCourant:
+          nullable: true
+          type: integer
+        piecesJointesComplementaires:
+          items:
+            $ref: "#/components/schemas/PieceJointeComplementaire"
+          nullable: true
+          type: array
+      required:
+      - cadreDeFacturation
+      - dateEcheancePaiement
+      - destinataire
+      - fournisseur
+      - modeDepot
+      - montantTotal
+      - numeroFacture
+      - references
+      title: FactureFacturX
     AdresseElectronique:
       description: |-
         Représente une adresse de facturation électronique, composée d'un identifiant
@@ -4986,7 +4934,19 @@ components:
       - codeCadreFacturation
       title: CadreDeFacturation
     CategorieTVA:
-      description: Catégories de TVA standardisées pour Factur-X.
+      description: |-
+        Catégories de TVA standardisées pour Factur-X (norme EN 16931).
+
+        **Valeurs possibles :**
+        - `S` : STANDARD - TVA au taux standard
+        - `Z` : ZERO - TVA à taux zéro
+        - `E` : EXONEREE - Exonération de TVA
+        - `AE` : AUTO_LIQUIDATION - Auto-liquidation (reverse charge)
+        - `K` : INTRA_COMMUNAUTAIRE - Livraison intracommunautaire
+        - `G` : EXPORT - Export hors UE
+        - `O` : HORS_CHAMP - Hors champ de la TVA
+        - `L` : CANARIES - TVA Canaries
+        - `M` : CEUTA_MELILLA - TVA Ceuta/Melilla
       enum:
       - S
       - Z
@@ -4999,6 +4959,26 @@ components:
       - M
       title: CategorieTVA
       type: string
+      x-enum-varnames:
+      - STANDARD
+      - ZERO
+      - EXONEREE
+      - AUTO_LIQUIDATION
+      - INTRA_COMMUNAUTAIRE
+      - EXPORT
+      - HORS_CHAMP
+      - CANARIES
+      - CEUTA_MELILLA
+      x-enum-descriptions:
+      - STANDARD - TVA au taux standard
+      - ZERO - TVA à taux zéro
+      - EXONEREE - Exonération de TVA
+      - AUTO_LIQUIDATION - Auto-liquidation (reverse charge)
+      - INTRA_COMMUNAUTAIRE - Livraison intracommunautaire
+      - EXPORT - Export hors UE
+      - HORS_CHAMP - Hors champ de la TVA
+      - CANARIES - TVA Canaries
+      - CEUTA_MELILLA - TVA Ceuta/Melilla
     CodeCadreFacturation:
       enum:
       - A1_FACTURE_FOURNISSEUR
@@ -5008,7 +4988,17 @@ components:
       title: CodeCadreFacturation
       type: string
     CodeRaisonReduction:
-      description: Codes standardisés pour justifier une réduction ou une charge.
+      description: |-
+        Codes standardisés pour justifier une réduction ou une charge supplémentaire (norme EN 16931).
+
+        **Valeurs possibles :**
+        - `AA` : REMISE_PUBLICITAIRE - Remise ou rabais publicitaire
+        - `ABL` : SUPPLEMENT_EMBALLAGE - Supplément d'emballage
+        - `ADR` : AUTRES_SERVICES - Autres services
+        - `ADT` : ENLEVEMENT - Coût d'enlèvement
+        - `FC` : COUTS_TRANSPORT - Coûts de transport
+        - `FI` : FRAIS_FINANCIERS - Frais de financement
+        - `LA` : ETIQUETAGE - Étiquetage
       enum:
       - AA
       - ABL
@@ -5019,6 +5009,22 @@ components:
       - LA
       title: CodeRaisonReduction
       type: string
+      x-enum-varnames:
+      - REMISE_PUBLICITAIRE
+      - SUPPLEMENT_EMBALLAGE
+      - AUTRES_SERVICES
+      - ENLEVEMENT
+      - COUTS_TRANSPORT
+      - FRAIS_FINANCIERS
+      - ETIQUETAGE
+      x-enum-descriptions:
+      - REMISE_PUBLICITAIRE - Remise ou rabais publicitaire
+      - SUPPLEMENT_EMBALLAGE - Supplément d'emballage
+      - AUTRES_SERVICES - Autres services
+      - ENLEVEMENT - Coût d'enlèvement
+      - COUTS_TRANSPORT - Coûts de transport
+      - FRAIS_FINANCIERS - Frais de financement
+      - ETIQUETAGE - Étiquetage
     Destinataire:
       description: Informations sur le destinataire de la facture (le client).
       properties:
@@ -5235,6 +5241,13 @@ components:
       description: |-
         Codes de schémas d'identification (Electronic Address Scheme - EAS),
         principalement pour l'adressage des factures électroniques.
+
+        **Valeurs possibles :**
+        - `0225` : FR_SIREN - SIREN français (le plus commun pour la France, remplace l'ancien 0002)
+        - `0088` : GLN - Global Location Number
+        - `0060` : DUNS - Data Universal Numbering System
+        - `9957` : FR_TVA_INTRA - Numéro de TVA intracommunautaire français
+        - `0199` : GLEIF - Global Legal Entity Identifier Foundation
       enum:
       - "0225"
       - "0088"
@@ -5249,6 +5262,13 @@ components:
       - DUNS
       - FR_TVA_INTRA
       - GLEIF
+      x-enum-descriptions:
+      - "FR_SIREN - SIREN français (le plus commun pour la France, remplace l'ancien\
+        \ 0002)"
+      - GLN - Global Location Number (GLN)
+      - DUNS - Data Universal Numbering System (DUNS)
+      - FR_TVA_INTRA - Numéro de TVA intracommunautaire français
+      - GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
     TypeFacture:
       description: Type de document (facture ou avoir).
       enum:
@@ -5276,433 +5296,6 @@ components:
       - FORFAIT
       title: Unite
       type: string
-    FactureFacturX:
-      description: Modèle de données pour une facture destinée à être convertie en
-        Factur-X.
-      example:
-        numero_facture: FACT-2025-001
-        date_facture: 2025-10-27
-        date_echeance_paiement: 2025-11-27
-        mode_depot: DEPOT_PDF_API
-        destinataire:
-          nom: Client Test SAS
-          adresse_electronique:
-            identifiant: "12345678901234"
-            scheme_id: "0225"
-          adresse_postale:
-            ligne_un: 456 Avenue des Champs
-            code_postal: "69001"
-            nom_ville: Lyon
-            pays_code_iso: FR
-          code_service_executant: SERVICE01
-        fournisseur:
-          nom: Ma Société SAS
-          id_fournisseur: 12345
-          siret: "12345678900001"
-          numero_tva_intra: FR12345678900
-          iban: FR7630006000011234567890189
-          adresse_electronique:
-            identifiant: "12345678900001"
-            scheme_id: "0225"
-          adresse_postale:
-            ligne_un: 123 Rue de la République
-            ligne_deux: Bâtiment A
-            code_postal: "75001"
-            nom_ville: Paris
-            pays_code_iso: FR
-        cadre_de_facturation:
-          code_cadre_facturation: A1_FACTURE_FOURNISSEUR
-        references:
-          type_facture: FACTURE
-          type_tva: TVA_SUR_DEBIT
-          mode_paiement: VIREMENT
-          devise_facture: EUR
-          numero_bon_commande: CMD-2025-042
-        lignes_de_poste:
-        - numero: 1
-          denomination: Prestation de conseil
-          quantite: "5.00"
-          unite: HEURE
-          montant_unitaire_ht: "200.00"
-          montant_ligne_ht: "1000.00"
-          taux_tva_manuel: "20.00"
-          categorie_tva: S
-          reference: REF-CONSEIL-001
-        - numero: 2
-          denomination: Formation développeurs
-          quantite: "3.00"
-          unite: JOUR
-          montant_unitaire_ht: "500.00"
-          montant_ligne_ht: "1500.00"
-          categorie_tva: S
-          taux_tva_manuel: "20.00"
-          reference: REF-FORM-002
-        lignes_de_tva:
-        - montant_base_ht: "2500.00"
-          montant_tva: "500.00"
-          taux_manuel: "20.00"
-          categorie: S
-        montant_total:
-          montant_ht_total: "2500.00"
-          montant_tva: "500.00"
-          montant_ttc_total: "3000.00"
-          montant_a_payer: "3000.00"
-        commentaire: Facture pour prestations du mois d'octobre 2025
-      properties:
-        numeroFacture:
-          title: Numerofacture
-          type: string
-        dateEcheancePaiement:
-          title: Dateecheancepaiement
-          type: string
-        dateFacture:
-          title: Datefacture
-          type: string
-        modeDepot:
-          $ref: "#/components/schemas/ModeDepot"
-        destinataire:
-          $ref: "#/components/schemas/Destinataire"
-        fournisseur:
-          $ref: "#/components/schemas/Fournisseur"
-        cadreDeFacturation:
-          $ref: "#/components/schemas/CadreDeFacturation"
-        references:
-          $ref: "#/components/schemas/References"
-        montantTotal:
-          $ref: "#/components/schemas/MontantTotal"
-        lignesDePoste:
-          items:
-            $ref: "#/components/schemas/LigneDePoste"
-          type: array
-        lignesDeTva:
-          items:
-            $ref: "#/components/schemas/LigneDeTVA"
-          type: array
-        commentaire:
-          nullable: true
-          type: string
-        idUtilisateurCourant:
-          nullable: true
-          type: integer
-        piecesJointesComplementaires:
-          items:
-            $ref: "#/components/schemas/PieceJointeComplementaire"
-          nullable: true
-          type: array
-      required:
-      - cadreDeFacturation
-      - dateEcheancePaiement
-      - destinataire
-      - fournisseur
-      - modeDepot
-      - montantTotal
-      - numeroFacture
-      - references
-      title: FactureFacturX
-    PDPCredentials:
-      description: |-
-        Credentials PDP pour la stratégie zero-storage (Strategy B).
-
-        Permet de fournir directement les credentials PDP dans la requête
-        au lieu de les stocker dans Django.
-
-        Utile pour :
-        - Tests ponctuels sans persister les credentials
-        - Intégrations temporaires
-        - Environnements de développement
-      example:
-        client_id: factpulse_prod_abc123
-        client_secret: secret_xyz789
-        directory_service_url: https://api.pdp-example.fr/directory/v1
-        flow_service_url: https://api.pdp-example.fr/flow/v1
-        token_url: https://auth.pdp-example.fr/oauth/token
-      properties:
-        flow_service_url:
-          description: URL de base du Flow Service AFNOR
-          example: https://api.pdp-example.fr/flow/v1
-          title: Flow Service Url
-          type: string
-        directory_service_url:
-          nullable: true
-          type: string
-        token_url:
-          description: URL du serveur OAuth2
-          example: https://auth.pdp-example.fr/oauth/token
-          title: Token Url
-          type: string
-        client_id:
-          description: Client ID OAuth2
-          example: factpulse_prod_abc123
-          title: Client Id
-          type: string
-        client_secret:
-          description: Client Secret OAuth2 (sensible)
-          example: secret_xyz789
-          title: Client Secret
-          type: string
-      required:
-      - client_id
-      - client_secret
-      - flow_service_url
-      - token_url
-      title: PDPCredentials
-    ProfilFlux:
-      description: Profils de flux supportés
-      enum:
-      - Basic
-      - CIUS
-      - Extended-CTC-FR
-      title: ProfilFlux
-      type: string
-    SyntaxeFlux:
-      description: Syntaxes de flux supportées par AFNOR
-      enum:
-      - CII
-      - UBL
-      - Factur-X
-      - CDAR
-      - FRR
-      title: SyntaxeFlux
-      type: string
-    RequeteSoumissionFlux:
-      description: Requête pour soumettre une facture à une PDP/PA via AFNOR
-      example:
-        nom_flux: Facture 2025-001
-        profil_flux: CIUS
-        syntaxe_flux: CII
-        tracking_id: TRACK-2025-001
-      properties:
-        nom_flux:
-          description: "Nom du flux (ex: 'Facture 2025-001')"
-          example: Facture 2025-001
-          title: Nom Flux
-          type: string
-        syntaxe_flux:
-          $ref: "#/components/schemas/SyntaxeFlux"
-        profil_flux:
-          $ref: "#/components/schemas/ProfilFlux"
-        tracking_id:
-          nullable: true
-          type: string
-        request_id:
-          nullable: true
-          type: string
-        pdp_credentials:
-          $ref: "#/components/schemas/PDPCredentials"
-      required:
-      - nom_flux
-      title: RequeteSoumissionFlux
-    DirectionFlux:
-      description: Direction du flux
-      enum:
-      - In
-      - Out
-      title: DirectionFlux
-      type: string
-    StatutAcquittement:
-      description: Statut d'acquittement du flux
-      enum:
-      - Pending
-      - Ok
-      - Error
-      title: StatutAcquittement
-      type: string
-    TypeFlux:
-      description: Types de flux de facturation
-      enum:
-      - CustomerInvoice
-      - SupplierInvoice
-      - CustomerInvoiceLC
-      - SupplierInvoiceLC
-      - eReporting
-      title: TypeFlux
-      type: string
-    RequeteRechercheFlux:
-      description: Requête pour rechercher des flux soumis
-      example:
-        direction_flux:
-        - Out
-        limit: 10
-        statut_acquittement: Ok
-        type_flux:
-        - SupplierInvoice
-      properties:
-        date_maj_apres:
-          format: date-time
-          nullable: true
-          type: string
-        date_maj_avant:
-          format: date-time
-          nullable: true
-          type: string
-        type_flux:
-          items:
-            $ref: "#/components/schemas/TypeFlux"
-          nullable: true
-          type: array
-        direction_flux:
-          items:
-            $ref: "#/components/schemas/DirectionFlux"
-          nullable: true
-          type: array
-        tracking_id:
-          nullable: true
-          type: string
-        flow_id:
-          nullable: true
-          type: string
-        statut_acquittement:
-          $ref: "#/components/schemas/StatutAcquittement"
-        offset:
-          default: 0
-          description: Décalage pour la pagination
-          minimum: 0
-          title: Offset
-          type: integer
-        limit:
-          default: 25
-          description: Nombre maximum de résultats (max 100)
-          maximum: 100
-          minimum: 1
-          title: Limit
-          type: integer
-      title: RequeteRechercheFlux
-    ReponseSoumissionFlux:
-      description: Réponse après soumission d'un flux
-      example:
-        flow_id: 550e8400-e29b-41d4-a716-446655440000
-        message: ✓ Facture soumise avec succès à la PDP/PA
-        nom: Facture 2025-001
-        profil_flux: CIUS
-        sha256: a3c5f1...
-        syntaxe_flux: CII
-        tracking_id: TRACK-2025-001
-      properties:
-        flow_id:
-          description: Identifiant unique du flux généré par la PDP
-          title: Flow Id
-          type: string
-        tracking_id:
-          nullable: true
-          type: string
-        nom:
-          description: Nom du flux
-          title: Nom
-          type: string
-        syntaxe_flux:
-          description: "Syntaxe du flux (CII, UBL, etc.)"
-          title: Syntaxe Flux
-          type: string
-        profil_flux:
-          nullable: true
-          type: string
-        sha256:
-          description: Hash SHA256 du fichier soumis
-          title: Sha256
-          type: string
-        message:
-          description: Message de confirmation
-          title: Message
-          type: string
-      required:
-      - flow_id
-      - message
-      - nom
-      - sha256
-      - syntaxe_flux
-      title: ReponseSoumissionFlux
-    FluxResume:
-      description: Résumé d'un flux dans les résultats de recherche
-      properties:
-        flow_id:
-          title: Flow Id
-          type: string
-        tracking_id:
-          nullable: true
-          type: string
-        nom:
-          title: Nom
-          type: string
-        type_flux:
-          nullable: true
-          type: string
-        direction_flux:
-          nullable: true
-          type: string
-        statut_acquittement:
-          nullable: true
-          type: string
-        date_creation:
-          nullable: true
-          type: string
-        date_maj:
-          nullable: true
-          type: string
-      required:
-      - flow_id
-      - nom
-      title: FluxResume
-    ReponseRechercheFlux:
-      description: Réponse d'une recherche de flux
-      example:
-        limit: 25
-        offset: 0
-        resultats:
-        - direction_flux: Out
-          flow_id: 550e8400-e29b-41d4-a716-446655440000
-          nom: Facture 2025-001
-          statut_acquittement: Ok
-          tracking_id: TRACK-2025-001
-          type_flux: SupplierInvoice
-        total: 42
-      properties:
-        total:
-          description: Nombre total de résultats
-          title: Total
-          type: integer
-        offset:
-          description: Décalage appliqué
-          title: Offset
-          type: integer
-        limit:
-          description: Limite de résultats
-          title: Limit
-          type: integer
-        resultats:
-          description: Liste des flux trouvés
-          items:
-            $ref: "#/components/schemas/FluxResume"
-          type: array
-      required:
-      - limit
-      - offset
-      - resultats
-      - total
-      title: ReponseRechercheFlux
-    ReponseHealthcheckAFNOR:
-      description: Réponse du healthcheck des services AFNOR
-      example:
-        directory_service_ok: true
-        flow_service_ok: true
-        message: ✓ Services AFNOR opérationnels
-      properties:
-        flow_service_ok:
-          description: État du Flow Service API
-          title: Flow Service Ok
-          type: boolean
-        directory_service_ok:
-          description: État du Directory Service API
-          title: Directory Service Ok
-          type: boolean
-        message:
-          description: Message descriptif de l'état
-          title: Message
-          type: string
-      required:
-      - directory_service_ok
-      - flow_service_ok
-      - message
-      title: ReponseHealthcheckAFNOR
     generer_facture_api_v1_traitement_generer_facture_post_request:
       $ref: "#/components/schemas/Body_generer_facture_api_v1_traitement_generer_facture_post"
     Montant_Ht_Total:

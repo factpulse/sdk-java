@@ -5,19 +5,19 @@
 ## Enum
 
 
-* `AA` (value: `"AA"`)
+* `REMISE_PUBLICITAIRE` (value: `"AA"`)
 
-* `ABL` (value: `"ABL"`)
+* `SUPPLEMENT_EMBALLAGE` (value: `"ABL"`)
 
-* `ADR` (value: `"ADR"`)
+* `AUTRES_SERVICES` (value: `"ADR"`)
 
-* `ADT` (value: `"ADT"`)
+* `ENLEVEMENT` (value: `"ADT"`)
 
-* `FC` (value: `"FC"`)
+* `COUTS_TRANSPORT` (value: `"FC"`)
 
-* `FI` (value: `"FI"`)
+* `FRAIS_FINANCIERS` (value: `"FI"`)
 
-* `LA` (value: `"LA"`)
+* `ETIQUETAGE` (value: `"LA"`)
 
 
 

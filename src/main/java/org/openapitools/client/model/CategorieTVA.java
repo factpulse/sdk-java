@@ -26,28 +26,55 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Catégories de TVA standardisées pour Factur-X.
+ * Catégories de TVA standardisées pour Factur-X (norme EN 16931).  **Valeurs possibles :** - &#x60;S&#x60; : STANDARD - TVA au taux standard - &#x60;Z&#x60; : ZERO - TVA à taux zéro - &#x60;E&#x60; : EXONEREE - Exonération de TVA - &#x60;AE&#x60; : AUTO_LIQUIDATION - Auto-liquidation (reverse charge) - &#x60;K&#x60; : INTRA_COMMUNAUTAIRE - Livraison intracommunautaire - &#x60;G&#x60; : EXPORT - Export hors UE - &#x60;O&#x60; : HORS_CHAMP - Hors champ de la TVA - &#x60;L&#x60; : CANARIES - TVA Canaries - &#x60;M&#x60; : CEUTA_MELILLA - TVA Ceuta/Melilla
  */
 @JsonAdapter(CategorieTVA.Adapter.class)
 public enum CategorieTVA {
   
-  S("S"),
+  /**
+   * STANDARD - TVA au taux standard
+   */
+  STANDARD("S"),
   
-  Z("Z"),
+  /**
+   * ZERO - TVA à taux zéro
+   */
+  ZERO("Z"),
   
-  E("E"),
+  /**
+   * EXONEREE - Exonération de TVA
+   */
+  EXONEREE("E"),
   
-  AE("AE"),
+  /**
+   * AUTO_LIQUIDATION - Auto-liquidation (reverse charge)
+   */
+  AUTO_LIQUIDATION("AE"),
   
-  K("K"),
+  /**
+   * INTRA_COMMUNAUTAIRE - Livraison intracommunautaire
+   */
+  INTRA_COMMUNAUTAIRE("K"),
   
-  G("G"),
+  /**
+   * EXPORT - Export hors UE
+   */
+  EXPORT("G"),
   
-  O("O"),
+  /**
+   * HORS_CHAMP - Hors champ de la TVA
+   */
+  HORS_CHAMP("O"),
   
-  L("L"),
+  /**
+   * CANARIES - TVA Canaries
+   */
+  CANARIES("L"),
   
-  M("M");
+  /**
+   * CEUTA_MELILLA - TVA Ceuta/Melilla
+   */
+  CEUTA_MELILLA("M");
 
   private String value;
 

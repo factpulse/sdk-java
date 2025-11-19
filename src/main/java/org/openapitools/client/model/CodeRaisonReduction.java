@@ -26,24 +26,45 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Codes standardisés pour justifier une réduction ou une charge.
+ * Codes standardisés pour justifier une réduction ou une charge supplémentaire (norme EN 16931).  **Valeurs possibles :** - &#x60;AA&#x60; : REMISE_PUBLICITAIRE - Remise ou rabais publicitaire - &#x60;ABL&#x60; : SUPPLEMENT_EMBALLAGE - Supplément d&#39;emballage - &#x60;ADR&#x60; : AUTRES_SERVICES - Autres services - &#x60;ADT&#x60; : ENLEVEMENT - Coût d&#39;enlèvement - &#x60;FC&#x60; : COUTS_TRANSPORT - Coûts de transport - &#x60;FI&#x60; : FRAIS_FINANCIERS - Frais de financement - &#x60;LA&#x60; : ETIQUETAGE - Étiquetage
  */
 @JsonAdapter(CodeRaisonReduction.Adapter.class)
 public enum CodeRaisonReduction {
   
-  AA("AA"),
+  /**
+   * REMISE_PUBLICITAIRE - Remise ou rabais publicitaire
+   */
+  REMISE_PUBLICITAIRE("AA"),
   
-  ABL("ABL"),
+  /**
+   * SUPPLEMENT_EMBALLAGE - Supplément d&#39;emballage
+   */
+  SUPPLEMENT_EMBALLAGE("ABL"),
   
-  ADR("ADR"),
+  /**
+   * AUTRES_SERVICES - Autres services
+   */
+  AUTRES_SERVICES("ADR"),
   
-  ADT("ADT"),
+  /**
+   * ENLEVEMENT - Coût d&#39;enlèvement
+   */
+  ENLEVEMENT("ADT"),
   
-  FC("FC"),
+  /**
+   * COUTS_TRANSPORT - Coûts de transport
+   */
+  COUTS_TRANSPORT("FC"),
   
-  FI("FI"),
+  /**
+   * FRAIS_FINANCIERS - Frais de financement
+   */
+  FRAIS_FINANCIERS("FI"),
   
-  LA("LA");
+  /**
+   * ETIQUETAGE - Étiquetage
+   */
+  ETIQUETAGE("LA");
 
   private String value;
 

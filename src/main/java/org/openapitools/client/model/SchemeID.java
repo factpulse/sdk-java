@@ -26,19 +26,34 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Codes de schémas d&#39;identification (Electronic Address Scheme - EAS), principalement pour l&#39;adressage des factures électroniques.
+ * Codes de schémas d&#39;identification (Electronic Address Scheme - EAS), principalement pour l&#39;adressage des factures électroniques.  **Valeurs possibles :** - &#x60;0225&#x60; : FR_SIREN - SIREN français (le plus commun pour la France, remplace l&#39;ancien 0002) - &#x60;0088&#x60; : GLN - Global Location Number - &#x60;0060&#x60; : DUNS - Data Universal Numbering System - &#x60;9957&#x60; : FR_TVA_INTRA - Numéro de TVA intracommunautaire français - &#x60;0199&#x60; : GLEIF - Global Legal Entity Identifier Foundation
  */
 @JsonAdapter(SchemeID.Adapter.class)
 public enum SchemeID {
   
+  /**
+   * FR_SIREN - SIREN français (le plus commun pour la France, remplace l&#39;ancien 0002)
+   */
   FR_SIREN("0225"),
   
+  /**
+   * GLN - Global Location Number (GLN)
+   */
   GLN("0088"),
   
+  /**
+   * DUNS - Data Universal Numbering System (DUNS)
+   */
   DUNS("0060"),
   
+  /**
+   * FR_TVA_INTRA - Numéro de TVA intracommunautaire français
+   */
   FR_TVA_INTRA("9957"),
   
+  /**
+   * GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
+   */
   GLEIF("0199");
 
   private String value;
