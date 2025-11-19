@@ -139,8 +139,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **donneesFacture** | **String**| Données de la facture au format JSON.              Deux formats acceptés :             1. **Format classique** : Structure complète FactureFacturX (tous les champs)             2. **Format simplifié** (🆕 P0.1) : Structure minimale avec auto-enrichissement              Le format est détecté automatiquement !              | |
-| **profil** | [**ProfilAPI**](ProfilAPI.md)| Profil Factur-X : MINIMUM, BASIC, EN16931 ou EXTENDED. | [optional] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
-| **formatSortie** | [**FormatSortie**](FormatSortie.md)| Format de sortie : &#39;xml&#39; (XML seul) ou &#39;pdf&#39; (PDF Factur-X avec XML embarqué). | [optional] [enum: xml, pdf] |
+| **profil** | [**ProfilAPI**](ProfilAPI.md)| Profil Factur-X : MINIMUM, BASIC, EN16931 ou EXTENDED. | [optional] [default to EXTENDED] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
+| **formatSortie** | [**FormatSortie**](FormatSortie.md)| Format de sortie : &#39;xml&#39; (XML seul) ou &#39;pdf&#39; (PDF Factur-X avec XML embarqué). | [optional] [default to xml] [enum: xml, pdf] |
 | **autoEnrichir** | **Boolean**| 🆕 Activer l&#39;auto-enrichissement depuis SIRET/SIREN (format simplifié uniquement) | [optional] [default to true] |
 | **sourcePdf** | **File**|  | [optional] |
 
@@ -170,7 +170,7 @@ public class Example {
 
 Obtenir le statut d&#39;une tâche de génération
 
-Récupère l&#39;état d&#39;avancement d&#39;une tâche de génération de facture.  ## États possibles  - **PENDING** : Tâche en attente de traitement - **STARTED** : Tâche en cours d&#39;exécution - **SUCCESS** : Tâche terminée (vérifier &#x60;resultat.statut&#x60; pour le résultat réel) - **FAILURE** : Erreur système lors de l&#39;exécution - **RETRY** : Tentative de ré-exécution en cours  ## Champ resultat  Quand la tâche est terminée (SUCCESS), le champ &#x60;resultat&#x60; contient : - &#x60;statut&#x60; : \&quot;SUCCES\&quot; ou \&quot;ERREUR\&quot; - &#x60;chemin_fichier&#x60; : Chemin du fichier généré (si succès) - &#x60;message_erreur&#x60; : Détails de l&#39;erreur (si échec)  ## Usage  Appelez cet endpoint en boucle (polling) toutes les 2-3 secondes jusqu&#39;à ce que le statut soit SUCCESS ou FAILURE.
+Récupère l&#39;état d&#39;avancement d&#39;une tâche de génération de facture.  ## États possibles  Le champ &#x60;statut&#x60; utilise l&#39;enum &#x60;StatutCelery&#x60; avec les valeurs : - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  Voir la documentation du schéma &#x60;StatutCelery&#x60; pour les détails.  ## Résultat métier  Quand &#x60;statut&#x3D;\&quot;SUCCESS\&quot;&#x60;, le champ &#x60;resultat&#x60; contient : - &#x60;statut&#x60; : \&quot;SUCCES\&quot; ou \&quot;ERREUR\&quot; (résultat métier) - &#x60;chemin_fichier&#x60; : Chemin du fichier généré (si succès) - &#x60;message_erreur&#x60; : Détails de l&#39;erreur (si échec métier)  ## Usage  Appelez cet endpoint en boucle (polling) toutes les 2-3 secondes jusqu&#39;à ce que &#x60;statut&#x60; soit &#x60;SUCCESS&#x60; ou &#x60;FAILURE&#x60;.
 
 ### Example
 ```java
@@ -799,7 +799,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fichierXml** | **File**| Fichier XML Factur-X à valider (format .xml). | |
-| **profil** | [**ProfilAPI**](ProfilAPI.md)| Profil de validation (MINIMUM, BASIC, EN16931, EXTENDED). | [optional] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
+| **profil** | [**ProfilAPI**](ProfilAPI.md)| Profil de validation (MINIMUM, BASIC, EN16931, EXTENDED). | [optional] [default to EXTENDED] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
 
 ### Return type
 

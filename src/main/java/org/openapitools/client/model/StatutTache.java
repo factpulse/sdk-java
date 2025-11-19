@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.client.model.StatutCelery;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -51,9 +52,9 @@ import java.util.Locale;
 import org.openapitools.client.JSON;
 
 /**
- * Description complète du statut d&#39;une tâche asynchrone.
+ * Description complète du statut d&#39;une tâche asynchrone.  Le champ &#x60;statut&#x60; indique l&#39;état Celery de la tâche. Quand &#x60;statut&#x3D;\&quot;SUCCESS\&quot;&#x60;, consultez &#x60;resultat.statut&#x60; pour le résultat métier (\&quot;SUCCES\&quot; ou \&quot;ERREUR\&quot;).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T08:10:57.523032255Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class StatutTache {
   public static final String SERIALIZED_NAME_ID_TACHE = "id_tache";
   @SerializedName(SERIALIZED_NAME_ID_TACHE)
@@ -63,7 +64,7 @@ public class StatutTache {
   public static final String SERIALIZED_NAME_STATUT = "statut";
   @SerializedName(SERIALIZED_NAME_STATUT)
   @javax.annotation.Nonnull
-  private String statut;
+  private StatutCelery statut;
 
   public static final String SERIALIZED_NAME_RESULTAT = "resultat";
   @SerializedName(SERIALIZED_NAME_RESULTAT)
@@ -92,21 +93,21 @@ public class StatutTache {
   }
 
 
-  public StatutTache statut(@javax.annotation.Nonnull String statut) {
+  public StatutTache statut(@javax.annotation.Nonnull StatutCelery statut) {
     this.statut = statut;
     return this;
   }
 
   /**
-   * Get statut
+   * Statut Celery de la tâche (PENDING, STARTED, SUCCESS, FAILURE, RETRY)
    * @return statut
    */
   @javax.annotation.Nonnull
-  public String getStatut() {
+  public StatutCelery getStatut() {
     return statut;
   }
 
-  public void setStatut(@javax.annotation.Nonnull String statut) {
+  public void setStatut(@javax.annotation.Nonnull StatutCelery statut) {
     this.statut = statut;
   }
 
@@ -234,9 +235,8 @@ public class StatutTache {
       if (!jsonObj.get("id_tache").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `id_tache` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id_tache").toString()));
       }
-      if (!jsonObj.get("statut").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `statut` to be a primitive type in the JSON string but got `%s`", jsonObj.get("statut").toString()));
-      }
+      // validate the required field `statut`
+      StatutCelery.validateJsonElement(jsonObj.get("statut"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -25,7 +25,7 @@ import org.openapitools.client.model.MontantHtTotal;
 import org.openapitools.client.model.MontantRemiseGlobaleTtc;
 import org.openapitools.client.model.MontantTotalAcompte;
 import org.openapitools.client.model.MontantTtcTotal;
-import org.openapitools.client.model.MontantTva1;
+import org.openapitools.client.model.MontantTvaTotal;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

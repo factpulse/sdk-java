@@ -312,23 +312,22 @@ paths:
 
         ## États possibles
 
-        - **PENDING** : Tâche en attente de traitement
-        - **STARTED** : Tâche en cours d'exécution
-        - **SUCCESS** : Tâche terminée (vérifier `resultat.statut` pour le résultat réel)
-        - **FAILURE** : Erreur système lors de l'exécution
-        - **RETRY** : Tentative de ré-exécution en cours
+        Le champ `statut` utilise l'enum `StatutCelery` avec les valeurs :
+        - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**
 
-        ## Champ resultat
+        Voir la documentation du schéma `StatutCelery` pour les détails.
 
-        Quand la tâche est terminée (SUCCESS), le champ `resultat` contient :
-        - `statut` : "SUCCES" ou "ERREUR"
+        ## Résultat métier
+
+        Quand `statut="SUCCESS"`, le champ `resultat` contient :
+        - `statut` : "SUCCES" ou "ERREUR" (résultat métier)
         - `chemin_fichier` : Chemin du fichier généré (si succès)
-        - `message_erreur` : Détails de l'erreur (si échec)
+        - `message_erreur` : Détails de l'erreur (si échec métier)
 
         ## Usage
 
         Appelez cet endpoint en boucle (polling) toutes les 2-3 secondes jusqu'à ce que
-        le statut soit SUCCESS ou FAILURE.
+        `statut` soit `SUCCESS` ou `FAILURE`.
       operationId: obtenir_statut_tache_api_v1_traitement_taches__id_tache__statut_get
       parameters:
       - explode: false
@@ -2874,7 +2873,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -2888,7 +2889,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -2904,9 +2907,16 @@ components:
           title: Donnees Facture
           type: string
         profil:
-          $ref: "#/components/schemas/ProfilAPI"
+          allOf:
+          - $ref: "#/components/schemas/ProfilAPI"
+          default: EXTENDED
+          description: "Profil Factur-X : MINIMUM, BASIC, EN16931 ou EXTENDED."
         format_sortie:
-          $ref: "#/components/schemas/FormatSortie"
+          allOf:
+          - $ref: "#/components/schemas/FormatSortie"
+          default: xml
+          description: "Format de sortie : 'xml' (XML seul) ou 'pdf' (PDF Factur-X\
+            \ avec XML embarqué)."
         auto_enrichir:
           default: true
           description: 🆕 Activer l'auto-enrichissement depuis SIRET/SIREN (format
@@ -2925,7 +2935,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - user_info
       title: Body_lister_services_structure_api_v1_chorus_pro_structures__id_structure_cpp__services_get
@@ -2938,7 +2950,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -2952,7 +2966,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -2966,7 +2982,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -3052,7 +3070,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -3066,7 +3086,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -3079,7 +3101,9 @@ components:
           title: Fichier Pdf
           type: string
         profil:
-          $ref: "#/components/schemas/ProfilAPI"
+          allOf:
+          - $ref: "#/components/schemas/ProfilAPI"
+          nullable: true
         use_verapdf:
           default: false
           description: "Active la validation stricte PDF/A avec VeraPDF (recommandé\
@@ -3098,7 +3122,9 @@ components:
           title: Fichier Pdf
           type: string
         profil:
-          $ref: "#/components/schemas/ProfilAPI"
+          allOf:
+          - $ref: "#/components/schemas/ProfilAPI"
+          nullable: true
         use_verapdf:
           default: false
           description: Active la validation stricte PDF/A avec VeraPDF (recommandé
@@ -3127,7 +3153,10 @@ components:
           title: Fichier Xml
           type: string
         profil:
-          $ref: "#/components/schemas/ProfilAPI"
+          allOf:
+          - $ref: "#/components/schemas/ProfilAPI"
+          default: EXTENDED
+          description: "Profil de validation (MINIMUM, BASIC, EN16931, EXTENDED)."
       required:
       - fichier_xml
       title: Body_valider_xml_api_v1_traitement_valider_xml_post
@@ -3140,7 +3169,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -3154,7 +3185,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -3168,7 +3201,9 @@ components:
         user_info:
           $ref: "#/components/schemas/Utilisateur"
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
       required:
       - payload
       - user_info
@@ -3301,15 +3336,12 @@ components:
       description: Consulter une facture.
       example:
         identifiant_facture_cpp: 0
-        credentials:
-          chorus_pro_login: mon_login@entreprise.fr
-          chorus_pro_password: MonMotDePasse123!
-          piste_client_id: mon_client_id
-          piste_client_secret: mon_secret
-          sandbox: true
+        credentials: ""
       properties:
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
         identifiant_facture_cpp:
           description: ID Chorus Pro de la facture
           title: Identifiant Facture Cpp
@@ -3328,10 +3360,7 @@ components:
         libelle: libelle
         designation_structure_destinataire: designation_structure_destinataire
         numero_facture: numero_facture
-        statut_courant:
-          date: date
-          code: code
-          libelle: libelle
+        statut_courant: ""
       properties:
         code_retour:
           title: Code Retour
@@ -3352,7 +3381,9 @@ components:
           nullable: true
           type: string
         statut_courant:
-          $ref: "#/components/schemas/StatutFacture"
+          allOf:
+          - $ref: "#/components/schemas/StatutFacture"
+          nullable: true
         id_structure_cpp_destinataire:
           nullable: true
           type: integer
@@ -3368,15 +3399,12 @@ components:
       example:
         code_langue: fr
         id_structure_cpp: 0
-        credentials:
-          chorus_pro_login: mon_login@entreprise.fr
-          chorus_pro_password: MonMotDePasse123!
-          piste_client_id: mon_client_id
-          piste_client_secret: mon_secret
-          sandbox: true
+        credentials: ""
       properties:
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
         id_structure_cpp:
           description: ID Chorus Pro de la structure
           title: Id Structure Cpp
@@ -3393,10 +3421,7 @@ components:
       description: Détails d'une structure.
       example:
         numero_tva: numero_tva
-        parametres:
-          gestion_numero_ej_ou_code_service: false
-          numero_ej_doit_etre_renseigne: false
-          code_service_doit_etre_renseigne: false
+        parametres: ""
         code_retour: 0
         id_structure_cpp: 6
         raison_sociale_structure: raison_sociale_structure
@@ -3430,7 +3455,9 @@ components:
           nullable: true
           type: string
         parametres:
-          $ref: "#/components/schemas/ParametresStructure"
+          allOf:
+          - $ref: "#/components/schemas/ParametresStructure"
+          nullable: true
       required:
       - code_retour
       - libelle
@@ -3507,7 +3534,9 @@ components:
           title: Type
           type: string
         credentials:
-          $ref: "#/components/schemas/CredentialsAFNOR"
+          allOf:
+          - $ref: "#/components/schemas/CredentialsAFNOR"
+          nullable: true
         flow_syntax:
           default: Factur-X
           description: Syntaxe du flux à envoyer
@@ -3531,7 +3560,9 @@ components:
           title: Type
           type: string
         credentials:
-          $ref: "#/components/schemas/CredentialsChorusPro"
+          allOf:
+          - $ref: "#/components/schemas/CredentialsChorusPro"
+          nullable: true
       title: DestinationChorusPro
     DonneesFactureSimplifiees:
       description: Données simplifiées de la facture (format minimal pour auto-enrichissement).
@@ -3801,7 +3832,9 @@ components:
           nullable: true
           type: string
         info:
-          $ref: "#/components/schemas/CertificateInfoResponse"
+          allOf:
+          - $ref: "#/components/schemas/CertificateInfoResponse"
+          description: Informations sur le certificat généré
         avertissement:
           default: "⚠️ Ce certificat est AUTO-SIGNÉ et destiné uniquement aux TESTS.\
             \ Ne PAS utiliser en production. Niveau eIDAS : SES (Simple Electronic\
@@ -3868,17 +3901,14 @@ components:
     ObtenirIdChorusProRequest:
       description: Obtenir l'ID Chorus Pro depuis un SIRET.
       example:
-        credentials:
-          chorus_pro_login: mon_login@entreprise.fr
-          chorus_pro_password: MonMotDePasse123!
-          piste_client_id: mon_client_id
-          piste_client_secret: mon_secret
-          sandbox: true
+        credentials: ""
         type_identifiant: SIRET
         siret: siret
       properties:
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
         siret:
           description: SIRET de la structure (14 chiffres)
           title: Siret
@@ -3928,7 +3958,10 @@ components:
         verifier_parametres_destination: true
       properties:
         profil_facturx:
-          $ref: "#/components/schemas/ProfilAPI"
+          allOf:
+          - $ref: "#/components/schemas/ProfilAPI"
+          default: EN16931
+          description: Profil Factur-X à utiliser
         auto_enrichir:
           default: true
           description: "Auto-enrichir les données (APIs Entreprises, Chorus Pro, etc.)"
@@ -4020,10 +4053,6 @@ components:
       title: ParametresSignature
     ParametresStructure:
       description: Paramètres obligatoires d'une structure.
-      example:
-        gestion_numero_ej_ou_code_service: false
-        numero_ej_doit_etre_renseigne: false
-        code_service_doit_etre_renseigne: false
       properties:
         code_service_doit_etre_renseigne:
           default: false
@@ -4113,18 +4142,15 @@ components:
       description: Recherche de structures par critères.
       example:
         raison_sociale_structure: raison_sociale_structure
-        credentials:
-          chorus_pro_login: mon_login@entreprise.fr
-          chorus_pro_password: MonMotDePasse123!
-          piste_client_id: mon_client_id
-          piste_client_secret: mon_secret
-          sandbox: true
+        credentials: ""
         identifiant_structure: identifiant_structure
         restreindre_structures_privees: false
         type_identifiant_structure: type_identifiant_structure
       properties:
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
         identifiant_structure:
           nullable: true
           type: string
@@ -4495,7 +4521,9 @@ components:
           use_timestamp: true
       properties:
         donnees_facture:
-          $ref: "#/components/schemas/DonneesFactureSimplifiees"
+          allOf:
+          - $ref: "#/components/schemas/DonneesFactureSimplifiees"
+          description: Données de la facture au format simplifié (voir exemples)
         pdf_source:
           description: PDF source encodé en base64 (sera transformé en Factur-X)
           title: Pdf Source
@@ -4503,9 +4531,13 @@ components:
         destination:
           $ref: "#/components/schemas/Destination"
         signature:
-          $ref: "#/components/schemas/ParametresSignature"
+          allOf:
+          - $ref: "#/components/schemas/ParametresSignature"
+          nullable: true
         options:
-          $ref: "#/components/schemas/OptionsProcessing"
+          allOf:
+          - $ref: "#/components/schemas/OptionsProcessing"
+          description: Options de traitement
       required:
       - destination
       - donnees_facture
@@ -4552,15 +4584,25 @@ components:
           title: Destination Type
           type: string
         resultat_chorus:
-          $ref: "#/components/schemas/ResultatChorusPro"
+          allOf:
+          - $ref: "#/components/schemas/ResultatChorusPro"
+          nullable: true
         resultat_afnor:
-          $ref: "#/components/schemas/ResultatAFNOR"
+          allOf:
+          - $ref: "#/components/schemas/ResultatAFNOR"
+          nullable: true
         facture_enrichie:
-          $ref: "#/components/schemas/FactureEnrichieInfo-Output"
+          allOf:
+          - $ref: "#/components/schemas/FactureEnrichieInfo-Output"
+          description: Données de la facture enrichie
         pdf_facturx:
-          $ref: "#/components/schemas/PDFFacturXInfo"
+          allOf:
+          - $ref: "#/components/schemas/PDFFacturXInfo"
+          description: Informations sur le PDF généré
         signature:
-          $ref: "#/components/schemas/SignatureInfo"
+          allOf:
+          - $ref: "#/components/schemas/SignatureInfo"
+          nullable: true
         pdf_base64:
           description: PDF Factur-X généré (et signé si demandé) encodé en base64
           title: Pdf Base64
@@ -4582,12 +4624,7 @@ components:
       example:
         date_echeance_paiement: date_echeance_paiement
         id_structure_cpp: 0
-        credentials:
-          chorus_pro_login: mon_login@entreprise.fr
-          chorus_pro_password: MonMotDePasse123!
-          piste_client_id: mon_client_id
-          piste_client_secret: mon_secret
-          sandbox: true
+        credentials: ""
         date_facture: date_facture
         numero_marche: numero_marche
         piece_jointe_principale_designation: piece_jointe_principale_designation
@@ -4602,7 +4639,9 @@ components:
         numero_facture: numero_facture
       properties:
         credentials:
-          $ref: "#/components/schemas/ChorusProCredentials"
+          allOf:
+          - $ref: "#/components/schemas/ChorusProCredentials"
+          nullable: true
         numero_facture:
           description: Numéro de la facture
           title: Numero Facture
@@ -4679,12 +4718,26 @@ components:
       - code_retour
       - libelle
       title: SoumettreFactureResponse
+    StatutCelery:
+      description: |-
+        Statuts possibles d'une tâche Celery lors du polling.
+
+        **Valeurs possibles :**
+        - `PENDING` : Tâche en attente de traitement
+        - `STARTED` : Tâche en cours d'exécution
+        - `SUCCESS` : Tâche terminée avec succès (vérifier `resultat.statut` pour le résultat métier)
+        - `FAILURE` : Erreur système lors de l'exécution (crash, exception non gérée)
+        - `RETRY` : Tentative de ré-exécution en cours (après un échec temporaire)
+      enum:
+      - PENDING
+      - STARTED
+      - SUCCESS
+      - FAILURE
+      - RETRY
+      title: StatutCelery
+      type: string
     StatutFacture:
       description: Statut d'une facture Chorus Pro.
-      example:
-        date: date
-        code: code
-        libelle: libelle
       properties:
         code:
           description: "Code statut (SOUMISE, VALIDEE, REJETEE, SUSPENDUE, MANDATEE,\
@@ -4703,19 +4756,25 @@ components:
       - libelle
       title: StatutFacture
     StatutTache:
-      description: Description complète du statut d'une tâche asynchrone.
+      description: |-
+        Description complète du statut d'une tâche asynchrone.
+
+        Le champ `statut` indique l'état Celery de la tâche.
+        Quand `statut="SUCCESS"`, consultez `resultat.statut` pour le résultat métier ("SUCCES" ou "ERREUR").
       example:
         id_tache: id_tache
         resultat:
           key: ""
-        statut: statut
+        statut: ""
       properties:
         id_tache:
           title: Id Tache
           type: string
         statut:
-          title: Statut
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/StatutCelery"
+          description: "Statut Celery de la tâche (PENDING, STARTED, SUCCESS, FAILURE,\
+            \ RETRY)"
         resultat:
           additionalProperties: true
           nullable: true
@@ -4795,7 +4854,9 @@ components:
           title: Has Quota
           type: boolean
         quota_info:
-          $ref: "#/components/schemas/QuotaInfo"
+          allOf:
+          - $ref: "#/components/schemas/QuotaInfo"
+          nullable: true
         is_trial:
           default: false
           title: Is Trial
@@ -4896,7 +4957,9 @@ components:
           title: Identifiant
           type: string
         schemeId:
-          $ref: "#/components/schemas/SchemeID"
+          allOf:
+          - $ref: "#/components/schemas/SchemeID"
+          default: "0225"
       required:
       - identifiant
       title: AdresseElectronique
@@ -5037,7 +5100,9 @@ components:
           nullable: true
           type: string
         adressePostale:
-          $ref: "#/components/schemas/AdressePostale"
+          allOf:
+          - $ref: "#/components/schemas/AdressePostale"
+          nullable: true
       required:
       - adresseElectronique
       title: Destinataire
@@ -5068,7 +5133,9 @@ components:
           nullable: true
           type: string
         adressePostale:
-          $ref: "#/components/schemas/AdressePostale"
+          allOf:
+          - $ref: "#/components/schemas/AdressePostale"
+          nullable: true
       required:
       - adresseElectronique
       - idFournisseur
@@ -5101,7 +5168,9 @@ components:
         tauxTvaManuel:
           $ref: "#/components/schemas/LigneDePoste_tauxTvaManuel"
         categorieTva:
-          $ref: "#/components/schemas/CategorieTVA"
+          allOf:
+          - $ref: "#/components/schemas/CategorieTVA"
+          nullable: true
         dateDebutPeriode:
           nullable: true
           type: string
@@ -5109,7 +5178,9 @@ components:
           nullable: true
           type: string
         codeRaisonReduction:
-          $ref: "#/components/schemas/CodeRaisonReduction"
+          allOf:
+          - $ref: "#/components/schemas/CodeRaisonReduction"
+          nullable: true
         raisonReduction:
           nullable: true
           type: string
@@ -5126,14 +5197,16 @@ components:
         montantBaseHt:
           $ref: "#/components/schemas/MontantBaseHt"
         montantTva:
-          $ref: "#/components/schemas/MontantTva"
+          $ref: "#/components/schemas/MontantTvaLigne"
         taux:
           nullable: true
           type: string
         tauxManuel:
           $ref: "#/components/schemas/Tauxmanuel"
         categorie:
-          $ref: "#/components/schemas/CategorieTVA"
+          allOf:
+          - $ref: "#/components/schemas/CategorieTVA"
+          nullable: true
       required:
       - montantBaseHt
       - montantTva
@@ -5163,7 +5236,7 @@ components:
         montantHtTotal:
           $ref: "#/components/schemas/MontantHtTotal"
         montantTva:
-          $ref: "#/components/schemas/MontantTva_1"
+          $ref: "#/components/schemas/MontantTvaTotal"
         montantTtcTotal:
           $ref: "#/components/schemas/MontantTtcTotal"
         montantAPayer:
@@ -5405,7 +5478,7 @@ components:
         type: string
       description: Montant de la base HT pour cette ligne de TVA.
       title: MontantBaseHt
-    MontantTva:
+    MontantTvaLigne:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5413,7 +5486,7 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant de la TVA pour cette ligne.
-      title: MontantTva
+      title: MontantTvaLigne
     Tauxmanuel:
       anyOf:
       - minimum: 0.0
@@ -5432,7 +5505,7 @@ components:
         type: string
       description: Montant total HT.
       title: MontantHtTotal
-    MontantTva_1:
+    MontantTvaTotal:
       anyOf:
       - minimum: 0.0
         type: number
@@ -5440,7 +5513,7 @@ components:
           d{0,4}0*$)"
         type: string
       description: Montant total de la TVA.
-      title: MontantTva
+      title: MontantTvaTotal
     MontantTtcTotal:
       anyOf:
       - minimum: 0.0

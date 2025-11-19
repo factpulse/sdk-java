@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.CategorieTVA;
 import org.openapitools.client.model.MontantBaseHt;
-import org.openapitools.client.model.MontantTva;
+import org.openapitools.client.model.MontantTvaLigne;
 import org.openapitools.client.model.Tauxmanuel;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;

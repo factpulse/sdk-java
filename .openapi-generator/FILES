@@ -67,6 +67,8 @@ docs/MontantTtcTotal.md
 docs/MontantTtcTotal1.md
 docs/MontantTva.md
 docs/MontantTva1.md
+docs/MontantTvaLigne.md
+docs/MontantTvaTotal.md
 docs/MontantUnitaireHt.md
 docs/ObtenirIdChorusProRequest.md
 docs/ObtenirIdChorusProResponse.md
@@ -96,6 +98,7 @@ docs/SoumettreFactureCompleteRequest.md
 docs/SoumettreFactureCompleteResponse.md
 docs/SoumettreFactureRequest.md
 docs/SoumettreFactureResponse.md
+docs/StatutCelery.md
 docs/StatutFacture.md
 docs/StatutTache.md
 docs/StructureInfo.md
@@ -199,6 +202,8 @@ src/main/java/org/openapitools/client/model/MontantTtcTotal.java
 src/main/java/org/openapitools/client/model/MontantTtcTotal1.java
 src/main/java/org/openapitools/client/model/MontantTva.java
 src/main/java/org/openapitools/client/model/MontantTva1.java
+src/main/java/org/openapitools/client/model/MontantTvaLigne.java
+src/main/java/org/openapitools/client/model/MontantTvaTotal.java
 src/main/java/org/openapitools/client/model/MontantUnitaireHt.java
 src/main/java/org/openapitools/client/model/ObtenirIdChorusProRequest.java
 src/main/java/org/openapitools/client/model/ObtenirIdChorusProResponse.java
@@ -227,6 +232,7 @@ src/main/java/org/openapitools/client/model/SoumettreFactureCompleteRequest.java
 src/main/java/org/openapitools/client/model/SoumettreFactureCompleteResponse.java
 src/main/java/org/openapitools/client/model/SoumettreFactureRequest.java
 src/main/java/org/openapitools/client/model/SoumettreFactureResponse.java
+src/main/java/org/openapitools/client/model/StatutCelery.java
 src/main/java/org/openapitools/client/model/StatutFacture.java
 src/main/java/org/openapitools/client/model/StatutTache.java
 src/main/java/org/openapitools/client/model/StructureInfo.java
@@ -300,7 +306,9 @@ src/test/java/org/openapitools/client/model/MontantTotalTest.java
 src/test/java/org/openapitools/client/model/MontantTtcTotal1Test.java
 src/test/java/org/openapitools/client/model/MontantTtcTotalTest.java
 src/test/java/org/openapitools/client/model/MontantTva1Test.java
+src/test/java/org/openapitools/client/model/MontantTvaLigneTest.java
 src/test/java/org/openapitools/client/model/MontantTvaTest.java
+src/test/java/org/openapitools/client/model/MontantTvaTotalTest.java
 src/test/java/org/openapitools/client/model/MontantUnitaireHtTest.java
 src/test/java/org/openapitools/client/model/ObtenirIdChorusProRequestTest.java
 src/test/java/org/openapitools/client/model/ObtenirIdChorusProResponseTest.java
@@ -329,6 +337,7 @@ src/test/java/org/openapitools/client/model/SoumettreFactureCompleteRequestTest.
 src/test/java/org/openapitools/client/model/SoumettreFactureCompleteResponseTest.java
 src/test/java/org/openapitools/client/model/SoumettreFactureRequestTest.java
 src/test/java/org/openapitools/client/model/SoumettreFactureResponseTest.java
+src/test/java/org/openapitools/client/model/StatutCeleryTest.java
 src/test/java/org/openapitools/client/model/StatutFactureTest.java
 src/test/java/org/openapitools/client/model/StatutTacheTest.java
 src/test/java/org/openapitools/client/model/StructureInfoTest.java

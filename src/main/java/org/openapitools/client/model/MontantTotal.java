@@ -27,7 +27,7 @@ import org.openapitools.client.model.MontantHtTotal;
 import org.openapitools.client.model.MontantRemiseGlobaleTtc;
 import org.openapitools.client.model.MontantTotalAcompte;
 import org.openapitools.client.model.MontantTtcTotal;
-import org.openapitools.client.model.MontantTva1;
+import org.openapitools.client.model.MontantTvaTotal;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -57,7 +57,7 @@ import org.openapitools.client.JSON;
 /**
  * Contient tous les montants totaux de la facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T08:10:57.523032255Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class MontantTotal {
   public static final String SERIALIZED_NAME_MONTANT_HT_TOTAL = "montantHtTotal";
   @SerializedName(SERIALIZED_NAME_MONTANT_HT_TOTAL)
@@ -67,7 +67,7 @@ public class MontantTotal {
   public static final String SERIALIZED_NAME_MONTANT_TVA = "montantTva";
   @SerializedName(SERIALIZED_NAME_MONTANT_TVA)
   @javax.annotation.Nonnull
-  private MontantTva1 montantTva;
+  private MontantTvaTotal montantTva;
 
   public static final String SERIALIZED_NAME_MONTANT_TTC_TOTAL = "montantTtcTotal";
   @SerializedName(SERIALIZED_NAME_MONTANT_TTC_TOTAL)
@@ -116,7 +116,7 @@ public class MontantTotal {
   }
 
 
-  public MontantTotal montantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
+  public MontantTotal montantTva(@javax.annotation.Nonnull MontantTvaTotal montantTva) {
     this.montantTva = montantTva;
     return this;
   }
@@ -126,11 +126,11 @@ public class MontantTotal {
    * @return montantTva
    */
   @javax.annotation.Nonnull
-  public MontantTva1 getMontantTva() {
+  public MontantTvaTotal getMontantTva() {
     return montantTva;
   }
 
-  public void setMontantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
+  public void setMontantTva(@javax.annotation.Nonnull MontantTvaTotal montantTva) {
     this.montantTva = montantTva;
   }
 
@@ -334,7 +334,7 @@ public class MontantTotal {
       // validate the required field `montantHtTotal`
       MontantHtTotal.validateJsonElement(jsonObj.get("montantHtTotal"));
       // validate the required field `montantTva`
-      MontantTva1.validateJsonElement(jsonObj.get("montantTva"));
+      MontantTvaTotal.validateJsonElement(jsonObj.get("montantTva"));
       // validate the required field `montantTtcTotal`
       MontantTtcTotal.validateJsonElement(jsonObj.get("montantTtcTotal"));
       // validate the required field `montantAPayer`

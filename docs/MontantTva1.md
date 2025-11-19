@@ -2,7 +2,7 @@
 
 # MontantTva1
 
-Montant total de la TVA.
+Montant TVA
 
 ## Properties
 
