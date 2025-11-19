@@ -36,13 +36,22 @@ info:
     \ créé, vous pourrez utiliser l'API\n\n**Exemple de requête :**\n```bash\ncurl\
     \ -X POST https://www.factpulse.fr/api/token/ \\\n  -H \"Content-Type: application/json\"\
     \ \\\n  -d '{\n    \"username\": \"votre_email@example.com\",\n    \"password\"\
-    : \"votre_mot_de_passe\"\n  }'\n```\n\n**Réponse :**\n```json\n{\n  \"access\"\
-    : \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Token d'accès (validité: 30 min)\n  \"refresh\"\
-    : \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Token de rafraîchissement (validité: 7 jours)\n\
-    }\n```\n\n**Avantages :**\n- ✅ Automatisation complète (CI/CD, scripts)\n- ✅ Gestion\
-    \ programmatique des tokens\n- ✅ Support du refresh token pour renouveler automatiquement\
-    \ l'accès\n- ✅ Intégration facile dans n'importe quel langage/outil\n\n#### 🖥\
-    ️ Méthode 2 : Génération via Dashboard (Alternative)\n\n**URL :** https://www.factpulse.fr/dashboard/\n\
+    : \"votre_mot_de_passe\"\n  }'\n```\n\n**Paramètre optionnel `client_uid` :**\n\
+    \nPour sélectionner les credentials d'un client spécifique (PA/PDP, Chorus Pro,\
+    \ certificats de signature), ajoutez `client_uid` :\n\n```bash\ncurl -X POST https://www.factpulse.fr/api/token/\
+    \ \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"username\": \"\
+    votre_email@example.com\",\n    \"password\": \"votre_mot_de_passe\",\n    \"\
+    client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"\n  }'\n```\n\nLe `client_uid`\
+    \ sera inclus dans le JWT et permettra à l'API d'utiliser automatiquement :\n\
+    - Les credentials AFNOR/PDP configurés pour ce client\n- Les credentials Chorus\
+    \ Pro configurés pour ce client\n- Les certificats de signature électronique configuré\
+    s pour ce client\n\n**Réponse :**\n```json\n{\n  \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"\
+    ,  // Token d'accès (validité: 30 min)\n  \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"\
+    \  // Token de rafraîchissement (validité: 7 jours)\n}\n```\n\n**Avantages :**\n\
+    - ✅ Automatisation complète (CI/CD, scripts)\n- ✅ Gestion programmatique des tokens\n\
+    - ✅ Support du refresh token pour renouveler automatiquement l'accès\n- ✅ Inté\
+    gration facile dans n'importe quel langage/outil\n\n#### 🖥️ Méthode 2 : Géné\
+    ration via Dashboard (Alternative)\n\n**URL :** https://www.factpulse.fr/dashboard/\n\
     \nCette méthode convient pour des tests rapides ou une utilisation occasionnelle\
     \ via l'interface graphique.\n\n**Fonctionnement :**\n- Connectez-vous au dashboard\n\
     - Utilisez les boutons \"Generate Test Token\" ou \"Generate Production Token\"\
@@ -5234,6 +5243,12 @@ components:
       - "0199"
       title: SchemeID
       type: string
+      x-enum-varnames:
+      - FR_SIREN
+      - GLN
+      - DUNS
+      - FR_TVA_INTRA
+      - GLEIF
     TypeFacture:
       description: Type de document (facture ou avoir).
       enum:
