@@ -11,6 +11,8 @@ Informations sur le destinataire de la facture (le client).
 |**adresseElectronique** | [**AdresseElectronique**](AdresseElectronique.md) |  |  |
 |**codeServiceExecutant** | **String** |  |  [optional] |
 |**nom** | **String** |  |  [optional] |
+|**siren** | **String** |  |  [optional] |
+|**siret** | **String** |  |  [optional] |
 |**adressePostale** | [**AdressePostale**](AdressePostale.md) |  |  [optional] |
 
 

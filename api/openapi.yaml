@@ -4926,6 +4926,10 @@ components:
           items:
             $ref: "#/components/schemas/LigneDeTVA"
           type: array
+        notes:
+          items:
+            $ref: "#/components/schemas/Note"
+          type: array
         commentaire:
           nullable: true
           type: string
@@ -5099,6 +5103,12 @@ components:
         nom:
           nullable: true
           type: string
+        siren:
+          nullable: true
+          type: string
+        siret:
+          nullable: true
+          type: string
         adressePostale:
           allOf:
           - $ref: "#/components/schemas/AdressePostale"
@@ -5121,6 +5131,9 @@ components:
           nullable: true
           type: integer
         nom:
+          nullable: true
+          type: string
+        siren:
           nullable: true
           type: string
         siret:
@@ -5159,14 +5172,32 @@ components:
         montantUnitaireHt:
           $ref: "#/components/schemas/MontantUnitaireHt"
         montantRemiseHt:
-          $ref: "#/components/schemas/LigneDePoste_montantRemiseHt"
+          description: Montant de la remise HT.
+          example: "1000.50"
+          format: decimal
+          nullable: true
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          type: string
         montantTotalLigneHt:
-          $ref: "#/components/schemas/MontantTotalLigneHt"
+          description: Montant total HT de la ligne (quantité × prix unitaire - remise).
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\\
+            .\\d{0,2}0*$)"
+          title: MontantTotalLigneHt
+          type: string
         tauxTva:
           nullable: true
           type: string
         tauxTvaManuel:
-          $ref: "#/components/schemas/LigneDePoste_tauxTvaManuel"
+          description: Taux de TVA avec valeur manuelle.
+          example: "1000.50"
+          format: decimal
+          nullable: true
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          type: string
         categorieTva:
           allOf:
           - $ref: "#/components/schemas/CategorieTVA"
@@ -5195,14 +5226,32 @@ components:
       description: Représente une ligne de totalisation par taux de TVA.
       properties:
         montantBaseHt:
-          $ref: "#/components/schemas/MontantBaseHt"
+          description: Montant de la base HT pour cette ligne de TVA.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: MontantBaseHt
+          type: string
         montantTva:
-          $ref: "#/components/schemas/MontantTvaLigne"
+          description: Montant de la TVA pour cette ligne.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: MontantTvaLigne
+          type: string
         taux:
           nullable: true
           type: string
         tauxManuel:
-          $ref: "#/components/schemas/Tauxmanuel"
+          description: Taux de TVA avec valeur manuelle.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: Tauxmanuel
+          type: string
         categorie:
           allOf:
           - $ref: "#/components/schemas/CategorieTVA"
@@ -5234,17 +5283,53 @@ components:
       description: Contient tous les montants totaux de la facture.
       properties:
         montantHtTotal:
-          $ref: "#/components/schemas/MontantHtTotal"
+          description: Montant total HT.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: MontantHtTotal
+          type: string
         montantTva:
-          $ref: "#/components/schemas/MontantTvaTotal"
+          description: Montant total de la TVA.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: MontantTvaTotal
+          type: string
         montantTtcTotal:
-          $ref: "#/components/schemas/MontantTtcTotal"
+          description: Montant total TTC.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: MontantTtcTotal
+          type: string
         montantAPayer:
-          $ref: "#/components/schemas/MontantAPayer"
+          description: Montant à payer.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: MontantAPayer
+          type: string
         acompte:
-          $ref: "#/components/schemas/MontantTotal_acompte"
+          description: Acompte versé.
+          example: "1000.50"
+          format: decimal
+          nullable: true
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          type: string
         montantRemiseGlobaleTtc:
-          $ref: "#/components/schemas/MontantRemiseGlobaleTtc"
+          description: Montant de la remise globale TTC.
+          example: "1000.50"
+          format: decimal
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\\
+            .\\d{0,4}0*$)"
+          title: MontantRemiseGlobaleTtc
+          type: string
         motifRemiseGlobaleTtc:
           nullable: true
           type: string
@@ -5254,6 +5339,24 @@ components:
       - montantTtcTotal
       - montantTva
       title: MontantTotal
+    Note:
+      description: |-
+        Note de facture (IncludedNote en Factur-X).
+
+        Les notes obligatoires pour BR-FR-05 sont :
+        - PMT : Indemnité forfaitaire pour frais de recouvrement
+        - PMD : Pénalités de retard
+        - AAB : Escompte pour paiement anticipé
+      properties:
+        subjectCode:
+          nullable: true
+          type: string
+        content:
+          title: Content
+          type: string
+      required:
+      - content
+      title: Note
     PieceJointeComplementaire:
       description: Représente une pièce jointe complémentaire.
       properties:
@@ -5441,116 +5544,6 @@ components:
         type: string
       description: Montant unitaire Hors Taxes de l'article.
       title: MontantUnitaireHt
-    LigneDePoste_montantRemiseHt:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant de la remise HT.
-      nullable: true
-    MontantTotalLigneHt:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\\
-          .\\d{0,2}0*$)"
-        type: string
-      description: Montant total HT de la ligne (quantité × prix unitaire - remise).
-      nullable: true
-      title: MontantTotalLigneHt
-    LigneDePoste_tauxTvaManuel:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Taux de TVA avec valeur manuelle.
-      nullable: true
-    MontantBaseHt:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant de la base HT pour cette ligne de TVA.
-      title: MontantBaseHt
-    MontantTvaLigne:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant de la TVA pour cette ligne.
-      title: MontantTvaLigne
-    Tauxmanuel:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Taux de TVA avec valeur manuelle.
-      title: Tauxmanuel
-    MontantHtTotal:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant total HT.
-      title: MontantHtTotal
-    MontantTvaTotal:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant total de la TVA.
-      title: MontantTvaTotal
-    MontantTtcTotal:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant total TTC.
-      title: MontantTtcTotal
-    MontantAPayer:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant à payer.
-      title: MontantAPayer
-    MontantTotal_acompte:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Acompte versé.
-      nullable: true
-    MontantRemiseGlobaleTtc:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
-          d{0,4}0*$)"
-        type: string
-      description: Montant de la remise globale TTC.
-      nullable: true
-      title: MontantRemiseGlobaleTtc
   securitySchemes:
     HTTPBearer:
       scheme: bearer

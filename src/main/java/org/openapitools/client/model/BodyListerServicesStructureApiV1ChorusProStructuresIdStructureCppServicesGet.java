@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet {
   public static final String SERIALIZED_NAME_USER_INFO = "user_info";
   @SerializedName(SERIALIZED_NAME_USER_INFO)

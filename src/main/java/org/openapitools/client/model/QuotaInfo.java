@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations détaillées sur le quota.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class QuotaInfo {
   public static final String SERIALIZED_NAME_LIMIT = "limit";
   @SerializedName(SERIALIZED_NAME_LIMIT)

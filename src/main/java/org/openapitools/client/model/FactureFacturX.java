@@ -31,6 +31,7 @@ import org.openapitools.client.model.LigneDePoste;
 import org.openapitools.client.model.LigneDeTVA;
 import org.openapitools.client.model.ModeDepot;
 import org.openapitools.client.model.MontantTotal;
+import org.openapitools.client.model.Note;
 import org.openapitools.client.model.PieceJointeComplementaire;
 import org.openapitools.client.model.References;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +63,7 @@ import org.openapitools.client.JSON;
 /**
  * Modèle de données pour une facture destinée à être convertie en Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FactureFacturX {
   public static final String SERIALIZED_NAME_NUMERO_FACTURE = "numeroFacture";
   @SerializedName(SERIALIZED_NAME_NUMERO_FACTURE)
@@ -118,6 +119,11 @@ public class FactureFacturX {
   @SerializedName(SERIALIZED_NAME_LIGNES_DE_TVA)
   @javax.annotation.Nullable
   private List<LigneDeTVA> lignesDeTva = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_NOTES = "notes";
+  @SerializedName(SERIALIZED_NAME_NOTES)
+  @javax.annotation.Nullable
+  private List<Note> notes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_COMMENTAIRE = "commentaire";
   @SerializedName(SERIALIZED_NAME_COMMENTAIRE)
@@ -362,6 +368,33 @@ public class FactureFacturX {
   }
 
 
+  public FactureFacturX notes(@javax.annotation.Nullable List<Note> notes) {
+    this.notes = notes;
+    return this;
+  }
+
+  public FactureFacturX addNotesItem(Note notesItem) {
+    if (this.notes == null) {
+      this.notes = new ArrayList<>();
+    }
+    this.notes.add(notesItem);
+    return this;
+  }
+
+  /**
+   * Get notes
+   * @return notes
+   */
+  @javax.annotation.Nullable
+  public List<Note> getNotes() {
+    return notes;
+  }
+
+  public void setNotes(@javax.annotation.Nullable List<Note> notes) {
+    this.notes = notes;
+  }
+
+
   public FactureFacturX commentaire(@javax.annotation.Nullable String commentaire) {
     this.commentaire = commentaire;
     return this;
@@ -448,6 +481,7 @@ public class FactureFacturX {
         Objects.equals(this.montantTotal, factureFacturX.montantTotal) &&
         Objects.equals(this.lignesDePoste, factureFacturX.lignesDePoste) &&
         Objects.equals(this.lignesDeTva, factureFacturX.lignesDeTva) &&
+        Objects.equals(this.notes, factureFacturX.notes) &&
         Objects.equals(this.commentaire, factureFacturX.commentaire) &&
         Objects.equals(this.idUtilisateurCourant, factureFacturX.idUtilisateurCourant) &&
         Objects.equals(this.piecesJointesComplementaires, factureFacturX.piecesJointesComplementaires);
@@ -459,7 +493,7 @@ public class FactureFacturX {
 
   @Override
   public int hashCode() {
-    return Objects.hash(numeroFacture, dateEcheancePaiement, dateFacture, modeDepot, destinataire, fournisseur, cadreDeFacturation, references, montantTotal, lignesDePoste, lignesDeTva, commentaire, idUtilisateurCourant, piecesJointesComplementaires);
+    return Objects.hash(numeroFacture, dateEcheancePaiement, dateFacture, modeDepot, destinataire, fournisseur, cadreDeFacturation, references, montantTotal, lignesDePoste, lignesDeTva, notes, commentaire, idUtilisateurCourant, piecesJointesComplementaires);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -484,6 +518,7 @@ public class FactureFacturX {
     sb.append("    montantTotal: ").append(toIndentedString(montantTotal)).append("\n");
     sb.append("    lignesDePoste: ").append(toIndentedString(lignesDePoste)).append("\n");
     sb.append("    lignesDeTva: ").append(toIndentedString(lignesDeTva)).append("\n");
+    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    commentaire: ").append(toIndentedString(commentaire)).append("\n");
     sb.append("    idUtilisateurCourant: ").append(toIndentedString(idUtilisateurCourant)).append("\n");
     sb.append("    piecesJointesComplementaires: ").append(toIndentedString(piecesJointesComplementaires)).append("\n");
@@ -508,7 +543,7 @@ public class FactureFacturX {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "dateFacture", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal", "lignesDePoste", "lignesDeTva", "commentaire", "idUtilisateurCourant", "piecesJointesComplementaires"));
+    openapiFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "dateFacture", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal", "lignesDePoste", "lignesDeTva", "notes", "commentaire", "idUtilisateurCourant", "piecesJointesComplementaires"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal"));
@@ -588,6 +623,20 @@ public class FactureFacturX {
           // validate the optional field `lignesDeTva` (array)
           for (int i = 0; i < jsonArraylignesDeTva.size(); i++) {
             LigneDeTVA.validateJsonElement(jsonArraylignesDeTva.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("notes") != null && !jsonObj.get("notes").isJsonNull()) {
+        JsonArray jsonArraynotes = jsonObj.getAsJsonArray("notes");
+        if (jsonArraynotes != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("notes").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `notes` to be an array in the JSON string but got `%s`", jsonObj.get("notes").toString()));
+          }
+
+          // validate the optional field `notes` (array)
+          for (int i = 0; i < jsonArraynotes.size(); i++) {
+            Note.validateJsonElement(jsonArraynotes.get(i));
           };
         }
       }

@@ -19,6 +19,7 @@ Modèle de données pour une facture destinée à être convertie en Factur-X.
 |**montantTotal** | [**MontantTotal**](MontantTotal.md) |  |  |
 |**lignesDePoste** | [**List&lt;LigneDePoste&gt;**](LigneDePoste.md) |  |  [optional] |
 |**lignesDeTva** | [**List&lt;LigneDeTVA&gt;**](LigneDeTVA.md) |  |  [optional] |
+|**notes** | [**List&lt;Note&gt;**](Note.md) |  |  [optional] |
 |**commentaire** | **String** |  |  [optional] |
 |**idUtilisateurCourant** | **Integer** |  |  [optional] |
 |**piecesJointesComplementaires** | [**List&lt;PieceJointeComplementaire&gt;**](PieceJointeComplementaire.md) |  |  [optional] |

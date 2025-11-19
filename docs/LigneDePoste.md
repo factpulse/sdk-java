@@ -14,10 +14,10 @@ Représente une ligne de détail dans une facture.
 |**quantite** | [**Quantite**](Quantite.md) |  |  |
 |**unite** | **Unite** |  |  |
 |**montantUnitaireHt** | [**MontantUnitaireHt**](MontantUnitaireHt.md) |  |  |
-|**montantRemiseHt** | [**LigneDePosteMontantRemiseHt**](LigneDePosteMontantRemiseHt.md) |  |  [optional] |
-|**montantTotalLigneHt** | [**MontantTotalLigneHt**](MontantTotalLigneHt.md) |  |  [optional] |
+|**montantRemiseHt** | **BigDecimal** | Montant de la remise HT. |  [optional] |
+|**montantTotalLigneHt** | **BigDecimal** | Montant total HT de la ligne (quantité × prix unitaire - remise). |  [optional] |
 |**tauxTva** | **String** |  |  [optional] |
-|**tauxTvaManuel** | [**LigneDePosteTauxTvaManuel**](LigneDePosteTauxTvaManuel.md) |  |  [optional] |
+|**tauxTvaManuel** | **BigDecimal** | Taux de TVA avec valeur manuelle. |  [optional] |
 |**categorieTva** | **CategorieTVA** |  |  [optional] |
 |**dateDebutPeriode** | **String** |  |  [optional] |
 |**dateFinPeriode** | **String** |  |  [optional] |

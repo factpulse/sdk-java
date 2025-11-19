@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur le fournisseur qui émet la facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Fournisseur {
   public static final String SERIALIZED_NAME_ADRESSE_ELECTRONIQUE = "adresseElectronique";
   @SerializedName(SERIALIZED_NAME_ADRESSE_ELECTRONIQUE)
@@ -79,6 +79,11 @@ public class Fournisseur {
   @SerializedName(SERIALIZED_NAME_NOM)
   @javax.annotation.Nullable
   private String nom;
+
+  public static final String SERIALIZED_NAME_SIREN = "siren";
+  @SerializedName(SERIALIZED_NAME_SIREN)
+  @javax.annotation.Nullable
+  private String siren;
 
   public static final String SERIALIZED_NAME_SIRET = "siret";
   @SerializedName(SERIALIZED_NAME_SIRET)
@@ -198,6 +203,25 @@ public class Fournisseur {
   }
 
 
+  public Fournisseur siren(@javax.annotation.Nullable String siren) {
+    this.siren = siren;
+    return this;
+  }
+
+  /**
+   * Get siren
+   * @return siren
+   */
+  @javax.annotation.Nullable
+  public String getSiren() {
+    return siren;
+  }
+
+  public void setSiren(@javax.annotation.Nullable String siren) {
+    this.siren = siren;
+  }
+
+
   public Fournisseur siret(@javax.annotation.Nullable String siret) {
     this.siret = siret;
     return this;
@@ -289,6 +313,7 @@ public class Fournisseur {
         Objects.equals(this.codeCoordonneesBancairesFournisseur, fournisseur.codeCoordonneesBancairesFournisseur) &&
         Objects.equals(this.idServiceFournisseur, fournisseur.idServiceFournisseur) &&
         Objects.equals(this.nom, fournisseur.nom) &&
+        Objects.equals(this.siren, fournisseur.siren) &&
         Objects.equals(this.siret, fournisseur.siret) &&
         Objects.equals(this.numeroTvaIntra, fournisseur.numeroTvaIntra) &&
         Objects.equals(this.iban, fournisseur.iban) &&
@@ -301,7 +326,7 @@ public class Fournisseur {
 
   @Override
   public int hashCode() {
-    return Objects.hash(adresseElectronique, idFournisseur, codeCoordonneesBancairesFournisseur, idServiceFournisseur, nom, siret, numeroTvaIntra, iban, adressePostale);
+    return Objects.hash(adresseElectronique, idFournisseur, codeCoordonneesBancairesFournisseur, idServiceFournisseur, nom, siren, siret, numeroTvaIntra, iban, adressePostale);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -320,6 +345,7 @@ public class Fournisseur {
     sb.append("    codeCoordonneesBancairesFournisseur: ").append(toIndentedString(codeCoordonneesBancairesFournisseur)).append("\n");
     sb.append("    idServiceFournisseur: ").append(toIndentedString(idServiceFournisseur)).append("\n");
     sb.append("    nom: ").append(toIndentedString(nom)).append("\n");
+    sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
     sb.append("    siret: ").append(toIndentedString(siret)).append("\n");
     sb.append("    numeroTvaIntra: ").append(toIndentedString(numeroTvaIntra)).append("\n");
     sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
@@ -345,7 +371,7 @@ public class Fournisseur {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("adresseElectronique", "idFournisseur", "codeCoordonneesBancairesFournisseur", "idServiceFournisseur", "nom", "siret", "numeroTvaIntra", "iban", "adressePostale"));
+    openapiFields = new HashSet<String>(Arrays.asList("adresseElectronique", "idFournisseur", "codeCoordonneesBancairesFournisseur", "idServiceFournisseur", "nom", "siren", "siret", "numeroTvaIntra", "iban", "adressePostale"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("adresseElectronique", "idFournisseur"));
@@ -383,6 +409,9 @@ public class Fournisseur {
       AdresseElectronique.validateJsonElement(jsonObj.get("adresseElectronique"));
       if ((jsonObj.get("nom") != null && !jsonObj.get("nom").isJsonNull()) && !jsonObj.get("nom").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `nom` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nom").toString()));
+      }
+      if ((jsonObj.get("siren") != null && !jsonObj.get("siren").isJsonNull()) && !jsonObj.get("siren").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `siren` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siren").toString()));
       }
       if ((jsonObj.get("siret") != null && !jsonObj.get("siret").isJsonNull()) && !jsonObj.get("siret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));

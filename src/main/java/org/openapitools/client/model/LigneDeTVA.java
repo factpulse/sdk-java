@@ -21,11 +21,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import org.openapitools.client.model.CategorieTVA;
-import org.openapitools.client.model.MontantBaseHt;
-import org.openapitools.client.model.MontantTvaLigne;
-import org.openapitools.client.model.Tauxmanuel;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -55,17 +53,17 @@ import org.openapitools.client.JSON;
 /**
  * Représente une ligne de totalisation par taux de TVA.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class LigneDeTVA {
   public static final String SERIALIZED_NAME_MONTANT_BASE_HT = "montantBaseHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_BASE_HT)
   @javax.annotation.Nonnull
-  private MontantBaseHt montantBaseHt;
+  private BigDecimal montantBaseHt;
 
   public static final String SERIALIZED_NAME_MONTANT_TVA = "montantTva";
   @SerializedName(SERIALIZED_NAME_MONTANT_TVA)
   @javax.annotation.Nonnull
-  private MontantTvaLigne montantTva;
+  private BigDecimal montantTva;
 
   public static final String SERIALIZED_NAME_TAUX = "taux";
   @SerializedName(SERIALIZED_NAME_TAUX)
@@ -75,7 +73,7 @@ public class LigneDeTVA {
   public static final String SERIALIZED_NAME_TAUX_MANUEL = "tauxManuel";
   @SerializedName(SERIALIZED_NAME_TAUX_MANUEL)
   @javax.annotation.Nullable
-  private Tauxmanuel tauxManuel;
+  private BigDecimal tauxManuel;
 
   public static final String SERIALIZED_NAME_CATEGORIE = "categorie";
   @SerializedName(SERIALIZED_NAME_CATEGORIE)
@@ -85,40 +83,40 @@ public class LigneDeTVA {
   public LigneDeTVA() {
   }
 
-  public LigneDeTVA montantBaseHt(@javax.annotation.Nonnull MontantBaseHt montantBaseHt) {
+  public LigneDeTVA montantBaseHt(@javax.annotation.Nonnull BigDecimal montantBaseHt) {
     this.montantBaseHt = montantBaseHt;
     return this;
   }
 
   /**
-   * Get montantBaseHt
+   * Montant de la base HT pour cette ligne de TVA.
    * @return montantBaseHt
    */
   @javax.annotation.Nonnull
-  public MontantBaseHt getMontantBaseHt() {
+  public BigDecimal getMontantBaseHt() {
     return montantBaseHt;
   }
 
-  public void setMontantBaseHt(@javax.annotation.Nonnull MontantBaseHt montantBaseHt) {
+  public void setMontantBaseHt(@javax.annotation.Nonnull BigDecimal montantBaseHt) {
     this.montantBaseHt = montantBaseHt;
   }
 
 
-  public LigneDeTVA montantTva(@javax.annotation.Nonnull MontantTvaLigne montantTva) {
+  public LigneDeTVA montantTva(@javax.annotation.Nonnull BigDecimal montantTva) {
     this.montantTva = montantTva;
     return this;
   }
 
   /**
-   * Get montantTva
+   * Montant de la TVA pour cette ligne.
    * @return montantTva
    */
   @javax.annotation.Nonnull
-  public MontantTvaLigne getMontantTva() {
+  public BigDecimal getMontantTva() {
     return montantTva;
   }
 
-  public void setMontantTva(@javax.annotation.Nonnull MontantTvaLigne montantTva) {
+  public void setMontantTva(@javax.annotation.Nonnull BigDecimal montantTva) {
     this.montantTva = montantTva;
   }
 
@@ -142,21 +140,21 @@ public class LigneDeTVA {
   }
 
 
-  public LigneDeTVA tauxManuel(@javax.annotation.Nullable Tauxmanuel tauxManuel) {
+  public LigneDeTVA tauxManuel(@javax.annotation.Nullable BigDecimal tauxManuel) {
     this.tauxManuel = tauxManuel;
     return this;
   }
 
   /**
-   * Get tauxManuel
+   * Taux de TVA avec valeur manuelle.
    * @return tauxManuel
    */
   @javax.annotation.Nullable
-  public Tauxmanuel getTauxManuel() {
+  public BigDecimal getTauxManuel() {
     return tauxManuel;
   }
 
-  public void setTauxManuel(@javax.annotation.Nullable Tauxmanuel tauxManuel) {
+  public void setTauxManuel(@javax.annotation.Nullable BigDecimal tauxManuel) {
     this.tauxManuel = tauxManuel;
   }
 
@@ -277,16 +275,17 @@ public class LigneDeTVA {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `montantBaseHt`
-      MontantBaseHt.validateJsonElement(jsonObj.get("montantBaseHt"));
-      // validate the required field `montantTva`
-      MontantTvaLigne.validateJsonElement(jsonObj.get("montantTva"));
+      if (!jsonObj.get("montantBaseHt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montantBaseHt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montantBaseHt").toString()));
+      }
+      if (!jsonObj.get("montantTva").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montantTva` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montantTva").toString()));
+      }
       if ((jsonObj.get("taux") != null && !jsonObj.get("taux").isJsonNull()) && !jsonObj.get("taux").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `taux` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taux").toString()));
       }
-      // validate the optional field `tauxManuel`
-      if (jsonObj.get("tauxManuel") != null && !jsonObj.get("tauxManuel").isJsonNull()) {
-        Tauxmanuel.validateJsonElement(jsonObj.get("tauxManuel"));
+      if ((jsonObj.get("tauxManuel") != null && !jsonObj.get("tauxManuel").isJsonNull()) && !jsonObj.get("tauxManuel").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `tauxManuel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tauxManuel").toString()));
       }
       // validate the optional field `categorie`
       if (jsonObj.get("categorie") != null && !jsonObj.get("categorie").isJsonNull()) {

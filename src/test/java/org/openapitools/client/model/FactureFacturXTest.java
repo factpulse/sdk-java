@@ -29,6 +29,7 @@ import org.openapitools.client.model.LigneDePoste;
 import org.openapitools.client.model.LigneDeTVA;
 import org.openapitools.client.model.ModeDepot;
 import org.openapitools.client.model.MontantTotal;
+import org.openapitools.client.model.Note;
 import org.openapitools.client.model.PieceJointeComplementaire;
 import org.openapitools.client.model.References;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -135,6 +136,14 @@ public class FactureFacturXTest {
     @Test
     public void lignesDeTvaTest() {
         // TODO: test lignesDeTva
+    }
+
+    /**
+     * Test the property 'notes'
+     */
+    @Test
+    public void notesTest() {
+        // TODO: test notes
     }
 
     /**

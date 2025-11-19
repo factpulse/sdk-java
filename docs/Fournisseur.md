@@ -13,6 +13,7 @@ Informations sur le fournisseur qui émet la facture.
 |**codeCoordonneesBancairesFournisseur** | **Integer** |  |  [optional] |
 |**idServiceFournisseur** | **Integer** |  |  [optional] |
 |**nom** | **String** |  |  [optional] |
+|**siren** | **String** |  |  [optional] |
 |**siret** | **String** |  |  [optional] |
 |**numeroTvaIntra** | **String** |  |  [optional] |
 |**iban** | **String** |  |  [optional] |

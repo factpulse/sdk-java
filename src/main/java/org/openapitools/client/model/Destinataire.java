@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur le destinataire de la facture (le client).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T12:42:36.117333834Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Destinataire {
   public static final String SERIALIZED_NAME_ADRESSE_ELECTRONIQUE = "adresseElectronique";
   @SerializedName(SERIALIZED_NAME_ADRESSE_ELECTRONIQUE)
@@ -69,6 +69,16 @@ public class Destinataire {
   @SerializedName(SERIALIZED_NAME_NOM)
   @javax.annotation.Nullable
   private String nom;
+
+  public static final String SERIALIZED_NAME_SIREN = "siren";
+  @SerializedName(SERIALIZED_NAME_SIREN)
+  @javax.annotation.Nullable
+  private String siren;
+
+  public static final String SERIALIZED_NAME_SIRET = "siret";
+  @SerializedName(SERIALIZED_NAME_SIRET)
+  @javax.annotation.Nullable
+  private String siret;
 
   public static final String SERIALIZED_NAME_ADRESSE_POSTALE = "adressePostale";
   @SerializedName(SERIALIZED_NAME_ADRESSE_POSTALE)
@@ -135,6 +145,44 @@ public class Destinataire {
   }
 
 
+  public Destinataire siren(@javax.annotation.Nullable String siren) {
+    this.siren = siren;
+    return this;
+  }
+
+  /**
+   * Get siren
+   * @return siren
+   */
+  @javax.annotation.Nullable
+  public String getSiren() {
+    return siren;
+  }
+
+  public void setSiren(@javax.annotation.Nullable String siren) {
+    this.siren = siren;
+  }
+
+
+  public Destinataire siret(@javax.annotation.Nullable String siret) {
+    this.siret = siret;
+    return this;
+  }
+
+  /**
+   * Get siret
+   * @return siret
+   */
+  @javax.annotation.Nullable
+  public String getSiret() {
+    return siret;
+  }
+
+  public void setSiret(@javax.annotation.Nullable String siret) {
+    this.siret = siret;
+  }
+
+
   public Destinataire adressePostale(@javax.annotation.Nullable AdressePostale adressePostale) {
     this.adressePostale = adressePostale;
     return this;
@@ -167,6 +215,8 @@ public class Destinataire {
     return Objects.equals(this.adresseElectronique, destinataire.adresseElectronique) &&
         Objects.equals(this.codeServiceExecutant, destinataire.codeServiceExecutant) &&
         Objects.equals(this.nom, destinataire.nom) &&
+        Objects.equals(this.siren, destinataire.siren) &&
+        Objects.equals(this.siret, destinataire.siret) &&
         Objects.equals(this.adressePostale, destinataire.adressePostale);
   }
 
@@ -176,7 +226,7 @@ public class Destinataire {
 
   @Override
   public int hashCode() {
-    return Objects.hash(adresseElectronique, codeServiceExecutant, nom, adressePostale);
+    return Objects.hash(adresseElectronique, codeServiceExecutant, nom, siren, siret, adressePostale);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -193,6 +243,8 @@ public class Destinataire {
     sb.append("    adresseElectronique: ").append(toIndentedString(adresseElectronique)).append("\n");
     sb.append("    codeServiceExecutant: ").append(toIndentedString(codeServiceExecutant)).append("\n");
     sb.append("    nom: ").append(toIndentedString(nom)).append("\n");
+    sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
+    sb.append("    siret: ").append(toIndentedString(siret)).append("\n");
     sb.append("    adressePostale: ").append(toIndentedString(adressePostale)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -215,7 +267,7 @@ public class Destinataire {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("adresseElectronique", "codeServiceExecutant", "nom", "adressePostale"));
+    openapiFields = new HashSet<String>(Arrays.asList("adresseElectronique", "codeServiceExecutant", "nom", "siren", "siret", "adressePostale"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("adresseElectronique"));
@@ -256,6 +308,12 @@ public class Destinataire {
       }
       if ((jsonObj.get("nom") != null && !jsonObj.get("nom").isJsonNull()) && !jsonObj.get("nom").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `nom` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nom").toString()));
+      }
+      if ((jsonObj.get("siren") != null && !jsonObj.get("siren").isJsonNull()) && !jsonObj.get("siren").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `siren` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siren").toString()));
+      }
+      if ((jsonObj.get("siret") != null && !jsonObj.get("siret").isJsonNull()) && !jsonObj.get("siret").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));
       }
       // validate the optional field `adressePostale`
       if (jsonObj.get("adressePostale") != null && !jsonObj.get("adressePostale").isJsonNull()) {

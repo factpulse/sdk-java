@@ -81,6 +81,14 @@ public class FournisseurTest {
     }
 
     /**
+     * Test the property 'siren'
+     */
+    @Test
+    public void sirenTest() {
+        // TODO: test siren
+    }
+
+    /**
      * Test the property 'siret'
      */
     @Test

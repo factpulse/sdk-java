@@ -13,22 +13,45 @@
 
 package org.openapitools.client.model;
 
-import java.math.BigDecimal;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for Tauxmanuel
+ * Model tests for Note
  */
-public class TauxmanuelTest {
-    private final Tauxmanuel model = new Tauxmanuel();
+public class NoteTest {
+    private final Note model = new Note();
 
     /**
-     * Model tests for Tauxmanuel
+     * Model tests for Note
      */
     @Test
-    public void testTauxmanuel() {
-        // TODO: test Tauxmanuel
+    public void testNote() {
+        // TODO: test Note
+    }
+
+    /**
+     * Test the property 'subjectCode'
+     */
+    @Test
+    public void subjectCodeTest() {
+        // TODO: test subjectCode
+    }
+
+    /**
+     * Test the property 'content'
+     */
+    @Test
+    public void contentTest() {
+        // TODO: test content
     }
 
 }

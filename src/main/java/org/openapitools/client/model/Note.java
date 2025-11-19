@@ -22,7 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.CredentialsChorusPro;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -50,108 +49,58 @@ import java.util.Locale;
 import org.openapitools.client.JSON;
 
 /**
- * Configuration spécifique pour la destination Chorus Pro.
+ * Note de facture (IncludedNote en Factur-X).  Les notes obligatoires pour BR-FR-05 sont : - PMT : Indemnité forfaitaire pour frais de recouvrement - PMD : Pénalités de retard - AAB : Escompte pour paiement anticipé
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-19T14:45:10.297582490Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class DestinationChorusPro {
-  /**
-   * Gets or Sets type
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    CHORUS_PRO("chorus_pro");
+public class Note {
+  public static final String SERIALIZED_NAME_SUBJECT_CODE = "subjectCode";
+  @SerializedName(SERIALIZED_NAME_SUBJECT_CODE)
+  @javax.annotation.Nullable
+  private String subjectCode;
 
-    private String value;
+  public static final String SERIALIZED_NAME_CONTENT = "content";
+  @SerializedName(SERIALIZED_NAME_CONTENT)
+  @javax.annotation.Nonnull
+  private String content;
 
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      TypeEnum.fromValue(value);
-    }
+  public Note() {
   }
 
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
-  @javax.annotation.Nullable
-  private TypeEnum type = TypeEnum.CHORUS_PRO;
-
-  public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
-  @SerializedName(SERIALIZED_NAME_CREDENTIALS)
-  @javax.annotation.Nullable
-  private CredentialsChorusPro credentials;
-
-  public DestinationChorusPro() {
-  }
-
-  public DestinationChorusPro type(@javax.annotation.Nullable TypeEnum type) {
-    this.type = type;
+  public Note subjectCode(@javax.annotation.Nullable String subjectCode) {
+    this.subjectCode = subjectCode;
     return this;
   }
 
   /**
-   * Get type
-   * @return type
+   * Get subjectCode
+   * @return subjectCode
    */
   @javax.annotation.Nullable
-  public TypeEnum getType() {
-    return type;
+  public String getSubjectCode() {
+    return subjectCode;
   }
 
-  public void setType(@javax.annotation.Nullable TypeEnum type) {
-    this.type = type;
+  public void setSubjectCode(@javax.annotation.Nullable String subjectCode) {
+    this.subjectCode = subjectCode;
   }
 
 
-  public DestinationChorusPro credentials(@javax.annotation.Nullable CredentialsChorusPro credentials) {
-    this.credentials = credentials;
+  public Note content(@javax.annotation.Nonnull String content) {
+    this.content = content;
     return this;
   }
 
   /**
-   * Get credentials
-   * @return credentials
+   * Get content
+   * @return content
    */
-  @javax.annotation.Nullable
-  public CredentialsChorusPro getCredentials() {
-    return credentials;
+  @javax.annotation.Nonnull
+  public String getContent() {
+    return content;
   }
 
-  public void setCredentials(@javax.annotation.Nullable CredentialsChorusPro credentials) {
-    this.credentials = credentials;
+  public void setContent(@javax.annotation.Nonnull String content) {
+    this.content = content;
   }
 
 
@@ -164,9 +113,9 @@ public class DestinationChorusPro {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DestinationChorusPro destinationChorusPro = (DestinationChorusPro) o;
-    return Objects.equals(this.type, destinationChorusPro.type) &&
-        Objects.equals(this.credentials, destinationChorusPro.credentials);
+    Note note = (Note) o;
+    return Objects.equals(this.subjectCode, note.subjectCode) &&
+        Objects.equals(this.content, note.content);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -175,7 +124,7 @@ public class DestinationChorusPro {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, credentials);
+    return Objects.hash(subjectCode, content);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -188,9 +137,9 @@ public class DestinationChorusPro {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DestinationChorusPro {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    credentials: ").append(toIndentedString(credentials)).append("\n");
+    sb.append("class Note {\n");
+    sb.append("    subjectCode: ").append(toIndentedString(subjectCode)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,43 +161,45 @@ public class DestinationChorusPro {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("type", "credentials"));
+    openapiFields = new HashSet<String>(Arrays.asList("subjectCode", "content"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("content"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DestinationChorusPro
+   * @throws IOException if the JSON Element is invalid with respect to Note
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!DestinationChorusPro.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in DestinationChorusPro is not found in the empty JSON string", DestinationChorusPro.openapiRequiredFields.toString()));
+        if (!Note.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in Note is not found in the empty JSON string", Note.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DestinationChorusPro.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `DestinationChorusPro` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!Note.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `Note` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Note.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      if ((jsonObj.get("subjectCode") != null && !jsonObj.get("subjectCode").isJsonNull()) && !jsonObj.get("subjectCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `subjectCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subjectCode").toString()));
       }
-      // validate the optional field `type`
-      if (jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) {
-        TypeEnum.validateJsonElement(jsonObj.get("type"));
-      }
-      // validate the optional field `credentials`
-      if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
-        CredentialsChorusPro.validateJsonElement(jsonObj.get("credentials"));
+      if (!jsonObj.get("content").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `content` to be a primitive type in the JSON string but got `%s`", jsonObj.get("content").toString()));
       }
   }
 
@@ -256,22 +207,22 @@ public class DestinationChorusPro {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!DestinationChorusPro.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'DestinationChorusPro' and its subtypes
+       if (!Note.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Note' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<DestinationChorusPro> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(DestinationChorusPro.class));
+       final TypeAdapter<Note> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Note.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<DestinationChorusPro>() {
+       return (TypeAdapter<T>) new TypeAdapter<Note>() {
            @Override
-           public void write(JsonWriter out, DestinationChorusPro value) throws IOException {
+           public void write(JsonWriter out, Note value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public DestinationChorusPro read(JsonReader in) throws IOException {
+           public Note read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -282,18 +233,18 @@ public class DestinationChorusPro {
   }
 
   /**
-   * Create an instance of DestinationChorusPro given an JSON string
+   * Create an instance of Note given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of DestinationChorusPro
-   * @throws IOException if the JSON string is invalid with respect to DestinationChorusPro
+   * @return An instance of Note
+   * @throws IOException if the JSON string is invalid with respect to Note
    */
-  public static DestinationChorusPro fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DestinationChorusPro.class);
+  public static Note fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Note.class);
   }
 
   /**
-   * Convert an instance of DestinationChorusPro to an JSON string
+   * Convert an instance of Note to an JSON string
    *
    * @return JSON string
    */

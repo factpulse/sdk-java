@@ -65,6 +65,22 @@ public class DestinataireTest {
     }
 
     /**
+     * Test the property 'siren'
+     */
+    @Test
+    public void sirenTest() {
+        // TODO: test siren
+    }
+
+    /**
+     * Test the property 'siret'
+     */
+    @Test
+    public void siretTest() {
+        // TODO: test siret
+    }
+
+    /**
      * Test the property 'adressePostale'
      */
     @Test
