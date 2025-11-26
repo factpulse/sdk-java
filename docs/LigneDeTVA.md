@@ -8,10 +8,10 @@ Représente une ligne de totalisation par taux de TVA.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**montantBaseHt** | **BigDecimal** | Montant de la base HT pour cette ligne de TVA. |  |
-|**montantTva** | **BigDecimal** | Montant de la TVA pour cette ligne. |  |
+|**montantBaseHt** | [**MontantBaseHt**](MontantBaseHt.md) |  |  |
+|**montantTva** | [**MontantTvaLigne**](MontantTvaLigne.md) |  |  |
 |**taux** | **String** |  |  [optional] |
-|**tauxManuel** | **BigDecimal** | Taux de TVA avec valeur manuelle. |  [optional] |
+|**tauxManuel** | [**Tauxmanuel**](Tauxmanuel.md) |  |  [optional] |
 |**categorie** | **CategorieTVA** |  |  [optional] |
 
 

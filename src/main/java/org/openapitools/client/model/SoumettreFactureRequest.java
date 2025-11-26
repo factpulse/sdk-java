@@ -23,9 +23,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.ChorusProCredentials;
-import org.openapitools.client.model.MontantHtTotal1;
-import org.openapitools.client.model.MontantTtcTotal1;
-import org.openapitools.client.model.MontantTva1;
+import org.openapitools.client.model.MontantHtTotal;
+import org.openapitools.client.model.MontantTtcTotal;
+import org.openapitools.client.model.MontantTva;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Soumission d&#39;une facture Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-20T08:42:12.127769472Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:03:55.064622194Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SoumettreFactureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
@@ -95,17 +95,17 @@ public class SoumettreFactureRequest {
   public static final String SERIALIZED_NAME_MONTANT_HT_TOTAL = "montant_ht_total";
   @SerializedName(SERIALIZED_NAME_MONTANT_HT_TOTAL)
   @javax.annotation.Nonnull
-  private MontantHtTotal1 montantHtTotal;
+  private MontantHtTotal montantHtTotal;
 
   public static final String SERIALIZED_NAME_MONTANT_TVA = "montant_tva";
   @SerializedName(SERIALIZED_NAME_MONTANT_TVA)
   @javax.annotation.Nonnull
-  private MontantTva1 montantTva;
+  private MontantTva montantTva;
 
   public static final String SERIALIZED_NAME_MONTANT_TTC_TOTAL = "montant_ttc_total";
   @SerializedName(SERIALIZED_NAME_MONTANT_TTC_TOTAL)
   @javax.annotation.Nonnull
-  private MontantTtcTotal1 montantTtcTotal;
+  private MontantTtcTotal montantTtcTotal;
 
   public static final String SERIALIZED_NAME_PIECE_JOINTE_PRINCIPALE_ID = "piece_jointe_principale_id";
   @SerializedName(SERIALIZED_NAME_PIECE_JOINTE_PRINCIPALE_ID)
@@ -268,7 +268,7 @@ public class SoumettreFactureRequest {
   }
 
 
-  public SoumettreFactureRequest montantHtTotal(@javax.annotation.Nonnull MontantHtTotal1 montantHtTotal) {
+  public SoumettreFactureRequest montantHtTotal(@javax.annotation.Nonnull MontantHtTotal montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
     return this;
   }
@@ -278,16 +278,16 @@ public class SoumettreFactureRequest {
    * @return montantHtTotal
    */
   @javax.annotation.Nonnull
-  public MontantHtTotal1 getMontantHtTotal() {
+  public MontantHtTotal getMontantHtTotal() {
     return montantHtTotal;
   }
 
-  public void setMontantHtTotal(@javax.annotation.Nonnull MontantHtTotal1 montantHtTotal) {
+  public void setMontantHtTotal(@javax.annotation.Nonnull MontantHtTotal montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
   }
 
 
-  public SoumettreFactureRequest montantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
+  public SoumettreFactureRequest montantTva(@javax.annotation.Nonnull MontantTva montantTva) {
     this.montantTva = montantTva;
     return this;
   }
@@ -297,16 +297,16 @@ public class SoumettreFactureRequest {
    * @return montantTva
    */
   @javax.annotation.Nonnull
-  public MontantTva1 getMontantTva() {
+  public MontantTva getMontantTva() {
     return montantTva;
   }
 
-  public void setMontantTva(@javax.annotation.Nonnull MontantTva1 montantTva) {
+  public void setMontantTva(@javax.annotation.Nonnull MontantTva montantTva) {
     this.montantTva = montantTva;
   }
 
 
-  public SoumettreFactureRequest montantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal1 montantTtcTotal) {
+  public SoumettreFactureRequest montantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
     return this;
   }
@@ -316,11 +316,11 @@ public class SoumettreFactureRequest {
    * @return montantTtcTotal
    */
   @javax.annotation.Nonnull
-  public MontantTtcTotal1 getMontantTtcTotal() {
+  public MontantTtcTotal getMontantTtcTotal() {
     return montantTtcTotal;
   }
 
-  public void setMontantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal1 montantTtcTotal) {
+  public void setMontantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
   }
 
@@ -557,11 +557,11 @@ public class SoumettreFactureRequest {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `numero_engagement` to be a primitive type in the JSON string but got `%s`", jsonObj.get("numero_engagement").toString()));
       }
       // validate the required field `montant_ht_total`
-      MontantHtTotal1.validateJsonElement(jsonObj.get("montant_ht_total"));
+      MontantHtTotal.validateJsonElement(jsonObj.get("montant_ht_total"));
       // validate the required field `montant_tva`
-      MontantTva1.validateJsonElement(jsonObj.get("montant_tva"));
+      MontantTva.validateJsonElement(jsonObj.get("montant_tva"));
       // validate the required field `montant_ttc_total`
-      MontantTtcTotal1.validateJsonElement(jsonObj.get("montant_ttc_total"));
+      MontantTtcTotal.validateJsonElement(jsonObj.get("montant_ttc_total"));
       if ((jsonObj.get("piece_jointe_principale_designation") != null && !jsonObj.get("piece_jointe_principale_designation").isJsonNull()) && !jsonObj.get("piece_jointe_principale_designation").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `piece_jointe_principale_designation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piece_jointe_principale_designation").toString()));
       }

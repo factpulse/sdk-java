@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Réponse après soumission de facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-20T08:42:12.127769472Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:03:55.064622194Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SoumettreFactureResponse {
   public static final String SERIALIZED_NAME_CODE_RETOUR = "code_retour";
   @SerializedName(SERIALIZED_NAME_CODE_RETOUR)

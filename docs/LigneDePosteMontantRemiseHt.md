@@ -1,8 +1,8 @@
 
 
-# MontantHtTotal1
+# LigneDePosteMontantRemiseHt
 
-Montant HT total
+Montant de la remise HT. (Accepte number, string ou integer)
 
 ## Properties
 

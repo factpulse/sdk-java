@@ -15,9 +15,9 @@ Soumission d'une facture Chorus Pro.
 |**idStructureCpp** | **Integer** | ID Chorus Pro de la structure destinataire |  |
 |**codeService** | **String** |  |  [optional] |
 |**numeroEngagement** | **String** |  |  [optional] |
-|**montantHtTotal** | [**MontantHtTotal1**](MontantHtTotal1.md) |  |  |
-|**montantTva** | [**MontantTva1**](MontantTva1.md) |  |  |
-|**montantTtcTotal** | [**MontantTtcTotal1**](MontantTtcTotal1.md) |  |  |
+|**montantHtTotal** | [**MontantHtTotal**](MontantHtTotal.md) |  |  |
+|**montantTva** | [**MontantTva**](MontantTva.md) |  |  |
+|**montantTtcTotal** | [**MontantTtcTotal**](MontantTtcTotal.md) |  |  |
 |**pieceJointePrincipaleId** | **Integer** |  |  [optional] |
 |**pieceJointePrincipaleDesignation** | **String** |  |  [optional] |
 |**commentaire** | **String** |  |  [optional] |

@@ -12,7 +12,7 @@ Réponse complète après soumission automatisée.
 |**destinationType** | [**DestinationTypeEnum**](#DestinationTypeEnum) | Type de destination |  |
 |**resultatChorus** | [**ResultatChorusPro**](ResultatChorusPro.md) |  |  [optional] |
 |**resultatAfnor** | [**ResultatAFNOR**](ResultatAFNOR.md) |  |  [optional] |
-|**factureEnrichie** | [**FactureEnrichieInfoOutput**](FactureEnrichieInfoOutput.md) | Données de la facture enrichie |  |
+|**factureEnrichie** | [**FactureEnrichieInfo**](FactureEnrichieInfo.md) | Données de la facture enrichie |  |
 |**pdfFacturx** | [**PDFFacturXInfo**](PDFFacturXInfo.md) | Informations sur le PDF généré |  |
 |**signature** | [**SignatureInfo**](SignatureInfo.md) |  |  [optional] |
 |**pdfBase64** | **String** | PDF Factur-X généré (et signé si demandé) encodé en base64 |  |

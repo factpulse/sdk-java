@@ -13,93 +13,22 @@
 
 package org.openapitools.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.math.BigDecimal;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureEnrichieInfoOutput
+ * Model tests for Tauxmanuel
  */
-public class FactureEnrichieInfoOutputTest {
-    private final FactureEnrichieInfoOutput model = new FactureEnrichieInfoOutput();
+public class TauxmanuelTest {
+    private final Tauxmanuel model = new Tauxmanuel();
 
     /**
-     * Model tests for FactureEnrichieInfoOutput
+     * Model tests for Tauxmanuel
      */
     @Test
-    public void testFactureEnrichieInfoOutput() {
-        // TODO: test FactureEnrichieInfoOutput
-    }
-
-    /**
-     * Test the property 'numeroFacture'
-     */
-    @Test
-    public void numeroFactureTest() {
-        // TODO: test numeroFacture
-    }
-
-    /**
-     * Test the property 'idEmetteur'
-     */
-    @Test
-    public void idEmetteurTest() {
-        // TODO: test idEmetteur
-    }
-
-    /**
-     * Test the property 'idDestinataire'
-     */
-    @Test
-    public void idDestinataireTest() {
-        // TODO: test idDestinataire
-    }
-
-    /**
-     * Test the property 'nomEmetteur'
-     */
-    @Test
-    public void nomEmetteurTest() {
-        // TODO: test nomEmetteur
-    }
-
-    /**
-     * Test the property 'nomDestinataire'
-     */
-    @Test
-    public void nomDestinataireTest() {
-        // TODO: test nomDestinataire
-    }
-
-    /**
-     * Test the property 'montantHtTotal'
-     */
-    @Test
-    public void montantHtTotalTest() {
-        // TODO: test montantHtTotal
-    }
-
-    /**
-     * Test the property 'montantTva'
-     */
-    @Test
-    public void montantTvaTest() {
-        // TODO: test montantTva
-    }
-
-    /**
-     * Test the property 'montantTtcTotal'
-     */
-    @Test
-    public void montantTtcTotalTest() {
-        // TODO: test montantTtcTotal
+    public void testTauxmanuel() {
+        // TODO: test Tauxmanuel
     }
 
 }

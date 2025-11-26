@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FactureEnrichieInfoOutput;
+import org.openapitools.client.model.FactureEnrichieInfo;
 import org.openapitools.client.model.PDFFacturXInfo;
 import org.openapitools.client.model.ResultatAFNOR;
 import org.openapitools.client.model.ResultatChorusPro;

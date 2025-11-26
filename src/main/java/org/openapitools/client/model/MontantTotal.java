@@ -21,8 +21,13 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.client.model.MontantAPayer;
+import org.openapitools.client.model.MontantHtTotal;
+import org.openapitools.client.model.MontantRemiseGlobaleTtc;
+import org.openapitools.client.model.MontantTotalAcompte;
+import org.openapitools.client.model.MontantTtcTotal;
+import org.openapitools.client.model.MontantTvaTotal;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -52,37 +57,37 @@ import org.openapitools.client.JSON;
 /**
  * Contient tous les montants totaux de la facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-20T08:42:12.127769472Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:03:55.064622194Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class MontantTotal {
   public static final String SERIALIZED_NAME_MONTANT_HT_TOTAL = "montantHtTotal";
   @SerializedName(SERIALIZED_NAME_MONTANT_HT_TOTAL)
   @javax.annotation.Nonnull
-  private BigDecimal montantHtTotal;
+  private MontantHtTotal montantHtTotal;
 
   public static final String SERIALIZED_NAME_MONTANT_TVA = "montantTva";
   @SerializedName(SERIALIZED_NAME_MONTANT_TVA)
   @javax.annotation.Nonnull
-  private BigDecimal montantTva;
+  private MontantTvaTotal montantTva;
 
   public static final String SERIALIZED_NAME_MONTANT_TTC_TOTAL = "montantTtcTotal";
   @SerializedName(SERIALIZED_NAME_MONTANT_TTC_TOTAL)
   @javax.annotation.Nonnull
-  private BigDecimal montantTtcTotal;
+  private MontantTtcTotal montantTtcTotal;
 
   public static final String SERIALIZED_NAME_MONTANT_A_PAYER = "montantAPayer";
   @SerializedName(SERIALIZED_NAME_MONTANT_A_PAYER)
   @javax.annotation.Nonnull
-  private BigDecimal montantAPayer;
+  private MontantAPayer montantAPayer;
 
   public static final String SERIALIZED_NAME_ACOMPTE = "acompte";
   @SerializedName(SERIALIZED_NAME_ACOMPTE)
   @javax.annotation.Nullable
-  private BigDecimal acompte;
+  private MontantTotalAcompte acompte;
 
   public static final String SERIALIZED_NAME_MONTANT_REMISE_GLOBALE_TTC = "montantRemiseGlobaleTtc";
   @SerializedName(SERIALIZED_NAME_MONTANT_REMISE_GLOBALE_TTC)
   @javax.annotation.Nullable
-  private BigDecimal montantRemiseGlobaleTtc;
+  private MontantRemiseGlobaleTtc montantRemiseGlobaleTtc;
 
   public static final String SERIALIZED_NAME_MOTIF_REMISE_GLOBALE_TTC = "motifRemiseGlobaleTtc";
   @SerializedName(SERIALIZED_NAME_MOTIF_REMISE_GLOBALE_TTC)
@@ -92,116 +97,116 @@ public class MontantTotal {
   public MontantTotal() {
   }
 
-  public MontantTotal montantHtTotal(@javax.annotation.Nonnull BigDecimal montantHtTotal) {
+  public MontantTotal montantHtTotal(@javax.annotation.Nonnull MontantHtTotal montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
     return this;
   }
 
   /**
-   * Montant total HT.
+   * Get montantHtTotal
    * @return montantHtTotal
    */
   @javax.annotation.Nonnull
-  public BigDecimal getMontantHtTotal() {
+  public MontantHtTotal getMontantHtTotal() {
     return montantHtTotal;
   }
 
-  public void setMontantHtTotal(@javax.annotation.Nonnull BigDecimal montantHtTotal) {
+  public void setMontantHtTotal(@javax.annotation.Nonnull MontantHtTotal montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
   }
 
 
-  public MontantTotal montantTva(@javax.annotation.Nonnull BigDecimal montantTva) {
+  public MontantTotal montantTva(@javax.annotation.Nonnull MontantTvaTotal montantTva) {
     this.montantTva = montantTva;
     return this;
   }
 
   /**
-   * Montant total de la TVA.
+   * Get montantTva
    * @return montantTva
    */
   @javax.annotation.Nonnull
-  public BigDecimal getMontantTva() {
+  public MontantTvaTotal getMontantTva() {
     return montantTva;
   }
 
-  public void setMontantTva(@javax.annotation.Nonnull BigDecimal montantTva) {
+  public void setMontantTva(@javax.annotation.Nonnull MontantTvaTotal montantTva) {
     this.montantTva = montantTva;
   }
 
 
-  public MontantTotal montantTtcTotal(@javax.annotation.Nonnull BigDecimal montantTtcTotal) {
+  public MontantTotal montantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
     return this;
   }
 
   /**
-   * Montant total TTC.
+   * Get montantTtcTotal
    * @return montantTtcTotal
    */
   @javax.annotation.Nonnull
-  public BigDecimal getMontantTtcTotal() {
+  public MontantTtcTotal getMontantTtcTotal() {
     return montantTtcTotal;
   }
 
-  public void setMontantTtcTotal(@javax.annotation.Nonnull BigDecimal montantTtcTotal) {
+  public void setMontantTtcTotal(@javax.annotation.Nonnull MontantTtcTotal montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
   }
 
 
-  public MontantTotal montantAPayer(@javax.annotation.Nonnull BigDecimal montantAPayer) {
+  public MontantTotal montantAPayer(@javax.annotation.Nonnull MontantAPayer montantAPayer) {
     this.montantAPayer = montantAPayer;
     return this;
   }
 
   /**
-   * Montant à payer.
+   * Get montantAPayer
    * @return montantAPayer
    */
   @javax.annotation.Nonnull
-  public BigDecimal getMontantAPayer() {
+  public MontantAPayer getMontantAPayer() {
     return montantAPayer;
   }
 
-  public void setMontantAPayer(@javax.annotation.Nonnull BigDecimal montantAPayer) {
+  public void setMontantAPayer(@javax.annotation.Nonnull MontantAPayer montantAPayer) {
     this.montantAPayer = montantAPayer;
   }
 
 
-  public MontantTotal acompte(@javax.annotation.Nullable BigDecimal acompte) {
+  public MontantTotal acompte(@javax.annotation.Nullable MontantTotalAcompte acompte) {
     this.acompte = acompte;
     return this;
   }
 
   /**
-   * Acompte versé.
+   * Get acompte
    * @return acompte
    */
   @javax.annotation.Nullable
-  public BigDecimal getAcompte() {
+  public MontantTotalAcompte getAcompte() {
     return acompte;
   }
 
-  public void setAcompte(@javax.annotation.Nullable BigDecimal acompte) {
+  public void setAcompte(@javax.annotation.Nullable MontantTotalAcompte acompte) {
     this.acompte = acompte;
   }
 
 
-  public MontantTotal montantRemiseGlobaleTtc(@javax.annotation.Nullable BigDecimal montantRemiseGlobaleTtc) {
+  public MontantTotal montantRemiseGlobaleTtc(@javax.annotation.Nullable MontantRemiseGlobaleTtc montantRemiseGlobaleTtc) {
     this.montantRemiseGlobaleTtc = montantRemiseGlobaleTtc;
     return this;
   }
 
   /**
-   * Montant de la remise globale TTC.
+   * Get montantRemiseGlobaleTtc
    * @return montantRemiseGlobaleTtc
    */
   @javax.annotation.Nullable
-  public BigDecimal getMontantRemiseGlobaleTtc() {
+  public MontantRemiseGlobaleTtc getMontantRemiseGlobaleTtc() {
     return montantRemiseGlobaleTtc;
   }
 
-  public void setMontantRemiseGlobaleTtc(@javax.annotation.Nullable BigDecimal montantRemiseGlobaleTtc) {
+  public void setMontantRemiseGlobaleTtc(@javax.annotation.Nullable MontantRemiseGlobaleTtc montantRemiseGlobaleTtc) {
     this.montantRemiseGlobaleTtc = montantRemiseGlobaleTtc;
   }
 
@@ -326,23 +331,21 @@ public class MontantTotal {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("montantHtTotal").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montantHtTotal` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montantHtTotal").toString()));
+      // validate the required field `montantHtTotal`
+      MontantHtTotal.validateJsonElement(jsonObj.get("montantHtTotal"));
+      // validate the required field `montantTva`
+      MontantTvaTotal.validateJsonElement(jsonObj.get("montantTva"));
+      // validate the required field `montantTtcTotal`
+      MontantTtcTotal.validateJsonElement(jsonObj.get("montantTtcTotal"));
+      // validate the required field `montantAPayer`
+      MontantAPayer.validateJsonElement(jsonObj.get("montantAPayer"));
+      // validate the optional field `acompte`
+      if (jsonObj.get("acompte") != null && !jsonObj.get("acompte").isJsonNull()) {
+        MontantTotalAcompte.validateJsonElement(jsonObj.get("acompte"));
       }
-      if (!jsonObj.get("montantTva").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montantTva` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montantTva").toString()));
-      }
-      if (!jsonObj.get("montantTtcTotal").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montantTtcTotal` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montantTtcTotal").toString()));
-      }
-      if (!jsonObj.get("montantAPayer").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montantAPayer` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montantAPayer").toString()));
-      }
-      if ((jsonObj.get("acompte") != null && !jsonObj.get("acompte").isJsonNull()) && !jsonObj.get("acompte").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `acompte` to be a primitive type in the JSON string but got `%s`", jsonObj.get("acompte").toString()));
-      }
-      if ((jsonObj.get("montantRemiseGlobaleTtc") != null && !jsonObj.get("montantRemiseGlobaleTtc").isJsonNull()) && !jsonObj.get("montantRemiseGlobaleTtc").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `montantRemiseGlobaleTtc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("montantRemiseGlobaleTtc").toString()));
+      // validate the optional field `montantRemiseGlobaleTtc`
+      if (jsonObj.get("montantRemiseGlobaleTtc") != null && !jsonObj.get("montantRemiseGlobaleTtc").isJsonNull()) {
+        MontantRemiseGlobaleTtc.validateJsonElement(jsonObj.get("montantRemiseGlobaleTtc"));
       }
       if ((jsonObj.get("motifRemiseGlobaleTtc") != null && !jsonObj.get("motifRemiseGlobaleTtc").isJsonNull()) && !jsonObj.get("motifRemiseGlobaleTtc").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `motifRemiseGlobaleTtc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("motifRemiseGlobaleTtc").toString()));

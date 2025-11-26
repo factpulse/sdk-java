@@ -1,8 +1,8 @@
 
 
-# MontantTva1
+# Tauxmanuel
 
-Montant TVA
+Taux de TVA avec valeur manuelle. (Accepte number, string ou integer)
 
 ## Properties
 

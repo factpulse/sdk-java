@@ -1,6 +1,6 @@
 
 
-# FactureEnrichieInfoInput
+# FactureEnrichieInfo
 
 Informations sur la facture enrichie.
 
@@ -13,9 +13,9 @@ Informations sur la facture enrichie.
 |**idDestinataire** | **Integer** |  |  [optional] |
 |**nomEmetteur** | **String** |  |  |
 |**nomDestinataire** | **String** |  |  |
-|**montantHtTotal** | [**MontantHtTotal**](MontantHtTotal.md) |  |  |
-|**montantTva** | [**MontantTva**](MontantTva.md) |  |  |
-|**montantTtcTotal** | [**MontantTtcTotal**](MontantTtcTotal.md) |  |  |
+|**montantHtTotal** | **String** |  |  |
+|**montantTva** | **String** |  |  |
+|**montantTtcTotal** | **String** |  |  |
 
 
 

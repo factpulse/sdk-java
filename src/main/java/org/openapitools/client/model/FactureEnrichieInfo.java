@@ -51,8 +51,8 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur la facture enrichie.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-20T08:42:12.127769472Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class FactureEnrichieInfoOutput {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:03:55.064622194Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+public class FactureEnrichieInfo {
   public static final String SERIALIZED_NAME_NUMERO_FACTURE = "numero_facture";
   @SerializedName(SERIALIZED_NAME_NUMERO_FACTURE)
   @javax.annotation.Nonnull
@@ -93,10 +93,10 @@ public class FactureEnrichieInfoOutput {
   @javax.annotation.Nonnull
   private String montantTtcTotal;
 
-  public FactureEnrichieInfoOutput() {
+  public FactureEnrichieInfo() {
   }
 
-  public FactureEnrichieInfoOutput numeroFacture(@javax.annotation.Nonnull String numeroFacture) {
+  public FactureEnrichieInfo numeroFacture(@javax.annotation.Nonnull String numeroFacture) {
     this.numeroFacture = numeroFacture;
     return this;
   }
@@ -115,7 +115,7 @@ public class FactureEnrichieInfoOutput {
   }
 
 
-  public FactureEnrichieInfoOutput idEmetteur(@javax.annotation.Nullable Integer idEmetteur) {
+  public FactureEnrichieInfo idEmetteur(@javax.annotation.Nullable Integer idEmetteur) {
     this.idEmetteur = idEmetteur;
     return this;
   }
@@ -134,7 +134,7 @@ public class FactureEnrichieInfoOutput {
   }
 
 
-  public FactureEnrichieInfoOutput idDestinataire(@javax.annotation.Nullable Integer idDestinataire) {
+  public FactureEnrichieInfo idDestinataire(@javax.annotation.Nullable Integer idDestinataire) {
     this.idDestinataire = idDestinataire;
     return this;
   }
@@ -153,7 +153,7 @@ public class FactureEnrichieInfoOutput {
   }
 
 
-  public FactureEnrichieInfoOutput nomEmetteur(@javax.annotation.Nonnull String nomEmetteur) {
+  public FactureEnrichieInfo nomEmetteur(@javax.annotation.Nonnull String nomEmetteur) {
     this.nomEmetteur = nomEmetteur;
     return this;
   }
@@ -172,7 +172,7 @@ public class FactureEnrichieInfoOutput {
   }
 
 
-  public FactureEnrichieInfoOutput nomDestinataire(@javax.annotation.Nonnull String nomDestinataire) {
+  public FactureEnrichieInfo nomDestinataire(@javax.annotation.Nonnull String nomDestinataire) {
     this.nomDestinataire = nomDestinataire;
     return this;
   }
@@ -191,7 +191,7 @@ public class FactureEnrichieInfoOutput {
   }
 
 
-  public FactureEnrichieInfoOutput montantHtTotal(@javax.annotation.Nonnull String montantHtTotal) {
+  public FactureEnrichieInfo montantHtTotal(@javax.annotation.Nonnull String montantHtTotal) {
     this.montantHtTotal = montantHtTotal;
     return this;
   }
@@ -210,7 +210,7 @@ public class FactureEnrichieInfoOutput {
   }
 
 
-  public FactureEnrichieInfoOutput montantTva(@javax.annotation.Nonnull String montantTva) {
+  public FactureEnrichieInfo montantTva(@javax.annotation.Nonnull String montantTva) {
     this.montantTva = montantTva;
     return this;
   }
@@ -229,7 +229,7 @@ public class FactureEnrichieInfoOutput {
   }
 
 
-  public FactureEnrichieInfoOutput montantTtcTotal(@javax.annotation.Nonnull String montantTtcTotal) {
+  public FactureEnrichieInfo montantTtcTotal(@javax.annotation.Nonnull String montantTtcTotal) {
     this.montantTtcTotal = montantTtcTotal;
     return this;
   }
@@ -257,15 +257,15 @@ public class FactureEnrichieInfoOutput {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FactureEnrichieInfoOutput factureEnrichieInfoOutput = (FactureEnrichieInfoOutput) o;
-    return Objects.equals(this.numeroFacture, factureEnrichieInfoOutput.numeroFacture) &&
-        Objects.equals(this.idEmetteur, factureEnrichieInfoOutput.idEmetteur) &&
-        Objects.equals(this.idDestinataire, factureEnrichieInfoOutput.idDestinataire) &&
-        Objects.equals(this.nomEmetteur, factureEnrichieInfoOutput.nomEmetteur) &&
-        Objects.equals(this.nomDestinataire, factureEnrichieInfoOutput.nomDestinataire) &&
-        Objects.equals(this.montantHtTotal, factureEnrichieInfoOutput.montantHtTotal) &&
-        Objects.equals(this.montantTva, factureEnrichieInfoOutput.montantTva) &&
-        Objects.equals(this.montantTtcTotal, factureEnrichieInfoOutput.montantTtcTotal);
+    FactureEnrichieInfo factureEnrichieInfo = (FactureEnrichieInfo) o;
+    return Objects.equals(this.numeroFacture, factureEnrichieInfo.numeroFacture) &&
+        Objects.equals(this.idEmetteur, factureEnrichieInfo.idEmetteur) &&
+        Objects.equals(this.idDestinataire, factureEnrichieInfo.idDestinataire) &&
+        Objects.equals(this.nomEmetteur, factureEnrichieInfo.nomEmetteur) &&
+        Objects.equals(this.nomDestinataire, factureEnrichieInfo.nomDestinataire) &&
+        Objects.equals(this.montantHtTotal, factureEnrichieInfo.montantHtTotal) &&
+        Objects.equals(this.montantTva, factureEnrichieInfo.montantTva) &&
+        Objects.equals(this.montantTtcTotal, factureEnrichieInfo.montantTtcTotal);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -287,7 +287,7 @@ public class FactureEnrichieInfoOutput {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FactureEnrichieInfoOutput {\n");
+    sb.append("class FactureEnrichieInfo {\n");
     sb.append("    numeroFacture: ").append(toIndentedString(numeroFacture)).append("\n");
     sb.append("    idEmetteur: ").append(toIndentedString(idEmetteur)).append("\n");
     sb.append("    idDestinataire: ").append(toIndentedString(idDestinataire)).append("\n");
@@ -327,25 +327,25 @@ public class FactureEnrichieInfoOutput {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FactureEnrichieInfoOutput
+   * @throws IOException if the JSON Element is invalid with respect to FactureEnrichieInfo
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!FactureEnrichieInfoOutput.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in FactureEnrichieInfoOutput is not found in the empty JSON string", FactureEnrichieInfoOutput.openapiRequiredFields.toString()));
+        if (!FactureEnrichieInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in FactureEnrichieInfo is not found in the empty JSON string", FactureEnrichieInfo.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FactureEnrichieInfoOutput.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureEnrichieInfoOutput` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FactureEnrichieInfo.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureEnrichieInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FactureEnrichieInfoOutput.openapiRequiredFields) {
+      for (String requiredField : FactureEnrichieInfo.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -375,22 +375,22 @@ public class FactureEnrichieInfoOutput {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FactureEnrichieInfoOutput.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FactureEnrichieInfoOutput' and its subtypes
+       if (!FactureEnrichieInfo.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FactureEnrichieInfo' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FactureEnrichieInfoOutput> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FactureEnrichieInfoOutput.class));
+       final TypeAdapter<FactureEnrichieInfo> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FactureEnrichieInfo.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FactureEnrichieInfoOutput>() {
+       return (TypeAdapter<T>) new TypeAdapter<FactureEnrichieInfo>() {
            @Override
-           public void write(JsonWriter out, FactureEnrichieInfoOutput value) throws IOException {
+           public void write(JsonWriter out, FactureEnrichieInfo value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FactureEnrichieInfoOutput read(JsonReader in) throws IOException {
+           public FactureEnrichieInfo read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -401,18 +401,18 @@ public class FactureEnrichieInfoOutput {
   }
 
   /**
-   * Create an instance of FactureEnrichieInfoOutput given an JSON string
+   * Create an instance of FactureEnrichieInfo given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of FactureEnrichieInfoOutput
-   * @throws IOException if the JSON string is invalid with respect to FactureEnrichieInfoOutput
+   * @return An instance of FactureEnrichieInfo
+   * @throws IOException if the JSON string is invalid with respect to FactureEnrichieInfo
    */
-  public static FactureEnrichieInfoOutput fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FactureEnrichieInfoOutput.class);
+  public static FactureEnrichieInfo fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FactureEnrichieInfo.class);
   }
 
   /**
-   * Convert an instance of FactureEnrichieInfoOutput to an JSON string
+   * Convert an instance of FactureEnrichieInfo to an JSON string
    *
    * @return JSON string
    */

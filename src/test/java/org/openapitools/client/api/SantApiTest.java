@@ -31,6 +31,19 @@ public class SantApiTest {
     private final SantApi api = new SantApi();
 
     /**
+     * Endpoint de healthcheck pour Docker
+     *
+     * Endpoint de healthcheck pour Docker et les load balancers.  Utile pour : - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Monitoring de disponibilité - Déploiement zero downtime  Retourne un code 200 si l&#39;API est opérationnelle.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void healthcheckHealthcheckGetTest() throws ApiException {
+        Object response = api.healthcheckHealthcheckGet();
+        // TODO: test validations
+    }
+
+    /**
      * Vérifier l&#39;état de l&#39;API
      *
      * Endpoint de health check pour vérifier que l&#39;API répond.  Utile pour : - Monitoring de disponibilité - Tests d&#39;intégration - Load balancers

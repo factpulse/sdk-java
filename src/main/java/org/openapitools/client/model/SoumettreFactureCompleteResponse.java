@@ -22,7 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FactureEnrichieInfoOutput;
+import org.openapitools.client.model.FactureEnrichieInfo;
 import org.openapitools.client.model.PDFFacturXInfo;
 import org.openapitools.client.model.ResultatAFNOR;
 import org.openapitools.client.model.ResultatChorusPro;
@@ -56,7 +56,7 @@ import org.openapitools.client.JSON;
 /**
  * Réponse complète après soumission automatisée.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-20T08:42:12.127769472Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:03:55.064622194Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SoumettreFactureCompleteResponse {
   public static final String SERIALIZED_NAME_SUCCES = "succes";
   @SerializedName(SERIALIZED_NAME_SUCCES)
@@ -133,7 +133,7 @@ public class SoumettreFactureCompleteResponse {
   public static final String SERIALIZED_NAME_FACTURE_ENRICHIE = "facture_enrichie";
   @SerializedName(SERIALIZED_NAME_FACTURE_ENRICHIE)
   @javax.annotation.Nonnull
-  private FactureEnrichieInfoOutput factureEnrichie;
+  private FactureEnrichieInfo factureEnrichie;
 
   public static final String SERIALIZED_NAME_PDF_FACTURX = "pdf_facturx";
   @SerializedName(SERIALIZED_NAME_PDF_FACTURX)
@@ -234,7 +234,7 @@ public class SoumettreFactureCompleteResponse {
   }
 
 
-  public SoumettreFactureCompleteResponse factureEnrichie(@javax.annotation.Nonnull FactureEnrichieInfoOutput factureEnrichie) {
+  public SoumettreFactureCompleteResponse factureEnrichie(@javax.annotation.Nonnull FactureEnrichieInfo factureEnrichie) {
     this.factureEnrichie = factureEnrichie;
     return this;
   }
@@ -244,11 +244,11 @@ public class SoumettreFactureCompleteResponse {
    * @return factureEnrichie
    */
   @javax.annotation.Nonnull
-  public FactureEnrichieInfoOutput getFactureEnrichie() {
+  public FactureEnrichieInfo getFactureEnrichie() {
     return factureEnrichie;
   }
 
-  public void setFactureEnrichie(@javax.annotation.Nonnull FactureEnrichieInfoOutput factureEnrichie) {
+  public void setFactureEnrichie(@javax.annotation.Nonnull FactureEnrichieInfo factureEnrichie) {
     this.factureEnrichie = factureEnrichie;
   }
 
@@ -448,7 +448,7 @@ public class SoumettreFactureCompleteResponse {
         ResultatAFNOR.validateJsonElement(jsonObj.get("resultat_afnor"));
       }
       // validate the required field `facture_enrichie`
-      FactureEnrichieInfoOutput.validateJsonElement(jsonObj.get("facture_enrichie"));
+      FactureEnrichieInfo.validateJsonElement(jsonObj.get("facture_enrichie"));
       // validate the required field `pdf_facturx`
       PDFFacturXInfo.validateJsonElement(jsonObj.get("pdf_facturx"));
       // validate the optional field `signature`

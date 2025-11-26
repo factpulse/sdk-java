@@ -1,8 +1,8 @@
 
 
-# MontantTtcTotal1
+# LigneDePosteTauxTvaManuel
 
-Montant TTC total
+Taux de TVA avec valeur manuelle. (Accepte number, string ou integer)
 
 ## Properties
 

@@ -53,24 +53,24 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-20T08:42:12.127769472Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class MontantHtTotal1 extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(MontantHtTotal1.class.getName());
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:03:55.064622194Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+public class LigneDePosteTauxTvaManuel extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(LigneDePosteTauxTvaManuel.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!MontantHtTotal1.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'MontantHtTotal1' and its subtypes
+            if (!LigneDePosteTauxTvaManuel.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LigneDePosteTauxTvaManuel' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<BigDecimal> adapterBigDecimal = gson.getDelegateAdapter(this, TypeToken.get(BigDecimal.class));
             final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<MontantHtTotal1>() {
+            return (TypeAdapter<T>) new TypeAdapter<LigneDePosteTauxTvaManuel>() {
                 @Override
-                public void write(JsonWriter out, MontantHtTotal1 value) throws IOException {
+                public void write(JsonWriter out, LigneDePosteTauxTvaManuel value) throws IOException {
                     if (value == null || value.getActualInstance() == null) {
                         elementAdapter.write(out, null);
                         return;
@@ -92,7 +92,7 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
                 }
 
                 @Override
-                public MontantHtTotal1 read(JsonReader in) throws IOException {
+                public LigneDePosteTauxTvaManuel read(JsonReader in) throws IOException {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
@@ -106,7 +106,7 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
                             throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type Number in the JSON string but got `%s`", jsonElement.toString()));
                         }
                         actualAdapter = adapterBigDecimal;
-                        MontantHtTotal1 ret = new MontantHtTotal1();
+                        LigneDePosteTauxTvaManuel ret = new LigneDePosteTauxTvaManuel();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
                     } catch (Exception e) {
@@ -121,7 +121,7 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
                             throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
                         }
                         actualAdapter = adapterString;
-                        MontantHtTotal1 ret = new MontantHtTotal1();
+                        LigneDePosteTauxTvaManuel ret = new LigneDePosteTauxTvaManuel();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
                     } catch (Exception e) {
@@ -130,7 +130,7 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
                         log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
 
-                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for MontantHtTotal1: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for LigneDePosteTauxTvaManuel: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
@@ -139,12 +139,12 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
     // store a list of schema names defined in anyOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
-    public MontantHtTotal1() {
-        super("anyOf", Boolean.FALSE);
+    public LigneDePosteTauxTvaManuel() {
+        super("anyOf", Boolean.TRUE);
     }
 
-    public MontantHtTotal1(Object o) {
-        super("anyOf", Boolean.FALSE);
+    public LigneDePosteTauxTvaManuel(Object o) {
+        super("anyOf", Boolean.TRUE);
         setActualInstance(o);
     }
 
@@ -155,7 +155,7 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
 
     @Override
     public Map<String, Class<?>> getSchemas() {
-        return MontantHtTotal1.schemas;
+        return LigneDePosteTauxTvaManuel.schemas;
     }
 
     /**
@@ -167,6 +167,11 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
      */
     @Override
     public void setActualInstance(Object instance) {
+        if (instance == null) {
+           super.setActualInstance(instance);
+           return;
+        }
+
         if (instance instanceof BigDecimal) {
             super.setActualInstance(instance);
             return;
@@ -218,7 +223,7 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to MontantHtTotal1
+     * @throws IOException if the JSON Element is invalid with respect to LigneDePosteTauxTvaManuel
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         // validate anyOf schemas one by one
@@ -243,22 +248,22 @@ public class MontantHtTotal1 extends AbstractOpenApiSchema {
             errorMessages.add(String.format(Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for MontantHtTotal1 with anyOf schemas: BigDecimal, String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+        throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for LigneDePosteTauxTvaManuel with anyOf schemas: BigDecimal, String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
     }
 
     /**
-     * Create an instance of MontantHtTotal1 given an JSON string
+     * Create an instance of LigneDePosteTauxTvaManuel given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of MontantHtTotal1
-     * @throws IOException if the JSON string is invalid with respect to MontantHtTotal1
+     * @return An instance of LigneDePosteTauxTvaManuel
+     * @throws IOException if the JSON string is invalid with respect to LigneDePosteTauxTvaManuel
      */
-    public static MontantHtTotal1 fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, MontantHtTotal1.class);
+    public static LigneDePosteTauxTvaManuel fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LigneDePosteTauxTvaManuel.class);
     }
 
     /**
-     * Convert an instance of MontantHtTotal1 to an JSON string
+     * Convert an instance of LigneDePosteTauxTvaManuel to an JSON string
      *
      * @return JSON string
      */

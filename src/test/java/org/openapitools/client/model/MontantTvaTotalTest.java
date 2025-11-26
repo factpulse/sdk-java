@@ -18,17 +18,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for MontantTva1
+ * Model tests for MontantTvaTotal
  */
-public class MontantTva1Test {
-    private final MontantTva1 model = new MontantTva1();
+public class MontantTvaTotalTest {
+    private final MontantTvaTotal model = new MontantTvaTotal();
 
     /**
-     * Model tests for MontantTva1
+     * Model tests for MontantTvaTotal
      */
     @Test
-    public void testMontantTva1() {
-        // TODO: test MontantTva1
+    public void testMontantTvaTotal() {
+        // TODO: test MontantTvaTotal
     }
 
 }
