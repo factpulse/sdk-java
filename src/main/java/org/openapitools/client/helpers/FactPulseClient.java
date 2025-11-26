@@ -11,22 +11,121 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+// =============================================================================
+// Credentials classes
+// =============================================================================
+
+class ChorusProCredentials {
+    public final String pisteClientId, pisteClientSecret, chorusProLogin, chorusProPassword;
+    public final boolean sandbox;
+    public ChorusProCredentials(String pisteClientId, String pisteClientSecret, String chorusProLogin, String chorusProPassword, boolean sandbox) {
+        this.pisteClientId = pisteClientId; this.pisteClientSecret = pisteClientSecret;
+        this.chorusProLogin = chorusProLogin; this.chorusProPassword = chorusProPassword; this.sandbox = sandbox;
+    }
+    public ChorusProCredentials(String pisteClientId, String pisteClientSecret, String chorusProLogin, String chorusProPassword) {
+        this(pisteClientId, pisteClientSecret, chorusProLogin, chorusProPassword, true);
+    }
+    public Map<String, Object> toMap() {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("piste_client_id", pisteClientId); m.put("piste_client_secret", pisteClientSecret);
+        m.put("chorus_pro_login", chorusProLogin); m.put("chorus_pro_password", chorusProPassword); m.put("sandbox", sandbox);
+        return m;
+    }
+}
+
+class AFNORCredentials {
+    public final String clientId, clientSecret, flowServiceUrl;
+    public AFNORCredentials(String clientId, String clientSecret, String flowServiceUrl) {
+        this.clientId = clientId; this.clientSecret = clientSecret; this.flowServiceUrl = flowServiceUrl;
+    }
+    public Map<String, Object> toMap() {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("client_id", clientId); m.put("client_secret", clientSecret); m.put("flow_service_url", flowServiceUrl);
+        return m;
+    }
+}
+
+// =============================================================================
+// Helpers pour les montants
+// =============================================================================
+
+class MontantHelpers {
+    public static String montant(Object value) {
+        if (value == null) return "0.00";
+        if (value instanceof BigDecimal) return ((BigDecimal) value).setScale(2, RoundingMode.HALF_UP).toPlainString();
+        if (value instanceof Number) return String.format("%.2f", ((Number) value).doubleValue());
+        if (value instanceof String) return (String) value;
+        return "0.00";
+    }
+    public static Map<String, Object> montantTotal(Object ht, Object tva, Object ttc, Object aPayer) {
+        return montantTotal(ht, tva, ttc, aPayer, null, null, null);
+    }
+    public static Map<String, Object> montantTotal(Object ht, Object tva, Object ttc, Object aPayer, Object remiseTtc, String motifRemise, Object acompte) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("montantHtTotal", montant(ht)); result.put("montantTva", montant(tva));
+        result.put("montantTtcTotal", montant(ttc)); result.put("montantAPayer", montant(aPayer));
+        if (remiseTtc != null) result.put("montantRemiseGlobaleTtc", montant(remiseTtc));
+        if (motifRemise != null) result.put("motifRemiseGlobaleTtc", motifRemise);
+        if (acompte != null) result.put("acompte", montant(acompte));
+        return result;
+    }
+    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantLigneHt) {
+        return ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantLigneHt, "20.00", "C62", null);
+    }
+    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantLigneHt, String tauxTva, String unite, Map<String, Object> options) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("numero", numero); result.put("denomination", denomination);
+        result.put("quantite", montant(quantite)); result.put("montantUnitaireHt", montant(montantUnitaireHt));
+        result.put("montantTotalLigneHt", montant(montantLigneHt)); result.put("tauxTva", montant(tauxTva)); result.put("unite", unite);
+        if (options != null) {
+            if (options.containsKey("montantTvaLigne")) result.put("montantTvaLigne", montant(options.get("montantTvaLigne")));
+            if (options.containsKey("montantRemiseHt")) result.put("montantRemiseHt", montant(options.get("montantRemiseHt")));
+            if (options.containsKey("codeRaisonRemise")) result.put("codeRaisonReduction", options.get("codeRaisonRemise"));
+            if (options.containsKey("motifRemise")) result.put("motifRemise", options.get("motifRemise"));
+        }
+        return result;
+    }
+    public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva) { return ligneDeTva(taux, baseHt, montantTva, "S", null); }
+    public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva, String categorie, String motifExoneration) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("tauxTva", montant(taux)); result.put("montantBaseHt", montant(baseHt));
+        result.put("montantTva", montant(montantTva)); result.put("categorieTva", categorie);
+        if (motifExoneration != null) result.put("motifExoneration", motifExoneration);
+        return result;
+    }
+}
+
+// =============================================================================
+// Client principal
+// =============================================================================
+
 public class FactPulseClient {
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static final Gson gson = new Gson();
     private final String apiUrl, email, password, clientUid;
+    private final ChorusProCredentials chorusCredentials;
+    private final AFNORCredentials afnorCredentials;
     private final long pollingInterval, pollingTimeout; private final int maxRetries;
     private final OkHttpClient httpClient;
     private String accessToken, refreshToken; private long tokenExpiresAt;
 
-    public FactPulseClient(String email, String password) { this(email, password, null, null, 2000, 120000, 1); }
+    public FactPulseClient(String email, String password) { this(email, password, null, null, null, null, 2000, 120000, 1); }
     public FactPulseClient(String email, String password, String apiUrl, String clientUid, long pollingInterval, long pollingTimeout, int maxRetries) {
+        this(email, password, apiUrl, clientUid, null, null, pollingInterval, pollingTimeout, maxRetries);
+    }
+    public FactPulseClient(String email, String password, String apiUrl, String clientUid, ChorusProCredentials chorusCredentials, AFNORCredentials afnorCredentials, long pollingInterval, long pollingTimeout, int maxRetries) {
         this.email = email; this.password = password;
         this.apiUrl = (apiUrl != null ? apiUrl : "https://factpulse.fr").replaceAll("/$", "");
-        this.clientUid = clientUid; this.pollingInterval = pollingInterval > 0 ? pollingInterval : 2000;
+        this.clientUid = clientUid;
+        this.chorusCredentials = chorusCredentials;
+        this.afnorCredentials = afnorCredentials;
+        this.pollingInterval = pollingInterval > 0 ? pollingInterval : 2000;
         this.pollingTimeout = pollingTimeout > 0 ? pollingTimeout : 120000; this.maxRetries = maxRetries > 0 ? maxRetries : 1;
         this.httpClient = new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build();
     }
+
+    public Map<String, Object> getChorusCredentialsForApi() { return chorusCredentials != null ? chorusCredentials.toMap() : null; }
+    public Map<String, Object> getAfnorCredentialsForApi() { return afnorCredentials != null ? afnorCredentials.toMap() : null; }
 
     public void ensureAuthenticated(boolean forceRefresh) throws FactPulseAuthException {
         long now = System.currentTimeMillis();

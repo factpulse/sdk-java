@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Erreur API standardisée (alignée sur AFNOR Error schema).  Format unifié pour toutes les réponses d&#39;erreur HTTP.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T08:21:49.143622251Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T12:48:57.849545159Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class APIError {
   public static final String SERIALIZED_NAME_ERROR_CODE = "errorCode";
   @SerializedName(SERIALIZED_NAME_ERROR_CODE)
