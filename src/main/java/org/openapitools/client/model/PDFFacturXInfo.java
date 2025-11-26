@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur le PDF Factur-X généré.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:35:36.724862333Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T08:21:49.143622251Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class PDFFacturXInfo {
   public static final String SERIALIZED_NAME_TAILLE = "taille";
   @SerializedName(SERIALIZED_NAME_TAILLE)

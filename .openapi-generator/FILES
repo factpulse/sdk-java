@@ -6,6 +6,7 @@ README.md
 api/openapi.yaml
 build.gradle
 build.sbt
+docs/APIError.md
 docs/AdresseElectronique.md
 docs/AdressePostale.md
 docs/AfnorPdpPaApi.md
@@ -40,6 +41,8 @@ docs/Destination.md
 docs/DestinationAFNOR.md
 docs/DestinationChorusPro.md
 docs/DonneesFactureSimplifiees.md
+docs/ErrorLevel.md
+docs/ErrorSource.md
 docs/FactureEnrichieInfo.md
 docs/FactureFacturX.md
 docs/FormatSortie.md
@@ -107,6 +110,7 @@ docs/Unite.md
 docs/Utilisateur.md
 docs/UtilisateurApi.md
 docs/ValidationError.md
+docs/ValidationErrorDetail.md
 docs/ValidationErrorLocInner.md
 git_push.sh
 gradle.properties
@@ -141,6 +145,7 @@ src/main/java/org/openapitools/client/auth/ApiKeyAuth.java
 src/main/java/org/openapitools/client/auth/Authentication.java
 src/main/java/org/openapitools/client/auth/HttpBasicAuth.java
 src/main/java/org/openapitools/client/auth/HttpBearerAuth.java
+src/main/java/org/openapitools/client/model/APIError.java
 src/main/java/org/openapitools/client/model/AbstractOpenApiSchema.java
 src/main/java/org/openapitools/client/model/AdresseElectronique.java
 src/main/java/org/openapitools/client/model/AdressePostale.java
@@ -172,6 +177,8 @@ src/main/java/org/openapitools/client/model/Destination.java
 src/main/java/org/openapitools/client/model/DestinationAFNOR.java
 src/main/java/org/openapitools/client/model/DestinationChorusPro.java
 src/main/java/org/openapitools/client/model/DonneesFactureSimplifiees.java
+src/main/java/org/openapitools/client/model/ErrorLevel.java
+src/main/java/org/openapitools/client/model/ErrorSource.java
 src/main/java/org/openapitools/client/model/FactureEnrichieInfo.java
 src/main/java/org/openapitools/client/model/FactureFacturX.java
 src/main/java/org/openapitools/client/model/FormatSortie.java
@@ -236,6 +243,7 @@ src/main/java/org/openapitools/client/model/TypeTVA.java
 src/main/java/org/openapitools/client/model/Unite.java
 src/main/java/org/openapitools/client/model/Utilisateur.java
 src/main/java/org/openapitools/client/model/ValidationError.java
+src/main/java/org/openapitools/client/model/ValidationErrorDetail.java
 src/main/java/org/openapitools/client/model/ValidationErrorLocInner.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaApiTest.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaDirectoryServiceApiTest.java
@@ -244,6 +252,7 @@ src/test/java/org/openapitools/client/api/ChorusProApiTest.java
 src/test/java/org/openapitools/client/api/SantApiTest.java
 src/test/java/org/openapitools/client/api/TraitementFactureApiTest.java
 src/test/java/org/openapitools/client/api/UtilisateurApiTest.java
+src/test/java/org/openapitools/client/model/APIErrorTest.java
 src/test/java/org/openapitools/client/model/AdresseElectroniqueTest.java
 src/test/java/org/openapitools/client/model/AdressePostaleTest.java
 src/test/java/org/openapitools/client/model/BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPostTest.java
@@ -274,6 +283,8 @@ src/test/java/org/openapitools/client/model/DestinationAFNORTest.java
 src/test/java/org/openapitools/client/model/DestinationChorusProTest.java
 src/test/java/org/openapitools/client/model/DestinationTest.java
 src/test/java/org/openapitools/client/model/DonneesFactureSimplifieesTest.java
+src/test/java/org/openapitools/client/model/ErrorLevelTest.java
+src/test/java/org/openapitools/client/model/ErrorSourceTest.java
 src/test/java/org/openapitools/client/model/FactureEnrichieInfoTest.java
 src/test/java/org/openapitools/client/model/FactureFacturXTest.java
 src/test/java/org/openapitools/client/model/FormatSortieTest.java
@@ -337,5 +348,6 @@ src/test/java/org/openapitools/client/model/TypeFactureTest.java
 src/test/java/org/openapitools/client/model/TypeTVATest.java
 src/test/java/org/openapitools/client/model/UniteTest.java
 src/test/java/org/openapitools/client/model/UtilisateurTest.java
+src/test/java/org/openapitools/client/model/ValidationErrorDetailTest.java
 src/test/java/org/openapitools/client/model/ValidationErrorLocInnerTest.java
 src/test/java/org/openapitools/client/model/ValidationErrorTest.java

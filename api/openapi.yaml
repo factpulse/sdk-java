@@ -5393,6 +5393,90 @@ components:
       - FORFAIT
       title: Unite
       type: string
+    ErrorLevel:
+      description: Niveau de gravité d'une erreur (aligné sur AFNOR AcknowledgementDetail).
+      enum:
+      - Error
+      - Warning
+      title: ErrorLevel
+      type: string
+    ErrorSource:
+      description: Source de l'erreur pour faciliter le diagnostic.
+      enum:
+      - schematron
+      - pdfa
+      - pydantic
+      - xmp
+      - signature
+      - afnor
+      - chorus_pro
+      - system
+      title: ErrorSource
+      type: string
+    ValidationErrorDetail:
+      description: |-
+        Détail d'une erreur de validation (aligné sur AFNOR AcknowledgementDetail).
+
+        Format unifié pour toutes les erreurs de validation Factur-X,
+        compatible avec la norme AFNOR XP Z12-013.
+      properties:
+        level:
+          allOf:
+          - $ref: "#/components/schemas/ErrorLevel"
+          default: Error
+          description: "Niveau de gravité : 'Error' ou 'Warning'"
+        item:
+          description: "Identifiant de l'élément concerné (XPath, champ, règle BR-FR,\
+            \ etc.)"
+          title: Item
+          type: string
+        reason:
+          description: Description de l'erreur
+          title: Reason
+          type: string
+        source:
+          allOf:
+          - $ref: "#/components/schemas/ErrorSource"
+          nullable: true
+        code:
+          nullable: true
+          type: string
+      required:
+      - item
+      - reason
+      title: ValidationErrorDetail
+    APIError:
+      description: |-
+        Erreur API standardisée (alignée sur AFNOR Error schema).
+
+        Format unifié pour toutes les réponses d'erreur HTTP.
+      example:
+        details:
+        - code: SCHEMATRON_BR_FR_01
+          item: BR-FR-01
+          level: Error
+          reason: Le SIRET du fournisseur est obligatoire pour les factures françaises
+          source: schematron
+        errorCode: VALIDATION_FAILED
+        errorMessage: La validation Factur-X a échoué
+      properties:
+        errorCode:
+          description: Code alphanumérique identifiant précisément l'erreur
+          title: Errorcode
+          type: string
+        errorMessage:
+          description: Message décrivant l'erreur (non destiné à l'utilisateur final)
+          title: Errormessage
+          type: string
+        details:
+          items:
+            $ref: "#/components/schemas/ValidationErrorDetail"
+          nullable: true
+          type: array
+      required:
+      - errorCode
+      - errorMessage
+      title: APIError
     generer_facture_api_v1_traitement_generer_facture_post_request:
       $ref: "#/components/schemas/Body_generer_facture_api_v1_traitement_generer_facture_post"
     Destination:
