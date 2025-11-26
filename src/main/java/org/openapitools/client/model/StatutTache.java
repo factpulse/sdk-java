@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Description complète du statut d&#39;une tâche asynchrone.  Le champ &#x60;statut&#x60; indique l&#39;état Celery de la tâche. Quand &#x60;statut&#x3D;\&quot;SUCCESS\&quot;&#x60;, consultez &#x60;resultat.statut&#x60; pour le résultat métier (\&quot;SUCCES\&quot; ou \&quot;ERREUR\&quot;).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:03:55.064622194Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:13:39.827752497Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class StatutTache {
   public static final String SERIALIZED_NAME_ID_TACHE = "id_tache";
   @SerializedName(SERIALIZED_NAME_ID_TACHE)
