@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Paramètres optionnels pour signer le PDF généré.  **MODE 1 - Certificat stocké (recommandé) :** Ne fournissez que les métadonnées (raison, localisation, etc.). Le certificat sera récupéré automatiquement via client_uid du JWT. Signature PAdES-B-LT conforme eIDAS.  **MODE 2 - Clés dans le payload (tests/cas spéciaux) :** Fournissez key_pem + cert_pem directement dans le payload. Format PEM accepté : brut (\&quot;-----BEGIN...\&quot;) ou base64.  **Règle de sélection :** - Si key_pem ET cert_pem fournis → Mode 2 (clés payload) - Sinon → Mode 1 (certificat stocké récupéré via client_uid)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T14:23:20.214928956Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T14:28:37.248778453Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ParametresSignature {
   public static final String SERIALIZED_NAME_KEY_PEM = "key_pem";
   @SerializedName(SERIALIZED_NAME_KEY_PEM)

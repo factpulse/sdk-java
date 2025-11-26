@@ -94,8 +94,8 @@ class MontantHelpers {
     public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva) { return ligneDeTva(taux, baseHt, montantTva, "S", null); }
     public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva, String categorie, String motifExoneration) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("tauxTvaManuel", montant(taux)); result.put("montantBaseHt", montant(baseHt));
-        result.put("montantTva", montant(montantTva)); result.put("categorieTva", categorie);
+        result.put("tauxManuel", montant(taux)); result.put("montantBaseHt", montant(baseHt));
+        result.put("montantTva", montant(montantTva)); result.put("categorie", categorie);
         if (motifExoneration != null) result.put("motifExoneration", motifExoneration);
         return result;
     }
