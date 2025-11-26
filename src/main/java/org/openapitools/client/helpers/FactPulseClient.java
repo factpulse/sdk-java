@@ -76,7 +76,7 @@ class MontantHelpers {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("numero", numero); result.put("denomination", denomination);
         result.put("quantite", montant(quantite)); result.put("montantUnitaireHt", montant(montantUnitaireHt));
-        result.put("montantTotalLigneHt", montant(montantLigneHt)); result.put("tauxTva", montant(tauxTva));
+        result.put("montantTotalLigneHt", montant(montantLigneHt)); result.put("tauxTvaManuel", montant(tauxTva));
         result.put("categorieTva", categorieTva); result.put("unite", unite);
         if (options != null) {
             if (options.containsKey("reference")) result.put("reference", options.get("reference"));
@@ -94,7 +94,7 @@ class MontantHelpers {
     public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva) { return ligneDeTva(taux, baseHt, montantTva, "S", null); }
     public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva, String categorie, String motifExoneration) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("tauxTva", montant(taux)); result.put("montantBaseHt", montant(baseHt));
+        result.put("tauxTvaManuel", montant(taux)); result.put("montantBaseHt", montant(baseHt));
         result.put("montantTva", montant(montantTva)); result.put("categorieTva", categorie);
         if (motifExoneration != null) result.put("motifExoneration", motifExoneration);
         return result;
