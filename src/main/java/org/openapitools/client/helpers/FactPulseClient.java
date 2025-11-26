@@ -161,7 +161,7 @@ public class FactPulseClient {
         while (true) {
             if (System.currentTimeMillis() - startTime > timeoutMs) throw new FactPulsePollingTimeoutException(taskId, timeoutMs);
             ensureAuthenticated();
-            Request request = new Request.Builder().url(apiUrl + "/api/facturation/v1/traitement/taches/" + taskId + "/statut")
+            Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/taches/" + taskId + "/statut")
                 .addHeader("Authorization", "Bearer " + accessToken).get().build();
             try (Response response = httpClient.newCall(request).execute()) {
                 if (response.code() == 401) { resetAuth(); continue; }
@@ -180,6 +180,48 @@ public class FactPulseClient {
             } catch (IOException | InterruptedException e) { throw new FactPulseValidationException("Error: " + e.getMessage()); }
         }
     }
+
+    public byte[] genererFacturx(Object factureData, String pdfPath, String profil, String formatSortie, boolean sync, Long timeout) throws FactPulseException {
+        String jsonData;
+        if (factureData instanceof String) jsonData = (String) factureData;
+        else if (factureData instanceof Map) jsonData = gson.toJson(factureData);
+        else jsonData = gson.toJson(factureData); // Pour les objets avec to_dict ou similaire
+
+        if (profil == null) profil = "EN16931";
+        if (formatSortie == null) formatSortie = "pdf";
+
+        java.io.File pdfFile = new java.io.File(pdfPath);
+        for (int attempt = 0; attempt <= maxRetries; attempt++) {
+            ensureAuthenticated();
+            try {
+                RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                    .addFormDataPart("donnees_facture", null, RequestBody.create(jsonData, MediaType.parse("application/json")))
+                    .addFormDataPart("profil", profil)
+                    .addFormDataPart("format_sortie", formatSortie)
+                    .addFormDataPart("source_pdf", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
+                    .build();
+                Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/generer-facture")
+                    .addHeader("Authorization", "Bearer " + accessToken).post(body).build();
+                try (Response response = httpClient.newCall(request).execute()) {
+                    if (response.code() == 401 && attempt < maxRetries) { resetAuth(); continue; }
+                    if (!response.isSuccessful()) throw new FactPulseValidationException("API error: " + response.code());
+                    Type type = new TypeToken<Map<String, Object>>(){}.getType();
+                    Map<String, Object> result = gson.fromJson(response.body().string(), type);
+                    String taskId = (String) result.get("id_tache");
+                    if (taskId == null) throw new FactPulseValidationException("No task ID");
+                    if (!sync) return taskId.getBytes();
+                    Map<String, Object> pollResult = pollTask(taskId, timeout, null);
+                    if (pollResult.containsKey("contenu_b64")) return Base64.getDecoder().decode((String) pollResult.get("contenu_b64"));
+                    throw new FactPulseValidationException("No content in result");
+                }
+            } catch (IOException e) {
+                if (attempt < maxRetries) continue;
+                throw new FactPulseValidationException("Network error: " + e.getMessage());
+            }
+        }
+        throw new FactPulseValidationException("Failed after retries");
+    }
+    public byte[] genererFacturx(Object factureData, String pdfPath) throws FactPulseException { return genererFacturx(factureData, pdfPath, "EN16931", "pdf", true, null); }
 
     public static String formatMontant(Object m) {
         if (m == null) return "0.00";

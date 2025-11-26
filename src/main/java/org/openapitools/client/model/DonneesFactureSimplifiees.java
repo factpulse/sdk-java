@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Données simplifiées de la facture (format minimal pour auto-enrichissement).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T13:43:38.907758395Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T14:00:27.627595841Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class DonneesFactureSimplifiees {
   public static final String SERIALIZED_NAME_NUMERO = "numero";
   @SerializedName(SERIALIZED_NAME_NUMERO)
