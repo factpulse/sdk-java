@@ -70,18 +70,24 @@ class MontantHelpers {
         return result;
     }
     public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantLigneHt) {
-        return ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantLigneHt, "20.00", "C62", null);
+        return ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantLigneHt, "20.00", "S", "C62", null);
     }
-    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantLigneHt, String tauxTva, String unite, Map<String, Object> options) {
+    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantLigneHt, String tauxTva, String categorieTva, String unite, Map<String, Object> options) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("numero", numero); result.put("denomination", denomination);
         result.put("quantite", montant(quantite)); result.put("montantUnitaireHt", montant(montantUnitaireHt));
-        result.put("montantTotalLigneHt", montant(montantLigneHt)); result.put("tauxTva", montant(tauxTva)); result.put("unite", unite);
+        result.put("montantTotalLigneHt", montant(montantLigneHt)); result.put("tauxTva", montant(tauxTva));
+        result.put("categorieTva", categorieTva); result.put("unite", unite);
         if (options != null) {
+            if (options.containsKey("reference")) result.put("reference", options.get("reference"));
             if (options.containsKey("montantTvaLigne")) result.put("montantTvaLigne", montant(options.get("montantTvaLigne")));
             if (options.containsKey("montantRemiseHt")) result.put("montantRemiseHt", montant(options.get("montantRemiseHt")));
-            if (options.containsKey("codeRaisonRemise")) result.put("codeRaisonReduction", options.get("codeRaisonRemise"));
-            if (options.containsKey("motifRemise")) result.put("motifRemise", options.get("motifRemise"));
+            if (options.containsKey("codeRaisonReduction")) result.put("codeRaisonReduction", options.get("codeRaisonReduction"));
+            if (options.containsKey("raisonReduction")) result.put("raisonReduction", options.get("raisonReduction"));
+            if (options.containsKey("motifExoneration")) result.put("motifExoneration", options.get("motifExoneration"));
+            if (options.containsKey("dateDebutPeriode")) result.put("dateDebutPeriode", options.get("dateDebutPeriode"));
+            if (options.containsKey("dateFinPeriode")) result.put("dateFinPeriode", options.get("dateFinPeriode"));
+            if (options.containsKey("description")) result.put("description", options.get("description"));
         }
         return result;
     }

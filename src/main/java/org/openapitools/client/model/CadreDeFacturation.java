@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Définit le cadre de facturation (ex: A1 pour une facture fournisseur).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T12:53:01.183860892Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T13:16:03.392341018Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class CadreDeFacturation {
   public static final String SERIALIZED_NAME_CODE_CADRE_FACTURATION = "codeCadreFacturation";
   @SerializedName(SERIALIZED_NAME_CODE_CADRE_FACTURATION)
