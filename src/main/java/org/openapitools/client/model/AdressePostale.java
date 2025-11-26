@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Représente une adresse postale.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:27:37.225663614Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T07:35:36.724862333Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class AdressePostale {
   public static final String SERIALIZED_NAME_CODE_POSTAL = "codePostal";
   @SerializedName(SERIALIZED_NAME_CODE_POSTAL)
