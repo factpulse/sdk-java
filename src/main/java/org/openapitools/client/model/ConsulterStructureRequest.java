@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Consulter les détails d&#39;une structure.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T13:16:03.392341018Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T13:23:18.543279625Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ConsulterStructureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)

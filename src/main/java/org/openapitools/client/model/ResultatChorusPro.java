@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Résultat de la soumission à Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T13:16:03.392341018Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T13:23:18.543279625Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ResultatChorusPro {
   public static final String SERIALIZED_NAME_IDENTIFIANT_FACTURE_CPP = "identifiant_facture_cpp";
   @SerializedName(SERIALIZED_NAME_IDENTIFIANT_FACTURE_CPP)
