@@ -56,7 +56,7 @@ import org.openapitools.client.JSON;
 /**
  * Résultat complet de la validation d&#39;un PDF Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T12:48:57.849545159Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-26T12:53:01.183860892Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ResultatValidationPDFAPI {
   public static final String SERIALIZED_NAME_EST_CONFORME = "est_conforme";
   @SerializedName(SERIALIZED_NAME_EST_CONFORME)

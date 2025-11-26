@@ -126,6 +126,9 @@ public class FactPulseClient {
 
     public Map<String, Object> getChorusCredentialsForApi() { return chorusCredentials != null ? chorusCredentials.toMap() : null; }
     public Map<String, Object> getAfnorCredentialsForApi() { return afnorCredentials != null ? afnorCredentials.toMap() : null; }
+    // Alias plus courts
+    public Map<String, Object> getChorusProCredentials() { return getChorusCredentialsForApi(); }
+    public Map<String, Object> getAfnorCredentials() { return getAfnorCredentialsForApi(); }
 
     public void ensureAuthenticated(boolean forceRefresh) throws FactPulseAuthException {
         long now = System.currentTimeMillis();
