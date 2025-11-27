@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Détails d&#39;une structure.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T16:40:44.789789676Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T19:56:54.463292755Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ConsulterStructureResponse {
   public static final String SERIALIZED_NAME_CODE_RETOUR = "code_retour";
   @SerializedName(SERIALIZED_NAME_CODE_RETOUR)
