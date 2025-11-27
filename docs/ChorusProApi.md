@@ -24,7 +24,7 @@ All URIs are relative to *http://localhost*
 
 <a id="ajouterFichierApiV1ChorusProTransversesAjouterFichierPost"></a>
 # **ajouterFichierApiV1ChorusProTransversesAjouterFichierPost**
-> Object ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost)
+> Object ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody)
 
 Ajouter une pièce jointe
 
@@ -50,9 +50,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost = new BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost(); // BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost);
+      Object result = apiInstance.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#ajouterFichierApiV1ChorusProTransversesAjouterFichierPost");
@@ -69,7 +69,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost** | [**BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost**](BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -92,7 +92,7 @@ public class Example {
 
 <a id="completerFactureApiV1ChorusProFacturesCompleterPost"></a>
 # **completerFactureApiV1ChorusProFacturesCompleterPost**
-> Object completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost)
+> Object completerFactureApiV1ChorusProFacturesCompleterPost(requestBody)
 
 Compléter une facture suspendue (Fournisseur)
 
@@ -118,9 +118,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyCompleterFactureApiV1ChorusProFacturesCompleterPost bodyCompleterFactureApiV1ChorusProFacturesCompleterPost = new BodyCompleterFactureApiV1ChorusProFacturesCompleterPost(); // BodyCompleterFactureApiV1ChorusProFacturesCompleterPost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost);
+      Object result = apiInstance.completerFactureApiV1ChorusProFacturesCompleterPost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#completerFactureApiV1ChorusProFacturesCompleterPost");
@@ -137,7 +137,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyCompleterFactureApiV1ChorusProFacturesCompleterPost** | [**BodyCompleterFactureApiV1ChorusProFacturesCompleterPost**](BodyCompleterFactureApiV1ChorusProFacturesCompleterPost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -296,7 +296,7 @@ public class Example {
 
 <a id="listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet"></a>
 # **listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet**
-> RechercherServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet)
+> RechercherServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp)
 
 Lister les services d&#39;une structure
 
@@ -323,9 +323,8 @@ public class Example {
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
     Integer idStructureCpp = 56; // Integer | 
-    BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet = new BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(); // BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet | 
     try {
-      RechercherServicesResponse result = apiInstance.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet);
+      RechercherServicesResponse result = apiInstance.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet");
@@ -343,7 +342,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idStructureCpp** | **Integer**|  | |
-| **bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet** | [**BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet**](BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet.md)|  | |
 
 ### Return type
 
@@ -355,7 +353,7 @@ public class Example {
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 ### HTTP response details
@@ -434,7 +432,7 @@ public class Example {
 
 <a id="rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost"></a>
 # **rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost**
-> Object rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost)
+> Object rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody)
 
 Rechercher factures reçues (Destinataire)
 
@@ -460,9 +458,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost = new BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(); // BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost);
+      Object result = apiInstance.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost");
@@ -479,7 +477,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost** | [**BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost**](BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -502,7 +500,7 @@ public class Example {
 
 <a id="rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost"></a>
 # **rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost**
-> Object rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost)
+> Object rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody)
 
 Rechercher factures émises (Fournisseur)
 
@@ -528,9 +526,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost = new BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(); // BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost);
+      Object result = apiInstance.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost");
@@ -547,7 +545,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost** | [**BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost**](BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -638,7 +636,7 @@ public class Example {
 
 <a id="recyclerFactureApiV1ChorusProFacturesRecyclerPost"></a>
 # **recyclerFactureApiV1ChorusProFacturesRecyclerPost**
-> Object recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost)
+> Object recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody)
 
 Recycler une facture (Fournisseur)
 
@@ -664,9 +662,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost = new BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost(); // BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost);
+      Object result = apiInstance.recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#recyclerFactureApiV1ChorusProFacturesRecyclerPost");
@@ -683,7 +681,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost** | [**BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost**](BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -774,7 +772,7 @@ public class Example {
 
 <a id="telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost"></a>
 # **telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost**
-> Object telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost)
+> Object telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody)
 
 Télécharger un groupe de factures
 
@@ -800,9 +798,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost = new BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(); // BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost);
+      Object result = apiInstance.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost");
@@ -819,7 +817,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost** | [**BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost**](BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -842,7 +840,7 @@ public class Example {
 
 <a id="traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost"></a>
 # **traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost**
-> Object traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost)
+> Object traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody)
 
 Traiter une facture reçue (Destinataire)
 
@@ -868,9 +866,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost = new BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(); // BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost);
+      Object result = apiInstance.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost");
@@ -887,7 +885,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost** | [**BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost**](BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -910,11 +908,9 @@ public class Example {
 
 <a id="valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost"></a>
 # **valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost**
-> Object valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost)
+> Object valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody)
 
 Consulter une facture (Valideur)
-
-Consulte facture (valideur).
 
 ### Example
 ```java
@@ -936,9 +932,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost = new BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(); // BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost);
+      Object result = apiInstance.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost");
@@ -955,7 +951,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost** | [**BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost**](BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -978,7 +974,7 @@ public class Example {
 
 <a id="valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost"></a>
 # **valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost**
-> Object valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost)
+> Object valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody)
 
 Rechercher factures à valider (Valideur)
 
@@ -1004,9 +1000,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost = new BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(); // BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost);
+      Object result = apiInstance.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost");
@@ -1023,7 +1019,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost** | [**BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost**](BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 
@@ -1046,7 +1042,7 @@ public class Example {
 
 <a id="valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost"></a>
 # **valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**
-> Object valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost)
+> Object valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody)
 
 Valider ou refuser une facture (Valideur)
 
@@ -1072,9 +1068,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost = new BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(); // BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost | 
+    Map<String, Object> requestBody = null; // Map<String, Object> | 
     try {
-      Object result = apiInstance.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost);
+      Object result = apiInstance.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost");
@@ -1091,7 +1087,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost** | [**BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**](BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost.md)|  | |
+| **requestBody** | [**Map&lt;String, Object&gt;**](Object.md)|  | |
 
 ### Return type
 

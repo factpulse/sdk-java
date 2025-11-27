@@ -27,17 +27,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import org.openapitools.client.model.BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost;
-import org.openapitools.client.model.BodyCompleterFactureApiV1ChorusProFacturesCompleterPost;
-import org.openapitools.client.model.BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet;
-import org.openapitools.client.model.BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost;
-import org.openapitools.client.model.BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost;
-import org.openapitools.client.model.BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost;
-import org.openapitools.client.model.BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost;
-import org.openapitools.client.model.BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost;
-import org.openapitools.client.model.BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost;
-import org.openapitools.client.model.BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost;
-import org.openapitools.client.model.BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost;
 import org.openapitools.client.model.ConsulterFactureRequest;
 import org.openapitools.client.model.ConsulterFactureResponse;
 import org.openapitools.client.model.ConsulterStructureRequest;
@@ -96,7 +85,7 @@ public class ChorusProApi {
 
     /**
      * Build call for ajouterFichierApiV1ChorusProTransversesAjouterFichierPost
-     * @param bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -108,7 +97,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call ajouterFichierApiV1ChorusProTransversesAjouterFichierPostCall(@javax.annotation.Nonnull BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call ajouterFichierApiV1ChorusProTransversesAjouterFichierPostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -122,7 +111,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/transverses/ajouter-fichier";
@@ -154,20 +143,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call ajouterFichierApiV1ChorusProTransversesAjouterFichierPostValidateBeforeCall(@javax.annotation.Nonnull BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost' is set
-        if (bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost == null) {
-            throw new ApiException("Missing the required parameter 'bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost' when calling ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(Async)");
+    private okhttp3.Call ajouterFichierApiV1ChorusProTransversesAjouterFichierPostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(Async)");
         }
 
-        return ajouterFichierApiV1ChorusProTransversesAjouterFichierPostCall(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, _callback);
+        return ajouterFichierApiV1ChorusProTransversesAjouterFichierPostCall(requestBody, _callback);
 
     }
 
     /**
      * Ajouter une pièce jointe
      * Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;pieceJointeFichier\&quot;: \&quot;JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\&quot;,       \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;,       \&quot;pieceJointeTypeMime\&quot;: \&quot;application/pdf\&quot;,       \&quot;pieceJointeExtension\&quot;: \&quot;PDF\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : L&#39;ID de la pièce jointe (&#x60;pieceJointeIdFichier&#x60;) à utiliser ensuite dans &#x60;/factures/completer&#x60;.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
-     * @param bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -178,15 +167,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(@javax.annotation.Nonnull BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost) throws ApiException {
-        ApiResponse<Object> localVarResp = ajouterFichierApiV1ChorusProTransversesAjouterFichierPostWithHttpInfo(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost);
+    public Object ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = ajouterFichierApiV1ChorusProTransversesAjouterFichierPostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Ajouter une pièce jointe
      * Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;pieceJointeFichier\&quot;: \&quot;JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\&quot;,       \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;,       \&quot;pieceJointeTypeMime\&quot;: \&quot;application/pdf\&quot;,       \&quot;pieceJointeExtension\&quot;: \&quot;PDF\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : L&#39;ID de la pièce jointe (&#x60;pieceJointeIdFichier&#x60;) à utiliser ensuite dans &#x60;/factures/completer&#x60;.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
-     * @param bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -197,8 +186,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> ajouterFichierApiV1ChorusProTransversesAjouterFichierPostWithHttpInfo(@javax.annotation.Nonnull BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost) throws ApiException {
-        okhttp3.Call localVarCall = ajouterFichierApiV1ChorusProTransversesAjouterFichierPostValidateBeforeCall(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, null);
+    public ApiResponse<Object> ajouterFichierApiV1ChorusProTransversesAjouterFichierPostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = ajouterFichierApiV1ChorusProTransversesAjouterFichierPostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -206,7 +195,7 @@ public class ChorusProApi {
     /**
      * Ajouter une pièce jointe (asynchronously)
      * Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;pieceJointeFichier\&quot;: \&quot;JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\&quot;,       \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;,       \&quot;pieceJointeTypeMime\&quot;: \&quot;application/pdf\&quot;,       \&quot;pieceJointeExtension\&quot;: \&quot;PDF\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : L&#39;ID de la pièce jointe (&#x60;pieceJointeIdFichier&#x60;) à utiliser ensuite dans &#x60;/factures/completer&#x60;.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
-     * @param bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -218,16 +207,16 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call ajouterFichierApiV1ChorusProTransversesAjouterFichierPostAsync(@javax.annotation.Nonnull BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call ajouterFichierApiV1ChorusProTransversesAjouterFichierPostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = ajouterFichierApiV1ChorusProTransversesAjouterFichierPostValidateBeforeCall(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, _callback);
+        okhttp3.Call localVarCall = ajouterFichierApiV1ChorusProTransversesAjouterFichierPostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for completerFactureApiV1ChorusProFacturesCompleterPost
-     * @param bodyCompleterFactureApiV1ChorusProFacturesCompleterPost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -239,7 +228,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call completerFactureApiV1ChorusProFacturesCompleterPostCall(@javax.annotation.Nonnull BodyCompleterFactureApiV1ChorusProFacturesCompleterPost bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call completerFactureApiV1ChorusProFacturesCompleterPostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -253,7 +242,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyCompleterFactureApiV1ChorusProFacturesCompleterPost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/completer";
@@ -285,20 +274,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call completerFactureApiV1ChorusProFacturesCompleterPostValidateBeforeCall(@javax.annotation.Nonnull BodyCompleterFactureApiV1ChorusProFacturesCompleterPost bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyCompleterFactureApiV1ChorusProFacturesCompleterPost' is set
-        if (bodyCompleterFactureApiV1ChorusProFacturesCompleterPost == null) {
-            throw new ApiException("Missing the required parameter 'bodyCompleterFactureApiV1ChorusProFacturesCompleterPost' when calling completerFactureApiV1ChorusProFacturesCompleterPost(Async)");
+    private okhttp3.Call completerFactureApiV1ChorusProFacturesCompleterPostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling completerFactureApiV1ChorusProFacturesCompleterPost(Async)");
         }
 
-        return completerFactureApiV1ChorusProFacturesCompleterPostCall(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, _callback);
+        return completerFactureApiV1ChorusProFacturesCompleterPostCall(requestBody, _callback);
 
     }
 
     /**
      * Compléter une facture suspendue (Fournisseur)
      * Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;commentaire\&quot;: \&quot;Voici les justificatifs demandés\&quot;,       \&quot;listePiecesJointes\&quot;: [         {           \&quot;pieceJointeIdFichier\&quot;: 98765,           \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;         }       ]     }     &#x60;&#x60;&#x60;      **Note** : Les pièces jointes doivent d&#39;abord être uploadées via &#x60;/transverses/ajouter-fichier&#x60;.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
-     * @param bodyCompleterFactureApiV1ChorusProFacturesCompleterPost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -309,15 +298,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object completerFactureApiV1ChorusProFacturesCompleterPost(@javax.annotation.Nonnull BodyCompleterFactureApiV1ChorusProFacturesCompleterPost bodyCompleterFactureApiV1ChorusProFacturesCompleterPost) throws ApiException {
-        ApiResponse<Object> localVarResp = completerFactureApiV1ChorusProFacturesCompleterPostWithHttpInfo(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost);
+    public Object completerFactureApiV1ChorusProFacturesCompleterPost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = completerFactureApiV1ChorusProFacturesCompleterPostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Compléter une facture suspendue (Fournisseur)
      * Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;commentaire\&quot;: \&quot;Voici les justificatifs demandés\&quot;,       \&quot;listePiecesJointes\&quot;: [         {           \&quot;pieceJointeIdFichier\&quot;: 98765,           \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;         }       ]     }     &#x60;&#x60;&#x60;      **Note** : Les pièces jointes doivent d&#39;abord être uploadées via &#x60;/transverses/ajouter-fichier&#x60;.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
-     * @param bodyCompleterFactureApiV1ChorusProFacturesCompleterPost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -328,8 +317,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> completerFactureApiV1ChorusProFacturesCompleterPostWithHttpInfo(@javax.annotation.Nonnull BodyCompleterFactureApiV1ChorusProFacturesCompleterPost bodyCompleterFactureApiV1ChorusProFacturesCompleterPost) throws ApiException {
-        okhttp3.Call localVarCall = completerFactureApiV1ChorusProFacturesCompleterPostValidateBeforeCall(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, null);
+    public ApiResponse<Object> completerFactureApiV1ChorusProFacturesCompleterPostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = completerFactureApiV1ChorusProFacturesCompleterPostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -337,7 +326,7 @@ public class ChorusProApi {
     /**
      * Compléter une facture suspendue (Fournisseur) (asynchronously)
      * Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;commentaire\&quot;: \&quot;Voici les justificatifs demandés\&quot;,       \&quot;listePiecesJointes\&quot;: [         {           \&quot;pieceJointeIdFichier\&quot;: 98765,           \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;         }       ]     }     &#x60;&#x60;&#x60;      **Note** : Les pièces jointes doivent d&#39;abord être uploadées via &#x60;/transverses/ajouter-fichier&#x60;.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
-     * @param bodyCompleterFactureApiV1ChorusProFacturesCompleterPost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -349,9 +338,9 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call completerFactureApiV1ChorusProFacturesCompleterPostAsync(@javax.annotation.Nonnull BodyCompleterFactureApiV1ChorusProFacturesCompleterPost bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call completerFactureApiV1ChorusProFacturesCompleterPostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = completerFactureApiV1ChorusProFacturesCompleterPostValidateBeforeCall(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, _callback);
+        okhttp3.Call localVarCall = completerFactureApiV1ChorusProFacturesCompleterPostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -621,7 +610,6 @@ public class ChorusProApi {
     /**
      * Build call for listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet
      * @param idStructureCpp  (required)
-     * @param bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -633,7 +621,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetCall(@javax.annotation.Nonnull Integer idStructureCpp, @javax.annotation.Nonnull BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetCall(@javax.annotation.Nonnull Integer idStructureCpp, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -647,7 +635,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet;
+        Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/structures/{id_structure_cpp}/services"
@@ -668,7 +656,6 @@ public class ChorusProApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -680,18 +667,13 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetValidateBeforeCall(@javax.annotation.Nonnull Integer idStructureCpp, @javax.annotation.Nonnull BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetValidateBeforeCall(@javax.annotation.Nonnull Integer idStructureCpp, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idStructureCpp' is set
         if (idStructureCpp == null) {
             throw new ApiException("Missing the required parameter 'idStructureCpp' when calling listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(Async)");
         }
 
-        // verify the required parameter 'bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet' is set
-        if (bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet == null) {
-            throw new ApiException("Missing the required parameter 'bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet' when calling listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(Async)");
-        }
-
-        return listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetCall(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, _callback);
+        return listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetCall(idStructureCpp, _callback);
 
     }
 
@@ -699,7 +681,6 @@ public class ChorusProApi {
      * Lister les services d&#39;une structure
      * Récupère la liste des services actifs d&#39;une structure publique.      **Cas d&#39;usage** :     - Lister les services disponibles pour une administration     - Vérifier qu&#39;un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
      * @param idStructureCpp  (required)
-     * @param bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet  (required)
      * @return RechercherServicesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -710,8 +691,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public RechercherServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(@javax.annotation.Nonnull Integer idStructureCpp, @javax.annotation.Nonnull BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet) throws ApiException {
-        ApiResponse<RechercherServicesResponse> localVarResp = listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetWithHttpInfo(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet);
+    public RechercherServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(@javax.annotation.Nonnull Integer idStructureCpp) throws ApiException {
+        ApiResponse<RechercherServicesResponse> localVarResp = listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetWithHttpInfo(idStructureCpp);
         return localVarResp.getData();
     }
 
@@ -719,7 +700,6 @@ public class ChorusProApi {
      * Lister les services d&#39;une structure
      * Récupère la liste des services actifs d&#39;une structure publique.      **Cas d&#39;usage** :     - Lister les services disponibles pour une administration     - Vérifier qu&#39;un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
      * @param idStructureCpp  (required)
-     * @param bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet  (required)
      * @return ApiResponse&lt;RechercherServicesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -730,8 +710,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RechercherServicesResponse> listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetWithHttpInfo(@javax.annotation.Nonnull Integer idStructureCpp, @javax.annotation.Nonnull BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet) throws ApiException {
-        okhttp3.Call localVarCall = listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetValidateBeforeCall(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, null);
+    public ApiResponse<RechercherServicesResponse> listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetWithHttpInfo(@javax.annotation.Nonnull Integer idStructureCpp) throws ApiException {
+        okhttp3.Call localVarCall = listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetValidateBeforeCall(idStructureCpp, null);
         Type localVarReturnType = new TypeToken<RechercherServicesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -740,7 +720,6 @@ public class ChorusProApi {
      * Lister les services d&#39;une structure (asynchronously)
      * Récupère la liste des services actifs d&#39;une structure publique.      **Cas d&#39;usage** :     - Lister les services disponibles pour une administration     - Vérifier qu&#39;un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
      * @param idStructureCpp  (required)
-     * @param bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -752,9 +731,9 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetAsync(@javax.annotation.Nonnull Integer idStructureCpp, @javax.annotation.Nonnull BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, final ApiCallback<RechercherServicesResponse> _callback) throws ApiException {
+    public okhttp3.Call listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetAsync(@javax.annotation.Nonnull Integer idStructureCpp, final ApiCallback<RechercherServicesResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetValidateBeforeCall(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, _callback);
+        okhttp3.Call localVarCall = listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetValidateBeforeCall(idStructureCpp, _callback);
         Type localVarReturnType = new TypeToken<RechercherServicesResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -892,7 +871,7 @@ public class ChorusProApi {
     }
     /**
      * Build call for rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost
-     * @param bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -904,7 +883,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostCall(@javax.annotation.Nonnull BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -918,7 +897,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/rechercher-destinataire";
@@ -950,20 +929,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostValidateBeforeCall(@javax.annotation.Nonnull BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost' is set
-        if (bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost == null) {
-            throw new ApiException("Missing the required parameter 'bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost' when calling rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(Async)");
+    private okhttp3.Call rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(Async)");
         }
 
-        return rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostCall(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, _callback);
+        return rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostCall(requestBody, _callback);
 
     }
 
     /**
      * Rechercher factures reçues (Destinataire)
      * Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : &#x60;factureTelechargeeParDestinataire&#x60; permet de savoir si la facture a déjà été téléchargée.
-     * @param bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -974,15 +953,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(@javax.annotation.Nonnull BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost) throws ApiException {
-        ApiResponse<Object> localVarResp = rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostWithHttpInfo(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost);
+    public Object rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Rechercher factures reçues (Destinataire)
      * Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : &#x60;factureTelechargeeParDestinataire&#x60; permet de savoir si la facture a déjà été téléchargée.
-     * @param bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -993,8 +972,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostWithHttpInfo(@javax.annotation.Nonnull BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost) throws ApiException {
-        okhttp3.Call localVarCall = rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostValidateBeforeCall(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, null);
+    public ApiResponse<Object> rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1002,7 +981,7 @@ public class ChorusProApi {
     /**
      * Rechercher factures reçues (Destinataire) (asynchronously)
      * Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : &#x60;factureTelechargeeParDestinataire&#x60; permet de savoir si la facture a déjà été téléchargée.
-     * @param bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1014,16 +993,16 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostAsync(@javax.annotation.Nonnull BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostValidateBeforeCall(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, _callback);
+        okhttp3.Call localVarCall = rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost
-     * @param bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1035,7 +1014,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostCall(@javax.annotation.Nonnull BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1049,7 +1028,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/rechercher-fournisseur";
@@ -1081,20 +1060,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostValidateBeforeCall(@javax.annotation.Nonnull BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost' is set
-        if (bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost == null) {
-            throw new ApiException("Missing the required parameter 'bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost' when calling rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(Async)");
+    private okhttp3.Call rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(Async)");
         }
 
-        return rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostCall(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, _callback);
+        return rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostCall(requestBody, _callback);
 
     }
 
     /**
      * Rechercher factures émises (Fournisseur)
      * Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d&#39;usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
-     * @param bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1105,15 +1084,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(@javax.annotation.Nonnull BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost) throws ApiException {
-        ApiResponse<Object> localVarResp = rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostWithHttpInfo(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost);
+    public Object rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Rechercher factures émises (Fournisseur)
      * Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d&#39;usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
-     * @param bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1124,8 +1103,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostWithHttpInfo(@javax.annotation.Nonnull BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost) throws ApiException {
-        okhttp3.Call localVarCall = rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostValidateBeforeCall(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, null);
+    public ApiResponse<Object> rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1133,7 +1112,7 @@ public class ChorusProApi {
     /**
      * Rechercher factures émises (Fournisseur) (asynchronously)
      * Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d&#39;usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
-     * @param bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1145,9 +1124,9 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostAsync(@javax.annotation.Nonnull BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostValidateBeforeCall(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, _callback);
+        okhttp3.Call localVarCall = rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1285,7 +1264,7 @@ public class ChorusProApi {
     }
     /**
      * Build call for recyclerFactureApiV1ChorusProFacturesRecyclerPost
-     * @param bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1297,7 +1276,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call recyclerFactureApiV1ChorusProFacturesRecyclerPostCall(@javax.annotation.Nonnull BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call recyclerFactureApiV1ChorusProFacturesRecyclerPostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1311,7 +1290,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/recycler";
@@ -1343,20 +1322,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call recyclerFactureApiV1ChorusProFacturesRecyclerPostValidateBeforeCall(@javax.annotation.Nonnull BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost' is set
-        if (bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost == null) {
-            throw new ApiException("Missing the required parameter 'bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost' when calling recyclerFactureApiV1ChorusProFacturesRecyclerPost(Async)");
+    private okhttp3.Call recyclerFactureApiV1ChorusProFacturesRecyclerPostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling recyclerFactureApiV1ChorusProFacturesRecyclerPost(Async)");
         }
 
-        return recyclerFactureApiV1ChorusProFacturesRecyclerPostCall(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, _callback);
+        return recyclerFactureApiV1ChorusProFacturesRecyclerPostCall(requestBody, _callback);
 
     }
 
     /**
      * Recycler une facture (Fournisseur)
      * Recycle une facture au statut A_RECYCLER en modifiant les données d&#39;acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (&#x60;idStructureCPP&#x60;)     - Code service     - Numéro d&#39;engagement      **Cas d&#39;usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d&#39;engagement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;idStructureCPP\&quot;: 67890,       \&quot;codeService\&quot;: \&quot;SERVICE_01\&quot;,       \&quot;numeroEngagement\&quot;: \&quot;ENG2024001\&quot;     }     &#x60;&#x60;&#x60;      **Note** : La facture conserve son numéro et ses montants, seuls les champs d&#39;acheminement changent.
-     * @param bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1367,15 +1346,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object recyclerFactureApiV1ChorusProFacturesRecyclerPost(@javax.annotation.Nonnull BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost) throws ApiException {
-        ApiResponse<Object> localVarResp = recyclerFactureApiV1ChorusProFacturesRecyclerPostWithHttpInfo(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost);
+    public Object recyclerFactureApiV1ChorusProFacturesRecyclerPost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = recyclerFactureApiV1ChorusProFacturesRecyclerPostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Recycler une facture (Fournisseur)
      * Recycle une facture au statut A_RECYCLER en modifiant les données d&#39;acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (&#x60;idStructureCPP&#x60;)     - Code service     - Numéro d&#39;engagement      **Cas d&#39;usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d&#39;engagement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;idStructureCPP\&quot;: 67890,       \&quot;codeService\&quot;: \&quot;SERVICE_01\&quot;,       \&quot;numeroEngagement\&quot;: \&quot;ENG2024001\&quot;     }     &#x60;&#x60;&#x60;      **Note** : La facture conserve son numéro et ses montants, seuls les champs d&#39;acheminement changent.
-     * @param bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1386,8 +1365,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> recyclerFactureApiV1ChorusProFacturesRecyclerPostWithHttpInfo(@javax.annotation.Nonnull BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost) throws ApiException {
-        okhttp3.Call localVarCall = recyclerFactureApiV1ChorusProFacturesRecyclerPostValidateBeforeCall(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, null);
+    public ApiResponse<Object> recyclerFactureApiV1ChorusProFacturesRecyclerPostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = recyclerFactureApiV1ChorusProFacturesRecyclerPostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1395,7 +1374,7 @@ public class ChorusProApi {
     /**
      * Recycler une facture (Fournisseur) (asynchronously)
      * Recycle une facture au statut A_RECYCLER en modifiant les données d&#39;acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (&#x60;idStructureCPP&#x60;)     - Code service     - Numéro d&#39;engagement      **Cas d&#39;usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d&#39;engagement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;idStructureCPP\&quot;: 67890,       \&quot;codeService\&quot;: \&quot;SERVICE_01\&quot;,       \&quot;numeroEngagement\&quot;: \&quot;ENG2024001\&quot;     }     &#x60;&#x60;&#x60;      **Note** : La facture conserve son numéro et ses montants, seuls les champs d&#39;acheminement changent.
-     * @param bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1407,9 +1386,9 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call recyclerFactureApiV1ChorusProFacturesRecyclerPostAsync(@javax.annotation.Nonnull BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call recyclerFactureApiV1ChorusProFacturesRecyclerPostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = recyclerFactureApiV1ChorusProFacturesRecyclerPostValidateBeforeCall(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, _callback);
+        okhttp3.Call localVarCall = recyclerFactureApiV1ChorusProFacturesRecyclerPostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1547,7 +1526,7 @@ public class ChorusProApi {
     }
     /**
      * Build call for telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost
-     * @param bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1559,7 +1538,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostCall(@javax.annotation.Nonnull BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1573,7 +1552,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/telecharger-groupe";
@@ -1605,20 +1584,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostValidateBeforeCall(@javax.annotation.Nonnull BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost' is set
-        if (bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost == null) {
-            throw new ApiException("Missing the required parameter 'bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost' when calling telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(Async)");
+    private okhttp3.Call telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(Async)");
         }
 
-        return telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostCall(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, _callback);
+        return telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostCall(requestBody, _callback);
 
     }
 
     /**
      * Télécharger un groupe de factures
      * Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;listeIdentifiantsFactureCPP\&quot;: [12345, 12346],       \&quot;inclurePiecesJointes\&quot;: true,       \&quot;formatFichier\&quot;: \&quot;ZIP\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : Le fichier est encodé en base64 dans le champ &#x60;fichierBase64&#x60;.      **Note** : Le flag &#x60;factureTelechargeeParDestinataire&#x60; est mis à jour automatiquement.
-     * @param bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1629,15 +1608,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(@javax.annotation.Nonnull BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost) throws ApiException {
-        ApiResponse<Object> localVarResp = telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostWithHttpInfo(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost);
+    public Object telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Télécharger un groupe de factures
      * Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;listeIdentifiantsFactureCPP\&quot;: [12345, 12346],       \&quot;inclurePiecesJointes\&quot;: true,       \&quot;formatFichier\&quot;: \&quot;ZIP\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : Le fichier est encodé en base64 dans le champ &#x60;fichierBase64&#x60;.      **Note** : Le flag &#x60;factureTelechargeeParDestinataire&#x60; est mis à jour automatiquement.
-     * @param bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1648,8 +1627,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostWithHttpInfo(@javax.annotation.Nonnull BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost) throws ApiException {
-        okhttp3.Call localVarCall = telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostValidateBeforeCall(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, null);
+    public ApiResponse<Object> telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1657,7 +1636,7 @@ public class ChorusProApi {
     /**
      * Télécharger un groupe de factures (asynchronously)
      * Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;listeIdentifiantsFactureCPP\&quot;: [12345, 12346],       \&quot;inclurePiecesJointes\&quot;: true,       \&quot;formatFichier\&quot;: \&quot;ZIP\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : Le fichier est encodé en base64 dans le champ &#x60;fichierBase64&#x60;.      **Note** : Le flag &#x60;factureTelechargeeParDestinataire&#x60; est mis à jour automatiquement.
-     * @param bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1669,16 +1648,16 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostAsync(@javax.annotation.Nonnull BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostValidateBeforeCall(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, _callback);
+        okhttp3.Call localVarCall = telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost
-     * @param bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1690,7 +1669,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostCall(@javax.annotation.Nonnull BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1704,7 +1683,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/traiter-facture-recue";
@@ -1736,20 +1715,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostValidateBeforeCall(@javax.annotation.Nonnull BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost' is set
-        if (bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost == null) {
-            throw new ApiException("Missing the required parameter 'bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost' when calling traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(Async)");
+    private okhttp3.Call traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(Async)");
         }
 
-        return traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostCall(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, _callback);
+        return traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostCall(requestBody, _callback);
 
     }
 
     /**
      * Traiter une facture reçue (Destinataire)
      * Change le statut d&#39;une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d&#39;informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;nouveauStatut\&quot;: \&quot;REJETEE\&quot;,       \&quot;motifRejet\&quot;: \&quot;Facture en double\&quot;,       \&quot;commentaire\&quot;: \&quot;Facture déjà reçue sous la référence ABC123\&quot;     }     &#x60;&#x60;&#x60;      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
-     * @param bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1760,15 +1739,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(@javax.annotation.Nonnull BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost) throws ApiException {
-        ApiResponse<Object> localVarResp = traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostWithHttpInfo(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost);
+    public Object traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Traiter une facture reçue (Destinataire)
      * Change le statut d&#39;une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d&#39;informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;nouveauStatut\&quot;: \&quot;REJETEE\&quot;,       \&quot;motifRejet\&quot;: \&quot;Facture en double\&quot;,       \&quot;commentaire\&quot;: \&quot;Facture déjà reçue sous la référence ABC123\&quot;     }     &#x60;&#x60;&#x60;      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
-     * @param bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1779,8 +1758,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostWithHttpInfo(@javax.annotation.Nonnull BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost) throws ApiException {
-        okhttp3.Call localVarCall = traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostValidateBeforeCall(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, null);
+    public ApiResponse<Object> traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1788,7 +1767,7 @@ public class ChorusProApi {
     /**
      * Traiter une facture reçue (Destinataire) (asynchronously)
      * Change le statut d&#39;une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d&#39;informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;nouveauStatut\&quot;: \&quot;REJETEE\&quot;,       \&quot;motifRejet\&quot;: \&quot;Facture en double\&quot;,       \&quot;commentaire\&quot;: \&quot;Facture déjà reçue sous la référence ABC123\&quot;     }     &#x60;&#x60;&#x60;      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
-     * @param bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1800,16 +1779,16 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostAsync(@javax.annotation.Nonnull BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostValidateBeforeCall(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, _callback);
+        okhttp3.Call localVarCall = traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost
-     * @param bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1821,7 +1800,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostCall(@javax.annotation.Nonnull BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1835,7 +1814,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/valideur/consulter";
@@ -1867,20 +1846,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostValidateBeforeCall(@javax.annotation.Nonnull BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost' is set
-        if (bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost == null) {
-            throw new ApiException("Missing the required parameter 'bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost' when calling valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(Async)");
+    private okhttp3.Call valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(Async)");
         }
 
-        return valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostCall(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, _callback);
+        return valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostCall(requestBody, _callback);
 
     }
 
     /**
      * Consulter une facture (Valideur)
-     * Consulte facture (valideur).
-     * @param bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost  (required)
+     * 
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1891,15 +1870,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(@javax.annotation.Nonnull BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost) throws ApiException {
-        ApiResponse<Object> localVarResp = valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostWithHttpInfo(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost);
+    public Object valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Consulter une facture (Valideur)
-     * Consulte facture (valideur).
-     * @param bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost  (required)
+     * 
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1910,16 +1889,16 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostWithHttpInfo(@javax.annotation.Nonnull BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost) throws ApiException {
-        okhttp3.Call localVarCall = valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostValidateBeforeCall(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, null);
+    public ApiResponse<Object> valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Consulter une facture (Valideur) (asynchronously)
-     * Consulte facture (valideur).
-     * @param bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost  (required)
+     * 
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1931,16 +1910,16 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostAsync(@javax.annotation.Nonnull BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostValidateBeforeCall(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, _callback);
+        okhttp3.Call localVarCall = valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost
-     * @param bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1952,7 +1931,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostCall(@javax.annotation.Nonnull BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1966,7 +1945,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/valideur/rechercher";
@@ -1998,20 +1977,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostValidateBeforeCall(@javax.annotation.Nonnull BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost' is set
-        if (bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost == null) {
-            throw new ApiException("Missing the required parameter 'bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost' when calling valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(Async)");
+    private okhttp3.Call valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(Async)");
         }
 
-        return valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostCall(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, _callback);
+        return valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostCall(requestBody, _callback);
 
     }
 
     /**
      * Rechercher factures à valider (Valideur)
      * Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
-     * @param bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2022,15 +2001,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(@javax.annotation.Nonnull BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost) throws ApiException {
-        ApiResponse<Object> localVarResp = valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostWithHttpInfo(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost);
+    public Object valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Rechercher factures à valider (Valideur)
      * Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
-     * @param bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2041,8 +2020,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostWithHttpInfo(@javax.annotation.Nonnull BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost) throws ApiException {
-        okhttp3.Call localVarCall = valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostValidateBeforeCall(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, null);
+    public ApiResponse<Object> valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2050,7 +2029,7 @@ public class ChorusProApi {
     /**
      * Rechercher factures à valider (Valideur) (asynchronously)
      * Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
-     * @param bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2062,16 +2041,16 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostAsync(@javax.annotation.Nonnull BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostValidateBeforeCall(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, _callback);
+        okhttp3.Call localVarCall = valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost
-     * @param bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost  (required)
+     * @param requestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2083,7 +2062,7 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostCall(@javax.annotation.Nonnull BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2097,7 +2076,7 @@ public class ChorusProApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost;
+        Object localVarPostBody = requestBody;
 
         // create path and map variables
         String localVarPath = "/api/v1/chorus-pro/factures/valideur/traiter";
@@ -2129,20 +2108,20 @@ public class ChorusProApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostValidateBeforeCall(@javax.annotation.Nonnull BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost' is set
-        if (bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost == null) {
-            throw new ApiException("Missing the required parameter 'bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost' when calling valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(Async)");
+    private okhttp3.Call valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostValidateBeforeCall(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'requestBody' is set
+        if (requestBody == null) {
+            throw new ApiException("Missing the required parameter 'requestBody' when calling valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(Async)");
         }
 
-        return valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostCall(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, _callback);
+        return valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostCall(requestBody, _callback);
 
     }
 
     /**
      * Valider ou refuser une facture (Valideur)
      * Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
-     * @param bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost  (required)
+     * @param requestBody  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2153,15 +2132,15 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public Object valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(@javax.annotation.Nonnull BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost) throws ApiException {
-        ApiResponse<Object> localVarResp = valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostWithHttpInfo(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost);
+    public Object valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        ApiResponse<Object> localVarResp = valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostWithHttpInfo(requestBody);
         return localVarResp.getData();
     }
 
     /**
      * Valider ou refuser une facture (Valideur)
      * Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
-     * @param bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost  (required)
+     * @param requestBody  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2172,8 +2151,8 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostWithHttpInfo(@javax.annotation.Nonnull BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost) throws ApiException {
-        okhttp3.Call localVarCall = valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostValidateBeforeCall(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, null);
+    public ApiResponse<Object> valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostWithHttpInfo(@javax.annotation.Nonnull Map<String, Object> requestBody) throws ApiException {
+        okhttp3.Call localVarCall = valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostValidateBeforeCall(requestBody, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2181,7 +2160,7 @@ public class ChorusProApi {
     /**
      * Valider ou refuser une facture (Valideur) (asynchronously)
      * Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
-     * @param bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost  (required)
+     * @param requestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2193,9 +2172,9 @@ public class ChorusProApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostAsync(@javax.annotation.Nonnull BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostAsync(@javax.annotation.Nonnull Map<String, Object> requestBody, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostValidateBeforeCall(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, _callback);
+        okhttp3.Call localVarCall = valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostValidateBeforeCall(requestBody, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

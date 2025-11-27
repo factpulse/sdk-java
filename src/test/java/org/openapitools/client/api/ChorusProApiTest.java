@@ -14,17 +14,6 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
-import org.openapitools.client.model.BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost;
-import org.openapitools.client.model.BodyCompleterFactureApiV1ChorusProFacturesCompleterPost;
-import org.openapitools.client.model.BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet;
-import org.openapitools.client.model.BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost;
-import org.openapitools.client.model.BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost;
-import org.openapitools.client.model.BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost;
-import org.openapitools.client.model.BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost;
-import org.openapitools.client.model.BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost;
-import org.openapitools.client.model.BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost;
-import org.openapitools.client.model.BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost;
-import org.openapitools.client.model.BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost;
 import org.openapitools.client.model.ConsulterFactureRequest;
 import org.openapitools.client.model.ConsulterFactureResponse;
 import org.openapitools.client.model.ConsulterStructureRequest;
@@ -62,8 +51,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void ajouterFichierApiV1ChorusProTransversesAjouterFichierPostTest() throws ApiException {
-        BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost = null;
-        Object response = api.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost);
+        Map<String, Object> requestBody = null;
+        Object response = api.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody);
         // TODO: test validations
     }
 
@@ -76,8 +65,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void completerFactureApiV1ChorusProFacturesCompleterPostTest() throws ApiException {
-        BodyCompleterFactureApiV1ChorusProFacturesCompleterPost bodyCompleterFactureApiV1ChorusProFacturesCompleterPost = null;
-        Object response = api.completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost);
+        Map<String, Object> requestBody = null;
+        Object response = api.completerFactureApiV1ChorusProFacturesCompleterPost(requestBody);
         // TODO: test validations
     }
 
@@ -119,8 +108,7 @@ public class ChorusProApiTest {
     @Test
     public void listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGetTest() throws ApiException {
         Integer idStructureCpp = null;
-        BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet = null;
-        RechercherServicesResponse response = api.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet);
+        RechercherServicesResponse response = api.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp);
         // TODO: test validations
     }
 
@@ -147,8 +135,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePostTest() throws ApiException {
-        BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost = null;
-        Object response = api.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost);
+        Map<String, Object> requestBody = null;
+        Object response = api.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody);
         // TODO: test validations
     }
 
@@ -161,8 +149,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPostTest() throws ApiException {
-        BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost = null;
-        Object response = api.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost);
+        Map<String, Object> requestBody = null;
+        Object response = api.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody);
         // TODO: test validations
     }
 
@@ -189,8 +177,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void recyclerFactureApiV1ChorusProFacturesRecyclerPostTest() throws ApiException {
-        BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost = null;
-        Object response = api.recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost);
+        Map<String, Object> requestBody = null;
+        Object response = api.recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody);
         // TODO: test validations
     }
 
@@ -217,8 +205,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePostTest() throws ApiException {
-        BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost = null;
-        Object response = api.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost);
+        Map<String, Object> requestBody = null;
+        Object response = api.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody);
         // TODO: test validations
     }
 
@@ -231,22 +219,20 @@ public class ChorusProApiTest {
      */
     @Test
     public void traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePostTest() throws ApiException {
-        BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost = null;
-        Object response = api.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost);
+        Map<String, Object> requestBody = null;
+        Object response = api.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody);
         // TODO: test validations
     }
 
     /**
      * Consulter une facture (Valideur)
      *
-     * Consulte facture (valideur).
-     *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPostTest() throws ApiException {
-        BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost = null;
-        Object response = api.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost);
+        Map<String, Object> requestBody = null;
+        Object response = api.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody);
         // TODO: test validations
     }
 
@@ -259,8 +245,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPostTest() throws ApiException {
-        BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost = null;
-        Object response = api.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost);
+        Map<String, Object> requestBody = null;
+        Object response = api.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody);
         // TODO: test validations
     }
 
@@ -273,8 +259,8 @@ public class ChorusProApiTest {
      */
     @Test
     public void valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPostTest() throws ApiException {
-        BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost = null;
-        Object response = api.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost);
+        Map<String, Object> requestBody = null;
+        Object response = api.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody);
         // TODO: test validations
     }
 

@@ -33,14 +33,22 @@ class ChorusProCredentials {
     }
 }
 
+/** Credentials AFNOR PDP pour le mode Zero-Trust. L'API FactPulse utilise ces credentials pour s'authentifier auprès de la PDP AFNOR. */
 class AFNORCredentials {
-    public final String clientId, clientSecret, flowServiceUrl;
-    public AFNORCredentials(String clientId, String clientSecret, String flowServiceUrl) {
-        this.clientId = clientId; this.clientSecret = clientSecret; this.flowServiceUrl = flowServiceUrl;
+    public final String flowServiceUrl, tokenUrl, clientId, clientSecret;
+    public final String directoryServiceUrl;
+    public AFNORCredentials(String flowServiceUrl, String tokenUrl, String clientId, String clientSecret, String directoryServiceUrl) {
+        this.flowServiceUrl = flowServiceUrl; this.tokenUrl = tokenUrl;
+        this.clientId = clientId; this.clientSecret = clientSecret; this.directoryServiceUrl = directoryServiceUrl;
+    }
+    public AFNORCredentials(String flowServiceUrl, String tokenUrl, String clientId, String clientSecret) {
+        this(flowServiceUrl, tokenUrl, clientId, clientSecret, null);
     }
     public Map<String, Object> toMap() {
         Map<String, Object> m = new LinkedHashMap<>();
-        m.put("client_id", clientId); m.put("client_secret", clientSecret); m.put("flow_service_url", flowServiceUrl);
+        m.put("flow_service_url", flowServiceUrl); m.put("token_url", tokenUrl);
+        m.put("client_id", clientId); m.put("client_secret", clientSecret);
+        if (directoryServiceUrl != null) m.put("directory_service_url", directoryServiceUrl);
         return m;
     }
 }
@@ -69,34 +77,88 @@ class MontantHelpers {
         if (acompte != null) result.put("acompte", montant(acompte));
         return result;
     }
-    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantLigneHt) {
-        return ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantLigneHt, "20.00", "S", "C62", null);
+    /** Crée une ligne de poste (aligné sur LigneDePoste de models.py). */
+    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantTotalLigneHt) {
+        return ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantTotalLigneHt, "20.00", "S", "FORFAIT", null);
     }
-    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantLigneHt, String tauxTva, String categorieTva, String unite, Map<String, Object> options) {
+    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantTotalLigneHt, String tauxTva, String categorieTva, String unite, Map<String, Object> options) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("numero", numero); result.put("denomination", denomination);
         result.put("quantite", montant(quantite)); result.put("montantUnitaireHt", montant(montantUnitaireHt));
-        result.put("montantTotalLigneHt", montant(montantLigneHt)); result.put("tauxTvaManuel", montant(tauxTva));
+        result.put("montantTotalLigneHt", montant(montantTotalLigneHt)); result.put("tauxTva", montant(tauxTva));
         result.put("categorieTva", categorieTva); result.put("unite", unite);
         if (options != null) {
             if (options.containsKey("reference")) result.put("reference", options.get("reference"));
-            if (options.containsKey("montantTvaLigne")) result.put("montantTvaLigne", montant(options.get("montantTvaLigne")));
             if (options.containsKey("montantRemiseHt")) result.put("montantRemiseHt", montant(options.get("montantRemiseHt")));
             if (options.containsKey("codeRaisonReduction")) result.put("codeRaisonReduction", options.get("codeRaisonReduction"));
             if (options.containsKey("raisonReduction")) result.put("raisonReduction", options.get("raisonReduction"));
-            if (options.containsKey("motifExoneration")) result.put("motifExoneration", options.get("motifExoneration"));
             if (options.containsKey("dateDebutPeriode")) result.put("dateDebutPeriode", options.get("dateDebutPeriode"));
             if (options.containsKey("dateFinPeriode")) result.put("dateFinPeriode", options.get("dateFinPeriode"));
-            if (options.containsKey("description")) result.put("description", options.get("description"));
         }
         return result;
     }
-    public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva) { return ligneDeTva(taux, baseHt, montantTva, "S", null); }
-    public static Map<String, Object> ligneDeTva(Object taux, Object baseHt, Object montantTva, String categorie, String motifExoneration) {
+    /** Crée une ligne de TVA (aligné sur LigneDeTVA de models.py). */
+    public static Map<String, Object> ligneDeTva(Object tauxManuel, Object montantBaseHt, Object montantTva) { return ligneDeTva(tauxManuel, montantBaseHt, montantTva, "S"); }
+    public static Map<String, Object> ligneDeTva(Object tauxManuel, Object montantBaseHt, Object montantTva, String categorie) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("tauxManuel", montant(taux)); result.put("montantBaseHt", montant(baseHt));
+        result.put("tauxManuel", montant(tauxManuel)); result.put("montantBaseHt", montant(montantBaseHt));
         result.put("montantTva", montant(montantTva)); result.put("categorie", categorie);
-        if (motifExoneration != null) result.put("motifExoneration", motifExoneration);
+        return result;
+    }
+    /** Crée une adresse postale pour l'API FactPulse. */
+    public static Map<String, Object> adressePostale(String ligne1, String codePostal, String ville) { return adressePostale(ligne1, codePostal, ville, "FR", null, null); }
+    public static Map<String, Object> adressePostale(String ligne1, String codePostal, String ville, String pays, String ligne2, String ligne3) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("ligneUn", ligne1); result.put("codePostal", codePostal); result.put("nomVille", ville); result.put("paysCodeIso", pays != null ? pays : "FR");
+        if (ligne2 != null) result.put("ligneDeux", ligne2);
+        if (ligne3 != null) result.put("ligneTrois", ligne3);
+        return result;
+    }
+    /** Crée une adresse électronique. schemeId: "0009"=SIREN, "0225"=SIRET */
+    public static Map<String, Object> adresseElectronique(String identifiant) { return adresseElectronique(identifiant, "0009"); }
+    public static Map<String, Object> adresseElectronique(String identifiant, String schemeId) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("identifiant", identifiant); result.put("schemeId", schemeId);
+        return result;
+    }
+    /** Calcule le numéro TVA intracommunautaire français depuis un SIREN. */
+    private static String calculerTvaIntra(String siren) {
+        if (siren == null || siren.length() != 9 || !siren.matches("\\d+")) return null;
+        long cle = (12 + 3 * (Long.parseLong(siren) % 97)) % 97;
+        return String.format("FR%02d%s", cle, siren);
+    }
+    /** Crée un fournisseur (émetteur) avec auto-calcul SIREN, TVA intracommunautaire et adresses. */
+    public static Map<String, Object> fournisseur(String nom, String siret, String adresseLigne1, String codePostal, String ville) { return fournisseur(nom, siret, adresseLigne1, codePostal, ville, null); }
+    public static Map<String, Object> fournisseur(String nom, String siret, String adresseLigne1, String codePostal, String ville, Map<String, Object> options) {
+        if (options == null) options = new LinkedHashMap<>();
+        String siren = options.containsKey("siren") ? (String)options.get("siren") : (siret.length() == 14 ? siret.substring(0, 9) : null);
+        String numeroTvaIntra = options.containsKey("numeroTvaIntra") ? (String)options.get("numeroTvaIntra") : (siren != null ? calculerTvaIntra(siren) : null);
+        String pays = options.containsKey("pays") ? (String)options.get("pays") : "FR";
+        String adresseLigne2 = options.containsKey("adresseLigne2") ? (String)options.get("adresseLigne2") : null;
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("nom", nom); result.put("idFournisseur", options.getOrDefault("idFournisseur", 0)); result.put("siret", siret);
+        result.put("adresseElectronique", adresseElectronique(siret, "0225"));
+        result.put("adressePostale", adressePostale(adresseLigne1, codePostal, ville, pays, adresseLigne2, null));
+        if (siren != null) result.put("siren", siren);
+        if (numeroTvaIntra != null) result.put("numeroTvaIntra", numeroTvaIntra);
+        if (options.containsKey("iban")) result.put("iban", options.get("iban"));
+        if (options.containsKey("codeService")) result.put("idServiceFournisseur", options.get("codeService"));
+        if (options.containsKey("codeCoordonnesBancaires")) result.put("codeCoordonnesBancairesFournisseur", options.get("codeCoordonnesBancaires"));
+        return result;
+    }
+    /** Crée un destinataire (client) avec auto-calcul SIREN et adresses. */
+    public static Map<String, Object> destinataire(String nom, String siret, String adresseLigne1, String codePostal, String ville) { return destinataire(nom, siret, adresseLigne1, codePostal, ville, null); }
+    public static Map<String, Object> destinataire(String nom, String siret, String adresseLigne1, String codePostal, String ville, Map<String, Object> options) {
+        if (options == null) options = new LinkedHashMap<>();
+        String siren = options.containsKey("siren") ? (String)options.get("siren") : (siret.length() == 14 ? siret.substring(0, 9) : null);
+        String pays = options.containsKey("pays") ? (String)options.get("pays") : "FR";
+        String adresseLigne2 = options.containsKey("adresseLigne2") ? (String)options.get("adresseLigne2") : null;
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("nom", nom); result.put("siret", siret);
+        result.put("adresseElectronique", adresseElectronique(siret, "0225"));
+        result.put("adressePostale", adressePostale(adresseLigne1, codePostal, ville, pays, adresseLigne2, null));
+        if (siren != null) result.put("siren", siren);
+        if (options.containsKey("codeServiceExecutant")) result.put("codeServiceExecutant", options.get("codeServiceExecutant"));
         return result;
     }
 }
