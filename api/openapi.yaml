@@ -1217,6 +1217,42 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /api/v1/afnor/credentials:
+    get:
+      description: Récupère les credentials AFNOR/PDP stockés pour le client_uid du
+        JWT. Cet endpoint est utilisé par le SDK en mode 'stored' pour récupérer les
+        credentials avant de faire l'OAuth AFNOR lui-même.
+      operationId: get_afnor_credentials_api_v1_afnor_credentials_get
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                flow_service_url: https://api.pdp-partner.fr/flow/v1
+                token_url: https://auth.pdp-partner.fr/oauth/token
+                client_id: factpulse_client
+                client_secret: '***'
+              schema: {}
+          description: Credentials AFNOR récupérés avec succès
+        "400":
+          content:
+            application/json:
+              example:
+                detail:
+                  error: NO_CLIENT_UID
+                  message: Aucun client_uid dans le JWT. Utilisez le mode zero-trust.
+          description: Aucun client_uid dans le JWT
+        "401":
+          description: Non authentifié - Token JWT manquant ou invalide
+        "404":
+          description: Client non trouvé ou pas de credentials AFNOR configurés
+      security:
+      - HTTPBearer: []
+      summary: Récupérer les credentials AFNOR stockés
+      tags:
+      - AFNOR PDP/PA
+      x-accepts:
+      - application/json
   /api/v1/afnor/oauth/token:
     post:
       description: Endpoint proxy OAuth2 pour obtenir un token d'accès AFNOR. Fait

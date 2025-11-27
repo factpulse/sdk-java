@@ -31,6 +31,19 @@ public class AfnorPdpPaApiTest {
     private final AfnorPdpPaApi api = new AfnorPdpPaApi();
 
     /**
+     * Récupérer les credentials AFNOR stockés
+     *
+     * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode &#39;stored&#39; pour récupérer les credentials avant de faire l&#39;OAuth AFNOR lui-même.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getAfnorCredentialsApiV1AfnorCredentialsGetTest() throws ApiException {
+        Object response = api.getAfnorCredentialsApiV1AfnorCredentialsGet();
+        // TODO: test validations
+    }
+
+    /**
      * Endpoint OAuth2 pour authentification AFNOR
      *
      * Endpoint proxy OAuth2 pour obtenir un token d&#39;accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d&#39;auth Django requise) car il est appelé par le SDK AFNOR.
