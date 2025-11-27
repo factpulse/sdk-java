@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Consulter une facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T20:34:04.834638695Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T20:36:19.987046853Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ConsulterFactureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)

@@ -63,7 +63,7 @@ import org.openapitools.client.JSON;
 /**
  * Modèle de données pour une facture destinée à être convertie en Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T20:34:04.834638695Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T20:36:19.987046853Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FactureFacturX {
   public static final String SERIALIZED_NAME_NUMERO_FACTURE = "numeroFacture";
   @SerializedName(SERIALIZED_NAME_NUMERO_FACTURE)

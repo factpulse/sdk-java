@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur une signature électronique dans un PDF.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T20:34:04.834638695Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-27T20:36:19.987046853Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class InformationSignatureAPI {
   public static final String SERIALIZED_NAME_NOM_CHAMP = "nom_champ";
   @SerializedName(SERIALIZED_NAME_NOM_CHAMP)
