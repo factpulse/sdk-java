@@ -24,6 +24,9 @@ Facture reçue d'un fournisseur via PDP/PA.  Ce modèle contient les métadonné
 |**numeroBonCommande** | **String** |  |  [optional] |
 |**referenceContrat** | **String** |  |  [optional] |
 |**objetFacture** | **String** |  |  [optional] |
+|**documentBase64** | **String** |  |  [optional] |
+|**documentContentType** | **String** |  |  [optional] |
+|**documentFilename** | **String** |  |  [optional] |
 
 
 

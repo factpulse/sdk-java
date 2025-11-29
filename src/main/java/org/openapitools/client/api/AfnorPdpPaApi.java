@@ -205,6 +205,7 @@ public class AfnorPdpPaApi {
     /**
      * Build call for getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet
      * @param flowId  (required)
+     * @param includeDocument  (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -220,7 +221,7 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(@javax.annotation.Nonnull String flowId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -246,6 +247,10 @@ public class AfnorPdpPaApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (includeDocument != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("include_document", includeDocument));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -266,13 +271,13 @@ public class AfnorPdpPaApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(@javax.annotation.Nonnull String flowId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'flowId' is set
         if (flowId == null) {
             throw new ApiException("Missing the required parameter 'flowId' when calling getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(Async)");
         }
 
-        return getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(flowId, _callback);
+        return getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(flowId, includeDocument, _callback);
 
     }
 
@@ -280,6 +285,7 @@ public class AfnorPdpPaApi {
      * Récupérer et extraire une facture entrante
      * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
      * @param flowId  (required)
+     * @param includeDocument  (optional, default to false)
      * @return FactureEntrante
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -294,8 +300,8 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(@javax.annotation.Nonnull String flowId) throws ApiException {
-        ApiResponse<FactureEntrante> localVarResp = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(flowId);
+    public FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
+        ApiResponse<FactureEntrante> localVarResp = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(flowId, includeDocument);
         return localVarResp.getData();
     }
 
@@ -303,6 +309,7 @@ public class AfnorPdpPaApi {
      * Récupérer et extraire une facture entrante
      * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
      * @param flowId  (required)
+     * @param includeDocument  (optional, default to false)
      * @return ApiResponse&lt;FactureEntrante&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -317,8 +324,8 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FactureEntrante> getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(@javax.annotation.Nonnull String flowId) throws ApiException {
-        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, null);
+    public ApiResponse<FactureEntrante> getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, includeDocument, null);
         Type localVarReturnType = new TypeToken<FactureEntrante>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -327,6 +334,7 @@ public class AfnorPdpPaApi {
      * Récupérer et extraire une facture entrante (asynchronously)
      * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
      * @param flowId  (required)
+     * @param includeDocument  (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -342,9 +350,9 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetAsync(@javax.annotation.Nonnull String flowId, final ApiCallback<FactureEntrante> _callback) throws ApiException {
+    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetAsync(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback<FactureEntrante> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, _callback);
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, includeDocument, _callback);
         Type localVarReturnType = new TypeToken<FactureEntrante>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -55,7 +55,8 @@ public class AfnorPdpPaApiTest {
     @Test
     public void getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetTest() throws ApiException {
         String flowId = null;
-        FactureEntrante response = api.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId);
+        Boolean includeDocument = null;
+        FactureEntrante response = api.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, includeDocument);
         // TODO: test validations
     }
 

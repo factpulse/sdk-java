@@ -1292,6 +1292,15 @@ paths:
           title: Flow Id
           type: string
         style: simple
+      - explode: true
+        in: query
+        name: include_document
+        required: false
+        schema:
+          default: false
+          title: Include Document
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -3668,12 +3677,15 @@ components:
         format_source: ""
         devise: EUR
         numero_bon_commande: numero_bon_commande
+        document_base64: document_base64
+        document_content_type: document_content_type
         flow_id: flow_id
         montant_tva: montant_tva
         site_facturation_nom: site_facturation_nom
         date_reglement: date_reglement
         objet_facture: objet_facture
         site_facturation_siret: site_facturation_siret
+        document_filename: document_filename
         type_document: ""
       properties:
         flow_id:
@@ -3737,6 +3749,15 @@ components:
           nullable: true
           type: string
         objet_facture:
+          nullable: true
+          type: string
+        document_base64:
+          nullable: true
+          type: string
+        document_content_type:
+          nullable: true
+          type: string
+        document_filename:
           nullable: true
           type: string
       required:

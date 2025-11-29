@@ -169,4 +169,28 @@ public class FactureEntranteTest {
         // TODO: test objetFacture
     }
 
+    /**
+     * Test the property 'documentBase64'
+     */
+    @Test
+    public void documentBase64Test() {
+        // TODO: test documentBase64
+    }
+
+    /**
+     * Test the property 'documentContentType'
+     */
+    @Test
+    public void documentContentTypeTest() {
+        // TODO: test documentContentType
+    }
+
+    /**
+     * Test the property 'documentFilename'
+     */
+    @Test
+    public void documentFilenameTest() {
+        // TODO: test documentFilename
+    }
+
 }

@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Facture reçue d&#39;un fournisseur via PDP/PA.  Ce modèle contient les métadonnées essentielles extraites des factures entrantes, quel que soit leur format source (CII, UBL, Factur-X).  Les montants sont en Decimal en Python mais seront sérialisés en string dans le JSON pour préserver la précision monétaire.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-29T08:46:57.171193333Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-29T08:54:36.961765409Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FactureEntrante {
   public static final String SERIALIZED_NAME_FLOW_ID = "flow_id";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)
@@ -135,6 +135,21 @@ public class FactureEntrante {
   @SerializedName(SERIALIZED_NAME_OBJET_FACTURE)
   @javax.annotation.Nullable
   private String objetFacture;
+
+  public static final String SERIALIZED_NAME_DOCUMENT_BASE64 = "document_base64";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_BASE64)
+  @javax.annotation.Nullable
+  private String documentBase64;
+
+  public static final String SERIALIZED_NAME_DOCUMENT_CONTENT_TYPE = "document_content_type";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_CONTENT_TYPE)
+  @javax.annotation.Nullable
+  private String documentContentType;
+
+  public static final String SERIALIZED_NAME_DOCUMENT_FILENAME = "document_filename";
+  @SerializedName(SERIALIZED_NAME_DOCUMENT_FILENAME)
+  @javax.annotation.Nullable
+  private String documentFilename;
 
   public FactureEntrante() {
   }
@@ -443,6 +458,63 @@ public class FactureEntrante {
   }
 
 
+  public FactureEntrante documentBase64(@javax.annotation.Nullable String documentBase64) {
+    this.documentBase64 = documentBase64;
+    return this;
+  }
+
+  /**
+   * Get documentBase64
+   * @return documentBase64
+   */
+  @javax.annotation.Nullable
+  public String getDocumentBase64() {
+    return documentBase64;
+  }
+
+  public void setDocumentBase64(@javax.annotation.Nullable String documentBase64) {
+    this.documentBase64 = documentBase64;
+  }
+
+
+  public FactureEntrante documentContentType(@javax.annotation.Nullable String documentContentType) {
+    this.documentContentType = documentContentType;
+    return this;
+  }
+
+  /**
+   * Get documentContentType
+   * @return documentContentType
+   */
+  @javax.annotation.Nullable
+  public String getDocumentContentType() {
+    return documentContentType;
+  }
+
+  public void setDocumentContentType(@javax.annotation.Nullable String documentContentType) {
+    this.documentContentType = documentContentType;
+  }
+
+
+  public FactureEntrante documentFilename(@javax.annotation.Nullable String documentFilename) {
+    this.documentFilename = documentFilename;
+    return this;
+  }
+
+  /**
+   * Get documentFilename
+   * @return documentFilename
+   */
+  @javax.annotation.Nullable
+  public String getDocumentFilename() {
+    return documentFilename;
+  }
+
+  public void setDocumentFilename(@javax.annotation.Nullable String documentFilename) {
+    this.documentFilename = documentFilename;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -468,7 +540,10 @@ public class FactureEntrante {
         Objects.equals(this.montantTtc, factureEntrante.montantTtc) &&
         Objects.equals(this.numeroBonCommande, factureEntrante.numeroBonCommande) &&
         Objects.equals(this.referenceContrat, factureEntrante.referenceContrat) &&
-        Objects.equals(this.objetFacture, factureEntrante.objetFacture);
+        Objects.equals(this.objetFacture, factureEntrante.objetFacture) &&
+        Objects.equals(this.documentBase64, factureEntrante.documentBase64) &&
+        Objects.equals(this.documentContentType, factureEntrante.documentContentType) &&
+        Objects.equals(this.documentFilename, factureEntrante.documentFilename);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -477,7 +552,7 @@ public class FactureEntrante {
 
   @Override
   public int hashCode() {
-    return Objects.hash(flowId, formatSource, refFournisseur, typeDocument, fournisseur, siteFacturationNom, siteFacturationSiret, dateDePiece, dateReglement, devise, montantHt, montantTva, montantTtc, numeroBonCommande, referenceContrat, objetFacture);
+    return Objects.hash(flowId, formatSource, refFournisseur, typeDocument, fournisseur, siteFacturationNom, siteFacturationSiret, dateDePiece, dateReglement, devise, montantHt, montantTva, montantTtc, numeroBonCommande, referenceContrat, objetFacture, documentBase64, documentContentType, documentFilename);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -507,6 +582,9 @@ public class FactureEntrante {
     sb.append("    numeroBonCommande: ").append(toIndentedString(numeroBonCommande)).append("\n");
     sb.append("    referenceContrat: ").append(toIndentedString(referenceContrat)).append("\n");
     sb.append("    objetFacture: ").append(toIndentedString(objetFacture)).append("\n");
+    sb.append("    documentBase64: ").append(toIndentedString(documentBase64)).append("\n");
+    sb.append("    documentContentType: ").append(toIndentedString(documentContentType)).append("\n");
+    sb.append("    documentFilename: ").append(toIndentedString(documentFilename)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -528,7 +606,7 @@ public class FactureEntrante {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("flow_id", "format_source", "ref_fournisseur", "type_document", "fournisseur", "site_facturation_nom", "site_facturation_siret", "date_de_piece", "date_reglement", "devise", "montant_ht", "montant_tva", "montant_ttc", "numero_bon_commande", "reference_contrat", "objet_facture"));
+    openapiFields = new HashSet<String>(Arrays.asList("flow_id", "format_source", "ref_fournisseur", "type_document", "fournisseur", "site_facturation_nom", "site_facturation_siret", "date_de_piece", "date_reglement", "devise", "montant_ht", "montant_tva", "montant_ttc", "numero_bon_commande", "reference_contrat", "objet_facture", "document_base64", "document_content_type", "document_filename"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("format_source", "ref_fournisseur", "fournisseur", "site_facturation_nom", "date_de_piece", "montant_ht", "montant_tva", "montant_ttc"));
@@ -608,6 +686,15 @@ public class FactureEntrante {
       }
       if ((jsonObj.get("objet_facture") != null && !jsonObj.get("objet_facture").isJsonNull()) && !jsonObj.get("objet_facture").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `objet_facture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("objet_facture").toString()));
+      }
+      if ((jsonObj.get("document_base64") != null && !jsonObj.get("document_base64").isJsonNull()) && !jsonObj.get("document_base64").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `document_base64` to be a primitive type in the JSON string but got `%s`", jsonObj.get("document_base64").toString()));
+      }
+      if ((jsonObj.get("document_content_type") != null && !jsonObj.get("document_content_type").isJsonNull()) && !jsonObj.get("document_content_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `document_content_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("document_content_type").toString()));
+      }
+      if ((jsonObj.get("document_filename") != null && !jsonObj.get("document_filename").isJsonNull()) && !jsonObj.get("document_filename").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `document_filename` to be a primitive type in the JSON string but got `%s`", jsonObj.get("document_filename").toString()));
       }
   }
 

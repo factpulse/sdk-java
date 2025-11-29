@@ -77,7 +77,7 @@ This endpoint does not need any parameter.
 
 <a id="getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet"></a>
 # **getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet**
-> FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId)
+> FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, includeDocument)
 
 Récupérer et extraire une facture entrante
 
@@ -104,8 +104,9 @@ public class Example {
 
     AfnorPdpPaApi apiInstance = new AfnorPdpPaApi(defaultClient);
     String flowId = "flowId_example"; // String | 
+    Boolean includeDocument = false; // Boolean | 
     try {
-      FactureEntrante result = apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId);
+      FactureEntrante result = apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, includeDocument);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaApi#getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet");
@@ -123,6 +124,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**|  | |
+| **includeDocument** | **Boolean**|  | [optional] [default to false] |
 
 ### Return type
 
