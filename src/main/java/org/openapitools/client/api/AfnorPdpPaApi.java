@@ -27,6 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import org.openapitools.client.model.FactureEntrante;
+import org.openapitools.client.model.HTTPValidationError;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -197,6 +199,153 @@ public class AfnorPdpPaApi {
 
         okhttp3.Call localVarCall = getAfnorCredentialsApiV1AfnorCredentialsGetValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet
+     * @param flowId  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(@javax.annotation.Nonnull String flowId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/afnor/flux-entrants/{flow_id}"
+            .replace("{" + "flow_id" + "}", localVarApiClient.escapeString(flowId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(@javax.annotation.Nonnull String flowId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'flowId' is set
+        if (flowId == null) {
+            throw new ApiException("Missing the required parameter 'flowId' when calling getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(Async)");
+        }
+
+        return getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(flowId, _callback);
+
+    }
+
+    /**
+     * Récupérer et extraire une facture entrante
+     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     * @param flowId  (required)
+     * @return FactureEntrante
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(@javax.annotation.Nonnull String flowId) throws ApiException {
+        ApiResponse<FactureEntrante> localVarResp = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(flowId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Récupérer et extraire une facture entrante
+     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     * @param flowId  (required)
+     * @return ApiResponse&lt;FactureEntrante&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<FactureEntrante> getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(@javax.annotation.Nonnull String flowId) throws ApiException {
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, null);
+        Type localVarReturnType = new TypeToken<FactureEntrante>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Récupérer et extraire une facture entrante (asynchronously)
+     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     * @param flowId  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetAsync(@javax.annotation.Nonnull String flowId, final ApiCallback<FactureEntrante> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, _callback);
+        Type localVarReturnType = new TypeToken<FactureEntrante>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

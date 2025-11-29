@@ -14,6 +14,8 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.FactureEntrante;
+import org.openapitools.client.model.HTTPValidationError;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +42,20 @@ public class AfnorPdpPaApiTest {
     @Test
     public void getAfnorCredentialsApiV1AfnorCredentialsGetTest() throws ApiException {
         Object response = api.getAfnorCredentialsApiV1AfnorCredentialsGet();
+        // TODO: test validations
+    }
+
+    /**
+     * Récupérer et extraire une facture entrante
+     *
+     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetTest() throws ApiException {
+        String flowId = null;
+        FactureEntrante response = api.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId);
         // TODO: test validations
     }
 

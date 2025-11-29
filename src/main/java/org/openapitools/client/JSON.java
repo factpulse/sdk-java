@@ -125,8 +125,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.DestinationChorusPro.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.DonneesFactureSimplifiees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.FactureEnrichieInfo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.FactureEntrante.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.FactureFacturX.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.Fournisseur.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.FournisseurEntrant.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.GenerateCertificateRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.GenerateCertificateResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.HTTPValidationError.CustomTypeAdapterFactory());

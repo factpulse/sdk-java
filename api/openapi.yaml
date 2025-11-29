@@ -1277,6 +1277,66 @@ paths:
       - AFNOR PDP/PA
       x-accepts:
       - application/json
+  /api/v1/afnor/flux-entrants/{flow_id}:
+    get:
+      description: "Télécharge un flux entrant depuis la PDP AFNOR et extrait les\
+        \ métadonnées de la facture vers un format JSON unifié. Supporte les formats\
+        \ Factur-X, CII et UBL."
+      operationId: get_flux_entrant_api_v1_afnor_flux_entrants__flow_id__get
+      parameters:
+      - explode: false
+        in: path
+        name: flow_id
+        required: true
+        schema:
+          title: Flow Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                flow_id: 550e8400-e29b-41d4-a716-446655440000
+                format_source: Factur-X
+                ref_fournisseur: FAC-2025-001
+                type_document: "380"
+                fournisseur:
+                  nom: Fournisseur SAS
+                  siret: "12345678901234"
+                  numero_tva_intra: FR12345678901
+                site_facturation_nom: Ma Société
+                site_facturation_siret: "98765432109876"
+                date_de_piece: 2025-01-15
+                date_reglement: 2025-02-15
+                devise: EUR
+                montant_ht: "1000.00"
+                montant_tva: "200.00"
+                montant_ttc: "1200.00"
+              schema:
+                $ref: "#/components/schemas/FactureEntrante"
+          description: Facture extraite avec succès
+        "400":
+          description: Format de facture non supporté ou invalide
+        "401":
+          description: Non authentifié
+        "404":
+          description: Flux non trouvé
+        "503":
+          description: Service PDP indisponible
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Récupérer et extraire une facture entrante
+      tags:
+      - AFNOR PDP/PA
+      x-accepts:
+      - application/json
   /api/v1/afnor/flow/v1/healthcheck:
     get:
       description: Vérifier la disponibilité du Flow Service
@@ -2938,6 +2998,41 @@ paths:
       - application/json
 components:
   schemas:
+    AdresseElectronique:
+      description: |-
+        Représente une adresse de facturation électronique, composée d'un identifiant
+        et de son schéma (SchemeID) conformément à la norme EN16931.
+        Exemple: { "identifiant": "123456789", "scheme_id": "0225" }
+      properties:
+        identifiant:
+          title: Identifiant
+          type: string
+        schemeId:
+          allOf:
+          - $ref: "#/components/schemas/SchemeID"
+          default: "0225"
+      required:
+      - identifiant
+      title: AdresseElectronique
+    AdressePostale:
+      description: Représente une adresse postale.
+      properties:
+        codePostal:
+          nullable: true
+          type: string
+        ligneUn:
+          nullable: true
+          type: string
+        ligneDeux:
+          nullable: true
+          type: string
+        nomVille:
+          nullable: true
+          type: string
+        paysCodeIso:
+          nullable: true
+          type: string
+      title: AdressePostale
     Body_generer_facture_api_v1_traitement_generer_facture_post:
       properties:
         donnees_facture:
@@ -3554,12 +3649,158 @@ components:
       - nom_emetteur
       - numero_facture
       title: FactureEnrichieInfo
+    FactureEntrante:
+      description: |-
+        Facture reçue d'un fournisseur via PDP/PA.
+
+        Ce modèle contient les métadonnées essentielles extraites des factures
+        entrantes, quel que soit leur format source (CII, UBL, Factur-X).
+
+        Les montants sont en Decimal en Python mais seront sérialisés en
+        string dans le JSON pour préserver la précision monétaire.
+      example:
+        reference_contrat: reference_contrat
+        date_de_piece: date_de_piece
+        montant_ht: montant_ht
+        fournisseur: ""
+        ref_fournisseur: ref_fournisseur
+        montant_ttc: montant_ttc
+        format_source: ""
+        devise: EUR
+        numero_bon_commande: numero_bon_commande
+        flow_id: flow_id
+        montant_tva: montant_tva
+        site_facturation_nom: site_facturation_nom
+        date_reglement: date_reglement
+        objet_facture: objet_facture
+        site_facturation_siret: site_facturation_siret
+        type_document: ""
+      properties:
+        flow_id:
+          nullable: true
+          type: string
+        format_source:
+          allOf:
+          - $ref: "#/components/schemas/FormatFacture"
+          description: Format source de la facture
+        ref_fournisseur:
+          description: Numéro de facture émis par le fournisseur (BT-1)
+          title: Ref Fournisseur
+          type: string
+        type_document:
+          allOf:
+          - $ref: "#/components/schemas/TypeDocument"
+          default: "380"
+          description: Type de document (BT-3)
+        fournisseur:
+          allOf:
+          - $ref: "#/components/schemas/FournisseurEntrant"
+          description: Émetteur de la facture (SellerTradeParty)
+        site_facturation_nom:
+          description: Nom du destinataire / votre entreprise (BT-44)
+          title: Site Facturation Nom
+          type: string
+        site_facturation_siret:
+          nullable: true
+          type: string
+        date_de_piece:
+          description: Date de la facture (BT-2) - YYYY-MM-DD
+          title: Date De Piece
+          type: string
+        date_reglement:
+          nullable: true
+          type: string
+        devise:
+          default: EUR
+          description: Code devise ISO (BT-5)
+          title: Devise
+          type: string
+        montant_ht:
+          description: Montant HT total (BT-109)
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+          title: Montant Ht
+          type: string
+        montant_tva:
+          description: Montant TVA total (BT-110)
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+          title: Montant Tva
+          type: string
+        montant_ttc:
+          description: Montant TTC total (BT-112)
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+          title: Montant Ttc
+          type: string
+        numero_bon_commande:
+          nullable: true
+          type: string
+        reference_contrat:
+          nullable: true
+          type: string
+        objet_facture:
+          nullable: true
+          type: string
+      required:
+      - date_de_piece
+      - format_source
+      - fournisseur
+      - montant_ht
+      - montant_ttc
+      - montant_tva
+      - ref_fournisseur
+      - site_facturation_nom
+      title: FactureEntrante
+    FormatFacture:
+      description: Formats de facture supportés pour l'extraction.
+      enum:
+      - CII
+      - UBL
+      - Factur-X
+      title: FormatFacture
+      type: string
     FormatSortie:
       enum:
       - xml
       - pdf
       title: FormatSortie
       type: string
+    FournisseurEntrant:
+      description: |-
+        Fournisseur extrait d'une facture entrante.
+
+        Contrairement au modèle Fournisseur de models.py, ce modèle n'a pas
+        de champ id_fournisseur car cette information n'est pas disponible
+        dans les XML Factur-X/CII/UBL.
+      properties:
+        nom:
+          description: Raison sociale du fournisseur (BT-27)
+          title: Nom
+          type: string
+        siren:
+          nullable: true
+          type: string
+        siret:
+          nullable: true
+          type: string
+        numero_tva_intra:
+          nullable: true
+          type: string
+        adresse_postale:
+          allOf:
+          - $ref: "#/components/schemas/AdressePostale"
+          nullable: true
+        adresse_electronique:
+          allOf:
+          - $ref: "#/components/schemas/AdresseElectronique"
+          nullable: true
+        email:
+          nullable: true
+          type: string
+        telephone:
+          nullable: true
+          type: string
+      required:
+      - nom
+      title: FournisseurEntrant
     GenerateCertificateRequest:
       description: |-
         Requête pour générer un certificat X.509 auto-signé de test.
@@ -4285,6 +4526,38 @@ components:
       - xmp_conforme_facturx
       - xmp_present
       title: ResultatValidationPDFAPI
+    SchemeID:
+      description: |-
+        Codes de schémas d'identification (Electronic Address Scheme - EAS),
+        principalement pour l'adressage des factures électroniques.
+
+        **Valeurs possibles :**
+        - `0225` : FR_SIREN - SIREN français (le plus commun pour la France, remplace l'ancien 0002)
+        - `0088` : GLN - Global Location Number
+        - `0060` : DUNS - Data Universal Numbering System
+        - `9957` : FR_TVA_INTRA - Numéro de TVA intracommunautaire français
+        - `0199` : GLEIF - Global Legal Entity Identifier Foundation
+      enum:
+      - "0225"
+      - "0088"
+      - "0060"
+      - "9957"
+      - "0199"
+      title: SchemeID
+      type: string
+      x-enum-varnames:
+      - FR_SIREN
+      - GLN
+      - DUNS
+      - FR_TVA_INTRA
+      - GLEIF
+      x-enum-descriptions:
+      - "FR_SIREN - SIREN français (le plus commun pour la France, remplace l'ancien\
+        \ 0002)"
+      - GLN - Global Location Number (GLN)
+      - DUNS - Data Universal Numbering System (DUNS)
+      - FR_TVA_INTRA - Numéro de TVA intracommunautaire français
+      - GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
     ServiceStructure:
       description: Service d'une structure.
       example:
@@ -4665,6 +4938,16 @@ components:
       - statut
       - type_identifiant_structure
       title: StructureInfo
+    TypeDocument:
+      description: Types de documents commerciaux (UNTDID 1001).
+      enum:
+      - "380"
+      - "381"
+      - "384"
+      - "386"
+      - "389"
+      title: TypeDocument
+      type: string
     ValidationError:
       example:
         msg: msg
@@ -4746,41 +5029,6 @@ components:
       - numeroFacture
       - references
       title: FactureFacturX
-    AdresseElectronique:
-      description: |-
-        Représente une adresse de facturation électronique, composée d'un identifiant
-        et de son schéma (SchemeID) conformément à la norme EN16931.
-        Exemple: { "identifiant": "123456789", "scheme_id": "0225" }
-      properties:
-        identifiant:
-          title: Identifiant
-          type: string
-        schemeId:
-          allOf:
-          - $ref: "#/components/schemas/SchemeID"
-          default: "0225"
-      required:
-      - identifiant
-      title: AdresseElectronique
-    AdressePostale:
-      description: Représente une adresse postale.
-      properties:
-        codePostal:
-          nullable: true
-          type: string
-        ligneUn:
-          nullable: true
-          type: string
-        ligneDeux:
-          nullable: true
-          type: string
-        nomVille:
-          nullable: true
-          type: string
-        paysCodeIso:
-          nullable: true
-          type: string
-      title: AdressePostale
     CadreDeFacturation:
       description: "Définit le cadre de facturation (ex: A1 pour une facture fournisseur)."
       properties:
@@ -5136,38 +5384,6 @@ components:
       - typeFacture
       - typeTva
       title: References
-    SchemeID:
-      description: |-
-        Codes de schémas d'identification (Electronic Address Scheme - EAS),
-        principalement pour l'adressage des factures électroniques.
-
-        **Valeurs possibles :**
-        - `0225` : FR_SIREN - SIREN français (le plus commun pour la France, remplace l'ancien 0002)
-        - `0088` : GLN - Global Location Number
-        - `0060` : DUNS - Data Universal Numbering System
-        - `9957` : FR_TVA_INTRA - Numéro de TVA intracommunautaire français
-        - `0199` : GLEIF - Global Legal Entity Identifier Foundation
-      enum:
-      - "0225"
-      - "0088"
-      - "0060"
-      - "9957"
-      - "0199"
-      title: SchemeID
-      type: string
-      x-enum-varnames:
-      - FR_SIREN
-      - GLN
-      - DUNS
-      - FR_TVA_INTRA
-      - GLEIF
-      x-enum-descriptions:
-      - "FR_SIREN - SIREN français (le plus commun pour la France, remplace l'ancien\
-        \ 0002)"
-      - GLN - Global Location Number (GLN)
-      - DUNS - Data Universal Numbering System (DUNS)
-      - FR_TVA_INTRA - Numéro de TVA intracommunautaire français
-      - GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
     TypeFacture:
       description: Type de document (facture ou avoir).
       enum:
