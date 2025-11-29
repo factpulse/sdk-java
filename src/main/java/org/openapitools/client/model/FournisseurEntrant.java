@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Fournisseur extrait d&#39;une facture entrante.  Contrairement au modèle Fournisseur de models.py, ce modèle n&#39;a pas de champ id_fournisseur car cette information n&#39;est pas disponible dans les XML Factur-X/CII/UBL.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-29T08:54:36.961765409Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-29T10:36:03.732190869Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FournisseurEntrant {
   public static final String SERIALIZED_NAME_NOM = "nom";
   @SerializedName(SERIALIZED_NAME_NOM)
