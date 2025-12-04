@@ -5340,14 +5340,14 @@ components:
         - PMD : Pénalités de retard
         - AAB : Escompte pour paiement anticipé
       properties:
-        subjectCode:
+        codeSujet:
           nullable: true
           type: string
-        content:
-          title: Content
+        contenu:
+          title: Contenu
           type: string
       required:
-      - content
+      - contenu
       title: Note
     PieceJointeComplementaire:
       description: Représente une pièce jointe complémentaire.

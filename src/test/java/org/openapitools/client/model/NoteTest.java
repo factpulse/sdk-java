@@ -39,19 +39,19 @@ public class NoteTest {
     }
 
     /**
-     * Test the property 'subjectCode'
+     * Test the property 'codeSujet'
      */
     @Test
-    public void subjectCodeTest() {
-        // TODO: test subjectCode
+    public void codeSujetTest() {
+        // TODO: test codeSujet
     }
 
     /**
-     * Test the property 'content'
+     * Test the property 'contenu'
      */
     @Test
-    public void contentTest() {
-        // TODO: test content
+    public void contenuTest() {
+        // TODO: test contenu
     }
 
 }

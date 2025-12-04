@@ -8,8 +8,8 @@ Note de facture (IncludedNote en Factur-X).  Les notes obligatoires pour BR-FR-0
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**subjectCode** | **String** |  |  [optional] |
-|**content** | **String** |  |  |
+|**codeSujet** | **String** |  |  [optional] |
+|**contenu** | **String** |  |  |
 
 
 

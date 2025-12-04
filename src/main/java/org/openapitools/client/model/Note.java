@@ -51,56 +51,56 @@ import org.openapitools.client.JSON;
 /**
  * Note de facture (IncludedNote en Factur-X).  Les notes obligatoires pour BR-FR-05 sont : - PMT : Indemnité forfaitaire pour frais de recouvrement - PMD : Pénalités de retard - AAB : Escompte pour paiement anticipé
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-29T10:45:22.448682716Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-04T20:22:27.166621853Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Note {
-  public static final String SERIALIZED_NAME_SUBJECT_CODE = "subjectCode";
-  @SerializedName(SERIALIZED_NAME_SUBJECT_CODE)
+  public static final String SERIALIZED_NAME_CODE_SUJET = "codeSujet";
+  @SerializedName(SERIALIZED_NAME_CODE_SUJET)
   @javax.annotation.Nullable
-  private String subjectCode;
+  private String codeSujet;
 
-  public static final String SERIALIZED_NAME_CONTENT = "content";
-  @SerializedName(SERIALIZED_NAME_CONTENT)
+  public static final String SERIALIZED_NAME_CONTENU = "contenu";
+  @SerializedName(SERIALIZED_NAME_CONTENU)
   @javax.annotation.Nonnull
-  private String content;
+  private String contenu;
 
   public Note() {
   }
 
-  public Note subjectCode(@javax.annotation.Nullable String subjectCode) {
-    this.subjectCode = subjectCode;
+  public Note codeSujet(@javax.annotation.Nullable String codeSujet) {
+    this.codeSujet = codeSujet;
     return this;
   }
 
   /**
-   * Get subjectCode
-   * @return subjectCode
+   * Get codeSujet
+   * @return codeSujet
    */
   @javax.annotation.Nullable
-  public String getSubjectCode() {
-    return subjectCode;
+  public String getCodeSujet() {
+    return codeSujet;
   }
 
-  public void setSubjectCode(@javax.annotation.Nullable String subjectCode) {
-    this.subjectCode = subjectCode;
+  public void setCodeSujet(@javax.annotation.Nullable String codeSujet) {
+    this.codeSujet = codeSujet;
   }
 
 
-  public Note content(@javax.annotation.Nonnull String content) {
-    this.content = content;
+  public Note contenu(@javax.annotation.Nonnull String contenu) {
+    this.contenu = contenu;
     return this;
   }
 
   /**
-   * Get content
-   * @return content
+   * Get contenu
+   * @return contenu
    */
   @javax.annotation.Nonnull
-  public String getContent() {
-    return content;
+  public String getContenu() {
+    return contenu;
   }
 
-  public void setContent(@javax.annotation.Nonnull String content) {
-    this.content = content;
+  public void setContenu(@javax.annotation.Nonnull String contenu) {
+    this.contenu = contenu;
   }
 
 
@@ -114,8 +114,8 @@ public class Note {
       return false;
     }
     Note note = (Note) o;
-    return Objects.equals(this.subjectCode, note.subjectCode) &&
-        Objects.equals(this.content, note.content);
+    return Objects.equals(this.codeSujet, note.codeSujet) &&
+        Objects.equals(this.contenu, note.contenu);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -124,7 +124,7 @@ public class Note {
 
   @Override
   public int hashCode() {
-    return Objects.hash(subjectCode, content);
+    return Objects.hash(codeSujet, contenu);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -138,8 +138,8 @@ public class Note {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Note {\n");
-    sb.append("    subjectCode: ").append(toIndentedString(subjectCode)).append("\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    codeSujet: ").append(toIndentedString(codeSujet)).append("\n");
+    sb.append("    contenu: ").append(toIndentedString(contenu)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -161,10 +161,10 @@ public class Note {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("subjectCode", "content"));
+    openapiFields = new HashSet<String>(Arrays.asList("codeSujet", "contenu"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("content"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("contenu"));
   }
 
   /**
@@ -195,11 +195,11 @@ public class Note {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("subjectCode") != null && !jsonObj.get("subjectCode").isJsonNull()) && !jsonObj.get("subjectCode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `subjectCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subjectCode").toString()));
+      if ((jsonObj.get("codeSujet") != null && !jsonObj.get("codeSujet").isJsonNull()) && !jsonObj.get("codeSujet").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `codeSujet` to be a primitive type in the JSON string but got `%s`", jsonObj.get("codeSujet").toString()));
       }
-      if (!jsonObj.get("content").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `content` to be a primitive type in the JSON string but got `%s`", jsonObj.get("content").toString()));
+      if (!jsonObj.get("contenu").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `contenu` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contenu").toString()));
       }
   }
 
