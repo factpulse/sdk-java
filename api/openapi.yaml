@@ -68,6 +68,129 @@ info:
   version: 1.0.0
 servers:
 - url: /
+tags:
+- description: "\n## 📄 Génération et validation de factures électroniques\n\n**API\
+    \ principale pour la génération de factures Factur-X conformes aux normes europé\
+    ennes.**\n\n### Fonctionnalités\n\n- **Génération Factur-X** : Profils MINIMUM,\
+    \ BASIC, EN16931, EXTENDED\n- **Validation** : Schematron (45 à 210+ règles),\
+    \ VeraPDF (146+ règles PDF/A-3)\n- **Signature électronique** : PAdES-B-B, PAdES-B-T,\
+    \ PAdES-B-LT (niveaux eIDAS)\n- **Traitement asynchrone** : Support Celery pour\
+    \ gros fichiers\n- **Auto-enrichissement** : Données depuis Chorus Pro + API Entreprise\n\
+    \        "
+  name: Traitement Facture
+- description: "\n## 🔑 Authentification OAuth2 pour AFNOR PDP\n\n**Endpoint pour\
+    \ obtenir un token OAuth2 pour l'authentification auprès des Plateformes de Dé\
+    matérialisation Partenaires.**\n\n### Utilisation\n\nCet endpoint permet d'obtenir\
+    \ un access token OAuth2 nécessaire pour appeler les API Flow Service et Directory\
+    \ Service.\n\n**Type de requête** : `application/x-www-form-urlencoded`\n\n**Paramè\
+    tres** :\n- `grant_type` : `client_credentials` (requis)\n- `client_id` : ID client\
+    \ fourni par le PDP (requis)\n- `client_secret` : Secret client fourni par le\
+    \ PDP (requis)\n\n**Réponse** :\n```json\n{\n  \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\
+    ,\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600\n}\n```\n\n**Note** :\
+    \ Ce token doit être utilisé dans le header `Authorization: Bearer {access_token}`\
+    \ pour les appels aux API AFNOR.\n        "
+  name: AFNOR PDP/PA
+- description: "\n## 🔐 Modes d'authentification AFNOR PDP\n\n**Tous les endpoints\
+    \ AFNOR Flow Service supportent 2 modes d'authentification :**\n\n### Mode 1 :\
+    \ Stocké (Stored Credentials)\n- Les credentials PDP sont stockées chiffrées dans\
+    \ Django\n- Récupérées automatiquement via le `client_uid` du JWT\n- **Django\
+    \ décide** de l'environnement (test/production via les URLs configurées)\n- Pratique\
+    \ pour la production\n\n**Exemple** :\n```json\n{\n  \"name\": \"Facture FAC-2025-001\"\
+    ,\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\": \"EN16931\"\n}\n```\n\n**JWT\
+    \ doit contenir** : claim `client_uid` pointant vers une config PDP enregistré\
+    e\n\n---\n\n### Mode 2 : Zero-Trust (Zero-Storage)\n- Les credentials PDP sont\
+    \ passées dans le champ `pdp_credentials` de chaque requête\n- Jamais stockées\
+    \ en base de données\n- **Le client décide** de l'environnement via les URLs dans\
+    \ les credentials\n- Sécurité maximale, conformité RGPD\n\n**Exemple** :\n```json\n\
+    {\n  \"name\": \"Facture FAC-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\"\
+    : \"EN16931\",\n  \"pdp_credentials\": {\n    \"flow_service_url\": \"https://pdp-production.example.fr/flow/v1\"\
+    ,\n    \"token_url\": \"https://auth.example.fr/oauth/token\",\n    \"client_id\"\
+    : \"client_prod_123\",\n    \"client_secret\": \"secret_prod_456\",\n    \"directory_service_url\"\
+    : \"https://pdp-production.example.fr/directory/v1\"\n  }\n}\n```\n\n---\n\n**Sché\
+    ma PDPCredentials** :\n- `flow_service_url` : URL de l'API Flow Service (soumission/recherche\
+    \ de factures)\n- `token_url` : URL OAuth2 pour obtenir le token\n- `client_id`\
+    \ : Client ID OAuth2 fourni par le PDP\n- `client_secret` : Client Secret OAuth2\
+    \ fourni par le PDP\n- `directory_service_url` : (Optionnel) URL de l'API Directory\
+    \ Service (annuaire)\n\n**Note** : Tous les endpoints ci-dessous supportent ces\
+    \ 2 modes. Le champ `pdp_credentials` est optionnel dans chaque requête.\n\n📖\
+    \ **Documentation complète** : Voir `OPENAPI_AUTHENTICATION_MODES.md`\n      \
+    \  "
+  name: AFNOR PDP/PA - Flow Service
+- description: "\n## 🔐 Modes d'authentification AFNOR Directory Service\n\nSupporte\
+    \ les **mêmes 2 modes d'authentification** que Flow Service.\n\n### Mode 1 : Stocké\
+    \nJWT avec `client_uid` → Credentials récupérées depuis Django\n\n### Mode 2 :\
+    \ Zero-Trust\nCredentials PDP passées dans `pdp_credentials` (voir Flow Service)\n\
+    \n📖 **Documentation complète** : Voir tag \"AFNOR PDP/PA - Flow Service\" ci-dessus\n\
+    \        "
+  name: AFNOR PDP/PA - Directory Service
+- description: "\n## 🔐 Modes d'authentification Signature électronique\n\n**Tous\
+    \ les endpoints de signature électronique supportent 2 modes d'authentification\
+    \ :**\n\n### Mode 1 : Stocké (Stored Credentials)\n- Les certificats de signature\
+    \ sont stockés chiffrés dans Django\n- Récupérés automatiquement via le `client_uid`\
+    \ du JWT\n- **Django décide** de l'environnement (certificat test ou qualifié\
+    \ eIDAS)\n- Pratique pour la production\n\n**Exemple** :\n```json\n{\n  \"pdf_base64\"\
+    : \"JVBERi0xLjQKJeLjz9MK...\",\n  \"filename\": \"facture.pdf\",\n  \"signature_reason\"\
+    : \"Facture officielle\",\n  \"signature_location\": \"Paris, France\",\n  \"\
+    contact_info\": \"contact@entreprise.fr\"\n}\n```\n\n**JWT doit contenir** : claim\
+    \ `client_uid` pointant vers un certificat enregistré\n\n---\n\n### Mode 2 : Zero-Trust\n\
+    - Les credentials du certificat sont passées dans le champ `certificate_credentials`\
+    \ de chaque requête\n- Jamais stockées en base de données\n- **Le client décide**\
+    \ du type de certificat (test ou qualifié eIDAS)\n- Sécurité maximale, conformité\
+    \ RGPD\n\n**Exemple** :\n```json\n{\n  \"certificate_credentials\": {\n    \"\
+    certificate_base64\": \"MIIE...\",\n    \"private_key_base64\": \"MIIE...\",\n\
+    \    \"password\": \"cert_password\",\n    \"timestamp_url\": \"http://timestamp.digicert.com\"\
+    ,\n    \"use_qualified_certificate\": true\n  },\n  \"pdf_base64\": \"JVBERi0xLjQKJeLjz9MK...\"\
+    ,\n  \"filename\": \"facture.pdf\",\n  \"signature_reason\": \"Facture officielle\"\
+    ,\n  \"signature_location\": \"Paris, France\",\n  \"contact_info\": \"contact@entreprise.fr\"\
+    \n}\n```\n\n---\n\n**Schéma CertificateCredentials** :\n- `certificate_base64`\
+    \ : Certificat X.509 encodé en base64\n- `private_key_base64` : Clé privée encodé\
+    e en base64\n- `password` : Mot de passe de la clé privée (si chiffrée)\n- `timestamp_url`\
+    \ : URL du serveur d'horodatage (TSA)\n- `use_qualified_certificate` : `true`\
+    \ = certificat qualifié eIDAS, `false` = certificat test\n\n**Note** : Tous les\
+    \ endpoints ci-dessous supportent ces 2 modes. Le champ `certificate_credentials`\
+    \ est optionnel dans chaque requête.\n\n📖 **Documentation complète** : Voir `OPENAPI_AUTHENTICATION_MODES.md`\n\
+    \        "
+  name: Signature électronique
+- description: "\n## 🔐 Modes d'authentification Chorus Pro\n\n**Tous les endpoints\
+    \ Chorus Pro supportent 2 modes d'authentification :**\n\n### Mode 1 : Stocké\
+    \ (Stored Credentials)\n- Les credentials sont stockés chiffrés dans Django\n\
+    - Récupérés automatiquement via le `client_uid` du JWT\n- **Django décide** de\
+    \ l'environnement (sandbox/production)\n- Pratique pour la production\n\n**Exemple**\
+    \ :\n```json\n{\n  \"identifiant_structure\": \"12345678901234\",\n  \"type_identifiant_structure\"\
+    : \"SIRET\"\n}\n```\n\n**JWT doit contenir** : claim `client_uid` pointant vers\
+    \ une config Chorus Pro enregistrée\n\n---\n\n### Mode 2 : Zero-Trust\n- Les credentials\
+    \ sont passés dans le champ `credentials` de chaque requête\n- Jamais stockés\
+    \ en base de données\n- **Le client décide** de l'environnement via `\"sandbox\"\
+    : true/false`\n- Sécurité maximale, conformité RGPD\n\n**Exemple** :\n```json\n\
+    {\n  \"credentials\": {\n    \"piste_client_id\": \"mon_client_id\",\n    \"piste_client_secret\"\
+    : \"mon_secret\",\n    \"chorus_pro_login\": \"login@entreprise.fr\",\n    \"\
+    chorus_pro_password\": \"password\",\n    \"sandbox\": true\n  },\n  \"identifiant_structure\"\
+    : \"12345678901234\",\n  \"type_identifiant_structure\": \"SIRET\"\n}\n```\n\n\
+    ---\n\n**Schéma ChorusProCredentials** :\n- `piste_client_id` : Client ID PISTE\
+    \ (portail OAuth2 du gouvernement)\n- `piste_client_secret` : Client Secret PISTE\n\
+    - `chorus_pro_login` : Login Chorus Pro\n- `chorus_pro_password` : Mot de passe\
+    \ Chorus Pro\n- `sandbox` : `true` = environnement de test, `false` = production\n\
+    \n**Note** : Tous les endpoints ci-dessous supportent ces 2 modes. Le champ `credentials`\
+    \ est optionnel dans chaque requête.\n\n📖 **Documentation complète** : Voir `OPENAPI_AUTHENTICATION_MODES.md`\n\
+    \        "
+  name: Chorus Pro
+- description: "\n## 🔍 Vérification de cohérence PDF/XML Factur-X\n\n**Vérifie que\
+    \ les données visibles dans le PDF correspondent au XML Factur-X embarqué.**\n\
+    \n### Fonctionnalités\n\n- **Extraction PDF native** : Rapide, utilise pdfplumber\
+    \ pour extraire le texte\n- **Extraction OCR** : Service DocTR pour les PDF images\
+    \ (asynchrone)\n- **Comparaison** : Compare les données extraites du PDF avec\
+    \ le XML Factur-X\n- **Rapport d'écarts** : Liste des différences avec niveau\
+    \ de gravité (CRITIQUE, AVERTISSEMENT, INFO)\n\n### Champs vérifiés\n\n**Identification**\
+    \ : BT-1 (n° facture), BT-2 (date), BT-3 (type), BT-5 (devise)\n\n**Parties**\
+    \ :\n- Vendeur : BT-27 (nom), BT-29 (SIRET), BT-30 (SIREN), BT-31 (TVA)\n- Acheteur\
+    \ : BT-44 (nom), BT-46 (SIRET), BT-47 (SIREN), BT-48 (TVA)\n\n**Montants** : BT-109\
+    \ (HT), BT-110 (TVA), BT-112 (TTC), BT-115 (à payer)\n\n**Notes obligatoires**\
+    \ : PMT (frais recouvrement), PMD (pénalités retard), AAB (escompte)\n\n### Endpoints\n\
+    \n- **POST /verifier** : Vérification synchrone (PDF natif uniquement)\n- **POST\
+    \ /verifier-async** : Vérification asynchrone (avec OCR si nécessaire)\n- **GET\
+    \ /verifier-async/{id}/statut** : Statut d'une vérification async\n- **POST /extraire**\
+    \ : Extraction seule (sans comparaison XML)\n        "
+  name: Vérification PDF/XML
 paths:
   /api/v1/traitement/generer-facture:
     post:
@@ -322,7 +445,7 @@ paths:
         Quand `statut="SUCCESS"`, le champ `resultat` contient :
         - `statut` : "SUCCES" ou "ERREUR" (résultat métier)
         - `chemin_fichier` : Chemin du fichier généré (si succès)
-        - `message_erreur` : Détails de l'erreur (si échec métier)
+        - `errorCode`, `errorMessage`, `details` : Format AFNOR (si échec métier)
 
         ## Usage
 
@@ -752,7 +875,7 @@ paths:
                 print(f"Conforme: {resultat['est_conforme']}")
                 break
             elif status["statut"] == "FAILURE":
-                print(f"Erreur: {status['resultat']['message_erreur']}")
+                print(f"Erreur: {status['resultat']['errorMessage']}")
                 break
 
             time.sleep(2)  # Attendre 2 secondes avant le prochain check
@@ -2933,6 +3056,176 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /api/v1/verification/verifier:
+    post:
+      description: |-
+        Vérifie la conformité entre le PDF et son XML Factur-X embarqué.
+
+        **IMPORTANT**: Seuls les PDF Factur-X (avec XML embarqué) sont acceptés.
+        Les PDF sans XML Factur-X seront rejetés avec une erreur 400.
+
+        Cette version synchrone utilise uniquement l'extraction PDF native (pdfplumber).
+        Pour les PDF images nécessitant de l'OCR, utilisez l'endpoint `/verifier-async`.
+
+        **Principe de vérification (Factur-X 1.08):**
+        - Principe n°2: Le XML ne peut contenir que des infos présentes dans le PDF
+        - Principe n°4: Toute info XML doit être présente et conforme dans le PDF
+
+        **Champs vérifiés:**
+        - Identification: BT-1 (n° facture), BT-2 (date), BT-3 (type), BT-5 (devise), BT-23 (cadre)
+        - Vendeur: BT-27 (nom), BT-29 (SIRET), BT-30 (SIREN), BT-31 (TVA)
+        - Acheteur: BT-44 (nom), BT-46 (SIRET), BT-47 (SIREN), BT-48 (TVA)
+        - Montants: BT-109 (HT), BT-110 (TVA), BT-112 (TTC), BT-115 (à payer)
+        - Ventilation TVA: BT-116, BT-117, BT-118, BT-119
+        - Lignes de facture: BT-153, BT-129, BT-146, BT-131
+        - Notes obligatoires: PMT, PMD, AAB
+        - Règle BR-FR-09: cohérence SIRET/SIREN
+      operationId: verifier_pdf_sync_api_v1_verification_verifier_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Body_verifier_pdf_sync_api_v1_verification_verifier_post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReponseVerificationSucces"
+          description: Vérification réussie
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: "Erreur de vérification (PDF non Factur-X, invalide, etc.)"
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: PDF trop volumineux ou trop de pages
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Vérifier la conformité PDF/XML Factur-X (synchrone)
+      tags:
+      - Vérification PDF/XML
+      - Vérification PDF/XML
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /api/v1/verification/verifier-async:
+    post:
+      description: |-
+        Vérifie la conformité PDF/XML Factur-X de manière asynchrone.
+
+        **IMPORTANT**: Seuls les PDF Factur-X (avec XML embarqué) sont acceptés.
+        Les PDF sans XML Factur-X retourneront une erreur `NOT_FACTURX` dans le résultat.
+
+        Cette version utilise une tâche Celery et peut faire appel au service OCR
+        si le PDF est une image ou si `forcer_ocr=true`.
+
+        **Retourne immédiatement** un ID de tâche. Utilisez `/verifier-async/{id_tache}/statut`
+        pour récupérer le résultat.
+
+        **Principe de vérification (Factur-X 1.08):**
+        - Principe n°2: Le XML ne peut contenir que des infos présentes dans le PDF
+        - Principe n°4: Toute info XML doit être présente et conforme dans le PDF
+
+        **Champs vérifiés:**
+        - Identification: BT-1 (n° facture), BT-2 (date), BT-3 (type), BT-5 (devise), BT-23 (cadre)
+        - Vendeur: BT-27 (nom), BT-29 (SIRET), BT-30 (SIREN), BT-31 (TVA)
+        - Acheteur: BT-44 (nom), BT-46 (SIRET), BT-47 (SIREN), BT-48 (TVA)
+        - Montants: BT-109 (HT), BT-110 (TVA), BT-112 (TTC), BT-115 (à payer)
+        - Ventilation TVA: BT-116, BT-117, BT-118, BT-119
+        - Lignes de facture: BT-153, BT-129, BT-146, BT-131
+        - Notes obligatoires: PMT, PMD, AAB
+        - Règle BR-FR-09: cohérence SIRET/SIREN
+
+        **Avantages par rapport à la version synchrone:**
+        - Support OCR pour les PDF images (via service DocTR)
+        - Timeout plus long pour les gros documents
+        - Ne bloque pas le serveur
+      operationId: verifier_pdf_async_api_v1_verification_verifier_async_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Body_verifier_pdf_async_api_v1_verification_verifier_async_post"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReponseTache"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Vérifier la conformité PDF/XML Factur-X (asynchrone)
+      tags:
+      - Vérification PDF/XML
+      - Vérification PDF/XML
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /api/v1/verification/verifier-async/{id_tache}/statut:
+    get:
+      description: |-
+        Récupère le statut et le résultat d'une tâche de vérification asynchrone.
+
+        **Statuts possibles:**
+        - `PENDING`: Tâche en attente dans la file
+        - `STARTED`: Tâche en cours d'exécution
+        - `SUCCESS`: Tâche terminée avec succès (voir `resultat`)
+        - `FAILURE`: Erreur système (exception non gérée)
+
+        **Note:** Le champ `resultat.statut` peut être "SUCCES" ou "ERREUR"
+        indépendamment du statut Celery (qui sera toujours SUCCESS si la tâche s'est exécutée).
+      operationId: obtenir_statut_verification_api_v1_verification_verifier_async__id_tache__statut_get
+      parameters:
+      - explode: false
+        in: path
+        name: id_tache
+        required: true
+        schema:
+          title: Id Tache
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatutTache"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Obtenir le statut d'une vérification asynchrone
+      tags:
+      - Vérification PDF/XML
+      - Vérification PDF/XML
+      x-accepts:
+      - application/json
   /:
     get:
       description: |-
@@ -3007,6 +3300,38 @@ paths:
       - application/json
 components:
   schemas:
+    APIError:
+      description: |-
+        Erreur API standardisée (alignée sur AFNOR Error schema).
+
+        Format unifié pour toutes les réponses d'erreur HTTP.
+      example:
+        details:
+        - code: SCHEMATRON_BR_FR_01
+          item: BR-FR-01
+          level: Error
+          reason: Le SIRET du fournisseur est obligatoire pour les factures françaises
+          source: schematron
+        errorCode: VALIDATION_FAILED
+        errorMessage: La validation Factur-X a échoué
+      properties:
+        errorCode:
+          description: Code alphanumérique identifiant précisément l'erreur
+          title: Errorcode
+          type: string
+        errorMessage:
+          description: Message décrivant l'erreur (non destiné à l'utilisateur final)
+          title: Errormessage
+          type: string
+        details:
+          items:
+            $ref: "#/components/schemas/ValidationErrorDetail"
+          nullable: true
+          type: array
+      required:
+      - errorCode
+      - errorMessage
+      title: APIError
     AdresseElectronique:
       description: |-
         Représente une adresse de facturation électronique, composée d'un identifiant
@@ -3215,6 +3540,85 @@ components:
       required:
       - fichier_xml
       title: Body_valider_xml_api_v1_traitement_valider_xml_post
+    Body_verifier_pdf_async_api_v1_verification_verifier_async_post:
+      properties:
+        fichier_pdf:
+          description: Fichier PDF Factur-X à vérifier
+          format: binary
+          title: Fichier Pdf
+          type: string
+        forcer_ocr:
+          default: false
+          description: Forcer l'utilisation de l'OCR même si le PDF contient du texte
+            natif
+          title: Forcer Ocr
+          type: boolean
+      required:
+      - fichier_pdf
+      title: Body_verifier_pdf_async_api_v1_verification_verifier_async_post
+    Body_verifier_pdf_sync_api_v1_verification_verifier_post:
+      properties:
+        fichier_pdf:
+          description: Fichier PDF Factur-X à vérifier
+          format: binary
+          title: Fichier Pdf
+          type: string
+      required:
+      - fichier_pdf
+      title: Body_verifier_pdf_sync_api_v1_verification_verifier_post
+    BoundingBoxSchema:
+      description: |-
+        Coordonnées d'une zone rectangulaire dans le PDF.
+
+        Les coordonnées sont en points PDF (1 point = 1/72 pouce).
+        L'origine (0,0) est en bas à gauche de la page.
+      example:
+        height: 15.0
+        page: 0
+        width: 70.3
+        x0: 350.5
+        x1: 420.8
+        y0: 720.0
+        y1: 735.0
+      properties:
+        x0:
+          description: Coordonnée X gauche
+          title: X0
+          type: number
+        y0:
+          description: Coordonnée Y bas
+          title: Y0
+          type: number
+        x1:
+          description: Coordonnée X droite
+          title: X1
+          type: number
+        y1:
+          description: Coordonnée Y haut
+          title: Y1
+          type: number
+        page:
+          default: 0
+          description: Numéro de page (0-indexed)
+          minimum: 0.0
+          title: Page
+          type: integer
+        width:
+          description: Largeur de la zone
+          title: Width
+          type: number
+        height:
+          description: Hauteur de la zone
+          title: Height
+          type: number
+      required:
+      - height
+      - width
+      - x0
+      - x1
+      - y0
+      - y1
+      title: BoundingBoxSchema
     CertificateInfoResponse:
       description: Informations sur un certificat généré.
       properties:
@@ -3289,6 +3693,69 @@ components:
       - valide_du
       - ville
       title: CertificateInfoResponse
+    ChampVerifieSchema:
+      description: Un champ vérifié avec toutes ses informations (extraction + conformité
+        + localisation).
+      example:
+        bbox:
+          height: 15.0
+          page: 0
+          width: 70.3
+          x0: 350.5
+          x1: 420.8
+          y0: 720.0
+          y1: 735.0
+        business_term: BT-1
+        confiance: 0.95
+        label: N° Facture
+        message: Conforme
+        source: pdf_natif
+        statut: CONFORME
+        valeur_pdf: FACT-2024-001
+        valeur_xml: FACT-2024-001
+      properties:
+        business_term:
+          description: "Business Term EN16931 (ex: BT-1)"
+          title: Business Term
+          type: string
+        label:
+          description: "Libellé du champ (ex: N° Facture)"
+          title: Label
+          type: string
+        valeur_pdf:
+          nullable: true
+          type: string
+        valeur_xml:
+          nullable: true
+          type: string
+        statut:
+          allOf:
+          - $ref: "#/components/schemas/StatutChampAPI"
+          description: Statut de conformité
+        message:
+          nullable: true
+          type: string
+        confiance:
+          default: 1.0
+          description: Score de confiance (0-1)
+          maximum: 1.0
+          minimum: 0.0
+          title: Confiance
+          type: number
+        source:
+          default: pdf_natif
+          description: Source d'extraction
+          title: Source
+          type: string
+        bbox:
+          allOf:
+          - $ref: "#/components/schemas/BoundingBoxSchema"
+          nullable: true
+      required:
+      - business_term
+      - label
+      - statut
+      title: ChampVerifieSchema
     ChorusProCredentials:
       description: |-
         Credentials Chorus Pro pour mode Zero-Trust.
@@ -3571,6 +4038,24 @@ components:
           - $ref: "#/components/schemas/CredentialsChorusPro"
           nullable: true
       title: DestinationChorusPro
+    DimensionPageSchema:
+      description: Dimensions d'une page PDF.
+      example:
+        height: 841.8
+        width: 595.2
+      properties:
+        width:
+          description: Largeur en points PDF
+          title: Width
+          type: number
+        height:
+          description: Hauteur en points PDF
+          title: Height
+          type: number
+      required:
+      - height
+      - width
+      title: DimensionPageSchema
     DonneesFactureSimplifiees:
       description: Données simplifiées de la facture (format minimal pour auto-enrichissement).
       properties:
@@ -3620,6 +4105,22 @@ components:
       - lignes
       - numero
       title: DonneesFactureSimplifiees
+    ErrorLevel:
+      enum:
+      - Error
+      - Warning
+      type: string
+    ErrorSource:
+      enum:
+      - schematron
+      - pdfa
+      - pydantic
+      - xmp
+      - signature
+      - afnor
+      - chorus_pro
+      - system
+      type: string
     FactureEnrichieInfo:
       description: Informations sur la facture enrichie.
       properties:
@@ -4031,6 +4532,55 @@ components:
       required:
       - nom_champ
       title: InformationSignatureAPI
+    NoteObligatoireSchema:
+      description: Note obligatoire détectée avec localisation et comparaison XML/PDF.
+      example:
+        bbox:
+          height: 5.8
+          page: 0
+          width: 61.6
+          x0: 238.4
+          x1: 300.0
+          y0: 164.4
+          y1: 170.2
+        code_sujet: PMT
+        label: Indemnité recouvrement
+        message: Texte XML trouvé dans le PDF
+        statut: CONFORME
+        valeur_pdf: indemnité forfaitaire de 40 euros
+        valeur_xml: "En cas de retard de paiement, une indemnité forfaitaire de 40\
+          \ euros sera due."
+      properties:
+        code_sujet:
+          description: "Code sujet (PMT, PMD, AAB)"
+          title: Code Sujet
+          type: string
+        label:
+          description: "Libellé (ex: Indemnité recouvrement)"
+          title: Label
+          type: string
+        valeur_pdf:
+          nullable: true
+          type: string
+        valeur_xml:
+          nullable: true
+          type: string
+        statut:
+          allOf:
+          - $ref: "#/components/schemas/StatutChampAPI"
+          default: NON_VERIFIE
+          description: Statut de conformité (CONFORME si XML trouvé dans PDF)
+        message:
+          nullable: true
+          type: string
+        bbox:
+          allOf:
+          - $ref: "#/components/schemas/BoundingBoxSchema"
+          nullable: true
+      required:
+      - code_sujet
+      - label
+      title: NoteObligatoireSchema
     ObtenirIdChorusProRequest:
       description: Obtenir l'ID Chorus Pro depuis un SIRET.
       example:
@@ -4349,6 +4899,121 @@ components:
       required:
       - message
       title: ReponseValidationSucces
+    ReponseVerificationSucces:
+      description: Réponse de vérification réussie avec données unifiées.
+      example:
+        avertissements: []
+        champs:
+        - bbox:
+            height: 15.0
+            page: 0
+            width: 70.3
+            x0: 350.5
+            x1: 420.8
+            y0: 720.0
+            y1: 735.0
+          business_term: BT-1
+          confiance: 0.95
+          label: N° Facture
+          message: Conforme
+          source: pdf_natif
+          statut: CONFORME
+          valeur_pdf: FACT-2024-001
+          valeur_xml: FACT-2024-001
+        - bbox:
+            height: 15.0
+            page: 0
+            width: 70.0
+            x0: 450.0
+            x1: 520.0
+            y0: 300.0
+            y1: 315.0
+          business_term: BT-109
+          confiance: 0.9
+          label: Total HT
+          message: Conforme
+          source: pdf_natif
+          statut: CONFORME
+          valeur_pdf: "1000.00"
+          valeur_xml: "1000.00"
+        champs_conformes: 12
+        champs_verifies: 12
+        dimensions_pages:
+        - height: 841.8
+          width: 595.2
+        est_conforme: true
+        est_facturx: true
+        notes_obligatoires:
+        - bbox:
+            height: 15.0
+            page: 0
+            width: 80.0
+            x0: 100.0
+            x1: 180.0
+            y0: 150.0
+            y1: 165.0
+          code_sujet: PMT
+          contenu: 40 €
+          label: Indemnité recouvrement
+          presente: true
+        profil_facturx: EN16931
+        score_conformite: 100.0
+      properties:
+        est_conforme:
+          description: True si aucun écart critique
+          title: Est Conforme
+          type: boolean
+        score_conformite:
+          description: Score de conformité (0-100%)
+          maximum: 100.0
+          minimum: 0.0
+          title: Score Conformite
+          type: number
+        champs_verifies:
+          default: 0
+          description: Nombre de champs vérifiés
+          minimum: 0.0
+          title: Champs Verifies
+          type: integer
+        champs_conformes:
+          default: 0
+          description: Nombre de champs conformes
+          minimum: 0.0
+          title: Champs Conformes
+          type: integer
+        est_facturx:
+          default: false
+          description: True si le PDF contient du XML Factur-X
+          title: Est Facturx
+          type: boolean
+        profil_facturx:
+          nullable: true
+          type: string
+        champs:
+          description: "Liste des champs vérifiés avec valeurs, statuts et coordonné\
+            es PDF"
+          items:
+            $ref: "#/components/schemas/ChampVerifieSchema"
+          type: array
+        notes_obligatoires:
+          description: "Notes obligatoires (PMT, PMD, AAB) avec localisation PDF"
+          items:
+            $ref: "#/components/schemas/NoteObligatoireSchema"
+          type: array
+        dimensions_pages:
+          description: "Dimensions de chaque page du PDF (largeur, hauteur)"
+          items:
+            $ref: "#/components/schemas/DimensionPageSchema"
+          type: array
+        avertissements:
+          description: Avertissements non bloquants
+          items:
+            type: string
+          type: array
+      required:
+      - est_conforme
+      - score_conformite
+      title: ReponseVerificationSucces
     ResultatAFNOR:
       description: Résultat de la soumission à AFNOR PDP.
       properties:
@@ -4876,6 +5541,16 @@ components:
       - RETRY
       title: StatutCelery
       type: string
+    StatutChampAPI:
+      description: Statut de conformité d'un champ.
+      enum:
+      - CONFORME
+      - ECART
+      - ABSENT_PDF
+      - ABSENT_XML
+      - NON_VERIFIE
+      title: StatutChampAPI
+      type: string
     StatutFacture:
       description: Statut d'une facture Chorus Pro.
       properties:
@@ -4992,69 +5667,60 @@ components:
       - msg
       - type
       title: ValidationError
-    FactureFacturX:
-      description: Modèle de données pour une facture destinée à être convertie en
-        Factur-X.
+    ValidationErrorDetail:
+      description: |-
+        Détail d'une erreur de validation (aligné sur AFNOR AcknowledgementDetail).
+
+        Format unifié pour toutes les erreurs de validation Factur-X,
+        compatible avec la norme AFNOR XP Z12-013.
       properties:
-        numeroFacture:
-          title: Numerofacture
+        level:
+          allOf:
+          - $ref: "#/components/schemas/ErrorLevel"
+          default: Error
+          description: "Niveau de gravité : 'Error' ou 'Warning'"
+        item:
+          description: "Identifiant de l'élément concerné (XPath, champ, règle BR-FR,\
+            \ etc.)"
+          title: Item
           type: string
-        dateEcheancePaiement:
-          title: Dateecheancepaiement
+        reason:
+          description: Description de l'erreur
+          title: Reason
           type: string
-        dateFacture:
-          title: Datefacture
-          type: string
-        modeDepot:
-          $ref: "#/components/schemas/ModeDepot"
-        destinataire:
-          $ref: "#/components/schemas/Destinataire"
-        fournisseur:
-          $ref: "#/components/schemas/Fournisseur"
-        cadreDeFacturation:
-          $ref: "#/components/schemas/CadreDeFacturation"
-        references:
-          $ref: "#/components/schemas/References"
-        montantTotal:
-          $ref: "#/components/schemas/MontantTotal"
-        lignesDePoste:
-          items:
-            $ref: "#/components/schemas/LigneDePoste"
-          type: array
-        lignesDeTva:
-          items:
-            $ref: "#/components/schemas/LigneDeTVA"
-          type: array
-        notes:
-          items:
-            $ref: "#/components/schemas/Note"
-          type: array
-        commentaire:
+        source:
+          allOf:
+          - $ref: "#/components/schemas/ErrorSource"
+          nullable: true
+        code:
           nullable: true
           type: string
-        idUtilisateurCourant:
-          nullable: true
-          type: integer
-        piecesJointesComplementaires:
-          items:
-            $ref: "#/components/schemas/PieceJointeComplementaire"
-          nullable: true
-          type: array
       required:
-      - cadreDeFacturation
-      - dateEcheancePaiement
-      - destinataire
-      - fournisseur
-      - modeDepot
-      - montantTotal
-      - numeroFacture
-      - references
-      title: FactureFacturX
+      - item
+      - reason
+      title: ValidationErrorDetail
     CadreDeFacturation:
-      description: "Définit le cadre de facturation (ex: A1 pour une facture fournisseur)."
+      description: |-
+        Définit le cadre de facturation.
+
+        - code_cadre_facturation: Code Chorus Pro (A1, A2, A9, A12) - utilisé pour B2G
+        - nature_operation: Nature de l'opération (B1, S1, M1, etc.) - prioritaire pour Factur-X
+
+        Si nature_operation est fourni, il sera utilisé directement dans le XML Factur-X (BT-23).
+        Sinon, le code sera déduit de code_cadre_facturation via un mapping automatique.
+
+        Exemple:
+            >>> cadre = CadreDeFacturation(
+            ...     code_cadre_facturation=CodeCadreFacturation.A1_FACTURE_FOURNISSEUR,
+            ...     nature_operation=NatureOperation.BIENS  # Force B1 au lieu de S1
+            ... )
       properties:
         codeCadreFacturation:
           $ref: "#/components/schemas/CodeCadreFacturation"
+        natureOperation:
+          allOf:
+          - $ref: "#/components/schemas/NatureOperation"
+          nullable: true
         codeServiceValideur:
           nullable: true
           type: string
@@ -5111,6 +5777,7 @@ components:
       - CANARIES - TVA Canaries
       - CEUTA_MELILLA - TVA Ceuta/Melilla
     CodeCadreFacturation:
+      description: Codes Chorus Pro pour le cadre de facturation (usage B2G).
       enum:
       - A1_FACTURE_FOURNISSEUR
       - A2_FACTURE_FOURNISSEUR_DEJA_PAYEE
@@ -5269,7 +5936,11 @@ components:
       - unite
       title: LigneDePoste
     LigneDeTVA:
-      description: Représente une ligne de totalisation par taux de TVA.
+      description: |-
+        Représente une ligne de totalisation par taux de TVA.
+
+        Pour les exonérations (catégories E, AE, K, G, O), les champs
+        `motif_exoneration` et `code_vatex` sont requis selon EN16931.
       properties:
         montantBaseHt:
           $ref: "#/components/schemas/MontantBaseHt"
@@ -5284,6 +5955,12 @@ components:
           allOf:
           - $ref: "#/components/schemas/CategorieTVA"
           nullable: true
+        motifExoneration:
+          nullable: true
+          type: string
+        codeVatex:
+          nullable: true
+          type: string
       required:
       - montantBaseHt
       - montantTva
@@ -5331,6 +6008,51 @@ components:
       - montantTtcTotal
       - montantTva
       title: MontantTotal
+    NatureOperation:
+      description: |-
+        Nature de l'opération (BT-23) pour Factur-X - Réforme française.
+
+        BR-FR-08: Le cadre de facturation doit être l'un des codes suivants.
+        La première lettre indique : B = Biens, S = Services, M = Mixte.
+
+        Ref: XP Z12-012, article_conformite_pdf_facturx.md
+
+        Exemple d'utilisation:
+            >>> cadre = CadreDeFacturation(
+            ...     code_cadre_facturation=CodeCadreFacturation.A1_FACTURE_FOURNISSEUR,
+            ...     nature_operation=NatureOperation.BIENS
+            ... )
+      enum:
+      - B1
+      - B1
+      - S1
+      - S1
+      - M1
+      - M1
+      - B2
+      - B2
+      - S2
+      - S2
+      - M2
+      - M2
+      - B4
+      - B4
+      - S4
+      - S4
+      - M4
+      - M4
+      - S3
+      - S3
+      - S5
+      - S5
+      - S6
+      - S6
+      - B7
+      - B7
+      - S7
+      - S7
+      title: NatureOperation
+      type: string
     Note:
       description: |-
         Note de facture (IncludedNote en Factur-X).
@@ -5432,90 +6154,446 @@ components:
       - FORFAIT
       title: Unite
       type: string
-    ErrorLevel:
-      description: Niveau de gravité d'une erreur (aligné sur AFNOR AcknowledgementDetail).
-      enum:
-      - Error
-      - Warning
-      title: ErrorLevel
-      type: string
-    ErrorSource:
-      description: Source de l'erreur pour faciliter le diagnostic.
-      enum:
-      - schematron
-      - pdfa
-      - pydantic
-      - xmp
-      - signature
-      - afnor
-      - chorus_pro
-      - system
-      title: ErrorSource
-      type: string
-    ValidationErrorDetail:
-      description: |-
-        Détail d'une erreur de validation (aligné sur AFNOR AcknowledgementDetail).
-
-        Format unifié pour toutes les erreurs de validation Factur-X,
-        compatible avec la norme AFNOR XP Z12-013.
-      properties:
-        level:
-          allOf:
-          - $ref: "#/components/schemas/ErrorLevel"
-          default: Error
-          description: "Niveau de gravité : 'Error' ou 'Warning'"
-        item:
-          description: "Identifiant de l'élément concerné (XPath, champ, règle BR-FR,\
-            \ etc.)"
-          title: Item
-          type: string
-        reason:
-          description: Description de l'erreur
-          title: Reason
-          type: string
-        source:
-          allOf:
-          - $ref: "#/components/schemas/ErrorSource"
-          nullable: true
-        code:
-          nullable: true
-          type: string
-      required:
-      - item
-      - reason
-      title: ValidationErrorDetail
-    APIError:
-      description: |-
-        Erreur API standardisée (alignée sur AFNOR Error schema).
-
-        Format unifié pour toutes les réponses d'erreur HTTP.
+    FactureFacturX:
+      description: Modèle de données pour une facture destinée à être convertie en
+        Factur-X.
       example:
-        details:
-        - code: SCHEMATRON_BR_FR_01
-          item: BR-FR-01
-          level: Error
-          reason: Le SIRET du fournisseur est obligatoire pour les factures françaises
-          source: schematron
-        errorCode: VALIDATION_FAILED
-        errorMessage: La validation Factur-X a échoué
+        numero_facture: FACT-2025-001
+        date_facture: 2025-10-27
+        date_echeance_paiement: 2025-11-27
+        mode_depot: DEPOT_PDF_API
+        destinataire:
+          nom: Client Test SAS
+          adresse_electronique:
+            identifiant: "12345678901234"
+            scheme_id: "0225"
+          adresse_postale:
+            ligne_un: 456 Avenue des Champs
+            code_postal: "69001"
+            nom_ville: Lyon
+            pays_code_iso: FR
+          code_service_executant: SERVICE01
+        fournisseur:
+          nom: Ma Société SAS
+          id_fournisseur: 12345
+          siret: "12345678900001"
+          numero_tva_intra: FR12345678900
+          iban: FR7630006000011234567890189
+          adresse_electronique:
+            identifiant: "12345678900001"
+            scheme_id: "0225"
+          adresse_postale:
+            ligne_un: 123 Rue de la République
+            ligne_deux: Bâtiment A
+            code_postal: "75001"
+            nom_ville: Paris
+            pays_code_iso: FR
+        cadre_de_facturation:
+          code_cadre_facturation: A1_FACTURE_FOURNISSEUR
+        references:
+          type_facture: FACTURE
+          type_tva: TVA_SUR_DEBIT
+          mode_paiement: VIREMENT
+          devise_facture: EUR
+          numero_bon_commande: CMD-2025-042
+        lignes_de_poste:
+        - numero: 1
+          denomination: Prestation de conseil
+          quantite: "5.00"
+          unite: HEURE
+          montant_unitaire_ht: "200.00"
+          montant_ligne_ht: "1000.00"
+          taux_tva_manuel: "20.00"
+          categorie_tva: S
+          reference: REF-CONSEIL-001
+        - numero: 2
+          denomination: Formation développeurs
+          quantite: "3.00"
+          unite: JOUR
+          montant_unitaire_ht: "500.00"
+          montant_ligne_ht: "1500.00"
+          categorie_tva: S
+          taux_tva_manuel: "20.00"
+          reference: REF-FORM-002
+        lignes_de_tva:
+        - montant_base_ht: "2500.00"
+          montant_tva: "500.00"
+          taux_manuel: "20.00"
+          categorie: S
+        montant_total:
+          montant_ht_total: "2500.00"
+          montant_tva: "500.00"
+          montant_ttc_total: "3000.00"
+          montant_a_payer: "3000.00"
+        commentaire: Facture pour prestations du mois d'octobre 2025
       properties:
-        errorCode:
-          description: Code alphanumérique identifiant précisément l'erreur
-          title: Errorcode
+        numeroFacture:
+          title: Numerofacture
           type: string
-        errorMessage:
-          description: Message décrivant l'erreur (non destiné à l'utilisateur final)
-          title: Errormessage
+        dateEcheancePaiement:
+          title: Dateecheancepaiement
           type: string
-        details:
+        dateFacture:
+          title: Datefacture
+          type: string
+        modeDepot:
+          $ref: "#/components/schemas/ModeDepot"
+        destinataire:
+          $ref: "#/components/schemas/Destinataire"
+        fournisseur:
+          $ref: "#/components/schemas/Fournisseur"
+        cadreDeFacturation:
+          $ref: "#/components/schemas/CadreDeFacturation"
+        references:
+          $ref: "#/components/schemas/References"
+        montantTotal:
+          $ref: "#/components/schemas/MontantTotal"
+        lignesDePoste:
           items:
-            $ref: "#/components/schemas/ValidationErrorDetail"
+            $ref: "#/components/schemas/LigneDePoste"
+          type: array
+        lignesDeTva:
+          items:
+            $ref: "#/components/schemas/LigneDeTVA"
+          type: array
+        notes:
+          items:
+            $ref: "#/components/schemas/Note"
+          type: array
+        commentaire:
+          nullable: true
+          type: string
+        idUtilisateurCourant:
+          nullable: true
+          type: integer
+        piecesJointesComplementaires:
+          items:
+            $ref: "#/components/schemas/PieceJointeComplementaire"
           nullable: true
           type: array
       required:
-      - errorCode
-      - errorMessage
-      title: APIError
+      - cadreDeFacturation
+      - dateEcheancePaiement
+      - destinataire
+      - fournisseur
+      - modeDepot
+      - montantTotal
+      - numeroFacture
+      - references
+      title: FactureFacturX
+    PDPCredentials:
+      description: |-
+        Credentials PDP pour la stratégie zero-storage (Strategy B).
+
+        Permet de fournir directement les credentials PDP dans la requête
+        au lieu de les stocker dans Django.
+
+        Utile pour :
+        - Tests ponctuels sans persister les credentials
+        - Intégrations temporaires
+        - Environnements de développement
+      example:
+        client_id: factpulse_prod_abc123
+        client_secret: secret_xyz789
+        directory_service_url: https://api.pdp-example.fr/directory/v1
+        flow_service_url: https://api.pdp-example.fr/flow/v1
+        token_url: https://auth.pdp-example.fr/oauth/token
+      properties:
+        flow_service_url:
+          description: URL de base du Flow Service AFNOR
+          example: https://api.pdp-example.fr/flow/v1
+          title: Flow Service Url
+          type: string
+        directory_service_url:
+          nullable: true
+          type: string
+        token_url:
+          description: URL du serveur OAuth2
+          example: https://auth.pdp-example.fr/oauth/token
+          title: Token Url
+          type: string
+        client_id:
+          description: Client ID OAuth2
+          example: factpulse_prod_abc123
+          title: Client Id
+          type: string
+        client_secret:
+          description: Client Secret OAuth2 (sensible)
+          example: secret_xyz789
+          title: Client Secret
+          type: string
+      required:
+      - client_id
+      - client_secret
+      - flow_service_url
+      - token_url
+      title: PDPCredentials
+    ProfilFlux:
+      description: Profils de flux supportés
+      enum:
+      - Basic
+      - CIUS
+      - Extended-CTC-FR
+      title: ProfilFlux
+      type: string
+    SyntaxeFlux:
+      description: Syntaxes de flux supportées par AFNOR
+      enum:
+      - CII
+      - UBL
+      - Factur-X
+      - CDAR
+      - FRR
+      title: SyntaxeFlux
+      type: string
+    RequeteSoumissionFlux:
+      description: Requête pour soumettre une facture à une PDP/PA via AFNOR
+      example:
+        nom_flux: Facture 2025-001
+        profil_flux: CIUS
+        syntaxe_flux: CII
+        tracking_id: TRACK-2025-001
+      properties:
+        nom_flux:
+          description: "Nom du flux (ex: 'Facture 2025-001')"
+          example: Facture 2025-001
+          title: Nom Flux
+          type: string
+        syntaxe_flux:
+          allOf:
+          - $ref: "#/components/schemas/SyntaxeFlux"
+          default: CII
+          description: Syntaxe du flux (CII pour Factur-X)
+        profil_flux:
+          allOf:
+          - $ref: "#/components/schemas/ProfilFlux"
+          nullable: true
+        tracking_id:
+          nullable: true
+          type: string
+        request_id:
+          nullable: true
+          type: string
+        pdp_credentials:
+          allOf:
+          - $ref: "#/components/schemas/PDPCredentials"
+          nullable: true
+      required:
+      - nom_flux
+      title: RequeteSoumissionFlux
+    DirectionFlux:
+      description: Direction du flux
+      enum:
+      - In
+      - Out
+      title: DirectionFlux
+      type: string
+    StatutAcquittement:
+      description: Statut d'acquittement du flux
+      enum:
+      - Pending
+      - Ok
+      - Error
+      title: StatutAcquittement
+      type: string
+    TypeFlux:
+      description: Types de flux de facturation
+      enum:
+      - CustomerInvoice
+      - SupplierInvoice
+      - CustomerInvoiceLC
+      - SupplierInvoiceLC
+      - eReporting
+      title: TypeFlux
+      type: string
+    RequeteRechercheFlux:
+      description: Requête pour rechercher des flux soumis
+      example:
+        direction_flux:
+        - Out
+        limit: 10
+        statut_acquittement: Ok
+        type_flux:
+        - SupplierInvoice
+      properties:
+        date_maj_apres:
+          format: date-time
+          nullable: true
+          type: string
+        date_maj_avant:
+          format: date-time
+          nullable: true
+          type: string
+        type_flux:
+          items:
+            $ref: "#/components/schemas/TypeFlux"
+          nullable: true
+          type: array
+        direction_flux:
+          items:
+            $ref: "#/components/schemas/DirectionFlux"
+          nullable: true
+          type: array
+        tracking_id:
+          nullable: true
+          type: string
+        flow_id:
+          nullable: true
+          type: string
+        statut_acquittement:
+          allOf:
+          - $ref: "#/components/schemas/StatutAcquittement"
+          nullable: true
+        offset:
+          default: 0
+          description: Décalage pour la pagination
+          minimum: 0
+          title: Offset
+          type: integer
+        limit:
+          default: 25
+          description: Nombre maximum de résultats (max 100)
+          maximum: 100
+          minimum: 1
+          title: Limit
+          type: integer
+      title: RequeteRechercheFlux
+    ReponseSoumissionFlux:
+      description: Réponse après soumission d'un flux
+      example:
+        flow_id: 550e8400-e29b-41d4-a716-446655440000
+        message: ✓ Facture soumise avec succès à la PDP/PA
+        nom: Facture 2025-001
+        profil_flux: CIUS
+        sha256: a3c5f1...
+        syntaxe_flux: CII
+        tracking_id: TRACK-2025-001
+      properties:
+        flow_id:
+          description: Identifiant unique du flux généré par la PDP
+          title: Flow Id
+          type: string
+        tracking_id:
+          nullable: true
+          type: string
+        nom:
+          description: Nom du flux
+          title: Nom
+          type: string
+        syntaxe_flux:
+          description: "Syntaxe du flux (CII, UBL, etc.)"
+          title: Syntaxe Flux
+          type: string
+        profil_flux:
+          nullable: true
+          type: string
+        sha256:
+          description: Hash SHA256 du fichier soumis
+          title: Sha256
+          type: string
+        message:
+          description: Message de confirmation
+          title: Message
+          type: string
+      required:
+      - flow_id
+      - message
+      - nom
+      - sha256
+      - syntaxe_flux
+      title: ReponseSoumissionFlux
+    FluxResume:
+      description: Résumé d'un flux dans les résultats de recherche
+      properties:
+        flow_id:
+          title: Flow Id
+          type: string
+        tracking_id:
+          nullable: true
+          type: string
+        nom:
+          title: Nom
+          type: string
+        type_flux:
+          nullable: true
+          type: string
+        direction_flux:
+          nullable: true
+          type: string
+        statut_acquittement:
+          nullable: true
+          type: string
+        date_creation:
+          nullable: true
+          type: string
+        date_maj:
+          nullable: true
+          type: string
+      required:
+      - flow_id
+      - nom
+      title: FluxResume
+    ReponseRechercheFlux:
+      description: Réponse d'une recherche de flux
+      example:
+        limit: 25
+        offset: 0
+        resultats:
+        - direction_flux: Out
+          flow_id: 550e8400-e29b-41d4-a716-446655440000
+          nom: Facture 2025-001
+          statut_acquittement: Ok
+          tracking_id: TRACK-2025-001
+          type_flux: SupplierInvoice
+        total: 42
+      properties:
+        total:
+          description: Nombre total de résultats
+          title: Total
+          type: integer
+        offset:
+          description: Décalage appliqué
+          title: Offset
+          type: integer
+        limit:
+          description: Limite de résultats
+          title: Limit
+          type: integer
+        resultats:
+          description: Liste des flux trouvés
+          items:
+            $ref: "#/components/schemas/FluxResume"
+          type: array
+      required:
+      - limit
+      - offset
+      - resultats
+      - total
+      title: ReponseRechercheFlux
+    ReponseHealthcheckAFNOR:
+      description: Réponse du healthcheck des services AFNOR
+      example:
+        directory_service_ok: true
+        flow_service_ok: true
+        message: ✓ Services AFNOR opérationnels
+      properties:
+        flow_service_ok:
+          description: État du Flow Service API
+          title: Flow Service Ok
+          type: boolean
+        directory_service_ok:
+          description: État du Directory Service API
+          title: Directory Service Ok
+          type: boolean
+        message:
+          description: Message descriptif de l'état
+          title: Message
+          type: string
+      required:
+      - directory_service_ok
+      - flow_service_ok
+      - message
+      title: ReponseHealthcheckAFNOR
     generer_facture_api_v1_traitement_generer_facture_post_request:
       $ref: "#/components/schemas/Body_generer_facture_api_v1_traitement_generer_facture_post"
     Destination:

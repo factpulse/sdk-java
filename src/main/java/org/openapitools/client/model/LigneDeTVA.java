@@ -53,9 +53,9 @@ import java.util.Locale;
 import org.openapitools.client.JSON;
 
 /**
- * Représente une ligne de totalisation par taux de TVA.
+ * Représente une ligne de totalisation par taux de TVA.  Pour les exonérations (catégories E, AE, K, G, O), les champs &#x60;motif_exoneration&#x60; et &#x60;code_vatex&#x60; sont requis selon EN16931.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-04T20:22:27.166621853Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T06:57:37.390616113Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class LigneDeTVA {
   public static final String SERIALIZED_NAME_MONTANT_BASE_HT = "montantBaseHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_BASE_HT)
@@ -81,6 +81,16 @@ public class LigneDeTVA {
   @SerializedName(SERIALIZED_NAME_CATEGORIE)
   @javax.annotation.Nullable
   private CategorieTVA categorie;
+
+  public static final String SERIALIZED_NAME_MOTIF_EXONERATION = "motifExoneration";
+  @SerializedName(SERIALIZED_NAME_MOTIF_EXONERATION)
+  @javax.annotation.Nullable
+  private String motifExoneration;
+
+  public static final String SERIALIZED_NAME_CODE_VATEX = "codeVatex";
+  @SerializedName(SERIALIZED_NAME_CODE_VATEX)
+  @javax.annotation.Nullable
+  private String codeVatex;
 
   public LigneDeTVA() {
   }
@@ -180,6 +190,44 @@ public class LigneDeTVA {
   }
 
 
+  public LigneDeTVA motifExoneration(@javax.annotation.Nullable String motifExoneration) {
+    this.motifExoneration = motifExoneration;
+    return this;
+  }
+
+  /**
+   * Get motifExoneration
+   * @return motifExoneration
+   */
+  @javax.annotation.Nullable
+  public String getMotifExoneration() {
+    return motifExoneration;
+  }
+
+  public void setMotifExoneration(@javax.annotation.Nullable String motifExoneration) {
+    this.motifExoneration = motifExoneration;
+  }
+
+
+  public LigneDeTVA codeVatex(@javax.annotation.Nullable String codeVatex) {
+    this.codeVatex = codeVatex;
+    return this;
+  }
+
+  /**
+   * Get codeVatex
+   * @return codeVatex
+   */
+  @javax.annotation.Nullable
+  public String getCodeVatex() {
+    return codeVatex;
+  }
+
+  public void setCodeVatex(@javax.annotation.Nullable String codeVatex) {
+    this.codeVatex = codeVatex;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -194,7 +242,9 @@ public class LigneDeTVA {
         Objects.equals(this.montantTva, ligneDeTVA.montantTva) &&
         Objects.equals(this.taux, ligneDeTVA.taux) &&
         Objects.equals(this.tauxManuel, ligneDeTVA.tauxManuel) &&
-        Objects.equals(this.categorie, ligneDeTVA.categorie);
+        Objects.equals(this.categorie, ligneDeTVA.categorie) &&
+        Objects.equals(this.motifExoneration, ligneDeTVA.motifExoneration) &&
+        Objects.equals(this.codeVatex, ligneDeTVA.codeVatex);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -203,7 +253,7 @@ public class LigneDeTVA {
 
   @Override
   public int hashCode() {
-    return Objects.hash(montantBaseHt, montantTva, taux, tauxManuel, categorie);
+    return Objects.hash(montantBaseHt, montantTva, taux, tauxManuel, categorie, motifExoneration, codeVatex);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -222,6 +272,8 @@ public class LigneDeTVA {
     sb.append("    taux: ").append(toIndentedString(taux)).append("\n");
     sb.append("    tauxManuel: ").append(toIndentedString(tauxManuel)).append("\n");
     sb.append("    categorie: ").append(toIndentedString(categorie)).append("\n");
+    sb.append("    motifExoneration: ").append(toIndentedString(motifExoneration)).append("\n");
+    sb.append("    codeVatex: ").append(toIndentedString(codeVatex)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -243,7 +295,7 @@ public class LigneDeTVA {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("montantBaseHt", "montantTva", "taux", "tauxManuel", "categorie"));
+    openapiFields = new HashSet<String>(Arrays.asList("montantBaseHt", "montantTva", "taux", "tauxManuel", "categorie", "motifExoneration", "codeVatex"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("montantBaseHt", "montantTva"));
@@ -291,6 +343,12 @@ public class LigneDeTVA {
       // validate the optional field `categorie`
       if (jsonObj.get("categorie") != null && !jsonObj.get("categorie").isJsonNull()) {
         CategorieTVA.validateJsonElement(jsonObj.get("categorie"));
+      }
+      if ((jsonObj.get("motifExoneration") != null && !jsonObj.get("motifExoneration").isJsonNull()) && !jsonObj.get("motifExoneration").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `motifExoneration` to be a primitive type in the JSON string but got `%s`", jsonObj.get("motifExoneration").toString()));
+      }
+      if ((jsonObj.get("codeVatex") != null && !jsonObj.get("codeVatex").isJsonNull()) && !jsonObj.get("codeVatex").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `codeVatex` to be a primitive type in the JSON string but got `%s`", jsonObj.get("codeVatex").toString()));
       }
   }
 

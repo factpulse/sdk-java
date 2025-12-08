@@ -26,7 +26,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets CodeCadreFacturation
+ * Codes Chorus Pro pour le cadre de facturation (usage B2G).
  */
 @JsonAdapter(CodeCadreFacturation.Adapter.class)
 public enum CodeCadreFacturation {

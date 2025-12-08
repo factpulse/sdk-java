@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.CodeCadreFacturation;
+import org.openapitools.client.model.NatureOperation;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,14 @@ public class CadreDeFacturationTest {
     @Test
     public void codeCadreFacturationTest() {
         // TODO: test codeCadreFacturation
+    }
+
+    /**
+     * Test the property 'natureOperation'
+     */
+    @Test
+    public void natureOperationTest() {
+        // TODO: test natureOperation
     }
 
     /**

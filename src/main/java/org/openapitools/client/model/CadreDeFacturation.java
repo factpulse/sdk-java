@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.CodeCadreFacturation;
+import org.openapitools.client.model.NatureOperation;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -50,14 +51,19 @@ import java.util.Locale;
 import org.openapitools.client.JSON;
 
 /**
- * Définit le cadre de facturation (ex: A1 pour une facture fournisseur).
+ * Définit le cadre de facturation.  - code_cadre_facturation: Code Chorus Pro (A1, A2, A9, A12) - utilisé pour B2G - nature_operation: Nature de l&#39;opération (B1, S1, M1, etc.) - prioritaire pour Factur-X  Si nature_operation est fourni, il sera utilisé directement dans le XML Factur-X (BT-23). Sinon, le code sera déduit de code_cadre_facturation via un mapping automatique.  Exemple:     &gt;&gt;&gt; cadre &#x3D; CadreDeFacturation(     ...     code_cadre_facturation&#x3D;CodeCadreFacturation.A1_FACTURE_FOURNISSEUR,     ...     nature_operation&#x3D;NatureOperation.BIENS  # Force B1 au lieu de S1     ... )
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-04T20:22:27.166621853Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T06:57:37.390616113Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class CadreDeFacturation {
   public static final String SERIALIZED_NAME_CODE_CADRE_FACTURATION = "codeCadreFacturation";
   @SerializedName(SERIALIZED_NAME_CODE_CADRE_FACTURATION)
   @javax.annotation.Nonnull
   private CodeCadreFacturation codeCadreFacturation;
+
+  public static final String SERIALIZED_NAME_NATURE_OPERATION = "natureOperation";
+  @SerializedName(SERIALIZED_NAME_NATURE_OPERATION)
+  @javax.annotation.Nullable
+  private NatureOperation natureOperation;
 
   public static final String SERIALIZED_NAME_CODE_SERVICE_VALIDEUR = "codeServiceValideur";
   @SerializedName(SERIALIZED_NAME_CODE_SERVICE_VALIDEUR)
@@ -88,6 +94,25 @@ public class CadreDeFacturation {
 
   public void setCodeCadreFacturation(@javax.annotation.Nonnull CodeCadreFacturation codeCadreFacturation) {
     this.codeCadreFacturation = codeCadreFacturation;
+  }
+
+
+  public CadreDeFacturation natureOperation(@javax.annotation.Nullable NatureOperation natureOperation) {
+    this.natureOperation = natureOperation;
+    return this;
+  }
+
+  /**
+   * Get natureOperation
+   * @return natureOperation
+   */
+  @javax.annotation.Nullable
+  public NatureOperation getNatureOperation() {
+    return natureOperation;
+  }
+
+  public void setNatureOperation(@javax.annotation.Nullable NatureOperation natureOperation) {
+    this.natureOperation = natureOperation;
   }
 
 
@@ -140,6 +165,7 @@ public class CadreDeFacturation {
     }
     CadreDeFacturation cadreDeFacturation = (CadreDeFacturation) o;
     return Objects.equals(this.codeCadreFacturation, cadreDeFacturation.codeCadreFacturation) &&
+        Objects.equals(this.natureOperation, cadreDeFacturation.natureOperation) &&
         Objects.equals(this.codeServiceValideur, cadreDeFacturation.codeServiceValideur) &&
         Objects.equals(this.codeStructureValideur, cadreDeFacturation.codeStructureValideur);
   }
@@ -150,7 +176,7 @@ public class CadreDeFacturation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(codeCadreFacturation, codeServiceValideur, codeStructureValideur);
+    return Objects.hash(codeCadreFacturation, natureOperation, codeServiceValideur, codeStructureValideur);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -165,6 +191,7 @@ public class CadreDeFacturation {
     StringBuilder sb = new StringBuilder();
     sb.append("class CadreDeFacturation {\n");
     sb.append("    codeCadreFacturation: ").append(toIndentedString(codeCadreFacturation)).append("\n");
+    sb.append("    natureOperation: ").append(toIndentedString(natureOperation)).append("\n");
     sb.append("    codeServiceValideur: ").append(toIndentedString(codeServiceValideur)).append("\n");
     sb.append("    codeStructureValideur: ").append(toIndentedString(codeStructureValideur)).append("\n");
     sb.append("}");
@@ -188,7 +215,7 @@ public class CadreDeFacturation {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("codeCadreFacturation", "codeServiceValideur", "codeStructureValideur"));
+    openapiFields = new HashSet<String>(Arrays.asList("codeCadreFacturation", "natureOperation", "codeServiceValideur", "codeStructureValideur"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("codeCadreFacturation"));
@@ -224,6 +251,10 @@ public class CadreDeFacturation {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `codeCadreFacturation`
       CodeCadreFacturation.validateJsonElement(jsonObj.get("codeCadreFacturation"));
+      // validate the optional field `natureOperation`
+      if (jsonObj.get("natureOperation") != null && !jsonObj.get("natureOperation").isJsonNull()) {
+        NatureOperation.validateJsonElement(jsonObj.get("natureOperation"));
+      }
       if ((jsonObj.get("codeServiceValideur") != null && !jsonObj.get("codeServiceValideur").isJsonNull()) && !jsonObj.get("codeServiceValideur").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `codeServiceValideur` to be a primitive type in the JSON string but got `%s`", jsonObj.get("codeServiceValideur").toString()));
       }

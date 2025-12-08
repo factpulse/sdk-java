@@ -26,7 +26,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Niveau de gravité d&#39;une erreur (aligné sur AFNOR AcknowledgementDetail).
+ * Gets or Sets ErrorLevel
  */
 @JsonAdapter(ErrorLevel.Adapter.class)
 public enum ErrorLevel {

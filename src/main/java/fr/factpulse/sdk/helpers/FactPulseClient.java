@@ -234,11 +234,12 @@ public class FactPulseClient {
                 String statut = (String) data.get("statut");
                 if ("SUCCESS".equals(statut)) return data.get("resultat") instanceof Map ? (Map<String, Object>) data.get("resultat") : new HashMap<>();
                 if ("FAILURE".equals(statut)) {
+                    // Format AFNOR: errorMessage, details
                     Map<String, Object> res = (Map<String, Object>) data.get("resultat");
                     List<ValidationErrorDetail> errors = new ArrayList<>();
-                    if (res != null && res.containsKey("erreurs"))
-                        for (Map<String, Object> e : (List<Map<String, Object>>) res.get("erreurs")) errors.add(ValidationErrorDetail.fromMap(e));
-                    throw new FactPulseValidationException("Task " + taskId + " failed: " + (res != null ? res.get("message_erreur") : "?"), errors);
+                    if (res != null && res.containsKey("details"))
+                        for (Map<String, Object> e : (List<Map<String, Object>>) res.get("details")) errors.add(ValidationErrorDetail.fromMap(e));
+                    throw new FactPulseValidationException("Task " + taskId + " failed: " + (res != null ? res.get("errorMessage") : "?"), errors);
                 }
                 Thread.sleep((long) currentInterval); currentInterval = Math.min(currentInterval * 1.5, 10000);
             } catch (IOException | InterruptedException e) { throw new FactPulseValidationException("Error: " + e.getMessage()); }

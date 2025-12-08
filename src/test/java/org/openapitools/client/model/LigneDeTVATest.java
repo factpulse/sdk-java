@@ -82,4 +82,20 @@ public class LigneDeTVATest {
         // TODO: test categorie
     }
 
+    /**
+     * Test the property 'motifExoneration'
+     */
+    @Test
+    public void motifExonerationTest() {
+        // TODO: test motifExoneration
+    }
+
+    /**
+     * Test the property 'codeVatex'
+     */
+    @Test
+    public void codeVatexTest() {
+        // TODO: test codeVatex
+    }
+
 }

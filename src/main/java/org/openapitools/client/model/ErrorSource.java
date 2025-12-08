@@ -26,7 +26,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Source de l&#39;erreur pour faciliter le diagnostic.
+ * Gets or Sets ErrorSource
  */
 @JsonAdapter(ErrorSource.Adapter.class)
 public enum ErrorSource {
