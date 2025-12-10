@@ -6161,39 +6161,6 @@ components:
       - typeFacture
       - typeTva
       title: References
-    TypeFacture:
-      description: |-
-        Type de document selon BR-FR-04 (codes UNTDID 1001).
-
-        Cette énumération contient tous les types de factures autorisés par la réforme
-        française de la facturation électronique (BR-FR-04).
-
-        Les valeurs correspondent aux codes UNTDID 1001 utilisés dans le XML Factur-X.
-
-        Catégories:
-        - Factures simples: 380, 389, 393, 501
-        - Factures d'acompte: 386, 500
-        - Factures rectificatives: 384, 471, 472, 473
-        - Avoirs: 261, 262, 381, 396, 502, 503
-      enum:
-      - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
-      - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
-      title: TypeFacture
-      type: string
     TypeTVA:
       description: Régime de TVA.
       enum:
@@ -6658,6 +6625,73 @@ components:
       - flow_service_ok
       - message
       title: ReponseHealthcheckAFNOR
+    TypeFacture:
+      description: |-
+        Type de document selon BR-FR-04 (codes UNTDID 1001).
+
+        Cette énumération contient tous les types de factures autorisés par la réforme
+        française de la facturation électronique (BR-FR-04).
+
+        Les valeurs correspondent aux codes UNTDID 1001 utilisés dans le XML Factur-X.
+
+        Catégories:
+        - Factures simples: 380, 389, 393, 501
+        - Factures d'acompte: 386, 500
+        - Factures rectificatives: 384, 471, 472, 473
+        - Avoirs: 261, 262, 381, 396, 502, 503
+      enum:
+      - "380"
+      - "389"
+      - "393"
+      - "501"
+      - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
+      title: TypeFacture
+      type: string
+      x-enum-varnames:
+      - FACTURE
+      - FACTURE_AUTOFACTUREE
+      - FACTURE_AFFACTUREE
+      - FACTURE_AUTOFACTUREE_AFFACTUREE
+      - FACTURE_ACOMPTE
+      - FACTURE_ACOMPTE_AUTOFACTUREE
+      - FACTURE_RECTIFICATIVE
+      - FACTURE_RECTIFICATIVE_AUTOFACTUREE
+      - FACTURE_RECTIFICATIVE_AFFACTUREE
+      - FACTURE_RECTIFICATIVE_AUTOFACTUREE_AFFACTUREE
+      - AVOIR
+      - AVOIR_AUTOFACTURE
+      - AVOIR_REMISE_GLOBALE
+      - AVOIR_AFFACTURE
+      - AVOIR_AUTOFACTURE_AFFACTURE
+      - AVOIR_ACOMPTE
+      x-enum-descriptions:
+      - Facture commerciale
+      - Facture auto-facturée
+      - Facture affacturée
+      - Facture auto-facturée affacturée
+      - Facture d'acompte
+      - Facture d'acompte auto-facturée
+      - Facture rectificative
+      - Facture rectificative auto-facturée
+      - Facture rectificative affacturée
+      - Facture rectificative auto-facturée affacturée
+      - Avoir
+      - Avoir auto-facturé
+      - Avoir pour remise globale
+      - Avoir affacturé
+      - Avoir auto-facturé affacturé
+      - Avoir de facture d'acompte
     generer_facture_api_v1_traitement_generer_facture_post_request:
       $ref: "#/components/schemas/Body_generer_facture_api_v1_traitement_generer_facture_post"
     Destination:

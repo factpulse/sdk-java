@@ -5,37 +5,37 @@
 ## Enum
 
 
-* `_380` (value: `"380"`)
+* `FACTURE` (value: `"380"`)
 
-* `_389` (value: `"389"`)
+* `FACTURE_AUTOFACTUREE` (value: `"389"`)
 
-* `_393` (value: `"393"`)
+* `FACTURE_AFFACTUREE` (value: `"393"`)
 
-* `_501` (value: `"501"`)
+* `FACTURE_AUTOFACTUREE_AFFACTUREE` (value: `"501"`)
 
-* `_386` (value: `"386"`)
+* `FACTURE_ACOMPTE` (value: `"386"`)
 
-* `_500` (value: `"500"`)
+* `FACTURE_ACOMPTE_AUTOFACTUREE` (value: `"500"`)
 
-* `_384` (value: `"384"`)
+* `FACTURE_RECTIFICATIVE` (value: `"384"`)
 
-* `_471` (value: `"471"`)
+* `FACTURE_RECTIFICATIVE_AUTOFACTUREE` (value: `"471"`)
 
-* `_472` (value: `"472"`)
+* `FACTURE_RECTIFICATIVE_AFFACTUREE` (value: `"472"`)
 
-* `_473` (value: `"473"`)
+* `FACTURE_RECTIFICATIVE_AUTOFACTUREE_AFFACTUREE` (value: `"473"`)
 
-* `_381` (value: `"381"`)
+* `AVOIR` (value: `"381"`)
 
-* `_261` (value: `"261"`)
+* `AVOIR_AUTOFACTURE` (value: `"261"`)
 
-* `_262` (value: `"262"`)
+* `AVOIR_REMISE_GLOBALE` (value: `"262"`)
 
-* `_396` (value: `"396"`)
+* `AVOIR_AFFACTURE` (value: `"396"`)
 
-* `_502` (value: `"502"`)
+* `AVOIR_AUTOFACTURE_AFFACTURE` (value: `"502"`)
 
-* `_503` (value: `"503"`)
+* `AVOIR_ACOMPTE` (value: `"503"`)
 
 
 

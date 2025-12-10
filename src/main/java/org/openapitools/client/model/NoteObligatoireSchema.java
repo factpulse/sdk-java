@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Note obligatoire détectée avec localisation et comparaison XML/PDF.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T08:47:10.107605590Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T09:35:31.529791871Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class NoteObligatoireSchema {
   public static final String SERIALIZED_NAME_CODE_SUJET = "code_sujet";
   @SerializedName(SERIALIZED_NAME_CODE_SUJET)

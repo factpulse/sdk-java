@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Facture reçue d&#39;un fournisseur via PDP/PA.  Ce modèle contient les métadonnées essentielles extraites des factures entrantes, quel que soit leur format source (CII, UBL, Factur-X).  Les montants sont en Decimal en Python mais seront sérialisés en string dans le JSON pour préserver la précision monétaire.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T08:47:10.107605590Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T09:35:31.529791871Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FactureEntrante {
   public static final String SERIALIZED_NAME_FLOW_ID = "flow_id";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)

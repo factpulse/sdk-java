@@ -31,37 +31,85 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(TypeFacture.Adapter.class)
 public enum TypeFacture {
   
-  _380("380"),
+  /**
+   * Facture commerciale
+   */
+  FACTURE("380"),
   
-  _389("389"),
+  /**
+   * Facture auto-facturée
+   */
+  FACTURE_AUTOFACTUREE("389"),
   
-  _393("393"),
+  /**
+   * Facture affacturée
+   */
+  FACTURE_AFFACTUREE("393"),
   
-  _501("501"),
+  /**
+   * Facture auto-facturée affacturée
+   */
+  FACTURE_AUTOFACTUREE_AFFACTUREE("501"),
   
-  _386("386"),
+  /**
+   * Facture d&#39;acompte
+   */
+  FACTURE_ACOMPTE("386"),
   
-  _500("500"),
+  /**
+   * Facture d&#39;acompte auto-facturée
+   */
+  FACTURE_ACOMPTE_AUTOFACTUREE("500"),
   
-  _384("384"),
+  /**
+   * Facture rectificative
+   */
+  FACTURE_RECTIFICATIVE("384"),
   
-  _471("471"),
+  /**
+   * Facture rectificative auto-facturée
+   */
+  FACTURE_RECTIFICATIVE_AUTOFACTUREE("471"),
   
-  _472("472"),
+  /**
+   * Facture rectificative affacturée
+   */
+  FACTURE_RECTIFICATIVE_AFFACTUREE("472"),
   
-  _473("473"),
+  /**
+   * Facture rectificative auto-facturée affacturée
+   */
+  FACTURE_RECTIFICATIVE_AUTOFACTUREE_AFFACTUREE("473"),
   
-  _381("381"),
+  /**
+   * Avoir
+   */
+  AVOIR("381"),
   
-  _261("261"),
+  /**
+   * Avoir auto-facturé
+   */
+  AVOIR_AUTOFACTURE("261"),
   
-  _262("262"),
+  /**
+   * Avoir pour remise globale
+   */
+  AVOIR_REMISE_GLOBALE("262"),
   
-  _396("396"),
+  /**
+   * Avoir affacturé
+   */
+  AVOIR_AFFACTURE("396"),
   
-  _502("502"),
+  /**
+   * Avoir auto-facturé affacturé
+   */
+  AVOIR_AUTOFACTURE_AFFACTURE("502"),
   
-  _503("503");
+  /**
+   * Avoir de facture d&#39;acompte
+   */
+  AVOIR_ACOMPTE("503");
 
   private String value;
 
