@@ -53,11 +53,11 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur le fournisseur qui émet la facture.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T06:54:01.032403447Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T08:47:10.107605590Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Fournisseur {
   public static final String SERIALIZED_NAME_ADRESSE_ELECTRONIQUE = "adresseElectronique";
   @SerializedName(SERIALIZED_NAME_ADRESSE_ELECTRONIQUE)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private AdresseElectronique adresseElectronique;
 
   public static final String SERIALIZED_NAME_ID_FOURNISSEUR = "idFournisseur";
@@ -108,7 +108,7 @@ public class Fournisseur {
   public Fournisseur() {
   }
 
-  public Fournisseur adresseElectronique(@javax.annotation.Nonnull AdresseElectronique adresseElectronique) {
+  public Fournisseur adresseElectronique(@javax.annotation.Nullable AdresseElectronique adresseElectronique) {
     this.adresseElectronique = adresseElectronique;
     return this;
   }
@@ -117,12 +117,12 @@ public class Fournisseur {
    * Get adresseElectronique
    * @return adresseElectronique
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public AdresseElectronique getAdresseElectronique() {
     return adresseElectronique;
   }
 
-  public void setAdresseElectronique(@javax.annotation.Nonnull AdresseElectronique adresseElectronique) {
+  public void setAdresseElectronique(@javax.annotation.Nullable AdresseElectronique adresseElectronique) {
     this.adresseElectronique = adresseElectronique;
   }
 

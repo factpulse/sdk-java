@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.client.model.Beneficiaire;
 import org.openapitools.client.model.CadreDeFacturation;
 import org.openapitools.client.model.Destinataire;
 import org.openapitools.client.model.Fournisseur;
@@ -168,6 +169,14 @@ public class FactureFacturXTest {
     @Test
     public void piecesJointesComplementairesTest() {
         // TODO: test piecesJointesComplementaires
+    }
+
+    /**
+     * Test the property 'beneficiaire'
+     */
+    @Test
+    public void beneficiaireTest() {
+        // TODO: test beneficiaire
     }
 
 }

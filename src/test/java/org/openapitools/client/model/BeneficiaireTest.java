@@ -11,53 +11,80 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.model;
 
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Supplier;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.openapitools.client.model.AdresseElectronique;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T08:47:10.107605590Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class Configuration {
-  public static final String VERSION = "2.0.39";
+/**
+ * Model tests for Beneficiaire
+ */
+public class BeneficiaireTest {
+    private final Beneficiaire model = new Beneficiaire();
 
-  private static final AtomicReference<ApiClient> defaultApiClient = new AtomicReference<>();
-  private static volatile Supplier<ApiClient> apiClientFactory = ApiClient::new;
-
-  /**
-   * Get the default API client, which would be used when creating API instances without providing an API client.
-   *
-   * @return Default API client
-   */
-  public static ApiClient getDefaultApiClient() {
-    ApiClient client = defaultApiClient.get();
-    if (client == null) {
-      client = defaultApiClient.updateAndGet(val -> {
-        if (val != null) { // changed by another thread
-          return val;
-        }
-        return apiClientFactory.get();
-      });
+    /**
+     * Model tests for Beneficiaire
+     */
+    @Test
+    public void testBeneficiaire() {
+        // TODO: test Beneficiaire
     }
-    return client;
-  }
 
-  /**
-   * Set the default API client, which would be used when creating API instances without providing an API client.
-   *
-   * @param apiClient API client
-   */
-  public static void setDefaultApiClient(ApiClient apiClient) {
-    defaultApiClient.set(apiClient);
-  }
+    /**
+     * Test the property 'nom'
+     */
+    @Test
+    public void nomTest() {
+        // TODO: test nom
+    }
 
-  /**
-   * set the callback used to create new ApiClient objects
-   */
-  public static void setApiClientFactory(Supplier<ApiClient> factory) {
-    apiClientFactory = Objects.requireNonNull(factory);
-  }
+    /**
+     * Test the property 'siret'
+     */
+    @Test
+    public void siretTest() {
+        // TODO: test siret
+    }
 
-  private Configuration() {
-  }
+    /**
+     * Test the property 'siren'
+     */
+    @Test
+    public void sirenTest() {
+        // TODO: test siren
+    }
+
+    /**
+     * Test the property 'adresseElectronique'
+     */
+    @Test
+    public void adresseElectroniqueTest() {
+        // TODO: test adresseElectronique
+    }
+
+    /**
+     * Test the property 'iban'
+     */
+    @Test
+    public void ibanTest() {
+        // TODO: test iban
+    }
+
+    /**
+     * Test the property 'bic'
+     */
+    @Test
+    public void bicTest() {
+        // TODO: test bic
+    }
+
 }

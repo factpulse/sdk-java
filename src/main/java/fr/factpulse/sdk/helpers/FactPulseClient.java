@@ -163,6 +163,46 @@ class MontantHelpers {
         if (options.containsKey("codeServiceExecutant")) result.put("codeServiceExecutant", options.get("codeServiceExecutant"));
         return result;
     }
+
+    /**
+     * Crée un bénéficiaire (factor) pour l'affacturage.
+     *
+     * Le bénéficiaire (BG-10 / PayeeTradeParty) est utilisé lorsque le paiement
+     * doit être effectué à un tiers différent du fournisseur, typiquement un
+     * factor (société d'affacturage).
+     *
+     * Pour les factures affacturées, il faut aussi:
+     * - Utiliser un type de document affacturé (393, 396, 501, 502, 472, 473)
+     * - Ajouter une note ACC avec la mention de subrogation
+     * - L'IBAN du bénéficiaire sera utilisé pour le paiement
+     *
+     * @param nom Raison sociale du factor (BT-59)
+     * @return Dict prêt à être utilisé dans une facture affacturée
+     */
+    public static Map<String, Object> beneficiaire(String nom) { return beneficiaire(nom, null); }
+
+    /**
+     * Crée un bénéficiaire (factor) pour l'affacturage.
+     *
+     * @param nom Raison sociale du factor (BT-59)
+     * @param options Map avec: siret (BT-60), siren (BT-61), iban, bic
+     * @return Dict prêt à être utilisé dans une facture affacturée
+     */
+    public static Map<String, Object> beneficiaire(String nom, Map<String, Object> options) {
+        if (options == null) options = new LinkedHashMap<>();
+        String siret = options.containsKey("siret") ? (String)options.get("siret") : null;
+        // Auto-calcul SIREN depuis SIRET
+        String siren = options.containsKey("siren") ? (String)options.get("siren")
+            : (siret != null && siret.length() == 14 ? siret.substring(0, 9) : null);
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("nom", nom);
+        if (siret != null) result.put("siret", siret);
+        if (siren != null) result.put("siren", siren);
+        if (options.containsKey("iban")) result.put("iban", options.get("iban"));
+        if (options.containsKey("bic")) result.put("bic", options.get("bic"));
+        return result;
+    }
 }
 
 // =============================================================================

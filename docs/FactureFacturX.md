@@ -23,6 +23,7 @@ Modèle de données pour une facture destinée à être convertie en Factur-X.
 |**commentaire** | **String** |  |  [optional] |
 |**idUtilisateurCourant** | **Integer** |  |  [optional] |
 |**piecesJointesComplementaires** | [**List&lt;PieceJointeComplementaire&gt;**](PieceJointeComplementaire.md) |  |  [optional] |
+|**beneficiaire** | [**Beneficiaire**](Beneficiaire.md) |  |  [optional] |
 
 
 

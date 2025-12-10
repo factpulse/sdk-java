@@ -26,14 +26,42 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Type de document (facture ou avoir).
+ * Type de document selon BR-FR-04 (codes UNTDID 1001).  Cette énumération contient tous les types de factures autorisés par la réforme française de la facturation électronique (BR-FR-04).  Les valeurs correspondent aux codes UNTDID 1001 utilisés dans le XML Factur-X.  Catégories: - Factures simples: 380, 389, 393, 501 - Factures d&#39;acompte: 386, 500 - Factures rectificatives: 384, 471, 472, 473 - Avoirs: 261, 262, 381, 396, 502, 503
  */
 @JsonAdapter(TypeFacture.Adapter.class)
 public enum TypeFacture {
   
-  FACTURE("FACTURE"),
+  _380("380"),
   
-  AVOIR("AVOIR");
+  _389("389"),
+  
+  _393("393"),
+  
+  _501("501"),
+  
+  _386("386"),
+  
+  _500("500"),
+  
+  _384("384"),
+  
+  _471("471"),
+  
+  _472("472"),
+  
+  _473("473"),
+  
+  _381("381"),
+  
+  _261("261"),
+  
+  _262("262"),
+  
+  _396("396"),
+  
+  _502("502"),
+  
+  _503("503");
 
   private String value;
 

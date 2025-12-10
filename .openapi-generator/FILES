@@ -12,6 +12,7 @@ docs/AdressePostale.md
 docs/AfnorPdpPaApi.md
 docs/AfnorPdpPaDirectoryServiceApi.md
 docs/AfnorPdpPaFlowServiceApi.md
+docs/Beneficiaire.md
 docs/BoundingBoxSchema.md
 docs/CadreDeFacturation.md
 docs/CategorieTVA.md
@@ -161,6 +162,7 @@ src/main/java/org/openapitools/client/model/APIError.java
 src/main/java/org/openapitools/client/model/AbstractOpenApiSchema.java
 src/main/java/org/openapitools/client/model/AdresseElectronique.java
 src/main/java/org/openapitools/client/model/AdressePostale.java
+src/main/java/org/openapitools/client/model/Beneficiaire.java
 src/main/java/org/openapitools/client/model/BoundingBoxSchema.java
 src/main/java/org/openapitools/client/model/CadreDeFacturation.java
 src/main/java/org/openapitools/client/model/CategorieTVA.java
@@ -278,6 +280,7 @@ src/test/java/org/openapitools/client/api/VrificationPdfXmlApiTest.java
 src/test/java/org/openapitools/client/model/APIErrorTest.java
 src/test/java/org/openapitools/client/model/AdresseElectroniqueTest.java
 src/test/java/org/openapitools/client/model/AdressePostaleTest.java
+src/test/java/org/openapitools/client/model/BeneficiaireTest.java
 src/test/java/org/openapitools/client/model/BoundingBoxSchemaTest.java
 src/test/java/org/openapitools/client/model/CadreDeFacturationTest.java
 src/test/java/org/openapitools/client/model/CategorieTVATest.java

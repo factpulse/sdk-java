@@ -5699,6 +5699,50 @@ components:
       - item
       - reason
       title: ValidationErrorDetail
+    Beneficiaire:
+      description: |-
+        Informations sur le bénéficiaire du paiement (BG-10 / PayeeTradeParty).
+
+        Le bénéficiaire est la partie qui reçoit le paiement. Ce bloc est utilisé
+        uniquement si le bénéficiaire est différent du vendeur (fournisseur).
+
+        **Cas d'usage principal** : Affacturage (factoring)
+        Quand une facture est affacturée, le factor (société d'affacturage) devient
+        le bénéficiaire du paiement à la place du fournisseur.
+
+        **Business Terms (EN16931)** :
+        - BT-59 : Nom du bénéficiaire (obligatoire)
+        - BT-60 : Identifiant du bénéficiaire (SIRET avec schemeID 0009)
+        - BT-61 : Identifiant légal du bénéficiaire (SIREN avec schemeID 0002)
+
+        **Référence** : docs/guide_affacturage.md
+      properties:
+        nom:
+          description: Nom du bénéficiaire (BT-59). Obligatoire.
+          minLength: 1
+          title: Nom
+          type: string
+        siret:
+          nullable: true
+          pattern: "^\\d{14}$"
+          type: string
+        siren:
+          nullable: true
+          pattern: "^\\d{9}$"
+          type: string
+        adresseElectronique:
+          allOf:
+          - $ref: "#/components/schemas/AdresseElectronique"
+          nullable: true
+        iban:
+          nullable: true
+          type: string
+        bic:
+          nullable: true
+          type: string
+      required:
+      - nom
+      title: Beneficiaire
     CadreDeFacturation:
       description: |-
         Définit le cadre de facturation.
@@ -5827,7 +5871,9 @@ components:
       description: Informations sur le destinataire de la facture (le client).
       properties:
         adresseElectronique:
-          $ref: "#/components/schemas/AdresseElectronique"
+          allOf:
+          - $ref: "#/components/schemas/AdresseElectronique"
+          nullable: true
         codeServiceExecutant:
           nullable: true
           type: string
@@ -5851,7 +5897,9 @@ components:
       description: Informations sur le fournisseur qui émet la facture.
       properties:
         adresseElectronique:
-          $ref: "#/components/schemas/AdresseElectronique"
+          allOf:
+          - $ref: "#/components/schemas/AdresseElectronique"
+          nullable: true
         idFournisseur:
           title: Idfournisseur
           type: integer
@@ -6114,10 +6162,36 @@ components:
       - typeTva
       title: References
     TypeFacture:
-      description: Type de document (facture ou avoir).
+      description: |-
+        Type de document selon BR-FR-04 (codes UNTDID 1001).
+
+        Cette énumération contient tous les types de factures autorisés par la réforme
+        française de la facturation électronique (BR-FR-04).
+
+        Les valeurs correspondent aux codes UNTDID 1001 utilisés dans le XML Factur-X.
+
+        Catégories:
+        - Factures simples: 380, 389, 393, 501
+        - Factures d'acompte: 386, 500
+        - Factures rectificatives: 384, 471, 472, 473
+        - Avoirs: 261, 262, 381, 396, 502, 503
       enum:
-      - FACTURE
-      - AVOIR
+      - "380"
+      - "389"
+      - "393"
+      - "501"
+      - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
       title: TypeFacture
       type: string
     TypeTVA:
@@ -6257,6 +6331,10 @@ components:
             $ref: "#/components/schemas/PieceJointeComplementaire"
           nullable: true
           type: array
+        beneficiaire:
+          allOf:
+          - $ref: "#/components/schemas/Beneficiaire"
+          nullable: true
       required:
       - cadreDeFacturation
       - dateEcheancePaiement

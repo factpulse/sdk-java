@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.client.model.AdresseElectronique;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -49,130 +50,154 @@ import java.util.Locale;
 import org.openapitools.client.JSON;
 
 /**
- * Credentials Chorus Pro optionnels.  **MODE 1 - Récupération via JWT (recommandé) :** Ne pas fournir ce champ &#x60;credentials&#x60; dans le payload. Les credentials seront récupérés automatiquement via client_uid du JWT (0-trust).  **MODE 2 - Credentials dans le payload :** Fournir tous les champs requis ci-dessous. Utile pour tests ou intégrations tierces.
+ * Informations sur le bénéficiaire du paiement (BG-10 / PayeeTradeParty).  Le bénéficiaire est la partie qui reçoit le paiement. Ce bloc est utilisé uniquement si le bénéficiaire est différent du vendeur (fournisseur).  **Cas d&#39;usage principal** : Affacturage (factoring) Quand une facture est affacturée, le factor (société d&#39;affacturage) devient le bénéficiaire du paiement à la place du fournisseur.  **Business Terms (EN16931)** : - BT-59 : Nom du bénéficiaire (obligatoire) - BT-60 : Identifiant du bénéficiaire (SIRET avec schemeID 0009) - BT-61 : Identifiant légal du bénéficiaire (SIREN avec schemeID 0002)  **Référence** : docs/guide_affacturage.md
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T08:47:10.107605590Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class CredentialsChorusPro {
-  public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "piste_client_id";
-  @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)
-  @javax.annotation.Nullable
-  private String pisteClientId;
+public class Beneficiaire {
+  public static final String SERIALIZED_NAME_NOM = "nom";
+  @SerializedName(SERIALIZED_NAME_NOM)
+  @javax.annotation.Nonnull
+  private String nom;
 
-  public static final String SERIALIZED_NAME_PISTE_CLIENT_SECRET = "piste_client_secret";
-  @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_SECRET)
+  public static final String SERIALIZED_NAME_SIRET = "siret";
+  @SerializedName(SERIALIZED_NAME_SIRET)
   @javax.annotation.Nullable
-  private String pisteClientSecret;
+  private String siret;
 
-  public static final String SERIALIZED_NAME_CHORUS_LOGIN = "chorus_login";
-  @SerializedName(SERIALIZED_NAME_CHORUS_LOGIN)
+  public static final String SERIALIZED_NAME_SIREN = "siren";
+  @SerializedName(SERIALIZED_NAME_SIREN)
   @javax.annotation.Nullable
-  private String chorusLogin;
+  private String siren;
 
-  public static final String SERIALIZED_NAME_CHORUS_PASSWORD = "chorus_password";
-  @SerializedName(SERIALIZED_NAME_CHORUS_PASSWORD)
+  public static final String SERIALIZED_NAME_ADRESSE_ELECTRONIQUE = "adresseElectronique";
+  @SerializedName(SERIALIZED_NAME_ADRESSE_ELECTRONIQUE)
   @javax.annotation.Nullable
-  private String chorusPassword;
+  private AdresseElectronique adresseElectronique;
 
-  public static final String SERIALIZED_NAME_MODE_SANDBOX = "mode_sandbox";
-  @SerializedName(SERIALIZED_NAME_MODE_SANDBOX)
+  public static final String SERIALIZED_NAME_IBAN = "iban";
+  @SerializedName(SERIALIZED_NAME_IBAN)
   @javax.annotation.Nullable
-  private Boolean modeSandbox = true;
+  private String iban;
 
-  public CredentialsChorusPro() {
+  public static final String SERIALIZED_NAME_BIC = "bic";
+  @SerializedName(SERIALIZED_NAME_BIC)
+  @javax.annotation.Nullable
+  private String bic;
+
+  public Beneficiaire() {
   }
 
-  public CredentialsChorusPro pisteClientId(@javax.annotation.Nullable String pisteClientId) {
-    this.pisteClientId = pisteClientId;
+  public Beneficiaire nom(@javax.annotation.Nonnull String nom) {
+    this.nom = nom;
     return this;
   }
 
   /**
-   * Get pisteClientId
-   * @return pisteClientId
+   * Nom du bénéficiaire (BT-59). Obligatoire.
+   * @return nom
    */
-  @javax.annotation.Nullable
-  public String getPisteClientId() {
-    return pisteClientId;
+  @javax.annotation.Nonnull
+  public String getNom() {
+    return nom;
   }
 
-  public void setPisteClientId(@javax.annotation.Nullable String pisteClientId) {
-    this.pisteClientId = pisteClientId;
+  public void setNom(@javax.annotation.Nonnull String nom) {
+    this.nom = nom;
   }
 
 
-  public CredentialsChorusPro pisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
-    this.pisteClientSecret = pisteClientSecret;
+  public Beneficiaire siret(@javax.annotation.Nullable String siret) {
+    this.siret = siret;
     return this;
   }
 
   /**
-   * Get pisteClientSecret
-   * @return pisteClientSecret
+   * Get siret
+   * @return siret
    */
   @javax.annotation.Nullable
-  public String getPisteClientSecret() {
-    return pisteClientSecret;
+  public String getSiret() {
+    return siret;
   }
 
-  public void setPisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
-    this.pisteClientSecret = pisteClientSecret;
+  public void setSiret(@javax.annotation.Nullable String siret) {
+    this.siret = siret;
   }
 
 
-  public CredentialsChorusPro chorusLogin(@javax.annotation.Nullable String chorusLogin) {
-    this.chorusLogin = chorusLogin;
+  public Beneficiaire siren(@javax.annotation.Nullable String siren) {
+    this.siren = siren;
     return this;
   }
 
   /**
-   * Get chorusLogin
-   * @return chorusLogin
+   * Get siren
+   * @return siren
    */
   @javax.annotation.Nullable
-  public String getChorusLogin() {
-    return chorusLogin;
+  public String getSiren() {
+    return siren;
   }
 
-  public void setChorusLogin(@javax.annotation.Nullable String chorusLogin) {
-    this.chorusLogin = chorusLogin;
+  public void setSiren(@javax.annotation.Nullable String siren) {
+    this.siren = siren;
   }
 
 
-  public CredentialsChorusPro chorusPassword(@javax.annotation.Nullable String chorusPassword) {
-    this.chorusPassword = chorusPassword;
+  public Beneficiaire adresseElectronique(@javax.annotation.Nullable AdresseElectronique adresseElectronique) {
+    this.adresseElectronique = adresseElectronique;
     return this;
   }
 
   /**
-   * Get chorusPassword
-   * @return chorusPassword
+   * Get adresseElectronique
+   * @return adresseElectronique
    */
   @javax.annotation.Nullable
-  public String getChorusPassword() {
-    return chorusPassword;
+  public AdresseElectronique getAdresseElectronique() {
+    return adresseElectronique;
   }
 
-  public void setChorusPassword(@javax.annotation.Nullable String chorusPassword) {
-    this.chorusPassword = chorusPassword;
+  public void setAdresseElectronique(@javax.annotation.Nullable AdresseElectronique adresseElectronique) {
+    this.adresseElectronique = adresseElectronique;
   }
 
 
-  public CredentialsChorusPro modeSandbox(@javax.annotation.Nullable Boolean modeSandbox) {
-    this.modeSandbox = modeSandbox;
+  public Beneficiaire iban(@javax.annotation.Nullable String iban) {
+    this.iban = iban;
     return this;
   }
 
   /**
-   * [MODE 2] Utiliser le mode sandbox (défaut: True)
-   * @return modeSandbox
+   * Get iban
+   * @return iban
    */
   @javax.annotation.Nullable
-  public Boolean getModeSandbox() {
-    return modeSandbox;
+  public String getIban() {
+    return iban;
   }
 
-  public void setModeSandbox(@javax.annotation.Nullable Boolean modeSandbox) {
-    this.modeSandbox = modeSandbox;
+  public void setIban(@javax.annotation.Nullable String iban) {
+    this.iban = iban;
+  }
+
+
+  public Beneficiaire bic(@javax.annotation.Nullable String bic) {
+    this.bic = bic;
+    return this;
+  }
+
+  /**
+   * Get bic
+   * @return bic
+   */
+  @javax.annotation.Nullable
+  public String getBic() {
+    return bic;
+  }
+
+  public void setBic(@javax.annotation.Nullable String bic) {
+    this.bic = bic;
   }
 
 
@@ -185,12 +210,13 @@ public class CredentialsChorusPro {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CredentialsChorusPro credentialsChorusPro = (CredentialsChorusPro) o;
-    return Objects.equals(this.pisteClientId, credentialsChorusPro.pisteClientId) &&
-        Objects.equals(this.pisteClientSecret, credentialsChorusPro.pisteClientSecret) &&
-        Objects.equals(this.chorusLogin, credentialsChorusPro.chorusLogin) &&
-        Objects.equals(this.chorusPassword, credentialsChorusPro.chorusPassword) &&
-        Objects.equals(this.modeSandbox, credentialsChorusPro.modeSandbox);
+    Beneficiaire beneficiaire = (Beneficiaire) o;
+    return Objects.equals(this.nom, beneficiaire.nom) &&
+        Objects.equals(this.siret, beneficiaire.siret) &&
+        Objects.equals(this.siren, beneficiaire.siren) &&
+        Objects.equals(this.adresseElectronique, beneficiaire.adresseElectronique) &&
+        Objects.equals(this.iban, beneficiaire.iban) &&
+        Objects.equals(this.bic, beneficiaire.bic);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -199,7 +225,7 @@ public class CredentialsChorusPro {
 
   @Override
   public int hashCode() {
-    return Objects.hash(pisteClientId, pisteClientSecret, chorusLogin, chorusPassword, modeSandbox);
+    return Objects.hash(nom, siret, siren, adresseElectronique, iban, bic);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -212,12 +238,13 @@ public class CredentialsChorusPro {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CredentialsChorusPro {\n");
-    sb.append("    pisteClientId: ").append(toIndentedString(pisteClientId)).append("\n");
-    sb.append("    pisteClientSecret: ").append(toIndentedString(pisteClientSecret)).append("\n");
-    sb.append("    chorusLogin: ").append(toIndentedString(chorusLogin)).append("\n");
-    sb.append("    chorusPassword: ").append(toIndentedString(chorusPassword)).append("\n");
-    sb.append("    modeSandbox: ").append(toIndentedString(modeSandbox)).append("\n");
+    sb.append("class Beneficiaire {\n");
+    sb.append("    nom: ").append(toIndentedString(nom)).append("\n");
+    sb.append("    siret: ").append(toIndentedString(siret)).append("\n");
+    sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
+    sb.append("    adresseElectronique: ").append(toIndentedString(adresseElectronique)).append("\n");
+    sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
+    sb.append("    bic: ").append(toIndentedString(bic)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -239,44 +266,58 @@ public class CredentialsChorusPro {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("piste_client_id", "piste_client_secret", "chorus_login", "chorus_password", "mode_sandbox"));
+    openapiFields = new HashSet<String>(Arrays.asList("nom", "siret", "siren", "adresseElectronique", "iban", "bic"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("nom"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CredentialsChorusPro
+   * @throws IOException if the JSON Element is invalid with respect to Beneficiaire
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!CredentialsChorusPro.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in CredentialsChorusPro is not found in the empty JSON string", CredentialsChorusPro.openapiRequiredFields.toString()));
+        if (!Beneficiaire.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in Beneficiaire is not found in the empty JSON string", Beneficiaire.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CredentialsChorusPro.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `CredentialsChorusPro` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!Beneficiaire.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `Beneficiaire` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : Beneficiaire.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("piste_client_id") != null && !jsonObj.get("piste_client_id").isJsonNull()) && !jsonObj.get("piste_client_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `piste_client_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_id").toString()));
+      if (!jsonObj.get("nom").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `nom` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nom").toString()));
       }
-      if ((jsonObj.get("piste_client_secret") != null && !jsonObj.get("piste_client_secret").isJsonNull()) && !jsonObj.get("piste_client_secret").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `piste_client_secret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_secret").toString()));
+      if ((jsonObj.get("siret") != null && !jsonObj.get("siret").isJsonNull()) && !jsonObj.get("siret").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));
       }
-      if ((jsonObj.get("chorus_login") != null && !jsonObj.get("chorus_login").isJsonNull()) && !jsonObj.get("chorus_login").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `chorus_login` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_login").toString()));
+      if ((jsonObj.get("siren") != null && !jsonObj.get("siren").isJsonNull()) && !jsonObj.get("siren").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `siren` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siren").toString()));
       }
-      if ((jsonObj.get("chorus_password") != null && !jsonObj.get("chorus_password").isJsonNull()) && !jsonObj.get("chorus_password").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `chorus_password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_password").toString()));
+      // validate the optional field `adresseElectronique`
+      if (jsonObj.get("adresseElectronique") != null && !jsonObj.get("adresseElectronique").isJsonNull()) {
+        AdresseElectronique.validateJsonElement(jsonObj.get("adresseElectronique"));
+      }
+      if ((jsonObj.get("iban") != null && !jsonObj.get("iban").isJsonNull()) && !jsonObj.get("iban").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `iban` to be a primitive type in the JSON string but got `%s`", jsonObj.get("iban").toString()));
+      }
+      if ((jsonObj.get("bic") != null && !jsonObj.get("bic").isJsonNull()) && !jsonObj.get("bic").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `bic` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bic").toString()));
       }
   }
 
@@ -284,22 +325,22 @@ public class CredentialsChorusPro {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CredentialsChorusPro.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CredentialsChorusPro' and its subtypes
+       if (!Beneficiaire.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Beneficiaire' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CredentialsChorusPro> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CredentialsChorusPro.class));
+       final TypeAdapter<Beneficiaire> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Beneficiaire.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<CredentialsChorusPro>() {
+       return (TypeAdapter<T>) new TypeAdapter<Beneficiaire>() {
            @Override
-           public void write(JsonWriter out, CredentialsChorusPro value) throws IOException {
+           public void write(JsonWriter out, Beneficiaire value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public CredentialsChorusPro read(JsonReader in) throws IOException {
+           public Beneficiaire read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -310,18 +351,18 @@ public class CredentialsChorusPro {
   }
 
   /**
-   * Create an instance of CredentialsChorusPro given an JSON string
+   * Create an instance of Beneficiaire given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of CredentialsChorusPro
-   * @throws IOException if the JSON string is invalid with respect to CredentialsChorusPro
+   * @return An instance of Beneficiaire
+   * @throws IOException if the JSON string is invalid with respect to Beneficiaire
    */
-  public static CredentialsChorusPro fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CredentialsChorusPro.class);
+  public static Beneficiaire fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Beneficiaire.class);
   }
 
   /**
-   * Convert an instance of CredentialsChorusPro to an JSON string
+   * Convert an instance of Beneficiaire to an JSON string
    *
    * @return JSON string
    */

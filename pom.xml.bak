@@ -5,7 +5,7 @@
     <artifactId>factpulse-sdk</artifactId>
     <packaging>jar</packaging>
     <name>factpulse-sdk</name>
-    <version>2.0.38</version>
+    <version>2.0.39</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>

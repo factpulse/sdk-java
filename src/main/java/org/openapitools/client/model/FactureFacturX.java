@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.client.model.Beneficiaire;
 import org.openapitools.client.model.CadreDeFacturation;
 import org.openapitools.client.model.Destinataire;
 import org.openapitools.client.model.Fournisseur;
@@ -63,7 +64,7 @@ import org.openapitools.client.JSON;
 /**
  * Modèle de données pour une facture destinée à être convertie en Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T06:54:01.032403447Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T08:47:10.107605590Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FactureFacturX {
   public static final String SERIALIZED_NAME_NUMERO_FACTURE = "numeroFacture";
   @SerializedName(SERIALIZED_NAME_NUMERO_FACTURE)
@@ -139,6 +140,11 @@ public class FactureFacturX {
   @SerializedName(SERIALIZED_NAME_PIECES_JOINTES_COMPLEMENTAIRES)
   @javax.annotation.Nullable
   private List<PieceJointeComplementaire> piecesJointesComplementaires;
+
+  public static final String SERIALIZED_NAME_BENEFICIAIRE = "beneficiaire";
+  @SerializedName(SERIALIZED_NAME_BENEFICIAIRE)
+  @javax.annotation.Nullable
+  private Beneficiaire beneficiaire;
 
   public FactureFacturX() {
   }
@@ -460,6 +466,25 @@ public class FactureFacturX {
   }
 
 
+  public FactureFacturX beneficiaire(@javax.annotation.Nullable Beneficiaire beneficiaire) {
+    this.beneficiaire = beneficiaire;
+    return this;
+  }
+
+  /**
+   * Get beneficiaire
+   * @return beneficiaire
+   */
+  @javax.annotation.Nullable
+  public Beneficiaire getBeneficiaire() {
+    return beneficiaire;
+  }
+
+  public void setBeneficiaire(@javax.annotation.Nullable Beneficiaire beneficiaire) {
+    this.beneficiaire = beneficiaire;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -484,7 +509,8 @@ public class FactureFacturX {
         Objects.equals(this.notes, factureFacturX.notes) &&
         Objects.equals(this.commentaire, factureFacturX.commentaire) &&
         Objects.equals(this.idUtilisateurCourant, factureFacturX.idUtilisateurCourant) &&
-        Objects.equals(this.piecesJointesComplementaires, factureFacturX.piecesJointesComplementaires);
+        Objects.equals(this.piecesJointesComplementaires, factureFacturX.piecesJointesComplementaires) &&
+        Objects.equals(this.beneficiaire, factureFacturX.beneficiaire);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -493,7 +519,7 @@ public class FactureFacturX {
 
   @Override
   public int hashCode() {
-    return Objects.hash(numeroFacture, dateEcheancePaiement, dateFacture, modeDepot, destinataire, fournisseur, cadreDeFacturation, references, montantTotal, lignesDePoste, lignesDeTva, notes, commentaire, idUtilisateurCourant, piecesJointesComplementaires);
+    return Objects.hash(numeroFacture, dateEcheancePaiement, dateFacture, modeDepot, destinataire, fournisseur, cadreDeFacturation, references, montantTotal, lignesDePoste, lignesDeTva, notes, commentaire, idUtilisateurCourant, piecesJointesComplementaires, beneficiaire);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -522,6 +548,7 @@ public class FactureFacturX {
     sb.append("    commentaire: ").append(toIndentedString(commentaire)).append("\n");
     sb.append("    idUtilisateurCourant: ").append(toIndentedString(idUtilisateurCourant)).append("\n");
     sb.append("    piecesJointesComplementaires: ").append(toIndentedString(piecesJointesComplementaires)).append("\n");
+    sb.append("    beneficiaire: ").append(toIndentedString(beneficiaire)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -543,7 +570,7 @@ public class FactureFacturX {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "dateFacture", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal", "lignesDePoste", "lignesDeTva", "notes", "commentaire", "idUtilisateurCourant", "piecesJointesComplementaires"));
+    openapiFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "dateFacture", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal", "lignesDePoste", "lignesDeTva", "notes", "commentaire", "idUtilisateurCourant", "piecesJointesComplementaires", "beneficiaire"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal"));
@@ -656,6 +683,10 @@ public class FactureFacturX {
             PieceJointeComplementaire.validateJsonElement(jsonArraypiecesJointesComplementaires.get(i));
           };
         }
+      }
+      // validate the optional field `beneficiaire`
+      if (jsonObj.get("beneficiaire") != null && !jsonObj.get("beneficiaire").isJsonNull()) {
+        Beneficiaire.validateJsonElement(jsonObj.get("beneficiaire"));
       }
   }
 
