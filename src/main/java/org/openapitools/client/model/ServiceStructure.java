@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Service d&#39;une structure.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-08T06:57:37.390616113Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T06:32:02.575358678Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ServiceStructure {
   public static final String SERIALIZED_NAME_ID_SERVICE = "id_service";
   @SerializedName(SERIALIZED_NAME_ID_SERVICE)
