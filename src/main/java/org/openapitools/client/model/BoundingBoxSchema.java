@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Coordonnées d&#39;une zone rectangulaire dans le PDF.  Les coordonnées sont en points PDF (1 point &#x3D; 1/72 pouce). L&#39;origine (0,0) est en bas à gauche de la page.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T06:32:02.575358678Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T06:54:01.032403447Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class BoundingBoxSchema {
   public static final String SERIALIZED_NAME_X0 = "x0";
   @SerializedName(SERIALIZED_NAME_X0)

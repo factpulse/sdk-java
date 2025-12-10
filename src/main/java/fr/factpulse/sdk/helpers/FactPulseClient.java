@@ -269,9 +269,44 @@ public class FactPulseClient {
                     .addHeader("Authorization", "Bearer " + accessToken).post(body).build();
                 try (Response response = httpClient.newCall(request).execute()) {
                     if (response.code() == 401 && attempt < maxRetries) { resetAuth(); continue; }
-                    if (!response.isSuccessful()) throw new FactPulseValidationException("API error: " + response.code());
+                    String responseBody = response.body() != null ? response.body().string() : "";
+                    if (!response.isSuccessful()) {
+                        // Extraire les détails d'erreur du corps de la réponse
+                        String errorMsg = "Erreur API (" + response.code() + ")";
+                        List<ValidationErrorDetail> errors = new ArrayList<>();
+                        try {
+                            Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
+                            Map<String, Object> errorData = gson.fromJson(responseBody, mapType);
+                            if (errorData != null) {
+                                // Format FastAPI/Pydantic: {"detail": [{"loc": [...], "msg": "...", "type": "..."}]}
+                                Object detail = errorData.get("detail");
+                                if (detail instanceof List) {
+                                    errorMsg = "Erreur de validation";
+                                    for (Object item : (List<?>) detail) {
+                                        if (item instanceof Map) {
+                                            Map<?, ?> errItem = (Map<?, ?>) item;
+                                            String loc = "";
+                                            if (errItem.get("loc") instanceof List) {
+                                                List<?> locList = (List<?>) errItem.get("loc");
+                                                loc = locList.stream().map(String::valueOf).collect(java.util.stream.Collectors.joining(" -> "));
+                                            }
+                                            String reason = errItem.get("msg") != null ? String.valueOf(errItem.get("msg")) : "";
+                                            String code = errItem.get("type") != null ? String.valueOf(errItem.get("type")) : null;
+                                            errors.add(new ValidationErrorDetail("ERROR", loc, reason, "validation", code));
+                                        }
+                                    }
+                                } else if (detail instanceof String) {
+                                    errorMsg = (String) detail;
+                                } else if (errorData.get("errorMessage") != null) {
+                                    errorMsg = String.valueOf(errorData.get("errorMessage"));
+                                }
+                            }
+                        } catch (Exception parseErr) { /* ignore parsing errors */ }
+                        System.err.println("Erreur API " + response.code() + ": " + responseBody);
+                        throw new FactPulseValidationException(errorMsg, errors);
+                    }
                     Type type = new TypeToken<Map<String, Object>>(){}.getType();
-                    Map<String, Object> result = gson.fromJson(response.body().string(), type);
+                    Map<String, Object> result = gson.fromJson(responseBody, type);
                     String taskId = (String) result.get("id_tache");
                     if (taskId == null) throw new FactPulseValidationException("No task ID");
                     if (!sync) return taskId.getBytes();

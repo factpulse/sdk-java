@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Représente une ligne de totalisation par taux de TVA.  Pour les exonérations (catégories E, AE, K, G, O), les champs &#x60;motif_exoneration&#x60; et &#x60;code_vatex&#x60; sont requis selon EN16931.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T06:32:02.575358678Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T06:54:01.032403447Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class LigneDeTVA {
   public static final String SERIALIZED_NAME_MONTANT_BASE_HT = "montantBaseHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_BASE_HT)
