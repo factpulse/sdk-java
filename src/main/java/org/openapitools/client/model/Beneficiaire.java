@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur le bénéficiaire du paiement (BG-10 / PayeeTradeParty).  Le bénéficiaire est la partie qui reçoit le paiement. Ce bloc est utilisé uniquement si le bénéficiaire est différent du vendeur (fournisseur).  **Cas d&#39;usage principal** : Affacturage (factoring) Quand une facture est affacturée, le factor (société d&#39;affacturage) devient le bénéficiaire du paiement à la place du fournisseur.  **Business Terms (EN16931)** : - BT-59 : Nom du bénéficiaire (obligatoire) - BT-60 : Identifiant du bénéficiaire (SIRET avec schemeID 0009) - BT-61 : Identifiant légal du bénéficiaire (SIREN avec schemeID 0002)  **Référence** : docs/guide_affacturage.md
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T20:49:58.597310697Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T21:07:40.325889911Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Beneficiaire {
   public static final String SERIALIZED_NAME_NOM = "nom";
   @SerializedName(SERIALIZED_NAME_NOM)

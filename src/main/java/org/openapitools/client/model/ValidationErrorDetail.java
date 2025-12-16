@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Détail d&#39;une erreur de validation (aligné sur AFNOR AcknowledgementDetail).  Format unifié pour toutes les erreurs de validation Factur-X, compatible avec la norme AFNOR XP Z12-013.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T20:49:58.597310697Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T21:07:40.325889911Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ValidationErrorDetail {
   public static final String SERIALIZED_NAME_LEVEL = "level";
   @SerializedName(SERIALIZED_NAME_LEVEL)
