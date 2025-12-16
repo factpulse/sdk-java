@@ -26,20 +26,35 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Types de documents commerciaux (UNTDID 1001).
+ * Types de documents commerciaux (UNTDID 1001).  | Code | Nom | Description | |------|-----|-------------| | 380 | FACTURE | Facture commerciale | | 381 | AVOIR | Avoir | | 384 | FACTURE_RECTIFICATIVE | Facture rectificative | | 386 | ACOMPTE | Facture d&#39;acompte | | 389 | AUTOFACTURATION | Facture auto-facturée |
  */
 @JsonAdapter(TypeDocument.Adapter.class)
 public enum TypeDocument {
   
-  _380("380"),
+  /**
+   * Facture commerciale
+   */
+  FACTURE("380"),
   
-  _381("381"),
+  /**
+   * Avoir
+   */
+  AVOIR("381"),
   
-  _384("384"),
+  /**
+   * Facture rectificative
+   */
+  FACTURE_RECTIFICATIVE("384"),
   
-  _386("386"),
+  /**
+   * Facture d&#39;acompte
+   */
+  ACOMPTE("386"),
   
-  _389("389");
+  /**
+   * Facture auto-facturée
+   */
+  AUTOFACTURATION("389");
 
   private String value;
 

@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Requête pour soumettre une facture à une PDP/PA via AFNOR
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T09:35:31.529791871Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T20:49:58.597310697Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class RequeteSoumissionFlux {
   public static final String SERIALIZED_NAME_NOM_FLUX = "nom_flux";
   @SerializedName(SERIALIZED_NAME_NOM_FLUX)

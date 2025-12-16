@@ -565,23 +565,32 @@ public class FactPulseClient {
     // Validation
     // =========================================================================
 
-    public Map<String, Object> validerPdfFacturx(String pdfPath, String profil) throws FactPulseException {
+    /**
+     * Valide un PDF Factur-X.
+     * @param pdfPath Chemin vers le fichier PDF
+     * @param profil Profil Factur-X (MINIMUM, BASIC, EN16931, EXTENDED). Si null, auto-détecté.
+     * @param useVerapdf Active la validation stricte PDF/A avec VeraPDF (défaut: false)
+     */
+    public Map<String, Object> validerPdfFacturx(String pdfPath, String profil, boolean useVerapdf) throws FactPulseException {
         ensureAuthenticated();
         try {
             File pdfFile = new File(pdfPath);
-            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+            MultipartBody.Builder bodyBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("fichier_pdf", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
-                .addFormDataPart("profil", profil != null ? profil : "EN16931")
-                .build();
+                .addFormDataPart("use_verapdf", String.valueOf(useVerapdf));
+            if (profil != null) {
+                bodyBuilder.addFormDataPart("profil", profil);
+            }
             Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/valider-pdf-facturx")
-                .addHeader("Authorization", "Bearer " + accessToken).post(body).build();
+                .addHeader("Authorization", "Bearer " + accessToken).post(bodyBuilder.build()).build();
             try (Response response = httpClient.newCall(request).execute()) {
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
                 return gson.fromJson(response.body().string(), type);
             }
         } catch (IOException e) { throw new FactPulseValidationException("Validation error: " + e.getMessage()); }
     }
-    public Map<String, Object> validerPdfFacturx(String pdfPath) throws FactPulseException { return validerPdfFacturx(pdfPath, "EN16931"); }
+    public Map<String, Object> validerPdfFacturx(String pdfPath, String profil) throws FactPulseException { return validerPdfFacturx(pdfPath, profil, false); }
+    public Map<String, Object> validerPdfFacturx(String pdfPath) throws FactPulseException { return validerPdfFacturx(pdfPath, null, false); }
 
     public Map<String, Object> validerXmlFacturx(String xmlContent, String profil) throws FactPulseException {
         ensureAuthenticated();

@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Définit le cadre de facturation.  - code_cadre_facturation: Code Chorus Pro (A1, A2, A9, A12) - utilisé pour B2G - nature_operation: Nature de l&#39;opération (B1, S1, M1, etc.) - prioritaire pour Factur-X  Si nature_operation est fourni, il sera utilisé directement dans le XML Factur-X (BT-23). Sinon, le code sera déduit de code_cadre_facturation via un mapping automatique.  Exemple:     &gt;&gt;&gt; cadre &#x3D; CadreDeFacturation(     ...     code_cadre_facturation&#x3D;CodeCadreFacturation.A1_FACTURE_FOURNISSEUR,     ...     nature_operation&#x3D;NatureOperation.BIENS  # Force B1 au lieu de S1     ... )
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-10T09:35:31.529791871Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T20:49:58.597310697Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class CadreDeFacturation {
   public static final String SERIALIZED_NAME_CODE_CADRE_FACTURATION = "codeCadreFacturation";
   @SerializedName(SERIALIZED_NAME_CODE_CADRE_FACTURATION)
