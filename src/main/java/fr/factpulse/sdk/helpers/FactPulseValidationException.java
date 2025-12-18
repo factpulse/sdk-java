@@ -1,4 +1,4 @@
-package org.openapitools.client.helpers;
+package fr.factpulse.sdk.helpers;
 import java.util.ArrayList; import java.util.List; import java.util.stream.Collectors;
 public class FactPulseValidationException extends FactPulseException {
     public final List<ValidationErrorDetail> errors;

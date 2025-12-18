@@ -1,4 +1,4 @@
-package org.openapitools.client.helpers;
+package fr.factpulse.sdk.helpers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

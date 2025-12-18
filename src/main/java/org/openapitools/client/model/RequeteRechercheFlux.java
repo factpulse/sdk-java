@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -50,14 +49,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import org.openapitools.client.JSON;
 
 /**
  * Requête pour rechercher des flux soumis
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T21:07:40.325889911Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class RequeteRechercheFlux {
   public static final String SERIALIZED_NAME_DATE_MAJ_APRES = "date_maj_apres";
   @SerializedName(SERIALIZED_NAME_DATE_MAJ_APRES)
@@ -383,7 +381,7 @@ public class RequeteRechercheFlux {
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RequeteRechercheFlux.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in RequeteRechercheFlux is not found in the empty JSON string", RequeteRechercheFlux.openapiRequiredFields.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in RequeteRechercheFlux is not found in the empty JSON string", RequeteRechercheFlux.openapiRequiredFields.toString()));
         }
       }
 
@@ -391,23 +389,23 @@ public class RequeteRechercheFlux {
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
         if (!RequeteRechercheFlux.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `RequeteRechercheFlux` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `RequeteRechercheFlux` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the optional json data is an array if present
       if (jsonObj.get("type_flux") != null && !jsonObj.get("type_flux").isJsonNull() && !jsonObj.get("type_flux").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `type_flux` to be an array in the JSON string but got `%s`", jsonObj.get("type_flux").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `type_flux` to be an array in the JSON string but got `%s`", jsonObj.get("type_flux").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("direction_flux") != null && !jsonObj.get("direction_flux").isJsonNull() && !jsonObj.get("direction_flux").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `direction_flux` to be an array in the JSON string but got `%s`", jsonObj.get("direction_flux").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `direction_flux` to be an array in the JSON string but got `%s`", jsonObj.get("direction_flux").toString()));
       }
       if ((jsonObj.get("tracking_id") != null && !jsonObj.get("tracking_id").isJsonNull()) && !jsonObj.get("tracking_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `tracking_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tracking_id").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tracking_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tracking_id").toString()));
       }
       if ((jsonObj.get("flow_id") != null && !jsonObj.get("flow_id").isJsonNull()) && !jsonObj.get("flow_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `flow_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flow_id").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flow_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flow_id").toString()));
       }
       // validate the optional field `statut_acquittement`
       if (jsonObj.get("statut_acquittement") != null && !jsonObj.get("statut_acquittement").isJsonNull()) {

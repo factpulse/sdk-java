@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -44,14 +43,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import org.openapitools.client.JSON;
 
 /**
  * Credentials Chorus Pro optionnels.  **MODE 1 - Récupération via JWT (recommandé) :** Ne pas fournir ce champ &#x60;credentials&#x60; dans le payload. Les credentials seront récupérés automatiquement via client_uid du JWT (0-trust).  **MODE 2 - Credentials dans le payload :** Fournir tous les champs requis ci-dessous. Utile pour tests ou intégrations tierces.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T21:07:40.325889911Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class CredentialsChorusPro {
   public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "piste_client_id";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)
@@ -254,7 +252,7 @@ public class CredentialsChorusPro {
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CredentialsChorusPro.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in CredentialsChorusPro is not found in the empty JSON string", CredentialsChorusPro.openapiRequiredFields.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in CredentialsChorusPro is not found in the empty JSON string", CredentialsChorusPro.openapiRequiredFields.toString()));
         }
       }
 
@@ -262,21 +260,21 @@ public class CredentialsChorusPro {
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
         if (!CredentialsChorusPro.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `CredentialsChorusPro` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `CredentialsChorusPro` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("piste_client_id") != null && !jsonObj.get("piste_client_id").isJsonNull()) && !jsonObj.get("piste_client_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `piste_client_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_id").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `piste_client_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_id").toString()));
       }
       if ((jsonObj.get("piste_client_secret") != null && !jsonObj.get("piste_client_secret").isJsonNull()) && !jsonObj.get("piste_client_secret").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `piste_client_secret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_secret").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `piste_client_secret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_secret").toString()));
       }
       if ((jsonObj.get("chorus_login") != null && !jsonObj.get("chorus_login").isJsonNull()) && !jsonObj.get("chorus_login").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `chorus_login` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_login").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorus_login` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_login").toString()));
       }
       if ((jsonObj.get("chorus_password") != null && !jsonObj.get("chorus_password").isJsonNull()) && !jsonObj.get("chorus_password").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `chorus_password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_password").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorus_password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_password").toString()));
       }
   }
 

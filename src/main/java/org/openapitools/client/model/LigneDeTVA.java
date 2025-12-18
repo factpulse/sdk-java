@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -48,14 +47,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import org.openapitools.client.JSON;
 
 /**
  * Représente une ligne de totalisation par taux de TVA.  Pour les exonérations (catégories E, AE, K, G, O), les champs &#x60;motif_exoneration&#x60; et &#x60;code_vatex&#x60; sont requis selon EN16931.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T21:07:40.325889911Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class LigneDeTVA {
   public static final String SERIALIZED_NAME_MONTANT_BASE_HT = "montantBaseHt";
   @SerializedName(SERIALIZED_NAME_MONTANT_BASE_HT)
@@ -310,7 +308,7 @@ public class LigneDeTVA {
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!LigneDeTVA.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in LigneDeTVA is not found in the empty JSON string", LigneDeTVA.openapiRequiredFields.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in LigneDeTVA is not found in the empty JSON string", LigneDeTVA.openapiRequiredFields.toString()));
         }
       }
 
@@ -318,14 +316,14 @@ public class LigneDeTVA {
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
         if (!LigneDeTVA.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `LigneDeTVA` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `LigneDeTVA` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : LigneDeTVA.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -334,7 +332,7 @@ public class LigneDeTVA {
       // validate the required field `montantTva`
       MontantTvaLigne.validateJsonElement(jsonObj.get("montantTva"));
       if ((jsonObj.get("taux") != null && !jsonObj.get("taux").isJsonNull()) && !jsonObj.get("taux").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `taux` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taux").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `taux` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taux").toString()));
       }
       // validate the optional field `tauxManuel`
       if (jsonObj.get("tauxManuel") != null && !jsonObj.get("tauxManuel").isJsonNull()) {
@@ -345,10 +343,10 @@ public class LigneDeTVA {
         CategorieTVA.validateJsonElement(jsonObj.get("categorie"));
       }
       if ((jsonObj.get("motifExoneration") != null && !jsonObj.get("motifExoneration").isJsonNull()) && !jsonObj.get("motifExoneration").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `motifExoneration` to be a primitive type in the JSON string but got `%s`", jsonObj.get("motifExoneration").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `motifExoneration` to be a primitive type in the JSON string but got `%s`", jsonObj.get("motifExoneration").toString()));
       }
       if ((jsonObj.get("codeVatex") != null && !jsonObj.get("codeVatex").isJsonNull()) && !jsonObj.get("codeVatex").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `codeVatex` to be a primitive type in the JSON string but got `%s`", jsonObj.get("codeVatex").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `codeVatex` to be a primitive type in the JSON string but got `%s`", jsonObj.get("codeVatex").toString()));
       }
   }
 

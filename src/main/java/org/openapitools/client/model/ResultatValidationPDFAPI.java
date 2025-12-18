@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -49,14 +48,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import org.openapitools.client.JSON;
 
 /**
  * Résultat complet de la validation d&#39;un PDF Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T21:07:40.325889911Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class ResultatValidationPDFAPI {
   public static final String SERIALIZED_NAME_EST_CONFORME = "est_conforme";
   @SerializedName(SERIALIZED_NAME_EST_CONFORME)
@@ -783,7 +781,7 @@ public class ResultatValidationPDFAPI {
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ResultatValidationPDFAPI.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in ResultatValidationPDFAPI is not found in the empty JSON string", ResultatValidationPDFAPI.openapiRequiredFields.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in ResultatValidationPDFAPI is not found in the empty JSON string", ResultatValidationPDFAPI.openapiRequiredFields.toString()));
         }
       }
 
@@ -791,54 +789,54 @@ public class ResultatValidationPDFAPI {
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
         if (!ResultatValidationPDFAPI.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ResultatValidationPDFAPI` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ResultatValidationPDFAPI` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : ResultatValidationPDFAPI.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("profil_detecte") != null && !jsonObj.get("profil_detecte").isJsonNull()) && !jsonObj.get("profil_detecte").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `profil_detecte` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profil_detecte").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `profil_detecte` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profil_detecte").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("erreurs_xml") != null && !jsonObj.get("erreurs_xml").isJsonNull() && !jsonObj.get("erreurs_xml").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `erreurs_xml` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_xml").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `erreurs_xml` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_xml").toString()));
       }
       if ((jsonObj.get("version_pdfa") != null && !jsonObj.get("version_pdfa").isJsonNull()) && !jsonObj.get("version_pdfa").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `version_pdfa` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version_pdfa").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `version_pdfa` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version_pdfa").toString()));
       }
       if ((jsonObj.get("methode_validation_pdfa") != null && !jsonObj.get("methode_validation_pdfa").isJsonNull()) && !jsonObj.get("methode_validation_pdfa").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `methode_validation_pdfa` to be a primitive type in the JSON string but got `%s`", jsonObj.get("methode_validation_pdfa").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `methode_validation_pdfa` to be a primitive type in the JSON string but got `%s`", jsonObj.get("methode_validation_pdfa").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("erreurs_pdfa") != null && !jsonObj.get("erreurs_pdfa").isJsonNull() && !jsonObj.get("erreurs_pdfa").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `erreurs_pdfa` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_pdfa").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `erreurs_pdfa` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_pdfa").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("avertissements_pdfa") != null && !jsonObj.get("avertissements_pdfa").isJsonNull() && !jsonObj.get("avertissements_pdfa").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `avertissements_pdfa` to be an array in the JSON string but got `%s`", jsonObj.get("avertissements_pdfa").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `avertissements_pdfa` to be an array in the JSON string but got `%s`", jsonObj.get("avertissements_pdfa").toString()));
       }
       if ((jsonObj.get("profil_xmp") != null && !jsonObj.get("profil_xmp").isJsonNull()) && !jsonObj.get("profil_xmp").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `profil_xmp` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profil_xmp").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `profil_xmp` to be a primitive type in the JSON string but got `%s`", jsonObj.get("profil_xmp").toString()));
       }
       if ((jsonObj.get("version_xmp") != null && !jsonObj.get("version_xmp").isJsonNull()) && !jsonObj.get("version_xmp").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `version_xmp` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version_xmp").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `version_xmp` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version_xmp").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("erreurs_xmp") != null && !jsonObj.get("erreurs_xmp").isJsonNull() && !jsonObj.get("erreurs_xmp").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `erreurs_xmp` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_xmp").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `erreurs_xmp` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_xmp").toString()));
       }
       if (jsonObj.get("signatures") != null && !jsonObj.get("signatures").isJsonNull()) {
         JsonArray jsonArraysignatures = jsonObj.getAsJsonArray("signatures");
         if (jsonArraysignatures != null) {
           // ensure the json data is an array
           if (!jsonObj.get("signatures").isJsonArray()) {
-            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `signatures` to be an array in the JSON string but got `%s`", jsonObj.get("signatures").toString()));
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `signatures` to be an array in the JSON string but got `%s`", jsonObj.get("signatures").toString()));
           }
 
           // validate the optional field `signatures` (array)
@@ -849,10 +847,10 @@ public class ResultatValidationPDFAPI {
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("erreurs_signatures") != null && !jsonObj.get("erreurs_signatures").isJsonNull() && !jsonObj.get("erreurs_signatures").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `erreurs_signatures` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_signatures").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `erreurs_signatures` to be an array in the JSON string but got `%s`", jsonObj.get("erreurs_signatures").toString()));
       }
       if (!jsonObj.get("message_resume").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `message_resume` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message_resume").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message_resume` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message_resume").toString()));
       }
   }
 

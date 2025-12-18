@@ -18,14 +18,14 @@ Client Java officiel pour l'API FactPulse - Facturation électronique française
 <dependency>
     <groupId>fr.factpulse</groupId>
     <artifactId>factpulse-sdk</artifactId>
-    <version>2.0.42</version>
+    <version>2.0.43</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'fr.factpulse:factpulse-sdk:2.0.42'
+implementation 'fr.factpulse:factpulse-sdk:2.0.43'
 ```
 
 ## Démarrage rapide
@@ -33,9 +33,9 @@ implementation 'fr.factpulse:factpulse-sdk:2.0.42'
 Le package `helpers` offre une API simplifiée avec authentification et polling automatiques :
 
 ```java
-import org.openapitools.client.helpers.FactPulseClient;
-import org.openapitools.client.helpers.MontantHelpers;
-import static org.openapitools.client.helpers.MontantHelpers.*;
+import fr.factpulse.sdk.helpers.FactPulseClient;
+import fr.factpulse.sdk.helpers.MontantHelpers;
+import static fr.factpulse.sdk.helpers.MontantHelpers.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -79,7 +79,7 @@ Files.write(Paths.get("facture_facturx.pdf"), pdfBytes);
 Convertit une valeur en string formaté pour les montants monétaires.
 
 ```java
-import static org.openapitools.client.helpers.MontantHelpers.montant;
+import static fr.factpulse.sdk.helpers.MontantHelpers.montant;
 
 montant(1234.5);      // "1234.50"
 montant("1234.56");   // "1234.56"
@@ -91,7 +91,7 @@ montant(null);        // "0.00"
 Crée un objet MontantTotal complet.
 
 ```java
-import static org.openapitools.client.helpers.MontantHelpers.montantTotal;
+import static fr.factpulse.sdk.helpers.MontantHelpers.montantTotal;
 
 Map<String, Object> total = montantTotal(
     1000.00,        // ht
@@ -109,7 +109,7 @@ Map<String, Object> total = montantTotal(
 Crée une ligne de facturation.
 
 ```java
-import static org.openapitools.client.helpers.MontantHelpers.ligneDePoste;
+import static fr.factpulse.sdk.helpers.MontantHelpers.ligneDePoste;
 
 Map<String, Object> ligne = ligneDePoste(
     1,
@@ -129,7 +129,7 @@ Map<String, Object> ligne = ligneDePoste(
 Crée une ligne de ventilation TVA.
 
 ```java
-import static org.openapitools.client.helpers.MontantHelpers.ligneDeTva;
+import static fr.factpulse.sdk.helpers.MontantHelpers.ligneDeTva;
 
 Map<String, Object> tva = ligneDeTva(
     "20.00",    // tauxManuel
@@ -144,7 +144,7 @@ Map<String, Object> tva = ligneDeTva(
 Crée une adresse postale structurée.
 
 ```java
-import static org.openapitools.client.helpers.MontantHelpers.adressePostale;
+import static fr.factpulse.sdk.helpers.MontantHelpers.adressePostale;
 
 Map<String, Object> adresse = adressePostale(
     "123 Rue de la République",
@@ -161,7 +161,7 @@ Map<String, Object> adresse = adressePostale(
 Crée un fournisseur complet avec calcul automatique du SIREN et TVA intra.
 
 ```java
-import static org.openapitools.client.helpers.MontantHelpers.fournisseur;
+import static fr.factpulse.sdk.helpers.MontantHelpers.fournisseur;
 
 Map<String, Object> f = fournisseur(
     "Ma Société SAS",
@@ -179,7 +179,7 @@ Map<String, Object> f = fournisseur(
 Crée un destinataire (client) avec calcul automatique du SIREN.
 
 ```java
-import static org.openapitools.client.helpers.MontantHelpers.destinataire;
+import static fr.factpulse.sdk.helpers.MontantHelpers.destinataire;
 
 Map<String, Object> d = destinataire(
     "Client SARL",
@@ -196,7 +196,7 @@ Map<String, Object> d = destinataire(
 Pour passer vos propres credentials sans stockage côté serveur :
 
 ```java
-import org.openapitools.client.helpers.*;
+import fr.factpulse.sdk.helpers.*;
 
 ChorusProCredentials chorusCreds = new ChorusProCredentials(
     "votre_client_id",

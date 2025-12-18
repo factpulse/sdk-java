@@ -14,7 +14,6 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -45,14 +44,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Locale;
 
 import org.openapitools.client.JSON;
 
 /**
  * Recherche de structures par critères.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-16T21:07:40.325889911Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class RechercherStructureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
@@ -255,7 +253,7 @@ public class RechercherStructureRequest {
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RechercherStructureRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in RechercherStructureRequest is not found in the empty JSON string", RechercherStructureRequest.openapiRequiredFields.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in RechercherStructureRequest is not found in the empty JSON string", RechercherStructureRequest.openapiRequiredFields.toString()));
         }
       }
 
@@ -263,7 +261,7 @@ public class RechercherStructureRequest {
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
         if (!RechercherStructureRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `RechercherStructureRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `RechercherStructureRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -272,13 +270,13 @@ public class RechercherStructureRequest {
         ChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
       if ((jsonObj.get("identifiant_structure") != null && !jsonObj.get("identifiant_structure").isJsonNull()) && !jsonObj.get("identifiant_structure").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `identifiant_structure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifiant_structure").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `identifiant_structure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifiant_structure").toString()));
       }
       if ((jsonObj.get("type_identifiant_structure") != null && !jsonObj.get("type_identifiant_structure").isJsonNull()) && !jsonObj.get("type_identifiant_structure").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `type_identifiant_structure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type_identifiant_structure").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `type_identifiant_structure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type_identifiant_structure").toString()));
       }
       if ((jsonObj.get("raison_sociale_structure") != null && !jsonObj.get("raison_sociale_structure").isJsonNull()) && !jsonObj.get("raison_sociale_structure").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `raison_sociale_structure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("raison_sociale_structure").toString()));
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `raison_sociale_structure` to be a primitive type in the JSON string but got `%s`", jsonObj.get("raison_sociale_structure").toString()));
       }
   }
 
