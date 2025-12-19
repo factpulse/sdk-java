@@ -199,24 +199,24 @@ paths:
         **Simplified format example**:
         ```json
         {
-          "numero": "FACT-2025-001",
-          "emetteur": {
+          "number": "FACT-2025-001",
+          "sender": {
             "siret": "92019522900017",
             "iban": "FR7630001007941234567890185"
           },
-          "destinataire": {"siret": "35600000000048"},
-          "lignes": [
-            {"description": "Service", "quantite": 10, "prix_ht": 100.00, "tva": 20.0}
+          "recipient": {"siret": "35600000000048"},
+          "lines": [
+            {"description": "Service", "quantity": 10, "unitPrice": 100.00, "vatRate": 20.0}
           ]
         }
         ```
 
         **⚠️ Required fields (simplified format)**:
-        - `numero`: Unique invoice number
-        - `emetteur.siret`: Sender's SIRET (14 digits)
-        - `emetteur.iban`: Bank account IBAN (no public API to retrieve it)
-        - `destinataire.siret`: Recipient's SIRET
-        - `lignes[]`: At least one invoice line
+        - `number`: Unique invoice number
+        - `sender.siret`: Sender's SIRET (14 digits)
+        - `sender.iban`: Bank account IBAN (no public API to retrieve it)
+        - `recipient.siret`: Recipient's SIRET
+        - `lines[]`: At least one invoice line
 
         **What happens automatically with `auto_enrich=True`**:
         - ✅ Name enrichment from Chorus Pro API
@@ -299,91 +299,91 @@ paths:
                 value:
                   invoice_data: |-
                     {
-                      "numero_facture": "FACT-2025-001",
-                      "date_facture": "2025-10-27",
-                      "date_echeance_paiement": "2025-11-27",
-                      "mode_depot": "DEPOT_PDF_API",
-                      "destinataire": {
-                        "nom": "Client Test SAS",
-                        "adresse_electronique": {
-                          "identifiant": "12345678901234",
-                          "scheme_id": "0225"
+                      "invoiceNumber": "FACT-2025-001",
+                      "invoiceDate": "2025-10-27",
+                      "paymentDueDate": "2025-11-27",
+                      "submissionMode": "DEPOT_PDF_API",
+                      "recipient": {
+                        "name": "Client Test SAS",
+                        "electronicAddress": {
+                          "identifier": "12345678901234",
+                          "schemeId": "0225"
                         },
-                        "adresse_postale": {
-                          "ligne_un": "456 Avenue des Champs",
-                          "code_postal": "69001",
-                          "nom_ville": "Lyon",
-                          "pays_code_iso": "FR"
+                        "postalAddress": {
+                          "lineOne": "456 Avenue des Champs",
+                          "postalCode": "69001",
+                          "city": "Lyon",
+                          "countryCode": "FR"
                         },
-                        "code_service_executant": "SERVICE01"
+                        "executingServiceCode": "SERVICE01"
                       },
-                      "fournisseur": {
-                        "nom": "Ma Soci\u00e9t\u00e9 SAS",
-                        "id_fournisseur": 12345,
+                      "supplier": {
+                        "name": "Ma Soci\u00e9t\u00e9 SAS",
+                        "supplierId": 12345,
                         "siret": "12345678900001",
-                        "numero_tva_intra": "FR12345678900",
+                        "vatNumber": "FR12345678900",
                         "iban": "FR7630006000011234567890189",
-                        "adresse_electronique": {
-                          "identifiant": "12345678900001",
-                          "scheme_id": "0225"
+                        "electronicAddress": {
+                          "identifier": "12345678900001",
+                          "schemeId": "0225"
                         },
-                        "adresse_postale": {
-                          "ligne_un": "123 Rue de la R\u00e9publique",
-                          "ligne_deux": "B\u00e2timent A",
-                          "code_postal": "75001",
-                          "nom_ville": "Paris",
-                          "pays_code_iso": "FR"
+                        "postalAddress": {
+                          "lineOne": "123 Rue de la R\u00e9publique",
+                          "lineTwo": "B\u00e2timent A",
+                          "postalCode": "75001",
+                          "city": "Paris",
+                          "countryCode": "FR"
                         }
                       },
-                      "cadre_de_facturation": {
-                        "code_cadre_facturation": "A1_FACTURE_FOURNISSEUR"
+                      "invoicingFramework": {
+                        "invoicingFrameworkCode": "A1_FACTURE_FOURNISSEUR"
                       },
                       "references": {
-                        "type_facture": "FACTURE",
-                        "type_tva": "TVA_SUR_DEBIT",
-                        "mode_paiement": "VIREMENT",
-                        "devise_facture": "EUR",
-                        "numero_bon_commande": "CMD-2025-042"
+                        "invoiceType": "FACTURE",
+                        "vatAccountingCode": "TVA_SUR_DEBIT",
+                        "paymentMeans": "VIREMENT",
+                        "invoiceCurrency": "EUR",
+                        "purchaseOrderReference": "CMD-2025-042"
                       },
-                      "lignes_de_poste": [
+                      "invoiceLines": [
                         {
-                          "numero": 1,
-                          "denomination": "Prestation de conseil",
-                          "quantite": "5.00",
-                          "unite": "HEURE",
-                          "montant_unitaire_ht": "200.00",
-                          "montant_ligne_ht": "1000.00",
-                          "taux_tva_manuel": "20.00",
-                          "categorie_tva": "S",
+                          "lineNumber": 1,
+                          "itemName": "Prestation de conseil",
+                          "quantity": "5.00",
+                          "unit": "HEURE",
+                          "unitNetPrice": "200.00",
+                          "lineNetAmount": "1000.00",
+                          "manualVatRate": "20.00",
+                          "vatCategory": "S",
                           "reference": "REF-CONSEIL-001"
                         },
                         {
-                          "numero": 2,
-                          "denomination": "Formation d\u00e9veloppeurs",
-                          "quantite": "3.00",
-                          "unite": "JOUR",
-                          "montant_unitaire_ht": "500.00",
-                          "montant_ligne_ht": "1500.00",
-                          "categorie_tva": "S",
-                          "taux_tva_manuel": "20.00",
+                          "lineNumber": 2,
+                          "itemName": "Formation d\u00e9veloppeurs",
+                          "quantity": "3.00",
+                          "unit": "JOUR",
+                          "unitNetPrice": "500.00",
+                          "lineNetAmount": "1500.00",
+                          "vatCategory": "S",
+                          "manualVatRate": "20.00",
                           "reference": "REF-FORM-002"
                         }
                       ],
-                      "lignes_de_tva": [
+                      "vatLines": [
                         {
-                          "montant_base_ht": "2500.00",
-                          "montant_tva": "500.00",
-                          "taux_manuel": "20.00",
-                          "categorie": "S"
+                          "taxableAmount": "2500.00",
+                          "vatAmount": "500.00",
+                          "manualRate": "20.00",
+                          "category": "S"
                         }
                       ],
-                      "montant_total": {
-                        "montant_ht_total": "2500.00",
-                        "montant_tva": "500.00",
-                        "montant_ttc_total": "3000.00",
-                        "montant_a_payer": "3000.00"
+                      "totals": {
+                        "totalNetAmount": "2500.00",
+                        "vatAmount": "500.00",
+                        "totalGrossAmount": "3000.00",
+                        "amountDue": "3000.00"
                       },
-                      "commentaire": "Invoice for October 2025 services"
+                      "comment": "Invoice for October 2025 services"
                     }
                   profile: EXTENDED
                   output_format: xml
@@ -1411,22 +1411,22 @@ paths:
           content:
             application/json:
               example:
-                flow_id: 550e8400-e29b-41d4-a716-446655440000
-                format_source: Factur-X
-                ref_fournisseur: FAC-2025-001
-                type_document: "380"
-                fournisseur:
-                  nom: Supplier SAS
+                flowId: 550e8400-e29b-41d4-a716-446655440000
+                sourceFormat: Factur-X
+                supplierReference: FAC-2025-001
+                documentType: "380"
+                supplier:
+                  name: Supplier SAS
                   siret: "12345678901234"
-                  numero_tva_intra: FR12345678901
-                site_facturation_nom: My Company
-                site_facturation_siret: "98765432109876"
-                date_de_piece: 2025-01-15
-                date_reglement: 2025-02-15
-                devise: EUR
-                montant_ht: "1000.00"
-                montant_tva: "200.00"
-                montant_ttc: "1200.00"
+                  vatNumber: FR12345678901
+                billingSiteName: My Company
+                billingSiteSiret: "98765432109876"
+                issueDate: 2025-01-15
+                dueDate: 2025-02-15
+                currency: EUR
+                netAmount: "1000.00"
+                vatAmount: "200.00"
+                grossAmount: "1200.00"
               schema:
                 $ref: "#/components/schemas/IncomingInvoice"
           description: Invoice extracted successfully
@@ -6140,74 +6140,74 @@ components:
     FactureFacturX:
       description: Data model for an invoice to be converted to Factur-X.
       example:
-        numero_facture: FACT-2025-001
-        date_facture: 2025-10-27
-        date_echeance_paiement: 2025-11-27
-        mode_depot: DEPOT_PDF_API
-        destinataire:
-          nom: Client Test SAS
-          adresse_electronique:
-            identifiant: "12345678901234"
-            scheme_id: "0225"
-          adresse_postale:
-            ligne_un: 456 Avenue des Champs
-            code_postal: "69001"
-            nom_ville: Lyon
-            pays_code_iso: FR
-          code_service_executant: SERVICE01
-        fournisseur:
-          nom: Ma Société SAS
-          id_fournisseur: 12345
+        invoiceNumber: FACT-2025-001
+        invoiceDate: 2025-10-27
+        paymentDueDate: 2025-11-27
+        submissionMode: DEPOT_PDF_API
+        recipient:
+          name: Client Test SAS
+          electronicAddress:
+            identifier: "12345678901234"
+            schemeId: "0225"
+          postalAddress:
+            lineOne: 456 Avenue des Champs
+            postalCode: "69001"
+            city: Lyon
+            countryCode: FR
+          executingServiceCode: SERVICE01
+        supplier:
+          name: Ma Société SAS
+          supplierId: 12345
           siret: "12345678900001"
-          numero_tva_intra: FR12345678900
+          vatNumber: FR12345678900
           iban: FR7630006000011234567890189
-          adresse_electronique:
-            identifiant: "12345678900001"
-            scheme_id: "0225"
-          adresse_postale:
-            ligne_un: 123 Rue de la République
-            ligne_deux: Bâtiment A
-            code_postal: "75001"
-            nom_ville: Paris
-            pays_code_iso: FR
-        cadre_de_facturation:
-          code_cadre_facturation: A1_FACTURE_FOURNISSEUR
+          electronicAddress:
+            identifier: "12345678900001"
+            schemeId: "0225"
+          postalAddress:
+            lineOne: 123 Rue de la République
+            lineTwo: Bâtiment A
+            postalCode: "75001"
+            city: Paris
+            countryCode: FR
+        invoicingFramework:
+          invoicingFrameworkCode: A1_FACTURE_FOURNISSEUR
         references:
-          type_facture: FACTURE
-          type_tva: TVA_SUR_DEBIT
-          mode_paiement: VIREMENT
-          devise_facture: EUR
-          numero_bon_commande: CMD-2025-042
-        lignes_de_poste:
-        - numero: 1
-          denomination: Prestation de conseil
-          quantite: "5.00"
-          unite: HEURE
-          montant_unitaire_ht: "200.00"
-          montant_ligne_ht: "1000.00"
-          taux_tva_manuel: "20.00"
-          categorie_tva: S
+          invoiceType: FACTURE
+          vatAccountingCode: TVA_SUR_DEBIT
+          paymentMeans: VIREMENT
+          invoiceCurrency: EUR
+          purchaseOrderReference: CMD-2025-042
+        invoiceLines:
+        - lineNumber: 1
+          itemName: Prestation de conseil
+          quantity: "5.00"
+          unit: HEURE
+          unitNetPrice: "200.00"
+          lineNetAmount: "1000.00"
+          manualVatRate: "20.00"
+          vatCategory: S
           reference: REF-CONSEIL-001
-        - numero: 2
-          denomination: Formation développeurs
-          quantite: "3.00"
-          unite: JOUR
-          montant_unitaire_ht: "500.00"
-          montant_ligne_ht: "1500.00"
-          categorie_tva: S
-          taux_tva_manuel: "20.00"
+        - lineNumber: 2
+          itemName: Formation développeurs
+          quantity: "3.00"
+          unit: JOUR
+          unitNetPrice: "500.00"
+          lineNetAmount: "1500.00"
+          vatCategory: S
+          manualVatRate: "20.00"
           reference: REF-FORM-002
-        lignes_de_tva:
-        - montant_base_ht: "2500.00"
-          montant_tva: "500.00"
-          taux_manuel: "20.00"
-          categorie: S
-        montant_total:
-          montant_ht_total: "2500.00"
-          montant_tva: "500.00"
-          montant_ttc_total: "3000.00"
-          montant_a_payer: "3000.00"
-        commentaire: Invoice for October 2025 services
+        vatLines:
+        - taxableAmount: "2500.00"
+          vatAmount: "500.00"
+          manualRate: "20.00"
+          category: S
+        totals:
+          totalNetAmount: "2500.00"
+          vatAmount: "500.00"
+          totalGrossAmount: "3000.00"
+          amountDue: "3000.00"
+        comment: Invoice for October 2025 services
       properties:
         invoice_number:
           title: Invoice Number

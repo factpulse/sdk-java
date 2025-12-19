@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Get structure details.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T12:07:11.434193062Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:33:26.595127210Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class GetStructureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)

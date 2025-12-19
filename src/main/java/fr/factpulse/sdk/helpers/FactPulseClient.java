@@ -70,50 +70,50 @@ class AmountHelpers {
     public static Map<String, Object> invoiceTotals(Object exclTax, Object vat, Object inclTax, Object amountDue) {
         return invoiceTotals(exclTax, vat, inclTax, amountDue, null, null, null);
     }
-    public static Map<String, Object> invoiceTotals(Object exclTax, Object vat, Object inclTax, Object amountDue, Object discountInclTax, String discountReason, Object prepayment) {
+    public static Map<String, Object> invoiceTotals(Object exclTax, Object vat, Object inclTax, Object amountDue, Object globalAllowanceAmount, String globalAllowanceReason, Object prepayment) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("totalExclTax", amount(exclTax)); result.put("vatAmount", amount(vat));
-        result.put("totalInclTax", amount(inclTax)); result.put("amountDue", amount(amountDue));
-        if (discountInclTax != null) result.put("globalDiscountInclTax", amount(discountInclTax));
-        if (discountReason != null) result.put("globalDiscountReason", discountReason);
+        result.put("totalNetAmount", amount(exclTax)); result.put("vatAmount", amount(vat));
+        result.put("totalGrossAmount", amount(inclTax)); result.put("amountDue", amount(amountDue));
+        if (globalAllowanceAmount != null) result.put("globalAllowanceAmount", amount(globalAllowanceAmount));
+        if (globalAllowanceReason != null) result.put("globalAllowanceReason", globalAllowanceReason);
         if (prepayment != null) result.put("prepayment", amount(prepayment));
         return result;
     }
     /** Creates an invoice line (aligned with InvoiceLine in models.py). */
-    public static Map<String, Object> invoiceLine(int number, String description, Object quantity, Object unitPriceExclTax, Object lineTotalExclTax) {
-        return invoiceLine(number, description, quantity, unitPriceExclTax, lineTotalExclTax, "20.00", "S", "LUMP_SUM", null);
+    public static Map<String, Object> invoiceLine(int lineNumber, String itemName, Object quantity, Object unitNetPrice, Object lineNetAmount) {
+        return invoiceLine(lineNumber, itemName, quantity, unitNetPrice, lineNetAmount, "20.00", "S", "LUMP_SUM", null);
     }
-    public static Map<String, Object> invoiceLine(int number, String description, Object quantity, Object unitPriceExclTax, Object lineTotalExclTax, String vatRate, String vatCategory, String unit, Map<String, Object> options) {
+    public static Map<String, Object> invoiceLine(int lineNumber, String itemName, Object quantity, Object unitNetPrice, Object lineNetAmount, String vatRate, String vatCategory, String unit, Map<String, Object> options) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("number", number); result.put("description", description);
-        result.put("quantity", amount(quantity)); result.put("unitPriceExclTax", amount(unitPriceExclTax));
-        result.put("lineTotalExclTax", amount(lineTotalExclTax)); result.put("vatRateManual", amount(vatRate));
+        result.put("lineNumber", lineNumber); result.put("itemName", itemName);
+        result.put("quantity", amount(quantity)); result.put("unitNetPrice", amount(unitNetPrice));
+        result.put("lineNetAmount", amount(lineNetAmount)); result.put("manualVatRate", amount(vatRate));
         result.put("vatCategory", vatCategory); result.put("unit", unit);
         if (options != null) {
             if (options.containsKey("reference")) result.put("reference", options.get("reference"));
-            if (options.containsKey("discountExclTax")) result.put("discountExclTax", amount(options.get("discountExclTax")));
-            if (options.containsKey("discountReasonCode")) result.put("discountReasonCode", options.get("discountReasonCode"));
-            if (options.containsKey("discountReason")) result.put("discountReason", options.get("discountReason"));
+            if (options.containsKey("lineAllowanceAmount")) result.put("lineAllowanceAmount", amount(options.get("lineAllowanceAmount")));
+            if (options.containsKey("allowanceReasonCode")) result.put("allowanceReasonCode", options.get("allowanceReasonCode"));
+            if (options.containsKey("allowanceReason")) result.put("allowanceReason", options.get("allowanceReason"));
             if (options.containsKey("periodStartDate")) result.put("periodStartDate", options.get("periodStartDate"));
             if (options.containsKey("periodEndDate")) result.put("periodEndDate", options.get("periodEndDate"));
         }
         return result;
     }
-    /** Creates a VAT line (aligned with VatLine in models.py). */
-    public static Map<String, Object> vatLine(Object rateManual, Object baseAmountExclTax, Object vatAmount) { return vatLine(rateManual, baseAmountExclTax, vatAmount, "S"); }
-    public static Map<String, Object> vatLine(Object rateManual, Object baseAmountExclTax, Object vatAmount, String category) {
+    /** Creates a VAT line (aligned with VATLine in models.py). */
+    public static Map<String, Object> vatLine(Object manualRate, Object taxableAmount, Object vatAmount) { return vatLine(manualRate, taxableAmount, vatAmount, "S"); }
+    public static Map<String, Object> vatLine(Object manualRate, Object taxableAmount, Object vatAmount, String category) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("rateManual", amount(rateManual)); result.put("baseAmountExclTax", amount(baseAmountExclTax));
+        result.put("manualRate", amount(manualRate)); result.put("taxableAmount", amount(taxableAmount));
         result.put("vatAmount", amount(vatAmount)); result.put("category", category);
         return result;
     }
     /** Creates a postal address for the FactPulse API. */
-    public static Map<String, Object> postalAddress(String line1, String postalCode, String city) { return postalAddress(line1, postalCode, city, "FR", null, null); }
-    public static Map<String, Object> postalAddress(String line1, String postalCode, String city, String country, String line2, String line3) {
+    public static Map<String, Object> postalAddress(String lineOne, String postalCode, String city) { return postalAddress(lineOne, postalCode, city, "FR", null, null); }
+    public static Map<String, Object> postalAddress(String lineOne, String postalCode, String city, String countryCode, String lineTwo, String lineThree) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("line1", line1); result.put("postalCode", postalCode); result.put("city", city); result.put("countryCode", country != null ? country : "FR");
-        if (line2 != null) result.put("line2", line2);
-        if (line3 != null) result.put("line3", line3);
+        result.put("lineOne", lineOne); result.put("postalCode", postalCode); result.put("city", city); result.put("countryCode", countryCode != null ? countryCode : "FR");
+        if (lineTwo != null) result.put("lineTwo", lineTwo);
+        if (lineThree != null) result.put("lineThree", lineThree);
         return result;
     }
     /** Creates an electronic address. schemeId: "0009"=SIREN, "0225"=SIRET */
@@ -134,18 +134,18 @@ class AmountHelpers {
     public static Map<String, Object> supplier(String name, String siret, String addressLine1, String postalCode, String city, Map<String, Object> options) {
         if (options == null) options = new LinkedHashMap<>();
         String siren = options.containsKey("siren") ? (String)options.get("siren") : (siret.length() == 14 ? siret.substring(0, 9) : null);
-        String vatIntra = options.containsKey("vatIntra") ? (String)options.get("vatIntra") : (siren != null ? computeVatIntra(siren) : null);
-        String country = options.containsKey("country") ? (String)options.get("country") : "FR";
+        String vatNumber = options.containsKey("vatNumber") ? (String)options.get("vatNumber") : (siren != null ? computeVatIntra(siren) : null);
+        String countryCode = options.containsKey("countryCode") ? (String)options.get("countryCode") : "FR";
         String addressLine2 = options.containsKey("addressLine2") ? (String)options.get("addressLine2") : null;
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("name", name); result.put("supplierId", options.getOrDefault("supplierId", 0)); result.put("siret", siret);
         result.put("electronicAddress", electronicAddress(siret, "0225"));
-        result.put("postalAddress", postalAddress(addressLine1, postalCode, city, country, addressLine2, null));
+        result.put("postalAddress", postalAddress(addressLine1, postalCode, city, countryCode, addressLine2, null));
         if (siren != null) result.put("siren", siren);
-        if (vatIntra != null) result.put("vatIntra", vatIntra);
+        if (vatNumber != null) result.put("vatNumber", vatNumber);
         if (options.containsKey("iban")) result.put("iban", options.get("iban"));
-        if (options.containsKey("serviceCode")) result.put("supplierServiceId", options.get("serviceCode"));
-        if (options.containsKey("bankCoordinatesCode")) result.put("supplierBankCoordinatesCode", options.get("bankCoordinatesCode"));
+        if (options.containsKey("supplierServiceId")) result.put("supplierServiceId", options.get("supplierServiceId"));
+        if (options.containsKey("supplierBankDetailsCode")) result.put("supplierBankDetailsCode", options.get("supplierBankDetailsCode"));
         return result;
     }
     /** Creates a recipient (customer) with auto-computed SIREN and addresses. */
@@ -153,12 +153,12 @@ class AmountHelpers {
     public static Map<String, Object> recipient(String name, String siret, String addressLine1, String postalCode, String city, Map<String, Object> options) {
         if (options == null) options = new LinkedHashMap<>();
         String siren = options.containsKey("siren") ? (String)options.get("siren") : (siret.length() == 14 ? siret.substring(0, 9) : null);
-        String country = options.containsKey("country") ? (String)options.get("country") : "FR";
+        String countryCode = options.containsKey("countryCode") ? (String)options.get("countryCode") : "FR";
         String addressLine2 = options.containsKey("addressLine2") ? (String)options.get("addressLine2") : null;
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("name", name); result.put("siret", siret);
         result.put("electronicAddress", electronicAddress(siret, "0225"));
-        result.put("postalAddress", postalAddress(addressLine1, postalCode, city, country, addressLine2, null));
+        result.put("postalAddress", postalAddress(addressLine1, postalCode, city, countryCode, addressLine2, null));
         if (siren != null) result.put("siren", siren);
         if (options.containsKey("executingServiceCode")) result.put("executingServiceCode", options.get("executingServiceCode"));
         return result;
@@ -286,14 +286,14 @@ public class FactPulseClient {
         }
     }
 
-    public byte[] genererFacturx(Object factureData, String pdfPath, String profil, String formatSortie, boolean sync, Long timeout) throws FactPulseException {
+    public byte[] generateFacturx(Object invoiceData, String pdfPath, String profile, String outputFormat, boolean sync, Long timeout) throws FactPulseException {
         String jsonData;
-        if (factureData instanceof String) jsonData = (String) factureData;
-        else if (factureData instanceof Map) jsonData = gson.toJson(factureData);
-        else jsonData = gson.toJson(factureData);
+        if (invoiceData instanceof String) jsonData = (String) invoiceData;
+        else if (invoiceData instanceof Map) jsonData = gson.toJson(invoiceData);
+        else jsonData = gson.toJson(invoiceData);
 
-        if (profil == null) profil = "EN16931";
-        if (formatSortie == null) formatSortie = "pdf";
+        if (profile == null) profile = "EN16931";
+        if (outputFormat == null) outputFormat = "pdf";
 
         java.io.File pdfFile = new java.io.File(pdfPath);
         for (int attempt = 0; attempt <= maxRetries; attempt++) {
@@ -301,8 +301,8 @@ public class FactPulseClient {
             try {
                 RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                     .addFormDataPart("invoice_data", null, RequestBody.create(jsonData, MediaType.parse("application/json")))
-                    .addFormDataPart("profile", profil)
-                    .addFormDataPart("output_format", formatSortie)
+                    .addFormDataPart("profile", profile)
+                    .addFormDataPart("output_format", outputFormat)
                     .addFormDataPart("source_pdf", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
                     .build();
                 Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/generate-invoice")
@@ -351,7 +351,7 @@ public class FactPulseClient {
                     if (taskId == null) throw new FactPulseValidationException("No task ID");
                     if (!sync) return taskId.getBytes();
                     Map<String, Object> pollResult = pollTask(taskId, timeout, null);
-                    if (pollResult.containsKey("contenu_b64")) return Base64.getDecoder().decode((String) pollResult.get("contenu_b64"));
+                    if (pollResult.containsKey("content_b64")) return Base64.getDecoder().decode((String) pollResult.get("content_b64"));
                     throw new FactPulseValidationException("No content in result");
                 }
             } catch (IOException e) {
@@ -361,9 +361,9 @@ public class FactPulseClient {
         }
         throw new FactPulseValidationException("Failed after retries");
     }
-    public byte[] genererFacturx(Object factureData, String pdfPath) throws FactPulseException { return genererFacturx(factureData, pdfPath, "EN16931", "pdf", true, null); }
+    public byte[] generateFacturx(Object invoiceData, String pdfPath) throws FactPulseException { return generateFacturx(invoiceData, pdfPath, "EN16931", "pdf", true, null); }
 
-    public static String formatMontant(Object m) {
+    public static String formatAmount(Object m) {
         if (m == null) return "0.00";
         if (m instanceof BigDecimal) return ((BigDecimal) m).setScale(2, RoundingMode.HALF_UP).toPlainString();
         if (m instanceof Number) return String.format("%.2f", ((Number) m).doubleValue());
@@ -440,7 +440,7 @@ public class FactPulseClient {
 
     // ==================== AFNOR Flow Service ====================
 
-    public Map<String, Object> soumettreFactureAfnor(String pdfPath, String flowName, Map<String, Object> options) throws FactPulseException {
+    public Map<String, Object> submitInvoiceAfnor(String pdfPath, String flowName, Map<String, Object> options) throws FactPulseException {
         if (options == null) options = new HashMap<>();
         try {
             byte[] pdfContent = Files.readAllBytes(new File(pdfPath).toPath());
@@ -462,9 +462,9 @@ public class FactPulseClient {
             return makeAfnorRequest("POST", "/flow/v1/flows", null, multipartBody);
         } catch (Exception e) { throw new FactPulseValidationException("Error: " + e.getMessage()); }
     }
-    public Map<String, Object> soumettreFactureAfnor(String pdfPath, String flowName) throws FactPulseException { return soumettreFactureAfnor(pdfPath, flowName, null); }
+    public Map<String, Object> submitInvoiceAfnor(String pdfPath, String flowName) throws FactPulseException { return submitInvoiceAfnor(pdfPath, flowName, null); }
 
-    public Map<String, Object> rechercherFluxAfnor(Map<String, Object> criteria) throws FactPulseException {
+    public Map<String, Object> searchFlowsAfnor(Map<String, Object> criteria) throws FactPulseException {
         if (criteria == null) criteria = new HashMap<>();
         Map<String, Object> searchBody = new LinkedHashMap<>();
         searchBody.put("offset", criteria.getOrDefault("offset", 0));
@@ -475,9 +475,9 @@ public class FactPulseClient {
         searchBody.put("where", where);
         return makeAfnorRequest("POST", "/flow/v1/flows/search", searchBody, null);
     }
-    public Map<String, Object> rechercherFluxAfnor() throws FactPulseException { return rechercherFluxAfnor(null); }
+    public Map<String, Object> searchFlowsAfnor() throws FactPulseException { return searchFlowsAfnor(null); }
 
-    public byte[] telechargerFluxAfnor(String flowId) throws FactPulseException {
+    public byte[] downloadFlowAfnor(String flowId) throws FactPulseException {
         Map<String, Object> result = makeAfnorRequest("GET", "/flow/v1/flows/" + flowId, null, null);
         return result.containsKey("_raw") ? (byte[]) result.get("_raw") : new byte[0];
     }
@@ -488,15 +488,15 @@ public class FactPulseClient {
 
     // ==================== AFNOR Directory ====================
 
-    public Map<String, Object> rechercherSiretAfnor(String siret) throws FactPulseException {
+    public Map<String, Object> lookupSiretAfnor(String siret) throws FactPulseException {
         return makeAfnorRequest("GET", "/directory/siret/" + siret, null, null);
     }
 
-    public Map<String, Object> rechercherSirenAfnor(String siren) throws FactPulseException {
+    public Map<String, Object> lookupSirenAfnor(String siren) throws FactPulseException {
         return makeAfnorRequest("GET", "/directory/siren/" + siren, null, null);
     }
 
-    public Map<String, Object> listerCodesRoutageAfnor(String siren) throws FactPulseException {
+    public Map<String, Object> listRoutingCodesAfnor(String siren) throws FactPulseException {
         return makeAfnorRequest("GET", "/directory/siren/" + siren + "/routing-codes", null, null);
     }
 
@@ -523,41 +523,41 @@ public class FactPulseClient {
         } catch (IOException e) { throw new FactPulseValidationException("Network error: " + e.getMessage()); }
     }
 
-    public Map<String, Object> rechercherStructureChorus(String identifiantStructure, String raisonSociale, String typeIdentifiant, boolean restreindrePrivees) throws FactPulseException {
+    public Map<String, Object> searchStructureChorus(String structureIdentifier, String companyName, String identifierType, boolean restrictPrivate) throws FactPulseException {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("restreindre_structures_privees", restreindrePrivees);
-        if (identifiantStructure != null) body.put("identifiant_structure", identifiantStructure);
-        if (raisonSociale != null) body.put("raison_sociale_structure", raisonSociale);
-        if (typeIdentifiant != null) body.put("type_identifiant_structure", typeIdentifiant);
+        body.put("restreindre_structures_privees", restrictPrivate);
+        if (structureIdentifier != null) body.put("identifiant_structure", structureIdentifier);
+        if (companyName != null) body.put("raison_sociale_structure", companyName);
+        if (identifierType != null) body.put("type_identifiant_structure", identifierType);
         return makeChorusRequest("POST", "/structures/rechercher", body);
     }
-    public Map<String, Object> rechercherStructureChorus(String identifiantStructure) throws FactPulseException { return rechercherStructureChorus(identifiantStructure, null, "SIRET", true); }
+    public Map<String, Object> searchStructureChorus(String structureIdentifier) throws FactPulseException { return searchStructureChorus(structureIdentifier, null, "SIRET", true); }
 
-    public Map<String, Object> consulterStructureChorus(int idStructureCpp) throws FactPulseException {
+    public Map<String, Object> lookupStructureChorus(int structureIdCpp) throws FactPulseException {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("id_structure_cpp", idStructureCpp);
+        body.put("id_structure_cpp", structureIdCpp);
         return makeChorusRequest("POST", "/structures/consulter", body);
     }
 
-    public Map<String, Object> obtenirIdChorusDepuisSiret(String siret, String typeIdentifiant) throws FactPulseException {
+    public Map<String, Object> getChorusIdFromSiret(String siret, String identifierType) throws FactPulseException {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("siret", siret);
-        body.put("type_identifiant", typeIdentifiant != null ? typeIdentifiant : "SIRET");
+        body.put("type_identifiant", identifierType != null ? identifierType : "SIRET");
         return makeChorusRequest("POST", "/structures/obtenir-id-depuis-siret", body);
     }
-    public Map<String, Object> obtenirIdChorusDepuisSiret(String siret) throws FactPulseException { return obtenirIdChorusDepuisSiret(siret, "SIRET"); }
+    public Map<String, Object> getChorusIdFromSiret(String siret) throws FactPulseException { return getChorusIdFromSiret(siret, "SIRET"); }
 
-    public Map<String, Object> listerServicesStructureChorus(int idStructureCpp) throws FactPulseException {
-        return makeChorusRequest("GET", "/structures/" + idStructureCpp + "/services", null);
+    public Map<String, Object> listStructureServicesChorus(int structureIdCpp) throws FactPulseException {
+        return makeChorusRequest("GET", "/structures/" + structureIdCpp + "/services", null);
     }
 
-    public Map<String, Object> soumettreFactureChorus(Map<String, Object> factureData) throws FactPulseException {
-        return makeChorusRequest("POST", "/factures/soumettre", factureData);
+    public Map<String, Object> submitInvoiceChorus(Map<String, Object> invoiceData) throws FactPulseException {
+        return makeChorusRequest("POST", "/factures/soumettre", invoiceData);
     }
 
-    public Map<String, Object> consulterFactureChorus(int identifiantFactureCpp) throws FactPulseException {
+    public Map<String, Object> lookupInvoiceChorus(int invoiceIdCpp) throws FactPulseException {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("identifiant_facture_cpp", identifiantFactureCpp);
+        body.put("identifiant_facture_cpp", invoiceIdCpp);
         return makeChorusRequest("POST", "/factures/consulter", body);
     }
 
@@ -571,15 +571,15 @@ public class FactPulseClient {
      * @param profile Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED). If null, auto-detected.
      * @param useVerapdf Enable strict PDF/A validation with VeraPDF (default: false)
      */
-    public Map<String, Object> validerPdfFacturx(String pdfPath, String profil, boolean useVerapdf) throws FactPulseException {
+    public Map<String, Object> validateFacturxPdf(String pdfPath, String profile, boolean useVerapdf) throws FactPulseException {
         ensureAuthenticated();
         try {
             File pdfFile = new File(pdfPath);
             MultipartBody.Builder bodyBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("pdf_file", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
                 .addFormDataPart("use_verapdf", String.valueOf(useVerapdf));
-            if (profil != null) {
-                bodyBuilder.addFormDataPart("profile", profil);
+            if (profile != null) {
+                bodyBuilder.addFormDataPart("profile", profile);
             }
             Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/validate-facturx-pdf")
                 .addHeader("Authorization", "Bearer " + accessToken).post(bodyBuilder.build()).build();
@@ -589,15 +589,15 @@ public class FactPulseClient {
             }
         } catch (IOException e) { throw new FactPulseValidationException("Validation error: " + e.getMessage()); }
     }
-    public Map<String, Object> validerPdfFacturx(String pdfPath, String profil) throws FactPulseException { return validerPdfFacturx(pdfPath, profil, false); }
-    public Map<String, Object> validerPdfFacturx(String pdfPath) throws FactPulseException { return validerPdfFacturx(pdfPath, null, false); }
+    public Map<String, Object> validateFacturxPdf(String pdfPath, String profile) throws FactPulseException { return validateFacturxPdf(pdfPath, profile, false); }
+    public Map<String, Object> validateFacturxPdf(String pdfPath) throws FactPulseException { return validateFacturxPdf(pdfPath, null, false); }
 
-    public Map<String, Object> validerXmlFacturx(String xmlContent, String profil) throws FactPulseException {
+    public Map<String, Object> validateFacturxXml(String xmlContent, String profile) throws FactPulseException {
         ensureAuthenticated();
         try {
             RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("xml_file", "facture.xml", RequestBody.create(xmlContent, MediaType.parse("application/xml")))
-                .addFormDataPart("profile", profil != null ? profil : "EN16931")
+                .addFormDataPart("xml_file", "invoice.xml", RequestBody.create(xmlContent, MediaType.parse("application/xml")))
+                .addFormDataPart("profile", profile != null ? profile : "EN16931")
                 .build();
             Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/validate-xml")
                 .addHeader("Authorization", "Bearer " + accessToken).post(body).build();
@@ -607,9 +607,9 @@ public class FactPulseClient {
             }
         } catch (IOException e) { throw new FactPulseValidationException("Validation error: " + e.getMessage()); }
     }
-    public Map<String, Object> validerXmlFacturx(String xmlContent) throws FactPulseException { return validerXmlFacturx(xmlContent, "EN16931"); }
+    public Map<String, Object> validateFacturxXml(String xmlContent) throws FactPulseException { return validateFacturxXml(xmlContent, "EN16931"); }
 
-    public Map<String, Object> validerSignaturePdf(String pdfPath) throws FactPulseException {
+    public Map<String, Object> validatePdfSignature(String pdfPath) throws FactPulseException {
         ensureAuthenticated();
         try {
             File pdfFile = new File(pdfPath);
@@ -629,7 +629,7 @@ public class FactPulseClient {
     // Signature
     // =========================================================================
 
-    public byte[] signerPdf(String pdfPath, Map<String, Object> options) throws FactPulseException {
+    public byte[] signPdf(String pdfPath, Map<String, Object> options) throws FactPulseException {
         if (options == null) options = new HashMap<>();
         ensureAuthenticated();
         try {
@@ -647,15 +647,15 @@ public class FactPulseClient {
             try (Response response = httpClient.newCall(request).execute()) {
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
                 Map<String, Object> result = gson.fromJson(response.body().string(), type);
-                String base64Pdf = (String) result.get("pdf_signe_base64");
+                String base64Pdf = (String) result.get("signed_pdf_base64");
                 if (base64Pdf == null) throw new FactPulseValidationException("Invalid signature response");
                 return Base64.getDecoder().decode(base64Pdf);
             }
         } catch (IOException e) { throw new FactPulseValidationException("Signature error: " + e.getMessage()); }
     }
-    public byte[] signerPdf(String pdfPath) throws FactPulseException { return signerPdf(pdfPath, null); }
+    public byte[] signPdf(String pdfPath) throws FactPulseException { return signPdf(pdfPath, null); }
 
-    public Map<String, Object> genererCertificatTest(Map<String, Object> options) throws FactPulseException {
+    public Map<String, Object> generateTestCertificate(Map<String, Object> options) throws FactPulseException {
         if (options == null) options = new HashMap<>();
         ensureAuthenticated();
         Map<String, Object> body = new LinkedHashMap<>();
@@ -682,7 +682,7 @@ public class FactPulseClient {
     @SuppressWarnings("unchecked")
     public Map<String, Object> generateCompleteFacturx(Map<String, Object> invoice, String pdfSourcePath, Map<String, Object> options) throws FactPulseException {
         if (options == null) options = new HashMap<>();
-        String profil = (String) options.getOrDefault("profile", "EN16931");
+        String profile = (String) options.getOrDefault("profile", "EN16931");
         boolean validate = (boolean) options.getOrDefault("validate", true);
         boolean sign = (boolean) options.getOrDefault("sign", false);
         boolean submitAfnor = (boolean) options.getOrDefault("submitAfnor", false);
@@ -691,7 +691,7 @@ public class FactPulseClient {
         Map<String, Object> result = new LinkedHashMap<>();
 
         // 1. Generation
-        byte[] pdfBytes = genererFacturx(invoice, pdfSourcePath, profil, "pdf", true, timeout);
+        byte[] pdfBytes = generateFacturx(invoice, pdfSourcePath, profile, "pdf", true, timeout);
         result.put("pdfBytes", pdfBytes);
 
         // Create a temporary file
@@ -702,9 +702,9 @@ public class FactPulseClient {
 
             // 2. Validation
             if (validate) {
-                Map<String, Object> validation = validerPdfFacturx(tempFile.getAbsolutePath(), profil);
+                Map<String, Object> validation = validateFacturxPdf(tempFile.getAbsolutePath(), profile);
                 result.put("validation", validation);
-                if (!Boolean.TRUE.equals(validation.get("est_conforme"))) {
+                if (!Boolean.TRUE.equals(validation.get("is_compliant"))) {
                     if (options.containsKey("outputPath")) {
                         Files.write(new File((String) options.get("outputPath")).toPath(), pdfBytes);
                         result.put("pdfPath", options.get("outputPath"));
@@ -715,9 +715,9 @@ public class FactPulseClient {
 
             // 3. Signature
             if (sign) {
-                pdfBytes = signerPdf(tempFile.getAbsolutePath(), options);
+                pdfBytes = signPdf(tempFile.getAbsolutePath(), options);
                 result.put("pdfBytes", pdfBytes);
-                result.put("signature", Map.of("signe", true));
+                result.put("signature", Map.of("signed", true));
                 Files.write(tempFile.toPath(), pdfBytes);
             }
 
@@ -728,7 +728,7 @@ public class FactPulseClient {
                 String trackingId = (String) options.getOrDefault("afnorTrackingId", invoiceNumber);
                 Map<String, Object> afnorOpts = new HashMap<>();
                 afnorOpts.put("trackingId", trackingId);
-                Map<String, Object> afnorResult = soumettreFactureAfnor(tempFile.getAbsolutePath(), flowName, afnorOpts);
+                Map<String, Object> afnorResult = submitInvoiceAfnor(tempFile.getAbsolutePath(), flowName, afnorOpts);
                 result.put("afnor", afnorResult);
             }
 

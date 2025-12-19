@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Complete description of an async task status.  The &#x60;status&#x60; field indicates the Celery state of the task. When &#x60;status&#x3D;\&quot;SUCCESS\&quot;&#x60;, check &#x60;result.status&#x60; for the business result (\&quot;SUCCESS\&quot; or \&quot;ERROR\&quot;).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T12:07:11.434193062Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:33:26.595127210Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class TaskStatus {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
   @SerializedName(SERIALIZED_NAME_TASK_ID)
