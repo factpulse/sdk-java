@@ -39,19 +39,7 @@ public enum PaymentMeans {
   
   AUTRE("AUTRE"),
   
-  REPORT("REPORT"),
-  
-  CHEQUE2("CHEQUE"),
-  
-  PRELEVEMENT2("PRELEVEMENT"),
-  
-  VIREMENT2("VIREMENT"),
-  
-  ESPECE2("ESPECE"),
-  
-  AUTRE2("AUTRE"),
-  
-  REPORT2("REPORT");
+  REPORT("REPORT");
 
   private String value;
 

@@ -31,10 +31,10 @@ docs/ElectronicAddress.md
 docs/EnrichedInvoiceInfo.md
 docs/ErrorLevel.md
 docs/ErrorSource.md
+docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
 docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
-docs/FactureFacturX.md
 docs/FieldStatus.md
 docs/FlowDirection.md
 docs/FlowProfile.md
@@ -182,10 +182,10 @@ src/main/java/org/openapitools/client/model/ElectronicAddress.java
 src/main/java/org/openapitools/client/model/EnrichedInvoiceInfo.java
 src/main/java/org/openapitools/client/model/ErrorLevel.java
 src/main/java/org/openapitools/client/model/ErrorSource.java
+src/main/java/org/openapitools/client/model/FacturXInvoice.java
 src/main/java/org/openapitools/client/model/FacturXPDFInfo.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.java
-src/main/java/org/openapitools/client/model/FactureFacturX.java
 src/main/java/org/openapitools/client/model/FieldStatus.java
 src/main/java/org/openapitools/client/model/FlowDirection.java
 src/main/java/org/openapitools/client/model/FlowProfile.java
@@ -302,10 +302,10 @@ src/test/java/org/openapitools/client/model/ElectronicAddressTest.java
 src/test/java/org/openapitools/client/model/EnrichedInvoiceInfoTest.java
 src/test/java/org/openapitools/client/model/ErrorLevelTest.java
 src/test/java/org/openapitools/client/model/ErrorSourceTest.java
+src/test/java/org/openapitools/client/model/FacturXInvoiceTest.java
 src/test/java/org/openapitools/client/model/FacturXPDFInfoTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest.java
-src/test/java/org/openapitools/client/model/FactureFacturXTest.java
 src/test/java/org/openapitools/client/model/FieldStatusTest.java
 src/test/java/org/openapitools/client/model/FlowDirectionTest.java
 src/test/java/org/openapitools/client/model/FlowProfileTest.java

@@ -17,17 +17,5 @@
 
 * `REPORT` (value: `"REPORT"`)
 
-* `CHEQUE2` (value: `"CHEQUE"`)
-
-* `PRELEVEMENT2` (value: `"PRELEVEMENT"`)
-
-* `VIREMENT2` (value: `"VIREMENT"`)
-
-* `ESPECE2` (value: `"ESPECE"`)
-
-* `AUTRE2` (value: `"AUTRE"`)
-
-* `REPORT2` (value: `"REPORT"`)
-
 
 

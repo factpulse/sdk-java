@@ -5852,10 +5852,6 @@ components:
       - A2_FACTURE_FOURNISSEUR_DEJA_PAYEE
       - A9_FACTURE_SOUSTRAITANT
       - A12_FACTURE_COTRAITANT
-      - A1_FACTURE_FOURNISSEUR
-      - A2_FACTURE_FOURNISSEUR_DEJA_PAYEE
-      - A9_FACTURE_SOUSTRAITANT
-      - A12_FACTURE_COTRAITANT
       title: InvoicingFrameworkCode
       type: string
     OperationNature:
@@ -5942,12 +5938,6 @@ components:
       - ESPECE
       - AUTRE
       - REPORT
-      - CHEQUE
-      - PRELEVEMENT
-      - VIREMENT
-      - ESPECE
-      - AUTRE
-      - REPORT
       title: PaymentMeans
       type: string
     Recipient:
@@ -5979,9 +5969,6 @@ components:
     SubmissionMode:
       description: Invoice submission mode on Chorus Pro.
       enum:
-      - SAISIE_API
-      - DEPOT_PDF_API
-      - DEPOT_PDF_SIGNE_API
       - SAISIE_API
       - DEPOT_PDF_API
       - DEPOT_PDF_SIGNE_API
@@ -6060,21 +6047,11 @@ components:
       - KILOGRAMME
       - LITRE
       - FORFAIT
-      - PIECE
-      - HEURE
-      - JOUR
-      - KILOGRAMME
-      - LITRE
-      - FORFAIT
       title: UnitOfMeasure
       type: string
     VATAccountingCode:
       description: VAT accounting regime.
       enum:
-      - TVA_SUR_DEBIT
-      - TVA_SUR_ENCAISSEMENT
-      - EXONERATION
-      - SANS_TVA
       - TVA_SUR_DEBIT
       - TVA_SUR_ENCAISSEMENT
       - EXONERATION
@@ -6137,7 +6114,7 @@ components:
       - taxable_amount
       - vat_amount
       title: VATLine
-    FactureFacturX:
+    FacturXInvoice:
       description: Data model for an invoice to be converted to Factur-X.
       example:
         invoiceNumber: FACT-2025-001
@@ -6603,22 +6580,6 @@ components:
         | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
         | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
       enum:
-      - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
-      - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
       - "380"
       - "389"
       - "393"

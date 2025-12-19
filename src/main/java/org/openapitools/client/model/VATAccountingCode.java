@@ -35,15 +35,7 @@ public enum VATAccountingCode {
   
   EXONERATION("EXONERATION"),
   
-  SANS_TVA("SANS_TVA"),
-  
-  TVA_SUR_DEBIT2("TVA_SUR_DEBIT"),
-  
-  TVA_SUR_ENCAISSEMENT2("TVA_SUR_ENCAISSEMENT"),
-  
-  EXONERATION2("EXONERATION"),
-  
-  SANS_TVA2("SANS_TVA");
+  SANS_TVA("SANS_TVA");
 
   private String value;
 

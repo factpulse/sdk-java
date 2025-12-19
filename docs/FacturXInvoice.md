@@ -1,6 +1,6 @@
 
 
-# FactureFacturX
+# FacturXInvoice
 
 Data model for an invoice to be converted to Factur-X.
 

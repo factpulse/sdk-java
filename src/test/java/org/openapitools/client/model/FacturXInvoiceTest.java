@@ -38,17 +38,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureFacturX
+ * Model tests for FacturXInvoice
  */
-public class FactureFacturXTest {
-    private final FactureFacturX model = new FactureFacturX();
+public class FacturXInvoiceTest {
+    private final FacturXInvoice model = new FacturXInvoice();
 
     /**
-     * Model tests for FactureFacturX
+     * Model tests for FacturXInvoice
      */
     @Test
-    public void testFactureFacturX() {
-        // TODO: test FactureFacturX
+    public void testFacturXInvoice() {
+        // TODO: test FacturXInvoice
     }
 
     /**

@@ -62,8 +62,8 @@ import org.openapitools.client.JSON;
 /**
  * Data model for an invoice to be converted to Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:58:31.366596014Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class FactureFacturX {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+public class FacturXInvoice {
   public static final String SERIALIZED_NAME_INVOICE_NUMBER = "invoice_number";
   @SerializedName(SERIALIZED_NAME_INVOICE_NUMBER)
   @javax.annotation.Nonnull
@@ -144,10 +144,10 @@ public class FactureFacturX {
   @javax.annotation.Nullable
   private Payee payee;
 
-  public FactureFacturX() {
+  public FacturXInvoice() {
   }
 
-  public FactureFacturX invoiceNumber(@javax.annotation.Nonnull String invoiceNumber) {
+  public FacturXInvoice invoiceNumber(@javax.annotation.Nonnull String invoiceNumber) {
     this.invoiceNumber = invoiceNumber;
     return this;
   }
@@ -166,7 +166,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX paymentDueDate(@javax.annotation.Nonnull String paymentDueDate) {
+  public FacturXInvoice paymentDueDate(@javax.annotation.Nonnull String paymentDueDate) {
     this.paymentDueDate = paymentDueDate;
     return this;
   }
@@ -185,7 +185,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX invoiceDate(@javax.annotation.Nullable String invoiceDate) {
+  public FacturXInvoice invoiceDate(@javax.annotation.Nullable String invoiceDate) {
     this.invoiceDate = invoiceDate;
     return this;
   }
@@ -204,7 +204,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX submissionMode(@javax.annotation.Nonnull SubmissionMode submissionMode) {
+  public FacturXInvoice submissionMode(@javax.annotation.Nonnull SubmissionMode submissionMode) {
     this.submissionMode = submissionMode;
     return this;
   }
@@ -223,7 +223,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX recipient(@javax.annotation.Nonnull Recipient recipient) {
+  public FacturXInvoice recipient(@javax.annotation.Nonnull Recipient recipient) {
     this.recipient = recipient;
     return this;
   }
@@ -242,7 +242,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX supplier(@javax.annotation.Nonnull Supplier supplier) {
+  public FacturXInvoice supplier(@javax.annotation.Nonnull Supplier supplier) {
     this.supplier = supplier;
     return this;
   }
@@ -261,7 +261,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX invoicingFramework(@javax.annotation.Nonnull InvoicingFramework invoicingFramework) {
+  public FacturXInvoice invoicingFramework(@javax.annotation.Nonnull InvoicingFramework invoicingFramework) {
     this.invoicingFramework = invoicingFramework;
     return this;
   }
@@ -280,7 +280,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX references(@javax.annotation.Nonnull InvoiceReferences references) {
+  public FacturXInvoice references(@javax.annotation.Nonnull InvoiceReferences references) {
     this.references = references;
     return this;
   }
@@ -299,7 +299,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX totals(@javax.annotation.Nonnull InvoiceTotals totals) {
+  public FacturXInvoice totals(@javax.annotation.Nonnull InvoiceTotals totals) {
     this.totals = totals;
     return this;
   }
@@ -318,12 +318,12 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX invoiceLines(@javax.annotation.Nullable List<InvoiceLine> invoiceLines) {
+  public FacturXInvoice invoiceLines(@javax.annotation.Nullable List<InvoiceLine> invoiceLines) {
     this.invoiceLines = invoiceLines;
     return this;
   }
 
-  public FactureFacturX addInvoiceLinesItem(InvoiceLine invoiceLinesItem) {
+  public FacturXInvoice addInvoiceLinesItem(InvoiceLine invoiceLinesItem) {
     if (this.invoiceLines == null) {
       this.invoiceLines = new ArrayList<>();
     }
@@ -345,12 +345,12 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX vatLines(@javax.annotation.Nullable List<VATLine> vatLines) {
+  public FacturXInvoice vatLines(@javax.annotation.Nullable List<VATLine> vatLines) {
     this.vatLines = vatLines;
     return this;
   }
 
-  public FactureFacturX addVatLinesItem(VATLine vatLinesItem) {
+  public FacturXInvoice addVatLinesItem(VATLine vatLinesItem) {
     if (this.vatLines == null) {
       this.vatLines = new ArrayList<>();
     }
@@ -372,12 +372,12 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX notes(@javax.annotation.Nullable List<InvoiceNote> notes) {
+  public FacturXInvoice notes(@javax.annotation.Nullable List<InvoiceNote> notes) {
     this.notes = notes;
     return this;
   }
 
-  public FactureFacturX addNotesItem(InvoiceNote notesItem) {
+  public FacturXInvoice addNotesItem(InvoiceNote notesItem) {
     if (this.notes == null) {
       this.notes = new ArrayList<>();
     }
@@ -399,7 +399,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX comment(@javax.annotation.Nullable String comment) {
+  public FacturXInvoice comment(@javax.annotation.Nullable String comment) {
     this.comment = comment;
     return this;
   }
@@ -418,7 +418,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX currentUserId(@javax.annotation.Nullable Integer currentUserId) {
+  public FacturXInvoice currentUserId(@javax.annotation.Nullable Integer currentUserId) {
     this.currentUserId = currentUserId;
     return this;
   }
@@ -437,12 +437,12 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX supplementaryAttachments(@javax.annotation.Nullable List<SupplementaryAttachment> supplementaryAttachments) {
+  public FacturXInvoice supplementaryAttachments(@javax.annotation.Nullable List<SupplementaryAttachment> supplementaryAttachments) {
     this.supplementaryAttachments = supplementaryAttachments;
     return this;
   }
 
-  public FactureFacturX addSupplementaryAttachmentsItem(SupplementaryAttachment supplementaryAttachmentsItem) {
+  public FacturXInvoice addSupplementaryAttachmentsItem(SupplementaryAttachment supplementaryAttachmentsItem) {
     if (this.supplementaryAttachments == null) {
       this.supplementaryAttachments = new ArrayList<>();
     }
@@ -464,7 +464,7 @@ public class FactureFacturX {
   }
 
 
-  public FactureFacturX payee(@javax.annotation.Nullable Payee payee) {
+  public FacturXInvoice payee(@javax.annotation.Nullable Payee payee) {
     this.payee = payee;
     return this;
   }
@@ -492,23 +492,23 @@ public class FactureFacturX {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FactureFacturX factureFacturX = (FactureFacturX) o;
-    return Objects.equals(this.invoiceNumber, factureFacturX.invoiceNumber) &&
-        Objects.equals(this.paymentDueDate, factureFacturX.paymentDueDate) &&
-        Objects.equals(this.invoiceDate, factureFacturX.invoiceDate) &&
-        Objects.equals(this.submissionMode, factureFacturX.submissionMode) &&
-        Objects.equals(this.recipient, factureFacturX.recipient) &&
-        Objects.equals(this.supplier, factureFacturX.supplier) &&
-        Objects.equals(this.invoicingFramework, factureFacturX.invoicingFramework) &&
-        Objects.equals(this.references, factureFacturX.references) &&
-        Objects.equals(this.totals, factureFacturX.totals) &&
-        Objects.equals(this.invoiceLines, factureFacturX.invoiceLines) &&
-        Objects.equals(this.vatLines, factureFacturX.vatLines) &&
-        Objects.equals(this.notes, factureFacturX.notes) &&
-        Objects.equals(this.comment, factureFacturX.comment) &&
-        Objects.equals(this.currentUserId, factureFacturX.currentUserId) &&
-        Objects.equals(this.supplementaryAttachments, factureFacturX.supplementaryAttachments) &&
-        Objects.equals(this.payee, factureFacturX.payee);
+    FacturXInvoice facturXInvoice = (FacturXInvoice) o;
+    return Objects.equals(this.invoiceNumber, facturXInvoice.invoiceNumber) &&
+        Objects.equals(this.paymentDueDate, facturXInvoice.paymentDueDate) &&
+        Objects.equals(this.invoiceDate, facturXInvoice.invoiceDate) &&
+        Objects.equals(this.submissionMode, facturXInvoice.submissionMode) &&
+        Objects.equals(this.recipient, facturXInvoice.recipient) &&
+        Objects.equals(this.supplier, facturXInvoice.supplier) &&
+        Objects.equals(this.invoicingFramework, facturXInvoice.invoicingFramework) &&
+        Objects.equals(this.references, facturXInvoice.references) &&
+        Objects.equals(this.totals, facturXInvoice.totals) &&
+        Objects.equals(this.invoiceLines, facturXInvoice.invoiceLines) &&
+        Objects.equals(this.vatLines, facturXInvoice.vatLines) &&
+        Objects.equals(this.notes, facturXInvoice.notes) &&
+        Objects.equals(this.comment, facturXInvoice.comment) &&
+        Objects.equals(this.currentUserId, facturXInvoice.currentUserId) &&
+        Objects.equals(this.supplementaryAttachments, facturXInvoice.supplementaryAttachments) &&
+        Objects.equals(this.payee, facturXInvoice.payee);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -530,7 +530,7 @@ public class FactureFacturX {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FactureFacturX {\n");
+    sb.append("class FacturXInvoice {\n");
     sb.append("    invoiceNumber: ").append(toIndentedString(invoiceNumber)).append("\n");
     sb.append("    paymentDueDate: ").append(toIndentedString(paymentDueDate)).append("\n");
     sb.append("    invoiceDate: ").append(toIndentedString(invoiceDate)).append("\n");
@@ -578,25 +578,25 @@ public class FactureFacturX {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FactureFacturX
+   * @throws IOException if the JSON Element is invalid with respect to FacturXInvoice
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!FactureFacturX.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureFacturX is not found in the empty JSON string", FactureFacturX.openapiRequiredFields.toString()));
+        if (!FacturXInvoice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FacturXInvoice is not found in the empty JSON string", FacturXInvoice.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FactureFacturX.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureFacturX` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FacturXInvoice.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FacturXInvoice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FactureFacturX.openapiRequiredFields) {
+      for (String requiredField : FacturXInvoice.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -692,22 +692,22 @@ public class FactureFacturX {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FactureFacturX.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FactureFacturX' and its subtypes
+       if (!FacturXInvoice.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FacturXInvoice' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FactureFacturX> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FactureFacturX.class));
+       final TypeAdapter<FacturXInvoice> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FacturXInvoice.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FactureFacturX>() {
+       return (TypeAdapter<T>) new TypeAdapter<FacturXInvoice>() {
            @Override
-           public void write(JsonWriter out, FactureFacturX value) throws IOException {
+           public void write(JsonWriter out, FacturXInvoice value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FactureFacturX read(JsonReader in) throws IOException {
+           public FacturXInvoice read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -718,18 +718,18 @@ public class FactureFacturX {
   }
 
   /**
-   * Create an instance of FactureFacturX given an JSON string
+   * Create an instance of FacturXInvoice given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of FactureFacturX
-   * @throws IOException if the JSON string is invalid with respect to FactureFacturX
+   * @return An instance of FacturXInvoice
+   * @throws IOException if the JSON string is invalid with respect to FacturXInvoice
    */
-  public static FactureFacturX fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FactureFacturX.class);
+  public static FacturXInvoice fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FacturXInvoice.class);
   }
 
   /**
-   * Convert an instance of FactureFacturX to an JSON string
+   * Convert an instance of FacturXInvoice to an JSON string
    *
    * @return JSON string
    */

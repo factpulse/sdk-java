@@ -39,19 +39,7 @@ public enum UnitOfMeasure {
   
   LITRE("LITRE"),
   
-  FORFAIT("FORFAIT"),
-  
-  PIECE2("PIECE"),
-  
-  HEURE2("HEURE"),
-  
-  JOUR2("JOUR"),
-  
-  KILOGRAMME2("KILOGRAMME"),
-  
-  LITRE2("LITRE"),
-  
-  FORFAIT2("FORFAIT");
+  FORFAIT("FORFAIT");
 
   private String value;
 
