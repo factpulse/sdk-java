@@ -51,24 +51,24 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:33:26.595127210Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class VatAmount extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(VatAmount.class.getName());
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:49:35.221728047Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+public class SubmitGrossAmount extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(SubmitGrossAmount.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!VatAmount.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'VatAmount' and its subtypes
+            if (!SubmitGrossAmount.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SubmitGrossAmount' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<BigDecimal> adapterBigDecimal = gson.getDelegateAdapter(this, TypeToken.get(BigDecimal.class));
             final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<VatAmount>() {
+            return (TypeAdapter<T>) new TypeAdapter<SubmitGrossAmount>() {
                 @Override
-                public void write(JsonWriter out, VatAmount value) throws IOException {
+                public void write(JsonWriter out, SubmitGrossAmount value) throws IOException {
                     if (value == null || value.getActualInstance() == null) {
                         elementAdapter.write(out, null);
                         return;
@@ -90,7 +90,7 @@ public class VatAmount extends AbstractOpenApiSchema {
                 }
 
                 @Override
-                public VatAmount read(JsonReader in) throws IOException {
+                public SubmitGrossAmount read(JsonReader in) throws IOException {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
@@ -104,7 +104,7 @@ public class VatAmount extends AbstractOpenApiSchema {
                             throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be of type Number in the JSON string but got `%s`", jsonElement.toString()));
                         }
                         actualAdapter = adapterBigDecimal;
-                        VatAmount ret = new VatAmount();
+                        SubmitGrossAmount ret = new SubmitGrossAmount();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
                     } catch (Exception e) {
@@ -119,7 +119,7 @@ public class VatAmount extends AbstractOpenApiSchema {
                             throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
                         }
                         actualAdapter = adapterString;
-                        VatAmount ret = new VatAmount();
+                        SubmitGrossAmount ret = new SubmitGrossAmount();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
                     } catch (Exception e) {
@@ -128,7 +128,7 @@ public class VatAmount extends AbstractOpenApiSchema {
                         log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
 
-                    throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for VatAmount: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for SubmitGrossAmount: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
@@ -137,11 +137,11 @@ public class VatAmount extends AbstractOpenApiSchema {
     // store a list of schema names defined in anyOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
-    public VatAmount() {
+    public SubmitGrossAmount() {
         super("anyOf", Boolean.FALSE);
     }
 
-    public VatAmount(Object o) {
+    public SubmitGrossAmount(Object o) {
         super("anyOf", Boolean.FALSE);
         setActualInstance(o);
     }
@@ -153,7 +153,7 @@ public class VatAmount extends AbstractOpenApiSchema {
 
     @Override
     public Map<String, Class<?>> getSchemas() {
-        return VatAmount.schemas;
+        return SubmitGrossAmount.schemas;
     }
 
     /**
@@ -216,7 +216,7 @@ public class VatAmount extends AbstractOpenApiSchema {
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to VatAmount
+     * @throws IOException if the JSON Element is invalid with respect to SubmitGrossAmount
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
         // validate anyOf schemas one by one
@@ -241,22 +241,22 @@ public class VatAmount extends AbstractOpenApiSchema {
             errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for VatAmount with anyOf schemas: BigDecimal, String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+        throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for SubmitGrossAmount with anyOf schemas: BigDecimal, String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
     }
 
     /**
-     * Create an instance of VatAmount given an JSON string
+     * Create an instance of SubmitGrossAmount given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of VatAmount
-     * @throws IOException if the JSON string is invalid with respect to VatAmount
+     * @return An instance of SubmitGrossAmount
+     * @throws IOException if the JSON string is invalid with respect to SubmitGrossAmount
      */
-    public static VatAmount fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, VatAmount.class);
+    public static SubmitGrossAmount fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SubmitGrossAmount.class);
     }
 
     /**
-     * Convert an instance of VatAmount to an JSON string
+     * Convert an instance of SubmitGrossAmount to an JSON string
      *
      * @return JSON string
      */

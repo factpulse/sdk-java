@@ -3837,15 +3837,15 @@ components:
           type: string
         totalNetAmount:
           pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-          title: Totalnetamount
+          title: EnrichedNetAmount
           type: string
         vatAmount:
           pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-          title: Vatamount
+          title: EnrichedVatAmount
           type: string
         totalGrossAmount:
           pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-          title: Totalgrossamount
+          title: EnrichedGrossAmount
           type: string
       required:
       - invoiceNumber
@@ -4329,17 +4329,17 @@ components:
         netAmount:
           description: Total net amount (BT-109)
           pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-          title: Netamount
+          title: IncomingNetAmount
           type: string
         vatAmount:
           description: Total VAT amount (BT-110)
           pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-          title: Vatamount
+          title: IncomingVatAmount
           type: string
         grossAmount:
           description: Total gross amount (BT-112)
           pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-          title: Grossamount
+          title: IncomingGrossAmount
           type: string
         purchaseOrderNumber:
           nullable: true
@@ -5258,11 +5258,11 @@ components:
           nullable: true
           type: string
         total_net_amount:
-          $ref: "#/components/schemas/Total_Net_Amount"
+          $ref: "#/components/schemas/SubmitNetAmount"
         vat_amount:
-          $ref: "#/components/schemas/Vat_Amount"
+          $ref: "#/components/schemas/SubmitVatAmount"
         total_gross_amount:
-          $ref: "#/components/schemas/Total_Gross_Amount"
+          $ref: "#/components/schemas/SubmitGrossAmount"
         main_attachment_id:
           nullable: true
           type: integer
@@ -6684,27 +6684,27 @@ components:
       - $ref: "#/components/schemas/ChorusProDestination"
       - $ref: "#/components/schemas/AFNORDestination"
       title: Destination
-    Total_Net_Amount:
+    SubmitNetAmount:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
         type: string
       description: Total net amount
-      title: Total Net Amount
-    Vat_Amount:
+      title: SubmitNetAmount
+    SubmitVatAmount:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
         type: string
       description: VAT amount
-      title: Vat Amount
-    Total_Gross_Amount:
+      title: SubmitVatAmount
+    SubmitGrossAmount:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
         type: string
       description: Total gross amount
-      title: Total Gross Amount
+      title: SubmitGrossAmount
     ValidationError_loc_inner:
       anyOf:
       - type: string

@@ -15,9 +15,9 @@ Submit an invoice to Chorus Pro.
 |**structureId** | **Integer** | Chorus Pro recipient structure ID |  |
 |**serviceCode** | **String** |  |  [optional] |
 |**engagementNumber** | **String** |  |  [optional] |
-|**totalNetAmount** | [**TotalNetAmount**](TotalNetAmount.md) |  |  |
-|**vatAmount** | [**VatAmount**](VatAmount.md) |  |  |
-|**totalGrossAmount** | [**TotalGrossAmount**](TotalGrossAmount.md) |  |  |
+|**totalNetAmount** | [**SubmitNetAmount**](SubmitNetAmount.md) |  |  |
+|**vatAmount** | [**SubmitVatAmount**](SubmitVatAmount.md) |  |  |
+|**totalGrossAmount** | [**SubmitGrossAmount**](SubmitGrossAmount.md) |  |  |
 |**mainAttachmentId** | **Integer** |  |  [optional] |
 |**mainAttachmentLabel** | **String** |  |  [optional] |
 |**comment** | **String** |  |  [optional] |

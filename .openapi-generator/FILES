@@ -99,8 +99,11 @@ docs/SubmitCompleteInvoiceRequest.md
 docs/SubmitCompleteInvoiceResponse.md
 docs/SubmitFlowRequest.md
 docs/SubmitFlowResponse.md
+docs/SubmitGrossAmount.md
 docs/SubmitInvoiceRequest.md
 docs/SubmitInvoiceResponse.md
+docs/SubmitNetAmount.md
+docs/SubmitVatAmount.md
 docs/SupplementaryAttachment.md
 docs/Supplier.md
 docs/TaskResponse.md
@@ -121,7 +124,6 @@ docs/ValidationErrorDetail.md
 docs/ValidationErrorLocInner.md
 docs/ValidationErrorResponse.md
 docs/ValidationSuccessResponse.md
-docs/VatAmount.md
 docs/VerificationSuccessResponse.md
 docs/VerifiedFieldSchema.md
 git_push.sh
@@ -245,8 +247,11 @@ src/main/java/org/openapitools/client/model/SubmitCompleteInvoiceRequest.java
 src/main/java/org/openapitools/client/model/SubmitCompleteInvoiceResponse.java
 src/main/java/org/openapitools/client/model/SubmitFlowRequest.java
 src/main/java/org/openapitools/client/model/SubmitFlowResponse.java
+src/main/java/org/openapitools/client/model/SubmitGrossAmount.java
 src/main/java/org/openapitools/client/model/SubmitInvoiceRequest.java
 src/main/java/org/openapitools/client/model/SubmitInvoiceResponse.java
+src/main/java/org/openapitools/client/model/SubmitNetAmount.java
+src/main/java/org/openapitools/client/model/SubmitVatAmount.java
 src/main/java/org/openapitools/client/model/SupplementaryAttachment.java
 src/main/java/org/openapitools/client/model/Supplier.java
 src/main/java/org/openapitools/client/model/TaskResponse.java
@@ -266,7 +271,6 @@ src/main/java/org/openapitools/client/model/ValidationErrorDetail.java
 src/main/java/org/openapitools/client/model/ValidationErrorLocInner.java
 src/main/java/org/openapitools/client/model/ValidationErrorResponse.java
 src/main/java/org/openapitools/client/model/ValidationSuccessResponse.java
-src/main/java/org/openapitools/client/model/VatAmount.java
 src/main/java/org/openapitools/client/model/VerificationSuccessResponse.java
 src/main/java/org/openapitools/client/model/VerifiedFieldSchema.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaApiTest.java
@@ -363,8 +367,11 @@ src/test/java/org/openapitools/client/model/SubmitCompleteInvoiceRequestTest.jav
 src/test/java/org/openapitools/client/model/SubmitCompleteInvoiceResponseTest.java
 src/test/java/org/openapitools/client/model/SubmitFlowRequestTest.java
 src/test/java/org/openapitools/client/model/SubmitFlowResponseTest.java
+src/test/java/org/openapitools/client/model/SubmitGrossAmountTest.java
 src/test/java/org/openapitools/client/model/SubmitInvoiceRequestTest.java
 src/test/java/org/openapitools/client/model/SubmitInvoiceResponseTest.java
+src/test/java/org/openapitools/client/model/SubmitNetAmountTest.java
+src/test/java/org/openapitools/client/model/SubmitVatAmountTest.java
 src/test/java/org/openapitools/client/model/SupplementaryAttachmentTest.java
 src/test/java/org/openapitools/client/model/SupplierTest.java
 src/test/java/org/openapitools/client/model/TaskResponseTest.java
@@ -384,6 +391,5 @@ src/test/java/org/openapitools/client/model/ValidationErrorLocInnerTest.java
 src/test/java/org/openapitools/client/model/ValidationErrorResponseTest.java
 src/test/java/org/openapitools/client/model/ValidationErrorTest.java
 src/test/java/org/openapitools/client/model/ValidationSuccessResponseTest.java
-src/test/java/org/openapitools/client/model/VatAmountTest.java
 src/test/java/org/openapitools/client/model/VerificationSuccessResponseTest.java
 src/test/java/org/openapitools/client/model/VerifiedFieldSchemaTest.java

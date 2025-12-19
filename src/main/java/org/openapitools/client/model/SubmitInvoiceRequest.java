@@ -22,9 +22,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.FactureElectroniqueRestApiSchemasChorusProChorusProCredentials;
-import org.openapitools.client.model.TotalGrossAmount;
-import org.openapitools.client.model.TotalNetAmount;
-import org.openapitools.client.model.VatAmount;
+import org.openapitools.client.model.SubmitGrossAmount;
+import org.openapitools.client.model.SubmitNetAmount;
+import org.openapitools.client.model.SubmitVatAmount;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Submit an invoice to Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:33:26.595127210Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:49:35.221728047Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SubmitInvoiceRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
@@ -93,17 +93,17 @@ public class SubmitInvoiceRequest {
   public static final String SERIALIZED_NAME_TOTAL_NET_AMOUNT = "total_net_amount";
   @SerializedName(SERIALIZED_NAME_TOTAL_NET_AMOUNT)
   @javax.annotation.Nonnull
-  private TotalNetAmount totalNetAmount;
+  private SubmitNetAmount totalNetAmount;
 
   public static final String SERIALIZED_NAME_VAT_AMOUNT = "vat_amount";
   @SerializedName(SERIALIZED_NAME_VAT_AMOUNT)
   @javax.annotation.Nonnull
-  private VatAmount vatAmount;
+  private SubmitVatAmount vatAmount;
 
   public static final String SERIALIZED_NAME_TOTAL_GROSS_AMOUNT = "total_gross_amount";
   @SerializedName(SERIALIZED_NAME_TOTAL_GROSS_AMOUNT)
   @javax.annotation.Nonnull
-  private TotalGrossAmount totalGrossAmount;
+  private SubmitGrossAmount totalGrossAmount;
 
   public static final String SERIALIZED_NAME_MAIN_ATTACHMENT_ID = "main_attachment_id";
   @SerializedName(SERIALIZED_NAME_MAIN_ATTACHMENT_ID)
@@ -266,7 +266,7 @@ public class SubmitInvoiceRequest {
   }
 
 
-  public SubmitInvoiceRequest totalNetAmount(@javax.annotation.Nonnull TotalNetAmount totalNetAmount) {
+  public SubmitInvoiceRequest totalNetAmount(@javax.annotation.Nonnull SubmitNetAmount totalNetAmount) {
     this.totalNetAmount = totalNetAmount;
     return this;
   }
@@ -276,16 +276,16 @@ public class SubmitInvoiceRequest {
    * @return totalNetAmount
    */
   @javax.annotation.Nonnull
-  public TotalNetAmount getTotalNetAmount() {
+  public SubmitNetAmount getTotalNetAmount() {
     return totalNetAmount;
   }
 
-  public void setTotalNetAmount(@javax.annotation.Nonnull TotalNetAmount totalNetAmount) {
+  public void setTotalNetAmount(@javax.annotation.Nonnull SubmitNetAmount totalNetAmount) {
     this.totalNetAmount = totalNetAmount;
   }
 
 
-  public SubmitInvoiceRequest vatAmount(@javax.annotation.Nonnull VatAmount vatAmount) {
+  public SubmitInvoiceRequest vatAmount(@javax.annotation.Nonnull SubmitVatAmount vatAmount) {
     this.vatAmount = vatAmount;
     return this;
   }
@@ -295,16 +295,16 @@ public class SubmitInvoiceRequest {
    * @return vatAmount
    */
   @javax.annotation.Nonnull
-  public VatAmount getVatAmount() {
+  public SubmitVatAmount getVatAmount() {
     return vatAmount;
   }
 
-  public void setVatAmount(@javax.annotation.Nonnull VatAmount vatAmount) {
+  public void setVatAmount(@javax.annotation.Nonnull SubmitVatAmount vatAmount) {
     this.vatAmount = vatAmount;
   }
 
 
-  public SubmitInvoiceRequest totalGrossAmount(@javax.annotation.Nonnull TotalGrossAmount totalGrossAmount) {
+  public SubmitInvoiceRequest totalGrossAmount(@javax.annotation.Nonnull SubmitGrossAmount totalGrossAmount) {
     this.totalGrossAmount = totalGrossAmount;
     return this;
   }
@@ -314,11 +314,11 @@ public class SubmitInvoiceRequest {
    * @return totalGrossAmount
    */
   @javax.annotation.Nonnull
-  public TotalGrossAmount getTotalGrossAmount() {
+  public SubmitGrossAmount getTotalGrossAmount() {
     return totalGrossAmount;
   }
 
-  public void setTotalGrossAmount(@javax.annotation.Nonnull TotalGrossAmount totalGrossAmount) {
+  public void setTotalGrossAmount(@javax.annotation.Nonnull SubmitGrossAmount totalGrossAmount) {
     this.totalGrossAmount = totalGrossAmount;
   }
 
@@ -555,11 +555,11 @@ public class SubmitInvoiceRequest {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `engagement_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("engagement_number").toString()));
       }
       // validate the required field `total_net_amount`
-      TotalNetAmount.validateJsonElement(jsonObj.get("total_net_amount"));
+      SubmitNetAmount.validateJsonElement(jsonObj.get("total_net_amount"));
       // validate the required field `vat_amount`
-      VatAmount.validateJsonElement(jsonObj.get("vat_amount"));
+      SubmitVatAmount.validateJsonElement(jsonObj.get("vat_amount"));
       // validate the required field `total_gross_amount`
-      TotalGrossAmount.validateJsonElement(jsonObj.get("total_gross_amount"));
+      SubmitGrossAmount.validateJsonElement(jsonObj.get("total_gross_amount"));
       if ((jsonObj.get("main_attachment_label") != null && !jsonObj.get("main_attachment_label").isJsonNull()) && !jsonObj.get("main_attachment_label").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `main_attachment_label` to be a primitive type in the JSON string but got `%s`", jsonObj.get("main_attachment_label").toString()));
       }

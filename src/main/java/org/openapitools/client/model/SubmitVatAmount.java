@@ -14,16 +14,7 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.openapitools.client.model.AFNORCredentials;
-import org.openapitools.client.model.AFNORDestination;
-import org.openapitools.client.model.ChorusProDestination;
+import java.math.BigDecimal;
 
 
 
@@ -61,138 +52,137 @@ import com.google.gson.JsonParseException;
 import org.openapitools.client.JSON;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:49:35.221728047Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class Destination extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(Destination.class.getName());
+public class SubmitVatAmount extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(SubmitVatAmount.class.getName());
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!Destination.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'Destination' and its subtypes
+            if (!SubmitVatAmount.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SubmitVatAmount' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ChorusProDestination> adapterChorusProDestination = gson.getDelegateAdapter(this, TypeToken.get(ChorusProDestination.class));
-            final TypeAdapter<AFNORDestination> adapterAFNORDestination = gson.getDelegateAdapter(this, TypeToken.get(AFNORDestination.class));
+            final TypeAdapter<BigDecimal> adapterBigDecimal = gson.getDelegateAdapter(this, TypeToken.get(BigDecimal.class));
+            final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
 
-            return (TypeAdapter<T>) new TypeAdapter<Destination>() {
+            return (TypeAdapter<T>) new TypeAdapter<SubmitVatAmount>() {
                 @Override
-                public void write(JsonWriter out, Destination value) throws IOException {
+                public void write(JsonWriter out, SubmitVatAmount value) throws IOException {
                     if (value == null || value.getActualInstance() == null) {
                         elementAdapter.write(out, null);
                         return;
                     }
 
-                    // check if the actual instance is of the type `ChorusProDestination`
-                    if (value.getActualInstance() instanceof ChorusProDestination) {
-                        JsonElement element = adapterChorusProDestination.toJsonTree((ChorusProDestination)value.getActualInstance());
+                    // check if the actual instance is of the type `BigDecimal`
+                    if (value.getActualInstance() instanceof BigDecimal) {
+                        JsonElement element = adapterBigDecimal.toJsonTree((BigDecimal)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    // check if the actual instance is of the type `AFNORDestination`
-                    if (value.getActualInstance() instanceof AFNORDestination) {
-                        JsonElement element = adapterAFNORDestination.toJsonTree((AFNORDestination)value.getActualInstance());
-                        elementAdapter.write(out, element);
+                    // check if the actual instance is of the type `String`
+                    if (value.getActualInstance() instanceof String) {
+                        JsonPrimitive primitive = adapterString.toJsonTree((String)value.getActualInstance()).getAsJsonPrimitive();
+                        elementAdapter.write(out, primitive);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: AFNORDestination, ChorusProDestination");
+                    throw new IOException("Failed to serialize as the type doesn't match anyOf schemas: BigDecimal, String");
                 }
 
                 @Override
-                public Destination read(JsonReader in) throws IOException {
+                public SubmitVatAmount read(JsonReader in) throws IOException {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
-                    int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize ChorusProDestination
+                    // deserialize BigDecimal
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        ChorusProDestination.validateJsonElement(jsonElement);
-                        actualAdapter = adapterChorusProDestination;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'ChorusProDestination'");
-                    } catch (Exception e) {
-                        // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for ChorusProDestination failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'ChorusProDestination'", e);
-                    }
-                    // deserialize AFNORDestination
-                    try {
-                        // validate the JSON object to see if any exception is thrown
-                        AFNORDestination.validateJsonElement(jsonElement);
-                        actualAdapter = adapterAFNORDestination;
-                        match++;
-                        log.log(Level.FINER, "Input data matches schema 'AFNORDestination'");
-                    } catch (Exception e) {
-                        // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AFNORDestination failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'AFNORDestination'", e);
-                    }
-
-                    if (match == 1) {
-                        Destination ret = new Destination();
+                        if (!jsonElement.getAsJsonPrimitive().isNumber()) {
+                            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be of type Number in the JSON string but got `%s`", jsonElement.toString()));
+                        }
+                        actualAdapter = adapterBigDecimal;
+                        SubmitVatAmount ret = new SubmitVatAmount();
                         ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
                         return ret;
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for BigDecimal failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'BigDecimal'", e);
+                    }
+                    // deserialize String
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        if (!jsonElement.getAsJsonPrimitive().isString()) {
+                            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
+                        }
+                        actualAdapter = adapterString;
+                        SubmitVatAmount ret = new SubmitVatAmount();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
 
-                    throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for Destination: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for SubmitVatAmount: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
     }
 
-    // store a list of schema names defined in oneOf
+    // store a list of schema names defined in anyOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
-    public Destination() {
-        super("oneOf", Boolean.FALSE);
+    public SubmitVatAmount() {
+        super("anyOf", Boolean.FALSE);
     }
 
-    public Destination(Object o) {
-        super("oneOf", Boolean.FALSE);
+    public SubmitVatAmount(Object o) {
+        super("anyOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
     static {
-        schemas.put("ChorusProDestination", ChorusProDestination.class);
-        schemas.put("AFNORDestination", AFNORDestination.class);
+        schemas.put("BigDecimal", BigDecimal.class);
+        schemas.put("String", String.class);
     }
 
     @Override
     public Map<String, Class<?>> getSchemas() {
-        return Destination.schemas;
+        return SubmitVatAmount.schemas;
     }
 
     /**
-     * Set the instance that matches the oneOf child schema, check
-     * the instance parameter is valid against the oneOf child schemas:
-     * AFNORDestination, ChorusProDestination
+     * Set the instance that matches the anyOf child schema, check
+     * the instance parameter is valid against the anyOf child schemas:
+     * BigDecimal, String
      *
-     * It could be an instance of the 'oneOf' schemas.
+     * It could be an instance of the 'anyOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof ChorusProDestination) {
+        if (instance instanceof BigDecimal) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof AFNORDestination) {
+        if (instance instanceof String) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be AFNORDestination, ChorusProDestination");
+        throw new RuntimeException("Invalid instance type. Must be BigDecimal, String");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * AFNORDestination, ChorusProDestination
+     * BigDecimal, String
      *
-     * @return The actual instance (AFNORDestination, ChorusProDestination)
+     * @return The actual instance (BigDecimal, String)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -201,71 +191,72 @@ public class Destination extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `ChorusProDestination`. If the actual instance is not `ChorusProDestination`,
+     * Get the actual instance of `BigDecimal`. If the actual instance is not `BigDecimal`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `ChorusProDestination`
-     * @throws ClassCastException if the instance is not `ChorusProDestination`
+     * @return The actual instance of `BigDecimal`
+     * @throws ClassCastException if the instance is not `BigDecimal`
      */
-    public ChorusProDestination getChorusProDestination() throws ClassCastException {
-        return (ChorusProDestination)super.getActualInstance();
+    public BigDecimal getBigDecimal() throws ClassCastException {
+        return (BigDecimal)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `AFNORDestination`. If the actual instance is not `AFNORDestination`,
+     * Get the actual instance of `String`. If the actual instance is not `String`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `AFNORDestination`
-     * @throws ClassCastException if the instance is not `AFNORDestination`
+     * @return The actual instance of `String`
+     * @throws ClassCastException if the instance is not `String`
      */
-    public AFNORDestination getAFNORDestination() throws ClassCastException {
-        return (AFNORDestination)super.getActualInstance();
+    public String getString() throws ClassCastException {
+        return (String)super.getActualInstance();
     }
 
     /**
      * Validates the JSON Element and throws an exception if issues found
      *
      * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Destination
+     * @throws IOException if the JSON Element is invalid with respect to SubmitVatAmount
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate oneOf schemas one by one
-        int validCount = 0;
+        // validate anyOf schemas one by one
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with ChorusProDestination
+        // validate the json string with BigDecimal
         try {
-            ChorusProDestination.validateJsonElement(jsonElement);
-            validCount++;
+            if (!jsonElement.getAsJsonPrimitive().isNumber()) {
+                throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be of type Number in the JSON string but got `%s`", jsonElement.toString()));
+            }
+            return;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for ChorusProDestination failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for BigDecimal failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with AFNORDestination
+        // validate the json string with String
         try {
-            AFNORDestination.validateJsonElement(jsonElement);
-            validCount++;
+            if (!jsonElement.getAsJsonPrimitive().isString()) {
+                throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
+            }
+            return;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AFNORDestination failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        if (validCount != 1) {
-            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for Destination with oneOf schemas: AFNORDestination, ChorusProDestination. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-        }
+        throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for SubmitVatAmount with anyOf schemas: BigDecimal, String. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
     }
 
     /**
-     * Create an instance of Destination given an JSON string
+     * Create an instance of SubmitVatAmount given an JSON string
      *
      * @param jsonString JSON string
-     * @return An instance of Destination
-     * @throws IOException if the JSON string is invalid with respect to Destination
+     * @return An instance of SubmitVatAmount
+     * @throws IOException if the JSON string is invalid with respect to SubmitVatAmount
      */
-    public static Destination fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, Destination.class);
+    public static SubmitVatAmount fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SubmitVatAmount.class);
     }
 
     /**
-     * Convert an instance of Destination to an JSON string
+     * Convert an instance of SubmitVatAmount to an JSON string
      *
      * @return JSON string
      */

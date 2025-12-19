@@ -18,17 +18,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for VatAmount
+ * Model tests for SubmitNetAmount
  */
-public class VatAmountTest {
-    private final VatAmount model = new VatAmount();
+public class SubmitNetAmountTest {
+    private final SubmitNetAmount model = new SubmitNetAmount();
 
     /**
-     * Model tests for VatAmount
+     * Model tests for SubmitNetAmount
      */
     @Test
-    public void testVatAmount() {
-        // TODO: test VatAmount
+    public void testSubmitNetAmount() {
+        // TODO: test SubmitNetAmount
     }
 
 }

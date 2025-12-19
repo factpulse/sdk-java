@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Contains all invoice total amounts.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:33:26.595127210Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:49:35.221728047Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class InvoiceTotals {
   public static final String SERIALIZED_NAME_TOTAL_NET_AMOUNT = "total_net_amount";
   @SerializedName(SERIALIZED_NAME_TOTAL_NET_AMOUNT)
