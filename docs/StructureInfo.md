@@ -2,17 +2,17 @@
 
 # StructureInfo
 
-Informations d'une structure.
+Structure information.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**idStructureCpp** | **Integer** | ID Chorus Pro de la structure |  |
-|**identifiantStructure** | **String** | Identifiant (SIRET, SIREN) |  |
-|**designationStructure** | **String** | Nom de la structure |  |
-|**typeIdentifiantStructure** | **String** | Type d&#39;identifiant |  |
-|**statut** | **String** | Statut (ACTIVE, INACTIVE) |  |
+|**structureId** | **Integer** | Chorus Pro structure ID |  |
+|**structureIdentifier** | **String** | Identifier (SIRET, SIREN) |  |
+|**structureName** | **String** | Structure name |  |
+|**structureIdentifierType** | **String** | Identifier type |  |
+|**status** | **String** | Status (ACTIVE, INACTIVE) |  |
 
 
 

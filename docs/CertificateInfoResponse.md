@@ -2,24 +2,24 @@
 
 # CertificateInfoResponse
 
-Informations sur un certificat généré.
+Information about a generated certificate.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**cn** | **String** | Common Name |  |
-|**organisation** | **String** | Organisation |  |
-|**pays** | **String** | Code pays |  |
-|**ville** | **String** | Ville |  |
-|**province** | **String** | Province |  |
+|**organization** | **String** | Organization |  |
+|**country** | **String** | Country code |  |
+|**city** | **String** | City |  |
+|**state** | **String** | State/Province |  |
 |**email** | **String** |  |  [optional] |
-|**sujet** | **String** | Sujet complet (RFC4514) |  |
-|**emetteur** | **String** | Émetteur (auto-signé &#x3D; même que sujet) |  |
-|**numeroSerie** | **Integer** | Numéro de série du certificat |  |
-|**valideDu** | **String** | Date de début de validité (ISO 8601) |  |
-|**valideAu** | **String** | Date de fin de validité (ISO 8601) |  |
-|**algorithme** | **String** | Algorithme de signature |  |
+|**subject** | **String** | Full subject (RFC4514) |  |
+|**issuer** | **String** | Issuer (self-signed &#x3D; same as subject) |  |
+|**serialNumber** | **Integer** | Certificate serial number |  |
+|**validFrom** | **String** | Validity start date (ISO 8601) |  |
+|**validTo** | **String** | Validity end date (ISO 8601) |  |
+|**algorithm** | **String** | Signature algorithm |  |
 
 
 

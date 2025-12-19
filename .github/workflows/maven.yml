@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build API REST FactPulse
+    name: Build FactPulse REST API
     runs-on: ubuntu-latest
     strategy:
       matrix:

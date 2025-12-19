@@ -7,7 +7,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-## [2.0.43] - 2025-12-18
+## [3.0.0] - 2025-12-19
 
 ### Added
 - Version initiale du SDK java
@@ -24,5 +24,5 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Guide d'authentification JWT
 - Configuration avancée (timeout, proxy, debug)
 
-[Unreleased]: https://github.com/factpulse/sdk-java/compare/v2.0.43...HEAD
-[2.0.43]: https://github.com/factpulse/sdk-java/releases/tag/v2.0.43
+[Unreleased]: https://github.com/factpulse/sdk-java/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/factpulse/sdk-java/releases/tag/v3.0.0

@@ -2,28 +2,28 @@
 
 # FactureFacturX
 
-Modèle de données pour une facture destinée à être convertie en Factur-X.
+Data model for an invoice to be converted to Factur-X.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**numeroFacture** | **String** |  |  |
-|**dateEcheancePaiement** | **String** |  |  |
-|**dateFacture** | **String** |  |  [optional] |
-|**modeDepot** | **ModeDepot** |  |  |
-|**destinataire** | [**Destinataire**](Destinataire.md) |  |  |
-|**fournisseur** | [**Fournisseur**](Fournisseur.md) |  |  |
-|**cadreDeFacturation** | [**CadreDeFacturation**](CadreDeFacturation.md) |  |  |
-|**references** | [**References**](References.md) |  |  |
-|**montantTotal** | [**MontantTotal**](MontantTotal.md) |  |  |
-|**lignesDePoste** | [**List&lt;LigneDePoste&gt;**](LigneDePoste.md) |  |  [optional] |
-|**lignesDeTva** | [**List&lt;LigneDeTVA&gt;**](LigneDeTVA.md) |  |  [optional] |
-|**notes** | [**List&lt;Note&gt;**](Note.md) |  |  [optional] |
-|**commentaire** | **String** |  |  [optional] |
-|**idUtilisateurCourant** | **Integer** |  |  [optional] |
-|**piecesJointesComplementaires** | [**List&lt;PieceJointeComplementaire&gt;**](PieceJointeComplementaire.md) |  |  [optional] |
-|**beneficiaire** | [**Beneficiaire**](Beneficiaire.md) |  |  [optional] |
+|**invoiceNumber** | **String** |  |  |
+|**paymentDueDate** | **String** |  |  |
+|**invoiceDate** | **String** |  |  [optional] |
+|**submissionMode** | **SubmissionMode** |  |  |
+|**recipient** | [**Recipient**](Recipient.md) |  |  |
+|**supplier** | [**Supplier**](Supplier.md) |  |  |
+|**invoicingFramework** | [**InvoicingFramework**](InvoicingFramework.md) |  |  |
+|**references** | [**InvoiceReferences**](InvoiceReferences.md) |  |  |
+|**totals** | [**InvoiceTotals**](InvoiceTotals.md) |  |  |
+|**invoiceLines** | [**List&lt;InvoiceLine&gt;**](InvoiceLine.md) |  |  [optional] |
+|**vatLines** | [**List&lt;VATLine&gt;**](VATLine.md) |  |  [optional] |
+|**notes** | [**List&lt;InvoiceNote&gt;**](InvoiceNote.md) |  |  [optional] |
+|**comment** | **String** |  |  [optional] |
+|**currentUserId** | **Integer** |  |  [optional] |
+|**supplementaryAttachments** | [**List&lt;SupplementaryAttachment&gt;**](SupplementaryAttachment.md) |  |  [optional] |
+|**payee** | [**Payee**](Payee.md) |  |  [optional] |
 
 
 

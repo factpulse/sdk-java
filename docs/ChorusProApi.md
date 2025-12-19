@@ -4,31 +4,31 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**ajouterFichierApiV1ChorusProTransversesAjouterFichierPost**](ChorusProApi.md#ajouterFichierApiV1ChorusProTransversesAjouterFichierPost) | **POST** /api/v1/chorus-pro/transverses/ajouter-fichier | Ajouter une pièce jointe |
-| [**completerFactureApiV1ChorusProFacturesCompleterPost**](ChorusProApi.md#completerFactureApiV1ChorusProFacturesCompleterPost) | **POST** /api/v1/chorus-pro/factures/completer | Compléter une facture suspendue (Fournisseur) |
-| [**consulterFactureApiV1ChorusProFacturesConsulterPost**](ChorusProApi.md#consulterFactureApiV1ChorusProFacturesConsulterPost) | **POST** /api/v1/chorus-pro/factures/consulter | Consulter le statut d&#39;une facture |
-| [**consulterStructureApiV1ChorusProStructuresConsulterPost**](ChorusProApi.md#consulterStructureApiV1ChorusProStructuresConsulterPost) | **POST** /api/v1/chorus-pro/structures/consulter | Consulter les détails d&#39;une structure |
-| [**listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet**](ChorusProApi.md#listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet) | **GET** /api/v1/chorus-pro/structures/{id_structure_cpp}/services | Lister les services d&#39;une structure |
-| [**obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost**](ChorusProApi.md#obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost) | **POST** /api/v1/chorus-pro/structures/obtenir-id-depuis-siret | Utilitaire : Obtenir l&#39;ID Chorus Pro depuis un SIRET |
-| [**rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost**](ChorusProApi.md#rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost) | **POST** /api/v1/chorus-pro/factures/rechercher-destinataire | Rechercher factures reçues (Destinataire) |
-| [**rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost**](ChorusProApi.md#rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost) | **POST** /api/v1/chorus-pro/factures/rechercher-fournisseur | Rechercher factures émises (Fournisseur) |
-| [**rechercherStructuresApiV1ChorusProStructuresRechercherPost**](ChorusProApi.md#rechercherStructuresApiV1ChorusProStructuresRechercherPost) | **POST** /api/v1/chorus-pro/structures/rechercher | Rechercher des structures Chorus Pro |
-| [**recyclerFactureApiV1ChorusProFacturesRecyclerPost**](ChorusProApi.md#recyclerFactureApiV1ChorusProFacturesRecyclerPost) | **POST** /api/v1/chorus-pro/factures/recycler | Recycler une facture (Fournisseur) |
-| [**soumettreFactureApiV1ChorusProFacturesSoumettrePost**](ChorusProApi.md#soumettreFactureApiV1ChorusProFacturesSoumettrePost) | **POST** /api/v1/chorus-pro/factures/soumettre | Soumettre une facture à Chorus Pro |
-| [**telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost**](ChorusProApi.md#telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost) | **POST** /api/v1/chorus-pro/factures/telecharger-groupe | Télécharger un groupe de factures |
-| [**traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost**](ChorusProApi.md#traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost) | **POST** /api/v1/chorus-pro/factures/traiter-facture-recue | Traiter une facture reçue (Destinataire) |
-| [**valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost**](ChorusProApi.md#valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost) | **POST** /api/v1/chorus-pro/factures/valideur/consulter | Consulter une facture (Valideur) |
-| [**valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost**](ChorusProApi.md#valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost) | **POST** /api/v1/chorus-pro/factures/valideur/rechercher | Rechercher factures à valider (Valideur) |
-| [**valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**](ChorusProApi.md#valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost) | **POST** /api/v1/chorus-pro/factures/valideur/traiter | Valider ou refuser une facture (Valideur) |
+| [**ajouterFichierApiV1ChorusProTransversesAjouterFichierPost**](ChorusProApi.md#ajouterFichierApiV1ChorusProTransversesAjouterFichierPost) | **POST** /api/v1/chorus-pro/transverses/ajouter-fichier | Add an attachment |
+| [**completerFactureApiV1ChorusProFacturesCompleterPost**](ChorusProApi.md#completerFactureApiV1ChorusProFacturesCompleterPost) | **POST** /api/v1/chorus-pro/factures/completer | Complete a suspended invoice (Supplier) |
+| [**consulterFactureApiV1ChorusProFacturesConsulterPost**](ChorusProApi.md#consulterFactureApiV1ChorusProFacturesConsulterPost) | **POST** /api/v1/chorus-pro/factures/consulter | Consult invoice status |
+| [**consulterStructureApiV1ChorusProStructuresConsulterPost**](ChorusProApi.md#consulterStructureApiV1ChorusProStructuresConsulterPost) | **POST** /api/v1/chorus-pro/structures/consulter | Consult structure details |
+| [**listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet**](ChorusProApi.md#listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet) | **GET** /api/v1/chorus-pro/structures/{id_structure_cpp}/services | List structure services |
+| [**obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost**](ChorusProApi.md#obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost) | **POST** /api/v1/chorus-pro/structures/obtenir-id-depuis-siret | Utility: Get Chorus Pro ID from SIRET |
+| [**rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost**](ChorusProApi.md#rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost) | **POST** /api/v1/chorus-pro/factures/rechercher-destinataire | Search received invoices (Recipient) |
+| [**rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost**](ChorusProApi.md#rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost) | **POST** /api/v1/chorus-pro/factures/rechercher-fournisseur | Search issued invoices (Supplier) |
+| [**rechercherStructuresApiV1ChorusProStructuresRechercherPost**](ChorusProApi.md#rechercherStructuresApiV1ChorusProStructuresRechercherPost) | **POST** /api/v1/chorus-pro/structures/rechercher | Search Chorus Pro structures |
+| [**recyclerFactureApiV1ChorusProFacturesRecyclerPost**](ChorusProApi.md#recyclerFactureApiV1ChorusProFacturesRecyclerPost) | **POST** /api/v1/chorus-pro/factures/recycler | Recycle an invoice (Supplier) |
+| [**soumettreFactureApiV1ChorusProFacturesSoumettrePost**](ChorusProApi.md#soumettreFactureApiV1ChorusProFacturesSoumettrePost) | **POST** /api/v1/chorus-pro/factures/soumettre | Submit an invoice to Chorus Pro |
+| [**telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost**](ChorusProApi.md#telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost) | **POST** /api/v1/chorus-pro/factures/telecharger-groupe | Download a group of invoices |
+| [**traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost**](ChorusProApi.md#traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost) | **POST** /api/v1/chorus-pro/factures/traiter-facture-recue | Process a received invoice (Recipient) |
+| [**valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost**](ChorusProApi.md#valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost) | **POST** /api/v1/chorus-pro/factures/valideur/consulter | Consult an invoice (Validator) |
+| [**valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost**](ChorusProApi.md#valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost) | **POST** /api/v1/chorus-pro/factures/valideur/rechercher | Search invoices to validate (Validator) |
+| [**valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**](ChorusProApi.md#valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost) | **POST** /api/v1/chorus-pro/factures/valideur/traiter | Validate or reject an invoice (Validator) |
 
 
 <a id="ajouterFichierApiV1ChorusProTransversesAjouterFichierPost"></a>
 # **ajouterFichierApiV1ChorusProTransversesAjouterFichierPost**
 > Object ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody)
 
-Ajouter une pièce jointe
+Add an attachment
 
-Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;pieceJointeFichier\&quot;: \&quot;JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\&quot;,       \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;,       \&quot;pieceJointeTypeMime\&quot;: \&quot;application/pdf\&quot;,       \&quot;pieceJointeExtension\&quot;: \&quot;PDF\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : L&#39;ID de la pièce jointe (&#x60;pieceJointeIdFichier&#x60;) à utiliser ensuite dans &#x60;/factures/completer&#x60;.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
+Add an attachment to the current user account.      **Max size**: 10 MB per file      **Example payload**:     &#x60;&#x60;&#x60;json     {       \&quot;pieceJointeFichier\&quot;: \&quot;JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\&quot;,       \&quot;pieceJointeNom\&quot;: \&quot;purchase_order.pdf\&quot;,       \&quot;pieceJointeTypeMime\&quot;: \&quot;application/pdf\&quot;,       \&quot;pieceJointeExtension\&quot;: \&quot;PDF\&quot;     }     &#x60;&#x60;&#x60;      **Returns**: The attachment ID (&#x60;pieceJointeIdFichier&#x60;) to use in &#x60;/factures/completer&#x60;.      **Accepted extensions**: PDF, JPG, PNG, ZIP, XML, etc.
 
 ### Example
 ```java
@@ -94,9 +94,9 @@ public class Example {
 # **completerFactureApiV1ChorusProFacturesCompleterPost**
 > Object completerFactureApiV1ChorusProFacturesCompleterPost(requestBody)
 
-Compléter une facture suspendue (Fournisseur)
+Complete a suspended invoice (Supplier)
 
-Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;commentaire\&quot;: \&quot;Voici les justificatifs demandés\&quot;,       \&quot;listePiecesJointes\&quot;: [         {           \&quot;pieceJointeIdFichier\&quot;: 98765,           \&quot;pieceJointeNom\&quot;: \&quot;bon_commande.pdf\&quot;         }       ]     }     &#x60;&#x60;&#x60;      **Note** : Les pièces jointes doivent d&#39;abord être uploadées via &#x60;/transverses/ajouter-fichier&#x60;.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
+Complete a SUSPENDUE status invoice by adding attachments or a comment.      **Required status**: SUSPENDUE      **Possible actions**:     - Add attachments (supporting documents, purchase orders, etc.)     - Modify comment      **Example payload**:     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;commentaire\&quot;: \&quot;Here are the requested documents\&quot;,       \&quot;listePiecesJointes\&quot;: [         {           \&quot;pieceJointeIdFichier\&quot;: 98765,           \&quot;pieceJointeNom\&quot;: \&quot;purchase_order.pdf\&quot;         }       ]     }     &#x60;&#x60;&#x60;      **Note**: Attachments must first be uploaded via &#x60;/transverses/ajouter-fichier&#x60;.      **After completion**: The invoice returns to MISE_A_DISPOSITION status.
 
 ### Example
 ```java
@@ -160,11 +160,11 @@ public class Example {
 
 <a id="consulterFactureApiV1ChorusProFacturesConsulterPost"></a>
 # **consulterFactureApiV1ChorusProFacturesConsulterPost**
-> ConsulterFactureResponse consulterFactureApiV1ChorusProFacturesConsulterPost(consulterFactureRequest)
+> GetInvoiceResponse consulterFactureApiV1ChorusProFacturesConsulterPost(getInvoiceRequest)
 
-Consulter le statut d&#39;une facture
+Consult invoice status
 
-Récupère les informations et le statut actuel d&#39;une facture soumise à Chorus Pro.      **Retour** :     - Numéro et date de facture     - Montant TTC     - **Statut courant** : SOUMISE, VALIDEE, REJETEE, SUSPENDUE, MANDATEE, MISE_EN_PAIEMENT, etc.     - Structure destinataire      **Cas d&#39;usage** :     - Suivre l&#39;évolution du traitement d&#39;une facture     - Vérifier si une facture a été validée ou rejetée     - Obtenir la date de mise en paiement      **Polling** : Appelez cet endpoint régulièrement pour suivre l&#39;évolution du statut.
+Retrieves the information and current status of an invoice submitted to Chorus Pro.      **Returns**:     - Invoice number and date     - Total gross amount     - **Current status**: SOUMISE, VALIDEE, REJETEE, SUSPENDUE, MANDATEE, MISE_EN_PAIEMENT, etc.     - Recipient structure      **Use cases**:     - Track the processing progress of an invoice     - Check if an invoice has been validated or rejected     - Get the payment date      **Polling**: Call this endpoint regularly to track status changes.
 
 ### Example
 ```java
@@ -186,9 +186,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    ConsulterFactureRequest consulterFactureRequest = new ConsulterFactureRequest(); // ConsulterFactureRequest | 
+    GetInvoiceRequest getInvoiceRequest = new GetInvoiceRequest(); // GetInvoiceRequest | 
     try {
-      ConsulterFactureResponse result = apiInstance.consulterFactureApiV1ChorusProFacturesConsulterPost(consulterFactureRequest);
+      GetInvoiceResponse result = apiInstance.consulterFactureApiV1ChorusProFacturesConsulterPost(getInvoiceRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#consulterFactureApiV1ChorusProFacturesConsulterPost");
@@ -205,11 +205,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **consulterFactureRequest** | [**ConsulterFactureRequest**](ConsulterFactureRequest.md)|  | |
+| **getInvoiceRequest** | [**GetInvoiceRequest**](GetInvoiceRequest.md)|  | |
 
 ### Return type
 
-[**ConsulterFactureResponse**](ConsulterFactureResponse.md)
+[**GetInvoiceResponse**](GetInvoiceResponse.md)
 
 ### Authorization
 
@@ -228,11 +228,11 @@ public class Example {
 
 <a id="consulterStructureApiV1ChorusProStructuresConsulterPost"></a>
 # **consulterStructureApiV1ChorusProStructuresConsulterPost**
-> ConsulterStructureResponse consulterStructureApiV1ChorusProStructuresConsulterPost(consulterStructureRequest)
+> GetStructureResponse consulterStructureApiV1ChorusProStructuresConsulterPost(getStructureRequest)
 
-Consulter les détails d&#39;une structure
+Consult structure details
 
-Récupère les informations détaillées d&#39;une structure Chorus Pro.       **Retour** :     - Raison sociale     - Numéro de TVA intracommunautaire     - Email de contact     - **Paramètres obligatoires** : Indique si le code service et/ou numéro d&#39;engagement sont requis pour soumettre une facture      **Étape typique** : Appelée après &#x60;rechercher-structures&#x60; pour savoir quels champs sont obligatoires avant de soumettre une facture.
+Retrieves detailed information about a Chorus Pro structure.       **Returns**:     - Company name     - Intra-EU VAT number     - Contact email     - **Required parameters**: Indicates if service code and/or engagement number are required to submit an invoice      **Typical step**: Called after &#x60;search-structures&#x60; to know which fields are mandatory before submitting an invoice.
 
 ### Example
 ```java
@@ -254,9 +254,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    ConsulterStructureRequest consulterStructureRequest = new ConsulterStructureRequest(); // ConsulterStructureRequest | 
+    GetStructureRequest getStructureRequest = new GetStructureRequest(); // GetStructureRequest | 
     try {
-      ConsulterStructureResponse result = apiInstance.consulterStructureApiV1ChorusProStructuresConsulterPost(consulterStructureRequest);
+      GetStructureResponse result = apiInstance.consulterStructureApiV1ChorusProStructuresConsulterPost(getStructureRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#consulterStructureApiV1ChorusProStructuresConsulterPost");
@@ -273,11 +273,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **consulterStructureRequest** | [**ConsulterStructureRequest**](ConsulterStructureRequest.md)|  | |
+| **getStructureRequest** | [**GetStructureRequest**](GetStructureRequest.md)|  | |
 
 ### Return type
 
-[**ConsulterStructureResponse**](ConsulterStructureResponse.md)
+[**GetStructureResponse**](GetStructureResponse.md)
 
 ### Authorization
 
@@ -296,11 +296,11 @@ public class Example {
 
 <a id="listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet"></a>
 # **listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet**
-> RechercherServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp)
+> SearchServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp)
 
-Lister les services d&#39;une structure
+List structure services
 
-Récupère la liste des services actifs d&#39;une structure publique.      **Cas d&#39;usage** :     - Lister les services disponibles pour une administration     - Vérifier qu&#39;un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
+Retrieves the list of active services for a public structure.      **Use cases**:     - List available services for an administration     - Verify that a service code exists before submitting an invoice      **Returns**:     - List of services with their code, label, and status (active/inactive)
 
 ### Example
 ```java
@@ -324,7 +324,7 @@ public class Example {
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
     Integer idStructureCpp = 56; // Integer | 
     try {
-      RechercherServicesResponse result = apiInstance.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp);
+      SearchServicesResponse result = apiInstance.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet");
@@ -345,7 +345,7 @@ public class Example {
 
 ### Return type
 
-[**RechercherServicesResponse**](RechercherServicesResponse.md)
+[**SearchServicesResponse**](SearchServicesResponse.md)
 
 ### Authorization
 
@@ -364,11 +364,11 @@ public class Example {
 
 <a id="obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost"></a>
 # **obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost**
-> ObtenirIdChorusProResponse obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost(obtenirIdChorusProRequest)
+> GetChorusProIdResponse obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost(getChorusProIdRequest)
 
-Utilitaire : Obtenir l&#39;ID Chorus Pro depuis un SIRET
+Utility: Get Chorus Pro ID from SIRET
 
-**Utilitaire pratique** pour obtenir l&#39;ID Chorus Pro d&#39;une structure à partir de son SIRET.       Cette fonction wrapper combine :     1. Recherche de la structure par SIRET     2. Extraction de l&#39;&#x60;id_structure_cpp&#x60; si une seule structure est trouvée      **Retour** :     - &#x60;id_structure_cpp&#x60; : ID Chorus Pro (0 si non trouvé ou si plusieurs résultats)     - &#x60;designation_structure&#x60; : Nom de la structure (si trouvée)     - &#x60;message&#x60; : Message explicatif      **Cas d&#39;usage** :     - Raccourci pour obtenir directement l&#39;ID Chorus Pro avant de soumettre une facture     - Alternative simplifiée à &#x60;rechercher-structures&#x60; + extraction manuelle de l&#39;ID      **Note** : Si plusieurs structures correspondent au SIRET (rare), retourne 0 et un message d&#39;erreur.
+**Convenient utility** to get a structure&#39;s Chorus Pro ID from its SIRET.       This wrapper function combines:     1. Searching for the structure by SIRET     2. Extracting the &#x60;id_structure_cpp&#x60; if a single structure is found      **Returns**:     - &#x60;id_structure_cpp&#x60;: Chorus Pro ID (0 if not found or multiple results)     - &#x60;designation_structure&#x60;: Structure name (if found)     - &#x60;message&#x60;: Explanatory message      **Use cases**:     - Shortcut to directly get the Chorus Pro ID before submitting an invoice     - Simplified alternative to &#x60;search-structures&#x60; + manual ID extraction      **Note**: If multiple structures match the SIRET (rare), returns 0 and an error message.
 
 ### Example
 ```java
@@ -390,9 +390,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    ObtenirIdChorusProRequest obtenirIdChorusProRequest = new ObtenirIdChorusProRequest(); // ObtenirIdChorusProRequest | 
+    GetChorusProIdRequest getChorusProIdRequest = new GetChorusProIdRequest(); // GetChorusProIdRequest | 
     try {
-      ObtenirIdChorusProResponse result = apiInstance.obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost(obtenirIdChorusProRequest);
+      GetChorusProIdResponse result = apiInstance.obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost(getChorusProIdRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#obtenirIdChorusProDepuisSiretApiV1ChorusProStructuresObtenirIdDepuisSiretPost");
@@ -409,11 +409,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **obtenirIdChorusProRequest** | [**ObtenirIdChorusProRequest**](ObtenirIdChorusProRequest.md)|  | |
+| **getChorusProIdRequest** | [**GetChorusProIdRequest**](GetChorusProIdRequest.md)|  | |
 
 ### Return type
 
-[**ObtenirIdChorusProResponse**](ObtenirIdChorusProResponse.md)
+[**GetChorusProIdResponse**](GetChorusProIdResponse.md)
 
 ### Authorization
 
@@ -434,9 +434,9 @@ public class Example {
 # **rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost**
 > Object rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody)
 
-Rechercher factures reçues (Destinataire)
+Search received invoices (Recipient)
 
-Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : &#x60;factureTelechargeeParDestinataire&#x60; permet de savoir si la facture a déjà été téléchargée.
+Search invoices received by the connected recipient.      **Filters**:     - Downloaded / not downloaded     - Reception dates     - Status (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Supplier      **Useful indicator**: &#x60;factureTelechargeeParDestinataire&#x60; indicates whether the invoice has already been downloaded.
 
 ### Example
 ```java
@@ -502,9 +502,9 @@ public class Example {
 # **rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost**
 > Object rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody)
 
-Rechercher factures émises (Fournisseur)
+Search issued invoices (Supplier)
 
-Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d&#39;usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
+Search invoices issued by the connected supplier.      **Available filters**:     - Invoice number     - Dates (start/end)     - Status     - Recipient structure     - Amount      **Use cases**:     - Track issued invoices     - Verify statuses     - Export for accounting
 
 ### Example
 ```java
@@ -568,11 +568,11 @@ public class Example {
 
 <a id="rechercherStructuresApiV1ChorusProStructuresRechercherPost"></a>
 # **rechercherStructuresApiV1ChorusProStructuresRechercherPost**
-> RechercherStructureResponse rechercherStructuresApiV1ChorusProStructuresRechercherPost(rechercherStructureRequest)
+> SearchStructureResponse rechercherStructuresApiV1ChorusProStructuresRechercherPost(searchStructureRequest)
 
-Rechercher des structures Chorus Pro
+Search Chorus Pro structures
 
-Recherche des structures (entreprises, administrations) enregistrées sur Chorus Pro.      **Cas d&#39;usage** :     - Trouver l&#39;ID Chorus Pro d&#39;une structure à partir de son SIRET     - Vérifier si une structure est enregistrée sur Chorus Pro     - Lister les structures correspondant à des critères      **Filtres disponibles** :     - Identifiant (SIRET, SIREN, etc.)     - Raison sociale     - Type d&#39;identifiant     - Structures privées uniquement      **Étape typique** : Appelée avant &#x60;soumettre-facture&#x60; pour obtenir l&#39;&#x60;id_structure_cpp&#x60; du destinataire.
+Search for structures (companies, administrations) registered on Chorus Pro.      **Use cases**:     - Find the Chorus Pro ID of a structure from its SIRET     - Check if a structure is registered on Chorus Pro     - List structures matching criteria      **Available filters**:     - Identifier (SIRET, SIREN, etc.)     - Company name     - Identifier type     - Private structures only      **Typical step**: Called before &#x60;submit-invoice&#x60; to get the recipient&#39;s &#x60;id_structure_cpp&#x60;.
 
 ### Example
 ```java
@@ -594,9 +594,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    RechercherStructureRequest rechercherStructureRequest = new RechercherStructureRequest(); // RechercherStructureRequest | 
+    SearchStructureRequest searchStructureRequest = new SearchStructureRequest(); // SearchStructureRequest | 
     try {
-      RechercherStructureResponse result = apiInstance.rechercherStructuresApiV1ChorusProStructuresRechercherPost(rechercherStructureRequest);
+      SearchStructureResponse result = apiInstance.rechercherStructuresApiV1ChorusProStructuresRechercherPost(searchStructureRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#rechercherStructuresApiV1ChorusProStructuresRechercherPost");
@@ -613,11 +613,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rechercherStructureRequest** | [**RechercherStructureRequest**](RechercherStructureRequest.md)|  | |
+| **searchStructureRequest** | [**SearchStructureRequest**](SearchStructureRequest.md)|  | |
 
 ### Return type
 
-[**RechercherStructureResponse**](RechercherStructureResponse.md)
+[**SearchStructureResponse**](SearchStructureResponse.md)
 
 ### Authorization
 
@@ -638,9 +638,9 @@ public class Example {
 # **recyclerFactureApiV1ChorusProFacturesRecyclerPost**
 > Object recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody)
 
-Recycler une facture (Fournisseur)
+Recycle an invoice (Supplier)
 
-Recycle une facture au statut A_RECYCLER en modifiant les données d&#39;acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (&#x60;idStructureCPP&#x60;)     - Code service     - Numéro d&#39;engagement      **Cas d&#39;usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d&#39;engagement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;idStructureCPP\&quot;: 67890,       \&quot;codeService\&quot;: \&quot;SERVICE_01\&quot;,       \&quot;numeroEngagement\&quot;: \&quot;ENG2024001\&quot;     }     &#x60;&#x60;&#x60;      **Note** : La facture conserve son numéro et ses montants, seuls les champs d&#39;acheminement changent.
+Recycle an invoice with A_RECYCLER status by modifying routing data.      **Required status**: A_RECYCLER      **Modifiable fields**:     - Recipient (&#x60;idStructureCPP&#x60;)     - Service code     - Engagement number      **Use cases**:     - Wrong recipient     - Change of billing service     - Update engagement number      **Example payload**:     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;idStructureCPP\&quot;: 67890,       \&quot;codeService\&quot;: \&quot;SERVICE_01\&quot;,       \&quot;numeroEngagement\&quot;: \&quot;ENG2024001\&quot;     }     &#x60;&#x60;&#x60;      **Note**: The invoice keeps its number and amounts, only routing fields change.
 
 ### Example
 ```java
@@ -704,11 +704,11 @@ public class Example {
 
 <a id="soumettreFactureApiV1ChorusProFacturesSoumettrePost"></a>
 # **soumettreFactureApiV1ChorusProFacturesSoumettrePost**
-> SoumettreFactureResponse soumettreFactureApiV1ChorusProFacturesSoumettrePost(soumettreFactureRequest)
+> SubmitInvoiceResponse soumettreFactureApiV1ChorusProFacturesSoumettrePost(submitInvoiceRequest)
 
-Soumettre une facture à Chorus Pro
+Submit an invoice to Chorus Pro
 
-Soumet une facture électronique à une structure publique via Chorus Pro.       **📋 Workflow complet** :     1. **Uploader le PDF Factur-X** via &#x60;/transverses/ajouter-fichier&#x60; → récupérer &#x60;pieceJointeId&#x60;     2. **Obtenir l&#39;ID structure** via &#x60;/structures/rechercher&#x60; ou &#x60;/structures/obtenir-id-depuis-siret&#x60;     3. **Vérifier les paramètres obligatoires** via &#x60;/structures/consulter&#x60;     4. **Soumettre la facture** avec le &#x60;piece_jointe_principale_id&#x60; obtenu à l&#39;étape 1      **Pré-requis** :     1. Avoir l&#39;&#x60;id_structure_cpp&#x60; du destinataire (via &#x60;/structures/rechercher&#x60;)     2. Connaître les paramètres obligatoires (via &#x60;/structures/consulter&#x60;) :        - Code service si &#x60;code_service_doit_etre_renseigne&#x3D;true&#x60;        - Numéro d&#39;engagement si &#x60;numero_ej_doit_etre_renseigne&#x3D;true&#x60;     3. Avoir uploadé le PDF Factur-X (via &#x60;/transverses/ajouter-fichier&#x60;)      **Format attendu** :     - &#x60;piece_jointe_principale_id&#x60; : ID retourné par &#x60;/transverses/ajouter-fichier&#x60;     - Montants : Chaînes de caractères avec 2 décimales (ex: \&quot;1250.50\&quot;)     - Dates : Format ISO 8601 (YYYY-MM-DD)      **Retour** :     - &#x60;identifiant_facture_cpp&#x60; : ID Chorus Pro de la facture créée     - &#x60;numero_flux_depot&#x60; : Numéro de suivi du dépôt      **Statuts possibles après soumission** :     - SOUMISE : En attente de validation     - VALIDEE : Validée par le destinataire     - REJETEE : Rejetée (erreur de données ou refus métier)     - SUSPENDUE : En attente d&#39;informations complémentaires      **Note** : Utilisez &#x60;/factures/consulter&#x60; pour suivre l&#39;évolution du statut.
+Submits an electronic invoice to a public structure via Chorus Pro.       **Complete workflow**:     1. **Upload the Factur-X PDF** via &#x60;/transverses/ajouter-fichier&#x60; → retrieve &#x60;pieceJointeId&#x60;     2. **Get the structure ID** via &#x60;/structures/rechercher&#x60; or &#x60;/structures/obtenir-id-depuis-siret&#x60;     3. **Check mandatory parameters** via &#x60;/structures/consulter&#x60;     4. **Submit the invoice** with the &#x60;piece_jointe_principale_id&#x60; obtained in step 1      **Prerequisites**:     1. Have the recipient&#39;s &#x60;id_structure_cpp&#x60; (via &#x60;/structures/rechercher&#x60;)     2. Know the mandatory parameters (via &#x60;/structures/consulter&#x60;):        - Service code if &#x60;code_service_doit_etre_renseigne&#x3D;true&#x60;        - Engagement number if &#x60;numero_ej_doit_etre_renseigne&#x3D;true&#x60;     3. Have uploaded the Factur-X PDF (via &#x60;/transverses/ajouter-fichier&#x60;)      **Expected format**:     - &#x60;piece_jointe_principale_id&#x60;: ID returned by &#x60;/transverses/ajouter-fichier&#x60;     - Amounts: Strings with 2 decimals (e.g., \&quot;1250.50\&quot;)     - Dates: ISO 8601 format (YYYY-MM-DD)      **Returns**:     - &#x60;identifiant_facture_cpp&#x60;: Chorus Pro ID of the created invoice     - &#x60;numero_flux_depot&#x60;: Deposit tracking number      **Possible statuses after submission**:     - SOUMISE: Pending validation     - VALIDEE: Validated by recipient     - REJETEE: Rejected (data error or business refusal)     - SUSPENDUE: Pending additional information      **Note**: Use &#x60;/factures/consulter&#x60; to track status changes.
 
 ### Example
 ```java
@@ -730,9 +730,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ChorusProApi apiInstance = new ChorusProApi(defaultClient);
-    SoumettreFactureRequest soumettreFactureRequest = new SoumettreFactureRequest(); // SoumettreFactureRequest | 
+    SubmitInvoiceRequest submitInvoiceRequest = new SubmitInvoiceRequest(); // SubmitInvoiceRequest | 
     try {
-      SoumettreFactureResponse result = apiInstance.soumettreFactureApiV1ChorusProFacturesSoumettrePost(soumettreFactureRequest);
+      SubmitInvoiceResponse result = apiInstance.soumettreFactureApiV1ChorusProFacturesSoumettrePost(submitInvoiceRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ChorusProApi#soumettreFactureApiV1ChorusProFacturesSoumettrePost");
@@ -749,11 +749,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **soumettreFactureRequest** | [**SoumettreFactureRequest**](SoumettreFactureRequest.md)|  | |
+| **submitInvoiceRequest** | [**SubmitInvoiceRequest**](SubmitInvoiceRequest.md)|  | |
 
 ### Return type
 
-[**SoumettreFactureResponse**](SoumettreFactureResponse.md)
+[**SubmitInvoiceResponse**](SubmitInvoiceResponse.md)
 
 ### Authorization
 
@@ -774,9 +774,9 @@ public class Example {
 # **telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost**
 > Object telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody)
 
-Télécharger un groupe de factures
+Download a group of invoices
 
-Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;listeIdentifiantsFactureCPP\&quot;: [12345, 12346],       \&quot;inclurePiecesJointes\&quot;: true,       \&quot;formatFichier\&quot;: \&quot;ZIP\&quot;     }     &#x60;&#x60;&#x60;      **Retour** : Le fichier est encodé en base64 dans le champ &#x60;fichierBase64&#x60;.      **Note** : Le flag &#x60;factureTelechargeeParDestinataire&#x60; est mis à jour automatiquement.
+Download one or more invoices (max 10 recommended) with their attachments.      **Available formats**:     - PDF: PDF file only     - XML: XML file only     - ZIP: Archive containing PDF + XML + attachments      **Maximum size**: 120 MB per download      **Example payload**:     &#x60;&#x60;&#x60;json     {       \&quot;listeIdentifiantsFactureCPP\&quot;: [12345, 12346],       \&quot;inclurePiecesJointes\&quot;: true,       \&quot;formatFichier\&quot;: \&quot;ZIP\&quot;     }     &#x60;&#x60;&#x60;      **Returns**: The file is base64-encoded in the &#x60;fichierBase64&#x60; field.      **Note**: The &#x60;factureTelechargeeParDestinataire&#x60; flag is automatically updated.
 
 ### Example
 ```java
@@ -842,9 +842,9 @@ public class Example {
 # **traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost**
 > Object traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody)
 
-Traiter une facture reçue (Destinataire)
+Process a received invoice (Recipient)
 
-Change le statut d&#39;une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d&#39;informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;nouveauStatut\&quot;: \&quot;REJETEE\&quot;,       \&quot;motifRejet\&quot;: \&quot;Facture en double\&quot;,       \&quot;commentaire\&quot;: \&quot;Facture déjà reçue sous la référence ABC123\&quot;     }     &#x60;&#x60;&#x60;      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
+Change the status of a received invoice.      **Possible statuses**:     - MISE_A_DISPOSITION: Invoice accepted     - SUSPENDUE: Pending additional information (reason required)     - REJETEE: Invoice refused (reason required)     - MANDATEE: Invoice mandated     - MISE_EN_PAIEMENT: Invoice being paid     - COMPTABILISEE: Invoice accounted     - MISE_A_DISPOSITION_COMPTABLE: Made available to accounting     - A_RECYCLER: To be recycled     - COMPLETEE: Completed     - SERVICE-FAIT: Service rendered     - PRISE_EN_COMPTE_DESTINATAIRE: Acknowledged     - TRANSMISE_MOA: Transmitted to MOA      **Example payload**:     &#x60;&#x60;&#x60;json     {       \&quot;identifiantFactureCPP\&quot;: 12345,       \&quot;nouveauStatut\&quot;: \&quot;REJETEE\&quot;,       \&quot;motifRejet\&quot;: \&quot;Duplicate invoice\&quot;,       \&quot;commentaire\&quot;: \&quot;Invoice already received under reference ABC123\&quot;     }     &#x60;&#x60;&#x60;      **Rules**:     - A reason is **required** for SUSPENDUE and REJETEE     - Only certain statuses are allowed depending on the invoice&#39;s current status
 
 ### Example
 ```java
@@ -910,7 +910,7 @@ public class Example {
 # **valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost**
 > Object valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody)
 
-Consulter une facture (Valideur)
+Consult an invoice (Validator)
 
 ### Example
 ```java
@@ -976,9 +976,9 @@ public class Example {
 # **valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost**
 > Object valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody)
 
-Rechercher factures à valider (Valideur)
+Search invoices to validate (Validator)
 
-Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
+Search invoices pending validation by the connected validator.      **Role**: Validator in the internal validation workflow.      **Filters**: Dates, structure, service, etc.
 
 ### Example
 ```java
@@ -1044,9 +1044,9 @@ public class Example {
 # **valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**
 > Object valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody)
 
-Valider ou refuser une facture (Valideur)
+Validate or reject an invoice (Validator)
 
-Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
+Validate or reject an invoice pending validation.      **Actions**:     - Validate: The invoice moves to the next status in the workflow     - Reject: The invoice is rejected (reason required)
 
 ### Example
 ```java

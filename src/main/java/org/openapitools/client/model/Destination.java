@@ -1,6 +1,6 @@
 /*
- * API REST FactPulse
- *  API REST pour la facturation électronique en France : Factur-X, AFNOR PDP/PA, signatures électroniques.  ## 🎯 Fonctionnalités principales  ### 📄 Génération de factures Factur-X - **Formats** : XML seul ou PDF/A-3 avec XML embarqué - **Profils** : MINIMUM, BASIC, EN16931, EXTENDED - **Normes** : EN 16931 (directive UE 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Format simplifié** : Génération à partir de SIRET + auto-enrichissement (API Chorus Pro + Recherche Entreprises)  ### ✅ Validation et conformité - **Validation XML** : Schematron (45 à 210+ règles selon profil) - **Validation PDF** : PDF/A-3, métadonnées XMP Factur-X, signatures électroniques - **VeraPDF** : Validation stricte PDF/A (146+ règles ISO 19005-3) - **Traitement asynchrone** : Support Celery pour validations lourdes (VeraPDF)  ### 📡 Intégration AFNOR PDP/PA (XP Z12-013) - **Soumission de flux** : Envoi de factures vers Plateformes de Dématérialisation Partenaires - **Recherche de flux** : Consultation des factures soumises - **Téléchargement** : Récupération des PDF/A-3 avec XML - **Directory Service** : Recherche d'entreprises (SIREN/SIRET) - **Multi-client** : Support de plusieurs configs PDP par utilisateur (stored credentials ou zero-storage)  ### ✍️ Signature électronique PDF - **Standards** : PAdES-B-B, PAdES-B-T (horodatage RFC 3161), PAdES-B-LT (archivage long terme) - **Niveaux eIDAS** : SES (auto-signé), AdES (CA commerciale), QES (PSCO) - **Validation** : Vérification intégrité cryptographique et certificats - **Génération de certificats** : Certificats X.509 auto-signés pour tests  ### 🔄 Traitement asynchrone - **Celery** : Génération, validation et signature asynchrones - **Polling** : Suivi d'état via `/taches/{id_tache}/statut` - **Pas de timeout** : Idéal pour gros fichiers ou validations lourdes  ## 🔒 Authentification  Toutes les requêtes nécessitent un **token JWT** dans le header Authorization : ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### Comment obtenir un token JWT ?  #### 🔑 Méthode 1 : API `/api/token/` (Recommandée)  **URL :** `https://www.factpulse.fr/api/token/`  Cette méthode est **recommandée** pour l'intégration dans vos applications et workflows CI/CD.  **Prérequis :** Avoir défini un mot de passe sur votre compte  **Pour les utilisateurs inscrits via email/password :** - Vous avez déjà un mot de passe, utilisez-le directement  **Pour les utilisateurs inscrits via OAuth (Google/GitHub) :** - Vous devez d'abord définir un mot de passe sur : https://www.factpulse.fr/accounts/password/set/ - Une fois le mot de passe créé, vous pourrez utiliser l'API  **Exemple de requête :** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\"   }' ```  **Paramètre optionnel `client_uid` :**  Pour sélectionner les credentials d'un client spécifique (PA/PDP, Chorus Pro, certificats de signature), ajoutez `client_uid` :  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  Le `client_uid` sera inclus dans le JWT et permettra à l'API d'utiliser automatiquement : - Les credentials AFNOR/PDP configurés pour ce client - Les credentials Chorus Pro configurés pour ce client - Les certificats de signature électronique configurés pour ce client  **Réponse :** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Token d'accès (validité: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Token de rafraîchissement (validité: 7 jours) } ```  **Avantages :** - ✅ Automatisation complète (CI/CD, scripts) - ✅ Gestion programmatique des tokens - ✅ Support du refresh token pour renouveler automatiquement l'accès - ✅ Intégration facile dans n'importe quel langage/outil  #### 🖥️ Méthode 2 : Génération via Dashboard (Alternative)  **URL :** https://www.factpulse.fr/dashboard/  Cette méthode convient pour des tests rapides ou une utilisation occasionnelle via l'interface graphique.  **Fonctionnement :** - Connectez-vous au dashboard - Utilisez les boutons \"Generate Test Token\" ou \"Generate Production Token\" - Fonctionne pour **tous** les utilisateurs (OAuth et email/password), sans nécessiter de mot de passe  **Types de tokens :** - **Token Test** : Validité 24h, quota 1000 appels/jour (gratuit) - **Token Production** : Validité 7 jours, quota selon votre forfait  **Avantages :** - ✅ Rapide pour tester l'API - ✅ Aucun mot de passe requis - ✅ Interface visuelle simple  **Inconvénients :** - ❌ Nécessite une action manuelle - ❌ Pas de refresh token - ❌ Moins adapté pour l'automatisation  ### 📚 Documentation complète  Pour plus d'informations sur l'authentification et l'utilisation de l'API : https://www.factpulse.fr/documentation-api/     
+ * FactPulse REST API
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://www.factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://www.factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://www.factpulse.fr/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://www.factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -21,9 +21,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.CredentialsAFNOR;
-import org.openapitools.client.model.DestinationAFNOR;
-import org.openapitools.client.model.DestinationChorusPro;
+import org.openapitools.client.model.AFNORCredentials;
+import org.openapitools.client.model.AFNORDestination;
+import org.openapitools.client.model.ChorusProDestination;
 
 
 
@@ -60,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T12:07:11.434193062Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class Destination extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(Destination.class.getName());
 
@@ -72,8 +72,8 @@ public class Destination extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'Destination' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<DestinationChorusPro> adapterDestinationChorusPro = gson.getDelegateAdapter(this, TypeToken.get(DestinationChorusPro.class));
-            final TypeAdapter<DestinationAFNOR> adapterDestinationAFNOR = gson.getDelegateAdapter(this, TypeToken.get(DestinationAFNOR.class));
+            final TypeAdapter<ChorusProDestination> adapterChorusProDestination = gson.getDelegateAdapter(this, TypeToken.get(ChorusProDestination.class));
+            final TypeAdapter<AFNORDestination> adapterAFNORDestination = gson.getDelegateAdapter(this, TypeToken.get(AFNORDestination.class));
 
             return (TypeAdapter<T>) new TypeAdapter<Destination>() {
                 @Override
@@ -83,19 +83,19 @@ public class Destination extends AbstractOpenApiSchema {
                         return;
                     }
 
-                    // check if the actual instance is of the type `DestinationChorusPro`
-                    if (value.getActualInstance() instanceof DestinationChorusPro) {
-                        JsonElement element = adapterDestinationChorusPro.toJsonTree((DestinationChorusPro)value.getActualInstance());
+                    // check if the actual instance is of the type `ChorusProDestination`
+                    if (value.getActualInstance() instanceof ChorusProDestination) {
+                        JsonElement element = adapterChorusProDestination.toJsonTree((ChorusProDestination)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    // check if the actual instance is of the type `DestinationAFNOR`
-                    if (value.getActualInstance() instanceof DestinationAFNOR) {
-                        JsonElement element = adapterDestinationAFNOR.toJsonTree((DestinationAFNOR)value.getActualInstance());
+                    // check if the actual instance is of the type `AFNORDestination`
+                    if (value.getActualInstance() instanceof AFNORDestination) {
+                        JsonElement element = adapterAFNORDestination.toJsonTree((AFNORDestination)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: DestinationAFNOR, DestinationChorusPro");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: AFNORDestination, ChorusProDestination");
                 }
 
                 @Override
@@ -107,29 +107,29 @@ public class Destination extends AbstractOpenApiSchema {
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
-                    // deserialize DestinationChorusPro
+                    // deserialize ChorusProDestination
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        DestinationChorusPro.validateJsonElement(jsonElement);
-                        actualAdapter = adapterDestinationChorusPro;
+                        ChorusProDestination.validateJsonElement(jsonElement);
+                        actualAdapter = adapterChorusProDestination;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'DestinationChorusPro'");
+                        log.log(Level.FINER, "Input data matches schema 'ChorusProDestination'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for DestinationChorusPro failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'DestinationChorusPro'", e);
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for ChorusProDestination failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'ChorusProDestination'", e);
                     }
-                    // deserialize DestinationAFNOR
+                    // deserialize AFNORDestination
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        DestinationAFNOR.validateJsonElement(jsonElement);
-                        actualAdapter = adapterDestinationAFNOR;
+                        AFNORDestination.validateJsonElement(jsonElement);
+                        actualAdapter = adapterAFNORDestination;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'DestinationAFNOR'");
+                        log.log(Level.FINER, "Input data matches schema 'AFNORDestination'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for DestinationAFNOR failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'DestinationAFNOR'", e);
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AFNORDestination failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'AFNORDestination'", e);
                     }
 
                     if (match == 1) {
@@ -157,8 +157,8 @@ public class Destination extends AbstractOpenApiSchema {
     }
 
     static {
-        schemas.put("DestinationChorusPro", DestinationChorusPro.class);
-        schemas.put("DestinationAFNOR", DestinationAFNOR.class);
+        schemas.put("ChorusProDestination", ChorusProDestination.class);
+        schemas.put("AFNORDestination", AFNORDestination.class);
     }
 
     @Override
@@ -169,30 +169,30 @@ public class Destination extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * DestinationAFNOR, DestinationChorusPro
+     * AFNORDestination, ChorusProDestination
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (instance instanceof DestinationChorusPro) {
+        if (instance instanceof ChorusProDestination) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (instance instanceof DestinationAFNOR) {
+        if (instance instanceof AFNORDestination) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be DestinationAFNOR, DestinationChorusPro");
+        throw new RuntimeException("Invalid instance type. Must be AFNORDestination, ChorusProDestination");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * DestinationAFNOR, DestinationChorusPro
+     * AFNORDestination, ChorusProDestination
      *
-     * @return The actual instance (DestinationAFNOR, DestinationChorusPro)
+     * @return The actual instance (AFNORDestination, ChorusProDestination)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -201,25 +201,25 @@ public class Destination extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `DestinationChorusPro`. If the actual instance is not `DestinationChorusPro`,
+     * Get the actual instance of `ChorusProDestination`. If the actual instance is not `ChorusProDestination`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `DestinationChorusPro`
-     * @throws ClassCastException if the instance is not `DestinationChorusPro`
+     * @return The actual instance of `ChorusProDestination`
+     * @throws ClassCastException if the instance is not `ChorusProDestination`
      */
-    public DestinationChorusPro getDestinationChorusPro() throws ClassCastException {
-        return (DestinationChorusPro)super.getActualInstance();
+    public ChorusProDestination getChorusProDestination() throws ClassCastException {
+        return (ChorusProDestination)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `DestinationAFNOR`. If the actual instance is not `DestinationAFNOR`,
+     * Get the actual instance of `AFNORDestination`. If the actual instance is not `AFNORDestination`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `DestinationAFNOR`
-     * @throws ClassCastException if the instance is not `DestinationAFNOR`
+     * @return The actual instance of `AFNORDestination`
+     * @throws ClassCastException if the instance is not `AFNORDestination`
      */
-    public DestinationAFNOR getDestinationAFNOR() throws ClassCastException {
-        return (DestinationAFNOR)super.getActualInstance();
+    public AFNORDestination getAFNORDestination() throws ClassCastException {
+        return (AFNORDestination)super.getActualInstance();
     }
 
     /**
@@ -232,24 +232,24 @@ public class Destination extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
-        // validate the json string with DestinationChorusPro
+        // validate the json string with ChorusProDestination
         try {
-            DestinationChorusPro.validateJsonElement(jsonElement);
+            ChorusProDestination.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for DestinationChorusPro failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for ChorusProDestination failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with DestinationAFNOR
+        // validate the json string with AFNORDestination
         try {
-            DestinationAFNOR.validateJsonElement(jsonElement);
+            AFNORDestination.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for DestinationAFNOR failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for AFNORDestination failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for Destination with oneOf schemas: DestinationAFNOR, DestinationChorusPro. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for Destination with oneOf schemas: AFNORDestination, ChorusProDestination. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

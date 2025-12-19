@@ -1,6 +1,6 @@
 /*
- * API REST FactPulse
- *  API REST pour la facturation électronique en France : Factur-X, AFNOR PDP/PA, signatures électroniques.  ## 🎯 Fonctionnalités principales  ### 📄 Génération de factures Factur-X - **Formats** : XML seul ou PDF/A-3 avec XML embarqué - **Profils** : MINIMUM, BASIC, EN16931, EXTENDED - **Normes** : EN 16931 (directive UE 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Format simplifié** : Génération à partir de SIRET + auto-enrichissement (API Chorus Pro + Recherche Entreprises)  ### ✅ Validation et conformité - **Validation XML** : Schematron (45 à 210+ règles selon profil) - **Validation PDF** : PDF/A-3, métadonnées XMP Factur-X, signatures électroniques - **VeraPDF** : Validation stricte PDF/A (146+ règles ISO 19005-3) - **Traitement asynchrone** : Support Celery pour validations lourdes (VeraPDF)  ### 📡 Intégration AFNOR PDP/PA (XP Z12-013) - **Soumission de flux** : Envoi de factures vers Plateformes de Dématérialisation Partenaires - **Recherche de flux** : Consultation des factures soumises - **Téléchargement** : Récupération des PDF/A-3 avec XML - **Directory Service** : Recherche d'entreprises (SIREN/SIRET) - **Multi-client** : Support de plusieurs configs PDP par utilisateur (stored credentials ou zero-storage)  ### ✍️ Signature électronique PDF - **Standards** : PAdES-B-B, PAdES-B-T (horodatage RFC 3161), PAdES-B-LT (archivage long terme) - **Niveaux eIDAS** : SES (auto-signé), AdES (CA commerciale), QES (PSCO) - **Validation** : Vérification intégrité cryptographique et certificats - **Génération de certificats** : Certificats X.509 auto-signés pour tests  ### 🔄 Traitement asynchrone - **Celery** : Génération, validation et signature asynchrones - **Polling** : Suivi d'état via `/taches/{id_tache}/statut` - **Pas de timeout** : Idéal pour gros fichiers ou validations lourdes  ## 🔒 Authentification  Toutes les requêtes nécessitent un **token JWT** dans le header Authorization : ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### Comment obtenir un token JWT ?  #### 🔑 Méthode 1 : API `/api/token/` (Recommandée)  **URL :** `https://www.factpulse.fr/api/token/`  Cette méthode est **recommandée** pour l'intégration dans vos applications et workflows CI/CD.  **Prérequis :** Avoir défini un mot de passe sur votre compte  **Pour les utilisateurs inscrits via email/password :** - Vous avez déjà un mot de passe, utilisez-le directement  **Pour les utilisateurs inscrits via OAuth (Google/GitHub) :** - Vous devez d'abord définir un mot de passe sur : https://www.factpulse.fr/accounts/password/set/ - Une fois le mot de passe créé, vous pourrez utiliser l'API  **Exemple de requête :** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\"   }' ```  **Paramètre optionnel `client_uid` :**  Pour sélectionner les credentials d'un client spécifique (PA/PDP, Chorus Pro, certificats de signature), ajoutez `client_uid` :  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  Le `client_uid` sera inclus dans le JWT et permettra à l'API d'utiliser automatiquement : - Les credentials AFNOR/PDP configurés pour ce client - Les credentials Chorus Pro configurés pour ce client - Les certificats de signature électronique configurés pour ce client  **Réponse :** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Token d'accès (validité: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Token de rafraîchissement (validité: 7 jours) } ```  **Avantages :** - ✅ Automatisation complète (CI/CD, scripts) - ✅ Gestion programmatique des tokens - ✅ Support du refresh token pour renouveler automatiquement l'accès - ✅ Intégration facile dans n'importe quel langage/outil  #### 🖥️ Méthode 2 : Génération via Dashboard (Alternative)  **URL :** https://www.factpulse.fr/dashboard/  Cette méthode convient pour des tests rapides ou une utilisation occasionnelle via l'interface graphique.  **Fonctionnement :** - Connectez-vous au dashboard - Utilisez les boutons \"Generate Test Token\" ou \"Generate Production Token\" - Fonctionne pour **tous** les utilisateurs (OAuth et email/password), sans nécessiter de mot de passe  **Types de tokens :** - **Token Test** : Validité 24h, quota 1000 appels/jour (gratuit) - **Token Production** : Validité 7 jours, quota selon votre forfait  **Avantages :** - ✅ Rapide pour tester l'API - ✅ Aucun mot de passe requis - ✅ Interface visuelle simple  **Inconvénients :** - ❌ Nécessite une action manuelle - ❌ Pas de refresh token - ❌ Moins adapté pour l'automatisation  ### 📚 Documentation complète  Pour plus d'informations sur l'authentification et l'utilisation de l'API : https://www.factpulse.fr/documentation-api/     
+ * FactPulse REST API
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://www.factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://www.factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://www.factpulse.fr/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://www.factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -27,8 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import org.openapitools.client.model.FactureEntrante;
 import org.openapitools.client.model.HTTPValidationError;
+import org.openapitools.client.model.IncomingInvoice;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -82,10 +82,10 @@ public class AfnorPdpPaApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Credentials AFNOR récupérés avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Aucun client_uid dans le JWT </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié - Token JWT manquant ou invalide </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Client non trouvé ou pas de credentials AFNOR configurés </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> AFNOR credentials retrieved successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> No client_uid in JWT </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated - Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found or no AFNOR credentials configured </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getAfnorCredentialsApiV1AfnorCredentialsGetCall(final ApiCallback _callback) throws ApiException {
@@ -139,18 +139,18 @@ public class AfnorPdpPaApi {
     }
 
     /**
-     * Récupérer les credentials AFNOR stockés
-     * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode &#39;stored&#39; pour récupérer les credentials avant de faire l&#39;OAuth AFNOR lui-même.
+     * Retrieve stored AFNOR credentials
+     * Retrieves stored AFNOR/PDP credentials for the JWT&#39;s client_uid. This endpoint is used by the SDK in &#39;stored&#39; mode to retrieve credentials before performing AFNOR OAuth itself.
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Credentials AFNOR récupérés avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Aucun client_uid dans le JWT </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié - Token JWT manquant ou invalide </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Client non trouvé ou pas de credentials AFNOR configurés </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> AFNOR credentials retrieved successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> No client_uid in JWT </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated - Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found or no AFNOR credentials configured </td><td>  -  </td></tr>
      </table>
      */
     public Object getAfnorCredentialsApiV1AfnorCredentialsGet() throws ApiException {
@@ -159,18 +159,18 @@ public class AfnorPdpPaApi {
     }
 
     /**
-     * Récupérer les credentials AFNOR stockés
-     * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode &#39;stored&#39; pour récupérer les credentials avant de faire l&#39;OAuth AFNOR lui-même.
+     * Retrieve stored AFNOR credentials
+     * Retrieves stored AFNOR/PDP credentials for the JWT&#39;s client_uid. This endpoint is used by the SDK in &#39;stored&#39; mode to retrieve credentials before performing AFNOR OAuth itself.
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Credentials AFNOR récupérés avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Aucun client_uid dans le JWT </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié - Token JWT manquant ou invalide </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Client non trouvé ou pas de credentials AFNOR configurés </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> AFNOR credentials retrieved successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> No client_uid in JWT </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated - Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found or no AFNOR credentials configured </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Object> getAfnorCredentialsApiV1AfnorCredentialsGetWithHttpInfo() throws ApiException {
@@ -180,8 +180,8 @@ public class AfnorPdpPaApi {
     }
 
     /**
-     * Récupérer les credentials AFNOR stockés (asynchronously)
-     * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode &#39;stored&#39; pour récupérer les credentials avant de faire l&#39;OAuth AFNOR lui-même.
+     * Retrieve stored AFNOR credentials (asynchronously)
+     * Retrieves stored AFNOR/PDP credentials for the JWT&#39;s client_uid. This endpoint is used by the SDK in &#39;stored&#39; mode to retrieve credentials before performing AFNOR OAuth itself.
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -189,10 +189,10 @@ public class AfnorPdpPaApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Credentials AFNOR récupérés avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Aucun client_uid dans le JWT </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié - Token JWT manquant ou invalide </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Client non trouvé ou pas de credentials AFNOR configurés </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> AFNOR credentials retrieved successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> No client_uid in JWT </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated - Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found or no AFNOR credentials configured </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getAfnorCredentialsApiV1AfnorCredentialsGetAsync(final ApiCallback<Object> _callback) throws ApiException {
@@ -203,7 +203,7 @@ public class AfnorPdpPaApi {
         return localVarCall;
     }
     /**
-     * Build call for getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet
+     * Build call for getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet
      * @param flowId  (required)
      * @param includeDocument  (optional, default to false)
      * @param _callback Callback for upload/download progress
@@ -213,15 +213,15 @@ public class AfnorPdpPaApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Invoice extracted successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Unsupported or invalid invoice format </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flow not found </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> PDP service unavailable </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -238,7 +238,7 @@ public class AfnorPdpPaApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/afnor/flux-entrants/{flow_id}"
+        String localVarPath = "/api/v1/afnor/incoming-flows/{flow_id}"
             .replace("{" + "flow_id" + "}", localVarApiClient.escapeString(flowId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -271,68 +271,68 @@ public class AfnorPdpPaApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'flowId' is set
         if (flowId == null) {
-            throw new ApiException("Missing the required parameter 'flowId' when calling getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(Async)");
+            throw new ApiException("Missing the required parameter 'flowId' when calling getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(Async)");
         }
 
-        return getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetCall(flowId, includeDocument, _callback);
+        return getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetCall(flowId, includeDocument, _callback);
 
     }
 
     /**
-     * Récupérer et extraire une facture entrante
-     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     * Retrieve and extract an incoming invoice
+     * Downloads an incoming flow from the AFNOR PDP and extracts invoice metadata into a unified JSON format. Supports Factur-X, CII, and UBL formats.
      * @param flowId  (required)
      * @param includeDocument  (optional, default to false)
-     * @return FactureEntrante
+     * @return IncomingInvoice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Invoice extracted successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Unsupported or invalid invoice format </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flow not found </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> PDP service unavailable </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
-        ApiResponse<FactureEntrante> localVarResp = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(flowId, includeDocument);
+    public IncomingInvoice getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
+        ApiResponse<IncomingInvoice> localVarResp = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetWithHttpInfo(flowId, includeDocument);
         return localVarResp.getData();
     }
 
     /**
-     * Récupérer et extraire une facture entrante
-     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     * Retrieve and extract an incoming invoice
+     * Downloads an incoming flow from the AFNOR PDP and extracts invoice metadata into a unified JSON format. Supports Factur-X, CII, and UBL formats.
      * @param flowId  (required)
      * @param includeDocument  (optional, default to false)
-     * @return ApiResponse&lt;FactureEntrante&gt;
+     * @return ApiResponse&lt;IncomingInvoice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Invoice extracted successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Unsupported or invalid invoice format </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flow not found </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> PDP service unavailable </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FactureEntrante> getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
-        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, includeDocument, null);
-        Type localVarReturnType = new TypeToken<FactureEntrante>(){}.getType();
+    public ApiResponse<IncomingInvoice> getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(flowId, includeDocument, null);
+        Type localVarReturnType = new TypeToken<IncomingInvoice>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Récupérer et extraire une facture entrante (asynchronously)
-     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     * Retrieve and extract an incoming invoice (asynchronously)
+     * Downloads an incoming flow from the AFNOR PDP and extracts invoice metadata into a unified JSON format. Supports Factur-X, CII, and UBL formats.
      * @param flowId  (required)
      * @param includeDocument  (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
@@ -342,18 +342,18 @@ public class AfnorPdpPaApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Facture extraite avec succès </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Format de facture non supporté ou invalide </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Non authentifié </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Flux non trouvé </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service PDP indisponible </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Invoice extracted successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Unsupported or invalid invoice format </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Not authenticated </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Flow not found </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> PDP service unavailable </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetAsync(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback<FactureEntrante> _callback) throws ApiException {
+    public okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetAsync(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback<IncomingInvoice> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGetValidateBeforeCall(flowId, includeDocument, _callback);
-        Type localVarReturnType = new TypeToken<FactureEntrante>(){}.getType();
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(flowId, includeDocument, _callback);
+        Type localVarReturnType = new TypeToken<IncomingInvoice>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -366,8 +366,8 @@ public class AfnorPdpPaApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Token OAuth2 acquis avec succès </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Credentials invalides </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OAuth2 token acquired successfully </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid credentials </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call oauthTokenProxyApiV1AfnorOauthTokenPostCall(final ApiCallback _callback) throws ApiException {
@@ -421,16 +421,16 @@ public class AfnorPdpPaApi {
     }
 
     /**
-     * Endpoint OAuth2 pour authentification AFNOR
-     * Endpoint proxy OAuth2 pour obtenir un token d&#39;accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d&#39;auth Django requise) car il est appelé par le SDK AFNOR.
+     * OAuth2 endpoint for AFNOR authentication
+     * OAuth2 proxy endpoint to obtain an AFNOR access token. Proxies to AFNOR mock (sandbox) or real PDP depending on MOCK_AFNOR_BASE_URL. This endpoint is public (no Django auth required) as it is called by the AFNOR SDK.
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Token OAuth2 acquis avec succès </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Credentials invalides </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OAuth2 token acquired successfully </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid credentials </td><td>  -  </td></tr>
      </table>
      */
     public Object oauthTokenProxyApiV1AfnorOauthTokenPost() throws ApiException {
@@ -439,16 +439,16 @@ public class AfnorPdpPaApi {
     }
 
     /**
-     * Endpoint OAuth2 pour authentification AFNOR
-     * Endpoint proxy OAuth2 pour obtenir un token d&#39;accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d&#39;auth Django requise) car il est appelé par le SDK AFNOR.
+     * OAuth2 endpoint for AFNOR authentication
+     * OAuth2 proxy endpoint to obtain an AFNOR access token. Proxies to AFNOR mock (sandbox) or real PDP depending on MOCK_AFNOR_BASE_URL. This endpoint is public (no Django auth required) as it is called by the AFNOR SDK.
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Token OAuth2 acquis avec succès </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Credentials invalides </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OAuth2 token acquired successfully </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid credentials </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Object> oauthTokenProxyApiV1AfnorOauthTokenPostWithHttpInfo() throws ApiException {
@@ -458,8 +458,8 @@ public class AfnorPdpPaApi {
     }
 
     /**
-     * Endpoint OAuth2 pour authentification AFNOR (asynchronously)
-     * Endpoint proxy OAuth2 pour obtenir un token d&#39;accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d&#39;auth Django requise) car il est appelé par le SDK AFNOR.
+     * OAuth2 endpoint for AFNOR authentication (asynchronously)
+     * OAuth2 proxy endpoint to obtain an AFNOR access token. Proxies to AFNOR mock (sandbox) or real PDP depending on MOCK_AFNOR_BASE_URL. This endpoint is public (no Django auth required) as it is called by the AFNOR SDK.
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -467,8 +467,8 @@ public class AfnorPdpPaApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Token OAuth2 acquis avec succès </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Credentials invalides </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OAuth2 token acquired successfully </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid credentials </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call oauthTokenProxyApiV1AfnorOauthTokenPostAsync(final ApiCallback<Object> _callback) throws ApiException {

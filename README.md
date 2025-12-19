@@ -1,14 +1,14 @@
 # FactPulse SDK Java
 
-Client Java officiel pour l'API FactPulse - Facturation électronique française.
+Official Java client for the FactPulse API - French electronic invoicing.
 
-## Fonctionnalités
+## Features
 
-- **Factur-X** : Génération et validation de factures électroniques (profils MINIMUM, BASIC, EN16931, EXTENDED)
-- **Chorus Pro** : Intégration avec la plateforme de facturation publique française
-- **AFNOR PDP/PA** : Soumission de flux conformes à la norme XP Z12-013
-- **Signature électronique** : Signature PDF (PAdES-B-B, PAdES-B-T, PAdES-B-LT)
-- **Client simplifié** : Authentification JWT et polling intégrés via `helpers`
+- **Factur-X**: Generation and validation of electronic invoices (MINIMUM, BASIC, EN16931, EXTENDED profiles)
+- **Chorus Pro**: Integration with the French public sector invoicing platform
+- **AFNOR PDP/PA**: Submission of flows compliant with the XP Z12-013 standard
+- **Electronic signature**: PDF signature (PAdES-B-B, PAdES-B-T, PAdES-B-LT)
+- **Simplified client**: JWT authentication and integrated polling via `helpers`
 
 ## Installation
 
@@ -18,204 +18,204 @@ Client Java officiel pour l'API FactPulse - Facturation électronique française
 <dependency>
     <groupId>fr.factpulse</groupId>
     <artifactId>factpulse-sdk</artifactId>
-    <version>2.0.43</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'fr.factpulse:factpulse-sdk:2.0.43'
+implementation 'fr.factpulse:factpulse-sdk:3.0.0'
 ```
 
-## Démarrage rapide
+## Quick Start
 
-Le package `helpers` offre une API simplifiée avec authentification et polling automatiques :
+The `helpers` package provides a simplified API with automatic authentication and polling:
 
 ```java
 import fr.factpulse.sdk.helpers.FactPulseClient;
-import fr.factpulse.sdk.helpers.MontantHelpers;
-import static fr.factpulse.sdk.helpers.MontantHelpers.*;
+import fr.factpulse.sdk.helpers.AmountHelpers;
+import static fr.factpulse.sdk.helpers.AmountHelpers.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-// Créer le client
+// Create the client
 FactPulseClient client = new FactPulseClient(
-    "votre_email@example.com",
-    "votre_mot_de_passe"
+    "your_email@example.com",
+    "your_password"
 );
 
-// Construire la facture avec les helpers
-Map<String, Object> factureData = new LinkedHashMap<>();
-factureData.put("numeroFacture", "FAC-2025-001");
-factureData.put("dateFacture", "2025-01-15");
-factureData.put("fournisseur", fournisseur(
-    "Mon Entreprise SAS", "12345678901234",
-    "123 Rue Example", "75001", "Paris"
+// Build the invoice with helpers
+Map<String, Object> invoiceData = new LinkedHashMap<>();
+invoiceData.put("number", "INV-2025-001");
+invoiceData.put("date", "2025-01-15");
+invoiceData.put("supplier", supplier(
+    "My Company SAS", "12345678901234",
+    "123 Example Street", "75001", "Paris"
 ));
-factureData.put("destinataire", destinataire(
+invoiceData.put("recipient", recipient(
     "Client SARL", "98765432109876",
-    "456 Avenue Test", "69001", "Lyon"
+    "456 Test Avenue", "69001", "Lyon"
 ));
-factureData.put("montantTotal", montantTotal(1000.00, 200.00, 1200.00, 1200.00));
-factureData.put("lignesDePoste", Arrays.asList(
-    ligneDePoste(1, "Prestation de conseil", 10, 100.00, 1000.00)
+invoiceData.put("totalAmount", totalAmount(1000.00, 200.00, 1200.00, 1200.00));
+invoiceData.put("lines", Arrays.asList(
+    invoiceLine(1, "Consulting services", 10, 100.00, 1000.00)
 ));
-factureData.put("lignesDeTva", Arrays.asList(
-    ligneDeTva("20.00", 1000.00, 200.00)
+invoiceData.put("vatLines", Arrays.asList(
+    vatLine("20.00", 1000.00, 200.00)
 ));
 
-// Générer le PDF Factur-X
-byte[] pdfBytes = client.genererFacturx(factureData, "facture_source.pdf", "EN16931");
+// Generate the Factur-X PDF
+byte[] pdfBytes = client.generateFacturx(invoiceData, "source_invoice.pdf", "EN16931");
 
-Files.write(Paths.get("facture_facturx.pdf"), pdfBytes);
+Files.write(Paths.get("invoice_facturx.pdf"), pdfBytes);
 ```
 
-## Helpers disponibles (classe MontantHelpers)
+## Available Helpers (AmountHelpers class)
 
-### montant(value)
+### amount(value)
 
-Convertit une valeur en string formaté pour les montants monétaires.
+Converts a value to a formatted string for monetary amounts.
 
 ```java
-import static fr.factpulse.sdk.helpers.MontantHelpers.montant;
+import static fr.factpulse.sdk.helpers.AmountHelpers.amount;
 
-montant(1234.5);      // "1234.50"
-montant("1234.56");   // "1234.56"
-montant(null);        // "0.00"
+amount(1234.5);      // "1234.50"
+amount("1234.56");   // "1234.56"
+amount(null);        // "0.00"
 ```
 
-### montantTotal(ht, tva, ttc, aPayer, ...)
+### totalAmount(excludingTax, vat, includingTax, due, ...)
 
-Crée un objet MontantTotal complet.
+Creates a complete TotalAmount object.
 
 ```java
-import static fr.factpulse.sdk.helpers.MontantHelpers.montantTotal;
+import static fr.factpulse.sdk.helpers.AmountHelpers.totalAmount;
 
-Map<String, Object> total = montantTotal(
-    1000.00,        // ht
-    200.00,         // tva
-    1200.00,        // ttc
-    1200.00,        // aPayer
-    50.00,          // remiseTtc (optionnel)
-    "Fidélité",     // motifRemise (optionnel)
-    100.00          // acompte (optionnel)
+Map<String, Object> total = totalAmount(
+    1000.00,        // excludingTax
+    200.00,         // vat
+    1200.00,        // includingTax
+    1200.00,        // due
+    50.00,          // discountIncludingTax (optional)
+    "Loyalty",      // discountReason (optional)
+    100.00          // prepayment (optional)
 );
 ```
 
-### ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantTotalLigneHt, ...)
+### invoiceLine(number, description, quantity, unitPrice, lineTotal, ...)
 
-Crée une ligne de facturation.
+Creates an invoice line.
 
 ```java
-import static fr.factpulse.sdk.helpers.MontantHelpers.ligneDePoste;
+import static fr.factpulse.sdk.helpers.AmountHelpers.invoiceLine;
 
-Map<String, Object> ligne = ligneDePoste(
+Map<String, Object> line = invoiceLine(
     1,
-    "Prestation de conseil",
+    "Consulting services",
     5,
     200.00,
-    1000.00,  // montantTotalLigneHt requis
-    "20.00",  // tauxTva
-    "S",      // categorieTva: S, Z, E, AE, K
-    "HEURE",  // unite: FORFAIT, PIECE, HEURE, JOUR...
+    1000.00,  // lineTotal required
+    "20.00",  // vatRate
+    "S",      // vatCategory: S, Z, E, AE, K
+    "HOUR",   // unit: FIXED, PIECE, HOUR, DAY...
     null      // options Map (reference, etc.)
 );
 ```
 
-### ligneDeTva(tauxManuel, montantBaseHt, montantTva, categorie)
+### vatLine(manualRate, baseExcludingTax, vatAmount, category)
 
-Crée une ligne de ventilation TVA.
+Creates a VAT breakdown line.
 
 ```java
-import static fr.factpulse.sdk.helpers.MontantHelpers.ligneDeTva;
+import static fr.factpulse.sdk.helpers.AmountHelpers.vatLine;
 
-Map<String, Object> tva = ligneDeTva(
-    "20.00",    // tauxManuel
-    1000.00,    // montantBaseHt
-    200.00,     // montantTva
-    "S"         // categorie: S, Z, E, AE, K
+Map<String, Object> vat = vatLine(
+    "20.00",    // manualRate
+    1000.00,    // baseExcludingTax
+    200.00,     // vatAmount
+    "S"         // category: S, Z, E, AE, K
 );
 ```
 
-### adressePostale(ligne1, codePostal, ville, ...)
+### postalAddress(line1, postalCode, city, ...)
 
-Crée une adresse postale structurée.
+Creates a structured postal address.
 
 ```java
-import static fr.factpulse.sdk.helpers.MontantHelpers.adressePostale;
+import static fr.factpulse.sdk.helpers.AmountHelpers.postalAddress;
 
-Map<String, Object> adresse = adressePostale(
-    "123 Rue de la République",
+Map<String, Object> address = postalAddress(
+    "123 Republic Street",
     "75001",
     "Paris",
-    "FR",           // pays (défaut: "FR")
-    "Bâtiment A",   // ligne2 (optionnel)
-    null            // ligne3 (optionnel)
+    "FR",           // country (default: "FR")
+    "Building A",   // line2 (optional)
+    null            // line3 (optional)
 );
 ```
 
-### fournisseur(nom, siret, adresseLigne1, codePostal, ville, options)
+### supplier(name, siret, addressLine1, postalCode, city, options)
 
-Crée un fournisseur complet avec calcul automatique du SIREN et TVA intra.
+Creates a complete supplier with automatic calculation of SIREN and intra-community VAT.
 
 ```java
-import static fr.factpulse.sdk.helpers.MontantHelpers.fournisseur;
+import static fr.factpulse.sdk.helpers.AmountHelpers.supplier;
 
-Map<String, Object> f = fournisseur(
-    "Ma Société SAS",
+Map<String, Object> s = supplier(
+    "My Company SAS",
     "12345678901234",
-    "123 Rue Example",
+    "123 Example Street",
     "75001",
     "Paris",
     Map.of("iban", "FR7630006000011234567890189")
 );
-// SIREN et TVA intracommunautaire calculés automatiquement
+// SIREN and intra-community VAT automatically calculated
 ```
 
-### destinataire(nom, siret, adresseLigne1, codePostal, ville, options)
+### recipient(name, siret, addressLine1, postalCode, city, options)
 
-Crée un destinataire (client) avec calcul automatique du SIREN.
+Creates a recipient (customer) with automatic calculation of SIREN.
 
 ```java
-import static fr.factpulse.sdk.helpers.MontantHelpers.destinataire;
+import static fr.factpulse.sdk.helpers.AmountHelpers.recipient;
 
-Map<String, Object> d = destinataire(
+Map<String, Object> r = recipient(
     "Client SARL",
     "98765432109876",
-    "456 Avenue Test",
+    "456 Test Avenue",
     "69001",
     "Lyon",
     null
 );
 ```
 
-## Mode Zero-Trust (Chorus Pro / AFNOR)
+## Zero-Trust Mode (Chorus Pro / AFNOR)
 
-Pour passer vos propres credentials sans stockage côté serveur :
+To pass your own credentials without server-side storage:
 
 ```java
 import fr.factpulse.sdk.helpers.*;
 
 ChorusProCredentials chorusCreds = new ChorusProCredentials(
-    "votre_client_id",
-    "votre_client_secret",
-    "votre_login",
-    "votre_password",
+    "your_client_id",
+    "your_client_secret",
+    "your_login",
+    "your_password",
     true  // sandbox
 );
 
 AFNORCredentials afnorCreds = new AFNORCredentials(
     "https://api.pdp.fr/flow/v1",
     "https://auth.pdp.fr/oauth/token",
-    "votre_client_id",
-    "votre_client_secret"
+    "your_client_id",
+    "your_client_secret"
 );
 
 FactPulseClient client = new FactPulseClient(
-    "votre_email@example.com",
-    "votre_mot_de_passe",
+    "your_email@example.com",
+    "your_password",
     null,  // apiUrl
     null,  // clientUid
     chorusCreds,
@@ -226,11 +226,11 @@ FactPulseClient client = new FactPulseClient(
 );
 ```
 
-## Ressources
+## Resources
 
-- **Documentation API** : https://factpulse.fr/api/facturation/documentation
-- **Support** : contact@factpulse.fr
+- **API Documentation**: https://factpulse.fr/api/facturation/documentation
+- **Support**: contact@factpulse.fr
 
-## Licence
+## License
 
 MIT License - Copyright (c) 2025 FactPulse

@@ -2,18 +2,18 @@
 
 # GenerateCertificateResponse
 
-Réponse après génération d'un certificat de test.  Contient le certificat PEM, la clé privée PEM, et optionnellement le PKCS#12.
+Response after generating a test certificate.  Contains certificate PEM, private key PEM, and optionally PKCS#12.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**status** | **String** | Statut de l&#39;opération |  [optional] |
-|**certificatPem** | **String** | Certificat X.509 au format PEM |  |
-|**clePriveePem** | **String** | Clé privée RSA au format PEM |  |
+|**status** | **String** | Operation status |  [optional] |
+|**certificatePem** | **String** | X.509 certificate in PEM format |  |
+|**privateKeyPem** | **String** | RSA private key in PEM format |  |
 |**pkcs12Base64** | **String** |  |  [optional] |
-|**info** | [**CertificateInfoResponse**](CertificateInfoResponse.md) | Informations sur le certificat généré |  |
-|**avertissement** | **String** | Avertissement sur l&#39;utilisation du certificat |  [optional] |
+|**info** | [**CertificateInfoResponse**](CertificateInfoResponse.md) | Generated certificate information |  |
+|**warning** | **String** | Warning about certificate usage |  [optional] |
 
 
 

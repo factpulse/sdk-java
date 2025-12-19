@@ -35,7 +35,7 @@ class ChorusProCredentials {
     }
 }
 
-/** Credentials AFNOR PDP pour le mode Zero-Trust. L'API FactPulse utilise ces credentials pour s'authentifier auprès de la PDP AFNOR. */
+/** AFNOR PDP credentials for Zero-Trust mode. The FactPulse API uses these credentials to authenticate with the AFNOR PDP. */
 class AFNORCredentials {
     public final String flowServiceUrl, tokenUrl, clientId, clientSecret;
     public final String directoryServiceUrl;
@@ -56,147 +56,147 @@ class AFNORCredentials {
 }
 
 // =============================================================================
-// Helpers pour les montants
+// Amount helpers
 // =============================================================================
 
-class MontantHelpers {
-    public static String montant(Object value) {
+class AmountHelpers {
+    public static String amount(Object value) {
         if (value == null) return "0.00";
         if (value instanceof BigDecimal) return ((BigDecimal) value).setScale(2, RoundingMode.HALF_UP).toPlainString();
         if (value instanceof Number) return String.format("%.2f", ((Number) value).doubleValue());
         if (value instanceof String) return (String) value;
         return "0.00";
     }
-    public static Map<String, Object> montantTotal(Object ht, Object tva, Object ttc, Object aPayer) {
-        return montantTotal(ht, tva, ttc, aPayer, null, null, null);
+    public static Map<String, Object> invoiceTotals(Object exclTax, Object vat, Object inclTax, Object amountDue) {
+        return invoiceTotals(exclTax, vat, inclTax, amountDue, null, null, null);
     }
-    public static Map<String, Object> montantTotal(Object ht, Object tva, Object ttc, Object aPayer, Object remiseTtc, String motifRemise, Object acompte) {
+    public static Map<String, Object> invoiceTotals(Object exclTax, Object vat, Object inclTax, Object amountDue, Object discountInclTax, String discountReason, Object prepayment) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("montantHtTotal", montant(ht)); result.put("montantTva", montant(tva));
-        result.put("montantTtcTotal", montant(ttc)); result.put("montantAPayer", montant(aPayer));
-        if (remiseTtc != null) result.put("montantRemiseGlobaleTtc", montant(remiseTtc));
-        if (motifRemise != null) result.put("motifRemiseGlobaleTtc", motifRemise);
-        if (acompte != null) result.put("acompte", montant(acompte));
+        result.put("totalExclTax", amount(exclTax)); result.put("vatAmount", amount(vat));
+        result.put("totalInclTax", amount(inclTax)); result.put("amountDue", amount(amountDue));
+        if (discountInclTax != null) result.put("globalDiscountInclTax", amount(discountInclTax));
+        if (discountReason != null) result.put("globalDiscountReason", discountReason);
+        if (prepayment != null) result.put("prepayment", amount(prepayment));
         return result;
     }
-    /** Crée une ligne de poste (aligné sur LigneDePoste de models.py). */
-    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantTotalLigneHt) {
-        return ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantTotalLigneHt, "20.00", "S", "FORFAIT", null);
+    /** Creates an invoice line (aligned with InvoiceLine in models.py). */
+    public static Map<String, Object> invoiceLine(int number, String description, Object quantity, Object unitPriceExclTax, Object lineTotalExclTax) {
+        return invoiceLine(number, description, quantity, unitPriceExclTax, lineTotalExclTax, "20.00", "S", "LUMP_SUM", null);
     }
-    public static Map<String, Object> ligneDePoste(int numero, String denomination, Object quantite, Object montantUnitaireHt, Object montantTotalLigneHt, String tauxTva, String categorieTva, String unite, Map<String, Object> options) {
+    public static Map<String, Object> invoiceLine(int number, String description, Object quantity, Object unitPriceExclTax, Object lineTotalExclTax, String vatRate, String vatCategory, String unit, Map<String, Object> options) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("numero", numero); result.put("denomination", denomination);
-        result.put("quantite", montant(quantite)); result.put("montantUnitaireHt", montant(montantUnitaireHt));
-        result.put("montantTotalLigneHt", montant(montantTotalLigneHt)); result.put("tauxTvaManuel", montant(tauxTva));
-        result.put("categorieTva", categorieTva); result.put("unite", unite);
+        result.put("number", number); result.put("description", description);
+        result.put("quantity", amount(quantity)); result.put("unitPriceExclTax", amount(unitPriceExclTax));
+        result.put("lineTotalExclTax", amount(lineTotalExclTax)); result.put("vatRateManual", amount(vatRate));
+        result.put("vatCategory", vatCategory); result.put("unit", unit);
         if (options != null) {
             if (options.containsKey("reference")) result.put("reference", options.get("reference"));
-            if (options.containsKey("montantRemiseHt")) result.put("montantRemiseHt", montant(options.get("montantRemiseHt")));
-            if (options.containsKey("codeRaisonReduction")) result.put("codeRaisonReduction", options.get("codeRaisonReduction"));
-            if (options.containsKey("raisonReduction")) result.put("raisonReduction", options.get("raisonReduction"));
-            if (options.containsKey("dateDebutPeriode")) result.put("dateDebutPeriode", options.get("dateDebutPeriode"));
-            if (options.containsKey("dateFinPeriode")) result.put("dateFinPeriode", options.get("dateFinPeriode"));
+            if (options.containsKey("discountExclTax")) result.put("discountExclTax", amount(options.get("discountExclTax")));
+            if (options.containsKey("discountReasonCode")) result.put("discountReasonCode", options.get("discountReasonCode"));
+            if (options.containsKey("discountReason")) result.put("discountReason", options.get("discountReason"));
+            if (options.containsKey("periodStartDate")) result.put("periodStartDate", options.get("periodStartDate"));
+            if (options.containsKey("periodEndDate")) result.put("periodEndDate", options.get("periodEndDate"));
         }
         return result;
     }
-    /** Crée une ligne de TVA (aligné sur LigneDeTVA de models.py). */
-    public static Map<String, Object> ligneDeTva(Object tauxManuel, Object montantBaseHt, Object montantTva) { return ligneDeTva(tauxManuel, montantBaseHt, montantTva, "S"); }
-    public static Map<String, Object> ligneDeTva(Object tauxManuel, Object montantBaseHt, Object montantTva, String categorie) {
+    /** Creates a VAT line (aligned with VatLine in models.py). */
+    public static Map<String, Object> vatLine(Object rateManual, Object baseAmountExclTax, Object vatAmount) { return vatLine(rateManual, baseAmountExclTax, vatAmount, "S"); }
+    public static Map<String, Object> vatLine(Object rateManual, Object baseAmountExclTax, Object vatAmount, String category) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("tauxManuel", montant(tauxManuel)); result.put("montantBaseHt", montant(montantBaseHt));
-        result.put("montantTva", montant(montantTva)); result.put("categorie", categorie);
+        result.put("rateManual", amount(rateManual)); result.put("baseAmountExclTax", amount(baseAmountExclTax));
+        result.put("vatAmount", amount(vatAmount)); result.put("category", category);
         return result;
     }
-    /** Crée une adresse postale pour l'API FactPulse. */
-    public static Map<String, Object> adressePostale(String ligne1, String codePostal, String ville) { return adressePostale(ligne1, codePostal, ville, "FR", null, null); }
-    public static Map<String, Object> adressePostale(String ligne1, String codePostal, String ville, String pays, String ligne2, String ligne3) {
+    /** Creates a postal address for the FactPulse API. */
+    public static Map<String, Object> postalAddress(String line1, String postalCode, String city) { return postalAddress(line1, postalCode, city, "FR", null, null); }
+    public static Map<String, Object> postalAddress(String line1, String postalCode, String city, String country, String line2, String line3) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("ligneUn", ligne1); result.put("codePostal", codePostal); result.put("nomVille", ville); result.put("paysCodeIso", pays != null ? pays : "FR");
-        if (ligne2 != null) result.put("ligneDeux", ligne2);
-        if (ligne3 != null) result.put("ligneTrois", ligne3);
+        result.put("line1", line1); result.put("postalCode", postalCode); result.put("city", city); result.put("countryCode", country != null ? country : "FR");
+        if (line2 != null) result.put("line2", line2);
+        if (line3 != null) result.put("line3", line3);
         return result;
     }
-    /** Crée une adresse électronique. schemeId: "0009"=SIREN, "0225"=SIRET */
-    public static Map<String, Object> adresseElectronique(String identifiant) { return adresseElectronique(identifiant, "0009"); }
-    public static Map<String, Object> adresseElectronique(String identifiant, String schemeId) {
+    /** Creates an electronic address. schemeId: "0009"=SIREN, "0225"=SIRET */
+    public static Map<String, Object> electronicAddress(String identifier) { return electronicAddress(identifier, "0009"); }
+    public static Map<String, Object> electronicAddress(String identifier, String schemeId) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("identifiant", identifiant); result.put("schemeId", schemeId);
+        result.put("identifier", identifier); result.put("schemeId", schemeId);
         return result;
     }
-    /** Calcule le numéro TVA intracommunautaire français depuis un SIREN. */
-    private static String calculerTvaIntra(String siren) {
+    /** Computes the French intra-community VAT number from a SIREN. */
+    private static String computeVatIntra(String siren) {
         if (siren == null || siren.length() != 9 || !siren.matches("\\d+")) return null;
         long cle = (12 + 3 * (Long.parseLong(siren) % 97)) % 97;
         return String.format("FR%02d%s", cle, siren);
     }
-    /** Crée un fournisseur (émetteur) avec auto-calcul SIREN, TVA intracommunautaire et adresses. */
-    public static Map<String, Object> fournisseur(String nom, String siret, String adresseLigne1, String codePostal, String ville) { return fournisseur(nom, siret, adresseLigne1, codePostal, ville, null); }
-    public static Map<String, Object> fournisseur(String nom, String siret, String adresseLigne1, String codePostal, String ville, Map<String, Object> options) {
+    /** Creates a supplier (issuer) with auto-computed SIREN, intra-EU VAT number and addresses. */
+    public static Map<String, Object> supplier(String name, String siret, String addressLine1, String postalCode, String city) { return supplier(name, siret, addressLine1, postalCode, city, null); }
+    public static Map<String, Object> supplier(String name, String siret, String addressLine1, String postalCode, String city, Map<String, Object> options) {
         if (options == null) options = new LinkedHashMap<>();
         String siren = options.containsKey("siren") ? (String)options.get("siren") : (siret.length() == 14 ? siret.substring(0, 9) : null);
-        String numeroTvaIntra = options.containsKey("numeroTvaIntra") ? (String)options.get("numeroTvaIntra") : (siren != null ? calculerTvaIntra(siren) : null);
-        String pays = options.containsKey("pays") ? (String)options.get("pays") : "FR";
-        String adresseLigne2 = options.containsKey("adresseLigne2") ? (String)options.get("adresseLigne2") : null;
+        String vatIntra = options.containsKey("vatIntra") ? (String)options.get("vatIntra") : (siren != null ? computeVatIntra(siren) : null);
+        String country = options.containsKey("country") ? (String)options.get("country") : "FR";
+        String addressLine2 = options.containsKey("addressLine2") ? (String)options.get("addressLine2") : null;
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("nom", nom); result.put("idFournisseur", options.getOrDefault("idFournisseur", 0)); result.put("siret", siret);
-        result.put("adresseElectronique", adresseElectronique(siret, "0225"));
-        result.put("adressePostale", adressePostale(adresseLigne1, codePostal, ville, pays, adresseLigne2, null));
+        result.put("name", name); result.put("supplierId", options.getOrDefault("supplierId", 0)); result.put("siret", siret);
+        result.put("electronicAddress", electronicAddress(siret, "0225"));
+        result.put("postalAddress", postalAddress(addressLine1, postalCode, city, country, addressLine2, null));
         if (siren != null) result.put("siren", siren);
-        if (numeroTvaIntra != null) result.put("numeroTvaIntra", numeroTvaIntra);
+        if (vatIntra != null) result.put("vatIntra", vatIntra);
         if (options.containsKey("iban")) result.put("iban", options.get("iban"));
-        if (options.containsKey("codeService")) result.put("idServiceFournisseur", options.get("codeService"));
-        if (options.containsKey("codeCoordonnesBancaires")) result.put("codeCoordonnesBancairesFournisseur", options.get("codeCoordonnesBancaires"));
+        if (options.containsKey("serviceCode")) result.put("supplierServiceId", options.get("serviceCode"));
+        if (options.containsKey("bankCoordinatesCode")) result.put("supplierBankCoordinatesCode", options.get("bankCoordinatesCode"));
         return result;
     }
-    /** Crée un destinataire (client) avec auto-calcul SIREN et adresses. */
-    public static Map<String, Object> destinataire(String nom, String siret, String adresseLigne1, String codePostal, String ville) { return destinataire(nom, siret, adresseLigne1, codePostal, ville, null); }
-    public static Map<String, Object> destinataire(String nom, String siret, String adresseLigne1, String codePostal, String ville, Map<String, Object> options) {
+    /** Creates a recipient (customer) with auto-computed SIREN and addresses. */
+    public static Map<String, Object> recipient(String name, String siret, String addressLine1, String postalCode, String city) { return recipient(name, siret, addressLine1, postalCode, city, null); }
+    public static Map<String, Object> recipient(String name, String siret, String addressLine1, String postalCode, String city, Map<String, Object> options) {
         if (options == null) options = new LinkedHashMap<>();
         String siren = options.containsKey("siren") ? (String)options.get("siren") : (siret.length() == 14 ? siret.substring(0, 9) : null);
-        String pays = options.containsKey("pays") ? (String)options.get("pays") : "FR";
-        String adresseLigne2 = options.containsKey("adresseLigne2") ? (String)options.get("adresseLigne2") : null;
+        String country = options.containsKey("country") ? (String)options.get("country") : "FR";
+        String addressLine2 = options.containsKey("addressLine2") ? (String)options.get("addressLine2") : null;
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("nom", nom); result.put("siret", siret);
-        result.put("adresseElectronique", adresseElectronique(siret, "0225"));
-        result.put("adressePostale", adressePostale(adresseLigne1, codePostal, ville, pays, adresseLigne2, null));
+        result.put("name", name); result.put("siret", siret);
+        result.put("electronicAddress", electronicAddress(siret, "0225"));
+        result.put("postalAddress", postalAddress(addressLine1, postalCode, city, country, addressLine2, null));
         if (siren != null) result.put("siren", siren);
-        if (options.containsKey("codeServiceExecutant")) result.put("codeServiceExecutant", options.get("codeServiceExecutant"));
+        if (options.containsKey("executingServiceCode")) result.put("executingServiceCode", options.get("executingServiceCode"));
         return result;
     }
 
     /**
-     * Crée un bénéficiaire (factor) pour l'affacturage.
+     * Creates a beneficiary (factor) for factoring.
      *
-     * Le bénéficiaire (BG-10 / PayeeTradeParty) est utilisé lorsque le paiement
-     * doit être effectué à un tiers différent du fournisseur, typiquement un
-     * factor (société d'affacturage).
+     * The beneficiary (BG-10 / PayeeTradeParty) is used when payment
+     * must be made to a third party different from the supplier, typically
+     * a factor (factoring company).
      *
-     * Pour les factures affacturées, il faut aussi:
-     * - Utiliser un type de document affacturé (393, 396, 501, 502, 472, 473)
-     * - Ajouter une note ACC avec la mention de subrogation
-     * - L'IBAN du bénéficiaire sera utilisé pour le paiement
+     * For factored invoices, you also need to:
+     * - Use a factored document type (393, 396, 501, 502, 472, 473)
+     * - Add an ACC note with the subrogation mention
+     * - The beneficiary's IBAN will be used for payment
      *
-     * @param nom Raison sociale du factor (BT-59)
-     * @return Dict prêt à être utilisé dans une facture affacturée
+     * @param name Factor's business name (BT-59)
+     * @return Dict ready to be used in a factored invoice
      */
-    public static Map<String, Object> beneficiaire(String nom) { return beneficiaire(nom, null); }
+    public static Map<String, Object> beneficiary(String name) { return beneficiary(name, null); }
 
     /**
-     * Crée un bénéficiaire (factor) pour l'affacturage.
+     * Creates a beneficiary (factor) for factoring.
      *
-     * @param nom Raison sociale du factor (BT-59)
-     * @param options Map avec: siret (BT-60), siren (BT-61), iban, bic
-     * @return Dict prêt à être utilisé dans une facture affacturée
+     * @param name Factor's business name (BT-59)
+     * @param options Map with: siret (BT-60), siren (BT-61), iban, bic
+     * @return Dict ready to be used in a factored invoice
      */
-    public static Map<String, Object> beneficiaire(String nom, Map<String, Object> options) {
+    public static Map<String, Object> beneficiary(String name, Map<String, Object> options) {
         if (options == null) options = new LinkedHashMap<>();
         String siret = options.containsKey("siret") ? (String)options.get("siret") : null;
-        // Auto-calcul SIREN depuis SIRET
+        // Auto-compute SIREN from SIRET
         String siren = options.containsKey("siren") ? (String)options.get("siren")
             : (siret != null && siret.length() == 14 ? siret.substring(0, 9) : null);
 
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("nom", nom);
+        result.put("name", name);
         if (siret != null) result.put("siret", siret);
         if (siren != null) result.put("siren", siren);
         if (options.containsKey("iban")) result.put("iban", options.get("iban"));
@@ -206,7 +206,7 @@ class MontantHelpers {
 }
 
 // =============================================================================
-// Client principal
+// Main client
 // =============================================================================
 
 public class FactPulseClient {
@@ -236,7 +236,7 @@ public class FactPulseClient {
 
     public Map<String, Object> getChorusCredentialsForApi() { return chorusCredentials != null ? chorusCredentials.toMap() : null; }
     public Map<String, Object> getAfnorCredentialsForApi() { return afnorCredentials != null ? afnorCredentials.toMap() : null; }
-    // Alias plus courts
+    // Shorter aliases
     public Map<String, Object> getChorusProCredentials() { return getChorusCredentialsForApi(); }
     public Map<String, Object> getAfnorCredentials() { return getAfnorCredentialsForApi(); }
 
@@ -265,7 +265,7 @@ public class FactPulseClient {
         while (true) {
             if (System.currentTimeMillis() - startTime > timeoutMs) throw new FactPulsePollingTimeoutException(taskId, timeoutMs);
             ensureAuthenticated();
-            Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/taches/" + taskId + "/statut")
+            Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/tasks/" + taskId + "/status")
                 .addHeader("Authorization", "Bearer " + accessToken).get().build();
             try (Response response = httpClient.newCall(request).execute()) {
                 if (response.code() == 401) { resetAuth(); continue; }
@@ -300,19 +300,19 @@ public class FactPulseClient {
             ensureAuthenticated();
             try {
                 RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                    .addFormDataPart("donnees_facture", null, RequestBody.create(jsonData, MediaType.parse("application/json")))
-                    .addFormDataPart("profil", profil)
-                    .addFormDataPart("format_sortie", formatSortie)
+                    .addFormDataPart("invoice_data", null, RequestBody.create(jsonData, MediaType.parse("application/json")))
+                    .addFormDataPart("profile", profil)
+                    .addFormDataPart("output_format", formatSortie)
                     .addFormDataPart("source_pdf", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
                     .build();
-                Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/generer-facture")
+                Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/generate-invoice")
                     .addHeader("Authorization", "Bearer " + accessToken).post(body).build();
                 try (Response response = httpClient.newCall(request).execute()) {
                     if (response.code() == 401 && attempt < maxRetries) { resetAuth(); continue; }
                     String responseBody = response.body() != null ? response.body().string() : "";
                     if (!response.isSuccessful()) {
-                        // Extraire les détails d'erreur du corps de la réponse
-                        String errorMsg = "Erreur API (" + response.code() + ")";
+                        // Extract error details from response body
+                        String errorMsg = "API Error (" + response.code() + ")";
                         List<ValidationErrorDetail> errors = new ArrayList<>();
                         try {
                             Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
@@ -321,7 +321,7 @@ public class FactPulseClient {
                                 // Format FastAPI/Pydantic: {"detail": [{"loc": [...], "msg": "...", "type": "..."}]}
                                 Object detail = errorData.get("detail");
                                 if (detail instanceof List) {
-                                    errorMsg = "Erreur de validation";
+                                    errorMsg = "Validation error";
                                     for (Object item : (List<?>) detail) {
                                         if (item instanceof Map) {
                                             Map<?, ?> errItem = (Map<?, ?>) item;
@@ -342,12 +342,12 @@ public class FactPulseClient {
                                 }
                             }
                         } catch (Exception parseErr) { /* ignore parsing errors */ }
-                        System.err.println("Erreur API " + response.code() + ": " + responseBody);
+                        System.err.println("API Error " + response.code() + ": " + responseBody);
                         throw new FactPulseValidationException(errorMsg, errors);
                     }
                     Type type = new TypeToken<Map<String, Object>>(){}.getType();
                     Map<String, Object> result = gson.fromJson(responseBody, type);
-                    String taskId = (String) result.get("id_tache");
+                    String taskId = (String) result.get("task_id");
                     if (taskId == null) throw new FactPulseValidationException("No task ID");
                     if (!sync) return taskId.getBytes();
                     Map<String, Object> pollResult = pollTask(taskId, timeout, null);
@@ -372,7 +372,7 @@ public class FactPulseClient {
     }
 
     // =========================================================================
-    // AFNOR PDP - Authentication et helpers internes
+    // AFNOR PDP - Authentication and internal helpers
     // =========================================================================
 
     private AFNORCredentials getAfnorCredentialsInternal() throws FactPulseException {
@@ -566,22 +566,22 @@ public class FactPulseClient {
     // =========================================================================
 
     /**
-     * Valide un PDF Factur-X.
-     * @param pdfPath Chemin vers le fichier PDF
-     * @param profil Profil Factur-X (MINIMUM, BASIC, EN16931, EXTENDED). Si null, auto-détecté.
-     * @param useVerapdf Active la validation stricte PDF/A avec VeraPDF (défaut: false)
+     * Validates a Factur-X PDF.
+     * @param pdfPath Path to the PDF file
+     * @param profile Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED). If null, auto-detected.
+     * @param useVerapdf Enable strict PDF/A validation with VeraPDF (default: false)
      */
     public Map<String, Object> validerPdfFacturx(String pdfPath, String profil, boolean useVerapdf) throws FactPulseException {
         ensureAuthenticated();
         try {
             File pdfFile = new File(pdfPath);
             MultipartBody.Builder bodyBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("fichier_pdf", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
+                .addFormDataPart("pdf_file", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
                 .addFormDataPart("use_verapdf", String.valueOf(useVerapdf));
             if (profil != null) {
-                bodyBuilder.addFormDataPart("profil", profil);
+                bodyBuilder.addFormDataPart("profile", profil);
             }
-            Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/valider-pdf-facturx")
+            Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/validate-facturx-pdf")
                 .addHeader("Authorization", "Bearer " + accessToken).post(bodyBuilder.build()).build();
             try (Response response = httpClient.newCall(request).execute()) {
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
@@ -596,10 +596,10 @@ public class FactPulseClient {
         ensureAuthenticated();
         try {
             RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("fichier_xml", "facture.xml", RequestBody.create(xmlContent, MediaType.parse("application/xml")))
-                .addFormDataPart("profil", profil != null ? profil : "EN16931")
+                .addFormDataPart("xml_file", "facture.xml", RequestBody.create(xmlContent, MediaType.parse("application/xml")))
+                .addFormDataPart("profile", profil != null ? profil : "EN16931")
                 .build();
-            Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/valider-xml")
+            Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/validate-xml")
                 .addHeader("Authorization", "Bearer " + accessToken).post(body).build();
             try (Response response = httpClient.newCall(request).execute()) {
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
@@ -614,9 +614,9 @@ public class FactPulseClient {
         try {
             File pdfFile = new File(pdfPath);
             RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("fichier_pdf", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
+                .addFormDataPart("pdf_file", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")))
                 .build();
-            Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/valider-signature-pdf")
+            Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/validate-pdf-signature")
                 .addHeader("Authorization", "Bearer " + accessToken).post(body).build();
             try (Response response = httpClient.newCall(request).execute()) {
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
@@ -635,14 +635,14 @@ public class FactPulseClient {
         try {
             File pdfFile = new File(pdfPath);
             MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("fichier_pdf", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")));
-            if (options.containsKey("raison")) builder.addFormDataPart("raison", (String) options.get("raison"));
-            if (options.containsKey("localisation")) builder.addFormDataPart("localisation", (String) options.get("localisation"));
+                .addFormDataPart("pdf_file", pdfFile.getName(), RequestBody.create(pdfFile, MediaType.parse("application/pdf")));
+            if (options.containsKey("reason")) builder.addFormDataPart("reason", (String) options.get("reason"));
+            if (options.containsKey("location")) builder.addFormDataPart("location", (String) options.get("location"));
             if (options.containsKey("contact")) builder.addFormDataPart("contact", (String) options.get("contact"));
             builder.addFormDataPart("use_pades_lt", Boolean.TRUE.equals(options.get("usePadesLt")) ? "true" : "false");
             builder.addFormDataPart("use_timestamp", options.containsKey("useTimestamp") ? (Boolean.TRUE.equals(options.get("useTimestamp")) ? "true" : "false") : "true");
 
-            Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/signer-pdf")
+            Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/sign-pdf")
                 .addHeader("Authorization", "Bearer " + accessToken).post(builder.build()).build();
             try (Response response = httpClient.newCall(request).execute()) {
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
@@ -662,10 +662,10 @@ public class FactPulseClient {
         body.put("cn", options.getOrDefault("cn", "Test Organisation"));
         body.put("organisation", options.getOrDefault("organisation", "Test Organisation"));
         body.put("email", options.getOrDefault("email", "test@example.com"));
-        body.put("duree_jours", options.getOrDefault("dureeJours", 365));
-        body.put("taille_cle", options.getOrDefault("tailleCle", 2048));
+        body.put("validity_days", options.getOrDefault("validityDays", 365));
+        body.put("key_size", options.getOrDefault("keySize", 2048));
 
-        Request request = new Request.Builder().url(apiUrl + "/api/v1/traitement/generer-certificat-test")
+        Request request = new Request.Builder().url(apiUrl + "/api/v1/processing/generate-test-certificate")
             .addHeader("Authorization", "Bearer " + accessToken)
             .post(RequestBody.create(gson.toJson(body), JSON)).build();
         try (Response response = httpClient.newCall(request).execute()) {
@@ -676,32 +676,32 @@ public class FactPulseClient {
     public Map<String, Object> genererCertificatTest() throws FactPulseException { return genererCertificatTest(null); }
 
     // =========================================================================
-    // Workflow complet
+    // Complete workflow
     // =========================================================================
 
     @SuppressWarnings("unchecked")
-    public Map<String, Object> genererFacturxComplet(Map<String, Object> facture, String pdfSourcePath, Map<String, Object> options) throws FactPulseException {
+    public Map<String, Object> generateCompleteFacturx(Map<String, Object> invoice, String pdfSourcePath, Map<String, Object> options) throws FactPulseException {
         if (options == null) options = new HashMap<>();
-        String profil = (String) options.getOrDefault("profil", "EN16931");
-        boolean valider = (boolean) options.getOrDefault("valider", true);
-        boolean signer = (boolean) options.getOrDefault("signer", false);
-        boolean soumettreAfnor = (boolean) options.getOrDefault("soumettreAfnor", false);
+        String profil = (String) options.getOrDefault("profile", "EN16931");
+        boolean validate = (boolean) options.getOrDefault("validate", true);
+        boolean sign = (boolean) options.getOrDefault("sign", false);
+        boolean submitAfnor = (boolean) options.getOrDefault("submitAfnor", false);
         Long timeout = options.containsKey("timeout") ? ((Number) options.get("timeout")).longValue() : 120000L;
 
         Map<String, Object> result = new LinkedHashMap<>();
 
-        // 1. Génération
-        byte[] pdfBytes = genererFacturx(facture, pdfSourcePath, profil, "pdf", true, timeout);
+        // 1. Generation
+        byte[] pdfBytes = genererFacturx(invoice, pdfSourcePath, profil, "pdf", true, timeout);
         result.put("pdfBytes", pdfBytes);
 
-        // Créer un fichier temporaire
+        // Create a temporary file
         File tempFile = null;
         try {
             tempFile = File.createTempFile("facturx_", ".pdf");
             Files.write(tempFile.toPath(), pdfBytes);
 
             // 2. Validation
-            if (valider) {
+            if (validate) {
                 Map<String, Object> validation = validerPdfFacturx(tempFile.getAbsolutePath(), profil);
                 result.put("validation", validation);
                 if (!Boolean.TRUE.equals(validation.get("est_conforme"))) {
@@ -714,25 +714,25 @@ public class FactPulseClient {
             }
 
             // 3. Signature
-            if (signer) {
+            if (sign) {
                 pdfBytes = signerPdf(tempFile.getAbsolutePath(), options);
                 result.put("pdfBytes", pdfBytes);
                 result.put("signature", Map.of("signe", true));
                 Files.write(tempFile.toPath(), pdfBytes);
             }
 
-            // 4. Soumission AFNOR
-            if (soumettreAfnor) {
-                String numeroFacture = (String) facture.getOrDefault("numeroFacture", facture.getOrDefault("numero_facture", "FACTURE"));
-                String flowName = (String) options.getOrDefault("afnorFlowName", "Facture " + numeroFacture);
-                String trackingId = (String) options.getOrDefault("afnorTrackingId", numeroFacture);
+            // 4. AFNOR submission
+            if (submitAfnor) {
+                String invoiceNumber = (String) invoice.getOrDefault("invoiceNumber", invoice.getOrDefault("invoice_number", "INVOICE"));
+                String flowName = (String) options.getOrDefault("afnorFlowName", "Invoice " + invoiceNumber);
+                String trackingId = (String) options.getOrDefault("afnorTrackingId", invoiceNumber);
                 Map<String, Object> afnorOpts = new HashMap<>();
                 afnorOpts.put("trackingId", trackingId);
                 Map<String, Object> afnorResult = soumettreFactureAfnor(tempFile.getAbsolutePath(), flowName, afnorOpts);
                 result.put("afnor", afnorResult);
             }
 
-            // Sauvegarde finale
+            // Final save
             if (options.containsKey("outputPath")) {
                 Files.write(new File((String) options.get("outputPath")).toPath(), pdfBytes);
                 result.put("pdfPath", options.get("outputPath"));
@@ -746,7 +746,7 @@ public class FactPulseClient {
         return result;
     }
 
-    // Utilitaires
+    // Utilities
     private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) sb.append(String.format("%02x", b));

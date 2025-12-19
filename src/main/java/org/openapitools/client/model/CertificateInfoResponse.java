@@ -1,6 +1,6 @@
 /*
- * API REST FactPulse
- *  API REST pour la facturation électronique en France : Factur-X, AFNOR PDP/PA, signatures électroniques.  ## 🎯 Fonctionnalités principales  ### 📄 Génération de factures Factur-X - **Formats** : XML seul ou PDF/A-3 avec XML embarqué - **Profils** : MINIMUM, BASIC, EN16931, EXTENDED - **Normes** : EN 16931 (directive UE 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Format simplifié** : Génération à partir de SIRET + auto-enrichissement (API Chorus Pro + Recherche Entreprises)  ### ✅ Validation et conformité - **Validation XML** : Schematron (45 à 210+ règles selon profil) - **Validation PDF** : PDF/A-3, métadonnées XMP Factur-X, signatures électroniques - **VeraPDF** : Validation stricte PDF/A (146+ règles ISO 19005-3) - **Traitement asynchrone** : Support Celery pour validations lourdes (VeraPDF)  ### 📡 Intégration AFNOR PDP/PA (XP Z12-013) - **Soumission de flux** : Envoi de factures vers Plateformes de Dématérialisation Partenaires - **Recherche de flux** : Consultation des factures soumises - **Téléchargement** : Récupération des PDF/A-3 avec XML - **Directory Service** : Recherche d'entreprises (SIREN/SIRET) - **Multi-client** : Support de plusieurs configs PDP par utilisateur (stored credentials ou zero-storage)  ### ✍️ Signature électronique PDF - **Standards** : PAdES-B-B, PAdES-B-T (horodatage RFC 3161), PAdES-B-LT (archivage long terme) - **Niveaux eIDAS** : SES (auto-signé), AdES (CA commerciale), QES (PSCO) - **Validation** : Vérification intégrité cryptographique et certificats - **Génération de certificats** : Certificats X.509 auto-signés pour tests  ### 🔄 Traitement asynchrone - **Celery** : Génération, validation et signature asynchrones - **Polling** : Suivi d'état via `/taches/{id_tache}/statut` - **Pas de timeout** : Idéal pour gros fichiers ou validations lourdes  ## 🔒 Authentification  Toutes les requêtes nécessitent un **token JWT** dans le header Authorization : ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### Comment obtenir un token JWT ?  #### 🔑 Méthode 1 : API `/api/token/` (Recommandée)  **URL :** `https://www.factpulse.fr/api/token/`  Cette méthode est **recommandée** pour l'intégration dans vos applications et workflows CI/CD.  **Prérequis :** Avoir défini un mot de passe sur votre compte  **Pour les utilisateurs inscrits via email/password :** - Vous avez déjà un mot de passe, utilisez-le directement  **Pour les utilisateurs inscrits via OAuth (Google/GitHub) :** - Vous devez d'abord définir un mot de passe sur : https://www.factpulse.fr/accounts/password/set/ - Une fois le mot de passe créé, vous pourrez utiliser l'API  **Exemple de requête :** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\"   }' ```  **Paramètre optionnel `client_uid` :**  Pour sélectionner les credentials d'un client spécifique (PA/PDP, Chorus Pro, certificats de signature), ajoutez `client_uid` :  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  Le `client_uid` sera inclus dans le JWT et permettra à l'API d'utiliser automatiquement : - Les credentials AFNOR/PDP configurés pour ce client - Les credentials Chorus Pro configurés pour ce client - Les certificats de signature électronique configurés pour ce client  **Réponse :** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Token d'accès (validité: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Token de rafraîchissement (validité: 7 jours) } ```  **Avantages :** - ✅ Automatisation complète (CI/CD, scripts) - ✅ Gestion programmatique des tokens - ✅ Support du refresh token pour renouveler automatiquement l'accès - ✅ Intégration facile dans n'importe quel langage/outil  #### 🖥️ Méthode 2 : Génération via Dashboard (Alternative)  **URL :** https://www.factpulse.fr/dashboard/  Cette méthode convient pour des tests rapides ou une utilisation occasionnelle via l'interface graphique.  **Fonctionnement :** - Connectez-vous au dashboard - Utilisez les boutons \"Generate Test Token\" ou \"Generate Production Token\" - Fonctionne pour **tous** les utilisateurs (OAuth et email/password), sans nécessiter de mot de passe  **Types de tokens :** - **Token Test** : Validité 24h, quota 1000 appels/jour (gratuit) - **Token Production** : Validité 7 jours, quota selon votre forfait  **Avantages :** - ✅ Rapide pour tester l'API - ✅ Aucun mot de passe requis - ✅ Interface visuelle simple  **Inconvénients :** - ❌ Nécessite une action manuelle - ❌ Pas de refresh token - ❌ Moins adapté pour l'automatisation  ### 📚 Documentation complète  Pour plus d'informations sur l'authentification et l'utilisation de l'API : https://www.factpulse.fr/documentation-api/     
+ * FactPulse REST API
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://www.factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://www.factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://www.factpulse.fr/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://www.factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -47,69 +47,69 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Informations sur un certificat généré.
+ * Information about a generated certificate.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T12:07:11.434193062Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class CertificateInfoResponse {
   public static final String SERIALIZED_NAME_CN = "cn";
   @SerializedName(SERIALIZED_NAME_CN)
   @javax.annotation.Nonnull
   private String cn;
 
-  public static final String SERIALIZED_NAME_ORGANISATION = "organisation";
-  @SerializedName(SERIALIZED_NAME_ORGANISATION)
+  public static final String SERIALIZED_NAME_ORGANIZATION = "organization";
+  @SerializedName(SERIALIZED_NAME_ORGANIZATION)
   @javax.annotation.Nonnull
-  private String organisation;
+  private String organization;
 
-  public static final String SERIALIZED_NAME_PAYS = "pays";
-  @SerializedName(SERIALIZED_NAME_PAYS)
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
   @javax.annotation.Nonnull
-  private String pays;
+  private String country;
 
-  public static final String SERIALIZED_NAME_VILLE = "ville";
-  @SerializedName(SERIALIZED_NAME_VILLE)
+  public static final String SERIALIZED_NAME_CITY = "city";
+  @SerializedName(SERIALIZED_NAME_CITY)
   @javax.annotation.Nonnull
-  private String ville;
+  private String city;
 
-  public static final String SERIALIZED_NAME_PROVINCE = "province";
-  @SerializedName(SERIALIZED_NAME_PROVINCE)
+  public static final String SERIALIZED_NAME_STATE = "state";
+  @SerializedName(SERIALIZED_NAME_STATE)
   @javax.annotation.Nonnull
-  private String province;
+  private String state;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
   @javax.annotation.Nullable
   private String email;
 
-  public static final String SERIALIZED_NAME_SUJET = "sujet";
-  @SerializedName(SERIALIZED_NAME_SUJET)
+  public static final String SERIALIZED_NAME_SUBJECT = "subject";
+  @SerializedName(SERIALIZED_NAME_SUBJECT)
   @javax.annotation.Nonnull
-  private String sujet;
+  private String subject;
 
-  public static final String SERIALIZED_NAME_EMETTEUR = "emetteur";
-  @SerializedName(SERIALIZED_NAME_EMETTEUR)
+  public static final String SERIALIZED_NAME_ISSUER = "issuer";
+  @SerializedName(SERIALIZED_NAME_ISSUER)
   @javax.annotation.Nonnull
-  private String emetteur;
+  private String issuer;
 
-  public static final String SERIALIZED_NAME_NUMERO_SERIE = "numero_serie";
-  @SerializedName(SERIALIZED_NAME_NUMERO_SERIE)
+  public static final String SERIALIZED_NAME_SERIAL_NUMBER = "serialNumber";
+  @SerializedName(SERIALIZED_NAME_SERIAL_NUMBER)
   @javax.annotation.Nonnull
-  private Integer numeroSerie;
+  private Integer serialNumber;
 
-  public static final String SERIALIZED_NAME_VALIDE_DU = "valide_du";
-  @SerializedName(SERIALIZED_NAME_VALIDE_DU)
+  public static final String SERIALIZED_NAME_VALID_FROM = "validFrom";
+  @SerializedName(SERIALIZED_NAME_VALID_FROM)
   @javax.annotation.Nonnull
-  private String valideDu;
+  private String validFrom;
 
-  public static final String SERIALIZED_NAME_VALIDE_AU = "valide_au";
-  @SerializedName(SERIALIZED_NAME_VALIDE_AU)
+  public static final String SERIALIZED_NAME_VALID_TO = "validTo";
+  @SerializedName(SERIALIZED_NAME_VALID_TO)
   @javax.annotation.Nonnull
-  private String valideAu;
+  private String validTo;
 
-  public static final String SERIALIZED_NAME_ALGORITHME = "algorithme";
-  @SerializedName(SERIALIZED_NAME_ALGORITHME)
+  public static final String SERIALIZED_NAME_ALGORITHM = "algorithm";
+  @SerializedName(SERIALIZED_NAME_ALGORITHM)
   @javax.annotation.Nonnull
-  private String algorithme;
+  private String algorithm;
 
   public CertificateInfoResponse() {
   }
@@ -133,79 +133,79 @@ public class CertificateInfoResponse {
   }
 
 
-  public CertificateInfoResponse organisation(@javax.annotation.Nonnull String organisation) {
-    this.organisation = organisation;
+  public CertificateInfoResponse organization(@javax.annotation.Nonnull String organization) {
+    this.organization = organization;
     return this;
   }
 
   /**
-   * Organisation
-   * @return organisation
+   * Organization
+   * @return organization
    */
   @javax.annotation.Nonnull
-  public String getOrganisation() {
-    return organisation;
+  public String getOrganization() {
+    return organization;
   }
 
-  public void setOrganisation(@javax.annotation.Nonnull String organisation) {
-    this.organisation = organisation;
+  public void setOrganization(@javax.annotation.Nonnull String organization) {
+    this.organization = organization;
   }
 
 
-  public CertificateInfoResponse pays(@javax.annotation.Nonnull String pays) {
-    this.pays = pays;
+  public CertificateInfoResponse country(@javax.annotation.Nonnull String country) {
+    this.country = country;
     return this;
   }
 
   /**
-   * Code pays
-   * @return pays
+   * Country code
+   * @return country
    */
   @javax.annotation.Nonnull
-  public String getPays() {
-    return pays;
+  public String getCountry() {
+    return country;
   }
 
-  public void setPays(@javax.annotation.Nonnull String pays) {
-    this.pays = pays;
+  public void setCountry(@javax.annotation.Nonnull String country) {
+    this.country = country;
   }
 
 
-  public CertificateInfoResponse ville(@javax.annotation.Nonnull String ville) {
-    this.ville = ville;
+  public CertificateInfoResponse city(@javax.annotation.Nonnull String city) {
+    this.city = city;
     return this;
   }
 
   /**
-   * Ville
-   * @return ville
+   * City
+   * @return city
    */
   @javax.annotation.Nonnull
-  public String getVille() {
-    return ville;
+  public String getCity() {
+    return city;
   }
 
-  public void setVille(@javax.annotation.Nonnull String ville) {
-    this.ville = ville;
+  public void setCity(@javax.annotation.Nonnull String city) {
+    this.city = city;
   }
 
 
-  public CertificateInfoResponse province(@javax.annotation.Nonnull String province) {
-    this.province = province;
+  public CertificateInfoResponse state(@javax.annotation.Nonnull String state) {
+    this.state = state;
     return this;
   }
 
   /**
-   * Province
-   * @return province
+   * State/Province
+   * @return state
    */
   @javax.annotation.Nonnull
-  public String getProvince() {
-    return province;
+  public String getState() {
+    return state;
   }
 
-  public void setProvince(@javax.annotation.Nonnull String province) {
-    this.province = province;
+  public void setState(@javax.annotation.Nonnull String state) {
+    this.state = state;
   }
 
 
@@ -228,117 +228,117 @@ public class CertificateInfoResponse {
   }
 
 
-  public CertificateInfoResponse sujet(@javax.annotation.Nonnull String sujet) {
-    this.sujet = sujet;
+  public CertificateInfoResponse subject(@javax.annotation.Nonnull String subject) {
+    this.subject = subject;
     return this;
   }
 
   /**
-   * Sujet complet (RFC4514)
-   * @return sujet
+   * Full subject (RFC4514)
+   * @return subject
    */
   @javax.annotation.Nonnull
-  public String getSujet() {
-    return sujet;
+  public String getSubject() {
+    return subject;
   }
 
-  public void setSujet(@javax.annotation.Nonnull String sujet) {
-    this.sujet = sujet;
+  public void setSubject(@javax.annotation.Nonnull String subject) {
+    this.subject = subject;
   }
 
 
-  public CertificateInfoResponse emetteur(@javax.annotation.Nonnull String emetteur) {
-    this.emetteur = emetteur;
+  public CertificateInfoResponse issuer(@javax.annotation.Nonnull String issuer) {
+    this.issuer = issuer;
     return this;
   }
 
   /**
-   * Émetteur (auto-signé &#x3D; même que sujet)
-   * @return emetteur
+   * Issuer (self-signed &#x3D; same as subject)
+   * @return issuer
    */
   @javax.annotation.Nonnull
-  public String getEmetteur() {
-    return emetteur;
+  public String getIssuer() {
+    return issuer;
   }
 
-  public void setEmetteur(@javax.annotation.Nonnull String emetteur) {
-    this.emetteur = emetteur;
+  public void setIssuer(@javax.annotation.Nonnull String issuer) {
+    this.issuer = issuer;
   }
 
 
-  public CertificateInfoResponse numeroSerie(@javax.annotation.Nonnull Integer numeroSerie) {
-    this.numeroSerie = numeroSerie;
+  public CertificateInfoResponse serialNumber(@javax.annotation.Nonnull Integer serialNumber) {
+    this.serialNumber = serialNumber;
     return this;
   }
 
   /**
-   * Numéro de série du certificat
-   * @return numeroSerie
+   * Certificate serial number
+   * @return serialNumber
    */
   @javax.annotation.Nonnull
-  public Integer getNumeroSerie() {
-    return numeroSerie;
+  public Integer getSerialNumber() {
+    return serialNumber;
   }
 
-  public void setNumeroSerie(@javax.annotation.Nonnull Integer numeroSerie) {
-    this.numeroSerie = numeroSerie;
+  public void setSerialNumber(@javax.annotation.Nonnull Integer serialNumber) {
+    this.serialNumber = serialNumber;
   }
 
 
-  public CertificateInfoResponse valideDu(@javax.annotation.Nonnull String valideDu) {
-    this.valideDu = valideDu;
+  public CertificateInfoResponse validFrom(@javax.annotation.Nonnull String validFrom) {
+    this.validFrom = validFrom;
     return this;
   }
 
   /**
-   * Date de début de validité (ISO 8601)
-   * @return valideDu
+   * Validity start date (ISO 8601)
+   * @return validFrom
    */
   @javax.annotation.Nonnull
-  public String getValideDu() {
-    return valideDu;
+  public String getValidFrom() {
+    return validFrom;
   }
 
-  public void setValideDu(@javax.annotation.Nonnull String valideDu) {
-    this.valideDu = valideDu;
+  public void setValidFrom(@javax.annotation.Nonnull String validFrom) {
+    this.validFrom = validFrom;
   }
 
 
-  public CertificateInfoResponse valideAu(@javax.annotation.Nonnull String valideAu) {
-    this.valideAu = valideAu;
+  public CertificateInfoResponse validTo(@javax.annotation.Nonnull String validTo) {
+    this.validTo = validTo;
     return this;
   }
 
   /**
-   * Date de fin de validité (ISO 8601)
-   * @return valideAu
+   * Validity end date (ISO 8601)
+   * @return validTo
    */
   @javax.annotation.Nonnull
-  public String getValideAu() {
-    return valideAu;
+  public String getValidTo() {
+    return validTo;
   }
 
-  public void setValideAu(@javax.annotation.Nonnull String valideAu) {
-    this.valideAu = valideAu;
+  public void setValidTo(@javax.annotation.Nonnull String validTo) {
+    this.validTo = validTo;
   }
 
 
-  public CertificateInfoResponse algorithme(@javax.annotation.Nonnull String algorithme) {
-    this.algorithme = algorithme;
+  public CertificateInfoResponse algorithm(@javax.annotation.Nonnull String algorithm) {
+    this.algorithm = algorithm;
     return this;
   }
 
   /**
-   * Algorithme de signature
-   * @return algorithme
+   * Signature algorithm
+   * @return algorithm
    */
   @javax.annotation.Nonnull
-  public String getAlgorithme() {
-    return algorithme;
+  public String getAlgorithm() {
+    return algorithm;
   }
 
-  public void setAlgorithme(@javax.annotation.Nonnull String algorithme) {
-    this.algorithme = algorithme;
+  public void setAlgorithm(@javax.annotation.Nonnull String algorithm) {
+    this.algorithm = algorithm;
   }
 
 
@@ -353,17 +353,17 @@ public class CertificateInfoResponse {
     }
     CertificateInfoResponse certificateInfoResponse = (CertificateInfoResponse) o;
     return Objects.equals(this.cn, certificateInfoResponse.cn) &&
-        Objects.equals(this.organisation, certificateInfoResponse.organisation) &&
-        Objects.equals(this.pays, certificateInfoResponse.pays) &&
-        Objects.equals(this.ville, certificateInfoResponse.ville) &&
-        Objects.equals(this.province, certificateInfoResponse.province) &&
+        Objects.equals(this.organization, certificateInfoResponse.organization) &&
+        Objects.equals(this.country, certificateInfoResponse.country) &&
+        Objects.equals(this.city, certificateInfoResponse.city) &&
+        Objects.equals(this.state, certificateInfoResponse.state) &&
         Objects.equals(this.email, certificateInfoResponse.email) &&
-        Objects.equals(this.sujet, certificateInfoResponse.sujet) &&
-        Objects.equals(this.emetteur, certificateInfoResponse.emetteur) &&
-        Objects.equals(this.numeroSerie, certificateInfoResponse.numeroSerie) &&
-        Objects.equals(this.valideDu, certificateInfoResponse.valideDu) &&
-        Objects.equals(this.valideAu, certificateInfoResponse.valideAu) &&
-        Objects.equals(this.algorithme, certificateInfoResponse.algorithme);
+        Objects.equals(this.subject, certificateInfoResponse.subject) &&
+        Objects.equals(this.issuer, certificateInfoResponse.issuer) &&
+        Objects.equals(this.serialNumber, certificateInfoResponse.serialNumber) &&
+        Objects.equals(this.validFrom, certificateInfoResponse.validFrom) &&
+        Objects.equals(this.validTo, certificateInfoResponse.validTo) &&
+        Objects.equals(this.algorithm, certificateInfoResponse.algorithm);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -372,7 +372,7 @@ public class CertificateInfoResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cn, organisation, pays, ville, province, email, sujet, emetteur, numeroSerie, valideDu, valideAu, algorithme);
+    return Objects.hash(cn, organization, country, city, state, email, subject, issuer, serialNumber, validFrom, validTo, algorithm);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -387,17 +387,17 @@ public class CertificateInfoResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class CertificateInfoResponse {\n");
     sb.append("    cn: ").append(toIndentedString(cn)).append("\n");
-    sb.append("    organisation: ").append(toIndentedString(organisation)).append("\n");
-    sb.append("    pays: ").append(toIndentedString(pays)).append("\n");
-    sb.append("    ville: ").append(toIndentedString(ville)).append("\n");
-    sb.append("    province: ").append(toIndentedString(province)).append("\n");
+    sb.append("    organization: ").append(toIndentedString(organization)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    sujet: ").append(toIndentedString(sujet)).append("\n");
-    sb.append("    emetteur: ").append(toIndentedString(emetteur)).append("\n");
-    sb.append("    numeroSerie: ").append(toIndentedString(numeroSerie)).append("\n");
-    sb.append("    valideDu: ").append(toIndentedString(valideDu)).append("\n");
-    sb.append("    valideAu: ").append(toIndentedString(valideAu)).append("\n");
-    sb.append("    algorithme: ").append(toIndentedString(algorithme)).append("\n");
+    sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
+    sb.append("    issuer: ").append(toIndentedString(issuer)).append("\n");
+    sb.append("    serialNumber: ").append(toIndentedString(serialNumber)).append("\n");
+    sb.append("    validFrom: ").append(toIndentedString(validFrom)).append("\n");
+    sb.append("    validTo: ").append(toIndentedString(validTo)).append("\n");
+    sb.append("    algorithm: ").append(toIndentedString(algorithm)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -419,10 +419,10 @@ public class CertificateInfoResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("cn", "organisation", "pays", "ville", "province", "email", "sujet", "emetteur", "numero_serie", "valide_du", "valide_au", "algorithme"));
+    openapiFields = new HashSet<String>(Arrays.asList("cn", "organization", "country", "city", "state", "email", "subject", "issuer", "serialNumber", "validFrom", "validTo", "algorithm"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("cn", "organisation", "pays", "ville", "province", "sujet", "emetteur", "numero_serie", "valide_du", "valide_au", "algorithme"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("cn", "organization", "country", "city", "state", "subject", "issuer", "serialNumber", "validFrom", "validTo", "algorithm"));
   }
 
   /**
@@ -456,35 +456,35 @@ public class CertificateInfoResponse {
       if (!jsonObj.get("cn").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `cn` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cn").toString()));
       }
-      if (!jsonObj.get("organisation").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `organisation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("organisation").toString()));
+      if (!jsonObj.get("organization").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `organization` to be a primitive type in the JSON string but got `%s`", jsonObj.get("organization").toString()));
       }
-      if (!jsonObj.get("pays").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pays` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pays").toString()));
+      if (!jsonObj.get("country").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
       }
-      if (!jsonObj.get("ville").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `ville` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ville").toString()));
+      if (!jsonObj.get("city").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
       }
-      if (!jsonObj.get("province").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `province` to be a primitive type in the JSON string but got `%s`", jsonObj.get("province").toString()));
+      if (!jsonObj.get("state").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
       }
       if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
       }
-      if (!jsonObj.get("sujet").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `sujet` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sujet").toString()));
+      if (!jsonObj.get("subject").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subject").toString()));
       }
-      if (!jsonObj.get("emetteur").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `emetteur` to be a primitive type in the JSON string but got `%s`", jsonObj.get("emetteur").toString()));
+      if (!jsonObj.get("issuer").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `issuer` to be a primitive type in the JSON string but got `%s`", jsonObj.get("issuer").toString()));
       }
-      if (!jsonObj.get("valide_du").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `valide_du` to be a primitive type in the JSON string but got `%s`", jsonObj.get("valide_du").toString()));
+      if (!jsonObj.get("validFrom").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `validFrom` to be a primitive type in the JSON string but got `%s`", jsonObj.get("validFrom").toString()));
       }
-      if (!jsonObj.get("valide_au").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `valide_au` to be a primitive type in the JSON string but got `%s`", jsonObj.get("valide_au").toString()));
+      if (!jsonObj.get("validTo").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `validTo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("validTo").toString()));
       }
-      if (!jsonObj.get("algorithme").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `algorithme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("algorithme").toString()));
+      if (!jsonObj.get("algorithm").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `algorithm` to be a primitive type in the JSON string but got `%s`", jsonObj.get("algorithm").toString()));
       }
   }
 

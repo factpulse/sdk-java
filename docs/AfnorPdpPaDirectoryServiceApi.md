@@ -31,7 +31,7 @@ All URIs are relative to *http://localhost*
 
 Creating a directory line
 
-Créer une ligne dans l&#39;annuaire
+Create a line in the directory
 
 ### Example
 ```java
@@ -87,9 +87,9 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
-| **201** | Ligne d&#39;annuaire créée avec succès |  -  |
-| **400** | Requête invalide |  -  |
-| **401** | Non authentifié |  -  |
+| **201** | Directory line created successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Not authenticated |  -  |
 
 <a id="createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost"></a>
 # **createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost**
@@ -97,7 +97,7 @@ This endpoint does not need any parameter.
 
 Create a routing code
 
-Créer un code de routage dans l&#39;annuaire
+Create a routing code in the directory
 
 ### Example
 ```java
@@ -153,9 +153,9 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
-| **201** | Code de routage créé avec succès |  -  |
-| **400** | Requête invalide |  -  |
-| **401** | Non authentifié |  -  |
+| **201** | Routing code created successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Not authenticated |  -  |
 
 <a id="deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete"></a>
 # **deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete**
@@ -163,7 +163,7 @@ This endpoint does not need any parameter.
 
 Delete a directory line
 
-Supprimer une ligne d&#39;annuaire
+Delete a directory line
 
 ### Example
 ```java
@@ -223,9 +223,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful Response |  -  |
-| **204** | Ligne d&#39;annuaire supprimée |  -  |
-| **404** | Ligne d&#39;annuaire non trouvée |  -  |
-| **401** | Non authentifié |  -  |
+| **204** | Directory line deleted |  -  |
+| **404** | Directory line not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet"></a>
@@ -234,7 +234,7 @@ public class Example {
 
 Healthcheck Directory Service
 
-Vérifier la disponibilité du Directory Service
+Check Directory Service availability
 
 ### Example
 ```java
@@ -284,7 +284,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Service opérationnel |  -  |
+| **200** | Service operational |  -  |
 
 <a id="getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet"></a>
 # **getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet**
@@ -292,7 +292,7 @@ No authorization required
 
 Get a directory line
 
-Obtenir une ligne d&#39;annuaire identifiée par un identifiant d&#39;adressage
+Get a directory line identified by an addressing identifier
 
 ### Example
 ```java
@@ -351,9 +351,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Détails de la ligne d&#39;annuaire |  -  |
-| **404** | Ligne d&#39;annuaire non trouvée |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Directory line details |  -  |
+| **404** | Directory line not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet"></a>
@@ -362,7 +362,7 @@ public class Example {
 
 Get a directory line
 
-Obtenir une ligne d&#39;annuaire identifiée par son idInstance
+Get a directory line identified by its idInstance
 
 ### Example
 ```java
@@ -421,9 +421,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Détails de la ligne d&#39;annuaire |  -  |
-| **404** | Ligne d&#39;annuaire non trouvée |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Directory line details |  -  |
+| **404** | Directory line not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet"></a>
@@ -432,7 +432,7 @@ public class Example {
 
 Get a routing code by instance-id
 
-Obtenir un code de routage identifié par son idInstance
+Get a routing code identified by its idInstance
 
 ### Example
 ```java
@@ -491,9 +491,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Détails du code de routage |  -  |
-| **404** | Code de routage non trouvé |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Routing code details |  -  |
+| **404** | Routing code not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet"></a>
@@ -502,7 +502,7 @@ public class Example {
 
 Get a routing code by SIRET and routing identifier
 
-Consulter un code de routage identifié par SIRET et identifiant de routage
+Consult a routing code identified by SIRET and routing identifier
 
 ### Example
 ```java
@@ -563,9 +563,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Détails du code de routage |  -  |
-| **404** | Code de routage non trouvé |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Routing code details |  -  |
+| **404** | Routing code not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet"></a>
@@ -574,7 +574,7 @@ public class Example {
 
 Consult a siren (legal unit) by SIREN number
 
-Retourne les détails d&#39;une entreprise (unité légale) identifiée par son numéro SIREN
+Returns details of a company (legal unit) identified by its SIREN number
 
 ### Example
 ```java
@@ -633,9 +633,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Informations de l&#39;entreprise |  -  |
-| **404** | Entreprise non trouvée |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Company information |  -  |
+| **404** | Company not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet"></a>
@@ -644,7 +644,7 @@ public class Example {
 
 Gets a siren (legal unit) by instance ID
 
-Obtenir une entreprise (unité légale) identifiée par son idInstance
+Get a company (legal unit) identified by its idInstance
 
 ### Example
 ```java
@@ -703,9 +703,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Informations de l&#39;entreprise |  -  |
-| **404** | Entreprise non trouvée |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Company information |  -  |
+| **404** | Company not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet"></a>
@@ -714,7 +714,7 @@ public class Example {
 
 Gets a siret (facility) by SIRET number
 
-Obtenir un établissement identifié par son numéro SIRET
+Get an establishment identified by its SIRET number
 
 ### Example
 ```java
@@ -773,9 +773,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Informations de l&#39;établissement |  -  |
-| **404** | Établissement non trouvé |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Establishment information |  -  |
+| **404** | Establishment not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet"></a>
@@ -784,7 +784,7 @@ public class Example {
 
 Gets a siret (facility) by id-instance
 
-Obtenir un établissement identifié par son idInstance
+Get an establishment identified by its idInstance
 
 ### Example
 ```java
@@ -843,9 +843,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Informations de l&#39;établissement |  -  |
-| **404** | Établissement non trouvé |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Establishment information |  -  |
+| **404** | Establishment not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch"></a>
@@ -854,7 +854,7 @@ public class Example {
 
 Partially updates a directory line
 
-Mettre à jour partiellement une ligne d&#39;annuaire
+Partially update a directory line
 
 ### Example
 ```java
@@ -913,9 +913,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Ligne d&#39;annuaire mise à jour |  -  |
-| **404** | Ligne d&#39;annuaire non trouvée |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Directory line updated |  -  |
+| **404** | Directory line not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch"></a>
@@ -924,7 +924,7 @@ public class Example {
 
 Partially update a private routing code
 
-Mettre à jour partiellement un code de routage privé
+Partially update a private routing code
 
 ### Example
 ```java
@@ -983,9 +983,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Code de routage mis à jour |  -  |
-| **404** | Code de routage non trouvé |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Routing code updated |  -  |
+| **404** | Routing code not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut"></a>
@@ -994,7 +994,7 @@ public class Example {
 
 Completely update a private routing code
 
-Mettre à jour complètement un code de routage privé
+Completely update a private routing code
 
 ### Example
 ```java
@@ -1053,9 +1053,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Code de routage mis à jour |  -  |
-| **404** | Code de routage non trouvé |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Routing code updated |  -  |
+| **404** | Routing code not found |  -  |
+| **401** | Not authenticated |  -  |
 | **422** | Validation Error |  -  |
 
 <a id="searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost"></a>
@@ -1064,7 +1064,7 @@ public class Example {
 
 Search for a directory line
 
-Rechercher des lignes d&#39;annuaire selon des critères
+Search for directory lines by criteria
 
 ### Example
 ```java
@@ -1119,8 +1119,8 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Résultats de recherche |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Search results |  -  |
+| **401** | Not authenticated |  -  |
 
 <a id="searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost"></a>
 # **searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost**
@@ -1128,7 +1128,7 @@ This endpoint does not need any parameter.
 
 Search for a routing code
 
-Rechercher des codes de routage selon des critères
+Search for routing codes by criteria
 
 ### Example
 ```java
@@ -1183,8 +1183,8 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Résultats de recherche |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Search results |  -  |
+| **401** | Not authenticated |  -  |
 
 <a id="searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost"></a>
 # **searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost**
@@ -1192,7 +1192,7 @@ This endpoint does not need any parameter.
 
 SIREN search (or legal unit)
 
-Recherche multi-critères d&#39;entreprises (unités légales)
+Multi-criteria search for companies (legal units)
 
 ### Example
 ```java
@@ -1247,8 +1247,8 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Retourne une ou plusieurs entreprises |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Returns one or more companies |  -  |
+| **401** | Not authenticated |  -  |
 
 <a id="searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost"></a>
 # **searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost**
@@ -1256,7 +1256,7 @@ This endpoint does not need any parameter.
 
 Search for a SIRET (facility)
 
-Recherche multi-critères d&#39;établissements
+Multi-criteria search for establishments
 
 ### Example
 ```java
@@ -1311,6 +1311,6 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Retourne un ou plusieurs établissements |  -  |
-| **401** | Non authentifié |  -  |
+| **200** | Returns one or more establishments |  -  |
+| **401** | Not authenticated |  -  |
 

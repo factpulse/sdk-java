@@ -1,6 +1,6 @@
 /*
- * API REST FactPulse
- *  API REST pour la facturation électronique en France : Factur-X, AFNOR PDP/PA, signatures électroniques.  ## 🎯 Fonctionnalités principales  ### 📄 Génération de factures Factur-X - **Formats** : XML seul ou PDF/A-3 avec XML embarqué - **Profils** : MINIMUM, BASIC, EN16931, EXTENDED - **Normes** : EN 16931 (directive UE 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Format simplifié** : Génération à partir de SIRET + auto-enrichissement (API Chorus Pro + Recherche Entreprises)  ### ✅ Validation et conformité - **Validation XML** : Schematron (45 à 210+ règles selon profil) - **Validation PDF** : PDF/A-3, métadonnées XMP Factur-X, signatures électroniques - **VeraPDF** : Validation stricte PDF/A (146+ règles ISO 19005-3) - **Traitement asynchrone** : Support Celery pour validations lourdes (VeraPDF)  ### 📡 Intégration AFNOR PDP/PA (XP Z12-013) - **Soumission de flux** : Envoi de factures vers Plateformes de Dématérialisation Partenaires - **Recherche de flux** : Consultation des factures soumises - **Téléchargement** : Récupération des PDF/A-3 avec XML - **Directory Service** : Recherche d'entreprises (SIREN/SIRET) - **Multi-client** : Support de plusieurs configs PDP par utilisateur (stored credentials ou zero-storage)  ### ✍️ Signature électronique PDF - **Standards** : PAdES-B-B, PAdES-B-T (horodatage RFC 3161), PAdES-B-LT (archivage long terme) - **Niveaux eIDAS** : SES (auto-signé), AdES (CA commerciale), QES (PSCO) - **Validation** : Vérification intégrité cryptographique et certificats - **Génération de certificats** : Certificats X.509 auto-signés pour tests  ### 🔄 Traitement asynchrone - **Celery** : Génération, validation et signature asynchrones - **Polling** : Suivi d'état via `/taches/{id_tache}/statut` - **Pas de timeout** : Idéal pour gros fichiers ou validations lourdes  ## 🔒 Authentification  Toutes les requêtes nécessitent un **token JWT** dans le header Authorization : ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### Comment obtenir un token JWT ?  #### 🔑 Méthode 1 : API `/api/token/` (Recommandée)  **URL :** `https://www.factpulse.fr/api/token/`  Cette méthode est **recommandée** pour l'intégration dans vos applications et workflows CI/CD.  **Prérequis :** Avoir défini un mot de passe sur votre compte  **Pour les utilisateurs inscrits via email/password :** - Vous avez déjà un mot de passe, utilisez-le directement  **Pour les utilisateurs inscrits via OAuth (Google/GitHub) :** - Vous devez d'abord définir un mot de passe sur : https://www.factpulse.fr/accounts/password/set/ - Une fois le mot de passe créé, vous pourrez utiliser l'API  **Exemple de requête :** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\"   }' ```  **Paramètre optionnel `client_uid` :**  Pour sélectionner les credentials d'un client spécifique (PA/PDP, Chorus Pro, certificats de signature), ajoutez `client_uid` :  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"votre_email@example.com\",     \"password\": \"votre_mot_de_passe\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  Le `client_uid` sera inclus dans le JWT et permettra à l'API d'utiliser automatiquement : - Les credentials AFNOR/PDP configurés pour ce client - Les credentials Chorus Pro configurés pour ce client - Les certificats de signature électronique configurés pour ce client  **Réponse :** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Token d'accès (validité: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Token de rafraîchissement (validité: 7 jours) } ```  **Avantages :** - ✅ Automatisation complète (CI/CD, scripts) - ✅ Gestion programmatique des tokens - ✅ Support du refresh token pour renouveler automatiquement l'accès - ✅ Intégration facile dans n'importe quel langage/outil  #### 🖥️ Méthode 2 : Génération via Dashboard (Alternative)  **URL :** https://www.factpulse.fr/dashboard/  Cette méthode convient pour des tests rapides ou une utilisation occasionnelle via l'interface graphique.  **Fonctionnement :** - Connectez-vous au dashboard - Utilisez les boutons \"Generate Test Token\" ou \"Generate Production Token\" - Fonctionne pour **tous** les utilisateurs (OAuth et email/password), sans nécessiter de mot de passe  **Types de tokens :** - **Token Test** : Validité 24h, quota 1000 appels/jour (gratuit) - **Token Production** : Validité 7 jours, quota selon votre forfait  **Avantages :** - ✅ Rapide pour tester l'API - ✅ Aucun mot de passe requis - ✅ Interface visuelle simple  **Inconvénients :** - ❌ Nécessite une action manuelle - ❌ Pas de refresh token - ❌ Moins adapté pour l'automatisation  ### 📚 Documentation complète  Pour plus d'informations sur l'authentification et l'utilisation de l'API : https://www.factpulse.fr/documentation-api/     
+ * FactPulse REST API
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://www.factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://www.factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://www.factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://www.factpulse.fr/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://www.factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -23,17 +23,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.client.model.Beneficiaire;
-import org.openapitools.client.model.CadreDeFacturation;
-import org.openapitools.client.model.Destinataire;
-import org.openapitools.client.model.Fournisseur;
-import org.openapitools.client.model.LigneDePoste;
-import org.openapitools.client.model.LigneDeTVA;
-import org.openapitools.client.model.ModeDepot;
-import org.openapitools.client.model.MontantTotal;
-import org.openapitools.client.model.Note;
-import org.openapitools.client.model.PieceJointeComplementaire;
-import org.openapitools.client.model.References;
+import org.openapitools.client.model.InvoiceLine;
+import org.openapitools.client.model.InvoiceNote;
+import org.openapitools.client.model.InvoiceReferences;
+import org.openapitools.client.model.InvoiceTotals;
+import org.openapitools.client.model.InvoicingFramework;
+import org.openapitools.client.model.Payee;
+import org.openapitools.client.model.Recipient;
+import org.openapitools.client.model.SubmissionMode;
+import org.openapitools.client.model.SupplementaryAttachment;
+import org.openapitools.client.model.Supplier;
+import org.openapitools.client.model.VATLine;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -60,227 +60,227 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Modèle de données pour une facture destinée à être convertie en Factur-X.
+ * Data model for an invoice to be converted to Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-18T20:50:47.776075445Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T12:07:11.434193062Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FactureFacturX {
-  public static final String SERIALIZED_NAME_NUMERO_FACTURE = "numeroFacture";
-  @SerializedName(SERIALIZED_NAME_NUMERO_FACTURE)
+  public static final String SERIALIZED_NAME_INVOICE_NUMBER = "invoice_number";
+  @SerializedName(SERIALIZED_NAME_INVOICE_NUMBER)
   @javax.annotation.Nonnull
-  private String numeroFacture;
+  private String invoiceNumber;
 
-  public static final String SERIALIZED_NAME_DATE_ECHEANCE_PAIEMENT = "dateEcheancePaiement";
-  @SerializedName(SERIALIZED_NAME_DATE_ECHEANCE_PAIEMENT)
+  public static final String SERIALIZED_NAME_PAYMENT_DUE_DATE = "payment_due_date";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_DUE_DATE)
   @javax.annotation.Nonnull
-  private String dateEcheancePaiement;
+  private String paymentDueDate;
 
-  public static final String SERIALIZED_NAME_DATE_FACTURE = "dateFacture";
-  @SerializedName(SERIALIZED_NAME_DATE_FACTURE)
+  public static final String SERIALIZED_NAME_INVOICE_DATE = "invoice_date";
+  @SerializedName(SERIALIZED_NAME_INVOICE_DATE)
   @javax.annotation.Nullable
-  private String dateFacture;
+  private String invoiceDate;
 
-  public static final String SERIALIZED_NAME_MODE_DEPOT = "modeDepot";
-  @SerializedName(SERIALIZED_NAME_MODE_DEPOT)
+  public static final String SERIALIZED_NAME_SUBMISSION_MODE = "submission_mode";
+  @SerializedName(SERIALIZED_NAME_SUBMISSION_MODE)
   @javax.annotation.Nonnull
-  private ModeDepot modeDepot;
+  private SubmissionMode submissionMode;
 
-  public static final String SERIALIZED_NAME_DESTINATAIRE = "destinataire";
-  @SerializedName(SERIALIZED_NAME_DESTINATAIRE)
+  public static final String SERIALIZED_NAME_RECIPIENT = "recipient";
+  @SerializedName(SERIALIZED_NAME_RECIPIENT)
   @javax.annotation.Nonnull
-  private Destinataire destinataire;
+  private Recipient recipient;
 
-  public static final String SERIALIZED_NAME_FOURNISSEUR = "fournisseur";
-  @SerializedName(SERIALIZED_NAME_FOURNISSEUR)
+  public static final String SERIALIZED_NAME_SUPPLIER = "supplier";
+  @SerializedName(SERIALIZED_NAME_SUPPLIER)
   @javax.annotation.Nonnull
-  private Fournisseur fournisseur;
+  private Supplier supplier;
 
-  public static final String SERIALIZED_NAME_CADRE_DE_FACTURATION = "cadreDeFacturation";
-  @SerializedName(SERIALIZED_NAME_CADRE_DE_FACTURATION)
+  public static final String SERIALIZED_NAME_INVOICING_FRAMEWORK = "invoicing_framework";
+  @SerializedName(SERIALIZED_NAME_INVOICING_FRAMEWORK)
   @javax.annotation.Nonnull
-  private CadreDeFacturation cadreDeFacturation;
+  private InvoicingFramework invoicingFramework;
 
   public static final String SERIALIZED_NAME_REFERENCES = "references";
   @SerializedName(SERIALIZED_NAME_REFERENCES)
   @javax.annotation.Nonnull
-  private References references;
+  private InvoiceReferences references;
 
-  public static final String SERIALIZED_NAME_MONTANT_TOTAL = "montantTotal";
-  @SerializedName(SERIALIZED_NAME_MONTANT_TOTAL)
+  public static final String SERIALIZED_NAME_TOTALS = "totals";
+  @SerializedName(SERIALIZED_NAME_TOTALS)
   @javax.annotation.Nonnull
-  private MontantTotal montantTotal;
+  private InvoiceTotals totals;
 
-  public static final String SERIALIZED_NAME_LIGNES_DE_POSTE = "lignesDePoste";
-  @SerializedName(SERIALIZED_NAME_LIGNES_DE_POSTE)
+  public static final String SERIALIZED_NAME_INVOICE_LINES = "invoice_lines";
+  @SerializedName(SERIALIZED_NAME_INVOICE_LINES)
   @javax.annotation.Nullable
-  private List<LigneDePoste> lignesDePoste = new ArrayList<>();
+  private List<InvoiceLine> invoiceLines = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_LIGNES_DE_TVA = "lignesDeTva";
-  @SerializedName(SERIALIZED_NAME_LIGNES_DE_TVA)
+  public static final String SERIALIZED_NAME_VAT_LINES = "vat_lines";
+  @SerializedName(SERIALIZED_NAME_VAT_LINES)
   @javax.annotation.Nullable
-  private List<LigneDeTVA> lignesDeTva = new ArrayList<>();
+  private List<VATLine> vatLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NOTES = "notes";
   @SerializedName(SERIALIZED_NAME_NOTES)
   @javax.annotation.Nullable
-  private List<Note> notes = new ArrayList<>();
+  private List<InvoiceNote> notes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_COMMENTAIRE = "commentaire";
-  @SerializedName(SERIALIZED_NAME_COMMENTAIRE)
+  public static final String SERIALIZED_NAME_COMMENT = "comment";
+  @SerializedName(SERIALIZED_NAME_COMMENT)
   @javax.annotation.Nullable
-  private String commentaire;
+  private String comment;
 
-  public static final String SERIALIZED_NAME_ID_UTILISATEUR_COURANT = "idUtilisateurCourant";
-  @SerializedName(SERIALIZED_NAME_ID_UTILISATEUR_COURANT)
+  public static final String SERIALIZED_NAME_CURRENT_USER_ID = "current_user_id";
+  @SerializedName(SERIALIZED_NAME_CURRENT_USER_ID)
   @javax.annotation.Nullable
-  private Integer idUtilisateurCourant;
+  private Integer currentUserId;
 
-  public static final String SERIALIZED_NAME_PIECES_JOINTES_COMPLEMENTAIRES = "piecesJointesComplementaires";
-  @SerializedName(SERIALIZED_NAME_PIECES_JOINTES_COMPLEMENTAIRES)
+  public static final String SERIALIZED_NAME_SUPPLEMENTARY_ATTACHMENTS = "supplementary_attachments";
+  @SerializedName(SERIALIZED_NAME_SUPPLEMENTARY_ATTACHMENTS)
   @javax.annotation.Nullable
-  private List<PieceJointeComplementaire> piecesJointesComplementaires;
+  private List<SupplementaryAttachment> supplementaryAttachments;
 
-  public static final String SERIALIZED_NAME_BENEFICIAIRE = "beneficiaire";
-  @SerializedName(SERIALIZED_NAME_BENEFICIAIRE)
+  public static final String SERIALIZED_NAME_PAYEE = "payee";
+  @SerializedName(SERIALIZED_NAME_PAYEE)
   @javax.annotation.Nullable
-  private Beneficiaire beneficiaire;
+  private Payee payee;
 
   public FactureFacturX() {
   }
 
-  public FactureFacturX numeroFacture(@javax.annotation.Nonnull String numeroFacture) {
-    this.numeroFacture = numeroFacture;
+  public FactureFacturX invoiceNumber(@javax.annotation.Nonnull String invoiceNumber) {
+    this.invoiceNumber = invoiceNumber;
     return this;
   }
 
   /**
-   * Get numeroFacture
-   * @return numeroFacture
+   * Get invoiceNumber
+   * @return invoiceNumber
    */
   @javax.annotation.Nonnull
-  public String getNumeroFacture() {
-    return numeroFacture;
+  public String getInvoiceNumber() {
+    return invoiceNumber;
   }
 
-  public void setNumeroFacture(@javax.annotation.Nonnull String numeroFacture) {
-    this.numeroFacture = numeroFacture;
+  public void setInvoiceNumber(@javax.annotation.Nonnull String invoiceNumber) {
+    this.invoiceNumber = invoiceNumber;
   }
 
 
-  public FactureFacturX dateEcheancePaiement(@javax.annotation.Nonnull String dateEcheancePaiement) {
-    this.dateEcheancePaiement = dateEcheancePaiement;
+  public FactureFacturX paymentDueDate(@javax.annotation.Nonnull String paymentDueDate) {
+    this.paymentDueDate = paymentDueDate;
     return this;
   }
 
   /**
-   * Get dateEcheancePaiement
-   * @return dateEcheancePaiement
+   * Get paymentDueDate
+   * @return paymentDueDate
    */
   @javax.annotation.Nonnull
-  public String getDateEcheancePaiement() {
-    return dateEcheancePaiement;
+  public String getPaymentDueDate() {
+    return paymentDueDate;
   }
 
-  public void setDateEcheancePaiement(@javax.annotation.Nonnull String dateEcheancePaiement) {
-    this.dateEcheancePaiement = dateEcheancePaiement;
+  public void setPaymentDueDate(@javax.annotation.Nonnull String paymentDueDate) {
+    this.paymentDueDate = paymentDueDate;
   }
 
 
-  public FactureFacturX dateFacture(@javax.annotation.Nullable String dateFacture) {
-    this.dateFacture = dateFacture;
+  public FactureFacturX invoiceDate(@javax.annotation.Nullable String invoiceDate) {
+    this.invoiceDate = invoiceDate;
     return this;
   }
 
   /**
-   * Get dateFacture
-   * @return dateFacture
+   * Get invoiceDate
+   * @return invoiceDate
    */
   @javax.annotation.Nullable
-  public String getDateFacture() {
-    return dateFacture;
+  public String getInvoiceDate() {
+    return invoiceDate;
   }
 
-  public void setDateFacture(@javax.annotation.Nullable String dateFacture) {
-    this.dateFacture = dateFacture;
+  public void setInvoiceDate(@javax.annotation.Nullable String invoiceDate) {
+    this.invoiceDate = invoiceDate;
   }
 
 
-  public FactureFacturX modeDepot(@javax.annotation.Nonnull ModeDepot modeDepot) {
-    this.modeDepot = modeDepot;
+  public FactureFacturX submissionMode(@javax.annotation.Nonnull SubmissionMode submissionMode) {
+    this.submissionMode = submissionMode;
     return this;
   }
 
   /**
-   * Get modeDepot
-   * @return modeDepot
+   * Get submissionMode
+   * @return submissionMode
    */
   @javax.annotation.Nonnull
-  public ModeDepot getModeDepot() {
-    return modeDepot;
+  public SubmissionMode getSubmissionMode() {
+    return submissionMode;
   }
 
-  public void setModeDepot(@javax.annotation.Nonnull ModeDepot modeDepot) {
-    this.modeDepot = modeDepot;
+  public void setSubmissionMode(@javax.annotation.Nonnull SubmissionMode submissionMode) {
+    this.submissionMode = submissionMode;
   }
 
 
-  public FactureFacturX destinataire(@javax.annotation.Nonnull Destinataire destinataire) {
-    this.destinataire = destinataire;
+  public FactureFacturX recipient(@javax.annotation.Nonnull Recipient recipient) {
+    this.recipient = recipient;
     return this;
   }
 
   /**
-   * Get destinataire
-   * @return destinataire
+   * Get recipient
+   * @return recipient
    */
   @javax.annotation.Nonnull
-  public Destinataire getDestinataire() {
-    return destinataire;
+  public Recipient getRecipient() {
+    return recipient;
   }
 
-  public void setDestinataire(@javax.annotation.Nonnull Destinataire destinataire) {
-    this.destinataire = destinataire;
+  public void setRecipient(@javax.annotation.Nonnull Recipient recipient) {
+    this.recipient = recipient;
   }
 
 
-  public FactureFacturX fournisseur(@javax.annotation.Nonnull Fournisseur fournisseur) {
-    this.fournisseur = fournisseur;
+  public FactureFacturX supplier(@javax.annotation.Nonnull Supplier supplier) {
+    this.supplier = supplier;
     return this;
   }
 
   /**
-   * Get fournisseur
-   * @return fournisseur
+   * Get supplier
+   * @return supplier
    */
   @javax.annotation.Nonnull
-  public Fournisseur getFournisseur() {
-    return fournisseur;
+  public Supplier getSupplier() {
+    return supplier;
   }
 
-  public void setFournisseur(@javax.annotation.Nonnull Fournisseur fournisseur) {
-    this.fournisseur = fournisseur;
+  public void setSupplier(@javax.annotation.Nonnull Supplier supplier) {
+    this.supplier = supplier;
   }
 
 
-  public FactureFacturX cadreDeFacturation(@javax.annotation.Nonnull CadreDeFacturation cadreDeFacturation) {
-    this.cadreDeFacturation = cadreDeFacturation;
+  public FactureFacturX invoicingFramework(@javax.annotation.Nonnull InvoicingFramework invoicingFramework) {
+    this.invoicingFramework = invoicingFramework;
     return this;
   }
 
   /**
-   * Get cadreDeFacturation
-   * @return cadreDeFacturation
+   * Get invoicingFramework
+   * @return invoicingFramework
    */
   @javax.annotation.Nonnull
-  public CadreDeFacturation getCadreDeFacturation() {
-    return cadreDeFacturation;
+  public InvoicingFramework getInvoicingFramework() {
+    return invoicingFramework;
   }
 
-  public void setCadreDeFacturation(@javax.annotation.Nonnull CadreDeFacturation cadreDeFacturation) {
-    this.cadreDeFacturation = cadreDeFacturation;
+  public void setInvoicingFramework(@javax.annotation.Nonnull InvoicingFramework invoicingFramework) {
+    this.invoicingFramework = invoicingFramework;
   }
 
 
-  public FactureFacturX references(@javax.annotation.Nonnull References references) {
+  public FactureFacturX references(@javax.annotation.Nonnull InvoiceReferences references) {
     this.references = references;
     return this;
   }
@@ -290,94 +290,94 @@ public class FactureFacturX {
    * @return references
    */
   @javax.annotation.Nonnull
-  public References getReferences() {
+  public InvoiceReferences getReferences() {
     return references;
   }
 
-  public void setReferences(@javax.annotation.Nonnull References references) {
+  public void setReferences(@javax.annotation.Nonnull InvoiceReferences references) {
     this.references = references;
   }
 
 
-  public FactureFacturX montantTotal(@javax.annotation.Nonnull MontantTotal montantTotal) {
-    this.montantTotal = montantTotal;
+  public FactureFacturX totals(@javax.annotation.Nonnull InvoiceTotals totals) {
+    this.totals = totals;
     return this;
   }
 
   /**
-   * Get montantTotal
-   * @return montantTotal
+   * Get totals
+   * @return totals
    */
   @javax.annotation.Nonnull
-  public MontantTotal getMontantTotal() {
-    return montantTotal;
+  public InvoiceTotals getTotals() {
+    return totals;
   }
 
-  public void setMontantTotal(@javax.annotation.Nonnull MontantTotal montantTotal) {
-    this.montantTotal = montantTotal;
+  public void setTotals(@javax.annotation.Nonnull InvoiceTotals totals) {
+    this.totals = totals;
   }
 
 
-  public FactureFacturX lignesDePoste(@javax.annotation.Nullable List<LigneDePoste> lignesDePoste) {
-    this.lignesDePoste = lignesDePoste;
+  public FactureFacturX invoiceLines(@javax.annotation.Nullable List<InvoiceLine> invoiceLines) {
+    this.invoiceLines = invoiceLines;
     return this;
   }
 
-  public FactureFacturX addLignesDePosteItem(LigneDePoste lignesDePosteItem) {
-    if (this.lignesDePoste == null) {
-      this.lignesDePoste = new ArrayList<>();
+  public FactureFacturX addInvoiceLinesItem(InvoiceLine invoiceLinesItem) {
+    if (this.invoiceLines == null) {
+      this.invoiceLines = new ArrayList<>();
     }
-    this.lignesDePoste.add(lignesDePosteItem);
+    this.invoiceLines.add(invoiceLinesItem);
     return this;
   }
 
   /**
-   * Get lignesDePoste
-   * @return lignesDePoste
+   * Get invoiceLines
+   * @return invoiceLines
    */
   @javax.annotation.Nullable
-  public List<LigneDePoste> getLignesDePoste() {
-    return lignesDePoste;
+  public List<InvoiceLine> getInvoiceLines() {
+    return invoiceLines;
   }
 
-  public void setLignesDePoste(@javax.annotation.Nullable List<LigneDePoste> lignesDePoste) {
-    this.lignesDePoste = lignesDePoste;
+  public void setInvoiceLines(@javax.annotation.Nullable List<InvoiceLine> invoiceLines) {
+    this.invoiceLines = invoiceLines;
   }
 
 
-  public FactureFacturX lignesDeTva(@javax.annotation.Nullable List<LigneDeTVA> lignesDeTva) {
-    this.lignesDeTva = lignesDeTva;
+  public FactureFacturX vatLines(@javax.annotation.Nullable List<VATLine> vatLines) {
+    this.vatLines = vatLines;
     return this;
   }
 
-  public FactureFacturX addLignesDeTvaItem(LigneDeTVA lignesDeTvaItem) {
-    if (this.lignesDeTva == null) {
-      this.lignesDeTva = new ArrayList<>();
+  public FactureFacturX addVatLinesItem(VATLine vatLinesItem) {
+    if (this.vatLines == null) {
+      this.vatLines = new ArrayList<>();
     }
-    this.lignesDeTva.add(lignesDeTvaItem);
+    this.vatLines.add(vatLinesItem);
     return this;
   }
 
   /**
-   * Get lignesDeTva
-   * @return lignesDeTva
+   * Get vatLines
+   * @return vatLines
    */
   @javax.annotation.Nullable
-  public List<LigneDeTVA> getLignesDeTva() {
-    return lignesDeTva;
+  public List<VATLine> getVatLines() {
+    return vatLines;
   }
 
-  public void setLignesDeTva(@javax.annotation.Nullable List<LigneDeTVA> lignesDeTva) {
-    this.lignesDeTva = lignesDeTva;
+  public void setVatLines(@javax.annotation.Nullable List<VATLine> vatLines) {
+    this.vatLines = vatLines;
   }
 
 
-  public FactureFacturX notes(@javax.annotation.Nullable List<Note> notes) {
+  public FactureFacturX notes(@javax.annotation.Nullable List<InvoiceNote> notes) {
     this.notes = notes;
     return this;
   }
 
-  public FactureFacturX addNotesItem(Note notesItem) {
+  public FactureFacturX addNotesItem(InvoiceNote notesItem) {
     if (this.notes == null) {
       this.notes = new ArrayList<>();
     }
@@ -390,96 +390,96 @@ public class FactureFacturX {
    * @return notes
    */
   @javax.annotation.Nullable
-  public List<Note> getNotes() {
+  public List<InvoiceNote> getNotes() {
     return notes;
   }
 
-  public void setNotes(@javax.annotation.Nullable List<Note> notes) {
+  public void setNotes(@javax.annotation.Nullable List<InvoiceNote> notes) {
     this.notes = notes;
   }
 
 
-  public FactureFacturX commentaire(@javax.annotation.Nullable String commentaire) {
-    this.commentaire = commentaire;
+  public FactureFacturX comment(@javax.annotation.Nullable String comment) {
+    this.comment = comment;
     return this;
   }
 
   /**
-   * Get commentaire
-   * @return commentaire
+   * Get comment
+   * @return comment
    */
   @javax.annotation.Nullable
-  public String getCommentaire() {
-    return commentaire;
+  public String getComment() {
+    return comment;
   }
 
-  public void setCommentaire(@javax.annotation.Nullable String commentaire) {
-    this.commentaire = commentaire;
+  public void setComment(@javax.annotation.Nullable String comment) {
+    this.comment = comment;
   }
 
 
-  public FactureFacturX idUtilisateurCourant(@javax.annotation.Nullable Integer idUtilisateurCourant) {
-    this.idUtilisateurCourant = idUtilisateurCourant;
+  public FactureFacturX currentUserId(@javax.annotation.Nullable Integer currentUserId) {
+    this.currentUserId = currentUserId;
     return this;
   }
 
   /**
-   * Get idUtilisateurCourant
-   * @return idUtilisateurCourant
+   * Get currentUserId
+   * @return currentUserId
    */
   @javax.annotation.Nullable
-  public Integer getIdUtilisateurCourant() {
-    return idUtilisateurCourant;
+  public Integer getCurrentUserId() {
+    return currentUserId;
   }
 
-  public void setIdUtilisateurCourant(@javax.annotation.Nullable Integer idUtilisateurCourant) {
-    this.idUtilisateurCourant = idUtilisateurCourant;
+  public void setCurrentUserId(@javax.annotation.Nullable Integer currentUserId) {
+    this.currentUserId = currentUserId;
   }
 
 
-  public FactureFacturX piecesJointesComplementaires(@javax.annotation.Nullable List<PieceJointeComplementaire> piecesJointesComplementaires) {
-    this.piecesJointesComplementaires = piecesJointesComplementaires;
+  public FactureFacturX supplementaryAttachments(@javax.annotation.Nullable List<SupplementaryAttachment> supplementaryAttachments) {
+    this.supplementaryAttachments = supplementaryAttachments;
     return this;
   }
 
-  public FactureFacturX addPiecesJointesComplementairesItem(PieceJointeComplementaire piecesJointesComplementairesItem) {
-    if (this.piecesJointesComplementaires == null) {
-      this.piecesJointesComplementaires = new ArrayList<>();
+  public FactureFacturX addSupplementaryAttachmentsItem(SupplementaryAttachment supplementaryAttachmentsItem) {
+    if (this.supplementaryAttachments == null) {
+      this.supplementaryAttachments = new ArrayList<>();
     }
-    this.piecesJointesComplementaires.add(piecesJointesComplementairesItem);
+    this.supplementaryAttachments.add(supplementaryAttachmentsItem);
     return this;
   }
 
   /**
-   * Get piecesJointesComplementaires
-   * @return piecesJointesComplementaires
+   * Get supplementaryAttachments
+   * @return supplementaryAttachments
    */
   @javax.annotation.Nullable
-  public List<PieceJointeComplementaire> getPiecesJointesComplementaires() {
-    return piecesJointesComplementaires;
+  public List<SupplementaryAttachment> getSupplementaryAttachments() {
+    return supplementaryAttachments;
   }
 
-  public void setPiecesJointesComplementaires(@javax.annotation.Nullable List<PieceJointeComplementaire> piecesJointesComplementaires) {
-    this.piecesJointesComplementaires = piecesJointesComplementaires;
+  public void setSupplementaryAttachments(@javax.annotation.Nullable List<SupplementaryAttachment> supplementaryAttachments) {
+    this.supplementaryAttachments = supplementaryAttachments;
   }
 
 
-  public FactureFacturX beneficiaire(@javax.annotation.Nullable Beneficiaire beneficiaire) {
-    this.beneficiaire = beneficiaire;
+  public FactureFacturX payee(@javax.annotation.Nullable Payee payee) {
+    this.payee = payee;
     return this;
   }
 
   /**
-   * Get beneficiaire
-   * @return beneficiaire
+   * Get payee
+   * @return payee
    */
   @javax.annotation.Nullable
-  public Beneficiaire getBeneficiaire() {
-    return beneficiaire;
+  public Payee getPayee() {
+    return payee;
   }
 
-  public void setBeneficiaire(@javax.annotation.Nullable Beneficiaire beneficiaire) {
-    this.beneficiaire = beneficiaire;
+  public void setPayee(@javax.annotation.Nullable Payee payee) {
+    this.payee = payee;
   }
 
 
@@ -493,22 +493,22 @@ public class FactureFacturX {
       return false;
     }
     FactureFacturX factureFacturX = (FactureFacturX) o;
-    return Objects.equals(this.numeroFacture, factureFacturX.numeroFacture) &&
-        Objects.equals(this.dateEcheancePaiement, factureFacturX.dateEcheancePaiement) &&
-        Objects.equals(this.dateFacture, factureFacturX.dateFacture) &&
-        Objects.equals(this.modeDepot, factureFacturX.modeDepot) &&
-        Objects.equals(this.destinataire, factureFacturX.destinataire) &&
-        Objects.equals(this.fournisseur, factureFacturX.fournisseur) &&
-        Objects.equals(this.cadreDeFacturation, factureFacturX.cadreDeFacturation) &&
+    return Objects.equals(this.invoiceNumber, factureFacturX.invoiceNumber) &&
+        Objects.equals(this.paymentDueDate, factureFacturX.paymentDueDate) &&
+        Objects.equals(this.invoiceDate, factureFacturX.invoiceDate) &&
+        Objects.equals(this.submissionMode, factureFacturX.submissionMode) &&
+        Objects.equals(this.recipient, factureFacturX.recipient) &&
+        Objects.equals(this.supplier, factureFacturX.supplier) &&
+        Objects.equals(this.invoicingFramework, factureFacturX.invoicingFramework) &&
         Objects.equals(this.references, factureFacturX.references) &&
-        Objects.equals(this.montantTotal, factureFacturX.montantTotal) &&
-        Objects.equals(this.lignesDePoste, factureFacturX.lignesDePoste) &&
-        Objects.equals(this.lignesDeTva, factureFacturX.lignesDeTva) &&
+        Objects.equals(this.totals, factureFacturX.totals) &&
+        Objects.equals(this.invoiceLines, factureFacturX.invoiceLines) &&
+        Objects.equals(this.vatLines, factureFacturX.vatLines) &&
         Objects.equals(this.notes, factureFacturX.notes) &&
-        Objects.equals(this.commentaire, factureFacturX.commentaire) &&
-        Objects.equals(this.idUtilisateurCourant, factureFacturX.idUtilisateurCourant) &&
-        Objects.equals(this.piecesJointesComplementaires, factureFacturX.piecesJointesComplementaires) &&
-        Objects.equals(this.beneficiaire, factureFacturX.beneficiaire);
+        Objects.equals(this.comment, factureFacturX.comment) &&
+        Objects.equals(this.currentUserId, factureFacturX.currentUserId) &&
+        Objects.equals(this.supplementaryAttachments, factureFacturX.supplementaryAttachments) &&
+        Objects.equals(this.payee, factureFacturX.payee);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -517,7 +517,7 @@ public class FactureFacturX {
 
   @Override
   public int hashCode() {
-    return Objects.hash(numeroFacture, dateEcheancePaiement, dateFacture, modeDepot, destinataire, fournisseur, cadreDeFacturation, references, montantTotal, lignesDePoste, lignesDeTva, notes, commentaire, idUtilisateurCourant, piecesJointesComplementaires, beneficiaire);
+    return Objects.hash(invoiceNumber, paymentDueDate, invoiceDate, submissionMode, recipient, supplier, invoicingFramework, references, totals, invoiceLines, vatLines, notes, comment, currentUserId, supplementaryAttachments, payee);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -531,22 +531,22 @@ public class FactureFacturX {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FactureFacturX {\n");
-    sb.append("    numeroFacture: ").append(toIndentedString(numeroFacture)).append("\n");
-    sb.append("    dateEcheancePaiement: ").append(toIndentedString(dateEcheancePaiement)).append("\n");
-    sb.append("    dateFacture: ").append(toIndentedString(dateFacture)).append("\n");
-    sb.append("    modeDepot: ").append(toIndentedString(modeDepot)).append("\n");
-    sb.append("    destinataire: ").append(toIndentedString(destinataire)).append("\n");
-    sb.append("    fournisseur: ").append(toIndentedString(fournisseur)).append("\n");
-    sb.append("    cadreDeFacturation: ").append(toIndentedString(cadreDeFacturation)).append("\n");
+    sb.append("    invoiceNumber: ").append(toIndentedString(invoiceNumber)).append("\n");
+    sb.append("    paymentDueDate: ").append(toIndentedString(paymentDueDate)).append("\n");
+    sb.append("    invoiceDate: ").append(toIndentedString(invoiceDate)).append("\n");
+    sb.append("    submissionMode: ").append(toIndentedString(submissionMode)).append("\n");
+    sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
+    sb.append("    supplier: ").append(toIndentedString(supplier)).append("\n");
+    sb.append("    invoicingFramework: ").append(toIndentedString(invoicingFramework)).append("\n");
     sb.append("    references: ").append(toIndentedString(references)).append("\n");
-    sb.append("    montantTotal: ").append(toIndentedString(montantTotal)).append("\n");
-    sb.append("    lignesDePoste: ").append(toIndentedString(lignesDePoste)).append("\n");
-    sb.append("    lignesDeTva: ").append(toIndentedString(lignesDeTva)).append("\n");
+    sb.append("    totals: ").append(toIndentedString(totals)).append("\n");
+    sb.append("    invoiceLines: ").append(toIndentedString(invoiceLines)).append("\n");
+    sb.append("    vatLines: ").append(toIndentedString(vatLines)).append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
-    sb.append("    commentaire: ").append(toIndentedString(commentaire)).append("\n");
-    sb.append("    idUtilisateurCourant: ").append(toIndentedString(idUtilisateurCourant)).append("\n");
-    sb.append("    piecesJointesComplementaires: ").append(toIndentedString(piecesJointesComplementaires)).append("\n");
-    sb.append("    beneficiaire: ").append(toIndentedString(beneficiaire)).append("\n");
+    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
+    sb.append("    currentUserId: ").append(toIndentedString(currentUserId)).append("\n");
+    sb.append("    supplementaryAttachments: ").append(toIndentedString(supplementaryAttachments)).append("\n");
+    sb.append("    payee: ").append(toIndentedString(payee)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -568,10 +568,10 @@ public class FactureFacturX {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "dateFacture", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal", "lignesDePoste", "lignesDeTva", "notes", "commentaire", "idUtilisateurCourant", "piecesJointesComplementaires", "beneficiaire"));
+    openapiFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "invoice_date", "submission_mode", "recipient", "supplier", "invoicing_framework", "references", "totals", "invoice_lines", "vat_lines", "notes", "comment", "current_user_id", "supplementary_attachments", "payee"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("numeroFacture", "dateEcheancePaiement", "modeDepot", "destinataire", "fournisseur", "cadreDeFacturation", "references", "montantTotal"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "submission_mode", "recipient", "supplier", "invoicing_framework", "references", "totals"));
   }
 
   /**
@@ -602,52 +602,52 @@ public class FactureFacturX {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("numeroFacture").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `numeroFacture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("numeroFacture").toString()));
+      if (!jsonObj.get("invoice_number").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoice_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoice_number").toString()));
       }
-      if (!jsonObj.get("dateEcheancePaiement").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `dateEcheancePaiement` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dateEcheancePaiement").toString()));
+      if (!jsonObj.get("payment_due_date").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `payment_due_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_due_date").toString()));
       }
-      if ((jsonObj.get("dateFacture") != null && !jsonObj.get("dateFacture").isJsonNull()) && !jsonObj.get("dateFacture").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `dateFacture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dateFacture").toString()));
+      if ((jsonObj.get("invoice_date") != null && !jsonObj.get("invoice_date").isJsonNull()) && !jsonObj.get("invoice_date").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoice_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoice_date").toString()));
       }
-      // validate the required field `modeDepot`
-      ModeDepot.validateJsonElement(jsonObj.get("modeDepot"));
-      // validate the required field `destinataire`
-      Destinataire.validateJsonElement(jsonObj.get("destinataire"));
-      // validate the required field `fournisseur`
-      Fournisseur.validateJsonElement(jsonObj.get("fournisseur"));
-      // validate the required field `cadreDeFacturation`
-      CadreDeFacturation.validateJsonElement(jsonObj.get("cadreDeFacturation"));
+      // validate the required field `submission_mode`
+      SubmissionMode.validateJsonElement(jsonObj.get("submission_mode"));
+      // validate the required field `recipient`
+      Recipient.validateJsonElement(jsonObj.get("recipient"));
+      // validate the required field `supplier`
+      Supplier.validateJsonElement(jsonObj.get("supplier"));
+      // validate the required field `invoicing_framework`
+      InvoicingFramework.validateJsonElement(jsonObj.get("invoicing_framework"));
       // validate the required field `references`
-      References.validateJsonElement(jsonObj.get("references"));
-      // validate the required field `montantTotal`
-      MontantTotal.validateJsonElement(jsonObj.get("montantTotal"));
-      if (jsonObj.get("lignesDePoste") != null && !jsonObj.get("lignesDePoste").isJsonNull()) {
-        JsonArray jsonArraylignesDePoste = jsonObj.getAsJsonArray("lignesDePoste");
-        if (jsonArraylignesDePoste != null) {
+      InvoiceReferences.validateJsonElement(jsonObj.get("references"));
+      // validate the required field `totals`
+      InvoiceTotals.validateJsonElement(jsonObj.get("totals"));
+      if (jsonObj.get("invoice_lines") != null && !jsonObj.get("invoice_lines").isJsonNull()) {
+        JsonArray jsonArrayinvoiceLines = jsonObj.getAsJsonArray("invoice_lines");
+        if (jsonArrayinvoiceLines != null) {
           // ensure the json data is an array
-          if (!jsonObj.get("lignesDePoste").isJsonArray()) {
-            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `lignesDePoste` to be an array in the JSON string but got `%s`", jsonObj.get("lignesDePoste").toString()));
+          if (!jsonObj.get("invoice_lines").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoice_lines` to be an array in the JSON string but got `%s`", jsonObj.get("invoice_lines").toString()));
           }
 
-          // validate the optional field `lignesDePoste` (array)
-          for (int i = 0; i < jsonArraylignesDePoste.size(); i++) {
-            LigneDePoste.validateJsonElement(jsonArraylignesDePoste.get(i));
+          // validate the optional field `invoice_lines` (array)
+          for (int i = 0; i < jsonArrayinvoiceLines.size(); i++) {
+            InvoiceLine.validateJsonElement(jsonArrayinvoiceLines.get(i));
           };
         }
       }
-      if (jsonObj.get("lignesDeTva") != null && !jsonObj.get("lignesDeTva").isJsonNull()) {
-        JsonArray jsonArraylignesDeTva = jsonObj.getAsJsonArray("lignesDeTva");
-        if (jsonArraylignesDeTva != null) {
+      if (jsonObj.get("vat_lines") != null && !jsonObj.get("vat_lines").isJsonNull()) {
+        JsonArray jsonArrayvatLines = jsonObj.getAsJsonArray("vat_lines");
+        if (jsonArrayvatLines != null) {
           // ensure the json data is an array
-          if (!jsonObj.get("lignesDeTva").isJsonArray()) {
-            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `lignesDeTva` to be an array in the JSON string but got `%s`", jsonObj.get("lignesDeTva").toString()));
+          if (!jsonObj.get("vat_lines").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `vat_lines` to be an array in the JSON string but got `%s`", jsonObj.get("vat_lines").toString()));
           }
 
-          // validate the optional field `lignesDeTva` (array)
-          for (int i = 0; i < jsonArraylignesDeTva.size(); i++) {
-            LigneDeTVA.validateJsonElement(jsonArraylignesDeTva.get(i));
+          // validate the optional field `vat_lines` (array)
+          for (int i = 0; i < jsonArrayvatLines.size(); i++) {
+            VATLine.validateJsonElement(jsonArrayvatLines.get(i));
           };
         }
       }
@@ -661,30 +661,30 @@ public class FactureFacturX {
 
           // validate the optional field `notes` (array)
           for (int i = 0; i < jsonArraynotes.size(); i++) {
-            Note.validateJsonElement(jsonArraynotes.get(i));
+            InvoiceNote.validateJsonElement(jsonArraynotes.get(i));
           };
         }
       }
-      if ((jsonObj.get("commentaire") != null && !jsonObj.get("commentaire").isJsonNull()) && !jsonObj.get("commentaire").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `commentaire` to be a primitive type in the JSON string but got `%s`", jsonObj.get("commentaire").toString()));
+      if ((jsonObj.get("comment") != null && !jsonObj.get("comment").isJsonNull()) && !jsonObj.get("comment").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("comment").toString()));
       }
-      if (jsonObj.get("piecesJointesComplementaires") != null && !jsonObj.get("piecesJointesComplementaires").isJsonNull()) {
-        JsonArray jsonArraypiecesJointesComplementaires = jsonObj.getAsJsonArray("piecesJointesComplementaires");
-        if (jsonArraypiecesJointesComplementaires != null) {
+      if (jsonObj.get("supplementary_attachments") != null && !jsonObj.get("supplementary_attachments").isJsonNull()) {
+        JsonArray jsonArraysupplementaryAttachments = jsonObj.getAsJsonArray("supplementary_attachments");
+        if (jsonArraysupplementaryAttachments != null) {
           // ensure the json data is an array
-          if (!jsonObj.get("piecesJointesComplementaires").isJsonArray()) {
-            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `piecesJointesComplementaires` to be an array in the JSON string but got `%s`", jsonObj.get("piecesJointesComplementaires").toString()));
+          if (!jsonObj.get("supplementary_attachments").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `supplementary_attachments` to be an array in the JSON string but got `%s`", jsonObj.get("supplementary_attachments").toString()));
           }
 
-          // validate the optional field `piecesJointesComplementaires` (array)
-          for (int i = 0; i < jsonArraypiecesJointesComplementaires.size(); i++) {
-            PieceJointeComplementaire.validateJsonElement(jsonArraypiecesJointesComplementaires.get(i));
+          // validate the optional field `supplementary_attachments` (array)
+          for (int i = 0; i < jsonArraysupplementaryAttachments.size(); i++) {
+            SupplementaryAttachment.validateJsonElement(jsonArraysupplementaryAttachments.get(i));
           };
         }
       }
-      // validate the optional field `beneficiaire`
-      if (jsonObj.get("beneficiaire") != null && !jsonObj.get("beneficiaire").isJsonNull()) {
-        Beneficiaire.validateJsonElement(jsonObj.get("beneficiaire"));
+      // validate the optional field `payee`
+      if (jsonObj.get("payee") != null && !jsonObj.get("payee").isJsonNull()) {
+        Payee.validateJsonElement(jsonObj.get("payee"));
       }
   }
 

@@ -2,15 +2,15 @@
 
 # Destination
 
-Configuration de la destination (Chorus Pro ou AFNOR)
+Destination configuration (Chorus Pro or AFNOR)
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
-|**credentials** | [**CredentialsAFNOR**](CredentialsAFNOR.md) |  |  [optional] |
-|**flowSyntax** | [**FlowSyntaxEnum**](#FlowSyntaxEnum) | Syntaxe du flux à envoyer |  [optional] |
+|**credentials** | [**AFNORCredentials**](AFNORCredentials.md) |  |  [optional] |
+|**flowSyntax** | [**FlowSyntaxEnum**](#FlowSyntaxEnum) | Flow syntax to send |  [optional] |
 |**trackingId** | **String** |  |  [optional] |
 
 
