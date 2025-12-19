@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Information about a generated certificate.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class CertificateInfoResponse {
   public static final String SERIALIZED_NAME_CN = "cn";
   @SerializedName(SERIALIZED_NAME_CN)

@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Defines the invoicing framework.  - invoicing_framework_code: Chorus Pro code (A1, A2, A9, A12) - used for B2G - operation_nature: Operation nature (B1, S1, M1, etc.) - priority for Factur-X  If operation_nature is provided, it will be used directly in Factur-X XML (BT-23). Otherwise, the code will be derived from invoicing_framework_code via automatic mapping.  Example:     &gt;&gt;&gt; framework &#x3D; InvoicingFramework(     ...     invoicing_framework_code&#x3D;InvoicingFrameworkCode.A1_SUPPLIER_INVOICE,     ...     operation_nature&#x3D;OperationNature.GOODS  # Forces B1 instead of S1     ... )
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class InvoicingFramework {
   public static final String SERIALIZED_NAME_INVOICING_FRAMEWORK_CODE = "invoicing_framework_code";
   @SerializedName(SERIALIZED_NAME_INVOICING_FRAMEWORK_CODE)

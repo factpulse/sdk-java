@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don&#39;t want to store their credentials
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
   public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "piste_client_id";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)

@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Invoice received from a supplier via PDP/PA.  This model contains essential metadata extracted from incoming invoices, regardless of their source format (CII, UBL, Factur-X).  Amounts are Decimal in Python but will be serialized as strings in JSON to preserve monetary precision.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class IncomingInvoice {
   public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)

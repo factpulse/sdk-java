@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to generate a self-signed X.509 test certificate.  WARNING: This certificate is intended for TESTING only. DO NOT use in production! eIDAS level: SES (Simple Electronic Signature)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class GenerateCertificateRequest {
   public static final String SERIALIZED_NAME_CN = "cn";
   @SerializedName(SERIALIZED_NAME_CN)

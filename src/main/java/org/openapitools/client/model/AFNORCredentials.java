@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Optional AFNOR PDP credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this &#x60;credentials&#x60; field in the payload. PDP credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload (zero-storage):** Provide all required fields below. Useful for tests or third-party integrations.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class AFNORCredentials {
   public static final String SERIALIZED_NAME_CLIENT_ID = "clientId";
   @SerializedName(SERIALIZED_NAME_CLIENT_ID)

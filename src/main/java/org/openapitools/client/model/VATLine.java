@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Represents a VAT breakdown line by rate.  For exemptions (categories E, AE, K, G, O), the fields &#x60;exemption_reason&#x60; and &#x60;vatex_code&#x60; are required per EN16931.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:07:42.340672735Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class VATLine {
   public static final String SERIALIZED_NAME_TAXABLE_AMOUNT = "taxable_amount";
   @SerializedName(SERIALIZED_NAME_TAXABLE_AMOUNT)
