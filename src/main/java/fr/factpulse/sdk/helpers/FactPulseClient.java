@@ -673,7 +673,7 @@ public class FactPulseClient {
             return gson.fromJson(response.body().string(), type);
         } catch (IOException e) { throw new FactPulseValidationException("Error: " + e.getMessage()); }
     }
-    public Map<String, Object> genererCertificatTest() throws FactPulseException { return genererCertificatTest(null); }
+    public Map<String, Object> generateTestCertificate() throws FactPulseException { return generateTestCertificate(null); }
 
     // =========================================================================
     // Complete workflow

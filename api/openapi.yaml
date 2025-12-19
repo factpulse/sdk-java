@@ -449,7 +449,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TaskStatus"
+                $ref: "#/components/schemas/AsyncTaskStatus"
           description: Current task state
         "422":
           content:
@@ -3188,7 +3188,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TaskStatus"
+                $ref: "#/components/schemas/AsyncTaskStatus"
           description: Successful Response
         "422":
           content:
@@ -3397,6 +3397,34 @@ components:
       - EXTENDED
       title: APIProfile
       type: string
+    AsyncTaskStatus:
+      description: |-
+        Complete description of an async task status.
+
+        The `status` field indicates the Celery state of the task.
+        When `status="SUCCESS"`, check `result.status` for the business result ("SUCCESS" or "ERROR").
+      example:
+        result:
+          key: ""
+        taskId: taskId
+        status: ""
+      properties:
+        taskId:
+          description: Unique task identifier
+          title: Taskid
+          type: string
+        status:
+          allOf:
+          - $ref: "#/components/schemas/CeleryStatus"
+          description: "Celery task status (PENDING, STARTED, SUCCESS, FAILURE, RETRY)"
+        result:
+          additionalProperties: true
+          nullable: true
+          type: object
+      required:
+      - status
+      - taskId
+      title: AsyncTaskStatus
     Body_generate_invoice_api_v1_processing_generate_invoice_post:
       properties:
         invoice_data:
@@ -5324,34 +5352,6 @@ components:
       required:
       - taskId
       title: TaskResponse
-    TaskStatus:
-      description: |-
-        Complete description of an async task status.
-
-        The `status` field indicates the Celery state of the task.
-        When `status="SUCCESS"`, check `result.status` for the business result ("SUCCESS" or "ERROR").
-      example:
-        result:
-          key: ""
-        taskId: taskId
-        status: ""
-      properties:
-        taskId:
-          description: Unique task identifier
-          title: Taskid
-          type: string
-        status:
-          allOf:
-          - $ref: "#/components/schemas/CeleryStatus"
-          description: "Celery task status (PENDING, STARTED, SUCCESS, FAILURE, RETRY)"
-        result:
-          additionalProperties: true
-          nullable: true
-          type: object
-      required:
-      - status
-      - taskId
-      title: TaskStatus
     ValidationError:
       example:
         msg: msg

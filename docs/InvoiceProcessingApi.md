@@ -166,7 +166,7 @@ public class Example {
 
 <a id="getTaskStatusApiV1ProcessingTasksTaskIdStatusGet"></a>
 # **getTaskStatusApiV1ProcessingTasksTaskIdStatusGet**
-> TaskStatus getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId)
+> AsyncTaskStatus getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId)
 
 Get task generation status
 
@@ -194,7 +194,7 @@ public class Example {
     InvoiceProcessingApi apiInstance = new InvoiceProcessingApi(defaultClient);
     String taskId = "taskId_example"; // String | 
     try {
-      TaskStatus result = apiInstance.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId);
+      AsyncTaskStatus result = apiInstance.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InvoiceProcessingApi#getTaskStatusApiV1ProcessingTasksTaskIdStatusGet");
@@ -215,7 +215,7 @@ public class Example {
 
 ### Return type
 
-[**TaskStatus**](TaskStatus.md)
+[**AsyncTaskStatus**](AsyncTaskStatus.md)
 
 ### Authorization
 

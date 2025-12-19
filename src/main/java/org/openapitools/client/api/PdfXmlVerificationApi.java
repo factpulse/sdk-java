@@ -28,10 +28,10 @@ import java.io.IOException;
 
 
 import org.openapitools.client.model.APIError;
+import org.openapitools.client.model.AsyncTaskStatus;
 import java.io.File;
 import org.openapitools.client.model.HTTPValidationError;
 import org.openapitools.client.model.TaskResponse;
-import org.openapitools.client.model.TaskStatus;
 import org.openapitools.client.model.VerificationSuccessResponse;
 
 import java.lang.reflect.Type;
@@ -151,7 +151,7 @@ public class PdfXmlVerificationApi {
      * Get status of an asynchronous verification
      * Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - &#x60;PENDING&#x60;: Task waiting in queue - &#x60;STARTED&#x60;: Task currently running - &#x60;SUCCESS&#x60;: Task completed successfully (see &#x60;result&#x60;) - &#x60;FAILURE&#x60;: System error (unhandled exception)  **Note:** The &#x60;result.status&#x60; field can be \&quot;SUCCESS\&quot; or \&quot;ERROR\&quot; independently of Celery status (which will always be SUCCESS if the task ran).
      * @param taskId  (required)
-     * @return TaskStatus
+     * @return AsyncTaskStatus
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -161,8 +161,8 @@ public class PdfXmlVerificationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public TaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(@javax.annotation.Nonnull String taskId) throws ApiException {
-        ApiResponse<TaskStatus> localVarResp = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetWithHttpInfo(taskId);
+    public AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(@javax.annotation.Nonnull String taskId) throws ApiException {
+        ApiResponse<AsyncTaskStatus> localVarResp = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetWithHttpInfo(taskId);
         return localVarResp.getData();
     }
 
@@ -170,7 +170,7 @@ public class PdfXmlVerificationApi {
      * Get status of an asynchronous verification
      * Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - &#x60;PENDING&#x60;: Task waiting in queue - &#x60;STARTED&#x60;: Task currently running - &#x60;SUCCESS&#x60;: Task completed successfully (see &#x60;result&#x60;) - &#x60;FAILURE&#x60;: System error (unhandled exception)  **Note:** The &#x60;result.status&#x60; field can be \&quot;SUCCESS\&quot; or \&quot;ERROR\&quot; independently of Celery status (which will always be SUCCESS if the task ran).
      * @param taskId  (required)
-     * @return ApiResponse&lt;TaskStatus&gt;
+     * @return ApiResponse&lt;AsyncTaskStatus&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -180,9 +180,9 @@ public class PdfXmlVerificationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TaskStatus> getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetWithHttpInfo(@javax.annotation.Nonnull String taskId) throws ApiException {
+    public ApiResponse<AsyncTaskStatus> getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetWithHttpInfo(@javax.annotation.Nonnull String taskId) throws ApiException {
         okhttp3.Call localVarCall = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetValidateBeforeCall(taskId, null);
-        Type localVarReturnType = new TypeToken<TaskStatus>(){}.getType();
+        Type localVarReturnType = new TypeToken<AsyncTaskStatus>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -201,10 +201,10 @@ public class PdfXmlVerificationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetAsync(@javax.annotation.Nonnull String taskId, final ApiCallback<TaskStatus> _callback) throws ApiException {
+    public okhttp3.Call getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetAsync(@javax.annotation.Nonnull String taskId, final ApiCallback<AsyncTaskStatus> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetValidateBeforeCall(taskId, _callback);
-        Type localVarReturnType = new TypeToken<TaskStatus>(){}.getType();
+        Type localVarReturnType = new TypeToken<AsyncTaskStatus>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -282,7 +282,7 @@ public class PdfXmlVerificationApi {
      * Get status of an asynchronous verification
      * Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - &#x60;PENDING&#x60;: Task waiting in queue - &#x60;STARTED&#x60;: Task currently running - &#x60;SUCCESS&#x60;: Task completed successfully (see &#x60;result&#x60;) - &#x60;FAILURE&#x60;: System error (unhandled exception)  **Note:** The &#x60;result.status&#x60; field can be \&quot;SUCCESS\&quot; or \&quot;ERROR\&quot; independently of Celery status (which will always be SUCCESS if the task ran).
      * @param taskId  (required)
-     * @return TaskStatus
+     * @return AsyncTaskStatus
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -292,8 +292,8 @@ public class PdfXmlVerificationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public TaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(@javax.annotation.Nonnull String taskId) throws ApiException {
-        ApiResponse<TaskStatus> localVarResp = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0WithHttpInfo(taskId);
+    public AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(@javax.annotation.Nonnull String taskId) throws ApiException {
+        ApiResponse<AsyncTaskStatus> localVarResp = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0WithHttpInfo(taskId);
         return localVarResp.getData();
     }
 
@@ -301,7 +301,7 @@ public class PdfXmlVerificationApi {
      * Get status of an asynchronous verification
      * Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - &#x60;PENDING&#x60;: Task waiting in queue - &#x60;STARTED&#x60;: Task currently running - &#x60;SUCCESS&#x60;: Task completed successfully (see &#x60;result&#x60;) - &#x60;FAILURE&#x60;: System error (unhandled exception)  **Note:** The &#x60;result.status&#x60; field can be \&quot;SUCCESS\&quot; or \&quot;ERROR\&quot; independently of Celery status (which will always be SUCCESS if the task ran).
      * @param taskId  (required)
-     * @return ApiResponse&lt;TaskStatus&gt;
+     * @return ApiResponse&lt;AsyncTaskStatus&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -311,9 +311,9 @@ public class PdfXmlVerificationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TaskStatus> getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0WithHttpInfo(@javax.annotation.Nonnull String taskId) throws ApiException {
+    public ApiResponse<AsyncTaskStatus> getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0WithHttpInfo(@javax.annotation.Nonnull String taskId) throws ApiException {
         okhttp3.Call localVarCall = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0ValidateBeforeCall(taskId, null);
-        Type localVarReturnType = new TypeToken<TaskStatus>(){}.getType();
+        Type localVarReturnType = new TypeToken<AsyncTaskStatus>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -332,10 +332,10 @@ public class PdfXmlVerificationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0Async(@javax.annotation.Nonnull String taskId, final ApiCallback<TaskStatus> _callback) throws ApiException {
+    public okhttp3.Call getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0Async(@javax.annotation.Nonnull String taskId, final ApiCallback<AsyncTaskStatus> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0ValidateBeforeCall(taskId, _callback);
-        Type localVarReturnType = new TypeToken<TaskStatus>(){}.getType();
+        Type localVarReturnType = new TypeToken<AsyncTaskStatus>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

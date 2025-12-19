@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to search submitted flows.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:49:35.221728047Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:58:31.366596014Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class SearchFlowRequest {
   public static final String SERIALIZED_NAME_UPDATED_AFTER = "updated_after";
   @SerializedName(SERIALIZED_NAME_UPDATED_AFTER)

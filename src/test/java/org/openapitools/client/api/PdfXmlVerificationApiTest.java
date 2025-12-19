@@ -15,10 +15,10 @@ package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.APIError;
+import org.openapitools.client.model.AsyncTaskStatus;
 import java.io.File;
 import org.openapitools.client.model.HTTPValidationError;
 import org.openapitools.client.model.TaskResponse;
-import org.openapitools.client.model.TaskStatus;
 import org.openapitools.client.model.VerificationSuccessResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -46,7 +46,7 @@ public class PdfXmlVerificationApiTest {
     @Test
     public void getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGetTest() throws ApiException {
         String taskId = null;
-        TaskStatus response = api.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId);
+        AsyncTaskStatus response = api.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId);
         // TODO: test validations
     }
 
@@ -60,7 +60,7 @@ public class PdfXmlVerificationApiTest {
     @Test
     public void getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0Test() throws ApiException {
         String taskId = null;
-        TaskStatus response = api.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(taskId);
+        AsyncTaskStatus response = api.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(taskId);
         // TODO: test validations
     }
 

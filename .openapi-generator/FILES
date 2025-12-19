@@ -18,6 +18,7 @@ docs/AfnorPdpPaDirectoryServiceApi.md
 docs/AfnorPdpPaFlowServiceApi.md
 docs/AllowanceReasonCode.md
 docs/AmountDue.md
+docs/AsyncTaskStatus.md
 docs/BoundingBoxSchema.md
 docs/CeleryStatus.md
 docs/CertificateInfoResponse.md
@@ -107,7 +108,6 @@ docs/SubmitVatAmount.md
 docs/SupplementaryAttachment.md
 docs/Supplier.md
 docs/TaskResponse.md
-docs/TaskStatus.md
 docs/TaxableAmount.md
 docs/TotalGrossAmount.md
 docs/TotalNetAmount.md
@@ -170,6 +170,7 @@ src/main/java/org/openapitools/client/model/AbstractOpenApiSchema.java
 src/main/java/org/openapitools/client/model/AcknowledgmentStatus.java
 src/main/java/org/openapitools/client/model/AllowanceReasonCode.java
 src/main/java/org/openapitools/client/model/AmountDue.java
+src/main/java/org/openapitools/client/model/AsyncTaskStatus.java
 src/main/java/org/openapitools/client/model/BoundingBoxSchema.java
 src/main/java/org/openapitools/client/model/CeleryStatus.java
 src/main/java/org/openapitools/client/model/CertificateInfoResponse.java
@@ -255,7 +256,6 @@ src/main/java/org/openapitools/client/model/SubmitVatAmount.java
 src/main/java/org/openapitools/client/model/SupplementaryAttachment.java
 src/main/java/org/openapitools/client/model/Supplier.java
 src/main/java/org/openapitools/client/model/TaskResponse.java
-src/main/java/org/openapitools/client/model/TaskStatus.java
 src/main/java/org/openapitools/client/model/TaxableAmount.java
 src/main/java/org/openapitools/client/model/TotalGrossAmount.java
 src/main/java/org/openapitools/client/model/TotalNetAmount.java
@@ -290,6 +290,7 @@ src/test/java/org/openapitools/client/model/APIProfileTest.java
 src/test/java/org/openapitools/client/model/AcknowledgmentStatusTest.java
 src/test/java/org/openapitools/client/model/AllowanceReasonCodeTest.java
 src/test/java/org/openapitools/client/model/AmountDueTest.java
+src/test/java/org/openapitools/client/model/AsyncTaskStatusTest.java
 src/test/java/org/openapitools/client/model/BoundingBoxSchemaTest.java
 src/test/java/org/openapitools/client/model/CeleryStatusTest.java
 src/test/java/org/openapitools/client/model/CertificateInfoResponseTest.java
@@ -375,7 +376,6 @@ src/test/java/org/openapitools/client/model/SubmitVatAmountTest.java
 src/test/java/org/openapitools/client/model/SupplementaryAttachmentTest.java
 src/test/java/org/openapitools/client/model/SupplierTest.java
 src/test/java/org/openapitools/client/model/TaskResponseTest.java
-src/test/java/org/openapitools/client/model/TaskStatusTest.java
 src/test/java/org/openapitools/client/model/TaxableAmountTest.java
 src/test/java/org/openapitools/client/model/TotalGrossAmountTest.java
 src/test/java/org/openapitools/client/model/TotalNetAmountTest.java

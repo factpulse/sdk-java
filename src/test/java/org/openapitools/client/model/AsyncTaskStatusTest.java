@@ -28,17 +28,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for TaskStatus
+ * Model tests for AsyncTaskStatus
  */
-public class TaskStatusTest {
-    private final TaskStatus model = new TaskStatus();
+public class AsyncTaskStatusTest {
+    private final AsyncTaskStatus model = new AsyncTaskStatus();
 
     /**
-     * Model tests for TaskStatus
+     * Model tests for AsyncTaskStatus
      */
     @Test
-    public void testTaskStatus() {
-        // TODO: test TaskStatus
+    public void testAsyncTaskStatus() {
+        // TODO: test AsyncTaskStatus
     }
 
     /**

@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Immediate response after submitting an async task.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:49:35.221728047Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:58:31.366596014Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
 public class TaskResponse {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
   @SerializedName(SERIALIZED_NAME_TASK_ID)

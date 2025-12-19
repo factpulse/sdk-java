@@ -15,6 +15,7 @@ package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.APIProfile;
+import org.openapitools.client.model.AsyncTaskStatus;
 import java.io.File;
 import org.openapitools.client.model.GenerateCertificateRequest;
 import org.openapitools.client.model.GenerateCertificateResponse;
@@ -24,7 +25,6 @@ import org.openapitools.client.model.PDFValidationResultAPI;
 import org.openapitools.client.model.SubmitCompleteInvoiceRequest;
 import org.openapitools.client.model.SubmitCompleteInvoiceResponse;
 import org.openapitools.client.model.TaskResponse;
-import org.openapitools.client.model.TaskStatus;
 import org.openapitools.client.model.ValidationErrorResponse;
 import org.openapitools.client.model.ValidationSuccessResponse;
 import org.junit.jupiter.api.Disabled;
@@ -85,7 +85,7 @@ public class InvoiceProcessingApiTest {
     @Test
     public void getTaskStatusApiV1ProcessingTasksTaskIdStatusGetTest() throws ApiException {
         String taskId = null;
-        TaskStatus response = api.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId);
+        AsyncTaskStatus response = api.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId);
         // TODO: test validations
     }
 

@@ -14,7 +14,7 @@ All URIs are relative to *http://localhost*
 
 <a id="getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet"></a>
 # **getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet**
-> TaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId)
+> AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId)
 
 Get status of an asynchronous verification
 
@@ -42,7 +42,7 @@ public class Example {
     PdfXmlVerificationApi apiInstance = new PdfXmlVerificationApi(defaultClient);
     String taskId = "taskId_example"; // String | 
     try {
-      TaskStatus result = apiInstance.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId);
+      AsyncTaskStatus result = apiInstance.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PdfXmlVerificationApi#getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet");
@@ -63,7 +63,7 @@ public class Example {
 
 ### Return type
 
-[**TaskStatus**](TaskStatus.md)
+[**AsyncTaskStatus**](AsyncTaskStatus.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ public class Example {
 
 <a id="getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0"></a>
 # **getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0**
-> TaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(taskId)
+> AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(taskId)
 
 Get status of an asynchronous verification
 
@@ -110,7 +110,7 @@ public class Example {
     PdfXmlVerificationApi apiInstance = new PdfXmlVerificationApi(defaultClient);
     String taskId = "taskId_example"; // String | 
     try {
-      TaskStatus result = apiInstance.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(taskId);
+      AsyncTaskStatus result = apiInstance.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(taskId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PdfXmlVerificationApi#getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0");
@@ -131,7 +131,7 @@ public class Example {
 
 ### Return type
 
-[**TaskStatus**](TaskStatus.md)
+[**AsyncTaskStatus**](AsyncTaskStatus.md)
 
 ### Authorization
 

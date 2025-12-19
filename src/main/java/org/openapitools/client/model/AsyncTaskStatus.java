@@ -52,8 +52,8 @@ import org.openapitools.client.JSON;
 /**
  * Complete description of an async task status.  The &#x60;status&#x60; field indicates the Celery state of the task. When &#x60;status&#x3D;\&quot;SUCCESS\&quot;&#x60;, check &#x60;result.status&#x60; for the business result (\&quot;SUCCESS\&quot; or \&quot;ERROR\&quot;).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:49:35.221728047Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
-public class TaskStatus {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T13:58:31.366596014Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+public class AsyncTaskStatus {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
   @SerializedName(SERIALIZED_NAME_TASK_ID)
   @javax.annotation.Nonnull
@@ -69,10 +69,10 @@ public class TaskStatus {
   @javax.annotation.Nullable
   private Map<String, Object> result;
 
-  public TaskStatus() {
+  public AsyncTaskStatus() {
   }
 
-  public TaskStatus taskId(@javax.annotation.Nonnull String taskId) {
+  public AsyncTaskStatus taskId(@javax.annotation.Nonnull String taskId) {
     this.taskId = taskId;
     return this;
   }
@@ -91,7 +91,7 @@ public class TaskStatus {
   }
 
 
-  public TaskStatus status(@javax.annotation.Nonnull CeleryStatus status) {
+  public AsyncTaskStatus status(@javax.annotation.Nonnull CeleryStatus status) {
     this.status = status;
     return this;
   }
@@ -110,12 +110,12 @@ public class TaskStatus {
   }
 
 
-  public TaskStatus result(@javax.annotation.Nullable Map<String, Object> result) {
+  public AsyncTaskStatus result(@javax.annotation.Nullable Map<String, Object> result) {
     this.result = result;
     return this;
   }
 
-  public TaskStatus putResultItem(String key, Object resultItem) {
+  public AsyncTaskStatus putResultItem(String key, Object resultItem) {
     if (this.result == null) {
       this.result = new HashMap<>();
     }
@@ -146,10 +146,10 @@ public class TaskStatus {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TaskStatus taskStatus = (TaskStatus) o;
-    return Objects.equals(this.taskId, taskStatus.taskId) &&
-        Objects.equals(this.status, taskStatus.status) &&
-        Objects.equals(this.result, taskStatus.result);
+    AsyncTaskStatus asyncTaskStatus = (AsyncTaskStatus) o;
+    return Objects.equals(this.taskId, asyncTaskStatus.taskId) &&
+        Objects.equals(this.status, asyncTaskStatus.status) &&
+        Objects.equals(this.result, asyncTaskStatus.result);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -171,7 +171,7 @@ public class TaskStatus {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TaskStatus {\n");
+    sb.append("class AsyncTaskStatus {\n");
     sb.append("    taskId: ").append(toIndentedString(taskId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");
@@ -206,25 +206,25 @@ public class TaskStatus {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to TaskStatus
+   * @throws IOException if the JSON Element is invalid with respect to AsyncTaskStatus
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!TaskStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in TaskStatus is not found in the empty JSON string", TaskStatus.openapiRequiredFields.toString()));
+        if (!AsyncTaskStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in AsyncTaskStatus is not found in the empty JSON string", AsyncTaskStatus.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!TaskStatus.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `TaskStatus` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!AsyncTaskStatus.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `AsyncTaskStatus` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : TaskStatus.openapiRequiredFields) {
+      for (String requiredField : AsyncTaskStatus.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -241,22 +241,22 @@ public class TaskStatus {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!TaskStatus.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'TaskStatus' and its subtypes
+       if (!AsyncTaskStatus.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AsyncTaskStatus' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<TaskStatus> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(TaskStatus.class));
+       final TypeAdapter<AsyncTaskStatus> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AsyncTaskStatus.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<TaskStatus>() {
+       return (TypeAdapter<T>) new TypeAdapter<AsyncTaskStatus>() {
            @Override
-           public void write(JsonWriter out, TaskStatus value) throws IOException {
+           public void write(JsonWriter out, AsyncTaskStatus value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public TaskStatus read(JsonReader in) throws IOException {
+           public AsyncTaskStatus read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -267,18 +267,18 @@ public class TaskStatus {
   }
 
   /**
-   * Create an instance of TaskStatus given an JSON string
+   * Create an instance of AsyncTaskStatus given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of TaskStatus
-   * @throws IOException if the JSON string is invalid with respect to TaskStatus
+   * @return An instance of AsyncTaskStatus
+   * @throws IOException if the JSON string is invalid with respect to AsyncTaskStatus
    */
-  public static TaskStatus fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, TaskStatus.class);
+  public static AsyncTaskStatus fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AsyncTaskStatus.class);
   }
 
   /**
-   * Convert an instance of TaskStatus to an JSON string
+   * Convert an instance of AsyncTaskStatus to an JSON string
    *
    * @return JSON string
    */

@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import org.openapitools.client.model.APIProfile;
+import org.openapitools.client.model.AsyncTaskStatus;
 import java.io.File;
 import org.openapitools.client.model.GenerateCertificateRequest;
 import org.openapitools.client.model.GenerateCertificateResponse;
@@ -37,7 +38,6 @@ import org.openapitools.client.model.PDFValidationResultAPI;
 import org.openapitools.client.model.SubmitCompleteInvoiceRequest;
 import org.openapitools.client.model.SubmitCompleteInvoiceResponse;
 import org.openapitools.client.model.TaskResponse;
-import org.openapitools.client.model.TaskStatus;
 import org.openapitools.client.model.ValidationErrorResponse;
 import org.openapitools.client.model.ValidationSuccessResponse;
 
@@ -468,7 +468,7 @@ public class InvoiceProcessingApi {
      * Get task generation status
      * Retrieves the progress status of an invoice generation task.  ## Possible states  The &#x60;status&#x60; field uses the &#x60;CeleryStatus&#x60; enum with values: - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  See the &#x60;CeleryStatus&#x60; schema documentation for details.  ## Business result  When &#x60;status&#x3D;\&quot;SUCCESS\&quot;&#x60;, the &#x60;result&#x60; field contains: - &#x60;status&#x60;: \&quot;SUCCESS\&quot; or \&quot;ERROR\&quot; (business result) - &#x60;content_b64&#x60;: Base64 encoded content (if success) - &#x60;errorCode&#x60;, &#x60;errorMessage&#x60;, &#x60;details&#x60;: AFNOR format (if business error)  ## Usage  Poll this endpoint every 2-3 seconds until &#x60;status&#x60; is &#x60;SUCCESS&#x60; or &#x60;FAILURE&#x60;.
      * @param taskId  (required)
-     * @return TaskStatus
+     * @return AsyncTaskStatus
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -478,8 +478,8 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public TaskStatus getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(@javax.annotation.Nonnull String taskId) throws ApiException {
-        ApiResponse<TaskStatus> localVarResp = getTaskStatusApiV1ProcessingTasksTaskIdStatusGetWithHttpInfo(taskId);
+    public AsyncTaskStatus getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(@javax.annotation.Nonnull String taskId) throws ApiException {
+        ApiResponse<AsyncTaskStatus> localVarResp = getTaskStatusApiV1ProcessingTasksTaskIdStatusGetWithHttpInfo(taskId);
         return localVarResp.getData();
     }
 
@@ -487,7 +487,7 @@ public class InvoiceProcessingApi {
      * Get task generation status
      * Retrieves the progress status of an invoice generation task.  ## Possible states  The &#x60;status&#x60; field uses the &#x60;CeleryStatus&#x60; enum with values: - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  See the &#x60;CeleryStatus&#x60; schema documentation for details.  ## Business result  When &#x60;status&#x3D;\&quot;SUCCESS\&quot;&#x60;, the &#x60;result&#x60; field contains: - &#x60;status&#x60;: \&quot;SUCCESS\&quot; or \&quot;ERROR\&quot; (business result) - &#x60;content_b64&#x60;: Base64 encoded content (if success) - &#x60;errorCode&#x60;, &#x60;errorMessage&#x60;, &#x60;details&#x60;: AFNOR format (if business error)  ## Usage  Poll this endpoint every 2-3 seconds until &#x60;status&#x60; is &#x60;SUCCESS&#x60; or &#x60;FAILURE&#x60;.
      * @param taskId  (required)
-     * @return ApiResponse&lt;TaskStatus&gt;
+     * @return ApiResponse&lt;AsyncTaskStatus&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -497,9 +497,9 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TaskStatus> getTaskStatusApiV1ProcessingTasksTaskIdStatusGetWithHttpInfo(@javax.annotation.Nonnull String taskId) throws ApiException {
+    public ApiResponse<AsyncTaskStatus> getTaskStatusApiV1ProcessingTasksTaskIdStatusGetWithHttpInfo(@javax.annotation.Nonnull String taskId) throws ApiException {
         okhttp3.Call localVarCall = getTaskStatusApiV1ProcessingTasksTaskIdStatusGetValidateBeforeCall(taskId, null);
-        Type localVarReturnType = new TypeToken<TaskStatus>(){}.getType();
+        Type localVarReturnType = new TypeToken<AsyncTaskStatus>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -518,10 +518,10 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getTaskStatusApiV1ProcessingTasksTaskIdStatusGetAsync(@javax.annotation.Nonnull String taskId, final ApiCallback<TaskStatus> _callback) throws ApiException {
+    public okhttp3.Call getTaskStatusApiV1ProcessingTasksTaskIdStatusGetAsync(@javax.annotation.Nonnull String taskId, final ApiCallback<AsyncTaskStatus> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getTaskStatusApiV1ProcessingTasksTaskIdStatusGetValidateBeforeCall(taskId, _callback);
-        Type localVarReturnType = new TypeToken<TaskStatus>(){}.getType();
+        Type localVarReturnType = new TypeToken<AsyncTaskStatus>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
