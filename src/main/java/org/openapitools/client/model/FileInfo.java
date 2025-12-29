@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur un fichier genere (contenu inline en base64).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:41:12.366619030Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:50:35.916977782Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class FileInfo {
   public static final String SERIALIZED_NAME_CONTENT_B64 = "content_b64";
   @SerializedName(SERIALIZED_NAME_CONTENT_B64)

@@ -90,7 +90,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Données manquantes </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation échouée </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
@@ -176,7 +176,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Données manquantes </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation échouée </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
@@ -199,7 +199,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Données manquantes </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation échouée </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
@@ -224,7 +224,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 202 </td><td> Données manquantes </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation échouée </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
@@ -683,7 +683,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
      </table>
@@ -761,7 +761,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
      </table>
@@ -782,7 +782,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
      </table>
@@ -805,7 +805,7 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Conversion réussie </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
      </table>

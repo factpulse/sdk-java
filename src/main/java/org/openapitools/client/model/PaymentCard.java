@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Payment card information (BG-18).  Used when payment is made by payment card.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:41:12.366619030Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:50:35.916977782Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class PaymentCard {
   public static final String SERIALIZED_NAME_CARD_ID = "card_id";
   @SerializedName(SERIALIZED_NAME_CARD_ID)

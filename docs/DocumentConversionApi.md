@@ -80,7 +80,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Conversion réussie |  -  |
+| **200** | Successful Response |  -  |
 | **202** | Données manquantes |  -  |
 | **422** | Validation échouée |  -  |
 | **400** | Fichier invalide |  -  |
@@ -365,7 +365,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Conversion réussie |  -  |
+| **200** | Successful Response |  -  |
 | **404** | Conversion non trouvée ou expirée |  -  |
 | **422** | Validation toujours en échec |  -  |
 
