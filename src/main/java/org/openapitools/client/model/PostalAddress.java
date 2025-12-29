@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Represents a postal address (BG-5, BG-8, BG-12, BG-15).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:41:12.366619030Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class PostalAddress {
   public static final String SERIALIZED_NAME_POSTAL_CODE = "postalCode";
   @SerializedName(SERIALIZED_NAME_POSTAL_CODE)

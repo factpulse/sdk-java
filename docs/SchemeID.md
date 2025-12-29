@@ -7,25 +7,25 @@
 
 * `FR_SIREN` (value: `"0225"`)
 
-* `GLN` (value: `"0009"`)
+* `FR_SIRET` (value: `"0009"`)
 
-* `DUNS` (value: `"0002"`)
+* `FR_SIREN_OLD` (value: `"0002"`)
 
-* `FR_TVA_INTRA` (value: `"0088"`)
+* `GLN` (value: `"0088"`)
 
-* `GLEIF` (value: `"0060"`)
+* `DUNS` (value: `"0060"`)
 
-* `_9957` (value: `"9957"`)
+* `FR_VAT_INTRA` (value: `"9957"`)
 
-* `_0199` (value: `"0199"`)
+* `GLEIF` (value: `"0199"`)
 
-* `_0231` (value: `"0231"`)
+* `DT_DIRECTORY_ID` (value: `"0231"`)
 
-* `EM` (value: `"EM"`)
+* `EMAIL` (value: `"EM"`)
 
-* `_0177` (value: `"0177"`)
+* `ODETTE` (value: `"0177"`)
 
-* `_0224` (value: `"0224"`)
+* `FR_CHORUS_PRO_ROUTING` (value: `"0224"`)
 
 
 

@@ -5530,16 +5530,28 @@ components:
       type: string
       x-enum-varnames:
       - FR_SIREN
+      - FR_SIRET
+      - FR_SIREN_OLD
       - GLN
       - DUNS
-      - FR_TVA_INTRA
+      - FR_VAT_INTRA
       - GLEIF
+      - DT_DIRECTORY_ID
+      - EMAIL
+      - ODETTE
+      - FR_CHORUS_PRO_ROUTING
       x-enum-descriptions:
-      - "FR_SIREN - French SIREN (most common for France, replaces old 0002)"
+      - FR_SIREN - French SIREN (most common for France)
+      - FR_SIRET - French SIRET
+      - "FR_SIREN_OLD - French SIREN (old code, for legal organization ID)"
       - GLN - Global Location Number (GLN)
       - DUNS - Data Universal Numbering System (DUNS)
-      - FR_TVA_INTRA - French intra-community VAT number
+      - FR_VAT_INTRA - French intra-community VAT number
       - GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
+      - DT_DIRECTORY_ID - Directory ID for tax administration
+      - EMAIL - Email-based electronic address (BT-34/BT-49)
+      - ODETTE - ODETTE network identifier
+      - FR_CHORUS_PRO_ROUTING - Chorus Pro routing code
     SearchServicesResponse:
       description: Structure services list.
       example:

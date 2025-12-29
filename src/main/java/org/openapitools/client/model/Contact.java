@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Contact information (BG-6 Seller Contact, BG-9 Buyer Contact).  Used for seller and buyer contact details.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:41:12.366619030Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class Contact {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)

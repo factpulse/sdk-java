@@ -30,41 +30,59 @@ import com.google.gson.stream.JsonWriter;
 public enum SchemeID {
   
   /**
-   * FR_SIREN - French SIREN (most common for France, replaces old 0002)
+   * FR_SIREN - French SIREN (most common for France)
    */
   FR_SIREN("0225"),
   
   /**
+   * FR_SIRET - French SIRET
+   */
+  FR_SIRET("0009"),
+  
+  /**
+   * FR_SIREN_OLD - French SIREN (old code, for legal organization ID)
+   */
+  FR_SIREN_OLD("0002"),
+  
+  /**
    * GLN - Global Location Number (GLN)
    */
-  GLN("0009"),
+  GLN("0088"),
   
   /**
    * DUNS - Data Universal Numbering System (DUNS)
    */
-  DUNS("0002"),
+  DUNS("0060"),
   
   /**
-   * FR_TVA_INTRA - French intra-community VAT number
+   * FR_VAT_INTRA - French intra-community VAT number
    */
-  FR_TVA_INTRA("0088"),
+  FR_VAT_INTRA("9957"),
   
   /**
    * GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
    */
-  GLEIF("0060"),
+  GLEIF("0199"),
   
-  _9957("9957"),
+  /**
+   * DT_DIRECTORY_ID - Directory ID for tax administration
+   */
+  DT_DIRECTORY_ID("0231"),
   
-  _0199("0199"),
+  /**
+   * EMAIL - Email-based electronic address (BT-34/BT-49)
+   */
+  EMAIL("EM"),
   
-  _0231("0231"),
+  /**
+   * ODETTE - ODETTE network identifier
+   */
+  ODETTE("0177"),
   
-  EM("EM"),
-  
-  _0177("0177"),
-  
-  _0224("0224");
+  /**
+   * FR_CHORUS_PRO_ROUTING - Chorus Pro routing code
+   */
+  FR_CHORUS_PRO_ROUTING("0224");
 
   private String value;
 
