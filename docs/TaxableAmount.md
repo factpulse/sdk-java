@@ -2,7 +2,7 @@
 
 # TaxableAmount
 
-Taxable amount (base) for this VAT line. (Accepte number, string ou integer)
+VAT category taxable amount (BT-116). Can be negative for correction invoices.
 
 ## Properties
 

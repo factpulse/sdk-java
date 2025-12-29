@@ -2,7 +2,7 @@
 
 # TotalGrossAmount
 
-Total gross amount (including tax). (Accepte number, string ou integer)
+Invoice total amount with VAT (BT-112). Can be negative for correction invoices.
 
 ## Properties
 

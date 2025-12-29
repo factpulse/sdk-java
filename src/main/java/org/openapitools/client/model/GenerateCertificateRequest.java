@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to generate a self-signed X.509 test certificate.  WARNING: This certificate is intended for TESTING only. DO NOT use in production! eIDAS level: SES (Simple Electronic Signature)
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GenerateCertificateRequest {
   public static final String SERIALIZED_NAME_CN = "cn";
   @SerializedName(SERIALIZED_NAME_CN)
@@ -81,27 +81,27 @@ public class GenerateCertificateRequest {
   @javax.annotation.Nullable
   private String email;
 
-  public static final String SERIALIZED_NAME_VALIDITY_DAYS = "validity_days";
+  public static final String SERIALIZED_NAME_VALIDITY_DAYS = "validityDays";
   @SerializedName(SERIALIZED_NAME_VALIDITY_DAYS)
   @javax.annotation.Nullable
   private Integer validityDays = 365;
 
-  public static final String SERIALIZED_NAME_KEY_SIZE = "key_size";
+  public static final String SERIALIZED_NAME_KEY_SIZE = "keySize";
   @SerializedName(SERIALIZED_NAME_KEY_SIZE)
   @javax.annotation.Nullable
   private Integer keySize = 2048;
 
-  public static final String SERIALIZED_NAME_KEY_PASSPHRASE = "key_passphrase";
+  public static final String SERIALIZED_NAME_KEY_PASSPHRASE = "keyPassphrase";
   @SerializedName(SERIALIZED_NAME_KEY_PASSPHRASE)
   @javax.annotation.Nullable
   private String keyPassphrase;
 
-  public static final String SERIALIZED_NAME_GENERATE_P12 = "generate_p12";
+  public static final String SERIALIZED_NAME_GENERATE_P12 = "generateP12";
   @SerializedName(SERIALIZED_NAME_GENERATE_P12)
   @javax.annotation.Nullable
   private Boolean generateP12 = false;
 
-  public static final String SERIALIZED_NAME_P12_PASSPHRASE = "p12_passphrase";
+  public static final String SERIALIZED_NAME_P12_PASSPHRASE = "p12Passphrase";
   @SerializedName(SERIALIZED_NAME_P12_PASSPHRASE)
   @javax.annotation.Nullable
   private String p12Passphrase = "changeme";
@@ -395,7 +395,7 @@ public class GenerateCertificateRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("cn", "organization", "country", "city", "state", "email", "validity_days", "key_size", "key_passphrase", "generate_p12", "p12_passphrase"));
+    openapiFields = new HashSet<String>(Arrays.asList("cn", "organization", "country", "city", "state", "email", "validityDays", "keySize", "keyPassphrase", "generateP12", "p12Passphrase"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -440,11 +440,11 @@ public class GenerateCertificateRequest {
       if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
       }
-      if ((jsonObj.get("key_passphrase") != null && !jsonObj.get("key_passphrase").isJsonNull()) && !jsonObj.get("key_passphrase").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `key_passphrase` to be a primitive type in the JSON string but got `%s`", jsonObj.get("key_passphrase").toString()));
+      if ((jsonObj.get("keyPassphrase") != null && !jsonObj.get("keyPassphrase").isJsonNull()) && !jsonObj.get("keyPassphrase").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `keyPassphrase` to be a primitive type in the JSON string but got `%s`", jsonObj.get("keyPassphrase").toString()));
       }
-      if ((jsonObj.get("p12_passphrase") != null && !jsonObj.get("p12_passphrase").isJsonNull()) && !jsonObj.get("p12_passphrase").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `p12_passphrase` to be a primitive type in the JSON string but got `%s`", jsonObj.get("p12_passphrase").toString()));
+      if ((jsonObj.get("p12Passphrase") != null && !jsonObj.get("p12Passphrase").isJsonNull()) && !jsonObj.get("p12Passphrase").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `p12Passphrase` to be a primitive type in the JSON string but got `%s`", jsonObj.get("p12Passphrase").toString()));
       }
   }
 

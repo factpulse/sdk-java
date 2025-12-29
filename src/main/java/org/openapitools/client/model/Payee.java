@@ -20,7 +20,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.client.model.ElectronicAddress;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -50,12 +52,17 @@ import org.openapitools.client.JSON;
 /**
  * Information about the payment beneficiary (BG-10 / PayeeTradeParty).  The payee is the party receiving payment. This block is used only if the payee is different from the seller (supplier).  **Main use case**: Factoring When an invoice is factored, the factor (factoring company) becomes the payment beneficiary instead of the supplier.  **Business Terms (EN16931)**: - BT-59: Payee name (mandatory) - BT-60: Payee identifier (SIRET with schemeID 0009) - BT-61: Payee legal identifier (SIREN with schemeID 0002)  **Reference**: docs/guide_affacturage.md
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class Payee {
   public static final String SERIALIZED_NAME_NOM = "nom";
   @SerializedName(SERIALIZED_NAME_NOM)
   @javax.annotation.Nonnull
   private String nom;
+
+  public static final String SERIALIZED_NAME_PAYEE_ID = "payeeId";
+  @SerializedName(SERIALIZED_NAME_PAYEE_ID)
+  @javax.annotation.Nullable
+  private String payeeId;
 
   public static final String SERIALIZED_NAME_SIRET = "siret";
   @SerializedName(SERIALIZED_NAME_SIRET)
@@ -82,6 +89,11 @@ public class Payee {
   @javax.annotation.Nullable
   private String bic;
 
+  public static final String SERIALIZED_NAME_GLOBAL_IDS = "global_ids";
+  @SerializedName(SERIALIZED_NAME_GLOBAL_IDS)
+  @javax.annotation.Nullable
+  private List<ElectronicAddress> globalIds;
+
   public Payee() {
   }
 
@@ -101,6 +113,25 @@ public class Payee {
 
   public void setNom(@javax.annotation.Nonnull String nom) {
     this.nom = nom;
+  }
+
+
+  public Payee payeeId(@javax.annotation.Nullable String payeeId) {
+    this.payeeId = payeeId;
+    return this;
+  }
+
+  /**
+   * Get payeeId
+   * @return payeeId
+   */
+  @javax.annotation.Nullable
+  public String getPayeeId() {
+    return payeeId;
+  }
+
+  public void setPayeeId(@javax.annotation.Nullable String payeeId) {
+    this.payeeId = payeeId;
   }
 
 
@@ -199,6 +230,33 @@ public class Payee {
   }
 
 
+  public Payee globalIds(@javax.annotation.Nullable List<ElectronicAddress> globalIds) {
+    this.globalIds = globalIds;
+    return this;
+  }
+
+  public Payee addGlobalIdsItem(ElectronicAddress globalIdsItem) {
+    if (this.globalIds == null) {
+      this.globalIds = new ArrayList<>();
+    }
+    this.globalIds.add(globalIdsItem);
+    return this;
+  }
+
+  /**
+   * Get globalIds
+   * @return globalIds
+   */
+  @javax.annotation.Nullable
+  public List<ElectronicAddress> getGlobalIds() {
+    return globalIds;
+  }
+
+  public void setGlobalIds(@javax.annotation.Nullable List<ElectronicAddress> globalIds) {
+    this.globalIds = globalIds;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -210,11 +268,13 @@ public class Payee {
     }
     Payee payee = (Payee) o;
     return Objects.equals(this.nom, payee.nom) &&
+        Objects.equals(this.payeeId, payee.payeeId) &&
         Objects.equals(this.siret, payee.siret) &&
         Objects.equals(this.siren, payee.siren) &&
         Objects.equals(this.electronicAddress, payee.electronicAddress) &&
         Objects.equals(this.iban, payee.iban) &&
-        Objects.equals(this.bic, payee.bic);
+        Objects.equals(this.bic, payee.bic) &&
+        Objects.equals(this.globalIds, payee.globalIds);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -223,7 +283,7 @@ public class Payee {
 
   @Override
   public int hashCode() {
-    return Objects.hash(nom, siret, siren, electronicAddress, iban, bic);
+    return Objects.hash(nom, payeeId, siret, siren, electronicAddress, iban, bic, globalIds);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -238,11 +298,13 @@ public class Payee {
     StringBuilder sb = new StringBuilder();
     sb.append("class Payee {\n");
     sb.append("    nom: ").append(toIndentedString(nom)).append("\n");
+    sb.append("    payeeId: ").append(toIndentedString(payeeId)).append("\n");
     sb.append("    siret: ").append(toIndentedString(siret)).append("\n");
     sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
     sb.append("    electronicAddress: ").append(toIndentedString(electronicAddress)).append("\n");
     sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
     sb.append("    bic: ").append(toIndentedString(bic)).append("\n");
+    sb.append("    globalIds: ").append(toIndentedString(globalIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -264,7 +326,7 @@ public class Payee {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("nom", "siret", "siren", "electronicAddress", "iban", "bic"));
+    openapiFields = new HashSet<String>(Arrays.asList("nom", "payeeId", "siret", "siren", "electronicAddress", "iban", "bic", "global_ids"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("nom"));
@@ -301,6 +363,9 @@ public class Payee {
       if (!jsonObj.get("nom").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `nom` to be a primitive type in the JSON string but got `%s`", jsonObj.get("nom").toString()));
       }
+      if ((jsonObj.get("payeeId") != null && !jsonObj.get("payeeId").isJsonNull()) && !jsonObj.get("payeeId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `payeeId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeId").toString()));
+      }
       if ((jsonObj.get("siret") != null && !jsonObj.get("siret").isJsonNull()) && !jsonObj.get("siret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));
       }
@@ -316,6 +381,20 @@ public class Payee {
       }
       if ((jsonObj.get("bic") != null && !jsonObj.get("bic").isJsonNull()) && !jsonObj.get("bic").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `bic` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bic").toString()));
+      }
+      if (jsonObj.get("global_ids") != null && !jsonObj.get("global_ids").isJsonNull()) {
+        JsonArray jsonArrayglobalIds = jsonObj.getAsJsonArray("global_ids");
+        if (jsonArrayglobalIds != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("global_ids").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `global_ids` to be an array in the JSON string but got `%s`", jsonObj.get("global_ids").toString()));
+          }
+
+          // validate the optional field `global_ids` (array)
+          for (int i = 0; i < jsonArrayglobalIds.size(); i++) {
+            ElectronicAddress.validateJsonElement(jsonArrayglobalIds.get(i));
+          };
+        }
       }
   }
 

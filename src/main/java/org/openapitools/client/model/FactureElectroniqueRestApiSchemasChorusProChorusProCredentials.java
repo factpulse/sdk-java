@@ -48,24 +48,24 @@ import org.openapitools.client.JSON;
 /**
  * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don&#39;t want to store their credentials
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
-  public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "piste_client_id";
+  public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "pisteClientId";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)
   @javax.annotation.Nonnull
   private String pisteClientId;
 
-  public static final String SERIALIZED_NAME_PISTE_CLIENT_SECRET = "piste_client_secret";
+  public static final String SERIALIZED_NAME_PISTE_CLIENT_SECRET = "pisteClientSecret";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_SECRET)
   @javax.annotation.Nonnull
   private String pisteClientSecret;
 
-  public static final String SERIALIZED_NAME_CHORUS_PRO_LOGIN = "chorus_pro_login";
+  public static final String SERIALIZED_NAME_CHORUS_PRO_LOGIN = "chorusProLogin";
   @SerializedName(SERIALIZED_NAME_CHORUS_PRO_LOGIN)
   @javax.annotation.Nonnull
   private String chorusProLogin;
 
-  public static final String SERIALIZED_NAME_CHORUS_PRO_PASSWORD = "chorus_pro_password";
+  public static final String SERIALIZED_NAME_CHORUS_PRO_PASSWORD = "chorusProPassword";
   @SerializedName(SERIALIZED_NAME_CHORUS_PRO_PASSWORD)
   @javax.annotation.Nonnull
   private String chorusProPassword;
@@ -225,10 +225,10 @@ public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("piste_client_id", "piste_client_secret", "chorus_pro_login", "chorus_pro_password", "sandbox"));
+    openapiFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword", "sandbox"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("piste_client_id", "piste_client_secret", "chorus_pro_login", "chorus_pro_password"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword"));
   }
 
   /**
@@ -259,17 +259,17 @@ public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("piste_client_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `piste_client_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_id").toString()));
+      if (!jsonObj.get("pisteClientId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientId").toString()));
       }
-      if (!jsonObj.get("piste_client_secret").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `piste_client_secret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("piste_client_secret").toString()));
+      if (!jsonObj.get("pisteClientSecret").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientSecret").toString()));
       }
-      if (!jsonObj.get("chorus_pro_login").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorus_pro_login` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_pro_login").toString()));
+      if (!jsonObj.get("chorusProLogin").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProLogin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProLogin").toString()));
       }
-      if (!jsonObj.get("chorus_pro_password").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorus_pro_password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorus_pro_password").toString()));
+      if (!jsonObj.get("chorusProPassword").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProPassword` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProPassword").toString()));
       }
   }
 

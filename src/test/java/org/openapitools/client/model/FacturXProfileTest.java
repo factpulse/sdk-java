@@ -18,15 +18,15 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for APIProfile
+ * Model tests for FacturXProfile
  */
-public class APIProfileTest {
+public class FacturXProfileTest {
     /**
-     * Model tests for APIProfile
+     * Model tests for FacturXProfile
      */
     @Test
-    public void testAPIProfile() {
-        // TODO: test APIProfile
+    public void testFacturXProfile() {
+        // TODO: test FacturXProfile
     }
 
 }

@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Get Chorus Pro ID from SIRET.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GetChorusProIdRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
@@ -62,7 +62,7 @@ public class GetChorusProIdRequest {
   @javax.annotation.Nonnull
   private String siret;
 
-  public static final String SERIALIZED_NAME_IDENTIFIER_TYPE = "identifier_type";
+  public static final String SERIALIZED_NAME_IDENTIFIER_TYPE = "identifierType";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER_TYPE)
   @javax.annotation.Nullable
   private String identifierType = "SIRET";
@@ -186,7 +186,7 @@ public class GetChorusProIdRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("credentials", "siret", "identifier_type"));
+    openapiFields = new HashSet<String>(Arrays.asList("credentials", "siret", "identifierType"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("siret"));
@@ -227,8 +227,8 @@ public class GetChorusProIdRequest {
       if (!jsonObj.get("siret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));
       }
-      if ((jsonObj.get("identifier_type") != null && !jsonObj.get("identifier_type").isJsonNull()) && !jsonObj.get("identifier_type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `identifier_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifier_type").toString()));
+      if ((jsonObj.get("identifierType") != null && !jsonObj.get("identifierType").isJsonNull()) && !jsonObj.get("identifierType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `identifierType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identifierType").toString()));
       }
   }
 

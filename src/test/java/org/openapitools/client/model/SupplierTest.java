@@ -19,7 +19,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import org.openapitools.client.model.Contact;
 import org.openapitools.client.model.ElectronicAddress;
 import org.openapitools.client.model.PostalAddress;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -57,6 +60,14 @@ public class SupplierTest {
     }
 
     /**
+     * Test the property 'privateId'
+     */
+    @Test
+    public void privateIdTest() {
+        // TODO: test privateId
+    }
+
+    /**
      * Test the property 'supplierBankAccountCode'
      */
     @Test
@@ -78,6 +89,22 @@ public class SupplierTest {
     @Test
     public void nameTest() {
         // TODO: test name
+    }
+
+    /**
+     * Test the property 'tradingBusinessName'
+     */
+    @Test
+    public void tradingBusinessNameTest() {
+        // TODO: test tradingBusinessName
+    }
+
+    /**
+     * Test the property 'legalDescription'
+     */
+    @Test
+    public void legalDescriptionTest() {
+        // TODO: test legalDescription
     }
 
     /**
@@ -113,11 +140,51 @@ public class SupplierTest {
     }
 
     /**
+     * Test the property 'bic'
+     */
+    @Test
+    public void bicTest() {
+        // TODO: test bic
+    }
+
+    /**
+     * Test the property 'bankAccountName'
+     */
+    @Test
+    public void bankAccountNameTest() {
+        // TODO: test bankAccountName
+    }
+
+    /**
+     * Test the property 'proprietaryId'
+     */
+    @Test
+    public void proprietaryIdTest() {
+        // TODO: test proprietaryId
+    }
+
+    /**
      * Test the property 'postalAddress'
      */
     @Test
     public void postalAddressTest() {
         // TODO: test postalAddress
+    }
+
+    /**
+     * Test the property 'contact'
+     */
+    @Test
+    public void contactTest() {
+        // TODO: test contact
+    }
+
+    /**
+     * Test the property 'globalIds'
+     */
+    @Test
+    public void globalIdsTest() {
+        // TODO: test globalIds
     }
 
 }

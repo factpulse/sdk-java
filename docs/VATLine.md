@@ -2,7 +2,7 @@
 
 # VATLine
 
-Represents a VAT breakdown line by rate.  For exemptions (categories E, AE, K, G, O), the fields `exemption_reason` and `vatex_code` are required per EN16931.
+Represents a VAT breakdown line by rate (BG-23).  For exemptions (categories E, AE, K, G, O), the fields `exemption_reason` and `vatex_code` are required per EN16931.
 
 ## Properties
 
@@ -13,6 +13,7 @@ Represents a VAT breakdown line by rate.  For exemptions (categories E, AE, K, G
 |**rate** | **String** |  |  [optional] |
 |**manualRate** | [**ManualRate**](ManualRate.md) |  |  [optional] |
 |**category** | **VATCategory** |  |  [optional] |
+|**dueDateTypeCode** | **VATPointDateCode** |  |  [optional] |
 |**exemptionReason** | **String** |  |  [optional] |
 |**vatexCode** | **String** |  |  [optional] |
 

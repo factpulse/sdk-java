@@ -49,29 +49,29 @@ import org.openapitools.client.JSON;
 /**
  * PDP credentials for zero-storage strategy (Strategy B).  Allows providing PDP credentials directly in the request instead of storing them in Django.  Useful for: - Ad-hoc tests without persisting credentials - Temporary integrations - Development environments
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class PDPCredentials {
-  public static final String SERIALIZED_NAME_FLOW_SERVICE_URL = "flow_service_url";
+  public static final String SERIALIZED_NAME_FLOW_SERVICE_URL = "flowServiceUrl";
   @SerializedName(SERIALIZED_NAME_FLOW_SERVICE_URL)
   @javax.annotation.Nonnull
   private String flowServiceUrl;
 
-  public static final String SERIALIZED_NAME_DIRECTORY_SERVICE_URL = "directory_service_url";
+  public static final String SERIALIZED_NAME_DIRECTORY_SERVICE_URL = "directoryServiceUrl";
   @SerializedName(SERIALIZED_NAME_DIRECTORY_SERVICE_URL)
   @javax.annotation.Nullable
   private String directoryServiceUrl;
 
-  public static final String SERIALIZED_NAME_TOKEN_URL = "token_url";
+  public static final String SERIALIZED_NAME_TOKEN_URL = "tokenUrl";
   @SerializedName(SERIALIZED_NAME_TOKEN_URL)
   @javax.annotation.Nonnull
   private String tokenUrl;
 
-  public static final String SERIALIZED_NAME_CLIENT_ID = "client_id";
+  public static final String SERIALIZED_NAME_CLIENT_ID = "clientId";
   @SerializedName(SERIALIZED_NAME_CLIENT_ID)
   @javax.annotation.Nonnull
   private String clientId;
 
-  public static final String SERIALIZED_NAME_CLIENT_SECRET = "client_secret";
+  public static final String SERIALIZED_NAME_CLIENT_SECRET = "clientSecret";
   @SerializedName(SERIALIZED_NAME_CLIENT_SECRET)
   @javax.annotation.Nonnull
   private String clientSecret;
@@ -237,10 +237,10 @@ public class PDPCredentials {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("flow_service_url", "directory_service_url", "token_url", "client_id", "client_secret"));
+    openapiFields = new HashSet<String>(Arrays.asList("flowServiceUrl", "directoryServiceUrl", "tokenUrl", "clientId", "clientSecret"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("flow_service_url", "token_url", "client_id", "client_secret"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("flowServiceUrl", "tokenUrl", "clientId", "clientSecret"));
   }
 
   /**
@@ -271,20 +271,20 @@ public class PDPCredentials {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("flow_service_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flow_service_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flow_service_url").toString()));
+      if (!jsonObj.get("flowServiceUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowServiceUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flowServiceUrl").toString()));
       }
-      if ((jsonObj.get("directory_service_url") != null && !jsonObj.get("directory_service_url").isJsonNull()) && !jsonObj.get("directory_service_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `directory_service_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("directory_service_url").toString()));
+      if ((jsonObj.get("directoryServiceUrl") != null && !jsonObj.get("directoryServiceUrl").isJsonNull()) && !jsonObj.get("directoryServiceUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `directoryServiceUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("directoryServiceUrl").toString()));
       }
-      if (!jsonObj.get("token_url").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `token_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("token_url").toString()));
+      if (!jsonObj.get("tokenUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tokenUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenUrl").toString()));
       }
-      if (!jsonObj.get("client_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `client_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("client_id").toString()));
+      if (!jsonObj.get("clientId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `clientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientId").toString()));
       }
-      if (!jsonObj.get("client_secret").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `client_secret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("client_secret").toString()));
+      if (!jsonObj.get("clientSecret").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `clientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientSecret").toString()));
       }
   }
 

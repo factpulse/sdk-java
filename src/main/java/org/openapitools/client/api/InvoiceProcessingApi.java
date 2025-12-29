@@ -27,8 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import org.openapitools.client.model.APIProfile;
 import org.openapitools.client.model.AsyncTaskStatus;
+import org.openapitools.client.model.FacturXProfile;
 import java.io.File;
 import org.openapitools.client.model.GenerateCertificateRequest;
 import org.openapitools.client.model.GenerateCertificateResponse;
@@ -103,7 +103,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Invoice data validation error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call generateInvoiceApiV1ProcessingGenerateInvoicePostCall(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call generateInvoiceApiV1ProcessingGenerateInvoicePostCall(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -169,7 +169,7 @@ public class InvoiceProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call generateInvoiceApiV1ProcessingGenerateInvoicePostValidateBeforeCall(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call generateInvoiceApiV1ProcessingGenerateInvoicePostValidateBeforeCall(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'invoiceData' is set
         if (invoiceData == null) {
             throw new ApiException("Missing the required parameter 'invoiceData' when calling generateInvoiceApiV1ProcessingGenerateInvoicePost(Async)");
@@ -198,7 +198,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Invoice data validation error </td><td>  -  </td></tr>
      </table>
      */
-    public TaskResponse generateInvoiceApiV1ProcessingGenerateInvoicePost(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf) throws ApiException {
+    public TaskResponse generateInvoiceApiV1ProcessingGenerateInvoicePost(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf) throws ApiException {
         ApiResponse<TaskResponse> localVarResp = generateInvoiceApiV1ProcessingGenerateInvoicePostWithHttpInfo(invoiceData, profile, outputFormat, autoEnrich, sourcePdf);
         return localVarResp.getData();
     }
@@ -222,7 +222,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Invoice data validation error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TaskResponse> generateInvoiceApiV1ProcessingGenerateInvoicePostWithHttpInfo(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf) throws ApiException {
+    public ApiResponse<TaskResponse> generateInvoiceApiV1ProcessingGenerateInvoicePostWithHttpInfo(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf) throws ApiException {
         okhttp3.Call localVarCall = generateInvoiceApiV1ProcessingGenerateInvoicePostValidateBeforeCall(invoiceData, profile, outputFormat, autoEnrich, sourcePdf, null);
         Type localVarReturnType = new TypeToken<TaskResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -248,7 +248,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Invoice data validation error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call generateInvoiceApiV1ProcessingGenerateInvoicePostAsync(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf, final ApiCallback<TaskResponse> _callback) throws ApiException {
+    public okhttp3.Call generateInvoiceApiV1ProcessingGenerateInvoicePostAsync(@javax.annotation.Nonnull String invoiceData, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable OutputFormat outputFormat, @javax.annotation.Nullable Boolean autoEnrich, @javax.annotation.Nullable File sourcePdf, final ApiCallback<TaskResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = generateInvoiceApiV1ProcessingGenerateInvoicePostValidateBeforeCall(invoiceData, profile, outputFormat, autoEnrich, sourcePdf, _callback);
         Type localVarReturnType = new TypeToken<TaskResponse>(){}.getType();
@@ -1198,7 +1198,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1256,7 +1256,7 @@ public class InvoiceProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostValidateBeforeCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostValidateBeforeCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pdfFile' is set
         if (pdfFile == null) {
             throw new ApiException("Missing the required parameter 'pdfFile' when calling validateFacturxPdfApiV1ProcessingValidateFacturxPdfPost(Async)");
@@ -1283,7 +1283,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public PDFValidationResultAPI validateFacturxPdfApiV1ProcessingValidateFacturxPdfPost(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
+    public PDFValidationResultAPI validateFacturxPdfApiV1ProcessingValidateFacturxPdfPost(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
         ApiResponse<PDFValidationResultAPI> localVarResp = validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostWithHttpInfo(pdfFile, profile, useVerapdf);
         return localVarResp.getData();
     }
@@ -1305,7 +1305,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PDFValidationResultAPI> validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostWithHttpInfo(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
+    public ApiResponse<PDFValidationResultAPI> validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostWithHttpInfo(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
         okhttp3.Call localVarCall = validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostValidateBeforeCall(pdfFile, profile, useVerapdf, null);
         Type localVarReturnType = new TypeToken<PDFValidationResultAPI>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1329,7 +1329,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostAsync(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback<PDFValidationResultAPI> _callback) throws ApiException {
+    public okhttp3.Call validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostAsync(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback<PDFValidationResultAPI> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostValidateBeforeCall(pdfFile, profile, useVerapdf, _callback);
         Type localVarReturnType = new TypeToken<PDFValidationResultAPI>(){}.getType();
@@ -1353,7 +1353,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1411,7 +1411,7 @@ public class InvoiceProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostValidateBeforeCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostValidateBeforeCall(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pdfFile' is set
         if (pdfFile == null) {
             throw new ApiException("Missing the required parameter 'pdfFile' when calling validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPost(Async)");
@@ -1438,7 +1438,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public TaskResponse validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPost(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
+    public TaskResponse validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPost(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
         ApiResponse<TaskResponse> localVarResp = validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostWithHttpInfo(pdfFile, profile, useVerapdf);
         return localVarResp.getData();
     }
@@ -1460,7 +1460,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<TaskResponse> validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostWithHttpInfo(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
+    public ApiResponse<TaskResponse> validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostWithHttpInfo(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf) throws ApiException {
         okhttp3.Call localVarCall = validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostValidateBeforeCall(pdfFile, profile, useVerapdf, null);
         Type localVarReturnType = new TypeToken<TaskResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1484,7 +1484,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostAsync(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable APIProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback<TaskResponse> _callback) throws ApiException {
+    public okhttp3.Call validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostAsync(@javax.annotation.Nonnull File pdfFile, @javax.annotation.Nullable FacturXProfile profile, @javax.annotation.Nullable Boolean useVerapdf, final ApiCallback<TaskResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostValidateBeforeCall(pdfFile, profile, useVerapdf, _callback);
         Type localVarReturnType = new TypeToken<TaskResponse>(){}.getType();
@@ -1646,7 +1646,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateXmlApiV1ProcessingValidateXmlPostCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable APIProfile profile, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call validateXmlApiV1ProcessingValidateXmlPostCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable FacturXProfile profile, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1700,7 +1700,7 @@ public class InvoiceProcessingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call validateXmlApiV1ProcessingValidateXmlPostValidateBeforeCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable APIProfile profile, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call validateXmlApiV1ProcessingValidateXmlPostValidateBeforeCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable FacturXProfile profile, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xmlFile' is set
         if (xmlFile == null) {
             throw new ApiException("Missing the required parameter 'xmlFile' when calling validateXmlApiV1ProcessingValidateXmlPost(Async)");
@@ -1726,7 +1726,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ValidationSuccessResponse validateXmlApiV1ProcessingValidateXmlPost(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable APIProfile profile) throws ApiException {
+    public ValidationSuccessResponse validateXmlApiV1ProcessingValidateXmlPost(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable FacturXProfile profile) throws ApiException {
         ApiResponse<ValidationSuccessResponse> localVarResp = validateXmlApiV1ProcessingValidateXmlPostWithHttpInfo(xmlFile, profile);
         return localVarResp.getData();
     }
@@ -1747,7 +1747,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ValidationSuccessResponse> validateXmlApiV1ProcessingValidateXmlPostWithHttpInfo(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable APIProfile profile) throws ApiException {
+    public ApiResponse<ValidationSuccessResponse> validateXmlApiV1ProcessingValidateXmlPostWithHttpInfo(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable FacturXProfile profile) throws ApiException {
         okhttp3.Call localVarCall = validateXmlApiV1ProcessingValidateXmlPostValidateBeforeCall(xmlFile, profile, null);
         Type localVarReturnType = new TypeToken<ValidationSuccessResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1770,7 +1770,7 @@ public class InvoiceProcessingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateXmlApiV1ProcessingValidateXmlPostAsync(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable APIProfile profile, final ApiCallback<ValidationSuccessResponse> _callback) throws ApiException {
+    public okhttp3.Call validateXmlApiV1ProcessingValidateXmlPostAsync(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable FacturXProfile profile, final ApiCallback<ValidationSuccessResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = validateXmlApiV1ProcessingValidateXmlPostValidateBeforeCall(xmlFile, profile, _callback);
         Type localVarReturnType = new TypeToken<ValidationSuccessResponse>(){}.getType();

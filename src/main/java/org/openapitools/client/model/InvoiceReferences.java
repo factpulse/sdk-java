@@ -52,8 +52,13 @@ import org.openapitools.client.JSON;
 /**
  * Contains various invoice references (currency, type, etc.).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class InvoiceReferences {
+  public static final String SERIALIZED_NAME_BUSINESS_PROCESS_ID = "business_process_id";
+  @SerializedName(SERIALIZED_NAME_BUSINESS_PROCESS_ID)
+  @javax.annotation.Nullable
+  private String businessProcessId;
+
   public static final String SERIALIZED_NAME_INVOICE_CURRENCY = "invoice_currency";
   @SerializedName(SERIALIZED_NAME_INVOICE_CURRENCY)
   @javax.annotation.Nullable
@@ -63,6 +68,11 @@ public class InvoiceReferences {
   @SerializedName(SERIALIZED_NAME_PAYMENT_MEANS)
   @javax.annotation.Nonnull
   private PaymentMeans paymentMeans;
+
+  public static final String SERIALIZED_NAME_PAYMENT_MEANS_TEXT = "payment_means_text";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_MEANS_TEXT)
+  @javax.annotation.Nullable
+  private String paymentMeansText;
 
   public static final String SERIALIZED_NAME_INVOICE_TYPE = "invoice_type";
   @SerializedName(SERIALIZED_NAME_INVOICE_TYPE)
@@ -74,28 +84,87 @@ public class InvoiceReferences {
   @javax.annotation.Nonnull
   private VATAccountingCode vatAccountingCode;
 
+  public static final String SERIALIZED_NAME_BUYER_REFERENCE = "buyer_reference";
+  @SerializedName(SERIALIZED_NAME_BUYER_REFERENCE)
+  @javax.annotation.Nullable
+  private String buyerReference;
+
   public static final String SERIALIZED_NAME_CONTRACT_REFERENCE = "contract_reference";
   @SerializedName(SERIALIZED_NAME_CONTRACT_REFERENCE)
   @javax.annotation.Nullable
   private String contractReference;
-
-  public static final String SERIALIZED_NAME_VAT_EXEMPTION_REASON = "vat_exemption_reason";
-  @SerializedName(SERIALIZED_NAME_VAT_EXEMPTION_REASON)
-  @javax.annotation.Nullable
-  private String vatExemptionReason;
 
   public static final String SERIALIZED_NAME_PURCHASE_ORDER_REFERENCE = "purchase_order_reference";
   @SerializedName(SERIALIZED_NAME_PURCHASE_ORDER_REFERENCE)
   @javax.annotation.Nullable
   private String purchaseOrderReference;
 
+  public static final String SERIALIZED_NAME_SELLER_ORDER_REFERENCE = "seller_order_reference";
+  @SerializedName(SERIALIZED_NAME_SELLER_ORDER_REFERENCE)
+  @javax.annotation.Nullable
+  private String sellerOrderReference;
+
+  public static final String SERIALIZED_NAME_RECEIVING_ADVICE_REFERENCE = "receiving_advice_reference";
+  @SerializedName(SERIALIZED_NAME_RECEIVING_ADVICE_REFERENCE)
+  @javax.annotation.Nullable
+  private String receivingAdviceReference;
+
+  public static final String SERIALIZED_NAME_DESPATCH_ADVICE_REFERENCE = "despatch_advice_reference";
+  @SerializedName(SERIALIZED_NAME_DESPATCH_ADVICE_REFERENCE)
+  @javax.annotation.Nullable
+  private String despatchAdviceReference;
+
+  public static final String SERIALIZED_NAME_TENDER_REFERENCE = "tender_reference";
+  @SerializedName(SERIALIZED_NAME_TENDER_REFERENCE)
+  @javax.annotation.Nullable
+  private String tenderReference;
+
   public static final String SERIALIZED_NAME_PRECEDING_INVOICE_REFERENCE = "preceding_invoice_reference";
   @SerializedName(SERIALIZED_NAME_PRECEDING_INVOICE_REFERENCE)
   @javax.annotation.Nullable
   private String precedingInvoiceReference;
 
+  public static final String SERIALIZED_NAME_PRECEDING_INVOICE_DATE = "preceding_invoice_date";
+  @SerializedName(SERIALIZED_NAME_PRECEDING_INVOICE_DATE)
+  @javax.annotation.Nullable
+  private String precedingInvoiceDate;
+
+  public static final String SERIALIZED_NAME_PROJECT_REFERENCE = "project_reference";
+  @SerializedName(SERIALIZED_NAME_PROJECT_REFERENCE)
+  @javax.annotation.Nullable
+  private String projectReference;
+
+  public static final String SERIALIZED_NAME_PROJECT_NAME = "project_name";
+  @SerializedName(SERIALIZED_NAME_PROJECT_NAME)
+  @javax.annotation.Nullable
+  private String projectName;
+
+  public static final String SERIALIZED_NAME_VAT_EXEMPTION_REASON = "vat_exemption_reason";
+  @SerializedName(SERIALIZED_NAME_VAT_EXEMPTION_REASON)
+  @javax.annotation.Nullable
+  private String vatExemptionReason;
+
   public InvoiceReferences() {
   }
+
+  public InvoiceReferences businessProcessId(@javax.annotation.Nullable String businessProcessId) {
+    this.businessProcessId = businessProcessId;
+    return this;
+  }
+
+  /**
+   * Get businessProcessId
+   * @return businessProcessId
+   */
+  @javax.annotation.Nullable
+  public String getBusinessProcessId() {
+    return businessProcessId;
+  }
+
+  public void setBusinessProcessId(@javax.annotation.Nullable String businessProcessId) {
+    this.businessProcessId = businessProcessId;
+  }
+
 
   public InvoiceReferences invoiceCurrency(@javax.annotation.Nullable String invoiceCurrency) {
     this.invoiceCurrency = invoiceCurrency;
@@ -103,7 +172,7 @@ public class InvoiceReferences {
   }
 
   /**
-   * Get invoiceCurrency
+   * Invoice currency code (BT-5). ISO 4217.
    * @return invoiceCurrency
    */
   @javax.annotation.Nullable
@@ -122,7 +191,7 @@ public class InvoiceReferences {
   }
 
   /**
-   * Get paymentMeans
+   * Payment means type code (BT-81).
    * @return paymentMeans
    */
   @javax.annotation.Nonnull
@@ -132,6 +201,25 @@ public class InvoiceReferences {
 
   public void setPaymentMeans(@javax.annotation.Nonnull PaymentMeans paymentMeans) {
     this.paymentMeans = paymentMeans;
+  }
+
+
+  public InvoiceReferences paymentMeansText(@javax.annotation.Nullable String paymentMeansText) {
+    this.paymentMeansText = paymentMeansText;
+    return this;
+  }
+
+  /**
+   * Get paymentMeansText
+   * @return paymentMeansText
+   */
+  @javax.annotation.Nullable
+  public String getPaymentMeansText() {
+    return paymentMeansText;
+  }
+
+  public void setPaymentMeansText(@javax.annotation.Nullable String paymentMeansText) {
+    this.paymentMeansText = paymentMeansText;
   }
 
 
@@ -160,7 +248,7 @@ public class InvoiceReferences {
   }
 
   /**
-   * Get vatAccountingCode
+   * VAT accounting code.
    * @return vatAccountingCode
    */
   @javax.annotation.Nonnull
@@ -170,6 +258,25 @@ public class InvoiceReferences {
 
   public void setVatAccountingCode(@javax.annotation.Nonnull VATAccountingCode vatAccountingCode) {
     this.vatAccountingCode = vatAccountingCode;
+  }
+
+
+  public InvoiceReferences buyerReference(@javax.annotation.Nullable String buyerReference) {
+    this.buyerReference = buyerReference;
+    return this;
+  }
+
+  /**
+   * Get buyerReference
+   * @return buyerReference
+   */
+  @javax.annotation.Nullable
+  public String getBuyerReference() {
+    return buyerReference;
+  }
+
+  public void setBuyerReference(@javax.annotation.Nullable String buyerReference) {
+    this.buyerReference = buyerReference;
   }
 
 
@@ -192,25 +299,6 @@ public class InvoiceReferences {
   }
 
 
-  public InvoiceReferences vatExemptionReason(@javax.annotation.Nullable String vatExemptionReason) {
-    this.vatExemptionReason = vatExemptionReason;
-    return this;
-  }
-
-  /**
-   * Get vatExemptionReason
-   * @return vatExemptionReason
-   */
-  @javax.annotation.Nullable
-  public String getVatExemptionReason() {
-    return vatExemptionReason;
-  }
-
-  public void setVatExemptionReason(@javax.annotation.Nullable String vatExemptionReason) {
-    this.vatExemptionReason = vatExemptionReason;
-  }
-
-
   public InvoiceReferences purchaseOrderReference(@javax.annotation.Nullable String purchaseOrderReference) {
     this.purchaseOrderReference = purchaseOrderReference;
     return this;
@@ -227,6 +315,82 @@ public class InvoiceReferences {
 
   public void setPurchaseOrderReference(@javax.annotation.Nullable String purchaseOrderReference) {
     this.purchaseOrderReference = purchaseOrderReference;
+  }
+
+
+  public InvoiceReferences sellerOrderReference(@javax.annotation.Nullable String sellerOrderReference) {
+    this.sellerOrderReference = sellerOrderReference;
+    return this;
+  }
+
+  /**
+   * Get sellerOrderReference
+   * @return sellerOrderReference
+   */
+  @javax.annotation.Nullable
+  public String getSellerOrderReference() {
+    return sellerOrderReference;
+  }
+
+  public void setSellerOrderReference(@javax.annotation.Nullable String sellerOrderReference) {
+    this.sellerOrderReference = sellerOrderReference;
+  }
+
+
+  public InvoiceReferences receivingAdviceReference(@javax.annotation.Nullable String receivingAdviceReference) {
+    this.receivingAdviceReference = receivingAdviceReference;
+    return this;
+  }
+
+  /**
+   * Get receivingAdviceReference
+   * @return receivingAdviceReference
+   */
+  @javax.annotation.Nullable
+  public String getReceivingAdviceReference() {
+    return receivingAdviceReference;
+  }
+
+  public void setReceivingAdviceReference(@javax.annotation.Nullable String receivingAdviceReference) {
+    this.receivingAdviceReference = receivingAdviceReference;
+  }
+
+
+  public InvoiceReferences despatchAdviceReference(@javax.annotation.Nullable String despatchAdviceReference) {
+    this.despatchAdviceReference = despatchAdviceReference;
+    return this;
+  }
+
+  /**
+   * Get despatchAdviceReference
+   * @return despatchAdviceReference
+   */
+  @javax.annotation.Nullable
+  public String getDespatchAdviceReference() {
+    return despatchAdviceReference;
+  }
+
+  public void setDespatchAdviceReference(@javax.annotation.Nullable String despatchAdviceReference) {
+    this.despatchAdviceReference = despatchAdviceReference;
+  }
+
+
+  public InvoiceReferences tenderReference(@javax.annotation.Nullable String tenderReference) {
+    this.tenderReference = tenderReference;
+    return this;
+  }
+
+  /**
+   * Get tenderReference
+   * @return tenderReference
+   */
+  @javax.annotation.Nullable
+  public String getTenderReference() {
+    return tenderReference;
+  }
+
+  public void setTenderReference(@javax.annotation.Nullable String tenderReference) {
+    this.tenderReference = tenderReference;
   }
 
 
@@ -249,6 +413,82 @@ public class InvoiceReferences {
   }
 
 
+  public InvoiceReferences precedingInvoiceDate(@javax.annotation.Nullable String precedingInvoiceDate) {
+    this.precedingInvoiceDate = precedingInvoiceDate;
+    return this;
+  }
+
+  /**
+   * Get precedingInvoiceDate
+   * @return precedingInvoiceDate
+   */
+  @javax.annotation.Nullable
+  public String getPrecedingInvoiceDate() {
+    return precedingInvoiceDate;
+  }
+
+  public void setPrecedingInvoiceDate(@javax.annotation.Nullable String precedingInvoiceDate) {
+    this.precedingInvoiceDate = precedingInvoiceDate;
+  }
+
+
+  public InvoiceReferences projectReference(@javax.annotation.Nullable String projectReference) {
+    this.projectReference = projectReference;
+    return this;
+  }
+
+  /**
+   * Get projectReference
+   * @return projectReference
+   */
+  @javax.annotation.Nullable
+  public String getProjectReference() {
+    return projectReference;
+  }
+
+  public void setProjectReference(@javax.annotation.Nullable String projectReference) {
+    this.projectReference = projectReference;
+  }
+
+
+  public InvoiceReferences projectName(@javax.annotation.Nullable String projectName) {
+    this.projectName = projectName;
+    return this;
+  }
+
+  /**
+   * Get projectName
+   * @return projectName
+   */
+  @javax.annotation.Nullable
+  public String getProjectName() {
+    return projectName;
+  }
+
+  public void setProjectName(@javax.annotation.Nullable String projectName) {
+    this.projectName = projectName;
+  }
+
+
+  public InvoiceReferences vatExemptionReason(@javax.annotation.Nullable String vatExemptionReason) {
+    this.vatExemptionReason = vatExemptionReason;
+    return this;
+  }
+
+  /**
+   * Get vatExemptionReason
+   * @return vatExemptionReason
+   */
+  @javax.annotation.Nullable
+  public String getVatExemptionReason() {
+    return vatExemptionReason;
+  }
+
+  public void setVatExemptionReason(@javax.annotation.Nullable String vatExemptionReason) {
+    this.vatExemptionReason = vatExemptionReason;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -259,14 +499,24 @@ public class InvoiceReferences {
       return false;
     }
     InvoiceReferences invoiceReferences = (InvoiceReferences) o;
-    return Objects.equals(this.invoiceCurrency, invoiceReferences.invoiceCurrency) &&
+    return Objects.equals(this.businessProcessId, invoiceReferences.businessProcessId) &&
+        Objects.equals(this.invoiceCurrency, invoiceReferences.invoiceCurrency) &&
         Objects.equals(this.paymentMeans, invoiceReferences.paymentMeans) &&
+        Objects.equals(this.paymentMeansText, invoiceReferences.paymentMeansText) &&
         Objects.equals(this.invoiceType, invoiceReferences.invoiceType) &&
         Objects.equals(this.vatAccountingCode, invoiceReferences.vatAccountingCode) &&
+        Objects.equals(this.buyerReference, invoiceReferences.buyerReference) &&
         Objects.equals(this.contractReference, invoiceReferences.contractReference) &&
-        Objects.equals(this.vatExemptionReason, invoiceReferences.vatExemptionReason) &&
         Objects.equals(this.purchaseOrderReference, invoiceReferences.purchaseOrderReference) &&
-        Objects.equals(this.precedingInvoiceReference, invoiceReferences.precedingInvoiceReference);
+        Objects.equals(this.sellerOrderReference, invoiceReferences.sellerOrderReference) &&
+        Objects.equals(this.receivingAdviceReference, invoiceReferences.receivingAdviceReference) &&
+        Objects.equals(this.despatchAdviceReference, invoiceReferences.despatchAdviceReference) &&
+        Objects.equals(this.tenderReference, invoiceReferences.tenderReference) &&
+        Objects.equals(this.precedingInvoiceReference, invoiceReferences.precedingInvoiceReference) &&
+        Objects.equals(this.precedingInvoiceDate, invoiceReferences.precedingInvoiceDate) &&
+        Objects.equals(this.projectReference, invoiceReferences.projectReference) &&
+        Objects.equals(this.projectName, invoiceReferences.projectName) &&
+        Objects.equals(this.vatExemptionReason, invoiceReferences.vatExemptionReason);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -275,7 +525,7 @@ public class InvoiceReferences {
 
   @Override
   public int hashCode() {
-    return Objects.hash(invoiceCurrency, paymentMeans, invoiceType, vatAccountingCode, contractReference, vatExemptionReason, purchaseOrderReference, precedingInvoiceReference);
+    return Objects.hash(businessProcessId, invoiceCurrency, paymentMeans, paymentMeansText, invoiceType, vatAccountingCode, buyerReference, contractReference, purchaseOrderReference, sellerOrderReference, receivingAdviceReference, despatchAdviceReference, tenderReference, precedingInvoiceReference, precedingInvoiceDate, projectReference, projectName, vatExemptionReason);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -289,14 +539,24 @@ public class InvoiceReferences {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvoiceReferences {\n");
+    sb.append("    businessProcessId: ").append(toIndentedString(businessProcessId)).append("\n");
     sb.append("    invoiceCurrency: ").append(toIndentedString(invoiceCurrency)).append("\n");
     sb.append("    paymentMeans: ").append(toIndentedString(paymentMeans)).append("\n");
+    sb.append("    paymentMeansText: ").append(toIndentedString(paymentMeansText)).append("\n");
     sb.append("    invoiceType: ").append(toIndentedString(invoiceType)).append("\n");
     sb.append("    vatAccountingCode: ").append(toIndentedString(vatAccountingCode)).append("\n");
+    sb.append("    buyerReference: ").append(toIndentedString(buyerReference)).append("\n");
     sb.append("    contractReference: ").append(toIndentedString(contractReference)).append("\n");
-    sb.append("    vatExemptionReason: ").append(toIndentedString(vatExemptionReason)).append("\n");
     sb.append("    purchaseOrderReference: ").append(toIndentedString(purchaseOrderReference)).append("\n");
+    sb.append("    sellerOrderReference: ").append(toIndentedString(sellerOrderReference)).append("\n");
+    sb.append("    receivingAdviceReference: ").append(toIndentedString(receivingAdviceReference)).append("\n");
+    sb.append("    despatchAdviceReference: ").append(toIndentedString(despatchAdviceReference)).append("\n");
+    sb.append("    tenderReference: ").append(toIndentedString(tenderReference)).append("\n");
     sb.append("    precedingInvoiceReference: ").append(toIndentedString(precedingInvoiceReference)).append("\n");
+    sb.append("    precedingInvoiceDate: ").append(toIndentedString(precedingInvoiceDate)).append("\n");
+    sb.append("    projectReference: ").append(toIndentedString(projectReference)).append("\n");
+    sb.append("    projectName: ").append(toIndentedString(projectName)).append("\n");
+    sb.append("    vatExemptionReason: ").append(toIndentedString(vatExemptionReason)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -318,7 +578,7 @@ public class InvoiceReferences {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("invoice_currency", "payment_means", "invoice_type", "vat_accounting_code", "contract_reference", "vat_exemption_reason", "purchase_order_reference", "preceding_invoice_reference"));
+    openapiFields = new HashSet<String>(Arrays.asList("business_process_id", "invoice_currency", "payment_means", "payment_means_text", "invoice_type", "vat_accounting_code", "buyer_reference", "contract_reference", "purchase_order_reference", "seller_order_reference", "receiving_advice_reference", "despatch_advice_reference", "tender_reference", "preceding_invoice_reference", "preceding_invoice_date", "project_reference", "project_name", "vat_exemption_reason"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("payment_means", "invoice_type", "vat_accounting_code"));
@@ -352,26 +612,56 @@ public class InvoiceReferences {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("business_process_id") != null && !jsonObj.get("business_process_id").isJsonNull()) && !jsonObj.get("business_process_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `business_process_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("business_process_id").toString()));
+      }
       if ((jsonObj.get("invoice_currency") != null && !jsonObj.get("invoice_currency").isJsonNull()) && !jsonObj.get("invoice_currency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoice_currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoice_currency").toString()));
       }
       // validate the required field `payment_means`
       PaymentMeans.validateJsonElement(jsonObj.get("payment_means"));
+      if ((jsonObj.get("payment_means_text") != null && !jsonObj.get("payment_means_text").isJsonNull()) && !jsonObj.get("payment_means_text").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `payment_means_text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_means_text").toString()));
+      }
       // validate the required field `invoice_type`
       InvoiceTypeCode.validateJsonElement(jsonObj.get("invoice_type"));
       // validate the required field `vat_accounting_code`
       VATAccountingCode.validateJsonElement(jsonObj.get("vat_accounting_code"));
+      if ((jsonObj.get("buyer_reference") != null && !jsonObj.get("buyer_reference").isJsonNull()) && !jsonObj.get("buyer_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `buyer_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("buyer_reference").toString()));
+      }
       if ((jsonObj.get("contract_reference") != null && !jsonObj.get("contract_reference").isJsonNull()) && !jsonObj.get("contract_reference").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `contract_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_reference").toString()));
-      }
-      if ((jsonObj.get("vat_exemption_reason") != null && !jsonObj.get("vat_exemption_reason").isJsonNull()) && !jsonObj.get("vat_exemption_reason").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `vat_exemption_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("vat_exemption_reason").toString()));
       }
       if ((jsonObj.get("purchase_order_reference") != null && !jsonObj.get("purchase_order_reference").isJsonNull()) && !jsonObj.get("purchase_order_reference").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `purchase_order_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purchase_order_reference").toString()));
       }
+      if ((jsonObj.get("seller_order_reference") != null && !jsonObj.get("seller_order_reference").isJsonNull()) && !jsonObj.get("seller_order_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `seller_order_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seller_order_reference").toString()));
+      }
+      if ((jsonObj.get("receiving_advice_reference") != null && !jsonObj.get("receiving_advice_reference").isJsonNull()) && !jsonObj.get("receiving_advice_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `receiving_advice_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("receiving_advice_reference").toString()));
+      }
+      if ((jsonObj.get("despatch_advice_reference") != null && !jsonObj.get("despatch_advice_reference").isJsonNull()) && !jsonObj.get("despatch_advice_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `despatch_advice_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("despatch_advice_reference").toString()));
+      }
+      if ((jsonObj.get("tender_reference") != null && !jsonObj.get("tender_reference").isJsonNull()) && !jsonObj.get("tender_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tender_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tender_reference").toString()));
+      }
       if ((jsonObj.get("preceding_invoice_reference") != null && !jsonObj.get("preceding_invoice_reference").isJsonNull()) && !jsonObj.get("preceding_invoice_reference").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `preceding_invoice_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("preceding_invoice_reference").toString()));
+      }
+      if ((jsonObj.get("preceding_invoice_date") != null && !jsonObj.get("preceding_invoice_date").isJsonNull()) && !jsonObj.get("preceding_invoice_date").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `preceding_invoice_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("preceding_invoice_date").toString()));
+      }
+      if ((jsonObj.get("project_reference") != null && !jsonObj.get("project_reference").isJsonNull()) && !jsonObj.get("project_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `project_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("project_reference").toString()));
+      }
+      if ((jsonObj.get("project_name") != null && !jsonObj.get("project_name").isJsonNull()) && !jsonObj.get("project_name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `project_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("project_name").toString()));
+      }
+      if ((jsonObj.get("vat_exemption_reason") != null && !jsonObj.get("vat_exemption_reason").isJsonNull()) && !jsonObj.get("vat_exemption_reason").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `vat_exemption_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("vat_exemption_reason").toString()));
       }
   }
 

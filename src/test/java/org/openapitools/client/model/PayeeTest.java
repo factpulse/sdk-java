@@ -19,7 +19,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.client.model.ElectronicAddress;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
@@ -45,6 +47,14 @@ public class PayeeTest {
     @Test
     public void nomTest() {
         // TODO: test nom
+    }
+
+    /**
+     * Test the property 'payeeId'
+     */
+    @Test
+    public void payeeIdTest() {
+        // TODO: test payeeId
     }
 
     /**
@@ -85,6 +95,14 @@ public class PayeeTest {
     @Test
     public void bicTest() {
         // TODO: test bic
+    }
+
+    /**
+     * Test the property 'globalIds'
+     */
+    @Test
+    public void globalIdsTest() {
+        // TODO: test globalIds
     }
 
 }

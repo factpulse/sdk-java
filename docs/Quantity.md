@@ -2,7 +2,7 @@
 
 # Quantity
 
-Invoiced quantity for this line.
+Invoiced quantity (BT-129). Can be negative for correction invoices.
 
 ## Properties
 

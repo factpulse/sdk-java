@@ -2,7 +2,7 @@
 
 # UnitNetPrice
 
-Unit net price (before tax).
+Item net price after line discount (BT-146).
 
 ## Properties
 

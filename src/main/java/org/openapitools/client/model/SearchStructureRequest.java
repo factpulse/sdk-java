@@ -50,29 +50,29 @@ import org.openapitools.client.JSON;
 /**
  * Search structures by criteria.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SearchStructureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
   private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
 
-  public static final String SERIALIZED_NAME_STRUCTURE_IDENTIFIER = "structure_identifier";
+  public static final String SERIALIZED_NAME_STRUCTURE_IDENTIFIER = "structureIdentifier";
   @SerializedName(SERIALIZED_NAME_STRUCTURE_IDENTIFIER)
   @javax.annotation.Nullable
   private String structureIdentifier;
 
-  public static final String SERIALIZED_NAME_STRUCTURE_IDENTIFIER_TYPE = "structure_identifier_type";
+  public static final String SERIALIZED_NAME_STRUCTURE_IDENTIFIER_TYPE = "structureIdentifierType";
   @SerializedName(SERIALIZED_NAME_STRUCTURE_IDENTIFIER_TYPE)
   @javax.annotation.Nullable
   private String structureIdentifierType;
 
-  public static final String SERIALIZED_NAME_COMPANY_NAME = "company_name";
+  public static final String SERIALIZED_NAME_COMPANY_NAME = "companyName";
   @SerializedName(SERIALIZED_NAME_COMPANY_NAME)
   @javax.annotation.Nullable
   private String companyName;
 
-  public static final String SERIALIZED_NAME_RESTRICT_PRIVATE_STRUCTURES = "restrict_private_structures";
+  public static final String SERIALIZED_NAME_RESTRICT_PRIVATE_STRUCTURES = "restrictPrivateStructures";
   @SerializedName(SERIALIZED_NAME_RESTRICT_PRIVATE_STRUCTURES)
   @javax.annotation.Nullable
   private Boolean restrictPrivateStructures = false;
@@ -238,7 +238,7 @@ public class SearchStructureRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("credentials", "structure_identifier", "structure_identifier_type", "company_name", "restrict_private_structures"));
+    openapiFields = new HashSet<String>(Arrays.asList("credentials", "structureIdentifier", "structureIdentifierType", "companyName", "restrictPrivateStructures"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -269,14 +269,14 @@ public class SearchStructureRequest {
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
         FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
-      if ((jsonObj.get("structure_identifier") != null && !jsonObj.get("structure_identifier").isJsonNull()) && !jsonObj.get("structure_identifier").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `structure_identifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("structure_identifier").toString()));
+      if ((jsonObj.get("structureIdentifier") != null && !jsonObj.get("structureIdentifier").isJsonNull()) && !jsonObj.get("structureIdentifier").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `structureIdentifier` to be a primitive type in the JSON string but got `%s`", jsonObj.get("structureIdentifier").toString()));
       }
-      if ((jsonObj.get("structure_identifier_type") != null && !jsonObj.get("structure_identifier_type").isJsonNull()) && !jsonObj.get("structure_identifier_type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `structure_identifier_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("structure_identifier_type").toString()));
+      if ((jsonObj.get("structureIdentifierType") != null && !jsonObj.get("structureIdentifierType").isJsonNull()) && !jsonObj.get("structureIdentifierType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `structureIdentifierType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("structureIdentifierType").toString()));
       }
-      if ((jsonObj.get("company_name") != null && !jsonObj.get("company_name").isJsonNull()) && !jsonObj.get("company_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `company_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("company_name").toString()));
+      if ((jsonObj.get("companyName") != null && !jsonObj.get("companyName").isJsonNull()) && !jsonObj.get("companyName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `companyName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("companyName").toString()));
       }
   }
 

@@ -47,9 +47,9 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Represents a postal address.
+ * Represents a postal address (BG-5, BG-8, BG-12, BG-15).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class PostalAddress {
   public static final String SERIALIZED_NAME_POSTAL_CODE = "postalCode";
   @SerializedName(SERIALIZED_NAME_POSTAL_CODE)
@@ -66,6 +66,11 @@ public class PostalAddress {
   @javax.annotation.Nullable
   private String lineTwo;
 
+  public static final String SERIALIZED_NAME_LINE_THREE = "lineThree";
+  @SerializedName(SERIALIZED_NAME_LINE_THREE)
+  @javax.annotation.Nullable
+  private String lineThree;
+
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
   @javax.annotation.Nullable
@@ -75,6 +80,11 @@ public class PostalAddress {
   @SerializedName(SERIALIZED_NAME_COUNTRY_CODE)
   @javax.annotation.Nullable
   private String countryCode;
+
+  public static final String SERIALIZED_NAME_COUNTRY_SUBDIVISION = "countrySubdivision";
+  @SerializedName(SERIALIZED_NAME_COUNTRY_SUBDIVISION)
+  @javax.annotation.Nullable
+  private String countrySubdivision;
 
   public PostalAddress() {
   }
@@ -136,6 +146,25 @@ public class PostalAddress {
   }
 
 
+  public PostalAddress lineThree(@javax.annotation.Nullable String lineThree) {
+    this.lineThree = lineThree;
+    return this;
+  }
+
+  /**
+   * Get lineThree
+   * @return lineThree
+   */
+  @javax.annotation.Nullable
+  public String getLineThree() {
+    return lineThree;
+  }
+
+  public void setLineThree(@javax.annotation.Nullable String lineThree) {
+    this.lineThree = lineThree;
+  }
+
+
   public PostalAddress city(@javax.annotation.Nullable String city) {
     this.city = city;
     return this;
@@ -174,6 +203,25 @@ public class PostalAddress {
   }
 
 
+  public PostalAddress countrySubdivision(@javax.annotation.Nullable String countrySubdivision) {
+    this.countrySubdivision = countrySubdivision;
+    return this;
+  }
+
+  /**
+   * Get countrySubdivision
+   * @return countrySubdivision
+   */
+  @javax.annotation.Nullable
+  public String getCountrySubdivision() {
+    return countrySubdivision;
+  }
+
+  public void setCountrySubdivision(@javax.annotation.Nullable String countrySubdivision) {
+    this.countrySubdivision = countrySubdivision;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -187,8 +235,10 @@ public class PostalAddress {
     return Objects.equals(this.postalCode, postalAddress.postalCode) &&
         Objects.equals(this.lineOne, postalAddress.lineOne) &&
         Objects.equals(this.lineTwo, postalAddress.lineTwo) &&
+        Objects.equals(this.lineThree, postalAddress.lineThree) &&
         Objects.equals(this.city, postalAddress.city) &&
-        Objects.equals(this.countryCode, postalAddress.countryCode);
+        Objects.equals(this.countryCode, postalAddress.countryCode) &&
+        Objects.equals(this.countrySubdivision, postalAddress.countrySubdivision);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -197,7 +247,7 @@ public class PostalAddress {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postalCode, lineOne, lineTwo, city, countryCode);
+    return Objects.hash(postalCode, lineOne, lineTwo, lineThree, city, countryCode, countrySubdivision);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -214,8 +264,10 @@ public class PostalAddress {
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
     sb.append("    lineOne: ").append(toIndentedString(lineOne)).append("\n");
     sb.append("    lineTwo: ").append(toIndentedString(lineTwo)).append("\n");
+    sb.append("    lineThree: ").append(toIndentedString(lineThree)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
+    sb.append("    countrySubdivision: ").append(toIndentedString(countrySubdivision)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -237,7 +289,7 @@ public class PostalAddress {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("postalCode", "lineOne", "lineTwo", "city", "countryCode"));
+    openapiFields = new HashSet<String>(Arrays.asList("postalCode", "lineOne", "lineTwo", "lineThree", "city", "countryCode", "countrySubdivision"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -273,11 +325,17 @@ public class PostalAddress {
       if ((jsonObj.get("lineTwo") != null && !jsonObj.get("lineTwo").isJsonNull()) && !jsonObj.get("lineTwo").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `lineTwo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lineTwo").toString()));
       }
+      if ((jsonObj.get("lineThree") != null && !jsonObj.get("lineThree").isJsonNull()) && !jsonObj.get("lineThree").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `lineThree` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lineThree").toString()));
+      }
       if ((jsonObj.get("city") != null && !jsonObj.get("city").isJsonNull()) && !jsonObj.get("city").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
       }
       if ((jsonObj.get("countryCode") != null && !jsonObj.get("countryCode").isJsonNull()) && !jsonObj.get("countryCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `countryCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("countryCode").toString()));
+      }
+      if ((jsonObj.get("countrySubdivision") != null && !jsonObj.get("countrySubdivision").isJsonNull()) && !jsonObj.get("countrySubdivision").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `countrySubdivision` to be a primitive type in the JSON string but got `%s`", jsonObj.get("countrySubdivision").toString()));
       }
   }
 

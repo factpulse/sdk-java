@@ -50,19 +50,19 @@ import org.openapitools.client.JSON;
 /**
  * Get structure details.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GetStructureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
   private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
 
-  public static final String SERIALIZED_NAME_STRUCTURE_ID = "structure_id";
+  public static final String SERIALIZED_NAME_STRUCTURE_ID = "structureId";
   @SerializedName(SERIALIZED_NAME_STRUCTURE_ID)
   @javax.annotation.Nonnull
   private Integer structureId;
 
-  public static final String SERIALIZED_NAME_LANGUAGE_CODE = "language_code";
+  public static final String SERIALIZED_NAME_LANGUAGE_CODE = "languageCode";
   @SerializedName(SERIALIZED_NAME_LANGUAGE_CODE)
   @javax.annotation.Nullable
   private String languageCode = "fr";
@@ -186,10 +186,10 @@ public class GetStructureRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("credentials", "structure_id", "language_code"));
+    openapiFields = new HashSet<String>(Arrays.asList("credentials", "structureId", "languageCode"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("structure_id"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("structureId"));
   }
 
   /**
@@ -224,8 +224,8 @@ public class GetStructureRequest {
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
         FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
-      if ((jsonObj.get("language_code") != null && !jsonObj.get("language_code").isJsonNull()) && !jsonObj.get("language_code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `language_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("language_code").toString()));
+      if ((jsonObj.get("languageCode") != null && !jsonObj.get("languageCode").isJsonNull()) && !jsonObj.get("languageCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `languageCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("languageCode").toString()));
       }
   }
 

@@ -174,6 +174,35 @@ tags:
     \ OCR if needed)\n- **GET /verify-async/{id}/status**: Async verification status\n\
     - **POST /extract**: Extraction only (without XML comparison)\n        "
   name: PDF/XML Verification
+- description: "\n## 🔄 Convert any document to Factur-X\n\n**Transform any document\
+    \ (PDF, DOCX, XLSX, images) into a compliant Factur-X invoice.**\n\n### How it\
+    \ works\n\n1. **Upload**: Send your document (PDF, Word, Excel, image scan)\n\
+    2. **Automatic extraction**: Invoice data is automatically extracted\n3. **Smart\
+    \ detection**: Document type automatically identified (invoice, credit note, etc.)\n\
+    4. **Data enrichment**: Missing company info completed from official registries\n\
+    5. **Validation**: Compliance verified against European standards (EN16931)\n\
+    6. **Output**: PDF/A-3 with embedded XML, ready for submission\n\n### Supported\
+    \ Document Types (UNTDID 1001)\n\n| Code | Type | Description |\n|------|------|-------------|\n\
+    | 380 | Invoice | Standard commercial invoice |\n| 381 | Credit note | Refund,\
+    \ correction of previous invoice |\n| 384 | Corrective invoice | Replaces an erroneous\
+    \ invoice |\n| 386 | Prepayment invoice | Deposit or advance payment |\n\n###\
+    \ Automatic Detection\n\n- **Profile**: EN16931 (standard) or EXTENDED (complex\
+    \ cases: factoring, subcontracting, B2G)\n- **Transaction type**: B2B, B2C, or\
+    \ B2G\n- **Special cases**: Subcontracting, factoring, self-invoicing\n\n### Your\
+    \ PDF is preserved when possible\n\n| Your document | What happens |\n|---------------|--------------|\n\
+    | PDF with complete data | ✅ Your PDF is kept, XML embedded |\n| PDF with missing\
+    \ data | ⚠️ New PDF generated, you're notified |\n| Excel / Word / Image | 📄\
+    \ PDF generated from a standard template |\n\n### Iterative workflow (if data\
+    \ is incomplete)\n\n1. Upload your document\n2. API returns extracted data + missing\
+    \ fields (status `202`)\n3. Complete or correct the data via JSON\n4. Call `/resume`\
+    \ endpoint (no re-upload needed)\n5. Validation replayed → PDF/A-3 generated\n\
+    \n### Endpoints\n\n| Method | Endpoint | Description |\n|--------|----------|-------------|\n\
+    | `POST` | `/convert` | Synchronous conversion (< 30s) |\n| `POST` | `/convert/async`\
+    \ | Asynchronous conversion (webhook callback) |\n| `POST` | `/convert/{id}/resume`\
+    \ | Resume with corrections |\n| `GET` | `/convert/{id}/status` | Check conversion\
+    \ status |\n| `GET` | `/convert/{id}/download/{file}` | Download PDF or XML |\n\
+    \        "
+  name: Document Conversion
 paths:
   /api/v1/processing/generate-invoice:
     post:
@@ -3204,6 +3233,255 @@ paths:
       - PDF/XML Verification
       x-accepts:
       - application/json
+  /api/v1/convert:
+    post:
+      description: |-
+        Convertit un document (PDF, DOCX, XLSX, image) en Factur-X conforme.
+
+        ## Workflow
+
+        1. **Upload** : Le document est envoyé en multipart/form-data
+        2. **Extraction OCR + Classification** : Mistral OCR extrait les données et classifie le document en un seul appel
+        3. **Enrichissement** : Les données sont enrichies via SIRENE (SIRET → raison sociale)
+        4. **Validation** : Les règles Schematron sont appliquées
+        5. **Génération** : Le Factur-X PDF/A-3 est généré
+
+        ## Réponses possibles
+
+        - **200** : Conversion réussie, fichiers disponibles
+        - **202** : Données manquantes, complétion requise
+        - **422** : Validation échouée, corrections nécessaires
+        - **400** : Fichier invalide
+        - **429** : Quota dépassé
+      operationId: convert_document_api_v1_convert_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Body_convert_document_api_v1_convert_post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: "#/components/schemas/ConvertSuccessResponse"
+                anyOf:
+                - $ref: "#/components/schemas/ConvertSuccessResponse"
+                - $ref: "#/components/schemas/ConvertPendingInputResponse"
+                - $ref: "#/components/schemas/ConvertValidationFailedResponse"
+                title: Response Convert Document Api V1 Convert Post
+          description: Conversion réussie
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConvertPendingInputResponse"
+          description: Données manquantes
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConvertValidationFailedResponse"
+          description: Validation échouée
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConvertErrorResponse"
+          description: Fichier invalide
+      security:
+      - HTTPBearer: []
+      summary: Convertir un document en Factur-X
+      tags:
+      - Document Conversion
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /api/v1/convert/{conversion_id}/resume:
+    post:
+      description: |-
+        Reprend une conversion après complétion des données manquantes ou correction des erreurs.
+
+        L'extraction OCR est conservée, les données sont mises à jour avec les corrections,
+        puis une nouvelle validation Schematron est effectuée.
+      operationId: resume_conversion_api_v1_convert__conversion_id__resume_post
+      parameters:
+      - explode: false
+        in: path
+        name: conversion_id
+        required: true
+        schema:
+          title: Conversion Id
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConvertResumeRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: "#/components/schemas/ConvertSuccessResponse"
+                anyOf:
+                - $ref: "#/components/schemas/ConvertSuccessResponse"
+                - $ref: "#/components/schemas/ConvertValidationFailedResponse"
+                title: Response Resume Conversion Api V1 Convert  Conversion Id  Resume
+                  Post
+          description: Conversion réussie
+        "404":
+          description: Conversion non trouvée ou expirée
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConvertValidationFailedResponse"
+          description: Validation toujours en échec
+      security:
+      - HTTPBearer: []
+      summary: Reprendre une conversion avec corrections
+      tags:
+      - Document Conversion
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/convert/{conversion_id}/status:
+    get:
+      description: Retourne le statut actuel d'une conversion asynchrone.
+      operationId: get_conversion_status_api_v1_convert__conversion_id__status_get
+      parameters:
+      - explode: false
+        in: path
+        name: conversion_id
+        required: true
+        schema:
+          title: Conversion Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                title: Response Get Conversion Status Api V1 Convert  Conversion Id  Status
+                  Get
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Vérifier le statut d'une conversion
+      tags:
+      - Document Conversion
+      x-accepts:
+      - application/json
+  /api/v1/convert/{conversion_id}/download/{filename}:
+    get:
+      description: |-
+        Télécharge le fichier Factur-X PDF ou XML généré.
+
+        ## Fichiers disponibles
+
+        - `facturx.pdf` : PDF/A-3 avec XML embarqué
+        - `facturx.xml` : XML CII seul (Cross Industry Invoice)
+
+        Les fichiers sont disponibles pendant 24 heures après génération.
+      operationId: download_file_api_v1_convert__conversion_id__download__filename__get
+      parameters:
+      - explode: false
+        in: path
+        name: conversion_id
+        required: true
+        schema:
+          title: Conversion Id
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: filename
+        required: true
+        schema:
+          title: Filename
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Fichier téléchargé
+        "404":
+          description: Fichier non trouvé ou expiré
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Télécharger un fichier généré
+      tags:
+      - Document Conversion
+      x-accepts:
+      - application/json
+  /api/v1/convert/async:
+    post:
+      description: |-
+        Lance une conversion asynchrone via Celery.
+
+        ## Workflow
+
+        1. **Upload** : Le document est envoyé en multipart/form-data
+        2. **Task Celery** : La tâche est mise en file d'attente
+        3. **Callback** : Notification par webhook à la fin
+
+        ## Réponses possibles
+
+        - **202** : Tâche acceptée, en cours de traitement
+        - **400** : Fichier invalide
+      operationId: convert_document_async_api_v1_convert_async_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Body_convert_document_async_api_v1_convert_async_post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "202":
+          description: Tâche acceptée
+        "400":
+          description: Fichier invalide
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Convertir un document en Factur-X (mode asynchrone)
+      tags:
+      - Document Conversion
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
   /:
     get:
       description: |-
@@ -3388,15 +3666,6 @@ components:
       - errorCode
       - errorMessage
       title: APIError
-    APIProfile:
-      description: Factur-X profile for API requests.
-      enum:
-      - MINIMUM
-      - BASIC
-      - EN16931
-      - EXTENDED
-      title: APIProfile
-      type: string
     AsyncTaskStatus:
       description: |-
         Complete description of an async task status.
@@ -3425,6 +3694,42 @@ components:
       - status
       - taskId
       title: AsyncTaskStatus
+    Body_convert_document_api_v1_convert_post:
+      properties:
+        file:
+          description: "Document à convertir (PDF, DOCX, XLSX, JPG, PNG)"
+          format: binary
+          title: File
+          type: string
+        output:
+          default: pdf
+          description: "Format de sortie: pdf, xml, both"
+          title: Output
+          type: string
+        callback_url:
+          nullable: true
+          type: string
+      required:
+      - file
+      title: Body_convert_document_api_v1_convert_post
+    Body_convert_document_async_api_v1_convert_async_post:
+      properties:
+        file:
+          description: "Document à convertir (PDF, DOCX, XLSX, JPG, PNG)"
+          format: binary
+          title: File
+          type: string
+        output:
+          default: pdf
+          description: "Format de sortie: pdf, xml, both"
+          title: Output
+          type: string
+        callback_url:
+          nullable: true
+          type: string
+      required:
+      - file
+      title: Body_convert_document_async_api_v1_convert_async_post
     Body_generate_invoice_api_v1_processing_generate_invoice_post:
       properties:
         invoice_data:
@@ -3437,7 +3742,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/APIProfile"
+          - $ref: "#/components/schemas/FacturXProfile"
           default: EXTENDED
           description: "Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED."
         output_format:
@@ -3541,7 +3846,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/APIProfile"
+          - $ref: "#/components/schemas/FacturXProfile"
           nullable: true
         use_verapdf:
           default: false
@@ -3561,7 +3866,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/APIProfile"
+          - $ref: "#/components/schemas/FacturXProfile"
           nullable: true
         use_verapdf:
           default: false
@@ -3592,7 +3897,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/APIProfile"
+          - $ref: "#/components/schemas/FacturXProfile"
           default: EXTENDED
           description: "Validation profile (MINIMUM, BASIC, EN16931, EXTENDED)."
       required:
@@ -3798,37 +4103,302 @@ components:
       required:
       - chorusInvoiceId
       title: ChorusProResult
-    DocumentType:
+    ConvertErrorResponse:
+      description: Reponse erreur de conversion.
+      example:
+        conversion_id: conversion_id
+        error: error
+        message: message
+        resume_url: resume_url
+        status: error
+      properties:
+        status:
+          default: error
+          title: Status
+          type: string
+        error:
+          description: Code erreur
+          title: Error
+          type: string
+        message:
+          description: Message d'erreur
+          title: Message
+          type: string
+        conversion_id:
+          nullable: true
+          type: string
+        resume_url:
+          nullable: true
+          type: string
+      required:
+      - error
+      - message
+      title: ConvertErrorResponse
+    ConvertPendingInputResponse:
+      description: Reponse donnees manquantes.
+      example:
+        extracted_data:
+          key: ""
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        conversion_id: conversion_id
+        missing_fields:
+        - field: field
+          bt_code: bt_code
+          confidence: 5.637376656633329
+          required_for:
+          - required_for
+          - required_for
+          description: description
+          suggested_value: suggested_value
+        - field: field
+          bt_code: bt_code
+          confidence: 5.637376656633329
+          required_for:
+          - required_for
+          - required_for
+          description: description
+          suggested_value: suggested_value
+        message: Donnees manquantes requises pour la conformite
+        extraction:
+          confidence_score: 0.8008281904610115
+          fields_extracted: 6
+          fields_enriched: 1
+          fields_missing: 5
+        resume_url: resume_url
+        status: pending_input
+      properties:
+        status:
+          default: pending_input
+          title: Status
+          type: string
+        conversion_id:
+          title: Conversion Id
+          type: string
+        message:
+          default: Donnees manquantes requises pour la conformite
+          title: Message
+          type: string
+        extraction:
+          $ref: "#/components/schemas/ExtractionInfo"
+        extracted_data:
+          additionalProperties: true
+          description: Donnees extraites par OCR au format FacturXInvoice
+          title: Extracted Data
+          type: object
+        missing_fields:
+          items:
+            $ref: "#/components/schemas/MissingField"
+          type: array
+        resume_url:
+          title: Resume Url
+          type: string
+        expires_at:
+          format: date-time
+          title: Expires At
+          type: string
+      required:
+      - conversion_id
+      - expires_at
+      - extracted_data
+      - extraction
+      - missing_fields
+      - resume_url
+      title: ConvertPendingInputResponse
+    ConvertResumeRequest:
       description: |-
-        Commercial document types (UNTDID 1001).
+        Requete de reprise de conversion avec corrections.
 
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 384 | CORRECTED_INVOICE | Corrected invoice |
-        | 386 | PREPAYMENT | Prepayment invoice |
-        | 389 | SELF_BILLED | Self-billed invoice |
-      enum:
-      - "380"
-      - "381"
-      - "384"
-      - "386"
-      - "389"
-      title: DocumentType
-      type: string
-      x-enum-descriptions:
-      - Commercial invoice
-      - Credit note
-      - Corrected invoice
-      - Prepayment invoice
-      - Self-billed invoice
-      x-enum-varnames:
-      - INVOICE
-      - CREDIT_NOTE
-      - CORRECTED_INVOICE
-      - PREPAYMENT
-      - SELF_BILLED
+        Le champ `overrides` accepte n'importe quel sous-ensemble de FacturXInvoice.
+        Seuls les champs fournis seront mis a jour (merge profond).
+
+        Exemple:
+            {
+                "overrides": {
+                    "supplier": {
+                        "name": "Ma Société",
+                        "siret": "12345678901234"
+                    },
+                    "totals": {
+                        "total_net_amount": 1000.00
+                    }
+                }
+            }
+      example:
+        overrides:
+          key: ""
+      properties:
+        overrides:
+          additionalProperties: true
+          description: Sous-ensemble de FacturXInvoice a mettre a jour (merge profond)
+          title: Overrides
+          type: object
+      title: ConvertResumeRequest
+    ConvertSuccessResponse:
+      description: |-
+        Reponse succes de conversion.
+
+        Le champ `invoice` contient les donnees de la facture au format FacturXInvoice
+        (cf. facture_electronique.models.FacturXInvoice). Ce modele est le meme que
+        celui utilise pour la generation Factur-X, garantissant une coherence totale.
+      properties:
+        status:
+          default: success
+          description: Statut de la conversion
+          title: Status
+          type: string
+        conversion_id:
+          description: Identifiant unique de conversion
+          title: Conversion Id
+          type: string
+        document_type:
+          $ref: "#/components/schemas/DocumentTypeInfo"
+        invoice:
+          additionalProperties: true
+          description: Donnees facture au format FacturXInvoice (cf. models.py)
+          title: Invoice
+          type: object
+        extraction:
+          $ref: "#/components/schemas/ExtractionInfo"
+        validation:
+          $ref: "#/components/schemas/ValidationInfo"
+        files:
+          $ref: "#/components/schemas/FilesInfo"
+        processing_time_ms:
+          description: Temps de traitement en ms
+          title: Processing Time Ms
+          type: integer
+        pdf_regenerated:
+          default: false
+          description: True si le PDF a ete regenere (source non exploitable)
+          title: Pdf Regenerated
+          type: boolean
+        pdf_regenerated_reason:
+          nullable: true
+          type: string
+      required:
+      - conversion_id
+      - document_type
+      - extraction
+      - files
+      - invoice
+      - processing_time_ms
+      - validation
+      title: ConvertSuccessResponse
+    ConvertValidationFailedResponse:
+      description: Reponse echec de validation - inclut les donnees extraites pour
+        correction.
+      example:
+        extracted_data:
+          key: ""
+        expires_at: 2000-01-23T04:56:07.000+00:00
+        conversion_id: conversion_id
+        missing_fields:
+        - field: field
+          bt_code: bt_code
+          confidence: 5.637376656633329
+          required_for:
+          - required_for
+          - required_for
+          description: description
+          suggested_value: suggested_value
+        - field: field
+          bt_code: bt_code
+          confidence: 5.637376656633329
+          required_for:
+          - required_for
+          - required_for
+          description: description
+          suggested_value: suggested_value
+        message: Donnees extraites avec erreurs de validation. Completez le formulaire
+          et appelez /resume.
+        extraction:
+          confidence_score: 0.8008281904610115
+          fields_extracted: 6
+          fields_enriched: 1
+          fields_missing: 5
+        resume_url: resume_url
+        validation:
+          schematron_rules_total: 7
+          pdfa_compliant: true
+          schematron_rules_passed: 2
+          profile: profile
+          errors:
+          - msg: msg
+            loc:
+            - ValidationError_loc_inner
+            - ValidationError_loc_inner
+            type: type
+          - msg: msg
+            loc:
+            - ValidationError_loc_inner
+            - ValidationError_loc_inner
+            type: type
+          xml_embedded: true
+        status: validation_failed
+      properties:
+        status:
+          default: validation_failed
+          title: Status
+          type: string
+        conversion_id:
+          title: Conversion Id
+          type: string
+        message:
+          default: Donnees extraites avec erreurs de validation. Completez le formulaire
+            et appelez /resume.
+          title: Message
+          type: string
+        extraction:
+          $ref: "#/components/schemas/ExtractionInfo"
+        extracted_data:
+          additionalProperties: true
+          description: Donnees extraites par OCR au format FacturXInvoice (a completer/corriger)
+          title: Extracted Data
+          type: object
+        missing_fields:
+          description: Champs manquants pour conformite Factur-X
+          items:
+            $ref: "#/components/schemas/MissingField"
+          type: array
+        validation:
+          $ref: "#/components/schemas/ValidationInfo"
+        resume_url:
+          description: URL pour reprendre la conversion avec corrections
+          title: Resume Url
+          type: string
+        expires_at:
+          description: Expiration de la conversion (1h)
+          format: date-time
+          title: Expires At
+          type: string
+      required:
+      - conversion_id
+      - expires_at
+      - extracted_data
+      - extraction
+      - resume_url
+      - validation
+      title: ConvertValidationFailedResponse
+    DocumentTypeInfo:
+      description: Informations sur le type de document detecte.
+      properties:
+        code:
+          description: Code UNTDID 1001
+          title: Code
+          type: integer
+        label:
+          description: "Libelle (Facture, Avoir, etc.)"
+          title: Label
+          type: string
+        detected_as:
+          description: Classification interne
+          title: Detected As
+          type: string
+      required:
+      - code
+      - detected_as
+      - label
+      title: DocumentTypeInfo
     ElectronicAddress:
       description: |-
         Represents an electronic invoicing address, composed of an identifier
@@ -3899,6 +4469,36 @@ components:
       - chorus_pro
       - system
       type: string
+    ExtractionInfo:
+      description: Informations sur l'extraction des donnees.
+      example:
+        confidence_score: 0.8008281904610115
+        fields_extracted: 6
+        fields_enriched: 1
+        fields_missing: 5
+      properties:
+        confidence_score:
+          description: Score de confiance global (0-1)
+          title: Confidence Score
+          type: number
+        fields_extracted:
+          description: Nombre de champs extraits
+          title: Fields Extracted
+          type: integer
+        fields_enriched:
+          default: 0
+          description: Nombre de champs enrichis automatiquement
+          title: Fields Enriched
+          type: integer
+        fields_missing:
+          default: 0
+          description: Nombre de champs manquants
+          title: Fields Missing
+          type: integer
+      required:
+      - confidence_score
+      - fields_extracted
+      title: ExtractionInfo
     FacturXPDFInfo:
       description: Information about the generated Factur-X PDF.
       properties:
@@ -3919,6 +4519,19 @@ components:
       - profile
       - size
       title: FacturXPDFInfo
+    FacturXProfile:
+      description: |-
+        Profil Factur-X pour la reponse API.
+
+        Note: Simplifie par rapport a utils/facturx.FacturXProfile qui
+        contient aussi les configurations XSLT. Celui-ci est pour l'API.
+      enum:
+      - MINIMUM
+      - BASIC
+      - EN16931
+      - EXTENDED
+      title: FacturXProfile
+      type: string
     FieldStatus:
       description: Field compliance status.
       enum:
@@ -3929,6 +4542,30 @@ components:
       - NOT_VERIFIED
       title: FieldStatus
       type: string
+    FileInfo:
+      description: Informations sur un fichier genere (contenu inline en base64).
+      properties:
+        content_b64:
+          nullable: true
+          type: string
+        size_bytes:
+          default: 0
+          description: Taille en bytes
+          title: Size Bytes
+          type: integer
+      title: FileInfo
+    FilesInfo:
+      description: Fichiers generes.
+      properties:
+        facturx_pdf:
+          allOf:
+          - $ref: "#/components/schemas/FileInfo"
+          nullable: true
+        xml:
+          allOf:
+          - $ref: "#/components/schemas/FileInfo"
+          nullable: true
+      title: FilesInfo
     GenerateCertificateRequest:
       description: |-
         Request to generate a self-signed X.509 test certificate.
@@ -3983,34 +4620,34 @@ components:
         email:
           nullable: true
           type: string
-        validity_days:
+        validityDays:
           default: 365
           description: Validity duration in days
           example: 365
           maximum: 3650.0
           minimum: 1.0
-          title: Validity Days
+          title: Validitydays
           type: integer
-        key_size:
+        keySize:
           default: 2048
           description: RSA key size in bits
           example: 2048
-          title: Key Size
+          title: Keysize
           type: integer
-        key_passphrase:
+        keyPassphrase:
           nullable: true
           type: string
-        generate_p12:
+        generateP12:
           default: false
           description: Also generate a PKCS#12 (.p12) file
           example: false
-          title: Generate P12
+          title: Generatep12
           type: boolean
-        p12_passphrase:
+        p12Passphrase:
           default: changeme
           description: Passphrase for PKCS#12 file
           example: changeme
-          title: P12 Passphrase
+          title: P12Passphrase
           type: string
       title: GenerateCertificateRequest
     GenerateCertificateResponse:
@@ -4089,7 +4726,7 @@ components:
       description: Get Chorus Pro ID from SIRET.
       example:
         credentials: ""
-        identifier_type: SIRET
+        identifierType: SIRET
         siret: siret
       properties:
         credentials:
@@ -4100,10 +4737,10 @@ components:
           description: Structure SIRET (14 digits)
           title: Siret
           type: string
-        identifier_type:
+        identifierType:
           default: SIRET
           description: "Identifier type (SIRET, SIREN, UE_HORS_FRANCE, etc.)"
-          title: Identifier Type
+          title: Identifiertype
           type: string
       required:
       - siret
@@ -4140,18 +4777,18 @@ components:
       description: Get an invoice.
       example:
         credentials: ""
-        chorus_invoice_id: 0
+        chorusInvoiceId: 0
       properties:
         credentials:
           allOf:
           - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
-        chorus_invoice_id:
+        chorusInvoiceId:
           description: Chorus Pro invoice ID
-          title: Chorus Invoice Id
+          title: Chorusinvoiceid
           type: integer
       required:
-      - chorus_invoice_id
+      - chorusInvoiceId
       title: GetInvoiceRequest
     GetInvoiceResponse:
       description: Invoice details.
@@ -4201,25 +4838,25 @@ components:
     GetStructureRequest:
       description: Get structure details.
       example:
-        language_code: fr
         credentials: ""
-        structure_id: 0
+        structureId: 0
+        languageCode: fr
       properties:
         credentials:
           allOf:
           - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
-        structure_id:
+        structureId:
           description: Chorus Pro structure ID
-          title: Structure Id
+          title: Structureid
           type: integer
-        language_code:
+        languageCode:
           default: fr
           description: "Language code (fr, en)"
-          title: Language Code
+          title: Languagecode
           type: string
       required:
-      - structure_id
+      - structureId
       title: GetStructureRequest
     GetStructureResponse:
       description: Structure details.
@@ -4328,7 +4965,7 @@ components:
           type: string
         documentType:
           allOf:
-          - $ref: "#/components/schemas/DocumentType"
+          - $ref: "#/components/schemas/InvoiceTypeCode"
           default: "380"
           description: Document type (BT-3)
         supplier:
@@ -4462,6 +5099,81 @@ components:
       - code
       - label
       title: InvoiceStatus
+    InvoiceTypeCode:
+      description: |-
+        Document type according to BR-FR-04 (UNTDID 1001 codes).
+
+        | Code | Name | Description |
+        |------|------|-------------|
+        | 380 | INVOICE | Commercial invoice |
+        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
+        | 393 | FACTORED_INVOICE | Factored invoice |
+        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
+        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
+        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
+        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
+        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
+        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
+        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
+        | 381 | CREDIT_NOTE | Credit note |
+        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
+        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
+        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
+        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
+        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+      enum:
+      - "380"
+      - "389"
+      - "393"
+      - "501"
+      - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
+      title: InvoiceTypeCode
+      type: string
+      x-enum-descriptions:
+      - Commercial Invoice
+      - Self-billed Invoice
+      - Factored Invoice
+      - Self-billed Factored Invoice
+      - Prepayment Invoice
+      - Self-billed Prepayment Invoice
+      - Corrective Invoice
+      - Self-billed Corrective Invoice
+      - Factored Corrective Invoice
+      - Self-billed Factored Corrective Invoice
+      - Credit Note
+      - Self-billed Credit Note
+      - Global Allowance Credit Note
+      - Factored Credit Note
+      - Self-billed Factored Credit Note
+      - Prepayment Credit Note
+      x-enum-varnames:
+      - INVOICE
+      - SELF_BILLED_INVOICE
+      - FACTORED_INVOICE
+      - SELF_BILLED_FACTORED_INVOICE
+      - PREPAYMENT_INVOICE
+      - SELF_BILLED_PREPAYMENT_INVOICE
+      - CORRECTIVE_INVOICE
+      - SELF_BILLED_CORRECTIVE_INVOICE
+      - FACTORED_CORRECTIVE_INVOICE
+      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
+      - CREDIT_NOTE
+      - SELF_BILLED_CREDIT_NOTE
+      - GLOBAL_ALLOWANCE_CREDIT_NOTE
+      - FACTORED_CREDIT_NOTE
+      - SELF_BILLED_FACTORED_CREDIT_NOTE
+      - PREPAYMENT_CREDIT_NOTE
     MandatoryNoteSchema:
       description: Mandatory note detected with location and XML/PDF comparison.
       example:
@@ -4511,6 +5223,47 @@ components:
       - label
       - subjectCode
       title: MandatoryNoteSchema
+    MissingField:
+      description: Champ manquant requis pour la conformite.
+      example:
+        field: field
+        bt_code: bt_code
+        confidence: 5.637376656633329
+        required_for:
+        - required_for
+        - required_for
+        description: description
+        suggested_value: suggested_value
+      properties:
+        field:
+          description: Nom du champ
+          title: Field
+          type: string
+        bt_code:
+          description: Code Business Term (BT-XX)
+          title: Bt Code
+          type: string
+        description:
+          description: Description du champ
+          title: Description
+          type: string
+        required_for:
+          description: Profils necessitant ce champ
+          items:
+            type: string
+          type: array
+        suggested_value:
+          nullable: true
+          type: string
+        confidence:
+          nullable: true
+          type: number
+      required:
+      - bt_code
+      - description
+      - field
+      - required_for
+      title: MissingField
     OutputFormat:
       description: Output format for invoice generation.
       enum:
@@ -4692,7 +5445,7 @@ components:
       - width
       title: PageDimensionsSchema
     PostalAddress:
-      description: Represents a postal address.
+      description: "Represents a postal address (BG-5, BG-8, BG-12, BG-15)."
       properties:
         postalCode:
           nullable: true
@@ -4703,10 +5456,16 @@ components:
         lineTwo:
           nullable: true
           type: string
+        lineThree:
+          nullable: true
+          type: string
         city:
           nullable: true
           type: string
         countryCode:
+          nullable: true
+          type: string
+        countrySubdivision:
           nullable: true
           type: string
       title: PostalAddress
@@ -4715,12 +5474,12 @@ components:
       example:
         autoEnrich: true
         facturxProfile: EN16931
-        validate: true
+        validateXml: true
         verifyDestinationParameters: true
       properties:
         facturxProfile:
           allOf:
-          - $ref: "#/components/schemas/APIProfile"
+          - $ref: "#/components/schemas/FacturXProfile"
           default: EN16931
           description: Factur-X profile to use
         autoEnrich:
@@ -4728,10 +5487,10 @@ components:
           description: "Auto-enrich data (Company APIs, Chorus Pro, etc.)"
           title: Autoenrich
           type: boolean
-        validate:
+        validateXml:
           default: true
           description: Validate Factur-X XML with Schematron
-          title: Validate
+          title: Validatexml
           type: boolean
         verifyDestinationParameters:
           default: true
@@ -4746,17 +5505,27 @@ components:
         mainly for electronic invoice addressing.
 
         **Possible values:**
-        - `0225`: FR_SIREN - French SIREN (most common for France, replaces old 0002)
+        - `0225`: FR_SIREN - French SIREN (most common for France)
+        - `0009`: FR_SIRET - French SIRET
+        - `0002`: FR_SIREN_OLD - French SIREN (old code, for legal organization ID)
         - `0088`: GLN - Global Location Number
         - `0060`: DUNS - Data Universal Numbering System
         - `9957`: FR_VAT_INTRA - French intra-community VAT number
         - `0199`: GLEIF - Global Legal Entity Identifier Foundation
+        - `0231`: DT_DIRECTORY_ID - Directory ID for tax administration
+        - `EM`: EMAIL - Email-based electronic address (BT-34/BT-49)
       enum:
       - "0225"
+      - "0009"
+      - "0002"
       - "0088"
       - "0060"
       - "9957"
       - "0199"
+      - "0231"
+      - EM
+      - "0177"
+      - "0224"
       title: SchemeID
       type: string
       x-enum-varnames:
@@ -4809,29 +5578,29 @@ components:
     SearchStructureRequest:
       description: Search structures by criteria.
       example:
+        structureIdentifier: structureIdentifier
         credentials: ""
-        company_name: company_name
-        restrict_private_structures: false
-        structure_identifier: structure_identifier
-        structure_identifier_type: structure_identifier_type
+        companyName: companyName
+        structureIdentifierType: structureIdentifierType
+        restrictPrivateStructures: false
       properties:
         credentials:
           allOf:
           - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
-        structure_identifier:
+        structureIdentifier:
           nullable: true
           type: string
-        structure_identifier_type:
+        structureIdentifierType:
           nullable: true
           type: string
-        company_name:
+        companyName:
           nullable: true
           type: string
-        restrict_private_structures:
+        restrictPrivateStructures:
           default: false
           description: Limit search to private structures only
-          title: Restrict Private Structures
+          title: Restrictprivatestructures
           type: boolean
       title: SearchStructureRequest
     SearchStructureResponse:
@@ -5134,7 +5903,7 @@ components:
         options:
           autoEnrich: true
           facturxProfile: EN16931
-          validate: true
+          validateXml: true
         signature:
           location: "Paris, France"
           reason: Factur-X compliance - Electronic signature
@@ -5244,75 +6013,75 @@ components:
     SubmitInvoiceRequest:
       description: Submit an invoice to Chorus Pro.
       example:
-        main_attachment_id: 5
-        total_net_amount: 6.027456183070403
+        mainAttachmentId: 5
         credentials: ""
-        total_gross_amount: 5.962133916683182
-        structure_id: 0
-        engagement_number: engagement_number
-        main_attachment_label: main_attachment_label
-        invoice_date: invoice_date
-        vat_amount: 1.4658129805029452
-        purchase_order_reference: purchase_order_reference
-        payment_due_date: payment_due_date
-        service_code: service_code
+        serviceCode: serviceCode
+        totalNetAmount: 6.027456183070403
+        engagementNumber: engagementNumber
+        structureId: 0
+        totalGrossAmount: 5.962133916683182
+        invoiceDate: invoiceDate
+        vatAmount: 1.4658129805029452
+        paymentDueDate: paymentDueDate
+        mainAttachmentLabel: mainAttachmentLabel
+        invoiceNumber: invoiceNumber
         comment: comment
-        contract_reference: contract_reference
-        invoice_number: invoice_number
+        purchaseOrderReference: purchaseOrderReference
+        contractReference: contractReference
       properties:
         credentials:
           allOf:
           - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
-        invoice_number:
+        invoiceNumber:
           description: Invoice number
-          title: Invoice Number
+          title: Invoicenumber
           type: string
-        invoice_date:
+        invoiceDate:
           description: "Invoice date (ISO format: YYYY-MM-DD)"
-          title: Invoice Date
+          title: Invoicedate
           type: string
-        payment_due_date:
+        paymentDueDate:
           nullable: true
           type: string
-        structure_id:
+        structureId:
           description: Chorus Pro recipient structure ID
-          title: Structure Id
+          title: Structureid
           type: integer
-        service_code:
+        serviceCode:
           nullable: true
           type: string
-        engagement_number:
+        engagementNumber:
           nullable: true
           type: string
-        total_net_amount:
+        totalNetAmount:
           $ref: "#/components/schemas/SubmitNetAmount"
-        vat_amount:
+        vatAmount:
           $ref: "#/components/schemas/SubmitVatAmount"
-        total_gross_amount:
+        totalGrossAmount:
           $ref: "#/components/schemas/SubmitGrossAmount"
-        main_attachment_id:
+        mainAttachmentId:
           nullable: true
           type: integer
-        main_attachment_label:
+        mainAttachmentLabel:
           nullable: true
           type: string
         comment:
           nullable: true
           type: string
-        purchase_order_reference:
+        purchaseOrderReference:
           nullable: true
           type: string
-        contract_reference:
+        contractReference:
           nullable: true
           type: string
       required:
-      - invoice_date
-      - invoice_number
-      - structure_id
-      - total_gross_amount
-      - total_net_amount
-      - vat_amount
+      - invoiceDate
+      - invoiceNumber
+      - structureId
+      - totalGrossAmount
+      - totalNetAmount
+      - vatAmount
       title: SubmitInvoiceRequest
     SubmitInvoiceResponse:
       description: Response after invoice submission.
@@ -5422,6 +6191,57 @@ components:
       required:
       - detail
       title: ValidationErrorResponse
+    ValidationInfo:
+      description: Informations sur la validation.
+      example:
+        schematron_rules_total: 7
+        pdfa_compliant: true
+        schematron_rules_passed: 2
+        profile: profile
+        errors:
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
+        - msg: msg
+          loc:
+          - ValidationError_loc_inner
+          - ValidationError_loc_inner
+          type: type
+        xml_embedded: true
+      properties:
+        profile:
+          description: Profil Factur-X utilise
+          title: Profile
+          type: string
+        schematron_rules_passed:
+          description: Regles passees
+          title: Schematron Rules Passed
+          type: integer
+        schematron_rules_total:
+          description: Total regles
+          title: Schematron Rules Total
+          type: integer
+        pdfa_compliant:
+          default: true
+          description: PDF/A-3 conforme
+          title: Pdfa Compliant
+          type: boolean
+        xml_embedded:
+          default: true
+          description: XML embarque dans PDF
+          title: Xml Embedded
+          type: boolean
+        errors:
+          items:
+            $ref: "#/components/schemas/ValidationError"
+          type: array
+      required:
+      - profile
+      - schematron_rules_passed
+      - schematron_rules_total
+      title: ValidationInfo
     ValidationSuccessResponse:
       description: Response for successful validation.
       example:
@@ -5606,21 +6426,21 @@ components:
         pisteClientSecret: my_secret
         sandbox: true
       properties:
-        piste_client_id:
+        pisteClientId:
           description: PISTE Client ID (government API portal)
-          title: Piste Client Id
+          title: Pisteclientid
           type: string
-        piste_client_secret:
+        pisteClientSecret:
           description: PISTE Client Secret
-          title: Piste Client Secret
+          title: Pisteclientsecret
           type: string
-        chorus_pro_login:
+        chorusProLogin:
           description: Chorus Pro login
-          title: Chorus Pro Login
+          title: Chorusprologin
           type: string
-        chorus_pro_password:
+        chorusProPassword:
           description: Chorus Pro password
-          title: Chorus Pro Password
+          title: Choruspropassword
           type: string
         sandbox:
           default: true
@@ -5628,10 +6448,10 @@ components:
           title: Sandbox
           type: boolean
       required:
-      - chorus_pro_login
-      - chorus_pro_password
-      - piste_client_id
-      - piste_client_secret
+      - chorusProLogin
+      - chorusProPassword
+      - pisteClientId
+      - pisteClientSecret
       title: ChorusProCredentials
     facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
       description: |-
@@ -5669,6 +6489,63 @@ components:
           title: Sandboxmode
           type: boolean
       title: ChorusProCredentials
+    AdditionalDocument:
+      description: |-
+        Additional supporting document (BG-24).
+
+        References to external documents or embedded attachments.
+      properties:
+        id:
+          description: Document reference identifier (BT-122).
+          title: Id
+          type: string
+        type_code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        uri:
+          nullable: true
+          type: string
+        reference_type_code:
+          nullable: true
+          type: string
+      required:
+      - id
+      title: AdditionalDocument
+    AllowanceCharge:
+      description: |-
+        Document-level or line-level allowance/charge.
+
+        Represents BG-20 (Document level allowances), BG-21 (Document level charges),
+        BG-27 (Invoice line allowances), or BG-28 (Invoice line charges).
+      properties:
+        is_charge:
+          description: "True for charge, False for allowance (ChargeIndicator)."
+          title: Is Charge
+          type: boolean
+        amount:
+          $ref: "#/components/schemas/Amount"
+        base_amount:
+          $ref: "#/components/schemas/Base_Amount"
+        percentage:
+          $ref: "#/components/schemas/Percentage"
+        reason:
+          nullable: true
+          type: string
+        reason_code:
+          nullable: true
+          type: string
+        vat_category:
+          nullable: true
+          type: string
+        vat_rate:
+          $ref: "#/components/schemas/Vat_Rate"
+      required:
+      - amount
+      - is_charge
+      title: AllowanceCharge
     AllowanceReasonCode:
       description: |-
         Standardized codes for allowance or charge reasons (EN 16931 standard).
@@ -5691,28 +6568,121 @@ components:
       - LA
       title: AllowanceReasonCode
       type: string
+    Contact:
+      description: |-
+        Contact information (BG-6 Seller Contact, BG-9 Buyer Contact).
+
+        Used for seller and buyer contact details.
+      properties:
+        name:
+          nullable: true
+          type: string
+        department_name:
+          nullable: true
+          type: string
+        phone:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+      title: Contact
+    DeliveryParty:
+      description: |-
+        Delivery location information (BG-15 Deliver to).
+
+        Represents the party or location where goods/services are delivered.
+      properties:
+        id:
+          nullable: true
+          type: string
+        global_id:
+          allOf:
+          - $ref: "#/components/schemas/ElectronicAddress"
+          nullable: true
+        name:
+          nullable: true
+          type: string
+        postal_address:
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
+          nullable: true
+      title: DeliveryParty
     InvoiceLine:
-      description: Represents a line item in an invoice.
+      description: Represents an invoice line item (BG-25).
       properties:
         line_number:
+          description: Invoice line identifier (BT-126).
           title: Line Number
           type: integer
+        line_note:
+          nullable: true
+          type: string
         reference:
           nullable: true
           type: string
+        buyer_assigned_id:
+          nullable: true
+          type: string
+        product_global_id:
+          nullable: true
+          type: string
+        product_global_id_scheme:
+          nullable: true
+          type: string
         item_name:
+          description: Item name (BT-153).
           title: Item Name
           type: string
+        item_description:
+          nullable: true
+          type: string
+        origin_country:
+          nullable: true
+          type: string
+        characteristics:
+          items:
+            $ref: "#/components/schemas/ProductCharacteristic"
+          nullable: true
+          type: array
+        classifications:
+          items:
+            $ref: "#/components/schemas/ProductClassification"
+          nullable: true
+          type: array
         quantity:
           $ref: "#/components/schemas/Quantity"
         unit:
-          $ref: "#/components/schemas/UnitOfMeasure"
+          allOf:
+          - $ref: "#/components/schemas/UnitOfMeasure"
+          description: Invoiced quantity unit of measure code (BT-130).
+        gross_unit_price:
+          $ref: "#/components/schemas/Gross_Unit_Price"
         unit_net_price:
           $ref: "#/components/schemas/UnitNetPrice"
-        allowanceAmount:
-          $ref: "#/components/schemas/InvoiceLine_allowanceAmount"
+        price_basis_quantity:
+          $ref: "#/components/schemas/Price_Basis_Quantity"
+        price_basis_unit:
+          nullable: true
+          type: string
+        price_allowance_amount:
+          $ref: "#/components/schemas/Price_Allowance_Amount"
         lineNetAmount:
           $ref: "#/components/schemas/LineNetAmount"
+        allowanceAmount:
+          $ref: "#/components/schemas/InvoiceLine_allowanceAmount"
+        allowanceReasonCode:
+          allOf:
+          - $ref: "#/components/schemas/AllowanceReasonCode"
+          nullable: true
+        allowanceReason:
+          nullable: true
+          type: string
+        allowances_charges:
+          items:
+            $ref: "#/components/schemas/AllowanceCharge"
+          nullable: true
+          type: array
         vat_rate:
           nullable: true
           type: string
@@ -5722,19 +6692,28 @@ components:
           allOf:
           - $ref: "#/components/schemas/VATCategory"
           nullable: true
-        periodStartDate:
+        period_start_date:
           nullable: true
           type: string
-        periodEndDate:
+        period_end_date:
           nullable: true
           type: string
-        allowanceReasonCode:
-          allOf:
-          - $ref: "#/components/schemas/AllowanceReasonCode"
-          nullable: true
-        allowanceReason:
+        purchase_order_line_ref:
           nullable: true
           type: string
+        accounting_account:
+          nullable: true
+          type: string
+        additional_documents:
+          items:
+            $ref: "#/components/schemas/AdditionalDocument"
+          nullable: true
+          type: array
+        line_notes:
+          items:
+            $ref: "#/components/schemas/InvoiceNote"
+          nullable: true
+          type: array
       required:
       - item_name
       - line_number
@@ -5763,26 +6742,61 @@ components:
     InvoiceReferences:
       description: "Contains various invoice references (currency, type, etc.)."
       properties:
+        business_process_id:
+          nullable: true
+          type: string
         invoice_currency:
           default: EUR
+          description: Invoice currency code (BT-5). ISO 4217.
           title: Invoice Currency
           type: string
         payment_means:
-          $ref: "#/components/schemas/PaymentMeans"
+          allOf:
+          - $ref: "#/components/schemas/PaymentMeans"
+          description: Payment means type code (BT-81).
+        payment_means_text:
+          nullable: true
+          type: string
         invoice_type:
           $ref: "#/components/schemas/InvoiceTypeCode"
         vat_accounting_code:
-          $ref: "#/components/schemas/VATAccountingCode"
-        contract_reference:
+          allOf:
+          - $ref: "#/components/schemas/VATAccountingCode"
+          description: VAT accounting code.
+        buyer_reference:
           nullable: true
           type: string
-        vat_exemption_reason:
+        contract_reference:
           nullable: true
           type: string
         purchase_order_reference:
           nullable: true
           type: string
+        seller_order_reference:
+          nullable: true
+          type: string
+        receiving_advice_reference:
+          nullable: true
+          type: string
+        despatch_advice_reference:
+          nullable: true
+          type: string
+        tender_reference:
+          nullable: true
+          type: string
         preceding_invoice_reference:
+          nullable: true
+          type: string
+        preceding_invoice_date:
+          nullable: true
+          type: string
+        project_reference:
+          nullable: true
+          type: string
+        project_name:
+          nullable: true
+          type: string
+        vat_exemption_reason:
           nullable: true
           type: string
       required:
@@ -5791,18 +6805,26 @@ components:
       - vat_accounting_code
       title: InvoiceReferences
     InvoiceTotals:
-      description: Contains all invoice total amounts.
+      description: Contains all invoice total amounts (BG-22).
       properties:
+        line_total_amount:
+          $ref: "#/components/schemas/Line_Total_Amount"
+        allowance_total_amount:
+          $ref: "#/components/schemas/Allowance_Total_Amount"
+        charge_total_amount:
+          $ref: "#/components/schemas/Charge_Total_Amount"
         total_net_amount:
           $ref: "#/components/schemas/TotalNetAmount"
         vat_amount:
           $ref: "#/components/schemas/TotalVATAmount"
         total_gross_amount:
           $ref: "#/components/schemas/TotalGrossAmount"
-        amount_due:
-          $ref: "#/components/schemas/AmountDue"
         prepayment:
           $ref: "#/components/schemas/InvoiceTotals_prepayment"
+        rounding_amount:
+          $ref: "#/components/schemas/Rounding_Amount"
+        amount_due:
+          $ref: "#/components/schemas/AmountDue"
         globalAllowanceAmount:
           $ref: "#/components/schemas/GlobalAllowanceAmount"
         globalAllowanceReason:
@@ -5908,6 +6930,9 @@ components:
           minLength: 1
           title: Nom
           type: string
+        payeeId:
+          nullable: true
+          type: string
         siret:
           nullable: true
           pattern: "^\\d{14}$"
@@ -5926,9 +6951,27 @@ components:
         bic:
           nullable: true
           type: string
+        global_ids:
+          items:
+            $ref: "#/components/schemas/ElectronicAddress"
+          nullable: true
+          type: array
       required:
       - nom
       title: Payee
+    PaymentCard:
+      description: |-
+        Payment card information (BG-18).
+
+        Used when payment is made by payment card.
+      properties:
+        card_id:
+          nullable: true
+          type: string
+        cardholder_name:
+          nullable: true
+          type: string
+      title: PaymentCard
     PaymentMeans:
       description: Accepted payment methods.
       enum:
@@ -5940,8 +6983,45 @@ components:
       - REPORT
       title: PaymentMeans
       type: string
+    ProductCharacteristic:
+      description: |-
+        Item attribute (BG-32).
+
+        Additional product characteristics as key-value pairs.
+      properties:
+        name:
+          description: Attribute name (BT-160).
+          title: Name
+          type: string
+        value:
+          description: Attribute value (BT-161).
+          title: Value
+          type: string
+      required:
+      - name
+      - value
+      title: ProductCharacteristic
+    ProductClassification:
+      description: |-
+        Item classification identifier (BG-31).
+
+        Product classification according to a classification scheme.
+      properties:
+        class_code:
+          description: Classification code (BT-158).
+          title: Class Code
+          type: string
+        list_id:
+          nullable: true
+          type: string
+        list_version_id:
+          nullable: true
+          type: string
+      required:
+      - class_code
+      title: ProductClassification
     Recipient:
-      description: Information about the invoice recipient (the customer).
+      description: Information about the invoice recipient / buyer (BG-7).
       properties:
         electronic_address:
           allOf:
@@ -5959,10 +7039,22 @@ components:
         siret:
           nullable: true
           type: string
+        vat_number:
+          nullable: true
+          type: string
         postal_address:
           allOf:
           - $ref: "#/components/schemas/PostalAddress"
           nullable: true
+        contact:
+          allOf:
+          - $ref: "#/components/schemas/Contact"
+          nullable: true
+        global_ids:
+          items:
+            $ref: "#/components/schemas/ElectronicAddress"
+          nullable: true
+          type: array
       required:
       - electronic_address
       title: Recipient
@@ -6000,7 +7092,7 @@ components:
       - type
       title: SupplementaryAttachment
     Supplier:
-      description: Information about the supplier who issues the invoice.
+      description: Information about the supplier / seller (BG-4).
       properties:
         electronic_address:
           allOf:
@@ -6009,6 +7101,9 @@ components:
         supplier_id:
           title: Supplier Id
           type: integer
+        private_id:
+          nullable: true
+          type: string
         supplier_bank_account_code:
           nullable: true
           type: integer
@@ -6016,6 +7111,12 @@ components:
           nullable: true
           type: integer
         name:
+          nullable: true
+          type: string
+        trading_business_name:
+          nullable: true
+          type: string
+        legal_description:
           nullable: true
           type: string
         siren:
@@ -6030,14 +7131,56 @@ components:
         iban:
           nullable: true
           type: string
+        bic:
+          nullable: true
+          type: string
+        bank_account_name:
+          nullable: true
+          type: string
+        proprietaryId:
+          nullable: true
+          type: string
         postal_address:
           allOf:
           - $ref: "#/components/schemas/PostalAddress"
           nullable: true
+        contact:
+          allOf:
+          - $ref: "#/components/schemas/Contact"
+          nullable: true
+        global_ids:
+          items:
+            $ref: "#/components/schemas/ElectronicAddress"
+          nullable: true
+          type: array
       required:
       - electronic_address
       - supplier_id
       title: Supplier
+    TaxRepresentative:
+      description: |-
+        Seller tax representative (BG-11).
+
+        The tax representative is required when the seller is not established
+        in the country where VAT is due.
+      properties:
+        name:
+          description: Tax representative name (BT-62).
+          title: Name
+          type: string
+        vat_number:
+          description: Tax representative VAT identifier (BT-63).
+          title: Vat Number
+          type: string
+        postal_address:
+          allOf:
+          - $ref: "#/components/schemas/PostalAddress"
+          description: Tax representative postal address (BG-12).
+      required:
+      - name
+      - postal_address
+      - vat_number
+      title: TaxRepresentative
     UnitOfMeasure:
       description: Enumeration of invoicing units of measure.
       enum:
@@ -6086,7 +7229,7 @@ components:
       type: string
     VATLine:
       description: |-
-        Represents a VAT breakdown line by rate.
+        Represents a VAT breakdown line by rate (BG-23).
 
         For exemptions (categories E, AE, K, G, O), the fields
         `exemption_reason` and `vatex_code` are required per EN16931.
@@ -6104,6 +7247,10 @@ components:
           allOf:
           - $ref: "#/components/schemas/VATCategory"
           nullable: true
+        due_date_type_code:
+          allOf:
+          - $ref: "#/components/schemas/VATPointDateCode"
+          nullable: true
         exemption_reason:
           nullable: true
           type: string
@@ -6114,6 +7261,17 @@ components:
       - taxable_amount
       - vat_amount
       title: VATLine
+    VATPointDateCode:
+      description: |-
+        VAT point date code (BT-8) - When VAT becomes due.
+
+        UNTDID 2005 subset used in EN16931.
+      enum:
+      - "5"
+      - "29"
+      - "72"
+      title: VATPointDateCode
+      type: string
     FacturXInvoice:
       description: Data model for an invoice to be converted to Factur-X.
       example:
@@ -6234,6 +7392,55 @@ components:
           allOf:
           - $ref: "#/components/schemas/Payee"
           nullable: true
+        delivery_party:
+          allOf:
+          - $ref: "#/components/schemas/DeliveryParty"
+          nullable: true
+        tax_representative:
+          allOf:
+          - $ref: "#/components/schemas/TaxRepresentative"
+          nullable: true
+        delivery_date:
+          nullable: true
+          type: string
+        billing_period_start:
+          nullable: true
+          type: string
+        billing_period_end:
+          nullable: true
+          type: string
+        payment_reference:
+          nullable: true
+          type: string
+        creditor_reference_id:
+          nullable: true
+          type: string
+        direct_debit_mandate_id:
+          nullable: true
+          type: string
+        debtor_iban:
+          nullable: true
+          type: string
+        payment_terms:
+          nullable: true
+          type: string
+        allowances_charges:
+          items:
+            $ref: "#/components/schemas/AllowanceCharge"
+          nullable: true
+          type: array
+        additional_documents:
+          items:
+            $ref: "#/components/schemas/AdditionalDocument"
+          nullable: true
+          type: array
+        buyer_accounting_reference:
+          nullable: true
+          type: string
+        payment_card:
+          allOf:
+          - $ref: "#/components/schemas/PaymentCard"
+          nullable: true
       required:
       - invoice_number
       - invoicing_framework
@@ -6262,34 +7469,34 @@ components:
         flowServiceUrl: https://api.pdp-example.fr/flow/v1
         tokenUrl: https://auth.pdp-example.fr/oauth/token
       properties:
-        flow_service_url:
+        flowServiceUrl:
           description: Base URL of the AFNOR Flow Service
           example: https://api.pdp-example.fr/flow/v1
-          title: Flow Service Url
+          title: Flowserviceurl
           type: string
-        directory_service_url:
+        directoryServiceUrl:
           nullable: true
           type: string
-        token_url:
+        tokenUrl:
           description: OAuth2 server URL
           example: https://auth.pdp-example.fr/oauth/token
-          title: Token Url
+          title: Tokenurl
           type: string
-        client_id:
+        clientId:
           description: OAuth2 Client ID
           example: factpulse_prod_abc123
-          title: Client Id
+          title: Clientid
           type: string
-        client_secret:
+        clientSecret:
           description: OAuth2 Client Secret (sensitive)
           example: secret_xyz789
-          title: Client Secret
+          title: Clientsecret
           type: string
       required:
-      - client_id
-      - client_secret
-      - flow_service_url
-      - token_url
+      - clientId
+      - clientSecret
+      - flowServiceUrl
+      - tokenUrl
       title: PDPCredentials
     FlowProfile:
       description: Supported flow profiles.
@@ -6317,32 +7524,32 @@ components:
         flowSyntax: CII
         trackingId: TRACK-2025-001
       properties:
-        flow_name:
+        flowName:
           description: "Flow name (e.g., 'Invoice 2025-001')"
           example: Invoice 2025-001
-          title: Flow Name
+          title: Flowname
           type: string
-        flow_syntax:
+        flowSyntax:
           allOf:
           - $ref: "#/components/schemas/FlowSyntax"
           default: CII
           description: Flow syntax (CII for Factur-X)
-        flow_profile:
+        flowProfile:
           allOf:
           - $ref: "#/components/schemas/FlowProfile"
           nullable: true
-        tracking_id:
+        trackingId:
           nullable: true
           type: string
-        request_id:
+        requestId:
           nullable: true
           type: string
-        pdp_credentials:
+        pdpCredentials:
           allOf:
           - $ref: "#/components/schemas/PDPCredentials"
           nullable: true
       required:
-      - flow_name
+      - flowName
       title: SubmitFlowRequest
     AcknowledgmentStatus:
       description: Flow acknowledgment status.
@@ -6379,31 +7586,31 @@ components:
         - SupplierInvoice
         limit: 10
       properties:
-        updated_after:
+        updatedAfter:
           format: date-time
           nullable: true
           type: string
-        updated_before:
+        updatedBefore:
           format: date-time
           nullable: true
           type: string
-        flow_types:
+        flowTypes:
           items:
             $ref: "#/components/schemas/FlowType"
           nullable: true
           type: array
-        flow_directions:
+        flowDirections:
           items:
             $ref: "#/components/schemas/FlowDirection"
           nullable: true
           type: array
-        tracking_id:
+        trackingId:
           nullable: true
           type: string
-        flow_id:
+        flowId:
           nullable: true
           type: string
-        acknowledgment_status:
+        acknowledgmentStatus:
           allOf:
           - $ref: "#/components/schemas/AcknowledgmentStatus"
           nullable: true
@@ -6557,81 +7764,6 @@ components:
       - flow_service_ok
       - message
       title: AFNORHealthCheckResponse
-    InvoiceTypeCode:
-      description: |-
-        Document type according to BR-FR-04 (UNTDID 1001 codes).
-
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
-        | 393 | FACTORED_INVOICE | Factored invoice |
-        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
-        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
-        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
-        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
-        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
-        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
-        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
-        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
-        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
-        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
-        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
-      enum:
-      - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
-      - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
-      title: InvoiceTypeCode
-      type: string
-      x-enum-varnames:
-      - INVOICE
-      - SELF_BILLED_INVOICE
-      - FACTORED_INVOICE
-      - SELF_BILLED_FACTORED_INVOICE
-      - PREPAYMENT_INVOICE
-      - SELF_BILLED_PREPAYMENT_INVOICE
-      - CORRECTIVE_INVOICE
-      - SELF_BILLED_CORRECTIVE_INVOICE
-      - FACTORED_CORRECTIVE_INVOICE
-      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
-      - CREDIT_NOTE
-      - SELF_BILLED_CREDIT_NOTE
-      - GLOBAL_ALLOWANCE_CREDIT_NOTE
-      - FACTORED_CREDIT_NOTE
-      - SELF_BILLED_FACTORED_CREDIT_NOTE
-      - PREPAYMENT_CREDIT_NOTE
-      x-enum-descriptions:
-      - Commercial Invoice
-      - Self-billed Invoice
-      - Factored Invoice
-      - Self-billed Factored Invoice
-      - Prepayment Invoice
-      - Self-billed Prepayment Invoice
-      - Corrective Invoice
-      - Self-billed Corrective Invoice
-      - Factored Corrective Invoice
-      - Self-billed Factored Corrective Invoice
-      - Credit Note
-      - Self-billed Credit Note
-      - Global Allowance Credit Note
-      - Factored Credit Note
-      - Self-billed Factored Credit Note
-      - Prepayment Credit Note
     generate_invoice_api_v1_processing_generate_invoice_post_request:
       $ref: "#/components/schemas/Body_generate_invoice_api_v1_processing_generate_invoice_post"
     Destination:
@@ -6670,124 +7802,211 @@ components:
       anyOf:
       - type: string
       - type: integer
+    Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Allowance/charge amount (BT-92/99/136/141).
+      title: Amount
+    Base_Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Base amount for percentage calculation (BT-93/100/137/142).
+      nullable: true
+      title: Base Amount
+    Percentage:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Percentage applied to base amount (BT-94/101/138/143).
+      nullable: true
+      title: Percentage
+    Vat_Rate:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: VAT rate applicable to this allowance/charge (BT-96/103).
+      nullable: true
+      title: Vat Rate
     Quantity:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
           d{0,4}0*$)"
         type: string
-      description: Invoiced quantity for this line.
+      description: Invoiced quantity (BT-129). Can be negative for correction invoices.
       title: Quantity
+    Gross_Unit_Price:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Item gross price before line discount (BT-148).
+      nullable: true
+      title: Gross Unit Price
     UnitNetPrice:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
           d{0,4}0*$)"
         type: string
-      description: Unit net price (before tax).
+      description: Item net price after line discount (BT-146).
       title: UnitNetPrice
+    Price_Basis_Quantity:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Item price base quantity (BT-149). Default is 1.
+      nullable: true
+      title: Price Basis Quantity
+    Price_Allowance_Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Item price discount amount (BT-147).
+      nullable: true
+      title: Price Allowance Amount
+    LineNetAmount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\\
+          .\\d{0,2}0*$)"
+        type: string
+      description: Invoice line net amount (BT-131). Can be negative for correction
+        invoices.
+      nullable: true
+      title: LineNetAmount
     InvoiceLine_allowanceAmount:
       anyOf:
       - minimum: 0.0
         type: number
       - pattern: "^-?\\d+(\\.\\d{1,4})?$"
         type: string
-      description: "Allowance amount before tax. (Accepte number, string ou integer)"
+      description: "Simple line allowance amount (BT-136). (Accepte number, string\
+        \ ou integer)"
       format: decimal
       nullable: true
-    LineNetAmount:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
-        type: string
-      description: "Line net amount (quantity × unit price - allowance). (Accepte\
-        \ number, string ou integer)"
-      format: decimal
-      title: LineNetAmount
     Manual_Vat_Rate:
       anyOf:
       - minimum: 0.0
         type: number
       - pattern: "^-?\\d+(\\.\\d{1,4})?$"
         type: string
-      description: "Manual VAT rate value. (Accepte number, string ou integer)"
+      description: "Line VAT rate percentage (BT-152). (Accepte number, string ou\
+        \ integer)"
       format: decimal
       title: Manual Vat Rate
+    Line_Total_Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Sum of all Invoice line net amounts (BT-106).
+      nullable: true
+      title: Line Total Amount
+    Allowance_Total_Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Sum of all allowances on document level (BT-107).
+      nullable: true
+      title: Allowance Total Amount
+    Charge_Total_Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Sum of all charges on document level (BT-108).
+      nullable: true
+      title: Charge Total Amount
     TotalNetAmount:
       anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
+          d{0,4}0*$)"
         type: string
-      description: "Total net amount (before tax). (Accepte number, string ou integer)"
-      format: decimal
+      description: Invoice total amount without VAT (BT-109). Can be negative for
+        correction invoices.
       title: TotalNetAmount
     TotalVATAmount:
       anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
+          d{0,4}0*$)"
         type: string
-      description: "Total VAT amount. (Accepte number, string ou integer)"
-      format: decimal
+      description: Invoice total VAT amount (BT-110). Can be negative for correction
+        invoices.
       title: TotalVATAmount
     TotalGrossAmount:
       anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
+          d{0,4}0*$)"
         type: string
-      description: "Total gross amount (including tax). (Accepte number, string ou\
-        \ integer)"
-      format: decimal
+      description: Invoice total amount with VAT (BT-112). Can be negative for correction
+        invoices.
       title: TotalGrossAmount
-    AmountDue:
-      anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
-        type: string
-      description: "Amount due for payment. (Accepte number, string ou integer)"
-      format: decimal
-      title: AmountDue
     InvoiceTotals_prepayment:
       anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
+          d{0,4}0*$)"
         type: string
-      description: "Prepayment amount. (Accepte number, string ou integer)"
-      format: decimal
+      description: Sum of amounts already paid (BT-113). Can be negative for correction
+        invoices.
       nullable: true
+    Rounding_Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Rounding amount added to total (BT-114).
+      nullable: true
+      title: Rounding Amount
+    AmountDue:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
+          d{0,4}0*$)"
+        type: string
+      description: Amount due for payment (BT-115). Can be negative for correction
+        invoices.
+      title: AmountDue
     GlobalAllowanceAmount:
       anyOf:
       - minimum: 0.0
         type: number
       - pattern: "^-?\\d+(\\.\\d{1,4})?$"
         type: string
-      description: "Global allowance amount (including tax). (Accepte number, string\
-        \ ou integer)"
+      description: "Global allowance amount (legacy - use allowance_total_amount).\
+        \ (Accepte number, string ou integer)"
       format: decimal
       title: GlobalAllowanceAmount
     TaxableAmount:
       anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
+          d{0,4}0*$)"
         type: string
-      description: "Taxable amount (base) for this VAT line. (Accepte number, string\
-        \ ou integer)"
-      format: decimal
+      description: VAT category taxable amount (BT-116). Can be negative for correction
+        invoices.
       title: TaxableAmount
     VATAmount:
       anyOf:
-      - minimum: 0.0
-        type: number
-      - pattern: "^-?\\d+(\\.\\d{1,4})?$"
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,8}|(?=[\\d.]{1,13}0*$)\\d{0,8}\\.\\\
+          d{0,4}0*$)"
         type: string
-      description: "VAT amount for this line. (Accepte number, string ou integer)"
-      format: decimal
+      description: VAT category tax amount (BT-117). Can be negative for correction
+        invoices.
       title: VATAmount
     Manual_Rate:
       anyOf:
@@ -6795,7 +8014,7 @@ components:
         type: number
       - pattern: "^-?\\d+(\\.\\d{1,4})?$"
         type: string
-      description: "Manual VAT rate value. (Accepte number, string ou integer)"
+      description: "VAT category rate (BT-119). (Accepte number, string ou integer)"
       format: decimal
       title: Manual Rate
   securitySchemes:

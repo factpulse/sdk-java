@@ -2,7 +2,7 @@
 
 # ManualVatRate
 
-Manual VAT rate value. (Accepte number, string ou integer)
+Line VAT rate percentage (BT-152). (Accepte number, string ou integer)
 
 ## Properties
 

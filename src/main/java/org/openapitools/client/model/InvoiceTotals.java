@@ -21,9 +21,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.client.model.AllowanceTotalAmount;
 import org.openapitools.client.model.AmountDue;
+import org.openapitools.client.model.ChargeTotalAmount;
 import org.openapitools.client.model.GlobalAllowanceAmount;
 import org.openapitools.client.model.InvoiceTotalsPrepayment;
+import org.openapitools.client.model.LineTotalAmount;
+import org.openapitools.client.model.RoundingAmount;
 import org.openapitools.client.model.TotalGrossAmount;
 import org.openapitools.client.model.TotalNetAmount;
 import org.openapitools.client.model.TotalVATAmount;
@@ -53,10 +57,25 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Contains all invoice total amounts.
+ * Contains all invoice total amounts (BG-22).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class InvoiceTotals {
+  public static final String SERIALIZED_NAME_LINE_TOTAL_AMOUNT = "line_total_amount";
+  @SerializedName(SERIALIZED_NAME_LINE_TOTAL_AMOUNT)
+  @javax.annotation.Nullable
+  private LineTotalAmount lineTotalAmount;
+
+  public static final String SERIALIZED_NAME_ALLOWANCE_TOTAL_AMOUNT = "allowance_total_amount";
+  @SerializedName(SERIALIZED_NAME_ALLOWANCE_TOTAL_AMOUNT)
+  @javax.annotation.Nullable
+  private AllowanceTotalAmount allowanceTotalAmount;
+
+  public static final String SERIALIZED_NAME_CHARGE_TOTAL_AMOUNT = "charge_total_amount";
+  @SerializedName(SERIALIZED_NAME_CHARGE_TOTAL_AMOUNT)
+  @javax.annotation.Nullable
+  private ChargeTotalAmount chargeTotalAmount;
+
   public static final String SERIALIZED_NAME_TOTAL_NET_AMOUNT = "total_net_amount";
   @SerializedName(SERIALIZED_NAME_TOTAL_NET_AMOUNT)
   @javax.annotation.Nonnull
@@ -72,15 +91,20 @@ public class InvoiceTotals {
   @javax.annotation.Nonnull
   private TotalGrossAmount totalGrossAmount;
 
-  public static final String SERIALIZED_NAME_AMOUNT_DUE = "amount_due";
-  @SerializedName(SERIALIZED_NAME_AMOUNT_DUE)
-  @javax.annotation.Nonnull
-  private AmountDue amountDue;
-
   public static final String SERIALIZED_NAME_PREPAYMENT = "prepayment";
   @SerializedName(SERIALIZED_NAME_PREPAYMENT)
   @javax.annotation.Nullable
   private InvoiceTotalsPrepayment prepayment;
+
+  public static final String SERIALIZED_NAME_ROUNDING_AMOUNT = "rounding_amount";
+  @SerializedName(SERIALIZED_NAME_ROUNDING_AMOUNT)
+  @javax.annotation.Nullable
+  private RoundingAmount roundingAmount;
+
+  public static final String SERIALIZED_NAME_AMOUNT_DUE = "amount_due";
+  @SerializedName(SERIALIZED_NAME_AMOUNT_DUE)
+  @javax.annotation.Nonnull
+  private AmountDue amountDue;
 
   public static final String SERIALIZED_NAME_GLOBAL_ALLOWANCE_AMOUNT = "globalAllowanceAmount";
   @SerializedName(SERIALIZED_NAME_GLOBAL_ALLOWANCE_AMOUNT)
@@ -94,6 +118,63 @@ public class InvoiceTotals {
 
   public InvoiceTotals() {
   }
+
+  public InvoiceTotals lineTotalAmount(@javax.annotation.Nullable LineTotalAmount lineTotalAmount) {
+    this.lineTotalAmount = lineTotalAmount;
+    return this;
+  }
+
+  /**
+   * Get lineTotalAmount
+   * @return lineTotalAmount
+   */
+  @javax.annotation.Nullable
+  public LineTotalAmount getLineTotalAmount() {
+    return lineTotalAmount;
+  }
+
+  public void setLineTotalAmount(@javax.annotation.Nullable LineTotalAmount lineTotalAmount) {
+    this.lineTotalAmount = lineTotalAmount;
+  }
+
+
+  public InvoiceTotals allowanceTotalAmount(@javax.annotation.Nullable AllowanceTotalAmount allowanceTotalAmount) {
+    this.allowanceTotalAmount = allowanceTotalAmount;
+    return this;
+  }
+
+  /**
+   * Get allowanceTotalAmount
+   * @return allowanceTotalAmount
+   */
+  @javax.annotation.Nullable
+  public AllowanceTotalAmount getAllowanceTotalAmount() {
+    return allowanceTotalAmount;
+  }
+
+  public void setAllowanceTotalAmount(@javax.annotation.Nullable AllowanceTotalAmount allowanceTotalAmount) {
+    this.allowanceTotalAmount = allowanceTotalAmount;
+  }
+
+
+  public InvoiceTotals chargeTotalAmount(@javax.annotation.Nullable ChargeTotalAmount chargeTotalAmount) {
+    this.chargeTotalAmount = chargeTotalAmount;
+    return this;
+  }
+
+  /**
+   * Get chargeTotalAmount
+   * @return chargeTotalAmount
+   */
+  @javax.annotation.Nullable
+  public ChargeTotalAmount getChargeTotalAmount() {
+    return chargeTotalAmount;
+  }
+
+  public void setChargeTotalAmount(@javax.annotation.Nullable ChargeTotalAmount chargeTotalAmount) {
+    this.chargeTotalAmount = chargeTotalAmount;
+  }
+
 
   public InvoiceTotals totalNetAmount(@javax.annotation.Nonnull TotalNetAmount totalNetAmount) {
     this.totalNetAmount = totalNetAmount;
@@ -152,25 +233,6 @@ public class InvoiceTotals {
   }
 
 
-  public InvoiceTotals amountDue(@javax.annotation.Nonnull AmountDue amountDue) {
-    this.amountDue = amountDue;
-    return this;
-  }
-
-  /**
-   * Get amountDue
-   * @return amountDue
-   */
-  @javax.annotation.Nonnull
-  public AmountDue getAmountDue() {
-    return amountDue;
-  }
-
-  public void setAmountDue(@javax.annotation.Nonnull AmountDue amountDue) {
-    this.amountDue = amountDue;
-  }
-
-
   public InvoiceTotals prepayment(@javax.annotation.Nullable InvoiceTotalsPrepayment prepayment) {
     this.prepayment = prepayment;
     return this;
@@ -187,6 +249,44 @@ public class InvoiceTotals {
 
   public void setPrepayment(@javax.annotation.Nullable InvoiceTotalsPrepayment prepayment) {
     this.prepayment = prepayment;
+  }
+
+
+  public InvoiceTotals roundingAmount(@javax.annotation.Nullable RoundingAmount roundingAmount) {
+    this.roundingAmount = roundingAmount;
+    return this;
+  }
+
+  /**
+   * Get roundingAmount
+   * @return roundingAmount
+   */
+  @javax.annotation.Nullable
+  public RoundingAmount getRoundingAmount() {
+    return roundingAmount;
+  }
+
+  public void setRoundingAmount(@javax.annotation.Nullable RoundingAmount roundingAmount) {
+    this.roundingAmount = roundingAmount;
+  }
+
+
+  public InvoiceTotals amountDue(@javax.annotation.Nonnull AmountDue amountDue) {
+    this.amountDue = amountDue;
+    return this;
+  }
+
+  /**
+   * Get amountDue
+   * @return amountDue
+   */
+  @javax.annotation.Nonnull
+  public AmountDue getAmountDue() {
+    return amountDue;
+  }
+
+  public void setAmountDue(@javax.annotation.Nonnull AmountDue amountDue) {
+    this.amountDue = amountDue;
   }
 
 
@@ -238,11 +338,15 @@ public class InvoiceTotals {
       return false;
     }
     InvoiceTotals invoiceTotals = (InvoiceTotals) o;
-    return Objects.equals(this.totalNetAmount, invoiceTotals.totalNetAmount) &&
+    return Objects.equals(this.lineTotalAmount, invoiceTotals.lineTotalAmount) &&
+        Objects.equals(this.allowanceTotalAmount, invoiceTotals.allowanceTotalAmount) &&
+        Objects.equals(this.chargeTotalAmount, invoiceTotals.chargeTotalAmount) &&
+        Objects.equals(this.totalNetAmount, invoiceTotals.totalNetAmount) &&
         Objects.equals(this.vatAmount, invoiceTotals.vatAmount) &&
         Objects.equals(this.totalGrossAmount, invoiceTotals.totalGrossAmount) &&
-        Objects.equals(this.amountDue, invoiceTotals.amountDue) &&
         Objects.equals(this.prepayment, invoiceTotals.prepayment) &&
+        Objects.equals(this.roundingAmount, invoiceTotals.roundingAmount) &&
+        Objects.equals(this.amountDue, invoiceTotals.amountDue) &&
         Objects.equals(this.globalAllowanceAmount, invoiceTotals.globalAllowanceAmount) &&
         Objects.equals(this.globalAllowanceReason, invoiceTotals.globalAllowanceReason);
   }
@@ -253,7 +357,7 @@ public class InvoiceTotals {
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalNetAmount, vatAmount, totalGrossAmount, amountDue, prepayment, globalAllowanceAmount, globalAllowanceReason);
+    return Objects.hash(lineTotalAmount, allowanceTotalAmount, chargeTotalAmount, totalNetAmount, vatAmount, totalGrossAmount, prepayment, roundingAmount, amountDue, globalAllowanceAmount, globalAllowanceReason);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -267,11 +371,15 @@ public class InvoiceTotals {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvoiceTotals {\n");
+    sb.append("    lineTotalAmount: ").append(toIndentedString(lineTotalAmount)).append("\n");
+    sb.append("    allowanceTotalAmount: ").append(toIndentedString(allowanceTotalAmount)).append("\n");
+    sb.append("    chargeTotalAmount: ").append(toIndentedString(chargeTotalAmount)).append("\n");
     sb.append("    totalNetAmount: ").append(toIndentedString(totalNetAmount)).append("\n");
     sb.append("    vatAmount: ").append(toIndentedString(vatAmount)).append("\n");
     sb.append("    totalGrossAmount: ").append(toIndentedString(totalGrossAmount)).append("\n");
-    sb.append("    amountDue: ").append(toIndentedString(amountDue)).append("\n");
     sb.append("    prepayment: ").append(toIndentedString(prepayment)).append("\n");
+    sb.append("    roundingAmount: ").append(toIndentedString(roundingAmount)).append("\n");
+    sb.append("    amountDue: ").append(toIndentedString(amountDue)).append("\n");
     sb.append("    globalAllowanceAmount: ").append(toIndentedString(globalAllowanceAmount)).append("\n");
     sb.append("    globalAllowanceReason: ").append(toIndentedString(globalAllowanceReason)).append("\n");
     sb.append("}");
@@ -295,7 +403,7 @@ public class InvoiceTotals {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("total_net_amount", "vat_amount", "total_gross_amount", "amount_due", "prepayment", "globalAllowanceAmount", "globalAllowanceReason"));
+    openapiFields = new HashSet<String>(Arrays.asList("line_total_amount", "allowance_total_amount", "charge_total_amount", "total_net_amount", "vat_amount", "total_gross_amount", "prepayment", "rounding_amount", "amount_due", "globalAllowanceAmount", "globalAllowanceReason"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("total_net_amount", "vat_amount", "total_gross_amount", "amount_due"));
@@ -329,18 +437,34 @@ public class InvoiceTotals {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // validate the optional field `line_total_amount`
+      if (jsonObj.get("line_total_amount") != null && !jsonObj.get("line_total_amount").isJsonNull()) {
+        LineTotalAmount.validateJsonElement(jsonObj.get("line_total_amount"));
+      }
+      // validate the optional field `allowance_total_amount`
+      if (jsonObj.get("allowance_total_amount") != null && !jsonObj.get("allowance_total_amount").isJsonNull()) {
+        AllowanceTotalAmount.validateJsonElement(jsonObj.get("allowance_total_amount"));
+      }
+      // validate the optional field `charge_total_amount`
+      if (jsonObj.get("charge_total_amount") != null && !jsonObj.get("charge_total_amount").isJsonNull()) {
+        ChargeTotalAmount.validateJsonElement(jsonObj.get("charge_total_amount"));
+      }
       // validate the required field `total_net_amount`
       TotalNetAmount.validateJsonElement(jsonObj.get("total_net_amount"));
       // validate the required field `vat_amount`
       TotalVATAmount.validateJsonElement(jsonObj.get("vat_amount"));
       // validate the required field `total_gross_amount`
       TotalGrossAmount.validateJsonElement(jsonObj.get("total_gross_amount"));
-      // validate the required field `amount_due`
-      AmountDue.validateJsonElement(jsonObj.get("amount_due"));
       // validate the optional field `prepayment`
       if (jsonObj.get("prepayment") != null && !jsonObj.get("prepayment").isJsonNull()) {
         InvoiceTotalsPrepayment.validateJsonElement(jsonObj.get("prepayment"));
       }
+      // validate the optional field `rounding_amount`
+      if (jsonObj.get("rounding_amount") != null && !jsonObj.get("rounding_amount").isJsonNull()) {
+        RoundingAmount.validateJsonElement(jsonObj.get("rounding_amount"));
+      }
+      // validate the required field `amount_due`
+      AmountDue.validateJsonElement(jsonObj.get("amount_due"));
       // validate the optional field `globalAllowanceAmount`
       if (jsonObj.get("globalAllowanceAmount") != null && !jsonObj.get("globalAllowanceAmount").isJsonNull()) {
         GlobalAllowanceAmount.validateJsonElement(jsonObj.get("globalAllowanceAmount"));

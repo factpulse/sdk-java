@@ -51,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class LineNetAmount extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(LineNetAmount.class.getName());
 
@@ -138,11 +138,11 @@ public class LineNetAmount extends AbstractOpenApiSchema {
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
     public LineNetAmount() {
-        super("anyOf", Boolean.FALSE);
+        super("anyOf", Boolean.TRUE);
     }
 
     public LineNetAmount(Object o) {
-        super("anyOf", Boolean.FALSE);
+        super("anyOf", Boolean.TRUE);
         setActualInstance(o);
     }
 
@@ -165,6 +165,11 @@ public class LineNetAmount extends AbstractOpenApiSchema {
      */
     @Override
     public void setActualInstance(Object instance) {
+        if (instance == null) {
+           super.setActualInstance(instance);
+           return;
+        }
+
         if (instance instanceof BigDecimal) {
             super.setActualInstance(instance);
             return;

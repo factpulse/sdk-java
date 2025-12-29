@@ -22,16 +22,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.client.model.AdditionalDocument;
+import org.openapitools.client.model.AllowanceCharge;
+import org.openapitools.client.model.DeliveryParty;
 import org.openapitools.client.model.InvoiceLine;
 import org.openapitools.client.model.InvoiceNote;
 import org.openapitools.client.model.InvoiceReferences;
 import org.openapitools.client.model.InvoiceTotals;
 import org.openapitools.client.model.InvoicingFramework;
 import org.openapitools.client.model.Payee;
+import org.openapitools.client.model.PaymentCard;
 import org.openapitools.client.model.Recipient;
 import org.openapitools.client.model.SubmissionMode;
 import org.openapitools.client.model.SupplementaryAttachment;
 import org.openapitools.client.model.Supplier;
+import org.openapitools.client.model.TaxRepresentative;
 import org.openapitools.client.model.VATLine;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
@@ -177,6 +182,118 @@ public class FacturXInvoiceTest {
     @Test
     public void payeeTest() {
         // TODO: test payee
+    }
+
+    /**
+     * Test the property 'deliveryParty'
+     */
+    @Test
+    public void deliveryPartyTest() {
+        // TODO: test deliveryParty
+    }
+
+    /**
+     * Test the property 'taxRepresentative'
+     */
+    @Test
+    public void taxRepresentativeTest() {
+        // TODO: test taxRepresentative
+    }
+
+    /**
+     * Test the property 'deliveryDate'
+     */
+    @Test
+    public void deliveryDateTest() {
+        // TODO: test deliveryDate
+    }
+
+    /**
+     * Test the property 'billingPeriodStart'
+     */
+    @Test
+    public void billingPeriodStartTest() {
+        // TODO: test billingPeriodStart
+    }
+
+    /**
+     * Test the property 'billingPeriodEnd'
+     */
+    @Test
+    public void billingPeriodEndTest() {
+        // TODO: test billingPeriodEnd
+    }
+
+    /**
+     * Test the property 'paymentReference'
+     */
+    @Test
+    public void paymentReferenceTest() {
+        // TODO: test paymentReference
+    }
+
+    /**
+     * Test the property 'creditorReferenceId'
+     */
+    @Test
+    public void creditorReferenceIdTest() {
+        // TODO: test creditorReferenceId
+    }
+
+    /**
+     * Test the property 'directDebitMandateId'
+     */
+    @Test
+    public void directDebitMandateIdTest() {
+        // TODO: test directDebitMandateId
+    }
+
+    /**
+     * Test the property 'debtorIban'
+     */
+    @Test
+    public void debtorIbanTest() {
+        // TODO: test debtorIban
+    }
+
+    /**
+     * Test the property 'paymentTerms'
+     */
+    @Test
+    public void paymentTermsTest() {
+        // TODO: test paymentTerms
+    }
+
+    /**
+     * Test the property 'allowancesCharges'
+     */
+    @Test
+    public void allowancesChargesTest() {
+        // TODO: test allowancesCharges
+    }
+
+    /**
+     * Test the property 'additionalDocuments'
+     */
+    @Test
+    public void additionalDocumentsTest() {
+        // TODO: test additionalDocuments
+    }
+
+    /**
+     * Test the property 'buyerAccountingReference'
+     */
+    @Test
+    public void buyerAccountingReferenceTest() {
+        // TODO: test buyerAccountingReference
+    }
+
+    /**
+     * Test the property 'paymentCard'
+     */
+    @Test
+    public void paymentCardTest() {
+        // TODO: test paymentCard
     }
 
 }

@@ -25,6 +25,7 @@ import org.openapitools.client.model.ManualRate;
 import org.openapitools.client.model.TaxableAmount;
 import org.openapitools.client.model.VATAmount;
 import org.openapitools.client.model.VATCategory;
+import org.openapitools.client.model.VATPointDateCode;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -51,9 +52,9 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Represents a VAT breakdown line by rate.  For exemptions (categories E, AE, K, G, O), the fields &#x60;exemption_reason&#x60; and &#x60;vatex_code&#x60; are required per EN16931.
+ * Represents a VAT breakdown line by rate (BG-23).  For exemptions (categories E, AE, K, G, O), the fields &#x60;exemption_reason&#x60; and &#x60;vatex_code&#x60; are required per EN16931.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class VATLine {
   public static final String SERIALIZED_NAME_TAXABLE_AMOUNT = "taxable_amount";
   @SerializedName(SERIALIZED_NAME_TAXABLE_AMOUNT)
@@ -79,6 +80,11 @@ public class VATLine {
   @SerializedName(SERIALIZED_NAME_CATEGORY)
   @javax.annotation.Nullable
   private VATCategory category;
+
+  public static final String SERIALIZED_NAME_DUE_DATE_TYPE_CODE = "due_date_type_code";
+  @SerializedName(SERIALIZED_NAME_DUE_DATE_TYPE_CODE)
+  @javax.annotation.Nullable
+  private VATPointDateCode dueDateTypeCode;
 
   public static final String SERIALIZED_NAME_EXEMPTION_REASON = "exemption_reason";
   @SerializedName(SERIALIZED_NAME_EXEMPTION_REASON)
@@ -188,6 +194,25 @@ public class VATLine {
   }
 
 
+  public VATLine dueDateTypeCode(@javax.annotation.Nullable VATPointDateCode dueDateTypeCode) {
+    this.dueDateTypeCode = dueDateTypeCode;
+    return this;
+  }
+
+  /**
+   * Get dueDateTypeCode
+   * @return dueDateTypeCode
+   */
+  @javax.annotation.Nullable
+  public VATPointDateCode getDueDateTypeCode() {
+    return dueDateTypeCode;
+  }
+
+  public void setDueDateTypeCode(@javax.annotation.Nullable VATPointDateCode dueDateTypeCode) {
+    this.dueDateTypeCode = dueDateTypeCode;
+  }
+
+
   public VATLine exemptionReason(@javax.annotation.Nullable String exemptionReason) {
     this.exemptionReason = exemptionReason;
     return this;
@@ -241,6 +266,7 @@ public class VATLine {
         Objects.equals(this.rate, vaTLine.rate) &&
         Objects.equals(this.manualRate, vaTLine.manualRate) &&
         Objects.equals(this.category, vaTLine.category) &&
+        Objects.equals(this.dueDateTypeCode, vaTLine.dueDateTypeCode) &&
         Objects.equals(this.exemptionReason, vaTLine.exemptionReason) &&
         Objects.equals(this.vatexCode, vaTLine.vatexCode);
   }
@@ -251,7 +277,7 @@ public class VATLine {
 
   @Override
   public int hashCode() {
-    return Objects.hash(taxableAmount, vatAmount, rate, manualRate, category, exemptionReason, vatexCode);
+    return Objects.hash(taxableAmount, vatAmount, rate, manualRate, category, dueDateTypeCode, exemptionReason, vatexCode);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -270,6 +296,7 @@ public class VATLine {
     sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
     sb.append("    manualRate: ").append(toIndentedString(manualRate)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    dueDateTypeCode: ").append(toIndentedString(dueDateTypeCode)).append("\n");
     sb.append("    exemptionReason: ").append(toIndentedString(exemptionReason)).append("\n");
     sb.append("    vatexCode: ").append(toIndentedString(vatexCode)).append("\n");
     sb.append("}");
@@ -293,7 +320,7 @@ public class VATLine {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("taxable_amount", "vat_amount", "rate", "manual_rate", "category", "exemption_reason", "vatex_code"));
+    openapiFields = new HashSet<String>(Arrays.asList("taxable_amount", "vat_amount", "rate", "manual_rate", "category", "due_date_type_code", "exemption_reason", "vatex_code"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("taxable_amount", "vat_amount"));
@@ -341,6 +368,10 @@ public class VATLine {
       // validate the optional field `category`
       if (jsonObj.get("category") != null && !jsonObj.get("category").isJsonNull()) {
         VATCategory.validateJsonElement(jsonObj.get("category"));
+      }
+      // validate the optional field `due_date_type_code`
+      if (jsonObj.get("due_date_type_code") != null && !jsonObj.get("due_date_type_code").isJsonNull()) {
+        VATPointDateCode.validateJsonElement(jsonObj.get("due_date_type_code"));
       }
       if ((jsonObj.get("exemption_reason") != null && !jsonObj.get("exemption_reason").isJsonNull()) && !jsonObj.get("exemption_reason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `exemption_reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exemption_reason").toString()));

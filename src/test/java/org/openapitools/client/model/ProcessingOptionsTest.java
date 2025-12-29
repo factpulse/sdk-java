@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.APIProfile;
+import org.openapitools.client.model.FacturXProfile;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -55,11 +55,11 @@ public class ProcessingOptionsTest {
     }
 
     /**
-     * Test the property 'validate'
+     * Test the property 'validateXml'
      */
     @Test
-    public void validateTest() {
-        // TODO: test validate
+    public void validateXmlTest() {
+        // TODO: test validateXml
     }
 
     /**

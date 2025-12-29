@@ -20,9 +20,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.client.model.AllowanceTotalAmount;
 import org.openapitools.client.model.AmountDue;
+import org.openapitools.client.model.ChargeTotalAmount;
 import org.openapitools.client.model.GlobalAllowanceAmount;
 import org.openapitools.client.model.InvoiceTotalsPrepayment;
+import org.openapitools.client.model.LineTotalAmount;
+import org.openapitools.client.model.RoundingAmount;
 import org.openapitools.client.model.TotalGrossAmount;
 import org.openapitools.client.model.TotalNetAmount;
 import org.openapitools.client.model.TotalVATAmount;
@@ -42,6 +46,30 @@ public class InvoiceTotalsTest {
     @Test
     public void testInvoiceTotals() {
         // TODO: test InvoiceTotals
+    }
+
+    /**
+     * Test the property 'lineTotalAmount'
+     */
+    @Test
+    public void lineTotalAmountTest() {
+        // TODO: test lineTotalAmount
+    }
+
+    /**
+     * Test the property 'allowanceTotalAmount'
+     */
+    @Test
+    public void allowanceTotalAmountTest() {
+        // TODO: test allowanceTotalAmount
+    }
+
+    /**
+     * Test the property 'chargeTotalAmount'
+     */
+    @Test
+    public void chargeTotalAmountTest() {
+        // TODO: test chargeTotalAmount
     }
 
     /**
@@ -69,19 +97,27 @@ public class InvoiceTotalsTest {
     }
 
     /**
-     * Test the property 'amountDue'
-     */
-    @Test
-    public void amountDueTest() {
-        // TODO: test amountDue
-    }
-
-    /**
      * Test the property 'prepayment'
      */
     @Test
     public void prepaymentTest() {
         // TODO: test prepayment
+    }
+
+    /**
+     * Test the property 'roundingAmount'
+     */
+    @Test
+    public void roundingAmountTest() {
+        // TODO: test roundingAmount
+    }
+
+    /**
+     * Test the property 'amountDue'
+     */
+    @Test
+    public void amountDueTest() {
+        // TODO: test amountDue
     }
 
     /**

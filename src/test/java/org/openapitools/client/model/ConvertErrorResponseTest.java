@@ -13,87 +13,69 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
-import com.google.gson.JsonElement;
 import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
- * Commercial document types (UNTDID 1001).  | Code | Name | Description | |------|------|-------------| | 380 | INVOICE | Commercial invoice | | 381 | CREDIT_NOTE | Credit note | | 384 | CORRECTED_INVOICE | Corrected invoice | | 386 | PREPAYMENT | Prepayment invoice | | 389 | SELF_BILLED | Self-billed invoice |
+ * Model tests for ConvertErrorResponse
  */
-@JsonAdapter(DocumentType.Adapter.class)
-public enum DocumentType {
-  
-  /**
-   * Commercial invoice
-   */
-  INVOICE("380"),
-  
-  /**
-   * Credit note
-   */
-  CREDIT_NOTE("381"),
-  
-  /**
-   * Corrected invoice
-   */
-  CORRECTED_INVOICE("384"),
-  
-  /**
-   * Prepayment invoice
-   */
-  PREPAYMENT("386"),
-  
-  /**
-   * Self-billed invoice
-   */
-  SELF_BILLED("389");
+public class ConvertErrorResponseTest {
+    private final ConvertErrorResponse model = new ConvertErrorResponse();
 
-  private String value;
-
-  DocumentType(String value) {
-    this.value = value;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  public static DocumentType fromValue(String value) {
-    for (DocumentType b : DocumentType.values()) {
-      if (b.value.equals(value)) {
-        return b;
-      }
-    }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
-  }
-
-  public static class Adapter extends TypeAdapter<DocumentType> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final DocumentType enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    /**
+     * Model tests for ConvertErrorResponse
+     */
+    @Test
+    public void testConvertErrorResponse() {
+        // TODO: test ConvertErrorResponse
     }
 
-    @Override
-    public DocumentType read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return DocumentType.fromValue(value);
+    /**
+     * Test the property 'status'
+     */
+    @Test
+    public void statusTest() {
+        // TODO: test status
     }
-  }
 
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    DocumentType.fromValue(value);
-  }
+    /**
+     * Test the property 'error'
+     */
+    @Test
+    public void errorTest() {
+        // TODO: test error
+    }
+
+    /**
+     * Test the property 'message'
+     */
+    @Test
+    public void messageTest() {
+        // TODO: test message
+    }
+
+    /**
+     * Test the property 'conversionId'
+     */
+    @Test
+    public void conversionIdTest() {
+        // TODO: test conversionId
+    }
+
+    /**
+     * Test the property 'resumeUrl'
+     */
+    @Test
+    public void resumeUrlTest() {
+        // TODO: test resumeUrl
+    }
+
 }
-

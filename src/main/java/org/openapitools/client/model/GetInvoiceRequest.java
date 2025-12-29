@@ -50,14 +50,14 @@ import org.openapitools.client.JSON;
 /**
  * Get an invoice.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GetInvoiceRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
   private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
 
-  public static final String SERIALIZED_NAME_CHORUS_INVOICE_ID = "chorus_invoice_id";
+  public static final String SERIALIZED_NAME_CHORUS_INVOICE_ID = "chorusInvoiceId";
   @SerializedName(SERIALIZED_NAME_CHORUS_INVOICE_ID)
   @javax.annotation.Nonnull
   private Integer chorusInvoiceId;
@@ -160,10 +160,10 @@ public class GetInvoiceRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("credentials", "chorus_invoice_id"));
+    openapiFields = new HashSet<String>(Arrays.asList("credentials", "chorusInvoiceId"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("chorus_invoice_id"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("chorusInvoiceId"));
   }
 
   /**

@@ -55,39 +55,39 @@ import org.openapitools.client.JSON;
 /**
  * Request to search submitted flows.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SearchFlowRequest {
-  public static final String SERIALIZED_NAME_UPDATED_AFTER = "updated_after";
+  public static final String SERIALIZED_NAME_UPDATED_AFTER = "updatedAfter";
   @SerializedName(SERIALIZED_NAME_UPDATED_AFTER)
   @javax.annotation.Nullable
   private OffsetDateTime updatedAfter;
 
-  public static final String SERIALIZED_NAME_UPDATED_BEFORE = "updated_before";
+  public static final String SERIALIZED_NAME_UPDATED_BEFORE = "updatedBefore";
   @SerializedName(SERIALIZED_NAME_UPDATED_BEFORE)
   @javax.annotation.Nullable
   private OffsetDateTime updatedBefore;
 
-  public static final String SERIALIZED_NAME_FLOW_TYPES = "flow_types";
+  public static final String SERIALIZED_NAME_FLOW_TYPES = "flowTypes";
   @SerializedName(SERIALIZED_NAME_FLOW_TYPES)
   @javax.annotation.Nullable
   private List<FlowType> flowTypes;
 
-  public static final String SERIALIZED_NAME_FLOW_DIRECTIONS = "flow_directions";
+  public static final String SERIALIZED_NAME_FLOW_DIRECTIONS = "flowDirections";
   @SerializedName(SERIALIZED_NAME_FLOW_DIRECTIONS)
   @javax.annotation.Nullable
   private List<FlowDirection> flowDirections;
 
-  public static final String SERIALIZED_NAME_TRACKING_ID = "tracking_id";
+  public static final String SERIALIZED_NAME_TRACKING_ID = "trackingId";
   @SerializedName(SERIALIZED_NAME_TRACKING_ID)
   @javax.annotation.Nullable
   private String trackingId;
 
-  public static final String SERIALIZED_NAME_FLOW_ID = "flow_id";
+  public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)
   @javax.annotation.Nullable
   private String flowId;
 
-  public static final String SERIALIZED_NAME_ACKNOWLEDGMENT_STATUS = "acknowledgment_status";
+  public static final String SERIALIZED_NAME_ACKNOWLEDGMENT_STATUS = "acknowledgmentStatus";
   @SerializedName(SERIALIZED_NAME_ACKNOWLEDGMENT_STATUS)
   @javax.annotation.Nullable
   private AcknowledgmentStatus acknowledgmentStatus;
@@ -366,7 +366,7 @@ public class SearchFlowRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("updated_after", "updated_before", "flow_types", "flow_directions", "tracking_id", "flow_id", "acknowledgment_status", "offset", "limit"));
+    openapiFields = new HashSet<String>(Arrays.asList("updatedAfter", "updatedBefore", "flowTypes", "flowDirections", "trackingId", "flowId", "acknowledgmentStatus", "offset", "limit"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -394,22 +394,22 @@ public class SearchFlowRequest {
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the optional json data is an array if present
-      if (jsonObj.get("flow_types") != null && !jsonObj.get("flow_types").isJsonNull() && !jsonObj.get("flow_types").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flow_types` to be an array in the JSON string but got `%s`", jsonObj.get("flow_types").toString()));
+      if (jsonObj.get("flowTypes") != null && !jsonObj.get("flowTypes").isJsonNull() && !jsonObj.get("flowTypes").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowTypes` to be an array in the JSON string but got `%s`", jsonObj.get("flowTypes").toString()));
       }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("flow_directions") != null && !jsonObj.get("flow_directions").isJsonNull() && !jsonObj.get("flow_directions").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flow_directions` to be an array in the JSON string but got `%s`", jsonObj.get("flow_directions").toString()));
+      if (jsonObj.get("flowDirections") != null && !jsonObj.get("flowDirections").isJsonNull() && !jsonObj.get("flowDirections").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowDirections` to be an array in the JSON string but got `%s`", jsonObj.get("flowDirections").toString()));
       }
-      if ((jsonObj.get("tracking_id") != null && !jsonObj.get("tracking_id").isJsonNull()) && !jsonObj.get("tracking_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tracking_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tracking_id").toString()));
+      if ((jsonObj.get("trackingId") != null && !jsonObj.get("trackingId").isJsonNull()) && !jsonObj.get("trackingId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `trackingId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trackingId").toString()));
       }
-      if ((jsonObj.get("flow_id") != null && !jsonObj.get("flow_id").isJsonNull()) && !jsonObj.get("flow_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flow_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flow_id").toString()));
+      if ((jsonObj.get("flowId") != null && !jsonObj.get("flowId").isJsonNull()) && !jsonObj.get("flowId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flowId").toString()));
       }
-      // validate the optional field `acknowledgment_status`
-      if (jsonObj.get("acknowledgment_status") != null && !jsonObj.get("acknowledgment_status").isJsonNull()) {
-        AcknowledgmentStatus.validateJsonElement(jsonObj.get("acknowledgment_status"));
+      // validate the optional field `acknowledgmentStatus`
+      if (jsonObj.get("acknowledgmentStatus") != null && !jsonObj.get("acknowledgmentStatus").isJsonNull()) {
+        AcknowledgmentStatus.validateJsonElement(jsonObj.get("acknowledgmentStatus"));
       }
   }
 

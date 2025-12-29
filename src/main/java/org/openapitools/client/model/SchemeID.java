@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Identification scheme codes (Electronic Address Scheme - EAS), mainly for electronic invoice addressing.  **Possible values:** - &#x60;0225&#x60;: FR_SIREN - French SIREN (most common for France, replaces old 0002) - &#x60;0088&#x60;: GLN - Global Location Number - &#x60;0060&#x60;: DUNS - Data Universal Numbering System - &#x60;9957&#x60;: FR_VAT_INTRA - French intra-community VAT number - &#x60;0199&#x60;: GLEIF - Global Legal Entity Identifier Foundation
+ * Identification scheme codes (Electronic Address Scheme - EAS), mainly for electronic invoice addressing.  **Possible values:** - &#x60;0225&#x60;: FR_SIREN - French SIREN (most common for France) - &#x60;0009&#x60;: FR_SIRET - French SIRET - &#x60;0002&#x60;: FR_SIREN_OLD - French SIREN (old code, for legal organization ID) - &#x60;0088&#x60;: GLN - Global Location Number - &#x60;0060&#x60;: DUNS - Data Universal Numbering System - &#x60;9957&#x60;: FR_VAT_INTRA - French intra-community VAT number - &#x60;0199&#x60;: GLEIF - Global Legal Entity Identifier Foundation - &#x60;0231&#x60;: DT_DIRECTORY_ID - Directory ID for tax administration - &#x60;EM&#x60;: EMAIL - Email-based electronic address (BT-34/BT-49)
  */
 @JsonAdapter(SchemeID.Adapter.class)
 public enum SchemeID {
@@ -37,22 +37,34 @@ public enum SchemeID {
   /**
    * GLN - Global Location Number (GLN)
    */
-  GLN("0088"),
+  GLN("0009"),
   
   /**
    * DUNS - Data Universal Numbering System (DUNS)
    */
-  DUNS("0060"),
+  DUNS("0002"),
   
   /**
    * FR_TVA_INTRA - French intra-community VAT number
    */
-  FR_TVA_INTRA("9957"),
+  FR_TVA_INTRA("0088"),
   
   /**
    * GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
    */
-  GLEIF("0199");
+  GLEIF("0060"),
+  
+  _9957("9957"),
+  
+  _0199("0199"),
+  
+  _0231("0231"),
+  
+  EM("EM"),
+  
+  _0177("0177"),
+  
+  _0224("0224");
 
   private String value;
 

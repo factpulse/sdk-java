@@ -53,64 +53,64 @@ import org.openapitools.client.JSON;
 /**
  * Submit an invoice to Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SubmitInvoiceRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
   private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
 
-  public static final String SERIALIZED_NAME_INVOICE_NUMBER = "invoice_number";
+  public static final String SERIALIZED_NAME_INVOICE_NUMBER = "invoiceNumber";
   @SerializedName(SERIALIZED_NAME_INVOICE_NUMBER)
   @javax.annotation.Nonnull
   private String invoiceNumber;
 
-  public static final String SERIALIZED_NAME_INVOICE_DATE = "invoice_date";
+  public static final String SERIALIZED_NAME_INVOICE_DATE = "invoiceDate";
   @SerializedName(SERIALIZED_NAME_INVOICE_DATE)
   @javax.annotation.Nonnull
   private String invoiceDate;
 
-  public static final String SERIALIZED_NAME_PAYMENT_DUE_DATE = "payment_due_date";
+  public static final String SERIALIZED_NAME_PAYMENT_DUE_DATE = "paymentDueDate";
   @SerializedName(SERIALIZED_NAME_PAYMENT_DUE_DATE)
   @javax.annotation.Nullable
   private String paymentDueDate;
 
-  public static final String SERIALIZED_NAME_STRUCTURE_ID = "structure_id";
+  public static final String SERIALIZED_NAME_STRUCTURE_ID = "structureId";
   @SerializedName(SERIALIZED_NAME_STRUCTURE_ID)
   @javax.annotation.Nonnull
   private Integer structureId;
 
-  public static final String SERIALIZED_NAME_SERVICE_CODE = "service_code";
+  public static final String SERIALIZED_NAME_SERVICE_CODE = "serviceCode";
   @SerializedName(SERIALIZED_NAME_SERVICE_CODE)
   @javax.annotation.Nullable
   private String serviceCode;
 
-  public static final String SERIALIZED_NAME_ENGAGEMENT_NUMBER = "engagement_number";
+  public static final String SERIALIZED_NAME_ENGAGEMENT_NUMBER = "engagementNumber";
   @SerializedName(SERIALIZED_NAME_ENGAGEMENT_NUMBER)
   @javax.annotation.Nullable
   private String engagementNumber;
 
-  public static final String SERIALIZED_NAME_TOTAL_NET_AMOUNT = "total_net_amount";
+  public static final String SERIALIZED_NAME_TOTAL_NET_AMOUNT = "totalNetAmount";
   @SerializedName(SERIALIZED_NAME_TOTAL_NET_AMOUNT)
   @javax.annotation.Nonnull
   private SubmitNetAmount totalNetAmount;
 
-  public static final String SERIALIZED_NAME_VAT_AMOUNT = "vat_amount";
+  public static final String SERIALIZED_NAME_VAT_AMOUNT = "vatAmount";
   @SerializedName(SERIALIZED_NAME_VAT_AMOUNT)
   @javax.annotation.Nonnull
   private SubmitVatAmount vatAmount;
 
-  public static final String SERIALIZED_NAME_TOTAL_GROSS_AMOUNT = "total_gross_amount";
+  public static final String SERIALIZED_NAME_TOTAL_GROSS_AMOUNT = "totalGrossAmount";
   @SerializedName(SERIALIZED_NAME_TOTAL_GROSS_AMOUNT)
   @javax.annotation.Nonnull
   private SubmitGrossAmount totalGrossAmount;
 
-  public static final String SERIALIZED_NAME_MAIN_ATTACHMENT_ID = "main_attachment_id";
+  public static final String SERIALIZED_NAME_MAIN_ATTACHMENT_ID = "mainAttachmentId";
   @SerializedName(SERIALIZED_NAME_MAIN_ATTACHMENT_ID)
   @javax.annotation.Nullable
   private Integer mainAttachmentId;
 
-  public static final String SERIALIZED_NAME_MAIN_ATTACHMENT_LABEL = "main_attachment_label";
+  public static final String SERIALIZED_NAME_MAIN_ATTACHMENT_LABEL = "mainAttachmentLabel";
   @SerializedName(SERIALIZED_NAME_MAIN_ATTACHMENT_LABEL)
   @javax.annotation.Nullable
   private String mainAttachmentLabel;
@@ -120,12 +120,12 @@ public class SubmitInvoiceRequest {
   @javax.annotation.Nullable
   private String comment;
 
-  public static final String SERIALIZED_NAME_PURCHASE_ORDER_REFERENCE = "purchase_order_reference";
+  public static final String SERIALIZED_NAME_PURCHASE_ORDER_REFERENCE = "purchaseOrderReference";
   @SerializedName(SERIALIZED_NAME_PURCHASE_ORDER_REFERENCE)
   @javax.annotation.Nullable
   private String purchaseOrderReference;
 
-  public static final String SERIALIZED_NAME_CONTRACT_REFERENCE = "contract_reference";
+  public static final String SERIALIZED_NAME_CONTRACT_REFERENCE = "contractReference";
   @SerializedName(SERIALIZED_NAME_CONTRACT_REFERENCE)
   @javax.annotation.Nullable
   private String contractReference;
@@ -501,10 +501,10 @@ public class SubmitInvoiceRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("credentials", "invoice_number", "invoice_date", "payment_due_date", "structure_id", "service_code", "engagement_number", "total_net_amount", "vat_amount", "total_gross_amount", "main_attachment_id", "main_attachment_label", "comment", "purchase_order_reference", "contract_reference"));
+    openapiFields = new HashSet<String>(Arrays.asList("credentials", "invoiceNumber", "invoiceDate", "paymentDueDate", "structureId", "serviceCode", "engagementNumber", "totalNetAmount", "vatAmount", "totalGrossAmount", "mainAttachmentId", "mainAttachmentLabel", "comment", "purchaseOrderReference", "contractReference"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoice_number", "invoice_date", "structure_id", "total_net_amount", "vat_amount", "total_gross_amount"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoiceNumber", "invoiceDate", "structureId", "totalNetAmount", "vatAmount", "totalGrossAmount"));
   }
 
   /**
@@ -539,38 +539,38 @@ public class SubmitInvoiceRequest {
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
         FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
-      if (!jsonObj.get("invoice_number").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoice_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoice_number").toString()));
+      if (!jsonObj.get("invoiceNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoiceNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceNumber").toString()));
       }
-      if (!jsonObj.get("invoice_date").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoice_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoice_date").toString()));
+      if (!jsonObj.get("invoiceDate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoiceDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceDate").toString()));
       }
-      if ((jsonObj.get("payment_due_date") != null && !jsonObj.get("payment_due_date").isJsonNull()) && !jsonObj.get("payment_due_date").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `payment_due_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_due_date").toString()));
+      if ((jsonObj.get("paymentDueDate") != null && !jsonObj.get("paymentDueDate").isJsonNull()) && !jsonObj.get("paymentDueDate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `paymentDueDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("paymentDueDate").toString()));
       }
-      if ((jsonObj.get("service_code") != null && !jsonObj.get("service_code").isJsonNull()) && !jsonObj.get("service_code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `service_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("service_code").toString()));
+      if ((jsonObj.get("serviceCode") != null && !jsonObj.get("serviceCode").isJsonNull()) && !jsonObj.get("serviceCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `serviceCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("serviceCode").toString()));
       }
-      if ((jsonObj.get("engagement_number") != null && !jsonObj.get("engagement_number").isJsonNull()) && !jsonObj.get("engagement_number").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `engagement_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("engagement_number").toString()));
+      if ((jsonObj.get("engagementNumber") != null && !jsonObj.get("engagementNumber").isJsonNull()) && !jsonObj.get("engagementNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `engagementNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("engagementNumber").toString()));
       }
-      // validate the required field `total_net_amount`
-      SubmitNetAmount.validateJsonElement(jsonObj.get("total_net_amount"));
-      // validate the required field `vat_amount`
-      SubmitVatAmount.validateJsonElement(jsonObj.get("vat_amount"));
-      // validate the required field `total_gross_amount`
-      SubmitGrossAmount.validateJsonElement(jsonObj.get("total_gross_amount"));
-      if ((jsonObj.get("main_attachment_label") != null && !jsonObj.get("main_attachment_label").isJsonNull()) && !jsonObj.get("main_attachment_label").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `main_attachment_label` to be a primitive type in the JSON string but got `%s`", jsonObj.get("main_attachment_label").toString()));
+      // validate the required field `totalNetAmount`
+      SubmitNetAmount.validateJsonElement(jsonObj.get("totalNetAmount"));
+      // validate the required field `vatAmount`
+      SubmitVatAmount.validateJsonElement(jsonObj.get("vatAmount"));
+      // validate the required field `totalGrossAmount`
+      SubmitGrossAmount.validateJsonElement(jsonObj.get("totalGrossAmount"));
+      if ((jsonObj.get("mainAttachmentLabel") != null && !jsonObj.get("mainAttachmentLabel").isJsonNull()) && !jsonObj.get("mainAttachmentLabel").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `mainAttachmentLabel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mainAttachmentLabel").toString()));
       }
       if ((jsonObj.get("comment") != null && !jsonObj.get("comment").isJsonNull()) && !jsonObj.get("comment").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("comment").toString()));
       }
-      if ((jsonObj.get("purchase_order_reference") != null && !jsonObj.get("purchase_order_reference").isJsonNull()) && !jsonObj.get("purchase_order_reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `purchase_order_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purchase_order_reference").toString()));
+      if ((jsonObj.get("purchaseOrderReference") != null && !jsonObj.get("purchaseOrderReference").isJsonNull()) && !jsonObj.get("purchaseOrderReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `purchaseOrderReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purchaseOrderReference").toString()));
       }
-      if ((jsonObj.get("contract_reference") != null && !jsonObj.get("contract_reference").isJsonNull()) && !jsonObj.get("contract_reference").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `contract_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contract_reference").toString()));
+      if ((jsonObj.get("contractReference") != null && !jsonObj.get("contractReference").isJsonNull()) && !jsonObj.get("contractReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `contractReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contractReference").toString()));
       }
   }
 

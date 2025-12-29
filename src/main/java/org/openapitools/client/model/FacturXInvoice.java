@@ -23,16 +23,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.client.model.AdditionalDocument;
+import org.openapitools.client.model.AllowanceCharge;
+import org.openapitools.client.model.DeliveryParty;
 import org.openapitools.client.model.InvoiceLine;
 import org.openapitools.client.model.InvoiceNote;
 import org.openapitools.client.model.InvoiceReferences;
 import org.openapitools.client.model.InvoiceTotals;
 import org.openapitools.client.model.InvoicingFramework;
 import org.openapitools.client.model.Payee;
+import org.openapitools.client.model.PaymentCard;
 import org.openapitools.client.model.Recipient;
 import org.openapitools.client.model.SubmissionMode;
 import org.openapitools.client.model.SupplementaryAttachment;
 import org.openapitools.client.model.Supplier;
+import org.openapitools.client.model.TaxRepresentative;
 import org.openapitools.client.model.VATLine;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -62,7 +67,7 @@ import org.openapitools.client.JSON;
 /**
  * Data model for an invoice to be converted to Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class FacturXInvoice {
   public static final String SERIALIZED_NAME_INVOICE_NUMBER = "invoice_number";
   @SerializedName(SERIALIZED_NAME_INVOICE_NUMBER)
@@ -143,6 +148,76 @@ public class FacturXInvoice {
   @SerializedName(SERIALIZED_NAME_PAYEE)
   @javax.annotation.Nullable
   private Payee payee;
+
+  public static final String SERIALIZED_NAME_DELIVERY_PARTY = "delivery_party";
+  @SerializedName(SERIALIZED_NAME_DELIVERY_PARTY)
+  @javax.annotation.Nullable
+  private DeliveryParty deliveryParty;
+
+  public static final String SERIALIZED_NAME_TAX_REPRESENTATIVE = "tax_representative";
+  @SerializedName(SERIALIZED_NAME_TAX_REPRESENTATIVE)
+  @javax.annotation.Nullable
+  private TaxRepresentative taxRepresentative;
+
+  public static final String SERIALIZED_NAME_DELIVERY_DATE = "delivery_date";
+  @SerializedName(SERIALIZED_NAME_DELIVERY_DATE)
+  @javax.annotation.Nullable
+  private String deliveryDate;
+
+  public static final String SERIALIZED_NAME_BILLING_PERIOD_START = "billing_period_start";
+  @SerializedName(SERIALIZED_NAME_BILLING_PERIOD_START)
+  @javax.annotation.Nullable
+  private String billingPeriodStart;
+
+  public static final String SERIALIZED_NAME_BILLING_PERIOD_END = "billing_period_end";
+  @SerializedName(SERIALIZED_NAME_BILLING_PERIOD_END)
+  @javax.annotation.Nullable
+  private String billingPeriodEnd;
+
+  public static final String SERIALIZED_NAME_PAYMENT_REFERENCE = "payment_reference";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_REFERENCE)
+  @javax.annotation.Nullable
+  private String paymentReference;
+
+  public static final String SERIALIZED_NAME_CREDITOR_REFERENCE_ID = "creditor_reference_id";
+  @SerializedName(SERIALIZED_NAME_CREDITOR_REFERENCE_ID)
+  @javax.annotation.Nullable
+  private String creditorReferenceId;
+
+  public static final String SERIALIZED_NAME_DIRECT_DEBIT_MANDATE_ID = "direct_debit_mandate_id";
+  @SerializedName(SERIALIZED_NAME_DIRECT_DEBIT_MANDATE_ID)
+  @javax.annotation.Nullable
+  private String directDebitMandateId;
+
+  public static final String SERIALIZED_NAME_DEBTOR_IBAN = "debtor_iban";
+  @SerializedName(SERIALIZED_NAME_DEBTOR_IBAN)
+  @javax.annotation.Nullable
+  private String debtorIban;
+
+  public static final String SERIALIZED_NAME_PAYMENT_TERMS = "payment_terms";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_TERMS)
+  @javax.annotation.Nullable
+  private String paymentTerms;
+
+  public static final String SERIALIZED_NAME_ALLOWANCES_CHARGES = "allowances_charges";
+  @SerializedName(SERIALIZED_NAME_ALLOWANCES_CHARGES)
+  @javax.annotation.Nullable
+  private List<AllowanceCharge> allowancesCharges;
+
+  public static final String SERIALIZED_NAME_ADDITIONAL_DOCUMENTS = "additional_documents";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_DOCUMENTS)
+  @javax.annotation.Nullable
+  private List<AdditionalDocument> additionalDocuments;
+
+  public static final String SERIALIZED_NAME_BUYER_ACCOUNTING_REFERENCE = "buyer_accounting_reference";
+  @SerializedName(SERIALIZED_NAME_BUYER_ACCOUNTING_REFERENCE)
+  @javax.annotation.Nullable
+  private String buyerAccountingReference;
+
+  public static final String SERIALIZED_NAME_PAYMENT_CARD = "payment_card";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_CARD)
+  @javax.annotation.Nullable
+  private PaymentCard paymentCard;
 
   public FacturXInvoice() {
   }
@@ -483,6 +558,288 @@ public class FacturXInvoice {
   }
 
 
+  public FacturXInvoice deliveryParty(@javax.annotation.Nullable DeliveryParty deliveryParty) {
+    this.deliveryParty = deliveryParty;
+    return this;
+  }
+
+  /**
+   * Get deliveryParty
+   * @return deliveryParty
+   */
+  @javax.annotation.Nullable
+  public DeliveryParty getDeliveryParty() {
+    return deliveryParty;
+  }
+
+  public void setDeliveryParty(@javax.annotation.Nullable DeliveryParty deliveryParty) {
+    this.deliveryParty = deliveryParty;
+  }
+
+
+  public FacturXInvoice taxRepresentative(@javax.annotation.Nullable TaxRepresentative taxRepresentative) {
+    this.taxRepresentative = taxRepresentative;
+    return this;
+  }
+
+  /**
+   * Get taxRepresentative
+   * @return taxRepresentative
+   */
+  @javax.annotation.Nullable
+  public TaxRepresentative getTaxRepresentative() {
+    return taxRepresentative;
+  }
+
+  public void setTaxRepresentative(@javax.annotation.Nullable TaxRepresentative taxRepresentative) {
+    this.taxRepresentative = taxRepresentative;
+  }
+
+
+  public FacturXInvoice deliveryDate(@javax.annotation.Nullable String deliveryDate) {
+    this.deliveryDate = deliveryDate;
+    return this;
+  }
+
+  /**
+   * Get deliveryDate
+   * @return deliveryDate
+   */
+  @javax.annotation.Nullable
+  public String getDeliveryDate() {
+    return deliveryDate;
+  }
+
+  public void setDeliveryDate(@javax.annotation.Nullable String deliveryDate) {
+    this.deliveryDate = deliveryDate;
+  }
+
+
+  public FacturXInvoice billingPeriodStart(@javax.annotation.Nullable String billingPeriodStart) {
+    this.billingPeriodStart = billingPeriodStart;
+    return this;
+  }
+
+  /**
+   * Get billingPeriodStart
+   * @return billingPeriodStart
+   */
+  @javax.annotation.Nullable
+  public String getBillingPeriodStart() {
+    return billingPeriodStart;
+  }
+
+  public void setBillingPeriodStart(@javax.annotation.Nullable String billingPeriodStart) {
+    this.billingPeriodStart = billingPeriodStart;
+  }
+
+
+  public FacturXInvoice billingPeriodEnd(@javax.annotation.Nullable String billingPeriodEnd) {
+    this.billingPeriodEnd = billingPeriodEnd;
+    return this;
+  }
+
+  /**
+   * Get billingPeriodEnd
+   * @return billingPeriodEnd
+   */
+  @javax.annotation.Nullable
+  public String getBillingPeriodEnd() {
+    return billingPeriodEnd;
+  }
+
+  public void setBillingPeriodEnd(@javax.annotation.Nullable String billingPeriodEnd) {
+    this.billingPeriodEnd = billingPeriodEnd;
+  }
+
+
+  public FacturXInvoice paymentReference(@javax.annotation.Nullable String paymentReference) {
+    this.paymentReference = paymentReference;
+    return this;
+  }
+
+  /**
+   * Get paymentReference
+   * @return paymentReference
+   */
+  @javax.annotation.Nullable
+  public String getPaymentReference() {
+    return paymentReference;
+  }
+
+  public void setPaymentReference(@javax.annotation.Nullable String paymentReference) {
+    this.paymentReference = paymentReference;
+  }
+
+
+  public FacturXInvoice creditorReferenceId(@javax.annotation.Nullable String creditorReferenceId) {
+    this.creditorReferenceId = creditorReferenceId;
+    return this;
+  }
+
+  /**
+   * Get creditorReferenceId
+   * @return creditorReferenceId
+   */
+  @javax.annotation.Nullable
+  public String getCreditorReferenceId() {
+    return creditorReferenceId;
+  }
+
+  public void setCreditorReferenceId(@javax.annotation.Nullable String creditorReferenceId) {
+    this.creditorReferenceId = creditorReferenceId;
+  }
+
+
+  public FacturXInvoice directDebitMandateId(@javax.annotation.Nullable String directDebitMandateId) {
+    this.directDebitMandateId = directDebitMandateId;
+    return this;
+  }
+
+  /**
+   * Get directDebitMandateId
+   * @return directDebitMandateId
+   */
+  @javax.annotation.Nullable
+  public String getDirectDebitMandateId() {
+    return directDebitMandateId;
+  }
+
+  public void setDirectDebitMandateId(@javax.annotation.Nullable String directDebitMandateId) {
+    this.directDebitMandateId = directDebitMandateId;
+  }
+
+
+  public FacturXInvoice debtorIban(@javax.annotation.Nullable String debtorIban) {
+    this.debtorIban = debtorIban;
+    return this;
+  }
+
+  /**
+   * Get debtorIban
+   * @return debtorIban
+   */
+  @javax.annotation.Nullable
+  public String getDebtorIban() {
+    return debtorIban;
+  }
+
+  public void setDebtorIban(@javax.annotation.Nullable String debtorIban) {
+    this.debtorIban = debtorIban;
+  }
+
+
+  public FacturXInvoice paymentTerms(@javax.annotation.Nullable String paymentTerms) {
+    this.paymentTerms = paymentTerms;
+    return this;
+  }
+
+  /**
+   * Get paymentTerms
+   * @return paymentTerms
+   */
+  @javax.annotation.Nullable
+  public String getPaymentTerms() {
+    return paymentTerms;
+  }
+
+  public void setPaymentTerms(@javax.annotation.Nullable String paymentTerms) {
+    this.paymentTerms = paymentTerms;
+  }
+
+
+  public FacturXInvoice allowancesCharges(@javax.annotation.Nullable List<AllowanceCharge> allowancesCharges) {
+    this.allowancesCharges = allowancesCharges;
+    return this;
+  }
+
+  public FacturXInvoice addAllowancesChargesItem(AllowanceCharge allowancesChargesItem) {
+    if (this.allowancesCharges == null) {
+      this.allowancesCharges = new ArrayList<>();
+    }
+    this.allowancesCharges.add(allowancesChargesItem);
+    return this;
+  }
+
+  /**
+   * Get allowancesCharges
+   * @return allowancesCharges
+   */
+  @javax.annotation.Nullable
+  public List<AllowanceCharge> getAllowancesCharges() {
+    return allowancesCharges;
+  }
+
+  public void setAllowancesCharges(@javax.annotation.Nullable List<AllowanceCharge> allowancesCharges) {
+    this.allowancesCharges = allowancesCharges;
+  }
+
+
+  public FacturXInvoice additionalDocuments(@javax.annotation.Nullable List<AdditionalDocument> additionalDocuments) {
+    this.additionalDocuments = additionalDocuments;
+    return this;
+  }
+
+  public FacturXInvoice addAdditionalDocumentsItem(AdditionalDocument additionalDocumentsItem) {
+    if (this.additionalDocuments == null) {
+      this.additionalDocuments = new ArrayList<>();
+    }
+    this.additionalDocuments.add(additionalDocumentsItem);
+    return this;
+  }
+
+  /**
+   * Get additionalDocuments
+   * @return additionalDocuments
+   */
+  @javax.annotation.Nullable
+  public List<AdditionalDocument> getAdditionalDocuments() {
+    return additionalDocuments;
+  }
+
+  public void setAdditionalDocuments(@javax.annotation.Nullable List<AdditionalDocument> additionalDocuments) {
+    this.additionalDocuments = additionalDocuments;
+  }
+
+
+  public FacturXInvoice buyerAccountingReference(@javax.annotation.Nullable String buyerAccountingReference) {
+    this.buyerAccountingReference = buyerAccountingReference;
+    return this;
+  }
+
+  /**
+   * Get buyerAccountingReference
+   * @return buyerAccountingReference
+   */
+  @javax.annotation.Nullable
+  public String getBuyerAccountingReference() {
+    return buyerAccountingReference;
+  }
+
+  public void setBuyerAccountingReference(@javax.annotation.Nullable String buyerAccountingReference) {
+    this.buyerAccountingReference = buyerAccountingReference;
+  }
+
+
+  public FacturXInvoice paymentCard(@javax.annotation.Nullable PaymentCard paymentCard) {
+    this.paymentCard = paymentCard;
+    return this;
+  }
+
+  /**
+   * Get paymentCard
+   * @return paymentCard
+   */
+  @javax.annotation.Nullable
+  public PaymentCard getPaymentCard() {
+    return paymentCard;
+  }
+
+  public void setPaymentCard(@javax.annotation.Nullable PaymentCard paymentCard) {
+    this.paymentCard = paymentCard;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -508,7 +865,21 @@ public class FacturXInvoice {
         Objects.equals(this.comment, facturXInvoice.comment) &&
         Objects.equals(this.currentUserId, facturXInvoice.currentUserId) &&
         Objects.equals(this.supplementaryAttachments, facturXInvoice.supplementaryAttachments) &&
-        Objects.equals(this.payee, facturXInvoice.payee);
+        Objects.equals(this.payee, facturXInvoice.payee) &&
+        Objects.equals(this.deliveryParty, facturXInvoice.deliveryParty) &&
+        Objects.equals(this.taxRepresentative, facturXInvoice.taxRepresentative) &&
+        Objects.equals(this.deliveryDate, facturXInvoice.deliveryDate) &&
+        Objects.equals(this.billingPeriodStart, facturXInvoice.billingPeriodStart) &&
+        Objects.equals(this.billingPeriodEnd, facturXInvoice.billingPeriodEnd) &&
+        Objects.equals(this.paymentReference, facturXInvoice.paymentReference) &&
+        Objects.equals(this.creditorReferenceId, facturXInvoice.creditorReferenceId) &&
+        Objects.equals(this.directDebitMandateId, facturXInvoice.directDebitMandateId) &&
+        Objects.equals(this.debtorIban, facturXInvoice.debtorIban) &&
+        Objects.equals(this.paymentTerms, facturXInvoice.paymentTerms) &&
+        Objects.equals(this.allowancesCharges, facturXInvoice.allowancesCharges) &&
+        Objects.equals(this.additionalDocuments, facturXInvoice.additionalDocuments) &&
+        Objects.equals(this.buyerAccountingReference, facturXInvoice.buyerAccountingReference) &&
+        Objects.equals(this.paymentCard, facturXInvoice.paymentCard);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -517,7 +888,7 @@ public class FacturXInvoice {
 
   @Override
   public int hashCode() {
-    return Objects.hash(invoiceNumber, paymentDueDate, invoiceDate, submissionMode, recipient, supplier, invoicingFramework, references, totals, invoiceLines, vatLines, notes, comment, currentUserId, supplementaryAttachments, payee);
+    return Objects.hash(invoiceNumber, paymentDueDate, invoiceDate, submissionMode, recipient, supplier, invoicingFramework, references, totals, invoiceLines, vatLines, notes, comment, currentUserId, supplementaryAttachments, payee, deliveryParty, taxRepresentative, deliveryDate, billingPeriodStart, billingPeriodEnd, paymentReference, creditorReferenceId, directDebitMandateId, debtorIban, paymentTerms, allowancesCharges, additionalDocuments, buyerAccountingReference, paymentCard);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -547,6 +918,20 @@ public class FacturXInvoice {
     sb.append("    currentUserId: ").append(toIndentedString(currentUserId)).append("\n");
     sb.append("    supplementaryAttachments: ").append(toIndentedString(supplementaryAttachments)).append("\n");
     sb.append("    payee: ").append(toIndentedString(payee)).append("\n");
+    sb.append("    deliveryParty: ").append(toIndentedString(deliveryParty)).append("\n");
+    sb.append("    taxRepresentative: ").append(toIndentedString(taxRepresentative)).append("\n");
+    sb.append("    deliveryDate: ").append(toIndentedString(deliveryDate)).append("\n");
+    sb.append("    billingPeriodStart: ").append(toIndentedString(billingPeriodStart)).append("\n");
+    sb.append("    billingPeriodEnd: ").append(toIndentedString(billingPeriodEnd)).append("\n");
+    sb.append("    paymentReference: ").append(toIndentedString(paymentReference)).append("\n");
+    sb.append("    creditorReferenceId: ").append(toIndentedString(creditorReferenceId)).append("\n");
+    sb.append("    directDebitMandateId: ").append(toIndentedString(directDebitMandateId)).append("\n");
+    sb.append("    debtorIban: ").append(toIndentedString(debtorIban)).append("\n");
+    sb.append("    paymentTerms: ").append(toIndentedString(paymentTerms)).append("\n");
+    sb.append("    allowancesCharges: ").append(toIndentedString(allowancesCharges)).append("\n");
+    sb.append("    additionalDocuments: ").append(toIndentedString(additionalDocuments)).append("\n");
+    sb.append("    buyerAccountingReference: ").append(toIndentedString(buyerAccountingReference)).append("\n");
+    sb.append("    paymentCard: ").append(toIndentedString(paymentCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -568,7 +953,7 @@ public class FacturXInvoice {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "invoice_date", "submission_mode", "recipient", "supplier", "invoicing_framework", "references", "totals", "invoice_lines", "vat_lines", "notes", "comment", "current_user_id", "supplementary_attachments", "payee"));
+    openapiFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "invoice_date", "submission_mode", "recipient", "supplier", "invoicing_framework", "references", "totals", "invoice_lines", "vat_lines", "notes", "comment", "current_user_id", "supplementary_attachments", "payee", "delivery_party", "tax_representative", "delivery_date", "billing_period_start", "billing_period_end", "payment_reference", "creditor_reference_id", "direct_debit_mandate_id", "debtor_iban", "payment_terms", "allowances_charges", "additional_documents", "buyer_accounting_reference", "payment_card"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "submission_mode", "recipient", "supplier", "invoicing_framework", "references", "totals"));
@@ -685,6 +1070,73 @@ public class FacturXInvoice {
       // validate the optional field `payee`
       if (jsonObj.get("payee") != null && !jsonObj.get("payee").isJsonNull()) {
         Payee.validateJsonElement(jsonObj.get("payee"));
+      }
+      // validate the optional field `delivery_party`
+      if (jsonObj.get("delivery_party") != null && !jsonObj.get("delivery_party").isJsonNull()) {
+        DeliveryParty.validateJsonElement(jsonObj.get("delivery_party"));
+      }
+      // validate the optional field `tax_representative`
+      if (jsonObj.get("tax_representative") != null && !jsonObj.get("tax_representative").isJsonNull()) {
+        TaxRepresentative.validateJsonElement(jsonObj.get("tax_representative"));
+      }
+      if ((jsonObj.get("delivery_date") != null && !jsonObj.get("delivery_date").isJsonNull()) && !jsonObj.get("delivery_date").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `delivery_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("delivery_date").toString()));
+      }
+      if ((jsonObj.get("billing_period_start") != null && !jsonObj.get("billing_period_start").isJsonNull()) && !jsonObj.get("billing_period_start").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `billing_period_start` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billing_period_start").toString()));
+      }
+      if ((jsonObj.get("billing_period_end") != null && !jsonObj.get("billing_period_end").isJsonNull()) && !jsonObj.get("billing_period_end").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `billing_period_end` to be a primitive type in the JSON string but got `%s`", jsonObj.get("billing_period_end").toString()));
+      }
+      if ((jsonObj.get("payment_reference") != null && !jsonObj.get("payment_reference").isJsonNull()) && !jsonObj.get("payment_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `payment_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_reference").toString()));
+      }
+      if ((jsonObj.get("creditor_reference_id") != null && !jsonObj.get("creditor_reference_id").isJsonNull()) && !jsonObj.get("creditor_reference_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `creditor_reference_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("creditor_reference_id").toString()));
+      }
+      if ((jsonObj.get("direct_debit_mandate_id") != null && !jsonObj.get("direct_debit_mandate_id").isJsonNull()) && !jsonObj.get("direct_debit_mandate_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `direct_debit_mandate_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("direct_debit_mandate_id").toString()));
+      }
+      if ((jsonObj.get("debtor_iban") != null && !jsonObj.get("debtor_iban").isJsonNull()) && !jsonObj.get("debtor_iban").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `debtor_iban` to be a primitive type in the JSON string but got `%s`", jsonObj.get("debtor_iban").toString()));
+      }
+      if ((jsonObj.get("payment_terms") != null && !jsonObj.get("payment_terms").isJsonNull()) && !jsonObj.get("payment_terms").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `payment_terms` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_terms").toString()));
+      }
+      if (jsonObj.get("allowances_charges") != null && !jsonObj.get("allowances_charges").isJsonNull()) {
+        JsonArray jsonArrayallowancesCharges = jsonObj.getAsJsonArray("allowances_charges");
+        if (jsonArrayallowancesCharges != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("allowances_charges").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `allowances_charges` to be an array in the JSON string but got `%s`", jsonObj.get("allowances_charges").toString()));
+          }
+
+          // validate the optional field `allowances_charges` (array)
+          for (int i = 0; i < jsonArrayallowancesCharges.size(); i++) {
+            AllowanceCharge.validateJsonElement(jsonArrayallowancesCharges.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("additional_documents") != null && !jsonObj.get("additional_documents").isJsonNull()) {
+        JsonArray jsonArrayadditionalDocuments = jsonObj.getAsJsonArray("additional_documents");
+        if (jsonArrayadditionalDocuments != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("additional_documents").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `additional_documents` to be an array in the JSON string but got `%s`", jsonObj.get("additional_documents").toString()));
+          }
+
+          // validate the optional field `additional_documents` (array)
+          for (int i = 0; i < jsonArrayadditionalDocuments.size(); i++) {
+            AdditionalDocument.validateJsonElement(jsonArrayadditionalDocuments.get(i));
+          };
+        }
+      }
+      if ((jsonObj.get("buyer_accounting_reference") != null && !jsonObj.get("buyer_accounting_reference").isJsonNull()) && !jsonObj.get("buyer_accounting_reference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `buyer_accounting_reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("buyer_accounting_reference").toString()));
+      }
+      // validate the optional field `payment_card`
+      if (jsonObj.get("payment_card") != null && !jsonObj.get("payment_card").isJsonNull()) {
+        PaymentCard.validateJsonElement(jsonObj.get("payment_card"));
       }
   }
 

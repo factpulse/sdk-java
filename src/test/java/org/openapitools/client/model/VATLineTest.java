@@ -24,6 +24,7 @@ import org.openapitools.client.model.ManualRate;
 import org.openapitools.client.model.TaxableAmount;
 import org.openapitools.client.model.VATAmount;
 import org.openapitools.client.model.VATCategory;
+import org.openapitools.client.model.VATPointDateCode;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -80,6 +81,14 @@ public class VATLineTest {
     @Test
     public void categoryTest() {
         // TODO: test category
+    }
+
+    /**
+     * Test the property 'dueDateTypeCode'
+     */
+    @Test
+    public void dueDateTypeCodeTest() {
+        // TODO: test dueDateTypeCode
     }
 
     /**

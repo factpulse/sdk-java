@@ -2,7 +2,7 @@
 
 # VATAmount
 
-VAT amount for this line. (Accepte number, string ou integer)
+VAT category tax amount (BT-117). Can be negative for correction invoices.
 
 ## Properties
 

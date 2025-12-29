@@ -11,7 +11,7 @@ Invoice received from a supplier via PDP/PA.  This model contains essential meta
 |**flowId** | **String** |  |  [optional] |
 |**sourceFormat** | **InvoiceFormat** | Invoice source format |  |
 |**supplierReference** | **String** | Invoice number issued by the supplier (BT-1) |  |
-|**documentType** | **DocumentType** | Document type (BT-3) |  [optional] |
+|**documentType** | **InvoiceTypeCode** | Document type (BT-3) |  [optional] |
 |**supplier** | [**IncomingSupplier**](IncomingSupplier.md) | Invoice issuer (SellerTradeParty) |  |
 |**billingSiteName** | **String** | Recipient name / your company (BT-44) |  |
 |**billingSiteSiret** | **String** |  |  [optional] |

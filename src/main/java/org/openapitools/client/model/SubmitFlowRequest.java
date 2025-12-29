@@ -52,34 +52,34 @@ import org.openapitools.client.JSON;
 /**
  * Request to submit an invoice to a PDP/PA via AFNOR.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SubmitFlowRequest {
-  public static final String SERIALIZED_NAME_FLOW_NAME = "flow_name";
+  public static final String SERIALIZED_NAME_FLOW_NAME = "flowName";
   @SerializedName(SERIALIZED_NAME_FLOW_NAME)
   @javax.annotation.Nonnull
   private String flowName;
 
-  public static final String SERIALIZED_NAME_FLOW_SYNTAX = "flow_syntax";
+  public static final String SERIALIZED_NAME_FLOW_SYNTAX = "flowSyntax";
   @SerializedName(SERIALIZED_NAME_FLOW_SYNTAX)
   @javax.annotation.Nullable
   private FlowSyntax flowSyntax = FlowSyntax.CII;
 
-  public static final String SERIALIZED_NAME_FLOW_PROFILE = "flow_profile";
+  public static final String SERIALIZED_NAME_FLOW_PROFILE = "flowProfile";
   @SerializedName(SERIALIZED_NAME_FLOW_PROFILE)
   @javax.annotation.Nullable
   private FlowProfile flowProfile;
 
-  public static final String SERIALIZED_NAME_TRACKING_ID = "tracking_id";
+  public static final String SERIALIZED_NAME_TRACKING_ID = "trackingId";
   @SerializedName(SERIALIZED_NAME_TRACKING_ID)
   @javax.annotation.Nullable
   private String trackingId;
 
-  public static final String SERIALIZED_NAME_REQUEST_ID = "request_id";
+  public static final String SERIALIZED_NAME_REQUEST_ID = "requestId";
   @SerializedName(SERIALIZED_NAME_REQUEST_ID)
   @javax.annotation.Nullable
   private String requestId;
 
-  public static final String SERIALIZED_NAME_PDP_CREDENTIALS = "pdp_credentials";
+  public static final String SERIALIZED_NAME_PDP_CREDENTIALS = "pdpCredentials";
   @SerializedName(SERIALIZED_NAME_PDP_CREDENTIALS)
   @javax.annotation.Nullable
   private PDPCredentials pdpCredentials;
@@ -266,10 +266,10 @@ public class SubmitFlowRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("flow_name", "flow_syntax", "flow_profile", "tracking_id", "request_id", "pdp_credentials"));
+    openapiFields = new HashSet<String>(Arrays.asList("flowName", "flowSyntax", "flowProfile", "trackingId", "requestId", "pdpCredentials"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("flow_name"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("flowName"));
   }
 
   /**
@@ -300,26 +300,26 @@ public class SubmitFlowRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("flow_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flow_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flow_name").toString()));
+      if (!jsonObj.get("flowName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flowName").toString()));
       }
-      // validate the optional field `flow_syntax`
-      if (jsonObj.get("flow_syntax") != null && !jsonObj.get("flow_syntax").isJsonNull()) {
-        FlowSyntax.validateJsonElement(jsonObj.get("flow_syntax"));
+      // validate the optional field `flowSyntax`
+      if (jsonObj.get("flowSyntax") != null && !jsonObj.get("flowSyntax").isJsonNull()) {
+        FlowSyntax.validateJsonElement(jsonObj.get("flowSyntax"));
       }
-      // validate the optional field `flow_profile`
-      if (jsonObj.get("flow_profile") != null && !jsonObj.get("flow_profile").isJsonNull()) {
-        FlowProfile.validateJsonElement(jsonObj.get("flow_profile"));
+      // validate the optional field `flowProfile`
+      if (jsonObj.get("flowProfile") != null && !jsonObj.get("flowProfile").isJsonNull()) {
+        FlowProfile.validateJsonElement(jsonObj.get("flowProfile"));
       }
-      if ((jsonObj.get("tracking_id") != null && !jsonObj.get("tracking_id").isJsonNull()) && !jsonObj.get("tracking_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `tracking_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tracking_id").toString()));
+      if ((jsonObj.get("trackingId") != null && !jsonObj.get("trackingId").isJsonNull()) && !jsonObj.get("trackingId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `trackingId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trackingId").toString()));
       }
-      if ((jsonObj.get("request_id") != null && !jsonObj.get("request_id").isJsonNull()) && !jsonObj.get("request_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `request_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("request_id").toString()));
+      if ((jsonObj.get("requestId") != null && !jsonObj.get("requestId").isJsonNull()) && !jsonObj.get("requestId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `requestId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("requestId").toString()));
       }
-      // validate the optional field `pdp_credentials`
-      if (jsonObj.get("pdp_credentials") != null && !jsonObj.get("pdp_credentials").isJsonNull()) {
-        PDPCredentials.validateJsonElement(jsonObj.get("pdp_credentials"));
+      // validate the optional field `pdpCredentials`
+      if (jsonObj.get("pdpCredentials") != null && !jsonObj.get("pdpCredentials").isJsonNull()) {
+        PDPCredentials.validateJsonElement(jsonObj.get("pdpCredentials"));
       }
   }
 

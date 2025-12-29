@@ -20,11 +20,21 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import org.openapitools.client.model.AdditionalDocument;
+import org.openapitools.client.model.AllowanceCharge;
 import org.openapitools.client.model.AllowanceReasonCode;
+import org.openapitools.client.model.GrossUnitPrice;
 import org.openapitools.client.model.InvoiceLineAllowanceAmount;
+import org.openapitools.client.model.InvoiceNote;
 import org.openapitools.client.model.LineNetAmount;
 import org.openapitools.client.model.ManualVatRate;
+import org.openapitools.client.model.PriceAllowanceAmount;
+import org.openapitools.client.model.PriceBasisQuantity;
+import org.openapitools.client.model.ProductCharacteristic;
+import org.openapitools.client.model.ProductClassification;
 import org.openapitools.client.model.Quantity;
 import org.openapitools.client.model.UnitNetPrice;
 import org.openapitools.client.model.UnitOfMeasure;
@@ -55,24 +65,64 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Represents a line item in an invoice.
+ * Represents an invoice line item (BG-25).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class InvoiceLine {
   public static final String SERIALIZED_NAME_LINE_NUMBER = "line_number";
   @SerializedName(SERIALIZED_NAME_LINE_NUMBER)
   @javax.annotation.Nonnull
   private Integer lineNumber;
 
+  public static final String SERIALIZED_NAME_LINE_NOTE = "line_note";
+  @SerializedName(SERIALIZED_NAME_LINE_NOTE)
+  @javax.annotation.Nullable
+  private String lineNote;
+
   public static final String SERIALIZED_NAME_REFERENCE = "reference";
   @SerializedName(SERIALIZED_NAME_REFERENCE)
   @javax.annotation.Nullable
   private String reference;
 
+  public static final String SERIALIZED_NAME_BUYER_ASSIGNED_ID = "buyer_assigned_id";
+  @SerializedName(SERIALIZED_NAME_BUYER_ASSIGNED_ID)
+  @javax.annotation.Nullable
+  private String buyerAssignedId;
+
+  public static final String SERIALIZED_NAME_PRODUCT_GLOBAL_ID = "product_global_id";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_GLOBAL_ID)
+  @javax.annotation.Nullable
+  private String productGlobalId;
+
+  public static final String SERIALIZED_NAME_PRODUCT_GLOBAL_ID_SCHEME = "product_global_id_scheme";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_GLOBAL_ID_SCHEME)
+  @javax.annotation.Nullable
+  private String productGlobalIdScheme;
+
   public static final String SERIALIZED_NAME_ITEM_NAME = "item_name";
   @SerializedName(SERIALIZED_NAME_ITEM_NAME)
   @javax.annotation.Nonnull
   private String itemName;
+
+  public static final String SERIALIZED_NAME_ITEM_DESCRIPTION = "item_description";
+  @SerializedName(SERIALIZED_NAME_ITEM_DESCRIPTION)
+  @javax.annotation.Nullable
+  private String itemDescription;
+
+  public static final String SERIALIZED_NAME_ORIGIN_COUNTRY = "origin_country";
+  @SerializedName(SERIALIZED_NAME_ORIGIN_COUNTRY)
+  @javax.annotation.Nullable
+  private String originCountry;
+
+  public static final String SERIALIZED_NAME_CHARACTERISTICS = "characteristics";
+  @SerializedName(SERIALIZED_NAME_CHARACTERISTICS)
+  @javax.annotation.Nullable
+  private List<ProductCharacteristic> characteristics;
+
+  public static final String SERIALIZED_NAME_CLASSIFICATIONS = "classifications";
+  @SerializedName(SERIALIZED_NAME_CLASSIFICATIONS)
+  @javax.annotation.Nullable
+  private List<ProductClassification> classifications;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   @SerializedName(SERIALIZED_NAME_QUANTITY)
@@ -84,20 +134,55 @@ public class InvoiceLine {
   @javax.annotation.Nonnull
   private UnitOfMeasure unit;
 
+  public static final String SERIALIZED_NAME_GROSS_UNIT_PRICE = "gross_unit_price";
+  @SerializedName(SERIALIZED_NAME_GROSS_UNIT_PRICE)
+  @javax.annotation.Nullable
+  private GrossUnitPrice grossUnitPrice;
+
   public static final String SERIALIZED_NAME_UNIT_NET_PRICE = "unit_net_price";
   @SerializedName(SERIALIZED_NAME_UNIT_NET_PRICE)
   @javax.annotation.Nonnull
   private UnitNetPrice unitNetPrice;
+
+  public static final String SERIALIZED_NAME_PRICE_BASIS_QUANTITY = "price_basis_quantity";
+  @SerializedName(SERIALIZED_NAME_PRICE_BASIS_QUANTITY)
+  @javax.annotation.Nullable
+  private PriceBasisQuantity priceBasisQuantity;
+
+  public static final String SERIALIZED_NAME_PRICE_BASIS_UNIT = "price_basis_unit";
+  @SerializedName(SERIALIZED_NAME_PRICE_BASIS_UNIT)
+  @javax.annotation.Nullable
+  private String priceBasisUnit;
+
+  public static final String SERIALIZED_NAME_PRICE_ALLOWANCE_AMOUNT = "price_allowance_amount";
+  @SerializedName(SERIALIZED_NAME_PRICE_ALLOWANCE_AMOUNT)
+  @javax.annotation.Nullable
+  private PriceAllowanceAmount priceAllowanceAmount;
+
+  public static final String SERIALIZED_NAME_LINE_NET_AMOUNT = "lineNetAmount";
+  @SerializedName(SERIALIZED_NAME_LINE_NET_AMOUNT)
+  @javax.annotation.Nullable
+  private LineNetAmount lineNetAmount;
 
   public static final String SERIALIZED_NAME_ALLOWANCE_AMOUNT = "allowanceAmount";
   @SerializedName(SERIALIZED_NAME_ALLOWANCE_AMOUNT)
   @javax.annotation.Nullable
   private InvoiceLineAllowanceAmount allowanceAmount;
 
-  public static final String SERIALIZED_NAME_LINE_NET_AMOUNT = "lineNetAmount";
-  @SerializedName(SERIALIZED_NAME_LINE_NET_AMOUNT)
+  public static final String SERIALIZED_NAME_ALLOWANCE_REASON_CODE = "allowanceReasonCode";
+  @SerializedName(SERIALIZED_NAME_ALLOWANCE_REASON_CODE)
   @javax.annotation.Nullable
-  private LineNetAmount lineNetAmount;
+  private AllowanceReasonCode allowanceReasonCode;
+
+  public static final String SERIALIZED_NAME_ALLOWANCE_REASON = "allowanceReason";
+  @SerializedName(SERIALIZED_NAME_ALLOWANCE_REASON)
+  @javax.annotation.Nullable
+  private String allowanceReason;
+
+  public static final String SERIALIZED_NAME_ALLOWANCES_CHARGES = "allowances_charges";
+  @SerializedName(SERIALIZED_NAME_ALLOWANCES_CHARGES)
+  @javax.annotation.Nullable
+  private List<AllowanceCharge> allowancesCharges;
 
   public static final String SERIALIZED_NAME_VAT_RATE = "vat_rate";
   @SerializedName(SERIALIZED_NAME_VAT_RATE)
@@ -114,25 +199,35 @@ public class InvoiceLine {
   @javax.annotation.Nullable
   private VATCategory vatCategory;
 
-  public static final String SERIALIZED_NAME_PERIOD_START_DATE = "periodStartDate";
+  public static final String SERIALIZED_NAME_PERIOD_START_DATE = "period_start_date";
   @SerializedName(SERIALIZED_NAME_PERIOD_START_DATE)
   @javax.annotation.Nullable
   private String periodStartDate;
 
-  public static final String SERIALIZED_NAME_PERIOD_END_DATE = "periodEndDate";
+  public static final String SERIALIZED_NAME_PERIOD_END_DATE = "period_end_date";
   @SerializedName(SERIALIZED_NAME_PERIOD_END_DATE)
   @javax.annotation.Nullable
   private String periodEndDate;
 
-  public static final String SERIALIZED_NAME_ALLOWANCE_REASON_CODE = "allowanceReasonCode";
-  @SerializedName(SERIALIZED_NAME_ALLOWANCE_REASON_CODE)
+  public static final String SERIALIZED_NAME_PURCHASE_ORDER_LINE_REF = "purchase_order_line_ref";
+  @SerializedName(SERIALIZED_NAME_PURCHASE_ORDER_LINE_REF)
   @javax.annotation.Nullable
-  private AllowanceReasonCode allowanceReasonCode;
+  private String purchaseOrderLineRef;
 
-  public static final String SERIALIZED_NAME_ALLOWANCE_REASON = "allowanceReason";
-  @SerializedName(SERIALIZED_NAME_ALLOWANCE_REASON)
+  public static final String SERIALIZED_NAME_ACCOUNTING_ACCOUNT = "accounting_account";
+  @SerializedName(SERIALIZED_NAME_ACCOUNTING_ACCOUNT)
   @javax.annotation.Nullable
-  private String allowanceReason;
+  private String accountingAccount;
+
+  public static final String SERIALIZED_NAME_ADDITIONAL_DOCUMENTS = "additional_documents";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_DOCUMENTS)
+  @javax.annotation.Nullable
+  private List<AdditionalDocument> additionalDocuments;
+
+  public static final String SERIALIZED_NAME_LINE_NOTES = "line_notes";
+  @SerializedName(SERIALIZED_NAME_LINE_NOTES)
+  @javax.annotation.Nullable
+  private List<InvoiceNote> lineNotes;
 
   public InvoiceLine() {
   }
@@ -143,7 +238,7 @@ public class InvoiceLine {
   }
 
   /**
-   * Get lineNumber
+   * Invoice line identifier (BT-126).
    * @return lineNumber
    */
   @javax.annotation.Nonnull
@@ -153,6 +248,25 @@ public class InvoiceLine {
 
   public void setLineNumber(@javax.annotation.Nonnull Integer lineNumber) {
     this.lineNumber = lineNumber;
+  }
+
+
+  public InvoiceLine lineNote(@javax.annotation.Nullable String lineNote) {
+    this.lineNote = lineNote;
+    return this;
+  }
+
+  /**
+   * Get lineNote
+   * @return lineNote
+   */
+  @javax.annotation.Nullable
+  public String getLineNote() {
+    return lineNote;
+  }
+
+  public void setLineNote(@javax.annotation.Nullable String lineNote) {
+    this.lineNote = lineNote;
   }
 
 
@@ -175,13 +289,70 @@ public class InvoiceLine {
   }
 
 
+  public InvoiceLine buyerAssignedId(@javax.annotation.Nullable String buyerAssignedId) {
+    this.buyerAssignedId = buyerAssignedId;
+    return this;
+  }
+
+  /**
+   * Get buyerAssignedId
+   * @return buyerAssignedId
+   */
+  @javax.annotation.Nullable
+  public String getBuyerAssignedId() {
+    return buyerAssignedId;
+  }
+
+  public void setBuyerAssignedId(@javax.annotation.Nullable String buyerAssignedId) {
+    this.buyerAssignedId = buyerAssignedId;
+  }
+
+
+  public InvoiceLine productGlobalId(@javax.annotation.Nullable String productGlobalId) {
+    this.productGlobalId = productGlobalId;
+    return this;
+  }
+
+  /**
+   * Get productGlobalId
+   * @return productGlobalId
+   */
+  @javax.annotation.Nullable
+  public String getProductGlobalId() {
+    return productGlobalId;
+  }
+
+  public void setProductGlobalId(@javax.annotation.Nullable String productGlobalId) {
+    this.productGlobalId = productGlobalId;
+  }
+
+
+  public InvoiceLine productGlobalIdScheme(@javax.annotation.Nullable String productGlobalIdScheme) {
+    this.productGlobalIdScheme = productGlobalIdScheme;
+    return this;
+  }
+
+  /**
+   * Get productGlobalIdScheme
+   * @return productGlobalIdScheme
+   */
+  @javax.annotation.Nullable
+  public String getProductGlobalIdScheme() {
+    return productGlobalIdScheme;
+  }
+
+  public void setProductGlobalIdScheme(@javax.annotation.Nullable String productGlobalIdScheme) {
+    this.productGlobalIdScheme = productGlobalIdScheme;
+  }
+
+
   public InvoiceLine itemName(@javax.annotation.Nonnull String itemName) {
     this.itemName = itemName;
     return this;
   }
 
   /**
-   * Get itemName
+   * Item name (BT-153).
    * @return itemName
    */
   @javax.annotation.Nonnull
@@ -191,6 +362,98 @@ public class InvoiceLine {
 
   public void setItemName(@javax.annotation.Nonnull String itemName) {
     this.itemName = itemName;
+  }
+
+
+  public InvoiceLine itemDescription(@javax.annotation.Nullable String itemDescription) {
+    this.itemDescription = itemDescription;
+    return this;
+  }
+
+  /**
+   * Get itemDescription
+   * @return itemDescription
+   */
+  @javax.annotation.Nullable
+  public String getItemDescription() {
+    return itemDescription;
+  }
+
+  public void setItemDescription(@javax.annotation.Nullable String itemDescription) {
+    this.itemDescription = itemDescription;
+  }
+
+
+  public InvoiceLine originCountry(@javax.annotation.Nullable String originCountry) {
+    this.originCountry = originCountry;
+    return this;
+  }
+
+  /**
+   * Get originCountry
+   * @return originCountry
+   */
+  @javax.annotation.Nullable
+  public String getOriginCountry() {
+    return originCountry;
+  }
+
+  public void setOriginCountry(@javax.annotation.Nullable String originCountry) {
+    this.originCountry = originCountry;
+  }
+
+
+  public InvoiceLine characteristics(@javax.annotation.Nullable List<ProductCharacteristic> characteristics) {
+    this.characteristics = characteristics;
+    return this;
+  }
+
+  public InvoiceLine addCharacteristicsItem(ProductCharacteristic characteristicsItem) {
+    if (this.characteristics == null) {
+      this.characteristics = new ArrayList<>();
+    }
+    this.characteristics.add(characteristicsItem);
+    return this;
+  }
+
+  /**
+   * Get characteristics
+   * @return characteristics
+   */
+  @javax.annotation.Nullable
+  public List<ProductCharacteristic> getCharacteristics() {
+    return characteristics;
+  }
+
+  public void setCharacteristics(@javax.annotation.Nullable List<ProductCharacteristic> characteristics) {
+    this.characteristics = characteristics;
+  }
+
+
+  public InvoiceLine classifications(@javax.annotation.Nullable List<ProductClassification> classifications) {
+    this.classifications = classifications;
+    return this;
+  }
+
+  public InvoiceLine addClassificationsItem(ProductClassification classificationsItem) {
+    if (this.classifications == null) {
+      this.classifications = new ArrayList<>();
+    }
+    this.classifications.add(classificationsItem);
+    return this;
+  }
+
+  /**
+   * Get classifications
+   * @return classifications
+   */
+  @javax.annotation.Nullable
+  public List<ProductClassification> getClassifications() {
+    return classifications;
+  }
+
+  public void setClassifications(@javax.annotation.Nullable List<ProductClassification> classifications) {
+    this.classifications = classifications;
   }
 
 
@@ -219,7 +482,7 @@ public class InvoiceLine {
   }
 
   /**
-   * Get unit
+   * Invoiced quantity unit of measure code (BT-130).
    * @return unit
    */
   @javax.annotation.Nonnull
@@ -229,6 +492,25 @@ public class InvoiceLine {
 
   public void setUnit(@javax.annotation.Nonnull UnitOfMeasure unit) {
     this.unit = unit;
+  }
+
+
+  public InvoiceLine grossUnitPrice(@javax.annotation.Nullable GrossUnitPrice grossUnitPrice) {
+    this.grossUnitPrice = grossUnitPrice;
+    return this;
+  }
+
+  /**
+   * Get grossUnitPrice
+   * @return grossUnitPrice
+   */
+  @javax.annotation.Nullable
+  public GrossUnitPrice getGrossUnitPrice() {
+    return grossUnitPrice;
+  }
+
+  public void setGrossUnitPrice(@javax.annotation.Nullable GrossUnitPrice grossUnitPrice) {
+    this.grossUnitPrice = grossUnitPrice;
   }
 
 
@@ -251,22 +533,60 @@ public class InvoiceLine {
   }
 
 
-  public InvoiceLine allowanceAmount(@javax.annotation.Nullable InvoiceLineAllowanceAmount allowanceAmount) {
-    this.allowanceAmount = allowanceAmount;
+  public InvoiceLine priceBasisQuantity(@javax.annotation.Nullable PriceBasisQuantity priceBasisQuantity) {
+    this.priceBasisQuantity = priceBasisQuantity;
     return this;
   }
 
   /**
-   * Get allowanceAmount
-   * @return allowanceAmount
+   * Get priceBasisQuantity
+   * @return priceBasisQuantity
    */
   @javax.annotation.Nullable
-  public InvoiceLineAllowanceAmount getAllowanceAmount() {
-    return allowanceAmount;
+  public PriceBasisQuantity getPriceBasisQuantity() {
+    return priceBasisQuantity;
   }
 
-  public void setAllowanceAmount(@javax.annotation.Nullable InvoiceLineAllowanceAmount allowanceAmount) {
-    this.allowanceAmount = allowanceAmount;
+  public void setPriceBasisQuantity(@javax.annotation.Nullable PriceBasisQuantity priceBasisQuantity) {
+    this.priceBasisQuantity = priceBasisQuantity;
+  }
+
+
+  public InvoiceLine priceBasisUnit(@javax.annotation.Nullable String priceBasisUnit) {
+    this.priceBasisUnit = priceBasisUnit;
+    return this;
+  }
+
+  /**
+   * Get priceBasisUnit
+   * @return priceBasisUnit
+   */
+  @javax.annotation.Nullable
+  public String getPriceBasisUnit() {
+    return priceBasisUnit;
+  }
+
+  public void setPriceBasisUnit(@javax.annotation.Nullable String priceBasisUnit) {
+    this.priceBasisUnit = priceBasisUnit;
+  }
+
+
+  public InvoiceLine priceAllowanceAmount(@javax.annotation.Nullable PriceAllowanceAmount priceAllowanceAmount) {
+    this.priceAllowanceAmount = priceAllowanceAmount;
+    return this;
+  }
+
+  /**
+   * Get priceAllowanceAmount
+   * @return priceAllowanceAmount
+   */
+  @javax.annotation.Nullable
+  public PriceAllowanceAmount getPriceAllowanceAmount() {
+    return priceAllowanceAmount;
+  }
+
+  public void setPriceAllowanceAmount(@javax.annotation.Nullable PriceAllowanceAmount priceAllowanceAmount) {
+    this.priceAllowanceAmount = priceAllowanceAmount;
   }
 
 
@@ -286,6 +606,90 @@ public class InvoiceLine {
 
   public void setLineNetAmount(@javax.annotation.Nullable LineNetAmount lineNetAmount) {
     this.lineNetAmount = lineNetAmount;
+  }
+
+
+  public InvoiceLine allowanceAmount(@javax.annotation.Nullable InvoiceLineAllowanceAmount allowanceAmount) {
+    this.allowanceAmount = allowanceAmount;
+    return this;
+  }
+
+  /**
+   * Get allowanceAmount
+   * @return allowanceAmount
+   */
+  @javax.annotation.Nullable
+  public InvoiceLineAllowanceAmount getAllowanceAmount() {
+    return allowanceAmount;
+  }
+
+  public void setAllowanceAmount(@javax.annotation.Nullable InvoiceLineAllowanceAmount allowanceAmount) {
+    this.allowanceAmount = allowanceAmount;
+  }
+
+
+  public InvoiceLine allowanceReasonCode(@javax.annotation.Nullable AllowanceReasonCode allowanceReasonCode) {
+    this.allowanceReasonCode = allowanceReasonCode;
+    return this;
+  }
+
+  /**
+   * Get allowanceReasonCode
+   * @return allowanceReasonCode
+   */
+  @javax.annotation.Nullable
+  public AllowanceReasonCode getAllowanceReasonCode() {
+    return allowanceReasonCode;
+  }
+
+  public void setAllowanceReasonCode(@javax.annotation.Nullable AllowanceReasonCode allowanceReasonCode) {
+    this.allowanceReasonCode = allowanceReasonCode;
+  }
+
+
+  public InvoiceLine allowanceReason(@javax.annotation.Nullable String allowanceReason) {
+    this.allowanceReason = allowanceReason;
+    return this;
+  }
+
+  /**
+   * Get allowanceReason
+   * @return allowanceReason
+   */
+  @javax.annotation.Nullable
+  public String getAllowanceReason() {
+    return allowanceReason;
+  }
+
+  public void setAllowanceReason(@javax.annotation.Nullable String allowanceReason) {
+    this.allowanceReason = allowanceReason;
+  }
+
+
+  public InvoiceLine allowancesCharges(@javax.annotation.Nullable List<AllowanceCharge> allowancesCharges) {
+    this.allowancesCharges = allowancesCharges;
+    return this;
+  }
+
+  public InvoiceLine addAllowancesChargesItem(AllowanceCharge allowancesChargesItem) {
+    if (this.allowancesCharges == null) {
+      this.allowancesCharges = new ArrayList<>();
+    }
+    this.allowancesCharges.add(allowancesChargesItem);
+    return this;
+  }
+
+  /**
+   * Get allowancesCharges
+   * @return allowancesCharges
+   */
+  @javax.annotation.Nullable
+  public List<AllowanceCharge> getAllowancesCharges() {
+    return allowancesCharges;
+  }
+
+  public void setAllowancesCharges(@javax.annotation.Nullable List<AllowanceCharge> allowancesCharges) {
+    this.allowancesCharges = allowancesCharges;
   }
 
 
@@ -384,41 +788,95 @@ public class InvoiceLine {
   }
 
 
-  public InvoiceLine allowanceReasonCode(@javax.annotation.Nullable AllowanceReasonCode allowanceReasonCode) {
-    this.allowanceReasonCode = allowanceReasonCode;
+  public InvoiceLine purchaseOrderLineRef(@javax.annotation.Nullable String purchaseOrderLineRef) {
+    this.purchaseOrderLineRef = purchaseOrderLineRef;
     return this;
   }
 
   /**
-   * Get allowanceReasonCode
-   * @return allowanceReasonCode
+   * Get purchaseOrderLineRef
+   * @return purchaseOrderLineRef
    */
   @javax.annotation.Nullable
-  public AllowanceReasonCode getAllowanceReasonCode() {
-    return allowanceReasonCode;
+  public String getPurchaseOrderLineRef() {
+    return purchaseOrderLineRef;
   }
 
-  public void setAllowanceReasonCode(@javax.annotation.Nullable AllowanceReasonCode allowanceReasonCode) {
-    this.allowanceReasonCode = allowanceReasonCode;
+  public void setPurchaseOrderLineRef(@javax.annotation.Nullable String purchaseOrderLineRef) {
+    this.purchaseOrderLineRef = purchaseOrderLineRef;
   }
 
 
-  public InvoiceLine allowanceReason(@javax.annotation.Nullable String allowanceReason) {
-    this.allowanceReason = allowanceReason;
+  public InvoiceLine accountingAccount(@javax.annotation.Nullable String accountingAccount) {
+    this.accountingAccount = accountingAccount;
     return this;
   }
 
   /**
-   * Get allowanceReason
-   * @return allowanceReason
+   * Get accountingAccount
+   * @return accountingAccount
    */
   @javax.annotation.Nullable
-  public String getAllowanceReason() {
-    return allowanceReason;
+  public String getAccountingAccount() {
+    return accountingAccount;
   }
 
-  public void setAllowanceReason(@javax.annotation.Nullable String allowanceReason) {
-    this.allowanceReason = allowanceReason;
+  public void setAccountingAccount(@javax.annotation.Nullable String accountingAccount) {
+    this.accountingAccount = accountingAccount;
+  }
+
+
+  public InvoiceLine additionalDocuments(@javax.annotation.Nullable List<AdditionalDocument> additionalDocuments) {
+    this.additionalDocuments = additionalDocuments;
+    return this;
+  }
+
+  public InvoiceLine addAdditionalDocumentsItem(AdditionalDocument additionalDocumentsItem) {
+    if (this.additionalDocuments == null) {
+      this.additionalDocuments = new ArrayList<>();
+    }
+    this.additionalDocuments.add(additionalDocumentsItem);
+    return this;
+  }
+
+  /**
+   * Get additionalDocuments
+   * @return additionalDocuments
+   */
+  @javax.annotation.Nullable
+  public List<AdditionalDocument> getAdditionalDocuments() {
+    return additionalDocuments;
+  }
+
+  public void setAdditionalDocuments(@javax.annotation.Nullable List<AdditionalDocument> additionalDocuments) {
+    this.additionalDocuments = additionalDocuments;
+  }
+
+
+  public InvoiceLine lineNotes(@javax.annotation.Nullable List<InvoiceNote> lineNotes) {
+    this.lineNotes = lineNotes;
+    return this;
+  }
+
+  public InvoiceLine addLineNotesItem(InvoiceNote lineNotesItem) {
+    if (this.lineNotes == null) {
+      this.lineNotes = new ArrayList<>();
+    }
+    this.lineNotes.add(lineNotesItem);
+    return this;
+  }
+
+  /**
+   * Get lineNotes
+   * @return lineNotes
+   */
+  @javax.annotation.Nullable
+  public List<InvoiceNote> getLineNotes() {
+    return lineNotes;
+  }
+
+  public void setLineNotes(@javax.annotation.Nullable List<InvoiceNote> lineNotes) {
+    this.lineNotes = lineNotes;
   }
 
 
@@ -433,20 +891,37 @@ public class InvoiceLine {
     }
     InvoiceLine invoiceLine = (InvoiceLine) o;
     return Objects.equals(this.lineNumber, invoiceLine.lineNumber) &&
+        Objects.equals(this.lineNote, invoiceLine.lineNote) &&
         Objects.equals(this.reference, invoiceLine.reference) &&
+        Objects.equals(this.buyerAssignedId, invoiceLine.buyerAssignedId) &&
+        Objects.equals(this.productGlobalId, invoiceLine.productGlobalId) &&
+        Objects.equals(this.productGlobalIdScheme, invoiceLine.productGlobalIdScheme) &&
         Objects.equals(this.itemName, invoiceLine.itemName) &&
+        Objects.equals(this.itemDescription, invoiceLine.itemDescription) &&
+        Objects.equals(this.originCountry, invoiceLine.originCountry) &&
+        Objects.equals(this.characteristics, invoiceLine.characteristics) &&
+        Objects.equals(this.classifications, invoiceLine.classifications) &&
         Objects.equals(this.quantity, invoiceLine.quantity) &&
         Objects.equals(this.unit, invoiceLine.unit) &&
+        Objects.equals(this.grossUnitPrice, invoiceLine.grossUnitPrice) &&
         Objects.equals(this.unitNetPrice, invoiceLine.unitNetPrice) &&
-        Objects.equals(this.allowanceAmount, invoiceLine.allowanceAmount) &&
+        Objects.equals(this.priceBasisQuantity, invoiceLine.priceBasisQuantity) &&
+        Objects.equals(this.priceBasisUnit, invoiceLine.priceBasisUnit) &&
+        Objects.equals(this.priceAllowanceAmount, invoiceLine.priceAllowanceAmount) &&
         Objects.equals(this.lineNetAmount, invoiceLine.lineNetAmount) &&
+        Objects.equals(this.allowanceAmount, invoiceLine.allowanceAmount) &&
+        Objects.equals(this.allowanceReasonCode, invoiceLine.allowanceReasonCode) &&
+        Objects.equals(this.allowanceReason, invoiceLine.allowanceReason) &&
+        Objects.equals(this.allowancesCharges, invoiceLine.allowancesCharges) &&
         Objects.equals(this.vatRate, invoiceLine.vatRate) &&
         Objects.equals(this.manualVatRate, invoiceLine.manualVatRate) &&
         Objects.equals(this.vatCategory, invoiceLine.vatCategory) &&
         Objects.equals(this.periodStartDate, invoiceLine.periodStartDate) &&
         Objects.equals(this.periodEndDate, invoiceLine.periodEndDate) &&
-        Objects.equals(this.allowanceReasonCode, invoiceLine.allowanceReasonCode) &&
-        Objects.equals(this.allowanceReason, invoiceLine.allowanceReason);
+        Objects.equals(this.purchaseOrderLineRef, invoiceLine.purchaseOrderLineRef) &&
+        Objects.equals(this.accountingAccount, invoiceLine.accountingAccount) &&
+        Objects.equals(this.additionalDocuments, invoiceLine.additionalDocuments) &&
+        Objects.equals(this.lineNotes, invoiceLine.lineNotes);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -455,7 +930,7 @@ public class InvoiceLine {
 
   @Override
   public int hashCode() {
-    return Objects.hash(lineNumber, reference, itemName, quantity, unit, unitNetPrice, allowanceAmount, lineNetAmount, vatRate, manualVatRate, vatCategory, periodStartDate, periodEndDate, allowanceReasonCode, allowanceReason);
+    return Objects.hash(lineNumber, lineNote, reference, buyerAssignedId, productGlobalId, productGlobalIdScheme, itemName, itemDescription, originCountry, characteristics, classifications, quantity, unit, grossUnitPrice, unitNetPrice, priceBasisQuantity, priceBasisUnit, priceAllowanceAmount, lineNetAmount, allowanceAmount, allowanceReasonCode, allowanceReason, allowancesCharges, vatRate, manualVatRate, vatCategory, periodStartDate, periodEndDate, purchaseOrderLineRef, accountingAccount, additionalDocuments, lineNotes);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -470,20 +945,37 @@ public class InvoiceLine {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvoiceLine {\n");
     sb.append("    lineNumber: ").append(toIndentedString(lineNumber)).append("\n");
+    sb.append("    lineNote: ").append(toIndentedString(lineNote)).append("\n");
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
+    sb.append("    buyerAssignedId: ").append(toIndentedString(buyerAssignedId)).append("\n");
+    sb.append("    productGlobalId: ").append(toIndentedString(productGlobalId)).append("\n");
+    sb.append("    productGlobalIdScheme: ").append(toIndentedString(productGlobalIdScheme)).append("\n");
     sb.append("    itemName: ").append(toIndentedString(itemName)).append("\n");
+    sb.append("    itemDescription: ").append(toIndentedString(itemDescription)).append("\n");
+    sb.append("    originCountry: ").append(toIndentedString(originCountry)).append("\n");
+    sb.append("    characteristics: ").append(toIndentedString(characteristics)).append("\n");
+    sb.append("    classifications: ").append(toIndentedString(classifications)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
+    sb.append("    grossUnitPrice: ").append(toIndentedString(grossUnitPrice)).append("\n");
     sb.append("    unitNetPrice: ").append(toIndentedString(unitNetPrice)).append("\n");
-    sb.append("    allowanceAmount: ").append(toIndentedString(allowanceAmount)).append("\n");
+    sb.append("    priceBasisQuantity: ").append(toIndentedString(priceBasisQuantity)).append("\n");
+    sb.append("    priceBasisUnit: ").append(toIndentedString(priceBasisUnit)).append("\n");
+    sb.append("    priceAllowanceAmount: ").append(toIndentedString(priceAllowanceAmount)).append("\n");
     sb.append("    lineNetAmount: ").append(toIndentedString(lineNetAmount)).append("\n");
+    sb.append("    allowanceAmount: ").append(toIndentedString(allowanceAmount)).append("\n");
+    sb.append("    allowanceReasonCode: ").append(toIndentedString(allowanceReasonCode)).append("\n");
+    sb.append("    allowanceReason: ").append(toIndentedString(allowanceReason)).append("\n");
+    sb.append("    allowancesCharges: ").append(toIndentedString(allowancesCharges)).append("\n");
     sb.append("    vatRate: ").append(toIndentedString(vatRate)).append("\n");
     sb.append("    manualVatRate: ").append(toIndentedString(manualVatRate)).append("\n");
     sb.append("    vatCategory: ").append(toIndentedString(vatCategory)).append("\n");
     sb.append("    periodStartDate: ").append(toIndentedString(periodStartDate)).append("\n");
     sb.append("    periodEndDate: ").append(toIndentedString(periodEndDate)).append("\n");
-    sb.append("    allowanceReasonCode: ").append(toIndentedString(allowanceReasonCode)).append("\n");
-    sb.append("    allowanceReason: ").append(toIndentedString(allowanceReason)).append("\n");
+    sb.append("    purchaseOrderLineRef: ").append(toIndentedString(purchaseOrderLineRef)).append("\n");
+    sb.append("    accountingAccount: ").append(toIndentedString(accountingAccount)).append("\n");
+    sb.append("    additionalDocuments: ").append(toIndentedString(additionalDocuments)).append("\n");
+    sb.append("    lineNotes: ").append(toIndentedString(lineNotes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -505,7 +997,7 @@ public class InvoiceLine {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("line_number", "reference", "item_name", "quantity", "unit", "unit_net_price", "allowanceAmount", "lineNetAmount", "vat_rate", "manual_vat_rate", "vat_category", "periodStartDate", "periodEndDate", "allowanceReasonCode", "allowanceReason"));
+    openapiFields = new HashSet<String>(Arrays.asList("line_number", "line_note", "reference", "buyer_assigned_id", "product_global_id", "product_global_id_scheme", "item_name", "item_description", "origin_country", "characteristics", "classifications", "quantity", "unit", "gross_unit_price", "unit_net_price", "price_basis_quantity", "price_basis_unit", "price_allowance_amount", "lineNetAmount", "allowanceAmount", "allowanceReasonCode", "allowanceReason", "allowances_charges", "vat_rate", "manual_vat_rate", "vat_category", "period_start_date", "period_end_date", "purchase_order_line_ref", "accounting_account", "additional_documents", "line_notes"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("line_number", "item_name", "quantity", "unit", "unit_net_price"));
@@ -539,25 +1031,107 @@ public class InvoiceLine {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("line_note") != null && !jsonObj.get("line_note").isJsonNull()) && !jsonObj.get("line_note").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `line_note` to be a primitive type in the JSON string but got `%s`", jsonObj.get("line_note").toString()));
+      }
       if ((jsonObj.get("reference") != null && !jsonObj.get("reference").isJsonNull()) && !jsonObj.get("reference").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `reference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reference").toString()));
       }
+      if ((jsonObj.get("buyer_assigned_id") != null && !jsonObj.get("buyer_assigned_id").isJsonNull()) && !jsonObj.get("buyer_assigned_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `buyer_assigned_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("buyer_assigned_id").toString()));
+      }
+      if ((jsonObj.get("product_global_id") != null && !jsonObj.get("product_global_id").isJsonNull()) && !jsonObj.get("product_global_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `product_global_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product_global_id").toString()));
+      }
+      if ((jsonObj.get("product_global_id_scheme") != null && !jsonObj.get("product_global_id_scheme").isJsonNull()) && !jsonObj.get("product_global_id_scheme").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `product_global_id_scheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product_global_id_scheme").toString()));
+      }
       if (!jsonObj.get("item_name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `item_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("item_name").toString()));
+      }
+      if ((jsonObj.get("item_description") != null && !jsonObj.get("item_description").isJsonNull()) && !jsonObj.get("item_description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `item_description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("item_description").toString()));
+      }
+      if ((jsonObj.get("origin_country") != null && !jsonObj.get("origin_country").isJsonNull()) && !jsonObj.get("origin_country").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `origin_country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("origin_country").toString()));
+      }
+      if (jsonObj.get("characteristics") != null && !jsonObj.get("characteristics").isJsonNull()) {
+        JsonArray jsonArraycharacteristics = jsonObj.getAsJsonArray("characteristics");
+        if (jsonArraycharacteristics != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("characteristics").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `characteristics` to be an array in the JSON string but got `%s`", jsonObj.get("characteristics").toString()));
+          }
+
+          // validate the optional field `characteristics` (array)
+          for (int i = 0; i < jsonArraycharacteristics.size(); i++) {
+            ProductCharacteristic.validateJsonElement(jsonArraycharacteristics.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("classifications") != null && !jsonObj.get("classifications").isJsonNull()) {
+        JsonArray jsonArrayclassifications = jsonObj.getAsJsonArray("classifications");
+        if (jsonArrayclassifications != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("classifications").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `classifications` to be an array in the JSON string but got `%s`", jsonObj.get("classifications").toString()));
+          }
+
+          // validate the optional field `classifications` (array)
+          for (int i = 0; i < jsonArrayclassifications.size(); i++) {
+            ProductClassification.validateJsonElement(jsonArrayclassifications.get(i));
+          };
+        }
       }
       // validate the required field `quantity`
       Quantity.validateJsonElement(jsonObj.get("quantity"));
       // validate the required field `unit`
       UnitOfMeasure.validateJsonElement(jsonObj.get("unit"));
+      // validate the optional field `gross_unit_price`
+      if (jsonObj.get("gross_unit_price") != null && !jsonObj.get("gross_unit_price").isJsonNull()) {
+        GrossUnitPrice.validateJsonElement(jsonObj.get("gross_unit_price"));
+      }
       // validate the required field `unit_net_price`
       UnitNetPrice.validateJsonElement(jsonObj.get("unit_net_price"));
-      // validate the optional field `allowanceAmount`
-      if (jsonObj.get("allowanceAmount") != null && !jsonObj.get("allowanceAmount").isJsonNull()) {
-        InvoiceLineAllowanceAmount.validateJsonElement(jsonObj.get("allowanceAmount"));
+      // validate the optional field `price_basis_quantity`
+      if (jsonObj.get("price_basis_quantity") != null && !jsonObj.get("price_basis_quantity").isJsonNull()) {
+        PriceBasisQuantity.validateJsonElement(jsonObj.get("price_basis_quantity"));
+      }
+      if ((jsonObj.get("price_basis_unit") != null && !jsonObj.get("price_basis_unit").isJsonNull()) && !jsonObj.get("price_basis_unit").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `price_basis_unit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("price_basis_unit").toString()));
+      }
+      // validate the optional field `price_allowance_amount`
+      if (jsonObj.get("price_allowance_amount") != null && !jsonObj.get("price_allowance_amount").isJsonNull()) {
+        PriceAllowanceAmount.validateJsonElement(jsonObj.get("price_allowance_amount"));
       }
       // validate the optional field `lineNetAmount`
       if (jsonObj.get("lineNetAmount") != null && !jsonObj.get("lineNetAmount").isJsonNull()) {
         LineNetAmount.validateJsonElement(jsonObj.get("lineNetAmount"));
+      }
+      // validate the optional field `allowanceAmount`
+      if (jsonObj.get("allowanceAmount") != null && !jsonObj.get("allowanceAmount").isJsonNull()) {
+        InvoiceLineAllowanceAmount.validateJsonElement(jsonObj.get("allowanceAmount"));
+      }
+      // validate the optional field `allowanceReasonCode`
+      if (jsonObj.get("allowanceReasonCode") != null && !jsonObj.get("allowanceReasonCode").isJsonNull()) {
+        AllowanceReasonCode.validateJsonElement(jsonObj.get("allowanceReasonCode"));
+      }
+      if ((jsonObj.get("allowanceReason") != null && !jsonObj.get("allowanceReason").isJsonNull()) && !jsonObj.get("allowanceReason").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `allowanceReason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("allowanceReason").toString()));
+      }
+      if (jsonObj.get("allowances_charges") != null && !jsonObj.get("allowances_charges").isJsonNull()) {
+        JsonArray jsonArrayallowancesCharges = jsonObj.getAsJsonArray("allowances_charges");
+        if (jsonArrayallowancesCharges != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("allowances_charges").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `allowances_charges` to be an array in the JSON string but got `%s`", jsonObj.get("allowances_charges").toString()));
+          }
+
+          // validate the optional field `allowances_charges` (array)
+          for (int i = 0; i < jsonArrayallowancesCharges.size(); i++) {
+            AllowanceCharge.validateJsonElement(jsonArrayallowancesCharges.get(i));
+          };
+        }
       }
       if ((jsonObj.get("vat_rate") != null && !jsonObj.get("vat_rate").isJsonNull()) && !jsonObj.get("vat_rate").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `vat_rate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("vat_rate").toString()));
@@ -570,18 +1144,45 @@ public class InvoiceLine {
       if (jsonObj.get("vat_category") != null && !jsonObj.get("vat_category").isJsonNull()) {
         VATCategory.validateJsonElement(jsonObj.get("vat_category"));
       }
-      if ((jsonObj.get("periodStartDate") != null && !jsonObj.get("periodStartDate").isJsonNull()) && !jsonObj.get("periodStartDate").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `periodStartDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("periodStartDate").toString()));
+      if ((jsonObj.get("period_start_date") != null && !jsonObj.get("period_start_date").isJsonNull()) && !jsonObj.get("period_start_date").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `period_start_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("period_start_date").toString()));
       }
-      if ((jsonObj.get("periodEndDate") != null && !jsonObj.get("periodEndDate").isJsonNull()) && !jsonObj.get("periodEndDate").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `periodEndDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("periodEndDate").toString()));
+      if ((jsonObj.get("period_end_date") != null && !jsonObj.get("period_end_date").isJsonNull()) && !jsonObj.get("period_end_date").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `period_end_date` to be a primitive type in the JSON string but got `%s`", jsonObj.get("period_end_date").toString()));
       }
-      // validate the optional field `allowanceReasonCode`
-      if (jsonObj.get("allowanceReasonCode") != null && !jsonObj.get("allowanceReasonCode").isJsonNull()) {
-        AllowanceReasonCode.validateJsonElement(jsonObj.get("allowanceReasonCode"));
+      if ((jsonObj.get("purchase_order_line_ref") != null && !jsonObj.get("purchase_order_line_ref").isJsonNull()) && !jsonObj.get("purchase_order_line_ref").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `purchase_order_line_ref` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purchase_order_line_ref").toString()));
       }
-      if ((jsonObj.get("allowanceReason") != null && !jsonObj.get("allowanceReason").isJsonNull()) && !jsonObj.get("allowanceReason").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `allowanceReason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("allowanceReason").toString()));
+      if ((jsonObj.get("accounting_account") != null && !jsonObj.get("accounting_account").isJsonNull()) && !jsonObj.get("accounting_account").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `accounting_account` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accounting_account").toString()));
+      }
+      if (jsonObj.get("additional_documents") != null && !jsonObj.get("additional_documents").isJsonNull()) {
+        JsonArray jsonArrayadditionalDocuments = jsonObj.getAsJsonArray("additional_documents");
+        if (jsonArrayadditionalDocuments != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("additional_documents").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `additional_documents` to be an array in the JSON string but got `%s`", jsonObj.get("additional_documents").toString()));
+          }
+
+          // validate the optional field `additional_documents` (array)
+          for (int i = 0; i < jsonArrayadditionalDocuments.size(); i++) {
+            AdditionalDocument.validateJsonElement(jsonArrayadditionalDocuments.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("line_notes") != null && !jsonObj.get("line_notes").isJsonNull()) {
+        JsonArray jsonArraylineNotes = jsonObj.getAsJsonArray("line_notes");
+        if (jsonArraylineNotes != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("line_notes").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `line_notes` to be an array in the JSON string but got `%s`", jsonObj.get("line_notes").toString()));
+          }
+
+          // validate the optional field `line_notes` (array)
+          for (int i = 0; i < jsonArraylineNotes.size(); i++) {
+            InvoiceNote.validateJsonElement(jsonArraylineNotes.get(i));
+          };
+        }
       }
   }
 

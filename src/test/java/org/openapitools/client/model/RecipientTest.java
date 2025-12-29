@@ -19,7 +19,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import org.openapitools.client.model.Contact;
 import org.openapitools.client.model.ElectronicAddress;
 import org.openapitools.client.model.PostalAddress;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -81,11 +84,35 @@ public class RecipientTest {
     }
 
     /**
+     * Test the property 'vatNumber'
+     */
+    @Test
+    public void vatNumberTest() {
+        // TODO: test vatNumber
+    }
+
+    /**
      * Test the property 'postalAddress'
      */
     @Test
     public void postalAddressTest() {
         // TODO: test postalAddress
+    }
+
+    /**
+     * Test the property 'contact'
+     */
+    @Test
+    public void contactTest() {
+        // TODO: test contact
+    }
+
+    /**
+     * Test the property 'globalIds'
+     */
+    @Test
+    public void globalIdsTest() {
+        // TODO: test globalIds
     }
 
 }

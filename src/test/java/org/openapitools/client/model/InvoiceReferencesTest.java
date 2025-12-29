@@ -42,6 +42,14 @@ public class InvoiceReferencesTest {
     }
 
     /**
+     * Test the property 'businessProcessId'
+     */
+    @Test
+    public void businessProcessIdTest() {
+        // TODO: test businessProcessId
+    }
+
+    /**
      * Test the property 'invoiceCurrency'
      */
     @Test
@@ -55,6 +63,14 @@ public class InvoiceReferencesTest {
     @Test
     public void paymentMeansTest() {
         // TODO: test paymentMeans
+    }
+
+    /**
+     * Test the property 'paymentMeansText'
+     */
+    @Test
+    public void paymentMeansTextTest() {
+        // TODO: test paymentMeansText
     }
 
     /**
@@ -74,19 +90,19 @@ public class InvoiceReferencesTest {
     }
 
     /**
+     * Test the property 'buyerReference'
+     */
+    @Test
+    public void buyerReferenceTest() {
+        // TODO: test buyerReference
+    }
+
+    /**
      * Test the property 'contractReference'
      */
     @Test
     public void contractReferenceTest() {
         // TODO: test contractReference
-    }
-
-    /**
-     * Test the property 'vatExemptionReason'
-     */
-    @Test
-    public void vatExemptionReasonTest() {
-        // TODO: test vatExemptionReason
     }
 
     /**
@@ -98,11 +114,75 @@ public class InvoiceReferencesTest {
     }
 
     /**
+     * Test the property 'sellerOrderReference'
+     */
+    @Test
+    public void sellerOrderReferenceTest() {
+        // TODO: test sellerOrderReference
+    }
+
+    /**
+     * Test the property 'receivingAdviceReference'
+     */
+    @Test
+    public void receivingAdviceReferenceTest() {
+        // TODO: test receivingAdviceReference
+    }
+
+    /**
+     * Test the property 'despatchAdviceReference'
+     */
+    @Test
+    public void despatchAdviceReferenceTest() {
+        // TODO: test despatchAdviceReference
+    }
+
+    /**
+     * Test the property 'tenderReference'
+     */
+    @Test
+    public void tenderReferenceTest() {
+        // TODO: test tenderReference
+    }
+
+    /**
      * Test the property 'precedingInvoiceReference'
      */
     @Test
     public void precedingInvoiceReferenceTest() {
         // TODO: test precedingInvoiceReference
+    }
+
+    /**
+     * Test the property 'precedingInvoiceDate'
+     */
+    @Test
+    public void precedingInvoiceDateTest() {
+        // TODO: test precedingInvoiceDate
+    }
+
+    /**
+     * Test the property 'projectReference'
+     */
+    @Test
+    public void projectReferenceTest() {
+        // TODO: test projectReference
+    }
+
+    /**
+     * Test the property 'projectName'
+     */
+    @Test
+    public void projectNameTest() {
+        // TODO: test projectName
+    }
+
+    /**
+     * Test the property 'vatExemptionReason'
+     */
+    @Test
+    public void vatExemptionReasonTest() {
+        // TODO: test vatExemptionReason
     }
 
 }

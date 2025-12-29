@@ -24,6 +24,20 @@ Data model for an invoice to be converted to Factur-X.
 |**currentUserId** | **Integer** |  |  [optional] |
 |**supplementaryAttachments** | [**List&lt;SupplementaryAttachment&gt;**](SupplementaryAttachment.md) |  |  [optional] |
 |**payee** | [**Payee**](Payee.md) |  |  [optional] |
+|**deliveryParty** | [**DeliveryParty**](DeliveryParty.md) |  |  [optional] |
+|**taxRepresentative** | [**TaxRepresentative**](TaxRepresentative.md) |  |  [optional] |
+|**deliveryDate** | **String** |  |  [optional] |
+|**billingPeriodStart** | **String** |  |  [optional] |
+|**billingPeriodEnd** | **String** |  |  [optional] |
+|**paymentReference** | **String** |  |  [optional] |
+|**creditorReferenceId** | **String** |  |  [optional] |
+|**directDebitMandateId** | **String** |  |  [optional] |
+|**debtorIban** | **String** |  |  [optional] |
+|**paymentTerms** | **String** |  |  [optional] |
+|**allowancesCharges** | [**List&lt;AllowanceCharge&gt;**](AllowanceCharge.md) |  |  [optional] |
+|**additionalDocuments** | [**List&lt;AdditionalDocument&gt;**](AdditionalDocument.md) |  |  [optional] |
+|**buyerAccountingReference** | **String** |  |  [optional] |
+|**paymentCard** | [**PaymentCard**](PaymentCard.md) |  |  [optional] |
 
 
 

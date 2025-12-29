@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.APIProfile;
+import org.openapitools.client.model.FacturXProfile;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,22 +49,22 @@ import org.openapitools.client.JSON;
 /**
  * Processing options for generation and submission.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ProcessingOptions {
   public static final String SERIALIZED_NAME_FACTURX_PROFILE = "facturxProfile";
   @SerializedName(SERIALIZED_NAME_FACTURX_PROFILE)
   @javax.annotation.Nullable
-  private APIProfile facturxProfile = APIProfile.EN16931;
+  private FacturXProfile facturxProfile = FacturXProfile.EN16931;
 
   public static final String SERIALIZED_NAME_AUTO_ENRICH = "autoEnrich";
   @SerializedName(SERIALIZED_NAME_AUTO_ENRICH)
   @javax.annotation.Nullable
   private Boolean autoEnrich = true;
 
-  public static final String SERIALIZED_NAME_VALIDATE = "validate";
-  @SerializedName(SERIALIZED_NAME_VALIDATE)
+  public static final String SERIALIZED_NAME_VALIDATE_XML = "validateXml";
+  @SerializedName(SERIALIZED_NAME_VALIDATE_XML)
   @javax.annotation.Nullable
-  private Boolean validate = true;
+  private Boolean validateXml = true;
 
   public static final String SERIALIZED_NAME_VERIFY_DESTINATION_PARAMETERS = "verifyDestinationParameters";
   @SerializedName(SERIALIZED_NAME_VERIFY_DESTINATION_PARAMETERS)
@@ -74,7 +74,7 @@ public class ProcessingOptions {
   public ProcessingOptions() {
   }
 
-  public ProcessingOptions facturxProfile(@javax.annotation.Nullable APIProfile facturxProfile) {
+  public ProcessingOptions facturxProfile(@javax.annotation.Nullable FacturXProfile facturxProfile) {
     this.facturxProfile = facturxProfile;
     return this;
   }
@@ -84,11 +84,11 @@ public class ProcessingOptions {
    * @return facturxProfile
    */
   @javax.annotation.Nullable
-  public APIProfile getFacturxProfile() {
+  public FacturXProfile getFacturxProfile() {
     return facturxProfile;
   }
 
-  public void setFacturxProfile(@javax.annotation.Nullable APIProfile facturxProfile) {
+  public void setFacturxProfile(@javax.annotation.Nullable FacturXProfile facturxProfile) {
     this.facturxProfile = facturxProfile;
   }
 
@@ -112,22 +112,22 @@ public class ProcessingOptions {
   }
 
 
-  public ProcessingOptions validate(@javax.annotation.Nullable Boolean validate) {
-    this.validate = validate;
+  public ProcessingOptions validateXml(@javax.annotation.Nullable Boolean validateXml) {
+    this.validateXml = validateXml;
     return this;
   }
 
   /**
    * Validate Factur-X XML with Schematron
-   * @return validate
+   * @return validateXml
    */
   @javax.annotation.Nullable
-  public Boolean getValidate() {
-    return validate;
+  public Boolean getValidateXml() {
+    return validateXml;
   }
 
-  public void setValidate(@javax.annotation.Nullable Boolean validate) {
-    this.validate = validate;
+  public void setValidateXml(@javax.annotation.Nullable Boolean validateXml) {
+    this.validateXml = validateXml;
   }
 
 
@@ -162,13 +162,13 @@ public class ProcessingOptions {
     ProcessingOptions processingOptions = (ProcessingOptions) o;
     return Objects.equals(this.facturxProfile, processingOptions.facturxProfile) &&
         Objects.equals(this.autoEnrich, processingOptions.autoEnrich) &&
-        Objects.equals(this.validate, processingOptions.validate) &&
+        Objects.equals(this.validateXml, processingOptions.validateXml) &&
         Objects.equals(this.verifyDestinationParameters, processingOptions.verifyDestinationParameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(facturxProfile, autoEnrich, validate, verifyDestinationParameters);
+    return Objects.hash(facturxProfile, autoEnrich, validateXml, verifyDestinationParameters);
   }
 
   @Override
@@ -177,7 +177,7 @@ public class ProcessingOptions {
     sb.append("class ProcessingOptions {\n");
     sb.append("    facturxProfile: ").append(toIndentedString(facturxProfile)).append("\n");
     sb.append("    autoEnrich: ").append(toIndentedString(autoEnrich)).append("\n");
-    sb.append("    validate: ").append(toIndentedString(validate)).append("\n");
+    sb.append("    validateXml: ").append(toIndentedString(validateXml)).append("\n");
     sb.append("    verifyDestinationParameters: ").append(toIndentedString(verifyDestinationParameters)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -200,7 +200,7 @@ public class ProcessingOptions {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("facturxProfile", "autoEnrich", "validate", "verifyDestinationParameters"));
+    openapiFields = new HashSet<String>(Arrays.asList("facturxProfile", "autoEnrich", "validateXml", "verifyDestinationParameters"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -229,7 +229,7 @@ public class ProcessingOptions {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `facturxProfile`
       if (jsonObj.get("facturxProfile") != null && !jsonObj.get("facturxProfile").isJsonNull()) {
-        APIProfile.validateJsonElement(jsonObj.get("facturxProfile"));
+        FacturXProfile.validateJsonElement(jsonObj.get("facturxProfile"));
       }
   }
 

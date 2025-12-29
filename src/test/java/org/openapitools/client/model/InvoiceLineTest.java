@@ -19,11 +19,21 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import org.openapitools.client.model.AdditionalDocument;
+import org.openapitools.client.model.AllowanceCharge;
 import org.openapitools.client.model.AllowanceReasonCode;
+import org.openapitools.client.model.GrossUnitPrice;
 import org.openapitools.client.model.InvoiceLineAllowanceAmount;
+import org.openapitools.client.model.InvoiceNote;
 import org.openapitools.client.model.LineNetAmount;
 import org.openapitools.client.model.ManualVatRate;
+import org.openapitools.client.model.PriceAllowanceAmount;
+import org.openapitools.client.model.PriceBasisQuantity;
+import org.openapitools.client.model.ProductCharacteristic;
+import org.openapitools.client.model.ProductClassification;
 import org.openapitools.client.model.Quantity;
 import org.openapitools.client.model.UnitNetPrice;
 import org.openapitools.client.model.UnitOfMeasure;
@@ -55,6 +65,14 @@ public class InvoiceLineTest {
     }
 
     /**
+     * Test the property 'lineNote'
+     */
+    @Test
+    public void lineNoteTest() {
+        // TODO: test lineNote
+    }
+
+    /**
      * Test the property 'reference'
      */
     @Test
@@ -63,11 +81,67 @@ public class InvoiceLineTest {
     }
 
     /**
+     * Test the property 'buyerAssignedId'
+     */
+    @Test
+    public void buyerAssignedIdTest() {
+        // TODO: test buyerAssignedId
+    }
+
+    /**
+     * Test the property 'productGlobalId'
+     */
+    @Test
+    public void productGlobalIdTest() {
+        // TODO: test productGlobalId
+    }
+
+    /**
+     * Test the property 'productGlobalIdScheme'
+     */
+    @Test
+    public void productGlobalIdSchemeTest() {
+        // TODO: test productGlobalIdScheme
+    }
+
+    /**
      * Test the property 'itemName'
      */
     @Test
     public void itemNameTest() {
         // TODO: test itemName
+    }
+
+    /**
+     * Test the property 'itemDescription'
+     */
+    @Test
+    public void itemDescriptionTest() {
+        // TODO: test itemDescription
+    }
+
+    /**
+     * Test the property 'originCountry'
+     */
+    @Test
+    public void originCountryTest() {
+        // TODO: test originCountry
+    }
+
+    /**
+     * Test the property 'characteristics'
+     */
+    @Test
+    public void characteristicsTest() {
+        // TODO: test characteristics
+    }
+
+    /**
+     * Test the property 'classifications'
+     */
+    @Test
+    public void classificationsTest() {
+        // TODO: test classifications
     }
 
     /**
@@ -87,11 +161,51 @@ public class InvoiceLineTest {
     }
 
     /**
+     * Test the property 'grossUnitPrice'
+     */
+    @Test
+    public void grossUnitPriceTest() {
+        // TODO: test grossUnitPrice
+    }
+
+    /**
      * Test the property 'unitNetPrice'
      */
     @Test
     public void unitNetPriceTest() {
         // TODO: test unitNetPrice
+    }
+
+    /**
+     * Test the property 'priceBasisQuantity'
+     */
+    @Test
+    public void priceBasisQuantityTest() {
+        // TODO: test priceBasisQuantity
+    }
+
+    /**
+     * Test the property 'priceBasisUnit'
+     */
+    @Test
+    public void priceBasisUnitTest() {
+        // TODO: test priceBasisUnit
+    }
+
+    /**
+     * Test the property 'priceAllowanceAmount'
+     */
+    @Test
+    public void priceAllowanceAmountTest() {
+        // TODO: test priceAllowanceAmount
+    }
+
+    /**
+     * Test the property 'lineNetAmount'
+     */
+    @Test
+    public void lineNetAmountTest() {
+        // TODO: test lineNetAmount
     }
 
     /**
@@ -103,11 +217,27 @@ public class InvoiceLineTest {
     }
 
     /**
-     * Test the property 'lineNetAmount'
+     * Test the property 'allowanceReasonCode'
      */
     @Test
-    public void lineNetAmountTest() {
-        // TODO: test lineNetAmount
+    public void allowanceReasonCodeTest() {
+        // TODO: test allowanceReasonCode
+    }
+
+    /**
+     * Test the property 'allowanceReason'
+     */
+    @Test
+    public void allowanceReasonTest() {
+        // TODO: test allowanceReason
+    }
+
+    /**
+     * Test the property 'allowancesCharges'
+     */
+    @Test
+    public void allowancesChargesTest() {
+        // TODO: test allowancesCharges
     }
 
     /**
@@ -151,19 +281,35 @@ public class InvoiceLineTest {
     }
 
     /**
-     * Test the property 'allowanceReasonCode'
+     * Test the property 'purchaseOrderLineRef'
      */
     @Test
-    public void allowanceReasonCodeTest() {
-        // TODO: test allowanceReasonCode
+    public void purchaseOrderLineRefTest() {
+        // TODO: test purchaseOrderLineRef
     }
 
     /**
-     * Test the property 'allowanceReason'
+     * Test the property 'accountingAccount'
      */
     @Test
-    public void allowanceReasonTest() {
-        // TODO: test allowanceReason
+    public void accountingAccountTest() {
+        // TODO: test accountingAccount
+    }
+
+    /**
+     * Test the property 'additionalDocuments'
+     */
+    @Test
+    public void additionalDocumentsTest() {
+        // TODO: test additionalDocuments
+    }
+
+    /**
+     * Test the property 'lineNotes'
+     */
+    @Test
+    public void lineNotesTest() {
+        // TODO: test lineNotes
     }
 
 }

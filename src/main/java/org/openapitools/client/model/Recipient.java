@@ -20,7 +20,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import org.openapitools.client.model.Contact;
 import org.openapitools.client.model.ElectronicAddress;
 import org.openapitools.client.model.PostalAddress;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -49,9 +52,9 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Information about the invoice recipient (the customer).
+ * Information about the invoice recipient / buyer (BG-7).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class Recipient {
   public static final String SERIALIZED_NAME_ELECTRONIC_ADDRESS = "electronic_address";
   @SerializedName(SERIALIZED_NAME_ELECTRONIC_ADDRESS)
@@ -78,10 +81,25 @@ public class Recipient {
   @javax.annotation.Nullable
   private String siret;
 
+  public static final String SERIALIZED_NAME_VAT_NUMBER = "vat_number";
+  @SerializedName(SERIALIZED_NAME_VAT_NUMBER)
+  @javax.annotation.Nullable
+  private String vatNumber;
+
   public static final String SERIALIZED_NAME_POSTAL_ADDRESS = "postal_address";
   @SerializedName(SERIALIZED_NAME_POSTAL_ADDRESS)
   @javax.annotation.Nullable
   private PostalAddress postalAddress;
+
+  public static final String SERIALIZED_NAME_CONTACT = "contact";
+  @SerializedName(SERIALIZED_NAME_CONTACT)
+  @javax.annotation.Nullable
+  private Contact contact;
+
+  public static final String SERIALIZED_NAME_GLOBAL_IDS = "global_ids";
+  @SerializedName(SERIALIZED_NAME_GLOBAL_IDS)
+  @javax.annotation.Nullable
+  private List<ElectronicAddress> globalIds;
 
   public Recipient() {
   }
@@ -181,6 +199,25 @@ public class Recipient {
   }
 
 
+  public Recipient vatNumber(@javax.annotation.Nullable String vatNumber) {
+    this.vatNumber = vatNumber;
+    return this;
+  }
+
+  /**
+   * Get vatNumber
+   * @return vatNumber
+   */
+  @javax.annotation.Nullable
+  public String getVatNumber() {
+    return vatNumber;
+  }
+
+  public void setVatNumber(@javax.annotation.Nullable String vatNumber) {
+    this.vatNumber = vatNumber;
+  }
+
+
   public Recipient postalAddress(@javax.annotation.Nullable PostalAddress postalAddress) {
     this.postalAddress = postalAddress;
     return this;
@@ -200,6 +237,52 @@ public class Recipient {
   }
 
 
+  public Recipient contact(@javax.annotation.Nullable Contact contact) {
+    this.contact = contact;
+    return this;
+  }
+
+  /**
+   * Get contact
+   * @return contact
+   */
+  @javax.annotation.Nullable
+  public Contact getContact() {
+    return contact;
+  }
+
+  public void setContact(@javax.annotation.Nullable Contact contact) {
+    this.contact = contact;
+  }
+
+
+  public Recipient globalIds(@javax.annotation.Nullable List<ElectronicAddress> globalIds) {
+    this.globalIds = globalIds;
+    return this;
+  }
+
+  public Recipient addGlobalIdsItem(ElectronicAddress globalIdsItem) {
+    if (this.globalIds == null) {
+      this.globalIds = new ArrayList<>();
+    }
+    this.globalIds.add(globalIdsItem);
+    return this;
+  }
+
+  /**
+   * Get globalIds
+   * @return globalIds
+   */
+  @javax.annotation.Nullable
+  public List<ElectronicAddress> getGlobalIds() {
+    return globalIds;
+  }
+
+  public void setGlobalIds(@javax.annotation.Nullable List<ElectronicAddress> globalIds) {
+    this.globalIds = globalIds;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -215,7 +298,10 @@ public class Recipient {
         Objects.equals(this.name, recipient.name) &&
         Objects.equals(this.siren, recipient.siren) &&
         Objects.equals(this.siret, recipient.siret) &&
-        Objects.equals(this.postalAddress, recipient.postalAddress);
+        Objects.equals(this.vatNumber, recipient.vatNumber) &&
+        Objects.equals(this.postalAddress, recipient.postalAddress) &&
+        Objects.equals(this.contact, recipient.contact) &&
+        Objects.equals(this.globalIds, recipient.globalIds);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -224,7 +310,7 @@ public class Recipient {
 
   @Override
   public int hashCode() {
-    return Objects.hash(electronicAddress, executingServiceCode, name, siren, siret, postalAddress);
+    return Objects.hash(electronicAddress, executingServiceCode, name, siren, siret, vatNumber, postalAddress, contact, globalIds);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -243,7 +329,10 @@ public class Recipient {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
     sb.append("    siret: ").append(toIndentedString(siret)).append("\n");
+    sb.append("    vatNumber: ").append(toIndentedString(vatNumber)).append("\n");
     sb.append("    postalAddress: ").append(toIndentedString(postalAddress)).append("\n");
+    sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
+    sb.append("    globalIds: ").append(toIndentedString(globalIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -265,7 +354,7 @@ public class Recipient {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("electronic_address", "executing_service_code", "name", "siren", "siret", "postal_address"));
+    openapiFields = new HashSet<String>(Arrays.asList("electronic_address", "executing_service_code", "name", "siren", "siret", "vat_number", "postal_address", "contact", "global_ids"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("electronic_address"));
@@ -313,9 +402,30 @@ public class Recipient {
       if ((jsonObj.get("siret") != null && !jsonObj.get("siret").isJsonNull()) && !jsonObj.get("siret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));
       }
+      if ((jsonObj.get("vat_number") != null && !jsonObj.get("vat_number").isJsonNull()) && !jsonObj.get("vat_number").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `vat_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("vat_number").toString()));
+      }
       // validate the optional field `postal_address`
       if (jsonObj.get("postal_address") != null && !jsonObj.get("postal_address").isJsonNull()) {
         PostalAddress.validateJsonElement(jsonObj.get("postal_address"));
+      }
+      // validate the optional field `contact`
+      if (jsonObj.get("contact") != null && !jsonObj.get("contact").isJsonNull()) {
+        Contact.validateJsonElement(jsonObj.get("contact"));
+      }
+      if (jsonObj.get("global_ids") != null && !jsonObj.get("global_ids").isJsonNull()) {
+        JsonArray jsonArrayglobalIds = jsonObj.getAsJsonArray("global_ids");
+        if (jsonArrayglobalIds != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("global_ids").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `global_ids` to be an array in the JSON string but got `%s`", jsonObj.get("global_ids").toString()));
+          }
+
+          // validate the optional field `global_ids` (array)
+          for (int i = 0; i < jsonArrayglobalIds.size(); i++) {
+            ElectronicAddress.validateJsonElement(jsonArrayglobalIds.get(i));
+          };
+        }
       }
   }
 

@@ -20,7 +20,10 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import org.openapitools.client.model.Contact;
 import org.openapitools.client.model.ElectronicAddress;
 import org.openapitools.client.model.PostalAddress;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -49,9 +52,9 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Information about the supplier who issues the invoice.
+ * Information about the supplier / seller (BG-4).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class Supplier {
   public static final String SERIALIZED_NAME_ELECTRONIC_ADDRESS = "electronic_address";
   @SerializedName(SERIALIZED_NAME_ELECTRONIC_ADDRESS)
@@ -62,6 +65,11 @@ public class Supplier {
   @SerializedName(SERIALIZED_NAME_SUPPLIER_ID)
   @javax.annotation.Nonnull
   private Integer supplierId;
+
+  public static final String SERIALIZED_NAME_PRIVATE_ID = "private_id";
+  @SerializedName(SERIALIZED_NAME_PRIVATE_ID)
+  @javax.annotation.Nullable
+  private String privateId;
 
   public static final String SERIALIZED_NAME_SUPPLIER_BANK_ACCOUNT_CODE = "supplier_bank_account_code";
   @SerializedName(SERIALIZED_NAME_SUPPLIER_BANK_ACCOUNT_CODE)
@@ -77,6 +85,16 @@ public class Supplier {
   @SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
   private String name;
+
+  public static final String SERIALIZED_NAME_TRADING_BUSINESS_NAME = "trading_business_name";
+  @SerializedName(SERIALIZED_NAME_TRADING_BUSINESS_NAME)
+  @javax.annotation.Nullable
+  private String tradingBusinessName;
+
+  public static final String SERIALIZED_NAME_LEGAL_DESCRIPTION = "legal_description";
+  @SerializedName(SERIALIZED_NAME_LEGAL_DESCRIPTION)
+  @javax.annotation.Nullable
+  private String legalDescription;
 
   public static final String SERIALIZED_NAME_SIREN = "siren";
   @SerializedName(SERIALIZED_NAME_SIREN)
@@ -98,10 +116,35 @@ public class Supplier {
   @javax.annotation.Nullable
   private String iban;
 
+  public static final String SERIALIZED_NAME_BIC = "bic";
+  @SerializedName(SERIALIZED_NAME_BIC)
+  @javax.annotation.Nullable
+  private String bic;
+
+  public static final String SERIALIZED_NAME_BANK_ACCOUNT_NAME = "bank_account_name";
+  @SerializedName(SERIALIZED_NAME_BANK_ACCOUNT_NAME)
+  @javax.annotation.Nullable
+  private String bankAccountName;
+
+  public static final String SERIALIZED_NAME_PROPRIETARY_ID = "proprietaryId";
+  @SerializedName(SERIALIZED_NAME_PROPRIETARY_ID)
+  @javax.annotation.Nullable
+  private String proprietaryId;
+
   public static final String SERIALIZED_NAME_POSTAL_ADDRESS = "postal_address";
   @SerializedName(SERIALIZED_NAME_POSTAL_ADDRESS)
   @javax.annotation.Nullable
   private PostalAddress postalAddress;
+
+  public static final String SERIALIZED_NAME_CONTACT = "contact";
+  @SerializedName(SERIALIZED_NAME_CONTACT)
+  @javax.annotation.Nullable
+  private Contact contact;
+
+  public static final String SERIALIZED_NAME_GLOBAL_IDS = "global_ids";
+  @SerializedName(SERIALIZED_NAME_GLOBAL_IDS)
+  @javax.annotation.Nullable
+  private List<ElectronicAddress> globalIds;
 
   public Supplier() {
   }
@@ -141,6 +184,25 @@ public class Supplier {
 
   public void setSupplierId(@javax.annotation.Nonnull Integer supplierId) {
     this.supplierId = supplierId;
+  }
+
+
+  public Supplier privateId(@javax.annotation.Nullable String privateId) {
+    this.privateId = privateId;
+    return this;
+  }
+
+  /**
+   * Get privateId
+   * @return privateId
+   */
+  @javax.annotation.Nullable
+  public String getPrivateId() {
+    return privateId;
+  }
+
+  public void setPrivateId(@javax.annotation.Nullable String privateId) {
+    this.privateId = privateId;
   }
 
 
@@ -198,6 +260,44 @@ public class Supplier {
 
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
+  }
+
+
+  public Supplier tradingBusinessName(@javax.annotation.Nullable String tradingBusinessName) {
+    this.tradingBusinessName = tradingBusinessName;
+    return this;
+  }
+
+  /**
+   * Get tradingBusinessName
+   * @return tradingBusinessName
+   */
+  @javax.annotation.Nullable
+  public String getTradingBusinessName() {
+    return tradingBusinessName;
+  }
+
+  public void setTradingBusinessName(@javax.annotation.Nullable String tradingBusinessName) {
+    this.tradingBusinessName = tradingBusinessName;
+  }
+
+
+  public Supplier legalDescription(@javax.annotation.Nullable String legalDescription) {
+    this.legalDescription = legalDescription;
+    return this;
+  }
+
+  /**
+   * Get legalDescription
+   * @return legalDescription
+   */
+  @javax.annotation.Nullable
+  public String getLegalDescription() {
+    return legalDescription;
+  }
+
+  public void setLegalDescription(@javax.annotation.Nullable String legalDescription) {
+    this.legalDescription = legalDescription;
   }
 
 
@@ -277,6 +377,63 @@ public class Supplier {
   }
 
 
+  public Supplier bic(@javax.annotation.Nullable String bic) {
+    this.bic = bic;
+    return this;
+  }
+
+  /**
+   * Get bic
+   * @return bic
+   */
+  @javax.annotation.Nullable
+  public String getBic() {
+    return bic;
+  }
+
+  public void setBic(@javax.annotation.Nullable String bic) {
+    this.bic = bic;
+  }
+
+
+  public Supplier bankAccountName(@javax.annotation.Nullable String bankAccountName) {
+    this.bankAccountName = bankAccountName;
+    return this;
+  }
+
+  /**
+   * Get bankAccountName
+   * @return bankAccountName
+   */
+  @javax.annotation.Nullable
+  public String getBankAccountName() {
+    return bankAccountName;
+  }
+
+  public void setBankAccountName(@javax.annotation.Nullable String bankAccountName) {
+    this.bankAccountName = bankAccountName;
+  }
+
+
+  public Supplier proprietaryId(@javax.annotation.Nullable String proprietaryId) {
+    this.proprietaryId = proprietaryId;
+    return this;
+  }
+
+  /**
+   * Get proprietaryId
+   * @return proprietaryId
+   */
+  @javax.annotation.Nullable
+  public String getProprietaryId() {
+    return proprietaryId;
+  }
+
+  public void setProprietaryId(@javax.annotation.Nullable String proprietaryId) {
+    this.proprietaryId = proprietaryId;
+  }
+
+
   public Supplier postalAddress(@javax.annotation.Nullable PostalAddress postalAddress) {
     this.postalAddress = postalAddress;
     return this;
@@ -296,6 +453,52 @@ public class Supplier {
   }
 
 
+  public Supplier contact(@javax.annotation.Nullable Contact contact) {
+    this.contact = contact;
+    return this;
+  }
+
+  /**
+   * Get contact
+   * @return contact
+   */
+  @javax.annotation.Nullable
+  public Contact getContact() {
+    return contact;
+  }
+
+  public void setContact(@javax.annotation.Nullable Contact contact) {
+    this.contact = contact;
+  }
+
+
+  public Supplier globalIds(@javax.annotation.Nullable List<ElectronicAddress> globalIds) {
+    this.globalIds = globalIds;
+    return this;
+  }
+
+  public Supplier addGlobalIdsItem(ElectronicAddress globalIdsItem) {
+    if (this.globalIds == null) {
+      this.globalIds = new ArrayList<>();
+    }
+    this.globalIds.add(globalIdsItem);
+    return this;
+  }
+
+  /**
+   * Get globalIds
+   * @return globalIds
+   */
+  @javax.annotation.Nullable
+  public List<ElectronicAddress> getGlobalIds() {
+    return globalIds;
+  }
+
+  public void setGlobalIds(@javax.annotation.Nullable List<ElectronicAddress> globalIds) {
+    this.globalIds = globalIds;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -308,14 +511,22 @@ public class Supplier {
     Supplier supplier = (Supplier) o;
     return Objects.equals(this.electronicAddress, supplier.electronicAddress) &&
         Objects.equals(this.supplierId, supplier.supplierId) &&
+        Objects.equals(this.privateId, supplier.privateId) &&
         Objects.equals(this.supplierBankAccountCode, supplier.supplierBankAccountCode) &&
         Objects.equals(this.supplierServiceId, supplier.supplierServiceId) &&
         Objects.equals(this.name, supplier.name) &&
+        Objects.equals(this.tradingBusinessName, supplier.tradingBusinessName) &&
+        Objects.equals(this.legalDescription, supplier.legalDescription) &&
         Objects.equals(this.siren, supplier.siren) &&
         Objects.equals(this.siret, supplier.siret) &&
         Objects.equals(this.vatNumber, supplier.vatNumber) &&
         Objects.equals(this.iban, supplier.iban) &&
-        Objects.equals(this.postalAddress, supplier.postalAddress);
+        Objects.equals(this.bic, supplier.bic) &&
+        Objects.equals(this.bankAccountName, supplier.bankAccountName) &&
+        Objects.equals(this.proprietaryId, supplier.proprietaryId) &&
+        Objects.equals(this.postalAddress, supplier.postalAddress) &&
+        Objects.equals(this.contact, supplier.contact) &&
+        Objects.equals(this.globalIds, supplier.globalIds);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -324,7 +535,7 @@ public class Supplier {
 
   @Override
   public int hashCode() {
-    return Objects.hash(electronicAddress, supplierId, supplierBankAccountCode, supplierServiceId, name, siren, siret, vatNumber, iban, postalAddress);
+    return Objects.hash(electronicAddress, supplierId, privateId, supplierBankAccountCode, supplierServiceId, name, tradingBusinessName, legalDescription, siren, siret, vatNumber, iban, bic, bankAccountName, proprietaryId, postalAddress, contact, globalIds);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -340,14 +551,22 @@ public class Supplier {
     sb.append("class Supplier {\n");
     sb.append("    electronicAddress: ").append(toIndentedString(electronicAddress)).append("\n");
     sb.append("    supplierId: ").append(toIndentedString(supplierId)).append("\n");
+    sb.append("    privateId: ").append(toIndentedString(privateId)).append("\n");
     sb.append("    supplierBankAccountCode: ").append(toIndentedString(supplierBankAccountCode)).append("\n");
     sb.append("    supplierServiceId: ").append(toIndentedString(supplierServiceId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    tradingBusinessName: ").append(toIndentedString(tradingBusinessName)).append("\n");
+    sb.append("    legalDescription: ").append(toIndentedString(legalDescription)).append("\n");
     sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
     sb.append("    siret: ").append(toIndentedString(siret)).append("\n");
     sb.append("    vatNumber: ").append(toIndentedString(vatNumber)).append("\n");
     sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
+    sb.append("    bic: ").append(toIndentedString(bic)).append("\n");
+    sb.append("    bankAccountName: ").append(toIndentedString(bankAccountName)).append("\n");
+    sb.append("    proprietaryId: ").append(toIndentedString(proprietaryId)).append("\n");
     sb.append("    postalAddress: ").append(toIndentedString(postalAddress)).append("\n");
+    sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
+    sb.append("    globalIds: ").append(toIndentedString(globalIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -369,7 +588,7 @@ public class Supplier {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("electronic_address", "supplier_id", "supplier_bank_account_code", "supplier_service_id", "name", "siren", "siret", "vat_number", "iban", "postal_address"));
+    openapiFields = new HashSet<String>(Arrays.asList("electronic_address", "supplier_id", "private_id", "supplier_bank_account_code", "supplier_service_id", "name", "trading_business_name", "legal_description", "siren", "siret", "vat_number", "iban", "bic", "bank_account_name", "proprietaryId", "postal_address", "contact", "global_ids"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("electronic_address", "supplier_id"));
@@ -405,8 +624,17 @@ public class Supplier {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `electronic_address`
       ElectronicAddress.validateJsonElement(jsonObj.get("electronic_address"));
+      if ((jsonObj.get("private_id") != null && !jsonObj.get("private_id").isJsonNull()) && !jsonObj.get("private_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `private_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("private_id").toString()));
+      }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("trading_business_name") != null && !jsonObj.get("trading_business_name").isJsonNull()) && !jsonObj.get("trading_business_name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `trading_business_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trading_business_name").toString()));
+      }
+      if ((jsonObj.get("legal_description") != null && !jsonObj.get("legal_description").isJsonNull()) && !jsonObj.get("legal_description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `legal_description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("legal_description").toString()));
       }
       if ((jsonObj.get("siren") != null && !jsonObj.get("siren").isJsonNull()) && !jsonObj.get("siren").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `siren` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siren").toString()));
@@ -420,9 +648,36 @@ public class Supplier {
       if ((jsonObj.get("iban") != null && !jsonObj.get("iban").isJsonNull()) && !jsonObj.get("iban").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `iban` to be a primitive type in the JSON string but got `%s`", jsonObj.get("iban").toString()));
       }
+      if ((jsonObj.get("bic") != null && !jsonObj.get("bic").isJsonNull()) && !jsonObj.get("bic").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `bic` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bic").toString()));
+      }
+      if ((jsonObj.get("bank_account_name") != null && !jsonObj.get("bank_account_name").isJsonNull()) && !jsonObj.get("bank_account_name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `bank_account_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bank_account_name").toString()));
+      }
+      if ((jsonObj.get("proprietaryId") != null && !jsonObj.get("proprietaryId").isJsonNull()) && !jsonObj.get("proprietaryId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `proprietaryId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("proprietaryId").toString()));
+      }
       // validate the optional field `postal_address`
       if (jsonObj.get("postal_address") != null && !jsonObj.get("postal_address").isJsonNull()) {
         PostalAddress.validateJsonElement(jsonObj.get("postal_address"));
+      }
+      // validate the optional field `contact`
+      if (jsonObj.get("contact") != null && !jsonObj.get("contact").isJsonNull()) {
+        Contact.validateJsonElement(jsonObj.get("contact"));
+      }
+      if (jsonObj.get("global_ids") != null && !jsonObj.get("global_ids").isJsonNull()) {
+        JsonArray jsonArrayglobalIds = jsonObj.getAsJsonArray("global_ids");
+        if (jsonArrayglobalIds != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("global_ids").isJsonArray()) {
+            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `global_ids` to be an array in the JSON string but got `%s`", jsonObj.get("global_ids").toString()));
+          }
+
+          // validate the optional field `global_ids` (array)
+          for (int i = 0; i < jsonArrayglobalIds.size(); i++) {
+            ElectronicAddress.validateJsonElement(jsonArrayglobalIds.get(i));
+          };
+        }
       }
   }
 

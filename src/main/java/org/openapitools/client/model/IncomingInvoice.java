@@ -21,9 +21,9 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.DocumentType;
 import org.openapitools.client.model.IncomingSupplier;
 import org.openapitools.client.model.InvoiceFormat;
+import org.openapitools.client.model.InvoiceTypeCode;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Invoice received from a supplier via PDP/PA.  This model contains essential metadata extracted from incoming invoices, regardless of their source format (CII, UBL, Factur-X).  Amounts are Decimal in Python but will be serialized as strings in JSON to preserve monetary precision.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-19T18:32:43.873850505Z[Etc/UTC]", comments = "Generator version: 7.18.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:34:25.703210283Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class IncomingInvoice {
   public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)
@@ -72,7 +72,7 @@ public class IncomingInvoice {
   public static final String SERIALIZED_NAME_DOCUMENT_TYPE = "documentType";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_TYPE)
   @javax.annotation.Nullable
-  private DocumentType documentType = DocumentType.INVOICE;
+  private InvoiceTypeCode documentType = InvoiceTypeCode.INVOICE;
 
   public static final String SERIALIZED_NAME_SUPPLIER = "supplier";
   @SerializedName(SERIALIZED_NAME_SUPPLIER)
@@ -209,7 +209,7 @@ public class IncomingInvoice {
   }
 
 
-  public IncomingInvoice documentType(@javax.annotation.Nullable DocumentType documentType) {
+  public IncomingInvoice documentType(@javax.annotation.Nullable InvoiceTypeCode documentType) {
     this.documentType = documentType;
     return this;
   }
@@ -219,11 +219,11 @@ public class IncomingInvoice {
    * @return documentType
    */
   @javax.annotation.Nullable
-  public DocumentType getDocumentType() {
+  public InvoiceTypeCode getDocumentType() {
     return documentType;
   }
 
-  public void setDocumentType(@javax.annotation.Nullable DocumentType documentType) {
+  public void setDocumentType(@javax.annotation.Nullable InvoiceTypeCode documentType) {
     this.documentType = documentType;
   }
 
@@ -648,7 +648,7 @@ public class IncomingInvoice {
       }
       // validate the optional field `documentType`
       if (jsonObj.get("documentType") != null && !jsonObj.get("documentType").isJsonNull()) {
-        DocumentType.validateJsonElement(jsonObj.get("documentType"));
+        InvoiceTypeCode.validateJsonElement(jsonObj.get("documentType"));
       }
       // validate the required field `supplier`
       IncomingSupplier.validateJsonElement(jsonObj.get("supplier"));

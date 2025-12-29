@@ -63,6 +63,14 @@ public class PostalAddressTest {
     }
 
     /**
+     * Test the property 'lineThree'
+     */
+    @Test
+    public void lineThreeTest() {
+        // TODO: test lineThree
+    }
+
+    /**
      * Test the property 'city'
      */
     @Test
@@ -76,6 +84,14 @@ public class PostalAddressTest {
     @Test
     public void countryCodeTest() {
         // TODO: test countryCode
+    }
+
+    /**
+     * Test the property 'countrySubdivision'
+     */
+    @Test
+    public void countrySubdivisionTest() {
+        // TODO: test countrySubdivision
     }
 
 }

@@ -13,20 +13,61 @@
 
 package org.openapitools.client.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for DocumentType
+ * Model tests for ExtractionInfo
  */
-public class DocumentTypeTest {
+public class ExtractionInfoTest {
+    private final ExtractionInfo model = new ExtractionInfo();
+
     /**
-     * Model tests for DocumentType
+     * Model tests for ExtractionInfo
      */
     @Test
-    public void testDocumentType() {
-        // TODO: test DocumentType
+    public void testExtractionInfo() {
+        // TODO: test ExtractionInfo
+    }
+
+    /**
+     * Test the property 'confidenceScore'
+     */
+    @Test
+    public void confidenceScoreTest() {
+        // TODO: test confidenceScore
+    }
+
+    /**
+     * Test the property 'fieldsExtracted'
+     */
+    @Test
+    public void fieldsExtractedTest() {
+        // TODO: test fieldsExtracted
+    }
+
+    /**
+     * Test the property 'fieldsEnriched'
+     */
+    @Test
+    public void fieldsEnrichedTest() {
+        // TODO: test fieldsEnriched
+    }
+
+    /**
+     * Test the property 'fieldsMissing'
+     */
+    @Test
+    public void fieldsMissingTest() {
+        // TODO: test fieldsMissing
     }
 
 }
