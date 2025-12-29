@@ -13,70 +13,20 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
-import com.google.gson.TypeAdapter;
-import com.google.gson.JsonElement;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
- * Profil Factur-X pour la reponse API.  Note: Simplifie par rapport a utils/facturx.FacturXProfile qui contient aussi les configurations XSLT. Celui-ci est pour l&#39;API.
+ * Model tests for APIProfile
  */
-@JsonAdapter(FacturXProfile.Adapter.class)
-public enum FacturXProfile {
-  
-  MINIMUM("MINIMUM"),
-  
-  BASIC("BASIC"),
-  
-  EN16931("EN16931"),
-  
-  EXTENDED("EXTENDED");
-
-  private String value;
-
-  FacturXProfile(String value) {
-    this.value = value;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  public static FacturXProfile fromValue(String value) {
-    for (FacturXProfile b : FacturXProfile.values()) {
-      if (b.value.equals(value)) {
-        return b;
-      }
-    }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
-  }
-
-  public static class Adapter extends TypeAdapter<FacturXProfile> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final FacturXProfile enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+public class APIProfileTest {
+    /**
+     * Model tests for APIProfile
+     */
+    @Test
+    public void testAPIProfile() {
+        // TODO: test APIProfile
     }
 
-    @Override
-    public FacturXProfile read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return FacturXProfile.fromValue(value);
-    }
-  }
-
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    FacturXProfile.fromValue(value);
-  }
 }
-

@@ -67,7 +67,7 @@ import org.openapitools.client.JSON;
 /**
  * Represents an invoice line item (BG-25).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:50:35.916977782Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:56:48.897569219Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class InvoiceLine {
   public static final String SERIALIZED_NAME_LINE_NUMBER = "line_number";
   @SerializedName(SERIALIZED_NAME_LINE_NUMBER)

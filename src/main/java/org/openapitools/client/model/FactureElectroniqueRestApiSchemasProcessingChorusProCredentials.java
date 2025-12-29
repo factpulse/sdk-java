@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this &#x60;credentials&#x60; field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:50:35.916977782Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:56:48.897569219Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {
   public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "pisteClientId";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)

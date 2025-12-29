@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Represents an electronic invoicing address, composed of an identifier and its scheme (SchemeID) in accordance with EN16931. Example: { \&quot;identifier\&quot;: \&quot;123456789\&quot;, \&quot;scheme_id\&quot;: \&quot;0225\&quot; }
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:50:35.916977782Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:56:48.897569219Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ElectronicAddress {
   public static final String SERIALIZED_NAME_IDENTIFIER = "identifier";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER)

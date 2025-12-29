@@ -13,20 +13,70 @@
 
 package org.openapitools.client.model;
 
+import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
- * Model tests for FacturXProfile
+ * Factur-X profile for API responses.  Note: Simplified compared to utils/facturx.ProfilFacturX which also contains XSLT configurations. This one is for the API.
  */
-public class FacturXProfileTest {
-    /**
-     * Model tests for FacturXProfile
-     */
-    @Test
-    public void testFacturXProfile() {
-        // TODO: test FacturXProfile
+@JsonAdapter(APIProfile.Adapter.class)
+public enum APIProfile {
+  
+  MINIMUM("MINIMUM"),
+  
+  BASIC("BASIC"),
+  
+  EN16931("EN16931"),
+  
+  EXTENDED("EXTENDED");
+
+  private String value;
+
+  APIProfile(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
+
+  public static APIProfile fromValue(String value) {
+    for (APIProfile b : APIProfile.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
+    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+  }
+
+  public static class Adapter extends TypeAdapter<APIProfile> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final APIProfile enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
+    @Override
+    public APIProfile read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return APIProfile.fromValue(value);
+    }
+  }
+
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    APIProfile.fromValue(value);
+  }
 }
+

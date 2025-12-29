@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FacturXProfile;
+import org.openapitools.client.model.APIProfile;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,12 +49,12 @@ import org.openapitools.client.JSON;
 /**
  * Processing options for generation and submission.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:50:35.916977782Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:56:48.897569219Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ProcessingOptions {
   public static final String SERIALIZED_NAME_FACTURX_PROFILE = "facturxProfile";
   @SerializedName(SERIALIZED_NAME_FACTURX_PROFILE)
   @javax.annotation.Nullable
-  private FacturXProfile facturxProfile = FacturXProfile.EN16931;
+  private APIProfile facturxProfile = APIProfile.EN16931;
 
   public static final String SERIALIZED_NAME_AUTO_ENRICH = "autoEnrich";
   @SerializedName(SERIALIZED_NAME_AUTO_ENRICH)
@@ -74,7 +74,7 @@ public class ProcessingOptions {
   public ProcessingOptions() {
   }
 
-  public ProcessingOptions facturxProfile(@javax.annotation.Nullable FacturXProfile facturxProfile) {
+  public ProcessingOptions facturxProfile(@javax.annotation.Nullable APIProfile facturxProfile) {
     this.facturxProfile = facturxProfile;
     return this;
   }
@@ -84,11 +84,11 @@ public class ProcessingOptions {
    * @return facturxProfile
    */
   @javax.annotation.Nullable
-  public FacturXProfile getFacturxProfile() {
+  public APIProfile getFacturxProfile() {
     return facturxProfile;
   }
 
-  public void setFacturxProfile(@javax.annotation.Nullable FacturXProfile facturxProfile) {
+  public void setFacturxProfile(@javax.annotation.Nullable APIProfile facturxProfile) {
     this.facturxProfile = facturxProfile;
   }
 
@@ -229,7 +229,7 @@ public class ProcessingOptions {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `facturxProfile`
       if (jsonObj.get("facturxProfile") != null && !jsonObj.get("facturxProfile").isJsonNull()) {
-        FacturXProfile.validateJsonElement(jsonObj.get("facturxProfile"));
+        APIProfile.validateJsonElement(jsonObj.get("facturxProfile"));
       }
   }
 

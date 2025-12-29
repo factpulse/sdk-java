@@ -46,7 +46,7 @@ public class Example {
 
     InvoiceProcessingApi apiInstance = new InvoiceProcessingApi(defaultClient);
     String invoiceData = "invoiceData_example"; // String | Invoice data in JSON format.              Two formats accepted:             1. **Classic format**: Complete FactureFacturX structure (all fields)             2. **Simplified format** (🆕 P0.1): Minimal structure with auto-enrichment              Format is detected automatically!             
-    FacturXProfile profile = FacturXProfile.fromValue("MINIMUM"); // FacturXProfile | Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED.
+    APIProfile profile = APIProfile.fromValue("MINIMUM"); // APIProfile | Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED.
     OutputFormat outputFormat = OutputFormat.fromValue("xml"); // OutputFormat | Output format: 'xml' (XML only) or 'pdf' (Factur-X PDF with embedded XML).
     Boolean autoEnrich = true; // Boolean | 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only)
     File sourcePdf = new File("/path/to/file"); // File | 
@@ -69,7 +69,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **invoiceData** | **String**| Invoice data in JSON format.              Two formats accepted:             1. **Classic format**: Complete FactureFacturX structure (all fields)             2. **Simplified format** (🆕 P0.1): Minimal structure with auto-enrichment              Format is detected automatically!              | |
-| **profile** | [**FacturXProfile**](FacturXProfile.md)| Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED. | [optional] [default to EXTENDED] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
+| **profile** | [**APIProfile**](APIProfile.md)| Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED. | [optional] [default to EXTENDED] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
 | **outputFormat** | [**OutputFormat**](OutputFormat.md)| Output format: &#39;xml&#39; (XML only) or &#39;pdf&#39; (Factur-X PDF with embedded XML). | [optional] [default to xml] [enum: xml, pdf] |
 | **autoEnrich** | **Boolean**| 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only) | [optional] [default to true] |
 | **sourcePdf** | **File**|  | [optional] |
@@ -564,7 +564,7 @@ public class Example {
 
     InvoiceProcessingApi apiInstance = new InvoiceProcessingApi(defaultClient);
     File pdfFile = new File("/path/to/file"); // File | Factur-X PDF file to validate (.pdf format).
-    FacturXProfile profile = FacturXProfile.fromValue("MINIMUM"); // FacturXProfile | 
+    APIProfile profile = APIProfile.fromValue("MINIMUM"); // APIProfile | 
     Boolean useVerapdf = false; // Boolean | Enable strict PDF/A validation with VeraPDF (recommended for production). If False, uses basic metadata validation.
     try {
       PDFValidationResultAPI result = apiInstance.validateFacturxPdfApiV1ProcessingValidateFacturxPdfPost(pdfFile, profile, useVerapdf);
@@ -585,7 +585,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pdfFile** | **File**| Factur-X PDF file to validate (.pdf format). | |
-| **profile** | [**FacturXProfile**](FacturXProfile.md)|  | [optional] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
+| **profile** | [**APIProfile**](APIProfile.md)|  | [optional] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
 | **useVerapdf** | **Boolean**| Enable strict PDF/A validation with VeraPDF (recommended for production). If False, uses basic metadata validation. | [optional] [default to false] |
 
 ### Return type
@@ -637,7 +637,7 @@ public class Example {
 
     InvoiceProcessingApi apiInstance = new InvoiceProcessingApi(defaultClient);
     File pdfFile = new File("/path/to/file"); // File | Factur-X PDF file to validate (.pdf format).
-    FacturXProfile profile = FacturXProfile.fromValue("MINIMUM"); // FacturXProfile | 
+    APIProfile profile = APIProfile.fromValue("MINIMUM"); // APIProfile | 
     Boolean useVerapdf = false; // Boolean | Enable strict PDF/A validation with VeraPDF (recommended for production). May take several seconds.
     try {
       TaskResponse result = apiInstance.validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPost(pdfFile, profile, useVerapdf);
@@ -658,7 +658,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **pdfFile** | **File**| Factur-X PDF file to validate (.pdf format). | |
-| **profile** | [**FacturXProfile**](FacturXProfile.md)|  | [optional] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
+| **profile** | [**APIProfile**](APIProfile.md)|  | [optional] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
 | **useVerapdf** | **Boolean**| Enable strict PDF/A validation with VeraPDF (recommended for production). May take several seconds. | [optional] [default to false] |
 
 ### Return type
@@ -779,7 +779,7 @@ public class Example {
 
     InvoiceProcessingApi apiInstance = new InvoiceProcessingApi(defaultClient);
     File xmlFile = new File("/path/to/file"); // File | Factur-X XML file to validate (.xml format).
-    FacturXProfile profile = FacturXProfile.fromValue("MINIMUM"); // FacturXProfile | Validation profile (MINIMUM, BASIC, EN16931, EXTENDED).
+    APIProfile profile = APIProfile.fromValue("MINIMUM"); // APIProfile | Validation profile (MINIMUM, BASIC, EN16931, EXTENDED).
     try {
       ValidationSuccessResponse result = apiInstance.validateXmlApiV1ProcessingValidateXmlPost(xmlFile, profile);
       System.out.println(result);
@@ -799,7 +799,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **xmlFile** | **File**| Factur-X XML file to validate (.xml format). | |
-| **profile** | [**FacturXProfile**](FacturXProfile.md)| Validation profile (MINIMUM, BASIC, EN16931, EXTENDED). | [optional] [default to EXTENDED] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
+| **profile** | [**APIProfile**](APIProfile.md)| Validation profile (MINIMUM, BASIC, EN16931, EXTENDED). | [optional] [default to EXTENDED] [enum: MINIMUM, BASIC, EN16931, EXTENDED] |
 
 ### Return type
 

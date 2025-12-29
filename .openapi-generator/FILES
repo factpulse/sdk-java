@@ -11,6 +11,7 @@ docs/AFNORDestination.md
 docs/AFNORHealthCheckResponse.md
 docs/AFNORResult.md
 docs/APIError.md
+docs/APIProfile.md
 docs/AcknowledgmentStatus.md
 docs/AdditionalDocument.md
 docs/AfnorPdpPaApi.md
@@ -47,7 +48,6 @@ docs/ErrorSource.md
 docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
-docs/FacturXProfile.md
 docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
@@ -197,6 +197,7 @@ src/main/java/org/openapitools/client/model/AFNORDestination.java
 src/main/java/org/openapitools/client/model/AFNORHealthCheckResponse.java
 src/main/java/org/openapitools/client/model/AFNORResult.java
 src/main/java/org/openapitools/client/model/APIError.java
+src/main/java/org/openapitools/client/model/APIProfile.java
 src/main/java/org/openapitools/client/model/AbstractOpenApiSchema.java
 src/main/java/org/openapitools/client/model/AcknowledgmentStatus.java
 src/main/java/org/openapitools/client/model/AdditionalDocument.java
@@ -229,7 +230,6 @@ src/main/java/org/openapitools/client/model/ErrorSource.java
 src/main/java/org/openapitools/client/model/ExtractionInfo.java
 src/main/java/org/openapitools/client/model/FacturXInvoice.java
 src/main/java/org/openapitools/client/model/FacturXPDFInfo.java
-src/main/java/org/openapitools/client/model/FacturXProfile.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FieldStatus.java
@@ -349,6 +349,7 @@ src/test/java/org/openapitools/client/model/AFNORDestinationTest.java
 src/test/java/org/openapitools/client/model/AFNORHealthCheckResponseTest.java
 src/test/java/org/openapitools/client/model/AFNORResultTest.java
 src/test/java/org/openapitools/client/model/APIErrorTest.java
+src/test/java/org/openapitools/client/model/APIProfileTest.java
 src/test/java/org/openapitools/client/model/AcknowledgmentStatusTest.java
 src/test/java/org/openapitools/client/model/AdditionalDocumentTest.java
 src/test/java/org/openapitools/client/model/AllowanceChargeTest.java
@@ -380,7 +381,6 @@ src/test/java/org/openapitools/client/model/ErrorSourceTest.java
 src/test/java/org/openapitools/client/model/ExtractionInfoTest.java
 src/test/java/org/openapitools/client/model/FacturXInvoiceTest.java
 src/test/java/org/openapitools/client/model/FacturXPDFInfoTest.java
-src/test/java/org/openapitools/client/model/FacturXProfileTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FieldStatusTest.java

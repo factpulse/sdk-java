@@ -3654,6 +3654,19 @@ components:
       - errorCode
       - errorMessage
       title: APIError
+    APIProfile:
+      description: |-
+        Factur-X profile for API responses.
+
+        Note: Simplified compared to utils/facturx.ProfilFacturX which
+        also contains XSLT configurations. This one is for the API.
+      enum:
+      - MINIMUM
+      - BASIC
+      - EN16931
+      - EXTENDED
+      title: APIProfile
+      type: string
     AsyncTaskStatus:
       description: |-
         Complete description of an async task status.
@@ -3730,7 +3743,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/FacturXProfile"
+          - $ref: "#/components/schemas/APIProfile"
           default: EXTENDED
           description: "Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED."
         output_format:
@@ -3834,7 +3847,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/FacturXProfile"
+          - $ref: "#/components/schemas/APIProfile"
           nullable: true
         use_verapdf:
           default: false
@@ -3854,7 +3867,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/FacturXProfile"
+          - $ref: "#/components/schemas/APIProfile"
           nullable: true
         use_verapdf:
           default: false
@@ -3885,7 +3898,7 @@ components:
           type: string
         profile:
           allOf:
-          - $ref: "#/components/schemas/FacturXProfile"
+          - $ref: "#/components/schemas/APIProfile"
           default: EXTENDED
           description: "Validation profile (MINIMUM, BASIC, EN16931, EXTENDED)."
       required:
@@ -4548,19 +4561,6 @@ components:
       - profile
       - size
       title: FacturXPDFInfo
-    FacturXProfile:
-      description: |-
-        Profil Factur-X pour la reponse API.
-
-        Note: Simplifie par rapport a utils/facturx.FacturXProfile qui
-        contient aussi les configurations XSLT. Celui-ci est pour l'API.
-      enum:
-      - MINIMUM
-      - BASIC
-      - EN16931
-      - EXTENDED
-      title: FacturXProfile
-      type: string
     FieldStatus:
       description: Field compliance status.
       enum:
@@ -5511,7 +5511,7 @@ components:
       properties:
         facturxProfile:
           allOf:
-          - $ref: "#/components/schemas/FacturXProfile"
+          - $ref: "#/components/schemas/APIProfile"
           default: EN16931
           description: Factur-X profile to use
         autoEnrich:

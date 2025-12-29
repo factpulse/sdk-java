@@ -14,8 +14,8 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.APIProfile;
 import org.openapitools.client.model.AsyncTaskStatus;
-import org.openapitools.client.model.FacturXProfile;
 import java.io.File;
 import org.openapitools.client.model.GenerateCertificateRequest;
 import org.openapitools.client.model.GenerateCertificateResponse;
@@ -53,7 +53,7 @@ public class InvoiceProcessingApiTest {
     @Test
     public void generateInvoiceApiV1ProcessingGenerateInvoicePostTest() throws ApiException {
         String invoiceData = null;
-        FacturXProfile profile = null;
+        APIProfile profile = null;
         OutputFormat outputFormat = null;
         Boolean autoEnrich = null;
         File sourcePdf = null;
@@ -167,7 +167,7 @@ public class InvoiceProcessingApiTest {
     @Test
     public void validateFacturxPdfApiV1ProcessingValidateFacturxPdfPostTest() throws ApiException {
         File pdfFile = null;
-        FacturXProfile profile = null;
+        APIProfile profile = null;
         Boolean useVerapdf = null;
         PDFValidationResultAPI response = api.validateFacturxPdfApiV1ProcessingValidateFacturxPdfPost(pdfFile, profile, useVerapdf);
         // TODO: test validations
@@ -183,7 +183,7 @@ public class InvoiceProcessingApiTest {
     @Test
     public void validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPostTest() throws ApiException {
         File pdfFile = null;
-        FacturXProfile profile = null;
+        APIProfile profile = null;
         Boolean useVerapdf = null;
         TaskResponse response = api.validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPost(pdfFile, profile, useVerapdf);
         // TODO: test validations
@@ -213,7 +213,7 @@ public class InvoiceProcessingApiTest {
     @Test
     public void validateXmlApiV1ProcessingValidateXmlPostTest() throws ApiException {
         File xmlFile = null;
-        FacturXProfile profile = null;
+        APIProfile profile = null;
         ValidationSuccessResponse response = api.validateXmlApiV1ProcessingValidateXmlPost(xmlFile, profile);
         // TODO: test validations
     }
