@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Summary of a flow in search results.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:56:48.897569219Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T11:15:35.054244657Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class FlowSummary {
   public static final String SERIALIZED_NAME_FLOW_ID = "flow_id";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)

@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to submit an invoice to a PDP/PA via AFNOR.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T10:56:48.897569219Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-29T11:15:35.054244657Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SubmitFlowRequest {
   public static final String SERIALIZED_NAME_FLOW_NAME = "flowName";
   @SerializedName(SERIALIZED_NAME_FLOW_NAME)
