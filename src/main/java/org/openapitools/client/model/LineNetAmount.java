@@ -51,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T14:59:55.676008722Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:33:16.934495654Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class LineNetAmount extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(LineNetAmount.class.getName());
 
