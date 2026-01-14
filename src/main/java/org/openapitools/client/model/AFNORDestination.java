@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Specific configuration for AFNOR PDP destination.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T19:03:57.681718516Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T19:43:09.414234251Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORDestination {
   /**
    * Gets or Sets type

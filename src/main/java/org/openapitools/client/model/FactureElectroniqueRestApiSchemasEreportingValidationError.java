@@ -47,82 +47,82 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Information about the electronic signature.
+ * Validation error detail.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T19:43:09.414234251Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class SignatureInfo {
-  public static final String SERIALIZED_NAME_SIGNED = "signed";
-  @SerializedName(SERIALIZED_NAME_SIGNED)
+public class FactureElectroniqueRestApiSchemasEreportingValidationError {
+  public static final String SERIALIZED_NAME_FIELD = "field";
+  @SerializedName(SERIALIZED_NAME_FIELD)
   @javax.annotation.Nonnull
-  private Boolean signed;
+  private String field;
 
-  public static final String SERIALIZED_NAME_CN = "cn";
-  @SerializedName(SERIALIZED_NAME_CN)
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  @javax.annotation.Nonnull
+  private String message;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
   @javax.annotation.Nullable
-  private String cn;
+  private String code;
 
-  public static final String SERIALIZED_NAME_EXPIRATION = "expiration";
-  @SerializedName(SERIALIZED_NAME_EXPIRATION)
-  @javax.annotation.Nullable
-  private String expiration;
-
-  public SignatureInfo() {
+  public FactureElectroniqueRestApiSchemasEreportingValidationError() {
   }
 
-  public SignatureInfo signed(@javax.annotation.Nonnull Boolean signed) {
-    this.signed = signed;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError field(@javax.annotation.Nonnull String field) {
+    this.field = field;
     return this;
   }
 
   /**
-   * PDF was signed
-   * @return signed
+   * Field path with error
+   * @return field
    */
   @javax.annotation.Nonnull
-  public Boolean getSigned() {
-    return signed;
+  public String getField() {
+    return field;
   }
 
-  public void setSigned(@javax.annotation.Nonnull Boolean signed) {
-    this.signed = signed;
+  public void setField(@javax.annotation.Nonnull String field) {
+    this.field = field;
   }
 
 
-  public SignatureInfo cn(@javax.annotation.Nullable String cn) {
-    this.cn = cn;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError message(@javax.annotation.Nonnull String message) {
+    this.message = message;
     return this;
   }
 
   /**
-   * Get cn
-   * @return cn
+   * Error message
+   * @return message
    */
-  @javax.annotation.Nullable
-  public String getCn() {
-    return cn;
+  @javax.annotation.Nonnull
+  public String getMessage() {
+    return message;
   }
 
-  public void setCn(@javax.annotation.Nullable String cn) {
-    this.cn = cn;
+  public void setMessage(@javax.annotation.Nonnull String message) {
+    this.message = message;
   }
 
 
-  public SignatureInfo expiration(@javax.annotation.Nullable String expiration) {
-    this.expiration = expiration;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError code(@javax.annotation.Nullable String code) {
+    this.code = code;
     return this;
   }
 
   /**
-   * Get expiration
-   * @return expiration
+   * Get code
+   * @return code
    */
   @javax.annotation.Nullable
-  public String getExpiration() {
-    return expiration;
+  public String getCode() {
+    return code;
   }
 
-  public void setExpiration(@javax.annotation.Nullable String expiration) {
-    this.expiration = expiration;
+  public void setCode(@javax.annotation.Nullable String code) {
+    this.code = code;
   }
 
 
@@ -135,10 +135,10 @@ public class SignatureInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SignatureInfo signatureInfo = (SignatureInfo) o;
-    return Objects.equals(this.signed, signatureInfo.signed) &&
-        Objects.equals(this.cn, signatureInfo.cn) &&
-        Objects.equals(this.expiration, signatureInfo.expiration);
+    FactureElectroniqueRestApiSchemasEreportingValidationError factureElectroniqueRestApiSchemasEreportingValidationError = (FactureElectroniqueRestApiSchemasEreportingValidationError) o;
+    return Objects.equals(this.field, factureElectroniqueRestApiSchemasEreportingValidationError.field) &&
+        Objects.equals(this.message, factureElectroniqueRestApiSchemasEreportingValidationError.message) &&
+        Objects.equals(this.code, factureElectroniqueRestApiSchemasEreportingValidationError.code);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -147,7 +147,7 @@ public class SignatureInfo {
 
   @Override
   public int hashCode() {
-    return Objects.hash(signed, cn, expiration);
+    return Objects.hash(field, message, code);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -160,10 +160,10 @@ public class SignatureInfo {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SignatureInfo {\n");
-    sb.append("    signed: ").append(toIndentedString(signed)).append("\n");
-    sb.append("    cn: ").append(toIndentedString(cn)).append("\n");
-    sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
+    sb.append("class FactureElectroniqueRestApiSchemasEreportingValidationError {\n");
+    sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -185,45 +185,48 @@ public class SignatureInfo {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("signed", "cn", "expiration"));
+    openapiFields = new HashSet<String>(Arrays.asList("field", "message", "code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("signed"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("field", "message"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SignatureInfo
+   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!SignatureInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in SignatureInfo is not found in the empty JSON string", SignatureInfo.openapiRequiredFields.toString()));
+        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasEreportingValidationError is not found in the empty JSON string", FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SignatureInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `SignatureInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasEreportingValidationError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : SignatureInfo.openapiRequiredFields) {
+      for (String requiredField : FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("cn") != null && !jsonObj.get("cn").isJsonNull()) && !jsonObj.get("cn").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `cn` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cn").toString()));
+      if (!jsonObj.get("field").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
       }
-      if ((jsonObj.get("expiration") != null && !jsonObj.get("expiration").isJsonNull()) && !jsonObj.get("expiration").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `expiration` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiration").toString()));
+      if (!jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      }
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
       }
   }
 
@@ -231,22 +234,22 @@ public class SignatureInfo {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SignatureInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SignatureInfo' and its subtypes
+       if (!FactureElectroniqueRestApiSchemasEreportingValidationError.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasEreportingValidationError' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SignatureInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SignatureInfo.class));
+       final TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasEreportingValidationError.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<SignatureInfo>() {
+       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError>() {
            @Override
-           public void write(JsonWriter out, SignatureInfo value) throws IOException {
+           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasEreportingValidationError value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public SignatureInfo read(JsonReader in) throws IOException {
+           public FactureElectroniqueRestApiSchemasEreportingValidationError read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -257,18 +260,18 @@ public class SignatureInfo {
   }
 
   /**
-   * Create an instance of SignatureInfo given an JSON string
+   * Create an instance of FactureElectroniqueRestApiSchemasEreportingValidationError given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of SignatureInfo
-   * @throws IOException if the JSON string is invalid with respect to SignatureInfo
+   * @return An instance of FactureElectroniqueRestApiSchemasEreportingValidationError
+   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
    */
-  public static SignatureInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SignatureInfo.class);
+  public static FactureElectroniqueRestApiSchemasEreportingValidationError fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasEreportingValidationError.class);
   }
 
   /**
-   * Convert an instance of SignatureInfo to an JSON string
+   * Convert an instance of FactureElectroniqueRestApiSchemasEreportingValidationError to an JSON string
    *
    * @return JSON string
    */
