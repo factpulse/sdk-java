@@ -6019,7 +6019,7 @@ components:
         celui utilise pour la generation Factur-X, garantissant une coherence totale.
       example:
         pdf_regenerated: false
-        processing_time_ms: 3
+        processing_time_ms: 9
         pdf_regenerated_reason: pdf_regenerated_reason
         conversion_id: conversion_id
         files:
@@ -6038,22 +6038,16 @@ components:
           schematron_rules_passed: 2
           profile: profile
           errors:
-          - severity: severity
-            bt_code: bt_code
-            suggested_field: suggested_field
-            confidence: 0.9301444243932576
-            rule: rule
-            message: message
-            explanation: explanation
-            suggested_value: suggested_value
-          - severity: severity
-            bt_code: bt_code
-            suggested_field: suggested_field
-            confidence: 0.9301444243932576
-            rule: rule
-            message: message
-            explanation: explanation
-            suggested_value: suggested_value
+          - msg: msg
+            loc:
+            - Location_inner
+            - Location_inner
+            type: type
+          - msg: msg
+            loc:
+            - Location_inner
+            - Location_inner
+            type: type
           xml_embedded: true
         status: success
         document_type:
@@ -6115,7 +6109,7 @@ components:
         missing_fields:
         - field: field
           bt_code: bt_code
-          confidence: 2.027123023002322
+          confidence: 3.616076749251911
           required_for:
           - required_for
           - required_for
@@ -6123,7 +6117,7 @@ components:
           suggested_value: suggested_value
         - field: field
           bt_code: bt_code
-          confidence: 2.027123023002322
+          confidence: 3.616076749251911
           required_for:
           - required_for
           - required_for
@@ -7722,7 +7716,7 @@ components:
       example:
         field: field
         bt_code: bt_code
-        confidence: 2.027123023002322
+        confidence: 3.616076749251911
         required_for:
         - required_for
         - required_for
@@ -8990,28 +8984,20 @@ components:
         valid: true
         reportId: reportId
         warnings:
-        - msg: msg
-          loc:
-          - Location_inner
-          - Location_inner
-          type: type
-        - msg: msg
-          loc:
-          - Location_inner
-          - Location_inner
-          type: type
+        - code: code
+          field: field
+          message: message
+        - code: code
+          field: field
+          message: message
         message: message
         errors:
-        - msg: msg
-          loc:
-          - Location_inner
-          - Location_inner
-          type: type
-        - msg: msg
-          loc:
-          - Location_inner
-          - Location_inner
-          type: type
+        - code: code
+          field: field
+          message: message
+        - code: code
+          field: field
+          message: message
         flowType: flowType
       properties:
         valid:
@@ -9029,13 +9015,13 @@ components:
         errors:
           description: List of validation errors (if any)
           items:
-            $ref: "#/components/schemas/ValidationError"
+            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__ValidationError"
           title: Errors
           type: array
         warnings:
           description: List of validation warnings (if any)
           items:
-            $ref: "#/components/schemas/ValidationError"
+            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__ValidationError"
           title: Warnings
           type: array
         message:
@@ -9128,22 +9114,16 @@ components:
         schematron_rules_passed: 2
         profile: profile
         errors:
-        - severity: severity
-          bt_code: bt_code
-          suggested_field: suggested_field
-          confidence: 0.9301444243932576
-          rule: rule
-          message: message
-          explanation: explanation
-          suggested_value: suggested_value
-        - severity: severity
-          bt_code: bt_code
-          suggested_field: suggested_field
-          confidence: 0.9301444243932576
-          rule: rule
-          message: message
-          explanation: explanation
-          suggested_value: suggested_value
+        - msg: msg
+          loc:
+          - Location_inner
+          - Location_inner
+          type: type
+        - msg: msg
+          loc:
+          - Location_inner
+          - Location_inner
+          type: type
         xml_embedded: true
       properties:
         profile:
@@ -9170,7 +9150,7 @@ components:
           type: boolean
         errors:
           items:
-            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__convert__ValidationError"
+            $ref: "#/components/schemas/ValidationError"
           title: Errors
           type: array
       required:
@@ -9418,51 +9398,27 @@ components:
       - FACTORED_CREDIT_NOTE
       - SELF_BILLED_FACTORED_CREDIT_NOTE
       - PREPAYMENT_CREDIT_NOTE
-    facture_electronique__rest_api__schemas__convert__ValidationError:
-      description: Erreur de validation Schematron avec suggestion de correction.
+    facture_electronique__rest_api__schemas__ereporting__ValidationError:
+      description: Validation error detail.
       example:
-        severity: severity
-        bt_code: bt_code
-        suggested_field: suggested_field
-        confidence: 0.9301444243932576
-        rule: rule
+        code: code
+        field: field
         message: message
-        explanation: explanation
-        suggested_value: suggested_value
       properties:
-        rule:
-          description: "Code de la regle (BR-XX, BR-FR-XX)"
-          title: Rule
-          type: string
-        bt_code:
-          nullable: true
-          type: string
-        severity:
-          description: "Gravite: error, warning"
-          title: Severity
+        field:
+          description: Field path with error
+          title: Field
           type: string
         message:
-          description: Message d'erreur
+          description: Error message
           title: Message
           type: string
-        suggested_value:
+        code:
           nullable: true
           type: string
-        suggested_field:
-          nullable: true
-          type: string
-        explanation:
-          nullable: true
-          type: string
-        confidence:
-          maximum: 1.0
-          minimum: 0.0
-          nullable: true
-          type: number
       required:
+      - field
       - message
-      - rule
-      - severity
       title: ValidationError
     facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
       description: |-

@@ -21,10 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.AFNORSearchSirenFiltersAdministrativeStatus;
-import org.openapitools.client.model.AFNORSearchSirenFiltersBusinessName;
-import org.openapitools.client.model.AFNORSearchSirenFiltersEntityType;
-import org.openapitools.client.model.AFNORSearchSirenFiltersSiren;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,106 +47,82 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * AFNORSearchSirenFilters
+ * Validation error detail.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T16:43:49.641530363Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class AFNORSearchSirenFilters {
-  public static final String SERIALIZED_NAME_SIREN = "siren";
-  @SerializedName(SERIALIZED_NAME_SIREN)
-  @javax.annotation.Nullable
-  private AFNORSearchSirenFiltersSiren siren;
+public class FactureElectroniqueRestApiSchemasEreportingValidationError {
+  public static final String SERIALIZED_NAME_FIELD = "field";
+  @SerializedName(SERIALIZED_NAME_FIELD)
+  @javax.annotation.Nonnull
+  private String field;
 
-  public static final String SERIALIZED_NAME_BUSINESS_NAME = "businessName";
-  @SerializedName(SERIALIZED_NAME_BUSINESS_NAME)
-  @javax.annotation.Nullable
-  private AFNORSearchSirenFiltersBusinessName businessName;
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  @javax.annotation.Nonnull
+  private String message;
 
-  public static final String SERIALIZED_NAME_ENTITY_TYPE = "entityType";
-  @SerializedName(SERIALIZED_NAME_ENTITY_TYPE)
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
   @javax.annotation.Nullable
-  private AFNORSearchSirenFiltersEntityType entityType;
+  private String code;
 
-  public static final String SERIALIZED_NAME_ADMINISTRATIVE_STATUS = "administrativeStatus";
-  @SerializedName(SERIALIZED_NAME_ADMINISTRATIVE_STATUS)
-  @javax.annotation.Nullable
-  private AFNORSearchSirenFiltersAdministrativeStatus administrativeStatus;
-
-  public AFNORSearchSirenFilters() {
+  public FactureElectroniqueRestApiSchemasEreportingValidationError() {
   }
 
-  public AFNORSearchSirenFilters siren(@javax.annotation.Nullable AFNORSearchSirenFiltersSiren siren) {
-    this.siren = siren;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError field(@javax.annotation.Nonnull String field) {
+    this.field = field;
     return this;
   }
 
   /**
-   * Get siren
-   * @return siren
+   * Field path with error
+   * @return field
    */
-  @javax.annotation.Nullable
-  public AFNORSearchSirenFiltersSiren getSiren() {
-    return siren;
+  @javax.annotation.Nonnull
+  public String getField() {
+    return field;
   }
 
-  public void setSiren(@javax.annotation.Nullable AFNORSearchSirenFiltersSiren siren) {
-    this.siren = siren;
+  public void setField(@javax.annotation.Nonnull String field) {
+    this.field = field;
   }
 
 
-  public AFNORSearchSirenFilters businessName(@javax.annotation.Nullable AFNORSearchSirenFiltersBusinessName businessName) {
-    this.businessName = businessName;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError message(@javax.annotation.Nonnull String message) {
+    this.message = message;
     return this;
   }
 
   /**
-   * Get businessName
-   * @return businessName
+   * Error message
+   * @return message
    */
-  @javax.annotation.Nullable
-  public AFNORSearchSirenFiltersBusinessName getBusinessName() {
-    return businessName;
+  @javax.annotation.Nonnull
+  public String getMessage() {
+    return message;
   }
 
-  public void setBusinessName(@javax.annotation.Nullable AFNORSearchSirenFiltersBusinessName businessName) {
-    this.businessName = businessName;
+  public void setMessage(@javax.annotation.Nonnull String message) {
+    this.message = message;
   }
 
 
-  public AFNORSearchSirenFilters entityType(@javax.annotation.Nullable AFNORSearchSirenFiltersEntityType entityType) {
-    this.entityType = entityType;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError code(@javax.annotation.Nullable String code) {
+    this.code = code;
     return this;
   }
 
   /**
-   * Get entityType
-   * @return entityType
+   * Get code
+   * @return code
    */
   @javax.annotation.Nullable
-  public AFNORSearchSirenFiltersEntityType getEntityType() {
-    return entityType;
+  public String getCode() {
+    return code;
   }
 
-  public void setEntityType(@javax.annotation.Nullable AFNORSearchSirenFiltersEntityType entityType) {
-    this.entityType = entityType;
-  }
-
-
-  public AFNORSearchSirenFilters administrativeStatus(@javax.annotation.Nullable AFNORSearchSirenFiltersAdministrativeStatus administrativeStatus) {
-    this.administrativeStatus = administrativeStatus;
-    return this;
-  }
-
-  /**
-   * Get administrativeStatus
-   * @return administrativeStatus
-   */
-  @javax.annotation.Nullable
-  public AFNORSearchSirenFiltersAdministrativeStatus getAdministrativeStatus() {
-    return administrativeStatus;
-  }
-
-  public void setAdministrativeStatus(@javax.annotation.Nullable AFNORSearchSirenFiltersAdministrativeStatus administrativeStatus) {
-    this.administrativeStatus = administrativeStatus;
+  public void setCode(@javax.annotation.Nullable String code) {
+    this.code = code;
   }
 
 
@@ -162,26 +135,35 @@ public class AFNORSearchSirenFilters {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AFNORSearchSirenFilters afNORSearchSirenFilters = (AFNORSearchSirenFilters) o;
-    return Objects.equals(this.siren, afNORSearchSirenFilters.siren) &&
-        Objects.equals(this.businessName, afNORSearchSirenFilters.businessName) &&
-        Objects.equals(this.entityType, afNORSearchSirenFilters.entityType) &&
-        Objects.equals(this.administrativeStatus, afNORSearchSirenFilters.administrativeStatus);
+    FactureElectroniqueRestApiSchemasEreportingValidationError factureElectroniqueRestApiSchemasEreportingValidationError = (FactureElectroniqueRestApiSchemasEreportingValidationError) o;
+    return Objects.equals(this.field, factureElectroniqueRestApiSchemasEreportingValidationError.field) &&
+        Objects.equals(this.message, factureElectroniqueRestApiSchemasEreportingValidationError.message) &&
+        Objects.equals(this.code, factureElectroniqueRestApiSchemasEreportingValidationError.code);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siren, businessName, entityType, administrativeStatus);
+    return Objects.hash(field, message, code);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AFNORSearchSirenFilters {\n");
-    sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
-    sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
-    sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
-    sb.append("    administrativeStatus: ").append(toIndentedString(administrativeStatus)).append("\n");
+    sb.append("class FactureElectroniqueRestApiSchemasEreportingValidationError {\n");
+    sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -203,48 +185,48 @@ public class AFNORSearchSirenFilters {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("siren", "businessName", "entityType", "administrativeStatus"));
+    openapiFields = new HashSet<String>(Arrays.asList("field", "message", "code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("field", "message"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AFNORSearchSirenFilters
+   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!AFNORSearchSirenFilters.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in AFNORSearchSirenFilters is not found in the empty JSON string", AFNORSearchSirenFilters.openapiRequiredFields.toString()));
+        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasEreportingValidationError is not found in the empty JSON string", FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AFNORSearchSirenFilters.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `AFNORSearchSirenFilters` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasEreportingValidationError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `siren`
-      if (jsonObj.get("siren") != null && !jsonObj.get("siren").isJsonNull()) {
-        AFNORSearchSirenFiltersSiren.validateJsonElement(jsonObj.get("siren"));
+      if (!jsonObj.get("field").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
       }
-      // validate the optional field `businessName`
-      if (jsonObj.get("businessName") != null && !jsonObj.get("businessName").isJsonNull()) {
-        AFNORSearchSirenFiltersBusinessName.validateJsonElement(jsonObj.get("businessName"));
+      if (!jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
-      // validate the optional field `entityType`
-      if (jsonObj.get("entityType") != null && !jsonObj.get("entityType").isJsonNull()) {
-        AFNORSearchSirenFiltersEntityType.validateJsonElement(jsonObj.get("entityType"));
-      }
-      // validate the optional field `administrativeStatus`
-      if (jsonObj.get("administrativeStatus") != null && !jsonObj.get("administrativeStatus").isJsonNull()) {
-        AFNORSearchSirenFiltersAdministrativeStatus.validateJsonElement(jsonObj.get("administrativeStatus"));
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
       }
   }
 
@@ -252,22 +234,22 @@ public class AFNORSearchSirenFilters {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AFNORSearchSirenFilters.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AFNORSearchSirenFilters' and its subtypes
+       if (!FactureElectroniqueRestApiSchemasEreportingValidationError.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasEreportingValidationError' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AFNORSearchSirenFilters> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AFNORSearchSirenFilters.class));
+       final TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasEreportingValidationError.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AFNORSearchSirenFilters>() {
+       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError>() {
            @Override
-           public void write(JsonWriter out, AFNORSearchSirenFilters value) throws IOException {
+           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasEreportingValidationError value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public AFNORSearchSirenFilters read(JsonReader in) throws IOException {
+           public FactureElectroniqueRestApiSchemasEreportingValidationError read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -278,18 +260,18 @@ public class AFNORSearchSirenFilters {
   }
 
   /**
-   * Create an instance of AFNORSearchSirenFilters given an JSON string
+   * Create an instance of FactureElectroniqueRestApiSchemasEreportingValidationError given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AFNORSearchSirenFilters
-   * @throws IOException if the JSON string is invalid with respect to AFNORSearchSirenFilters
+   * @return An instance of FactureElectroniqueRestApiSchemasEreportingValidationError
+   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
    */
-  public static AFNORSearchSirenFilters fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AFNORSearchSirenFilters.class);
+  public static FactureElectroniqueRestApiSchemasEreportingValidationError fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasEreportingValidationError.class);
   }
 
   /**
-   * Convert an instance of AFNORSearchSirenFilters to an JSON string
+   * Convert an instance of FactureElectroniqueRestApiSchemasEreportingValidationError to an JSON string
    *
    * @return JSON string
    */

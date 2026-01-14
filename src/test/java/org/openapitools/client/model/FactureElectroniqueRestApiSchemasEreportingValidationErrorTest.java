@@ -19,48 +19,31 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasConvertValidationError
+ * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
  */
-public class FactureElectroniqueRestApiSchemasConvertValidationErrorTest {
-    private final FactureElectroniqueRestApiSchemasConvertValidationError model = new FactureElectroniqueRestApiSchemasConvertValidationError();
+public class FactureElectroniqueRestApiSchemasEreportingValidationErrorTest {
+    private final FactureElectroniqueRestApiSchemasEreportingValidationError model = new FactureElectroniqueRestApiSchemasEreportingValidationError();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasConvertValidationError
+     * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasConvertValidationError() {
-        // TODO: test FactureElectroniqueRestApiSchemasConvertValidationError
+    public void testFactureElectroniqueRestApiSchemasEreportingValidationError() {
+        // TODO: test FactureElectroniqueRestApiSchemasEreportingValidationError
     }
 
     /**
-     * Test the property 'rule'
+     * Test the property 'field'
      */
     @Test
-    public void ruleTest() {
-        // TODO: test rule
-    }
-
-    /**
-     * Test the property 'btCode'
-     */
-    @Test
-    public void btCodeTest() {
-        // TODO: test btCode
-    }
-
-    /**
-     * Test the property 'severity'
-     */
-    @Test
-    public void severityTest() {
-        // TODO: test severity
+    public void fieldTest() {
+        // TODO: test field
     }
 
     /**
@@ -72,35 +55,11 @@ public class FactureElectroniqueRestApiSchemasConvertValidationErrorTest {
     }
 
     /**
-     * Test the property 'suggestedValue'
+     * Test the property 'code'
      */
     @Test
-    public void suggestedValueTest() {
-        // TODO: test suggestedValue
-    }
-
-    /**
-     * Test the property 'suggestedField'
-     */
-    @Test
-    public void suggestedFieldTest() {
-        // TODO: test suggestedField
-    }
-
-    /**
-     * Test the property 'explanation'
-     */
-    @Test
-    public void explanationTest() {
-        // TODO: test explanation
-    }
-
-    /**
-     * Test the property 'confidence'
-     */
-    @Test
-    public void confidenceTest() {
-        // TODO: test confidence
+    public void codeTest() {
+        // TODO: test code
     }
 
 }
