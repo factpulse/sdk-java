@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
-    organization := "org.openapitools",
-    name := "openapi-java-client",
+    organization := "fr.factpulse",
+    name := "factpulse-sdk",
     version := "1.0.0",
     scalaVersion := "2.11.12",
     scalacOptions ++= Seq("-feature"),

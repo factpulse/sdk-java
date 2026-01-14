@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.Buyercountry;
 import org.openapitools.client.model.Currency;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode;
+import org.openapitools.client.model.InvoiceTypeCode;
 import org.openapitools.client.model.Sellercountry;
 import org.openapitools.client.model.TaxBreakdownInput;
 import org.openapitools.client.model.Taxamount1;

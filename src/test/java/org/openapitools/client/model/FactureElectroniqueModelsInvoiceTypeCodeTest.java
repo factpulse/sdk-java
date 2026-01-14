@@ -13,53 +13,20 @@
 
 package org.openapitools.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
+ * Model tests for FactureElectroniqueModelsInvoiceTypeCode
  */
-public class FactureElectroniqueRestApiSchemasEreportingValidationErrorTest {
-    private final FactureElectroniqueRestApiSchemasEreportingValidationError model = new FactureElectroniqueRestApiSchemasEreportingValidationError();
-
+public class FactureElectroniqueModelsInvoiceTypeCodeTest {
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
+     * Model tests for FactureElectroniqueModelsInvoiceTypeCode
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasEreportingValidationError() {
-        // TODO: test FactureElectroniqueRestApiSchemasEreportingValidationError
-    }
-
-    /**
-     * Test the property 'field'
-     */
-    @Test
-    public void fieldTest() {
-        // TODO: test field
-    }
-
-    /**
-     * Test the property 'message'
-     */
-    @Test
-    public void messageTest() {
-        // TODO: test message
-    }
-
-    /**
-     * Test the property 'code'
-     */
-    @Test
-    public void codeTest() {
-        // TODO: test code
+    public void testFactureElectroniqueModelsInvoiceTypeCode() {
+        // TODO: test FactureElectroniqueModelsInvoiceTypeCode
     }
 
 }
