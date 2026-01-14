@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORSearchSirenFiltersSiren
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T18:58:47.146973635Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T19:03:57.681718516Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORSearchSirenFiltersSiren {
   public static final String SERIALIZED_NAME_OP = "op";
   @SerializedName(SERIALIZED_NAME_OP)
