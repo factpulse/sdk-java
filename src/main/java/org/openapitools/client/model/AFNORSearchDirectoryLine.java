@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORSearchDirectoryLine
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T14:52:09.258353116Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T14:59:55.676008722Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORSearchDirectoryLine {
   public static final String SERIALIZED_NAME_FILTERS = "filters";
   @SerializedName(SERIALIZED_NAME_FILTERS)

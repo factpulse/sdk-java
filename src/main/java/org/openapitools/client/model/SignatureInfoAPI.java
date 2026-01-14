@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Information about an electronic signature in a PDF.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T14:52:09.258353116Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T14:59:55.676008722Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SignatureInfoAPI {
   public static final String SERIALIZED_NAME_FIELD_NAME = "fieldName";
   @SerializedName(SERIALIZED_NAME_FIELD_NAME)

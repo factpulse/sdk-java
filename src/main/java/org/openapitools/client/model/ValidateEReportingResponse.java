@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Response after validating e-reporting data.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T14:52:09.258353116Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T14:59:55.676008722Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ValidateEReportingResponse {
   public static final String SERIALIZED_NAME_VALID = "valid";
   @SerializedName(SERIALIZED_NAME_VALID)
