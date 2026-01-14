@@ -25,41 +25,57 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
+ * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
  */
-public class FactureElectroniqueRestApiSchemasEreportingValidationErrorTest {
-    private final FactureElectroniqueRestApiSchemasEreportingValidationError model = new FactureElectroniqueRestApiSchemasEreportingValidationError();
+public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest {
+    private final FactureElectroniqueRestApiSchemasProcessingChorusProCredentials model = new FactureElectroniqueRestApiSchemasProcessingChorusProCredentials();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
+     * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasEreportingValidationError() {
-        // TODO: test FactureElectroniqueRestApiSchemasEreportingValidationError
+    public void testFactureElectroniqueRestApiSchemasProcessingChorusProCredentials() {
+        // TODO: test FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
     }
 
     /**
-     * Test the property 'field'
+     * Test the property 'pisteClientId'
      */
     @Test
-    public void fieldTest() {
-        // TODO: test field
+    public void pisteClientIdTest() {
+        // TODO: test pisteClientId
     }
 
     /**
-     * Test the property 'message'
+     * Test the property 'pisteClientSecret'
      */
     @Test
-    public void messageTest() {
-        // TODO: test message
+    public void pisteClientSecretTest() {
+        // TODO: test pisteClientSecret
     }
 
     /**
-     * Test the property 'code'
+     * Test the property 'chorusLogin'
      */
     @Test
-    public void codeTest() {
-        // TODO: test code
+    public void chorusLoginTest() {
+        // TODO: test chorusLogin
+    }
+
+    /**
+     * Test the property 'chorusPassword'
+     */
+    @Test
+    public void chorusPasswordTest() {
+        // TODO: test chorusPassword
+    }
+
+    /**
+     * Test the property 'sandboxMode'
+     */
+    @Test
+    public void sandboxModeTest() {
+        // TODO: test sandboxMode
     }
 
 }

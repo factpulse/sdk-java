@@ -19,62 +19,88 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+ * Model tests for FactureElectroniqueRestApiSchemasConvertValidationError
  */
-public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest {
-    private final FactureElectroniqueRestApiSchemasChorusProChorusProCredentials model = new FactureElectroniqueRestApiSchemasChorusProChorusProCredentials();
+public class FactureElectroniqueRestApiSchemasConvertValidationErrorTest {
+    private final FactureElectroniqueRestApiSchemasConvertValidationError model = new FactureElectroniqueRestApiSchemasConvertValidationError();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+     * Model tests for FactureElectroniqueRestApiSchemasConvertValidationError
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
-        // TODO: test FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+    public void testFactureElectroniqueRestApiSchemasConvertValidationError() {
+        // TODO: test FactureElectroniqueRestApiSchemasConvertValidationError
     }
 
     /**
-     * Test the property 'pisteClientId'
+     * Test the property 'rule'
      */
     @Test
-    public void pisteClientIdTest() {
-        // TODO: test pisteClientId
+    public void ruleTest() {
+        // TODO: test rule
     }
 
     /**
-     * Test the property 'pisteClientSecret'
+     * Test the property 'btCode'
      */
     @Test
-    public void pisteClientSecretTest() {
-        // TODO: test pisteClientSecret
+    public void btCodeTest() {
+        // TODO: test btCode
     }
 
     /**
-     * Test the property 'chorusProLogin'
+     * Test the property 'severity'
      */
     @Test
-    public void chorusProLoginTest() {
-        // TODO: test chorusProLogin
+    public void severityTest() {
+        // TODO: test severity
     }
 
     /**
-     * Test the property 'chorusProPassword'
+     * Test the property 'message'
      */
     @Test
-    public void chorusProPasswordTest() {
-        // TODO: test chorusProPassword
+    public void messageTest() {
+        // TODO: test message
     }
 
     /**
-     * Test the property 'sandbox'
+     * Test the property 'suggestedValue'
      */
     @Test
-    public void sandboxTest() {
-        // TODO: test sandbox
+    public void suggestedValueTest() {
+        // TODO: test suggestedValue
+    }
+
+    /**
+     * Test the property 'suggestedField'
+     */
+    @Test
+    public void suggestedFieldTest() {
+        // TODO: test suggestedField
+    }
+
+    /**
+     * Test the property 'explanation'
+     */
+    @Test
+    public void explanationTest() {
+        // TODO: test explanation
+    }
+
+    /**
+     * Test the property 'confidence'
+     */
+    @Test
+    public void confidenceTest() {
+        // TODO: test confidence
     }
 
 }

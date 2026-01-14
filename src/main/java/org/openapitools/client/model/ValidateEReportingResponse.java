@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasEreportingValidationError;
+import org.openapitools.client.model.ValidationError;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Response after validating e-reporting data.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:45:16.569819240Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:53:27.348950954Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ValidateEReportingResponse {
   public static final String SERIALIZED_NAME_VALID = "valid";
   @SerializedName(SERIALIZED_NAME_VALID)
@@ -71,12 +71,12 @@ public class ValidateEReportingResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
   @javax.annotation.Nullable
-  private List<FactureElectroniqueRestApiSchemasEreportingValidationError> errors = new ArrayList<>();
+  private List<ValidationError> errors = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_WARNINGS = "warnings";
   @SerializedName(SERIALIZED_NAME_WARNINGS)
   @javax.annotation.Nullable
-  private List<FactureElectroniqueRestApiSchemasEreportingValidationError> warnings = new ArrayList<>();
+  private List<ValidationError> warnings = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -143,12 +143,12 @@ public class ValidateEReportingResponse {
   }
 
 
-  public ValidateEReportingResponse errors(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasEreportingValidationError> errors) {
+  public ValidateEReportingResponse errors(@javax.annotation.Nullable List<ValidationError> errors) {
     this.errors = errors;
     return this;
   }
 
-  public ValidateEReportingResponse addErrorsItem(FactureElectroniqueRestApiSchemasEreportingValidationError errorsItem) {
+  public ValidateEReportingResponse addErrorsItem(ValidationError errorsItem) {
     if (this.errors == null) {
       this.errors = new ArrayList<>();
     }
@@ -161,21 +161,21 @@ public class ValidateEReportingResponse {
    * @return errors
    */
   @javax.annotation.Nullable
-  public List<FactureElectroniqueRestApiSchemasEreportingValidationError> getErrors() {
+  public List<ValidationError> getErrors() {
     return errors;
   }
 
-  public void setErrors(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasEreportingValidationError> errors) {
+  public void setErrors(@javax.annotation.Nullable List<ValidationError> errors) {
     this.errors = errors;
   }
 
 
-  public ValidateEReportingResponse warnings(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasEreportingValidationError> warnings) {
+  public ValidateEReportingResponse warnings(@javax.annotation.Nullable List<ValidationError> warnings) {
     this.warnings = warnings;
     return this;
   }
 
-  public ValidateEReportingResponse addWarningsItem(FactureElectroniqueRestApiSchemasEreportingValidationError warningsItem) {
+  public ValidateEReportingResponse addWarningsItem(ValidationError warningsItem) {
     if (this.warnings == null) {
       this.warnings = new ArrayList<>();
     }
@@ -188,11 +188,11 @@ public class ValidateEReportingResponse {
    * @return warnings
    */
   @javax.annotation.Nullable
-  public List<FactureElectroniqueRestApiSchemasEreportingValidationError> getWarnings() {
+  public List<ValidationError> getWarnings() {
     return warnings;
   }
 
-  public void setWarnings(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasEreportingValidationError> warnings) {
+  public void setWarnings(@javax.annotation.Nullable List<ValidationError> warnings) {
     this.warnings = warnings;
   }
 
@@ -320,7 +320,7 @@ public class ValidateEReportingResponse {
 
           // validate the optional field `errors` (array)
           for (int i = 0; i < jsonArrayerrors.size(); i++) {
-            FactureElectroniqueRestApiSchemasEreportingValidationError.validateJsonElement(jsonArrayerrors.get(i));
+            ValidationError.validateJsonElement(jsonArrayerrors.get(i));
           };
         }
       }
@@ -334,7 +334,7 @@ public class ValidateEReportingResponse {
 
           // validate the optional field `warnings` (array)
           for (int i = 0; i < jsonArraywarnings.size(); i++) {
-            FactureElectroniqueRestApiSchemasEreportingValidationError.validateJsonElement(jsonArraywarnings.get(i));
+            ValidationError.validateJsonElement(jsonArraywarnings.get(i));
           };
         }
       }

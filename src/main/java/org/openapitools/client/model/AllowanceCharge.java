@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Document-level or line-level allowance/charge.  Represents BG-20 (Document level allowances), BG-21 (Document level charges), BG-27 (Invoice line allowances), or BG-28 (Invoice line charges).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:45:16.569819240Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:53:27.348950954Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AllowanceCharge {
   public static final String SERIALIZED_NAME_IS_CHARGE = "is_charge";
   @SerializedName(SERIALIZED_NAME_IS_CHARGE)

@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "fr.factpulse",
     name := "factpulse-sdk",
-    version := "1.0.0",
+    version := "3.0.13",
     scalaVersion := "2.11.12",
     scalacOptions ++= Seq("-feature"),
     compile / javacOptions ++= Seq("-Xlint:deprecation"),
