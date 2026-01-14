@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.ChorusProCredentials;
+import org.openapitools.client.model.FactureElectroniqueRestApiSchemasChorusProChorusProCredentials;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -50,12 +50,12 @@ import org.openapitools.client.JSON;
 /**
  * Get an invoice.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T17:25:16.392900388Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T18:12:32.846583553Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GetInvoiceRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
-  private ChorusProCredentials credentials;
+  private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
 
   public static final String SERIALIZED_NAME_CHORUS_INVOICE_ID = "chorusInvoiceId";
   @SerializedName(SERIALIZED_NAME_CHORUS_INVOICE_ID)
@@ -65,7 +65,7 @@ public class GetInvoiceRequest {
   public GetInvoiceRequest() {
   }
 
-  public GetInvoiceRequest credentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
+  public GetInvoiceRequest credentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
     this.credentials = credentials;
     return this;
   }
@@ -75,11 +75,11 @@ public class GetInvoiceRequest {
    * @return credentials
    */
   @javax.annotation.Nullable
-  public ChorusProCredentials getCredentials() {
+  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials getCredentials() {
     return credentials;
   }
 
-  public void setCredentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
+  public void setCredentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
     this.credentials = credentials;
   }
 
@@ -196,7 +196,7 @@ public class GetInvoiceRequest {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `credentials`
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
-        ChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
+        FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
   }
 

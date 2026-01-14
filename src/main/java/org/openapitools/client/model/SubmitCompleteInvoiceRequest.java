@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to submit a complete invoice (generation + submission).  Workflow: 1. Auto-enrichment (optional) 2. Factur-X PDF generation 3. Signature (optional) 4. Submission to destination
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T17:25:16.392900388Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T18:12:32.846583553Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SubmitCompleteInvoiceRequest {
   public static final String SERIALIZED_NAME_INVOICE_DATA = "invoiceData";
   @SerializedName(SERIALIZED_NAME_INVOICE_DATA)
