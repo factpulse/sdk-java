@@ -18,14 +18,14 @@ Official Java client for the FactPulse API - French electronic invoicing.
 <dependency>
     <groupId>fr.factpulse</groupId>
     <artifactId>factpulse-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>3.0.15</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'fr.factpulse:factpulse-sdk:1.0.0'
+implementation 'fr.factpulse:factpulse-sdk:3.0.15'
 ```
 
 ## Quick Start
@@ -48,8 +48,10 @@ FactPulseClient client = new FactPulseClient(
 
 // Build the invoice with helpers
 Map<String, Object> invoiceData = new LinkedHashMap<>();
-invoiceData.put("number", "INV-2025-001");
-invoiceData.put("date", "2025-01-15");
+invoiceData.put("invoiceNumber", "INV-2025-001");
+invoiceData.put("issueDate", "2025-01-15");
+invoiceData.put("dueDate", "2025-02-15");
+invoiceData.put("currencyCode", "EUR");
 invoiceData.put("supplier", supplier(
     "My Company SAS", "12345678901234",
     "123 Example Street", "75001", "Paris"
@@ -58,7 +60,7 @@ invoiceData.put("recipient", recipient(
     "Client SARL", "98765432109876",
     "456 Test Avenue", "69001", "Lyon"
 ));
-invoiceData.put("totalAmount", totalAmount(1000.00, 200.00, 1200.00, 1200.00));
+invoiceData.put("totals", invoiceTotals(1000.00, 200.00, 1200.00, 1200.00));
 invoiceData.put("lines", Arrays.asList(
     invoiceLine(1, "Consulting services", 10, 100.00, 1000.00)
 ));
@@ -86,25 +88,25 @@ amount("1234.56");   // "1234.56"
 amount(null);        // "0.00"
 ```
 
-### totalAmount(excludingTax, vat, includingTax, due, ...)
+### invoiceTotals(exclTax, vat, inclTax, amountDue, ...)
 
-Creates a complete TotalAmount object.
+Creates a complete invoice totals object.
 
 ```java
-import static fr.factpulse.sdk.helpers.AmountHelpers.totalAmount;
+import static fr.factpulse.sdk.helpers.AmountHelpers.invoiceTotals;
 
-Map<String, Object> total = totalAmount(
-    1000.00,        // excludingTax
+Map<String, Object> totals = invoiceTotals(
+    1000.00,        // exclTax
     200.00,         // vat
-    1200.00,        // includingTax
-    1200.00,        // due
-    50.00,          // discountIncludingTax (optional)
-    "Loyalty",      // discountReason (optional)
+    1200.00,        // inclTax
+    1200.00,        // amountDue
+    50.00,          // globalAllowanceAmount (optional)
+    "Loyalty",      // globalAllowanceReason (optional)
     100.00          // prepayment (optional)
 );
 ```
 
-### invoiceLine(number, description, quantity, unitPrice, lineTotal, ...)
+### invoiceLine(lineNumber, itemName, quantity, unitNetPrice, lineNetAmount, ...)
 
 Creates an invoice line.
 
@@ -116,15 +118,15 @@ Map<String, Object> line = invoiceLine(
     "Consulting services",
     5,
     200.00,
-    1000.00,  // lineTotal required
+    1000.00,
     "20.00",  // vatRate
     "S",      // vatCategory: S, Z, E, AE, K
-    "HOUR",   // unit: FIXED, PIECE, HOUR, DAY...
+    "HOUR",   // unit: LUMP_SUM, PIECE, HOUR, DAY...
     null      // options Map (reference, etc.)
 );
 ```
 
-### vatLine(manualRate, baseExcludingTax, vatAmount, category)
+### vatLine(manualRate, taxableAmount, vatAmount, category)
 
 Creates a VAT breakdown line.
 
@@ -133,7 +135,7 @@ import static fr.factpulse.sdk.helpers.AmountHelpers.vatLine;
 
 Map<String, Object> vat = vatLine(
     "20.00",    // manualRate
-    1000.00,    // baseExcludingTax
+    1000.00,    // taxableAmount
     200.00,     // vatAmount
     "S"         // category: S, Z, E, AE, K
 );

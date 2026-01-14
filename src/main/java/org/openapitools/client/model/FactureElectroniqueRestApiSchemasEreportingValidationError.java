@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Validation error detail.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T16:43:49.641530363Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T17:25:16.392900388Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class FactureElectroniqueRestApiSchemasEreportingValidationError {
   public static final String SERIALIZED_NAME_FIELD = "field";
   @SerializedName(SERIALIZED_NAME_FIELD)
