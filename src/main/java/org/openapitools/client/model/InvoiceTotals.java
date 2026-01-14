@@ -59,7 +59,7 @@ import org.openapitools.client.JSON;
 /**
  * Contains all invoice total amounts (BG-22).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:33:16.934495654Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:45:16.569819240Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class InvoiceTotals {
   public static final String SERIALIZED_NAME_LINE_TOTAL_AMOUNT = "line_total_amount";
   @SerializedName(SERIALIZED_NAME_LINE_TOTAL_AMOUNT)

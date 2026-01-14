@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Response after generating an aggregated e-reporting XML.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:33:16.934495654Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:45:16.569819240Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GenerateAggregatedReportResponse {
   public static final String SERIALIZED_NAME_REPORT_ID = "reportId";
   @SerializedName(SERIALIZED_NAME_REPORT_ID)

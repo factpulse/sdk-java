@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.AFNORContainsOperator;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,58 +47,82 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * AFNORSearchSiretFiltersName
+ * Validation error detail.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-14T15:45:16.569819240Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class AFNORSearchSiretFiltersName {
-  public static final String SERIALIZED_NAME_OP = "op";
-  @SerializedName(SERIALIZED_NAME_OP)
-  @javax.annotation.Nullable
-  private AFNORContainsOperator op;
+public class FactureElectroniqueRestApiSchemasEreportingValidationError {
+  public static final String SERIALIZED_NAME_FIELD = "field";
+  @SerializedName(SERIALIZED_NAME_FIELD)
+  @javax.annotation.Nonnull
+  private String field;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  @javax.annotation.Nullable
-  private String value;
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  @javax.annotation.Nonnull
+  private String message;
 
-  public AFNORSearchSiretFiltersName() {
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
+  private String code;
+
+  public FactureElectroniqueRestApiSchemasEreportingValidationError() {
   }
 
-  public AFNORSearchSiretFiltersName op(@javax.annotation.Nullable AFNORContainsOperator op) {
-    this.op = op;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError field(@javax.annotation.Nonnull String field) {
+    this.field = field;
     return this;
   }
 
   /**
-   * Get op
-   * @return op
+   * Field path with error
+   * @return field
    */
-  @javax.annotation.Nullable
-  public AFNORContainsOperator getOp() {
-    return op;
+  @javax.annotation.Nonnull
+  public String getField() {
+    return field;
   }
 
-  public void setOp(@javax.annotation.Nullable AFNORContainsOperator op) {
-    this.op = op;
+  public void setField(@javax.annotation.Nonnull String field) {
+    this.field = field;
   }
 
 
-  public AFNORSearchSiretFiltersName value(@javax.annotation.Nullable String value) {
-    this.value = value;
+  public FactureElectroniqueRestApiSchemasEreportingValidationError message(@javax.annotation.Nonnull String message) {
+    this.message = message;
     return this;
   }
 
   /**
-   * business name
-   * @return value
+   * Error message
+   * @return message
    */
-  @javax.annotation.Nullable
-  public String getValue() {
-    return value;
+  @javax.annotation.Nonnull
+  public String getMessage() {
+    return message;
   }
 
-  public void setValue(@javax.annotation.Nullable String value) {
-    this.value = value;
+  public void setMessage(@javax.annotation.Nonnull String message) {
+    this.message = message;
+  }
+
+
+  public FactureElectroniqueRestApiSchemasEreportingValidationError code(@javax.annotation.Nullable String code) {
+    this.code = code;
+    return this;
+  }
+
+  /**
+   * Get code
+   * @return code
+   */
+  @javax.annotation.Nullable
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(@javax.annotation.Nullable String code) {
+    this.code = code;
   }
 
 
@@ -111,22 +135,35 @@ public class AFNORSearchSiretFiltersName {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AFNORSearchSiretFiltersName afNORSearchSiretFiltersName = (AFNORSearchSiretFiltersName) o;
-    return Objects.equals(this.op, afNORSearchSiretFiltersName.op) &&
-        Objects.equals(this.value, afNORSearchSiretFiltersName.value);
+    FactureElectroniqueRestApiSchemasEreportingValidationError factureElectroniqueRestApiSchemasEreportingValidationError = (FactureElectroniqueRestApiSchemasEreportingValidationError) o;
+    return Objects.equals(this.field, factureElectroniqueRestApiSchemasEreportingValidationError.field) &&
+        Objects.equals(this.message, factureElectroniqueRestApiSchemasEreportingValidationError.message) &&
+        Objects.equals(this.code, factureElectroniqueRestApiSchemasEreportingValidationError.code);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(op, value);
+    return Objects.hash(field, message, code);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AFNORSearchSiretFiltersName {\n");
-    sb.append("    op: ").append(toIndentedString(op)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("class FactureElectroniqueRestApiSchemasEreportingValidationError {\n");
+    sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -148,39 +185,48 @@ public class AFNORSearchSiretFiltersName {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("op", "value"));
+    openapiFields = new HashSet<String>(Arrays.asList("field", "message", "code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("field", "message"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AFNORSearchSiretFiltersName
+   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!AFNORSearchSiretFiltersName.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in AFNORSearchSiretFiltersName is not found in the empty JSON string", AFNORSearchSiretFiltersName.openapiRequiredFields.toString()));
+        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasEreportingValidationError is not found in the empty JSON string", FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AFNORSearchSiretFiltersName.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `AFNORSearchSiretFiltersName` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasEreportingValidationError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `op`
-      if (jsonObj.get("op") != null && !jsonObj.get("op").isJsonNull()) {
-        AFNORContainsOperator.validateJsonElement(jsonObj.get("op"));
+      if (!jsonObj.get("field").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
       }
-      if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull()) && !jsonObj.get("value").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
+      if (!jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      }
+      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
       }
   }
 
@@ -188,22 +234,22 @@ public class AFNORSearchSiretFiltersName {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AFNORSearchSiretFiltersName.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AFNORSearchSiretFiltersName' and its subtypes
+       if (!FactureElectroniqueRestApiSchemasEreportingValidationError.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasEreportingValidationError' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AFNORSearchSiretFiltersName> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AFNORSearchSiretFiltersName.class));
+       final TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasEreportingValidationError.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AFNORSearchSiretFiltersName>() {
+       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError>() {
            @Override
-           public void write(JsonWriter out, AFNORSearchSiretFiltersName value) throws IOException {
+           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasEreportingValidationError value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public AFNORSearchSiretFiltersName read(JsonReader in) throws IOException {
+           public FactureElectroniqueRestApiSchemasEreportingValidationError read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -214,18 +260,18 @@ public class AFNORSearchSiretFiltersName {
   }
 
   /**
-   * Create an instance of AFNORSearchSiretFiltersName given an JSON string
+   * Create an instance of FactureElectroniqueRestApiSchemasEreportingValidationError given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AFNORSearchSiretFiltersName
-   * @throws IOException if the JSON string is invalid with respect to AFNORSearchSiretFiltersName
+   * @return An instance of FactureElectroniqueRestApiSchemasEreportingValidationError
+   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
    */
-  public static AFNORSearchSiretFiltersName fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AFNORSearchSiretFiltersName.class);
+  public static FactureElectroniqueRestApiSchemasEreportingValidationError fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasEreportingValidationError.class);
   }
 
   /**
-   * Convert an instance of AFNORSearchSiretFiltersName to an JSON string
+   * Convert an instance of FactureElectroniqueRestApiSchemasEreportingValidationError to an JSON string
    *
    * @return JSON string
    */
