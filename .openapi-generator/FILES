@@ -155,8 +155,8 @@ docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
 docs/FactureElectroniqueModelsInvoiceTypeCode.md
-docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasConvertValidationError.md
+docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
 docs/FileInfo.md
 docs/FilesInfo.md
@@ -474,8 +474,8 @@ src/main/java/org/openapitools/client/model/ExtractionInfo.java
 src/main/java/org/openapitools/client/model/FacturXInvoice.java
 src/main/java/org/openapitools/client/model/FacturXPDFInfo.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCode.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasConvertValidationError.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FieldStatus.java
 src/main/java/org/openapitools/client/model/FileInfo.java
 src/main/java/org/openapitools/client/model/FilesInfo.java
@@ -762,8 +762,8 @@ src/test/java/org/openapitools/client/model/ExtractionInfoTest.java
 src/test/java/org/openapitools/client/model/FacturXInvoiceTest.java
 src/test/java/org/openapitools/client/model/FacturXPDFInfoTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCodeTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasConvertValidationErrorTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FieldStatusTest.java
 src/test/java/org/openapitools/client/model/FileInfoTest.java
 src/test/java/org/openapitools/client/model/FilesInfoTest.java
