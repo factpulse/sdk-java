@@ -37,10 +37,6 @@ import org.openapitools.client.model.AFNORRoutingCodePost201Response;
 import org.openapitools.client.model.AFNORRoutingCodeSearchPost200Response;
 import org.openapitools.client.model.AFNORSirenSearchPost200Response;
 import org.openapitools.client.model.AFNORSiretSearchPost200Response;
-import org.openapitools.client.model.AcceptLanguage;
-import org.openapitools.client.model.DirectoryLineInclude;
-import org.openapitools.client.model.RoutingCodeInclude;
-import org.openapitools.client.model.SiretInclude;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -87,7 +83,6 @@ public class AfnorPdpPaDirectoryServiceApi {
 
     /**
      * Build call for createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -109,7 +104,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -149,25 +144,19 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
-        return createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostCall(acceptLanguage, _callback);
+    private okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostCall(_callback);
 
     }
 
     /**
      * Creating a directory line
      * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -188,15 +177,14 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public Object createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<Object> localVarResp = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostWithHttpInfo(acceptLanguage);
+    public Object createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost() throws ApiException {
+        ApiResponse<Object> localVarResp = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * Creating a directory line
      * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -217,8 +205,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostWithHttpInfo(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(acceptLanguage, null);
+    public ApiResponse<Object> createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -226,7 +214,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Creating a directory line (asynchronously)
      * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -248,16 +235,15 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostAsync(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostAsync(final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(acceptLanguage, _callback);
+        okhttp3.Call localVarCall = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -279,7 +265,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -319,25 +305,19 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
-        return createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostCall(acceptLanguage, _callback);
+    private okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostCall(_callback);
 
     }
 
     /**
      * Create a routing code
      * Creating a routing code.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -358,15 +338,14 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public Object createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<Object> localVarResp = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostWithHttpInfo(acceptLanguage);
+    public Object createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost() throws ApiException {
+        ApiResponse<Object> localVarResp = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * Create a routing code
      * Creating a routing code.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -387,8 +366,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostWithHttpInfo(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(acceptLanguage, null);
+    public ApiResponse<Object> createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -396,7 +375,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Create a routing code (asynchronously)
      * Creating a routing code.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -418,9 +396,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostAsync(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostAsync(final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(acceptLanguage, _callback);
+        okhttp3.Call localVarCall = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -428,7 +406,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -450,7 +427,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -491,23 +468,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(Async)");
         }
 
-        return deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteCall(idInstance, acceptLanguage, _callback);
+        return deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteCall(idInstance, _callback);
 
     }
 
@@ -515,7 +487,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Delete a directory line
      * Delete a directory line.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -536,8 +507,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public Object deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<Object> localVarResp = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteWithHttpInfo(idInstance, acceptLanguage);
+    public Object deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<Object> localVarResp = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -545,7 +516,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Delete a directory line
      * Delete a directory line.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -566,8 +536,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Object> deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(idInstance, acceptLanguage, null);
+    public ApiResponse<Object> deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -576,7 +546,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Delete a directory line (asynchronously)
      * Delete a directory line.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -598,9 +567,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<Object> _callback) throws ApiException {
+    public okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(idInstance, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -733,9 +702,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet
      * @param addressingIdentifier Addressing identifier (SIREN, SIRET or routing code) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -756,7 +722,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetCall(@javax.annotation.Nonnull String addressingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<DirectoryLineInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetCall(@javax.annotation.Nonnull String addressingIdentifier, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -782,14 +748,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
-        if (include != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "include", include));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -805,23 +763,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(@javax.annotation.Nonnull String addressingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<DirectoryLineInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(@javax.annotation.Nonnull String addressingIdentifier, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'addressingIdentifier' is set
         if (addressingIdentifier == null) {
             throw new ApiException("Missing the required parameter 'addressingIdentifier' when calling getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(Async)");
         }
 
-        return getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetCall(addressingIdentifier, fields, include, acceptLanguage, _callback);
+        return getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetCall(addressingIdentifier, _callback);
 
     }
 
@@ -829,9 +782,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line.
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param addressingIdentifier Addressing identifier (SIREN, SIRET or routing code) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -851,8 +801,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(@javax.annotation.Nonnull String addressingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<DirectoryLineInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> localVarResp = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(addressingIdentifier, fields, include, acceptLanguage);
+    public AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(@javax.annotation.Nonnull String addressingIdentifier) throws ApiException {
+        ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> localVarResp = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(addressingIdentifier);
         return localVarResp.getData();
     }
 
@@ -860,9 +810,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line.
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param addressingIdentifier Addressing identifier (SIREN, SIRET or routing code) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -882,8 +829,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(@javax.annotation.Nonnull String addressingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<DirectoryLineInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(addressingIdentifier, fields, include, acceptLanguage, null);
+    public ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(@javax.annotation.Nonnull String addressingIdentifier) throws ApiException {
+        okhttp3.Call localVarCall = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(addressingIdentifier, null);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -892,9 +839,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line. (asynchronously)
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param addressingIdentifier Addressing identifier (SIREN, SIRET or routing code) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -915,9 +859,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetAsync(@javax.annotation.Nonnull String addressingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<DirectoryLineInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> _callback) throws ApiException {
+    public okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetAsync(@javax.annotation.Nonnull String addressingIdentifier, final ApiCallback<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(addressingIdentifier, fields, include, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(addressingIdentifier, _callback);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -925,8 +869,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -947,7 +889,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -973,10 +915,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -992,23 +930,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(Async)");
         }
 
-        return getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetCall(idInstance, fields, acceptLanguage, _callback);
+        return getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetCall(idInstance, _callback);
 
     }
 
@@ -1016,8 +949,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line.
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1037,8 +968,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> localVarResp = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetWithHttpInfo(idInstance, fields, acceptLanguage);
+    public AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> localVarResp = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -1046,8 +977,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line.
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1067,8 +996,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, null);
+    public ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1077,8 +1006,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line. (asynchronously)
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Directory Line resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1099,9 +1026,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> _callback) throws ApiException {
+    public okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1109,8 +1036,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1131,7 +1056,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1157,10 +1082,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1176,23 +1097,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(Async)");
         }
 
-        return getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetCall(idInstance, fields, acceptLanguage, _callback);
+        return getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetCall(idInstance, _callback);
 
     }
 
@@ -1200,8 +1116,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a routing code by instance-id.
      * Retrieve the Routing Code data corresponding to the Instance ID.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORRoutingCodePayloadHistoryLegalUnitFacility
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1221,8 +1135,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> localVarResp = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetWithHttpInfo(idInstance, fields, acceptLanguage);
+    public AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> localVarResp = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -1230,8 +1144,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a routing code by instance-id.
      * Retrieve the Routing Code data corresponding to the Instance ID.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORRoutingCodePayloadHistoryLegalUnitFacility&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1251,8 +1163,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, null);
+    public ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePayloadHistoryLegalUnitFacility>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1261,8 +1173,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a routing code by instance-id. (asynchronously)
      * Retrieve the Routing Code data corresponding to the Instance ID.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1283,9 +1193,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORRoutingCodePayloadHistoryLegalUnitFacility> _callback) throws ApiException {
+    public okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORRoutingCodePayloadHistoryLegalUnitFacility> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePayloadHistoryLegalUnitFacility>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1294,9 +1204,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Build call for getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
      * @param routingIdentifier Routing code identifier (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1317,7 +1224,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetCall(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<RoutingCodeInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetCall(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1344,14 +1251,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
-        if (include != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "include", include));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1367,17 +1266,12 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetValidateBeforeCall(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<RoutingCodeInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetValidateBeforeCall(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'siret' is set
         if (siret == null) {
             throw new ApiException("Missing the required parameter 'siret' when calling getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(Async)");
@@ -1388,7 +1282,7 @@ public class AfnorPdpPaDirectoryServiceApi {
             throw new ApiException("Missing the required parameter 'routingIdentifier' when calling getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(Async)");
         }
 
-        return getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetCall(siret, routingIdentifier, fields, include, acceptLanguage, _callback);
+        return getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetCall(siret, routingIdentifier, _callback);
 
     }
 
@@ -1397,9 +1291,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Retrieve the Routing Code data corresponding to the identifier passed in parameters.
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
      * @param routingIdentifier Routing code identifier (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORRoutingCodePayloadHistoryLegalUnitFacility
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1419,8 +1310,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<RoutingCodeInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> localVarResp = getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetWithHttpInfo(siret, routingIdentifier, fields, include, acceptLanguage);
+    public AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier) throws ApiException {
+        ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> localVarResp = getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetWithHttpInfo(siret, routingIdentifier);
         return localVarResp.getData();
     }
 
@@ -1429,9 +1320,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Retrieve the Routing Code data corresponding to the identifier passed in parameters.
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
      * @param routingIdentifier Routing code identifier (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORRoutingCodePayloadHistoryLegalUnitFacility&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1451,8 +1339,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetWithHttpInfo(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<RoutingCodeInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetValidateBeforeCall(siret, routingIdentifier, fields, include, acceptLanguage, null);
+    public ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetWithHttpInfo(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier) throws ApiException {
+        okhttp3.Call localVarCall = getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetValidateBeforeCall(siret, routingIdentifier, null);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePayloadHistoryLegalUnitFacility>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1462,9 +1350,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Retrieve the Routing Code data corresponding to the identifier passed in parameters.
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
      * @param routingIdentifier Routing code identifier (required)
-     * @param fields Fields of the Routing Code resource (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1485,9 +1370,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetAsync(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<RoutingCodeInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORRoutingCodePayloadHistoryLegalUnitFacility> _callback) throws ApiException {
+    public okhttp3.Call getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetAsync(@javax.annotation.Nonnull String siret, @javax.annotation.Nonnull String routingIdentifier, final ApiCallback<AFNORRoutingCodePayloadHistoryLegalUnitFacility> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetValidateBeforeCall(siret, routingIdentifier, fields, include, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetValidateBeforeCall(siret, routingIdentifier, _callback);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePayloadHistoryLegalUnitFacility>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1495,8 +1380,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet
      * @param siren 9-digit SIREN number (INSEE company identifier) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1517,7 +1400,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetCall(@javax.annotation.Nonnull String siren, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetCall(@javax.annotation.Nonnull String siren, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1543,10 +1426,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1562,23 +1441,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetValidateBeforeCall(@javax.annotation.Nonnull String siren, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetValidateBeforeCall(@javax.annotation.Nonnull String siren, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'siren' is set
         if (siren == null) {
             throw new ApiException("Missing the required parameter 'siren' when calling getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(Async)");
         }
 
-        return getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetCall(siren, fields, acceptLanguage, _callback);
+        return getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetCall(siren, _callback);
 
     }
 
@@ -1586,8 +1460,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Consult a siren (legal unit) by SIREN number
      * Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
      * @param siren 9-digit SIREN number (INSEE company identifier) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORLegalUnitPayloadHistory
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1607,8 +1479,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORLegalUnitPayloadHistory getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(@javax.annotation.Nonnull String siren, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORLegalUnitPayloadHistory> localVarResp = getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetWithHttpInfo(siren, fields, acceptLanguage);
+    public AFNORLegalUnitPayloadHistory getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(@javax.annotation.Nonnull String siren) throws ApiException {
+        ApiResponse<AFNORLegalUnitPayloadHistory> localVarResp = getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetWithHttpInfo(siren);
         return localVarResp.getData();
     }
 
@@ -1616,8 +1488,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Consult a siren (legal unit) by SIREN number
      * Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
      * @param siren 9-digit SIREN number (INSEE company identifier) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORLegalUnitPayloadHistory&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1637,8 +1507,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORLegalUnitPayloadHistory> getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetWithHttpInfo(@javax.annotation.Nonnull String siren, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetValidateBeforeCall(siren, fields, acceptLanguage, null);
+    public ApiResponse<AFNORLegalUnitPayloadHistory> getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetWithHttpInfo(@javax.annotation.Nonnull String siren) throws ApiException {
+        okhttp3.Call localVarCall = getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetValidateBeforeCall(siren, null);
         Type localVarReturnType = new TypeToken<AFNORLegalUnitPayloadHistory>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1647,8 +1517,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Consult a siren (legal unit) by SIREN number (asynchronously)
      * Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
      * @param siren 9-digit SIREN number (INSEE company identifier) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1669,9 +1537,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetAsync(@javax.annotation.Nonnull String siren, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORLegalUnitPayloadHistory> _callback) throws ApiException {
+    public okhttp3.Call getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetAsync(@javax.annotation.Nonnull String siren, final ApiCallback<AFNORLegalUnitPayloadHistory> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetValidateBeforeCall(siren, fields, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetValidateBeforeCall(siren, _callback);
         Type localVarReturnType = new TypeToken<AFNORLegalUnitPayloadHistory>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1679,8 +1547,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1701,7 +1567,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1727,10 +1593,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1746,23 +1608,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(Async)");
         }
 
-        return getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetCall(idInstance, fields, acceptLanguage, _callback);
+        return getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetCall(idInstance, _callback);
 
     }
 
@@ -1770,8 +1627,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siren (legal unit) by instance ID
      * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORLegalUnitPayloadHistory
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1791,8 +1646,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORLegalUnitPayloadHistory getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORLegalUnitPayloadHistory> localVarResp = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetWithHttpInfo(idInstance, fields, acceptLanguage);
+    public AFNORLegalUnitPayloadHistory getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<AFNORLegalUnitPayloadHistory> localVarResp = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -1800,8 +1655,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siren (legal unit) by instance ID
      * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORLegalUnitPayloadHistory&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1821,8 +1674,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORLegalUnitPayloadHistory> getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, null);
+    public ApiResponse<AFNORLegalUnitPayloadHistory> getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<AFNORLegalUnitPayloadHistory>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1831,8 +1684,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siren (legal unit) by instance ID (asynchronously)
      * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of the SIREN resource (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1853,9 +1704,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORLegalUnitPayloadHistory> _callback) throws ApiException {
+    public okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORLegalUnitPayloadHistory> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<AFNORLegalUnitPayloadHistory>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1863,9 +1714,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1886,7 +1734,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetCall(@javax.annotation.Nonnull String siret, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<SiretInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetCall(@javax.annotation.Nonnull String siret, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1912,14 +1760,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
-        if (include != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "include", include));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1935,23 +1775,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetValidateBeforeCall(@javax.annotation.Nonnull String siret, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<SiretInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetValidateBeforeCall(@javax.annotation.Nonnull String siret, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'siret' is set
         if (siret == null) {
             throw new ApiException("Missing the required parameter 'siret' when calling getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(Async)");
         }
 
-        return getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetCall(siret, fields, include, acceptLanguage, _callback);
+        return getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetCall(siret, _callback);
 
     }
 
@@ -1959,9 +1794,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siret (facility) by SIRET number
      * Returns the details of a facility associated to a SIRET.
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORFacilityPayloadHistory
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1981,8 +1813,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORFacilityPayloadHistory getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(@javax.annotation.Nonnull String siret, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<SiretInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORFacilityPayloadHistory> localVarResp = getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetWithHttpInfo(siret, fields, include, acceptLanguage);
+    public AFNORFacilityPayloadHistory getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(@javax.annotation.Nonnull String siret) throws ApiException {
+        ApiResponse<AFNORFacilityPayloadHistory> localVarResp = getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetWithHttpInfo(siret);
         return localVarResp.getData();
     }
 
@@ -1990,9 +1822,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siret (facility) by SIRET number
      * Returns the details of a facility associated to a SIRET.
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORFacilityPayloadHistory&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2012,8 +1841,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORFacilityPayloadHistory> getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetWithHttpInfo(@javax.annotation.Nonnull String siret, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<SiretInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetValidateBeforeCall(siret, fields, include, acceptLanguage, null);
+    public ApiResponse<AFNORFacilityPayloadHistory> getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetWithHttpInfo(@javax.annotation.Nonnull String siret) throws ApiException {
+        okhttp3.Call localVarCall = getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetValidateBeforeCall(siret, null);
         Type localVarReturnType = new TypeToken<AFNORFacilityPayloadHistory>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2022,9 +1851,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siret (facility) by SIRET number (asynchronously)
      * Returns the details of a facility associated to a SIRET.
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param include Relations to include in the response. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2045,9 +1871,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetAsync(@javax.annotation.Nonnull String siret, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable List<SiretInclude> include, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORFacilityPayloadHistory> _callback) throws ApiException {
+    public okhttp3.Call getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetAsync(@javax.annotation.Nonnull String siret, final ApiCallback<AFNORFacilityPayloadHistory> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetValidateBeforeCall(siret, fields, include, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetValidateBeforeCall(siret, _callback);
         Type localVarReturnType = new TypeToken<AFNORFacilityPayloadHistory>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2055,8 +1881,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2077,7 +1901,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2103,10 +1927,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (fields != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "fields", fields));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2122,23 +1942,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(Async)");
         }
 
-        return getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetCall(idInstance, fields, acceptLanguage, _callback);
+        return getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetCall(idInstance, _callback);
 
     }
 
@@ -2146,8 +1961,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siret (facility) by id-instance
      * Returns the details of a facility according to an instance-id.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORFacilityPayloadHistory
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2167,8 +1980,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORFacilityPayloadHistory getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORFacilityPayloadHistory> localVarResp = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetWithHttpInfo(idInstance, fields, acceptLanguage);
+    public AFNORFacilityPayloadHistory getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<AFNORFacilityPayloadHistory> localVarResp = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -2176,8 +1989,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siret (facility) by id-instance
      * Returns the details of a facility according to an instance-id.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORFacilityPayloadHistory&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2197,8 +2008,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORFacilityPayloadHistory> getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, null);
+    public ApiResponse<AFNORFacilityPayloadHistory> getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<AFNORFacilityPayloadHistory>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2207,8 +2018,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Gets a siret (facility) by id-instance (asynchronously)
      * Returns the details of a facility according to an instance-id.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param fields Fields of a SIRET resource. (optional)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2229,9 +2038,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable List<String> fields, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORFacilityPayloadHistory> _callback) throws ApiException {
+    public okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORFacilityPayloadHistory> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(idInstance, fields, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<AFNORFacilityPayloadHistory>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2239,7 +2048,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2260,7 +2068,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2301,23 +2109,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(Async)");
         }
 
-        return patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchCall(idInstance, acceptLanguage, _callback);
+        return patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchCall(idInstance, _callback);
 
     }
 
@@ -2325,7 +2128,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Partially updates a directory line..
      * Partially updates a directory line.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORDirectoryLinePost201Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2345,8 +2147,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORDirectoryLinePost201Response patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORDirectoryLinePost201Response> localVarResp = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchWithHttpInfo(idInstance, acceptLanguage);
+    public AFNORDirectoryLinePost201Response patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<AFNORDirectoryLinePost201Response> localVarResp = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -2354,7 +2156,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Partially updates a directory line..
      * Partially updates a directory line.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORDirectoryLinePost201Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2374,8 +2175,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORDirectoryLinePost201Response> patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(idInstance, acceptLanguage, null);
+    public ApiResponse<AFNORDirectoryLinePost201Response> patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLinePost201Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2384,7 +2185,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Partially updates a directory line.. (asynchronously)
      * Partially updates a directory line.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2405,9 +2205,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORDirectoryLinePost201Response> _callback) throws ApiException {
+    public okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORDirectoryLinePost201Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(idInstance, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLinePost201Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2415,7 +2215,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2437,7 +2236,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2478,23 +2277,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(Async)");
         }
 
-        return patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchCall(idInstance, acceptLanguage, _callback);
+        return patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchCall(idInstance, _callback);
 
     }
 
@@ -2502,7 +2296,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Partially update a private routing code.
      * Partially update a private routing code.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORRoutingCodePost201Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2523,8 +2316,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORRoutingCodePost201Response patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORRoutingCodePost201Response> localVarResp = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchWithHttpInfo(idInstance, acceptLanguage);
+    public AFNORRoutingCodePost201Response patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<AFNORRoutingCodePost201Response> localVarResp = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -2532,7 +2325,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Partially update a private routing code.
      * Partially update a private routing code.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORRoutingCodePost201Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2553,8 +2345,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORRoutingCodePost201Response> patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(idInstance, acceptLanguage, null);
+    public ApiResponse<AFNORRoutingCodePost201Response> patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2563,7 +2355,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Partially update a private routing code. (asynchronously)
      * Partially update a private routing code.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2585,9 +2376,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORRoutingCodePost201Response> _callback) throws ApiException {
+    public okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORRoutingCodePost201Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(idInstance, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2595,7 +2386,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Build call for putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2617,7 +2407,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2658,23 +2448,18 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'idInstance' is set
         if (idInstance == null) {
             throw new ApiException("Missing the required parameter 'idInstance' when calling putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(Async)");
         }
 
-        return putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutCall(idInstance, acceptLanguage, _callback);
+        return putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutCall(idInstance, _callback);
 
     }
 
@@ -2682,7 +2467,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Completely update a private routing code.
      * Completely update a private routing code.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORRoutingCodePost201Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2703,8 +2487,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORRoutingCodePost201Response putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORRoutingCodePost201Response> localVarResp = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutWithHttpInfo(idInstance, acceptLanguage);
+    public AFNORRoutingCodePost201Response putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        ApiResponse<AFNORRoutingCodePost201Response> localVarResp = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutWithHttpInfo(idInstance);
         return localVarResp.getData();
     }
 
@@ -2712,7 +2496,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Completely update a private routing code.
      * Completely update a private routing code.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORRoutingCodePost201Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2733,8 +2516,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORRoutingCodePost201Response> putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutWithHttpInfo(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(idInstance, acceptLanguage, null);
+    public ApiResponse<AFNORRoutingCodePost201Response> putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
+        okhttp3.Call localVarCall = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(idInstance, null);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2743,7 +2526,6 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Completely update a private routing code. (asynchronously)
      * Completely update a private routing code.
      * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2765,16 +2547,15 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutAsync(@javax.annotation.Nonnull String idInstance, @javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORRoutingCodePost201Response> _callback) throws ApiException {
+    public okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORRoutingCodePost201Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(idInstance, acceptLanguage, _callback);
+        okhttp3.Call localVarCall = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(idInstance, _callback);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2796,7 +2577,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2836,25 +2617,19 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostValidateBeforeCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
-        return searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostCall(acceptLanguage, _callback);
+    private okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostCall(_callback);
 
     }
 
     /**
      * Search for a directory line
      * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORDirectoryLineSearchPost200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2875,15 +2650,14 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORDirectoryLineSearchPost200Response searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORDirectoryLineSearchPost200Response> localVarResp = searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostWithHttpInfo(acceptLanguage);
+    public AFNORDirectoryLineSearchPost200Response searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost() throws ApiException {
+        ApiResponse<AFNORDirectoryLineSearchPost200Response> localVarResp = searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * Search for a directory line
      * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORDirectoryLineSearchPost200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -2904,8 +2678,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORDirectoryLineSearchPost200Response> searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostWithHttpInfo(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostValidateBeforeCall(acceptLanguage, null);
+    public ApiResponse<AFNORDirectoryLineSearchPost200Response> searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLineSearchPost200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2913,7 +2687,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Search for a directory line (asynchronously)
      * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -2935,16 +2708,15 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostAsync(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORDirectoryLineSearchPost200Response> _callback) throws ApiException {
+    public okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostAsync(final ApiCallback<AFNORDirectoryLineSearchPost200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostValidateBeforeCall(acceptLanguage, _callback);
+        okhttp3.Call localVarCall = searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<AFNORDirectoryLineSearchPost200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -2966,7 +2738,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3006,25 +2778,19 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostValidateBeforeCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
-        return searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostCall(acceptLanguage, _callback);
+    private okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostCall(_callback);
 
     }
 
     /**
      * Search for a routing code
      * Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORRoutingCodeSearchPost200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -3045,15 +2811,14 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORRoutingCodeSearchPost200Response searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORRoutingCodeSearchPost200Response> localVarResp = searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostWithHttpInfo(acceptLanguage);
+    public AFNORRoutingCodeSearchPost200Response searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost() throws ApiException {
+        ApiResponse<AFNORRoutingCodeSearchPost200Response> localVarResp = searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * Search for a routing code
      * Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORRoutingCodeSearchPost200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -3074,8 +2839,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORRoutingCodeSearchPost200Response> searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostWithHttpInfo(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostValidateBeforeCall(acceptLanguage, null);
+    public ApiResponse<AFNORRoutingCodeSearchPost200Response> searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodeSearchPost200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -3083,7 +2848,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Search for a routing code (asynchronously)
      * Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -3105,16 +2869,15 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostAsync(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORRoutingCodeSearchPost200Response> _callback) throws ApiException {
+    public okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostAsync(final ApiCallback<AFNORRoutingCodeSearchPost200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostValidateBeforeCall(acceptLanguage, _callback);
+        okhttp3.Call localVarCall = searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<AFNORRoutingCodeSearchPost200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3136,7 +2899,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3176,25 +2939,19 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostValidateBeforeCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
-        return searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostCall(acceptLanguage, _callback);
+    private okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostCall(_callback);
 
     }
 
     /**
      * SIREN search (or legal unit)
      * Multi-criteria company search.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORSirenSearchPost200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -3215,15 +2972,14 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORSirenSearchPost200Response searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORSirenSearchPost200Response> localVarResp = searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostWithHttpInfo(acceptLanguage);
+    public AFNORSirenSearchPost200Response searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost() throws ApiException {
+        ApiResponse<AFNORSirenSearchPost200Response> localVarResp = searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * SIREN search (or legal unit)
      * Multi-criteria company search.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORSirenSearchPost200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -3244,8 +3000,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORSirenSearchPost200Response> searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostWithHttpInfo(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostValidateBeforeCall(acceptLanguage, null);
+    public ApiResponse<AFNORSirenSearchPost200Response> searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<AFNORSirenSearchPost200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -3253,7 +3009,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * SIREN search (or legal unit) (asynchronously)
      * Multi-criteria company search.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -3275,16 +3030,15 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostAsync(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORSirenSearchPost200Response> _callback) throws ApiException {
+    public okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostAsync(final ApiCallback<AFNORSirenSearchPost200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostValidateBeforeCall(acceptLanguage, _callback);
+        okhttp3.Call localVarCall = searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<AFNORSirenSearchPost200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -3306,7 +3060,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3346,25 +3100,19 @@ public class AfnorPdpPaDirectoryServiceApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        if (acceptLanguage != null) {
-            localVarHeaderParams.put("Accept-Language", localVarApiClient.parameterToString(acceptLanguage));
-        }
-
-
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostValidateBeforeCall(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback _callback) throws ApiException {
-        return searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostCall(acceptLanguage, _callback);
+    private okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostCall(_callback);
 
     }
 
     /**
      * Search for a SIRET (facility)
      * Multi-criteria search for facilities.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return AFNORSiretSearchPost200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -3385,15 +3133,14 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORSiretSearchPost200Response searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        ApiResponse<AFNORSiretSearchPost200Response> localVarResp = searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostWithHttpInfo(acceptLanguage);
+    public AFNORSiretSearchPost200Response searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost() throws ApiException {
+        ApiResponse<AFNORSiretSearchPost200Response> localVarResp = searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * Search for a SIRET (facility)
      * Multi-criteria search for facilities.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @return ApiResponse&lt;AFNORSiretSearchPost200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -3414,8 +3161,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORSiretSearchPost200Response> searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostWithHttpInfo(@javax.annotation.Nullable AcceptLanguage acceptLanguage) throws ApiException {
-        okhttp3.Call localVarCall = searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostValidateBeforeCall(acceptLanguage, null);
+    public ApiResponse<AFNORSiretSearchPost200Response> searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<AFNORSiretSearchPost200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -3423,7 +3170,6 @@ public class AfnorPdpPaDirectoryServiceApi {
     /**
      * Search for a SIRET (facility) (asynchronously)
      * Multi-criteria search for facilities.
-     * @param acceptLanguage Specifies the language in which the resource is requested. (optional, default to fr)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -3445,9 +3191,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostAsync(@javax.annotation.Nullable AcceptLanguage acceptLanguage, final ApiCallback<AFNORSiretSearchPost200Response> _callback) throws ApiException {
+    public okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostAsync(final ApiCallback<AFNORSiretSearchPost200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostValidateBeforeCall(acceptLanguage, _callback);
+        okhttp3.Call localVarCall = searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<AFNORSiretSearchPost200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

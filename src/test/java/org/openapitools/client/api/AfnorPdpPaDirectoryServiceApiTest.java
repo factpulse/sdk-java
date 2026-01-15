@@ -24,10 +24,6 @@ import org.openapitools.client.model.AFNORRoutingCodePost201Response;
 import org.openapitools.client.model.AFNORRoutingCodeSearchPost200Response;
 import org.openapitools.client.model.AFNORSirenSearchPost200Response;
 import org.openapitools.client.model.AFNORSiretSearchPost200Response;
-import org.openapitools.client.model.AcceptLanguage;
-import org.openapitools.client.model.DirectoryLineInclude;
-import org.openapitools.client.model.RoutingCodeInclude;
-import org.openapitools.client.model.SiretInclude;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -53,8 +49,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
      */
     @Test
     public void createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostTest() throws ApiException {
-        AcceptLanguage acceptLanguage = null;
-        Object response = api.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage);
+        Object response = api.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost();
         // TODO: test validations
     }
 
@@ -67,8 +62,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
      */
     @Test
     public void createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostTest() throws ApiException {
-        AcceptLanguage acceptLanguage = null;
-        Object response = api.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage);
+        Object response = api.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost();
         // TODO: test validations
     }
 
@@ -82,8 +76,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteTest() throws ApiException {
         String idInstance = null;
-        AcceptLanguage acceptLanguage = null;
-        Object response = api.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, acceptLanguage);
+        Object response = api.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance);
         // TODO: test validations
     }
 
@@ -110,10 +103,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetTest() throws ApiException {
         String addressingIdentifier = null;
-        List<String> fields = null;
-        List<DirectoryLineInclude> include = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode response = api.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, fields, include, acceptLanguage);
+        AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode response = api.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier);
         // TODO: test validations
     }
 
@@ -127,9 +117,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetTest() throws ApiException {
         String idInstance = null;
-        List<String> fields = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode response = api.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+        AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode response = api.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance);
         // TODO: test validations
     }
 
@@ -143,9 +131,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetTest() throws ApiException {
         String idInstance = null;
-        List<String> fields = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORRoutingCodePayloadHistoryLegalUnitFacility response = api.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+        AFNORRoutingCodePayloadHistoryLegalUnitFacility response = api.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance);
         // TODO: test validations
     }
 
@@ -160,10 +146,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     public void getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetTest() throws ApiException {
         String siret = null;
         String routingIdentifier = null;
-        List<String> fields = null;
-        List<RoutingCodeInclude> include = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORRoutingCodePayloadHistoryLegalUnitFacility response = api.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, fields, include, acceptLanguage);
+        AFNORRoutingCodePayloadHistoryLegalUnitFacility response = api.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier);
         // TODO: test validations
     }
 
@@ -177,9 +160,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetTest() throws ApiException {
         String siren = null;
-        List<String> fields = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORLegalUnitPayloadHistory response = api.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, fields, acceptLanguage);
+        AFNORLegalUnitPayloadHistory response = api.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren);
         // TODO: test validations
     }
 
@@ -193,9 +174,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetTest() throws ApiException {
         String idInstance = null;
-        List<String> fields = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORLegalUnitPayloadHistory response = api.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+        AFNORLegalUnitPayloadHistory response = api.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance);
         // TODO: test validations
     }
 
@@ -209,10 +188,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetTest() throws ApiException {
         String siret = null;
-        List<String> fields = null;
-        List<SiretInclude> include = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORFacilityPayloadHistory response = api.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, fields, include, acceptLanguage);
+        AFNORFacilityPayloadHistory response = api.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret);
         // TODO: test validations
     }
 
@@ -226,9 +202,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetTest() throws ApiException {
         String idInstance = null;
-        List<String> fields = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORFacilityPayloadHistory response = api.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+        AFNORFacilityPayloadHistory response = api.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance);
         // TODO: test validations
     }
 
@@ -242,8 +216,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchTest() throws ApiException {
         String idInstance = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORDirectoryLinePost201Response response = api.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, acceptLanguage);
+        AFNORDirectoryLinePost201Response response = api.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance);
         // TODO: test validations
     }
 
@@ -257,8 +230,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchTest() throws ApiException {
         String idInstance = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORRoutingCodePost201Response response = api.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, acceptLanguage);
+        AFNORRoutingCodePost201Response response = api.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance);
         // TODO: test validations
     }
 
@@ -272,8 +244,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutTest() throws ApiException {
         String idInstance = null;
-        AcceptLanguage acceptLanguage = null;
-        AFNORRoutingCodePost201Response response = api.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, acceptLanguage);
+        AFNORRoutingCodePost201Response response = api.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance);
         // TODO: test validations
     }
 
@@ -286,8 +257,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
      */
     @Test
     public void searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostTest() throws ApiException {
-        AcceptLanguage acceptLanguage = null;
-        AFNORDirectoryLineSearchPost200Response response = api.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage);
+        AFNORDirectoryLineSearchPost200Response response = api.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost();
         // TODO: test validations
     }
 
@@ -300,8 +270,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
      */
     @Test
     public void searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostTest() throws ApiException {
-        AcceptLanguage acceptLanguage = null;
-        AFNORRoutingCodeSearchPost200Response response = api.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage);
+        AFNORRoutingCodeSearchPost200Response response = api.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost();
         // TODO: test validations
     }
 
@@ -314,8 +283,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
      */
     @Test
     public void searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostTest() throws ApiException {
-        AcceptLanguage acceptLanguage = null;
-        AFNORSirenSearchPost200Response response = api.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage);
+        AFNORSirenSearchPost200Response response = api.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost();
         // TODO: test validations
     }
 
@@ -328,8 +296,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
      */
     @Test
     public void searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostTest() throws ApiException {
-        AcceptLanguage acceptLanguage = null;
-        AFNORSiretSearchPost200Response response = api.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage);
+        AFNORSiretSearchPost200Response response = api.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost();
         // TODO: test validations
     }
 

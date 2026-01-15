@@ -27,7 +27,7 @@ All URIs are relative to *https://factpulse.fr*
 
 <a id="createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost"></a>
 # **createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost**
-> Object createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage)
+> Object createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost()
 
 Creating a directory line
 
@@ -39,7 +39,6 @@ Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -47,15 +46,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      Object result = apiInstance.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage);
+      Object result = apiInstance.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost");
@@ -69,10 +63,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -80,7 +71,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -105,7 +96,7 @@ public class Example {
 
 <a id="createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost"></a>
 # **createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost**
-> Object createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage)
+> Object createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost()
 
 Create a routing code
 
@@ -117,7 +108,6 @@ Creating a routing code.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -125,15 +115,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      Object result = apiInstance.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage);
+      Object result = apiInstance.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost");
@@ -147,10 +132,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -158,7 +140,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -183,7 +165,7 @@ public class Example {
 
 <a id="deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete"></a>
 # **deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete**
-> Object deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, acceptLanguage)
+> Object deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance)
 
 Delete a directory line
 
@@ -195,7 +177,6 @@ Delete a directory line.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -203,16 +184,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      Object result = apiInstance.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, acceptLanguage);
+      Object result = apiInstance.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete");
@@ -230,7 +206,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -238,7 +213,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -323,7 +298,7 @@ No authorization required
 
 <a id="getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet"></a>
 # **getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet**
-> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, fields, include, acceptLanguage)
+> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier)
 
 Get a directory line.
 
@@ -335,7 +310,6 @@ Retrieve the data from the directory line corresponding to the identifier passed
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -343,18 +317,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String addressingIdentifier = "addressingIdentifier_example"; // String | Addressing identifier (SIREN, SIRET or routing code)
-    List<String> fields = Arrays.asList(); // List<String> | Fields of the Directory Line resource.
-    List<DirectoryLineInclude> include = Arrays.asList(); // List<DirectoryLineInclude> | Relations to include in the response.
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode result = apiInstance.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, fields, include, acceptLanguage);
+      AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode result = apiInstance.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet");
@@ -372,9 +339,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **addressingIdentifier** | **String**| Addressing identifier (SIREN, SIRET or routing code) | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of the Directory Line resource. | [optional] |
-| **include** | [**List&lt;DirectoryLineInclude&gt;**](DirectoryLineInclude.md)| Relations to include in the response. | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -382,7 +346,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -406,7 +370,7 @@ public class Example {
 
 <a id="getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet"></a>
 # **getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet**
-> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
+> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance)
 
 Get a directory line.
 
@@ -418,7 +382,6 @@ Retrieve the data from the directory line corresponding to the identifier passed
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -426,17 +389,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    List<String> fields = Arrays.asList(); // List<String> | Fields of the Directory Line resource.
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode result = apiInstance.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+      AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode result = apiInstance.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet");
@@ -454,8 +411,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of the Directory Line resource. | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -463,7 +418,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -487,7 +442,7 @@ public class Example {
 
 <a id="getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet"></a>
 # **getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet**
-> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
+> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance)
 
 Get a routing code by instance-id.
 
@@ -499,7 +454,6 @@ Retrieve the Routing Code data corresponding to the Instance ID.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -507,17 +461,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    List<String> fields = Arrays.asList(); // List<String> | Fields of the Routing Code resource
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORRoutingCodePayloadHistoryLegalUnitFacility result = apiInstance.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+      AFNORRoutingCodePayloadHistoryLegalUnitFacility result = apiInstance.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet");
@@ -535,8 +483,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of the Routing Code resource | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -544,7 +490,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -568,7 +514,7 @@ public class Example {
 
 <a id="getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet"></a>
 # **getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet**
-> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, fields, include, acceptLanguage)
+> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier)
 
 Get a routing code by SIRET and routing identifier
 
@@ -580,7 +526,6 @@ Retrieve the Routing Code data corresponding to the identifier passed in paramet
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -588,19 +533,12 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String siret = "siret_example"; // String | 14-digit SIRET number (INSEE establishment identifier)
     String routingIdentifier = "routingIdentifier_example"; // String | Routing code identifier
-    List<String> fields = Arrays.asList(); // List<String> | Fields of the Routing Code resource
-    List<RoutingCodeInclude> include = Arrays.asList(); // List<RoutingCodeInclude> | Relations to include in the response.
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORRoutingCodePayloadHistoryLegalUnitFacility result = apiInstance.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, fields, include, acceptLanguage);
+      AFNORRoutingCodePayloadHistoryLegalUnitFacility result = apiInstance.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet");
@@ -619,9 +557,6 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **siret** | **String**| 14-digit SIRET number (INSEE establishment identifier) | |
 | **routingIdentifier** | **String**| Routing code identifier | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of the Routing Code resource | [optional] |
-| **include** | [**List&lt;RoutingCodeInclude&gt;**](RoutingCodeInclude.md)| Relations to include in the response. | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -629,7 +564,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -653,7 +588,7 @@ public class Example {
 
 <a id="getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet"></a>
 # **getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet**
-> AFNORLegalUnitPayloadHistory getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, fields, acceptLanguage)
+> AFNORLegalUnitPayloadHistory getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren)
 
 Consult a siren (legal unit) by SIREN number
 
@@ -665,7 +600,6 @@ Returns the details of a company (legal unit) identified by the SIREN number pas
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -673,17 +607,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String siren = "siren_example"; // String | 9-digit SIREN number (INSEE company identifier)
-    List<String> fields = Arrays.asList(); // List<String> | Fields of the SIREN resource
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORLegalUnitPayloadHistory result = apiInstance.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, fields, acceptLanguage);
+      AFNORLegalUnitPayloadHistory result = apiInstance.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet");
@@ -701,8 +629,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siren** | **String**| 9-digit SIREN number (INSEE company identifier) | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of the SIREN resource | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -710,7 +636,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -734,7 +660,7 @@ public class Example {
 
 <a id="getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet"></a>
 # **getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet**
-> AFNORLegalUnitPayloadHistory getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
+> AFNORLegalUnitPayloadHistory getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance)
 
 Gets a siren (legal unit) by instance ID
 
@@ -746,7 +672,6 @@ Returns the details of a company (legal unit) identified by the id-instance pass
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -754,17 +679,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    List<String> fields = Arrays.asList(); // List<String> | Fields of the SIREN resource
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORLegalUnitPayloadHistory result = apiInstance.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+      AFNORLegalUnitPayloadHistory result = apiInstance.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet");
@@ -782,8 +701,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of the SIREN resource | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -791,7 +708,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -815,7 +732,7 @@ public class Example {
 
 <a id="getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet"></a>
 # **getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet**
-> AFNORFacilityPayloadHistory getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, fields, include, acceptLanguage)
+> AFNORFacilityPayloadHistory getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret)
 
 Gets a siret (facility) by SIRET number
 
@@ -827,7 +744,6 @@ Returns the details of a facility associated to a SIRET.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -835,18 +751,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String siret = "siret_example"; // String | 14-digit SIRET number (INSEE establishment identifier)
-    List<String> fields = Arrays.asList(); // List<String> | Fields of a SIRET resource.
-    List<SiretInclude> include = Arrays.asList(); // List<SiretInclude> | Relations to include in the response.
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORFacilityPayloadHistory result = apiInstance.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, fields, include, acceptLanguage);
+      AFNORFacilityPayloadHistory result = apiInstance.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet");
@@ -864,9 +773,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **siret** | **String**| 14-digit SIRET number (INSEE establishment identifier) | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of a SIRET resource. | [optional] |
-| **include** | [**List&lt;SiretInclude&gt;**](SiretInclude.md)| Relations to include in the response. | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -874,7 +780,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -898,7 +804,7 @@ public class Example {
 
 <a id="getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet"></a>
 # **getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet**
-> AFNORFacilityPayloadHistory getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
+> AFNORFacilityPayloadHistory getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance)
 
 Gets a siret (facility) by id-instance
 
@@ -910,7 +816,6 @@ Returns the details of a facility according to an instance-id.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -918,17 +823,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    List<String> fields = Arrays.asList(); // List<String> | Fields of a SIRET resource.
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORFacilityPayloadHistory result = apiInstance.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage);
+      AFNORFacilityPayloadHistory result = apiInstance.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet");
@@ -946,8 +845,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **fields** | [**List&lt;String&gt;**](String.md)| Fields of a SIRET resource. | [optional] |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -955,7 +852,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -979,7 +876,7 @@ public class Example {
 
 <a id="patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch"></a>
 # **patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch**
-> AFNORDirectoryLinePost201Response patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, acceptLanguage)
+> AFNORDirectoryLinePost201Response patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance)
 
 Partially updates a directory line..
 
@@ -991,7 +888,6 @@ Partially updates a directory line.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -999,16 +895,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORDirectoryLinePost201Response result = apiInstance.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, acceptLanguage);
+      AFNORDirectoryLinePost201Response result = apiInstance.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch");
@@ -1026,7 +917,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -1034,7 +924,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1058,7 +948,7 @@ public class Example {
 
 <a id="patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch"></a>
 # **patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch**
-> AFNORRoutingCodePost201Response patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, acceptLanguage)
+> AFNORRoutingCodePost201Response patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance)
 
 Partially update a private routing code.
 
@@ -1070,7 +960,6 @@ Partially update a private routing code.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1078,16 +967,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORRoutingCodePost201Response result = apiInstance.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, acceptLanguage);
+      AFNORRoutingCodePost201Response result = apiInstance.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch");
@@ -1105,7 +989,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -1113,7 +996,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1138,7 +1021,7 @@ public class Example {
 
 <a id="putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut"></a>
 # **putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut**
-> AFNORRoutingCodePost201Response putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, acceptLanguage)
+> AFNORRoutingCodePost201Response putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance)
 
 Completely update a private routing code.
 
@@ -1150,7 +1033,6 @@ Completely update a private routing code.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1158,16 +1040,11 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
     String idInstance = "idInstance_example"; // String | AFNOR instance ID (UUID)
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORRoutingCodePost201Response result = apiInstance.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, acceptLanguage);
+      AFNORRoutingCodePost201Response result = apiInstance.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut");
@@ -1185,7 +1062,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | **String**| AFNOR instance ID (UUID) | |
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
 
 ### Return type
 
@@ -1193,7 +1069,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1218,7 +1094,7 @@ public class Example {
 
 <a id="searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost"></a>
 # **searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost**
-> AFNORDirectoryLineSearchPost200Response searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage)
+> AFNORDirectoryLineSearchPost200Response searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost()
 
 Search for a directory line
 
@@ -1230,7 +1106,6 @@ Search for directory lines that meet all the criteria passed as parameters and r
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1238,15 +1113,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORDirectoryLineSearchPost200Response result = apiInstance.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage);
+      AFNORDirectoryLineSearchPost200Response result = apiInstance.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost");
@@ -1260,10 +1130,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -1271,7 +1138,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1296,7 +1163,7 @@ public class Example {
 
 <a id="searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost"></a>
 # **searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost**
-> AFNORRoutingCodeSearchPost200Response searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage)
+> AFNORRoutingCodeSearchPost200Response searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost()
 
 Search for a routing code
 
@@ -1308,7 +1175,6 @@ Search for routing codes that meet all the criteria passed as parameters and ret
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1316,15 +1182,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORRoutingCodeSearchPost200Response result = apiInstance.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage);
+      AFNORRoutingCodeSearchPost200Response result = apiInstance.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost");
@@ -1338,10 +1199,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -1349,7 +1207,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1374,7 +1232,7 @@ public class Example {
 
 <a id="searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost"></a>
 # **searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost**
-> AFNORSirenSearchPost200Response searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage)
+> AFNORSirenSearchPost200Response searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost()
 
 SIREN search (or legal unit)
 
@@ -1386,7 +1244,6 @@ Multi-criteria company search.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1394,15 +1251,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORSirenSearchPost200Response result = apiInstance.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage);
+      AFNORSirenSearchPost200Response result = apiInstance.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost");
@@ -1416,10 +1268,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -1427,7 +1276,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1452,7 +1301,7 @@ public class Example {
 
 <a id="searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost"></a>
 # **searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost**
-> AFNORSiretSearchPost200Response searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage)
+> AFNORSiretSearchPost200Response searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost()
 
 Search for a SIRET (facility)
 
@@ -1464,7 +1313,6 @@ Multi-criteria search for facilities.
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
 import org.openapitools.client.api.AfnorPdpPaDirectoryServiceApi;
 
@@ -1472,15 +1320,10 @@ public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
 
     AfnorPdpPaDirectoryServiceApi apiInstance = new AfnorPdpPaDirectoryServiceApi(defaultClient);
-    AcceptLanguage acceptLanguage = AcceptLanguage.fromValue("fr"); // AcceptLanguage | Specifies the language in which the resource is requested.
     try {
-      AFNORSiretSearchPost200Response result = apiInstance.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage);
+      AFNORSiretSearchPost200Response result = apiInstance.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaDirectoryServiceApi#searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost");
@@ -1494,10 +1337,7 @@ public class Example {
 ```
 
 ### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | [**AcceptLanguage**](.md)| Specifies the language in which the resource is requested. | [optional] [default to fr] [enum: fr, en] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -1505,7 +1345,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 

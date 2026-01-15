@@ -1935,18 +1935,6 @@ paths:
     post:
       description: Multi-criteria company search.
       operationId: search_siren_proxy_api_v1_afnor_directory_v1_siren_search_post
-      parameters:
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -1982,8 +1970,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: SIREN search (or legal unit)
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2004,29 +1990,6 @@ paths:
           description: 9-digit SIREN number (INSEE company identifier)
           title: Siren
           type: string
-        style: simple
-      - description: Fields of the SIREN resource
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            nullable: true
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -2056,8 +2019,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Consult a siren (legal unit) by SIREN number
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2078,28 +2039,6 @@ paths:
           description: AFNOR instance ID (UUID)
           title: Id Instance
           type: string
-        style: simple
-      - description: Fields of the SIREN resource
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -2129,8 +2068,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Gets a siren (legal unit) by instance ID
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2140,18 +2077,6 @@ paths:
     post:
       description: Multi-criteria search for facilities.
       operationId: search_siret_proxy_api_v1_afnor_directory_v1_siret_search_post
-      parameters:
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2189,8 +2114,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Search for a SIRET (facility)
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2210,39 +2133,6 @@ paths:
           description: 14-digit SIRET number (INSEE establishment identifier)
           title: Siret
           type: string
-        style: simple
-      - description: Fields of a SIRET resource.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Relations to include in the response.
-        explode: true
-        in: query
-        name: include
-        required: false
-        schema:
-          items:
-            $ref: "#/components/schemas/SiretInclude"
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -2272,8 +2162,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Gets a siret (facility) by SIRET number
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2293,28 +2181,6 @@ paths:
           description: AFNOR instance ID (UUID)
           title: Id Instance
           type: string
-        style: simple
-      - description: Fields of a SIRET resource.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -2344,8 +2210,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Gets a siret (facility) by id-instance
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2355,18 +2219,6 @@ paths:
     post:
       description: Creating a routing code.
       operationId: create_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_post
-      parameters:
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2400,8 +2252,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Create a routing code
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2412,18 +2262,6 @@ paths:
       description: Search for routing codes that meet all the criteria passed as parameters
         and return the routing codes in the desired format.
       operationId: search_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_search_post
-      parameters:
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2459,8 +2297,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Search for a routing code
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2492,39 +2328,6 @@ paths:
           title: Routing Identifier
           type: string
         style: simple
-      - description: Fields of the Routing Code resource
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Relations to include in the response.
-        explode: true
-        in: query
-        name: include
-        required: false
-        schema:
-          items:
-            $ref: "#/components/schemas/RoutingCodeInclude"
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2553,8 +2356,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Get a routing code by SIRET and routing identifier
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2575,28 +2376,6 @@ paths:
           title: Id Instance
           type: string
         style: simple
-      - description: Fields of the Routing Code resource
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2625,8 +2404,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Get a routing code by instance-id.
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2646,17 +2423,6 @@ paths:
           title: Id Instance
           type: string
         style: simple
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2688,8 +2454,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Partially update a private routing code.
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2709,17 +2473,6 @@ paths:
           title: Id Instance
           type: string
         style: simple
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2751,8 +2504,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Completely update a private routing code.
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2763,18 +2514,6 @@ paths:
       description: "Creation of a new directory line for a SIREN, a SIRET or a ROUTING\
         \ CODE."
       operationId: create_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_post
-      parameters:
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2808,8 +2547,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Creating a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2820,18 +2557,6 @@ paths:
       description: Search for directory lines that meet all the criteria passed as
         parameters and return the results in the desired format.
       operationId: search_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_search_post
-      parameters:
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
-        style: simple
       responses:
         "200":
           content:
@@ -2867,8 +2592,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Search for a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2889,39 +2612,6 @@ paths:
           description: "Addressing identifier (SIREN, SIRET or routing code)"
           title: Addressing Identifier
           type: string
-        style: simple
-      - description: Fields of the Directory Line resource.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Relations to include in the response.
-        explode: true
-        in: query
-        name: include
-        required: false
-        schema:
-          items:
-            $ref: "#/components/schemas/DirectoryLineInclude"
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -2951,8 +2641,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Get a directory line.
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2972,17 +2660,6 @@ paths:
           description: AFNOR instance ID (UUID)
           title: Id Instance
           type: string
-        style: simple
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -3013,8 +2690,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Delete a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -3034,28 +2709,6 @@ paths:
           description: AFNOR instance ID (UUID)
           title: Id Instance
           type: string
-        style: simple
-      - description: Fields of the Directory Line resource.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -3085,8 +2738,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Get a directory line.
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -3105,17 +2756,6 @@ paths:
           description: AFNOR instance ID (UUID)
           title: Id Instance
           type: string
-        style: simple
-      - description: Specifies the language in which the resource is requested.
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          allOf:
-          - $ref: "#/components/schemas/AcceptLanguage"
-          default: fr
-          description: Specifies the language in which the resource is requested.
         style: simple
       responses:
         "200":
@@ -3145,8 +2785,6 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
-      security:
-      - HTTPBearer: []
       summary: Partially updates a directory line..
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -5340,13 +4978,6 @@ components:
       - EXTENDED
       title: APIProfile
       type: string
-    AcceptLanguage:
-      description: AFNOR Accept-Language header values.
-      enum:
-      - fr
-      - en
-      title: AcceptLanguage
-      type: string
     AggregatedPaymentInput:
       description: |-
         Aggregated payment for B2C (flux 10.4).
@@ -5903,53 +5534,39 @@ components:
       title: CertificateInfoResponse
     ChorusProCredentials:
       description: |-
-        Chorus Pro credentials for Zero-Trust mode.
+        Optional Chorus Pro credentials.
 
-        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+        **MODE 1 - JWT retrieval (recommended):**
+        Do not provide this `credentials` field in the payload.
+        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
 
-        **Security**:
-        - Credentials are never persisted in the database
-        - They are used only for the duration of the request
-        - Secure transmission via HTTPS
-
-        **Use cases**:
-        - High-security environments (banks, administrations)
-        - Strict GDPR compliance
-        - Tests with temporary credentials
-        - Users who don't want to store their credentials
+        **MODE 2 - Credentials in payload:**
+        Provide all required fields below.
+        Useful for tests or third-party integrations.
       example:
-        chorusProLogin: my_login@company.fr
-        chorusProPassword: MyPassword123!
-        pisteClientId: my_client_id
-        pisteClientSecret: my_secret
-        sandbox: true
+        chorusLogin: my_login@company.fr
+        chorusPassword: MyPassword123!
+        pisteClientId: my_piste_client_id
+        pisteClientSecret: my_piste_secret
+        sandboxMode: true
       properties:
         pisteClientId:
-          description: PISTE Client ID (government API portal)
-          title: Pisteclientid
+          nullable: true
           type: string
         pisteClientSecret:
-          description: PISTE Client Secret
-          title: Pisteclientsecret
+          nullable: true
           type: string
-        chorusProLogin:
-          description: Chorus Pro login
-          title: Chorusprologin
+        chorusLogin:
+          nullable: true
           type: string
-        chorusProPassword:
-          description: Chorus Pro password
-          title: Choruspropassword
+        chorusPassword:
+          nullable: true
           type: string
-        sandbox:
+        sandboxMode:
           default: true
-          description: Use sandbox environment (true) or production (false)
-          title: Sandbox
+          description: "[MODE 2] Use sandbox mode (default: True)"
+          title: Sandboxmode
           type: boolean
-      required:
-      - chorusProLogin
-      - chorusProPassword
-      - pisteClientId
-      - pisteClientSecret
       title: ChorusProCredentials
     ChorusProDestination:
       description: Specific configuration for Chorus Pro destination.
@@ -5962,7 +5579,7 @@ components:
           type: string
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__processing__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
       title: ChorusProDestination
     ChorusProResult:
@@ -6615,15 +6232,6 @@ components:
       - XDR
       title: CurrencyCode
       type: string
-    DirectoryLineInclude:
-      description: Relations to include for directory-line responses.
-      enum:
-      - siren
-      - siret
-      - routingCode
-      - platform
-      title: DirectoryLineInclude
-      type: string
     DocType:
       description: "AFNOR docType parameter for GET /flows/{flowId}."
       enum:
@@ -7115,7 +6723,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         siret:
           description: Structure SIRET (14 digits)
@@ -7165,7 +6773,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         chorusInvoiceId:
           description: Chorus Pro invoice ID
@@ -7230,7 +6838,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureId:
           description: Chorus Pro structure ID
@@ -8184,13 +7792,6 @@ components:
       - name
       - siren
       title: ReportSender
-    RoutingCodeInclude:
-      description: Relations to include for routing-code responses.
-      enum:
-      - siren
-      - siret
-      title: RoutingCodeInclude
-      type: string
     SchematronValidationError:
       description: Erreur de validation Schematron avec suggestion de correction.
       example:
@@ -8361,7 +7962,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureIdentifier:
           nullable: true
@@ -8584,12 +8185,6 @@ components:
       - recipient
       - supplier
       title: SimplifiedInvoiceData
-    SiretInclude:
-      description: Relations to include for SIRET responses.
-      enum:
-      - siren
-      title: SiretInclude
-      type: string
     StructureInfo:
       description: Structure information.
       example:
@@ -8946,7 +8541,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         invoiceNumber:
           description: Invoice number
@@ -9468,6 +9063,56 @@ components:
       - label
       - status
       title: VerifiedFieldSchema
+    facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
+      description: |-
+        Chorus Pro credentials for Zero-Trust mode.
+
+        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+
+        **Security**:
+        - Credentials are never persisted in the database
+        - They are used only for the duration of the request
+        - Secure transmission via HTTPS
+
+        **Use cases**:
+        - High-security environments (banks, administrations)
+        - Strict GDPR compliance
+        - Tests with temporary credentials
+        - Users who don't want to store their credentials
+      example:
+        chorusProLogin: my_login@company.fr
+        chorusProPassword: MyPassword123!
+        pisteClientId: my_client_id
+        pisteClientSecret: my_secret
+        sandbox: true
+      properties:
+        pisteClientId:
+          description: PISTE Client ID (government API portal)
+          title: Pisteclientid
+          type: string
+        pisteClientSecret:
+          description: PISTE Client Secret
+          title: Pisteclientsecret
+          type: string
+        chorusProLogin:
+          description: Chorus Pro login
+          title: Chorusprologin
+          type: string
+        chorusProPassword:
+          description: Chorus Pro password
+          title: Choruspropassword
+          type: string
+        sandbox:
+          default: true
+          description: Use sandbox environment (true) or production (false)
+          title: Sandbox
+          type: boolean
+      required:
+      - chorusProLogin
+      - chorusProPassword
+      - pisteClientId
+      - pisteClientSecret
+      title: ChorusProCredentials
     facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
       description: Invoice type codes (UNTDID 1001).
       enum:
@@ -9478,42 +9123,6 @@ components:
       - "386"
       title: InvoiceTypeCode
       type: string
-    facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
-      description: |-
-        Optional Chorus Pro credentials.
-
-        **MODE 1 - JWT retrieval (recommended):**
-        Do not provide this `credentials` field in the payload.
-        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
-
-        **MODE 2 - Credentials in payload:**
-        Provide all required fields below.
-        Useful for tests or third-party integrations.
-      example:
-        chorusLogin: my_login@company.fr
-        chorusPassword: MyPassword123!
-        pisteClientId: my_piste_client_id
-        pisteClientSecret: my_piste_secret
-        sandboxMode: true
-      properties:
-        pisteClientId:
-          nullable: true
-          type: string
-        pisteClientSecret:
-          nullable: true
-          type: string
-        chorusLogin:
-          nullable: true
-          type: string
-        chorusPassword:
-          nullable: true
-          type: string
-        sandboxMode:
-          default: true
-          description: "[MODE 2] Use sandbox mode (default: True)"
-          title: Sandboxmode
-          type: boolean
-      title: ChorusProCredentials
     AdditionalDocument:
       description: |-
         Additional supporting document (BG-24).

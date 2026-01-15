@@ -13,64 +13,68 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
-import com.google.gson.JsonElement;
 import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
- * Relations to include for SIRET responses.
+ * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
  */
-@JsonAdapter(SiretInclude.Adapter.class)
-public enum SiretInclude {
-  
-  SIREN("siren");
+public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest {
+    private final FactureElectroniqueRestApiSchemasChorusProChorusProCredentials model = new FactureElectroniqueRestApiSchemasChorusProChorusProCredentials();
 
-  private String value;
-
-  SiretInclude(String value) {
-    this.value = value;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  public static SiretInclude fromValue(String value) {
-    for (SiretInclude b : SiretInclude.values()) {
-      if (b.value.equals(value)) {
-        return b;
-      }
-    }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
-  }
-
-  public static class Adapter extends TypeAdapter<SiretInclude> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final SiretInclude enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    /**
+     * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+     */
+    @Test
+    public void testFactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
+        // TODO: test FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
     }
 
-    @Override
-    public SiretInclude read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return SiretInclude.fromValue(value);
+    /**
+     * Test the property 'pisteClientId'
+     */
+    @Test
+    public void pisteClientIdTest() {
+        // TODO: test pisteClientId
     }
-  }
 
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    SiretInclude.fromValue(value);
-  }
+    /**
+     * Test the property 'pisteClientSecret'
+     */
+    @Test
+    public void pisteClientSecretTest() {
+        // TODO: test pisteClientSecret
+    }
+
+    /**
+     * Test the property 'chorusProLogin'
+     */
+    @Test
+    public void chorusProLoginTest() {
+        // TODO: test chorusProLogin
+    }
+
+    /**
+     * Test the property 'chorusProPassword'
+     */
+    @Test
+    public void chorusProPasswordTest() {
+        // TODO: test chorusProPassword
+    }
+
+    /**
+     * Test the property 'sandbox'
+     */
+    @Test
+    public void sandboxTest() {
+        // TODO: test sandbox
+    }
+
 }
-
