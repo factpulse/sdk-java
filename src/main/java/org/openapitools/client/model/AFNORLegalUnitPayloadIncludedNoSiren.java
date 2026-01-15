@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORLegalUnitPayloadIncludedNoSiren
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T13:20:36.339239401Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T15:37:22.505660611Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORLegalUnitPayloadIncludedNoSiren {
   public static final String SERIALIZED_NAME_BUSINESS_NAME = "businessName";
   @SerializedName(SERIALIZED_NAME_BUSINESS_NAME)

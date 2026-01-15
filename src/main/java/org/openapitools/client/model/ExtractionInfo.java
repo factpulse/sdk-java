@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur l&#39;extraction des donnees.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T13:20:36.339239401Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T15:37:22.505660611Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ExtractionInfo {
   public static final String SERIALIZED_NAME_CONFIDENCE_SCORE = "confidence_score";
   @SerializedName(SERIALIZED_NAME_CONFIDENCE_SCORE)

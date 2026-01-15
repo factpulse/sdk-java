@@ -51,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T13:20:36.339239401Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T15:37:22.505660611Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class VATAmount extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(VATAmount.class.getName());
 

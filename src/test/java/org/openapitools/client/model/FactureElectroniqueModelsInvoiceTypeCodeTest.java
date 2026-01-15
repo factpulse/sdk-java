@@ -13,68 +13,20 @@
 
 package org.openapitools.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+ * Model tests for FactureElectroniqueModelsInvoiceTypeCode
  */
-public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest {
-    private final FactureElectroniqueRestApiSchemasChorusProChorusProCredentials model = new FactureElectroniqueRestApiSchemasChorusProChorusProCredentials();
-
+public class FactureElectroniqueModelsInvoiceTypeCodeTest {
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+     * Model tests for FactureElectroniqueModelsInvoiceTypeCode
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
-        // TODO: test FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
-    }
-
-    /**
-     * Test the property 'pisteClientId'
-     */
-    @Test
-    public void pisteClientIdTest() {
-        // TODO: test pisteClientId
-    }
-
-    /**
-     * Test the property 'pisteClientSecret'
-     */
-    @Test
-    public void pisteClientSecretTest() {
-        // TODO: test pisteClientSecret
-    }
-
-    /**
-     * Test the property 'chorusProLogin'
-     */
-    @Test
-    public void chorusProLoginTest() {
-        // TODO: test chorusProLogin
-    }
-
-    /**
-     * Test the property 'chorusProPassword'
-     */
-    @Test
-    public void chorusProPasswordTest() {
-        // TODO: test chorusProPassword
-    }
-
-    /**
-     * Test the property 'sandbox'
-     */
-    @Test
-    public void sandboxTest() {
-        // TODO: test sandbox
+    public void testFactureElectroniqueModelsInvoiceTypeCode() {
+        // TODO: test FactureElectroniqueModelsInvoiceTypeCode
     }
 
 }

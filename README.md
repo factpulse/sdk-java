@@ -18,14 +18,14 @@ Official Java client for the FactPulse API - French electronic invoicing.
 <dependency>
     <groupId>fr.factpulse</groupId>
     <artifactId>factpulse-sdk</artifactId>
-    <version>3.0.25</version>
+    <version>3.0.26</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'fr.factpulse:factpulse-sdk:3.0.25'
+implementation 'fr.factpulse:factpulse-sdk:3.0.26'
 ```
 
 ## Quick Start
@@ -34,8 +34,6 @@ The `helpers` package provides a simplified API with automatic authentication an
 
 ```java
 import fr.factpulse.sdk.helpers.FactPulseClient;
-import fr.factpulse.sdk.helpers.AmountHelpers;
-import static fr.factpulse.sdk.helpers.AmountHelpers.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -46,30 +44,30 @@ FactPulseClient client = new FactPulseClient(
     "your_password"
 );
 
-// Build the invoice with helpers
+// Build the invoice using simplified format (auto-calculates totals)
 Map<String, Object> invoiceData = new LinkedHashMap<>();
-invoiceData.put("invoiceNumber", "INV-2025-001");
-invoiceData.put("issueDate", "2025-01-15");
-invoiceData.put("dueDate", "2025-02-15");
-invoiceData.put("currencyCode", "EUR");
-invoiceData.put("supplier", supplier(
-    "My Company SAS", "12345678901234",
-    "123 Example Street", "75001", "Paris"
-));
-invoiceData.put("recipient", recipient(
-    "Client SARL", "98765432109876",
-    "456 Test Avenue", "69001", "Lyon"
-));
-invoiceData.put("totals", invoiceTotals(1000.00, 200.00, 1200.00, 1200.00));
-invoiceData.put("lines", Arrays.asList(
-    invoiceLine(1, "Consulting services", 10, 100.00, 1000.00)
-));
-invoiceData.put("vatLines", Arrays.asList(
-    vatLine("20.00", 1000.00, 200.00)
-));
+invoiceData.put("number", "INV-2025-001");
+
+Map<String, Object> supplier = new LinkedHashMap<>();
+supplier.put("name", "My Company SAS");
+supplier.put("siret", "12345678901234");
+supplier.put("iban", "FR7630001007941234567890185");
+invoiceData.put("supplier", supplier);
+
+Map<String, Object> recipient = new LinkedHashMap<>();
+recipient.put("name", "Client SARL");
+recipient.put("siret", "98765432109876");
+invoiceData.put("recipient", recipient);
+
+Map<String, Object> line = new LinkedHashMap<>();
+line.put("description", "Consulting services");
+line.put("quantity", 10);
+line.put("unitPrice", 100.0);
+line.put("vatRate", 20);
+invoiceData.put("lines", Arrays.asList(line));
 
 // Generate the Factur-X PDF
-byte[] pdfBytes = client.generateFacturx(invoiceData, "source_invoice.pdf", "EN16931");
+byte[] pdfBytes = client.generateFacturx(invoiceData, "source_invoice.pdf");
 
 Files.write(Paths.get("invoice_facturx.pdf"), pdfBytes);
 ```
