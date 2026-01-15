@@ -47,10 +47,10 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Validation error detail.
+ * Validation error detail for E-Reporting.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T09:59:35.346089835Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class FactureElectroniqueRestApiSchemasEreportingValidationError {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T10:58:39.412196574Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+public class EReportingValidationError {
   public static final String SERIALIZED_NAME_FIELD = "field";
   @SerializedName(SERIALIZED_NAME_FIELD)
   @javax.annotation.Nonnull
@@ -66,10 +66,10 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
   @javax.annotation.Nullable
   private String code;
 
-  public FactureElectroniqueRestApiSchemasEreportingValidationError() {
+  public EReportingValidationError() {
   }
 
-  public FactureElectroniqueRestApiSchemasEreportingValidationError field(@javax.annotation.Nonnull String field) {
+  public EReportingValidationError field(@javax.annotation.Nonnull String field) {
     this.field = field;
     return this;
   }
@@ -88,7 +88,7 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
   }
 
 
-  public FactureElectroniqueRestApiSchemasEreportingValidationError message(@javax.annotation.Nonnull String message) {
+  public EReportingValidationError message(@javax.annotation.Nonnull String message) {
     this.message = message;
     return this;
   }
@@ -107,7 +107,7 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
   }
 
 
-  public FactureElectroniqueRestApiSchemasEreportingValidationError code(@javax.annotation.Nullable String code) {
+  public EReportingValidationError code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
@@ -135,10 +135,10 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FactureElectroniqueRestApiSchemasEreportingValidationError factureElectroniqueRestApiSchemasEreportingValidationError = (FactureElectroniqueRestApiSchemasEreportingValidationError) o;
-    return Objects.equals(this.field, factureElectroniqueRestApiSchemasEreportingValidationError.field) &&
-        Objects.equals(this.message, factureElectroniqueRestApiSchemasEreportingValidationError.message) &&
-        Objects.equals(this.code, factureElectroniqueRestApiSchemasEreportingValidationError.code);
+    EReportingValidationError ereportingValidationError = (EReportingValidationError) o;
+    return Objects.equals(this.field, ereportingValidationError.field) &&
+        Objects.equals(this.message, ereportingValidationError.message) &&
+        Objects.equals(this.code, ereportingValidationError.code);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -160,7 +160,7 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FactureElectroniqueRestApiSchemasEreportingValidationError {\n");
+    sb.append("class EReportingValidationError {\n");
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
@@ -195,25 +195,25 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
+   * @throws IOException if the JSON Element is invalid with respect to EReportingValidationError
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasEreportingValidationError is not found in the empty JSON string", FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields.toString()));
+        if (!EReportingValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in EReportingValidationError is not found in the empty JSON string", EReportingValidationError.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FactureElectroniqueRestApiSchemasEreportingValidationError.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasEreportingValidationError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!EReportingValidationError.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `EReportingValidationError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FactureElectroniqueRestApiSchemasEreportingValidationError.openapiRequiredFields) {
+      for (String requiredField : EReportingValidationError.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -234,22 +234,22 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FactureElectroniqueRestApiSchemasEreportingValidationError.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasEreportingValidationError' and its subtypes
+       if (!EReportingValidationError.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'EReportingValidationError' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasEreportingValidationError.class));
+       final TypeAdapter<EReportingValidationError> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(EReportingValidationError.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasEreportingValidationError>() {
+       return (TypeAdapter<T>) new TypeAdapter<EReportingValidationError>() {
            @Override
-           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasEreportingValidationError value) throws IOException {
+           public void write(JsonWriter out, EReportingValidationError value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FactureElectroniqueRestApiSchemasEreportingValidationError read(JsonReader in) throws IOException {
+           public EReportingValidationError read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -260,18 +260,18 @@ public class FactureElectroniqueRestApiSchemasEreportingValidationError {
   }
 
   /**
-   * Create an instance of FactureElectroniqueRestApiSchemasEreportingValidationError given an JSON string
+   * Create an instance of EReportingValidationError given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of FactureElectroniqueRestApiSchemasEreportingValidationError
-   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasEreportingValidationError
+   * @return An instance of EReportingValidationError
+   * @throws IOException if the JSON string is invalid with respect to EReportingValidationError
    */
-  public static FactureElectroniqueRestApiSchemasEreportingValidationError fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasEreportingValidationError.class);
+  public static EReportingValidationError fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, EReportingValidationError.class);
   }
 
   /**
-   * Convert an instance of FactureElectroniqueRestApiSchemasEreportingValidationError to an JSON string
+   * Convert an instance of EReportingValidationError to an JSON string
    *
    * @return JSON string
    */

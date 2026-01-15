@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Requete de reprise de conversion avec corrections.  Le champ &#x60;overrides&#x60; accepte n&#39;importe quel sous-ensemble de FacturXInvoice. Seuls les champs fournis seront mis a jour (merge profond).  Exemple:     {         \&quot;overrides\&quot;: {             \&quot;supplier\&quot;: {                 \&quot;name\&quot;: \&quot;Ma Société\&quot;,                 \&quot;siret\&quot;: \&quot;12345678901234\&quot;             },             \&quot;totals\&quot;: {                 \&quot;total_net_amount\&quot;: 1000.00             }         }     }
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T09:59:35.346089835Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T10:58:39.412196574Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ConvertResumeRequest {
   public static final String SERIALIZED_NAME_OVERRIDES = "overrides";
   @SerializedName(SERIALIZED_NAME_OVERRIDES)

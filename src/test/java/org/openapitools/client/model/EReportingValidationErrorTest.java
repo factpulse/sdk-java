@@ -25,17 +25,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
+ * Model tests for EReportingValidationError
  */
-public class FactureElectroniqueRestApiSchemasEreportingValidationErrorTest {
-    private final FactureElectroniqueRestApiSchemasEreportingValidationError model = new FactureElectroniqueRestApiSchemasEreportingValidationError();
+public class EReportingValidationErrorTest {
+    private final EReportingValidationError model = new EReportingValidationError();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasEreportingValidationError
+     * Model tests for EReportingValidationError
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasEreportingValidationError() {
-        // TODO: test FactureElectroniqueRestApiSchemasEreportingValidationError
+    public void testEReportingValidationError() {
+        // TODO: test EReportingValidationError
     }
 
     /**

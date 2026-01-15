@@ -1,8 +1,8 @@
 
 
-# FactureElectroniqueRestApiSchemasEreportingValidationError
+# EReportingValidationError
 
-Validation error detail.
+Validation error detail for E-Reporting.
 
 ## Properties
 

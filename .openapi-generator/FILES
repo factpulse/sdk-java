@@ -147,6 +147,7 @@ docs/DocumentTypeInfo.md
 docs/DownloadsApi.md
 docs/EReportingApi.md
 docs/EReportingFlowType.md
+docs/EReportingValidationError.md
 docs/ElectronicAddress.md
 docs/EnrichedInvoiceInfo.md
 docs/ErrorLevel.md
@@ -154,8 +155,7 @@ docs/ErrorSource.md
 docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
-docs/FactureElectroniqueModelsInvoiceTypeCode.md
-docs/FactureElectroniqueRestApiSchemasEreportingValidationError.md
+docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
 docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
 docs/FileInfo.md
@@ -230,6 +230,7 @@ docs/ReportPeriod.md
 docs/ReportSender.md
 docs/RoundingAmount.md
 docs/RoutingCodeInclude.md
+docs/SchematronValidationError.md
 docs/SchemeID.md
 docs/SearchFlowRequest.md
 docs/SearchFlowResponse.md
@@ -466,6 +467,7 @@ src/main/java/org/openapitools/client/model/DirectoryLineInclude.java
 src/main/java/org/openapitools/client/model/DocType.java
 src/main/java/org/openapitools/client/model/DocumentTypeInfo.java
 src/main/java/org/openapitools/client/model/EReportingFlowType.java
+src/main/java/org/openapitools/client/model/EReportingValidationError.java
 src/main/java/org/openapitools/client/model/ElectronicAddress.java
 src/main/java/org/openapitools/client/model/EnrichedInvoiceInfo.java
 src/main/java/org/openapitools/client/model/ErrorLevel.java
@@ -473,8 +475,7 @@ src/main/java/org/openapitools/client/model/ErrorSource.java
 src/main/java/org/openapitools/client/model/ExtractionInfo.java
 src/main/java/org/openapitools/client/model/FacturXInvoice.java
 src/main/java/org/openapitools/client/model/FacturXPDFInfo.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCode.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingValidationError.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FieldStatus.java
 src/main/java/org/openapitools/client/model/FileInfo.java
@@ -546,6 +547,7 @@ src/main/java/org/openapitools/client/model/ReportPeriod.java
 src/main/java/org/openapitools/client/model/ReportSender.java
 src/main/java/org/openapitools/client/model/RoundingAmount.java
 src/main/java/org/openapitools/client/model/RoutingCodeInclude.java
+src/main/java/org/openapitools/client/model/SchematronValidationError.java
 src/main/java/org/openapitools/client/model/SchemeID.java
 src/main/java/org/openapitools/client/model/SearchFlowRequest.java
 src/main/java/org/openapitools/client/model/SearchFlowResponse.java
@@ -754,6 +756,7 @@ src/test/java/org/openapitools/client/model/DirectoryLineIncludeTest.java
 src/test/java/org/openapitools/client/model/DocTypeTest.java
 src/test/java/org/openapitools/client/model/DocumentTypeInfoTest.java
 src/test/java/org/openapitools/client/model/EReportingFlowTypeTest.java
+src/test/java/org/openapitools/client/model/EReportingValidationErrorTest.java
 src/test/java/org/openapitools/client/model/ElectronicAddressTest.java
 src/test/java/org/openapitools/client/model/EnrichedInvoiceInfoTest.java
 src/test/java/org/openapitools/client/model/ErrorLevelTest.java
@@ -761,8 +764,7 @@ src/test/java/org/openapitools/client/model/ErrorSourceTest.java
 src/test/java/org/openapitools/client/model/ExtractionInfoTest.java
 src/test/java/org/openapitools/client/model/FacturXInvoiceTest.java
 src/test/java/org/openapitools/client/model/FacturXPDFInfoTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCodeTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingValidationErrorTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCodeTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FieldStatusTest.java
 src/test/java/org/openapitools/client/model/FileInfoTest.java
@@ -834,6 +836,7 @@ src/test/java/org/openapitools/client/model/ReportPeriodTest.java
 src/test/java/org/openapitools/client/model/ReportSenderTest.java
 src/test/java/org/openapitools/client/model/RoundingAmountTest.java
 src/test/java/org/openapitools/client/model/RoutingCodeIncludeTest.java
+src/test/java/org/openapitools/client/model/SchematronValidationErrorTest.java
 src/test/java/org/openapitools/client/model/SchemeIDTest.java
 src/test/java/org/openapitools/client/model/SearchFlowRequestTest.java
 src/test/java/org/openapitools/client/model/SearchFlowResponseTest.java

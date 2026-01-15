@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.client.model.ValidationError;
+import org.openapitools.client.model.SchematronValidationError;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Informations sur la validation.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T09:59:35.346089835Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T10:58:39.412196574Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ValidationInfo {
   public static final String SERIALIZED_NAME_PROFILE = "profile";
   @SerializedName(SERIALIZED_NAME_PROFILE)
@@ -81,7 +81,7 @@ public class ValidationInfo {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
   @javax.annotation.Nullable
-  private List<ValidationError> errors = new ArrayList<>();
+  private List<SchematronValidationError> errors = new ArrayList<>();
 
   public ValidationInfo() {
   }
@@ -181,12 +181,12 @@ public class ValidationInfo {
   }
 
 
-  public ValidationInfo errors(@javax.annotation.Nullable List<ValidationError> errors) {
+  public ValidationInfo errors(@javax.annotation.Nullable List<SchematronValidationError> errors) {
     this.errors = errors;
     return this;
   }
 
-  public ValidationInfo addErrorsItem(ValidationError errorsItem) {
+  public ValidationInfo addErrorsItem(SchematronValidationError errorsItem) {
     if (this.errors == null) {
       this.errors = new ArrayList<>();
     }
@@ -199,11 +199,11 @@ public class ValidationInfo {
    * @return errors
    */
   @javax.annotation.Nullable
-  public List<ValidationError> getErrors() {
+  public List<SchematronValidationError> getErrors() {
     return errors;
   }
 
-  public void setErrors(@javax.annotation.Nullable List<ValidationError> errors) {
+  public void setErrors(@javax.annotation.Nullable List<SchematronValidationError> errors) {
     this.errors = errors;
   }
 
@@ -309,7 +309,7 @@ public class ValidationInfo {
 
           // validate the optional field `errors` (array)
           for (int i = 0; i < jsonArrayerrors.size(); i++) {
-            ValidationError.validateJsonElement(jsonArrayerrors.get(i));
+            SchematronValidationError.validateJsonElement(jsonArrayerrors.get(i));
           };
         }
       }

@@ -21,9 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -50,128 +48,130 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Champ manquant requis pour la conformite.
+ * Erreur de validation Schematron avec suggestion de correction.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T10:58:39.412196574Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class MissingField {
-  public static final String SERIALIZED_NAME_FIELD = "field";
-  @SerializedName(SERIALIZED_NAME_FIELD)
+public class SchematronValidationError {
+  public static final String SERIALIZED_NAME_RULE = "rule";
+  @SerializedName(SERIALIZED_NAME_RULE)
   @javax.annotation.Nonnull
-  private String field;
+  private String rule;
 
   public static final String SERIALIZED_NAME_BT_CODE = "bt_code";
   @SerializedName(SERIALIZED_NAME_BT_CODE)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String btCode;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  public static final String SERIALIZED_NAME_SEVERITY = "severity";
+  @SerializedName(SERIALIZED_NAME_SEVERITY)
   @javax.annotation.Nonnull
-  private String description;
+  private String severity;
 
-  public static final String SERIALIZED_NAME_REQUIRED_FOR = "required_for";
-  @SerializedName(SERIALIZED_NAME_REQUIRED_FOR)
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
   @javax.annotation.Nonnull
-  private List<String> requiredFor = new ArrayList<>();
+  private String message;
 
   public static final String SERIALIZED_NAME_SUGGESTED_VALUE = "suggested_value";
   @SerializedName(SERIALIZED_NAME_SUGGESTED_VALUE)
   @javax.annotation.Nullable
   private String suggestedValue;
 
+  public static final String SERIALIZED_NAME_SUGGESTED_FIELD = "suggested_field";
+  @SerializedName(SERIALIZED_NAME_SUGGESTED_FIELD)
+  @javax.annotation.Nullable
+  private String suggestedField;
+
+  public static final String SERIALIZED_NAME_EXPLANATION = "explanation";
+  @SerializedName(SERIALIZED_NAME_EXPLANATION)
+  @javax.annotation.Nullable
+  private String explanation;
+
   public static final String SERIALIZED_NAME_CONFIDENCE = "confidence";
   @SerializedName(SERIALIZED_NAME_CONFIDENCE)
   @javax.annotation.Nullable
   private BigDecimal confidence;
 
-  public MissingField() {
+  public SchematronValidationError() {
   }
 
-  public MissingField field(@javax.annotation.Nonnull String field) {
-    this.field = field;
+  public SchematronValidationError rule(@javax.annotation.Nonnull String rule) {
+    this.rule = rule;
     return this;
   }
 
   /**
-   * Nom du champ
-   * @return field
+   * Code de la regle (BR-XX, BR-FR-XX)
+   * @return rule
    */
   @javax.annotation.Nonnull
-  public String getField() {
-    return field;
+  public String getRule() {
+    return rule;
   }
 
-  public void setField(@javax.annotation.Nonnull String field) {
-    this.field = field;
+  public void setRule(@javax.annotation.Nonnull String rule) {
+    this.rule = rule;
   }
 
 
-  public MissingField btCode(@javax.annotation.Nonnull String btCode) {
+  public SchematronValidationError btCode(@javax.annotation.Nullable String btCode) {
     this.btCode = btCode;
     return this;
   }
 
   /**
-   * Code Business Term (BT-XX)
+   * Get btCode
    * @return btCode
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getBtCode() {
     return btCode;
   }
 
-  public void setBtCode(@javax.annotation.Nonnull String btCode) {
+  public void setBtCode(@javax.annotation.Nullable String btCode) {
     this.btCode = btCode;
   }
 
 
-  public MissingField description(@javax.annotation.Nonnull String description) {
-    this.description = description;
+  public SchematronValidationError severity(@javax.annotation.Nonnull String severity) {
+    this.severity = severity;
     return this;
   }
 
   /**
-   * Description du champ
-   * @return description
+   * Gravite: error, warning
+   * @return severity
    */
   @javax.annotation.Nonnull
-  public String getDescription() {
-    return description;
+  public String getSeverity() {
+    return severity;
   }
 
-  public void setDescription(@javax.annotation.Nonnull String description) {
-    this.description = description;
+  public void setSeverity(@javax.annotation.Nonnull String severity) {
+    this.severity = severity;
   }
 
 
-  public MissingField requiredFor(@javax.annotation.Nonnull List<String> requiredFor) {
-    this.requiredFor = requiredFor;
-    return this;
-  }
-
-  public MissingField addRequiredForItem(String requiredForItem) {
-    if (this.requiredFor == null) {
-      this.requiredFor = new ArrayList<>();
-    }
-    this.requiredFor.add(requiredForItem);
+  public SchematronValidationError message(@javax.annotation.Nonnull String message) {
+    this.message = message;
     return this;
   }
 
   /**
-   * Profils necessitant ce champ
-   * @return requiredFor
+   * Message d&#39;erreur
+   * @return message
    */
   @javax.annotation.Nonnull
-  public List<String> getRequiredFor() {
-    return requiredFor;
+  public String getMessage() {
+    return message;
   }
 
-  public void setRequiredFor(@javax.annotation.Nonnull List<String> requiredFor) {
-    this.requiredFor = requiredFor;
+  public void setMessage(@javax.annotation.Nonnull String message) {
+    this.message = message;
   }
 
 
-  public MissingField suggestedValue(@javax.annotation.Nullable String suggestedValue) {
+  public SchematronValidationError suggestedValue(@javax.annotation.Nullable String suggestedValue) {
     this.suggestedValue = suggestedValue;
     return this;
   }
@@ -190,13 +190,53 @@ public class MissingField {
   }
 
 
-  public MissingField confidence(@javax.annotation.Nullable BigDecimal confidence) {
+  public SchematronValidationError suggestedField(@javax.annotation.Nullable String suggestedField) {
+    this.suggestedField = suggestedField;
+    return this;
+  }
+
+  /**
+   * Get suggestedField
+   * @return suggestedField
+   */
+  @javax.annotation.Nullable
+  public String getSuggestedField() {
+    return suggestedField;
+  }
+
+  public void setSuggestedField(@javax.annotation.Nullable String suggestedField) {
+    this.suggestedField = suggestedField;
+  }
+
+
+  public SchematronValidationError explanation(@javax.annotation.Nullable String explanation) {
+    this.explanation = explanation;
+    return this;
+  }
+
+  /**
+   * Get explanation
+   * @return explanation
+   */
+  @javax.annotation.Nullable
+  public String getExplanation() {
+    return explanation;
+  }
+
+  public void setExplanation(@javax.annotation.Nullable String explanation) {
+    this.explanation = explanation;
+  }
+
+
+  public SchematronValidationError confidence(@javax.annotation.Nullable BigDecimal confidence) {
     this.confidence = confidence;
     return this;
   }
 
   /**
    * Get confidence
+   * minimum: 0.0
+   * maximum: 1.0
    * @return confidence
    */
   @javax.annotation.Nullable
@@ -218,13 +258,15 @@ public class MissingField {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MissingField missingField = (MissingField) o;
-    return Objects.equals(this.field, missingField.field) &&
-        Objects.equals(this.btCode, missingField.btCode) &&
-        Objects.equals(this.description, missingField.description) &&
-        Objects.equals(this.requiredFor, missingField.requiredFor) &&
-        Objects.equals(this.suggestedValue, missingField.suggestedValue) &&
-        Objects.equals(this.confidence, missingField.confidence);
+    SchematronValidationError schematronValidationError = (SchematronValidationError) o;
+    return Objects.equals(this.rule, schematronValidationError.rule) &&
+        Objects.equals(this.btCode, schematronValidationError.btCode) &&
+        Objects.equals(this.severity, schematronValidationError.severity) &&
+        Objects.equals(this.message, schematronValidationError.message) &&
+        Objects.equals(this.suggestedValue, schematronValidationError.suggestedValue) &&
+        Objects.equals(this.suggestedField, schematronValidationError.suggestedField) &&
+        Objects.equals(this.explanation, schematronValidationError.explanation) &&
+        Objects.equals(this.confidence, schematronValidationError.confidence);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -233,7 +275,7 @@ public class MissingField {
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, btCode, description, requiredFor, suggestedValue, confidence);
+    return Objects.hash(rule, btCode, severity, message, suggestedValue, suggestedField, explanation, confidence);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -246,12 +288,14 @@ public class MissingField {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MissingField {\n");
-    sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("class SchematronValidationError {\n");
+    sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
     sb.append("    btCode: ").append(toIndentedString(btCode)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    requiredFor: ").append(toIndentedString(requiredFor)).append("\n");
+    sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    suggestedValue: ").append(toIndentedString(suggestedValue)).append("\n");
+    sb.append("    suggestedField: ").append(toIndentedString(suggestedField)).append("\n");
+    sb.append("    explanation: ").append(toIndentedString(explanation)).append("\n");
     sb.append("    confidence: ").append(toIndentedString(confidence)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -274,57 +318,60 @@ public class MissingField {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("field", "bt_code", "description", "required_for", "suggested_value", "confidence"));
+    openapiFields = new HashSet<String>(Arrays.asList("rule", "bt_code", "severity", "message", "suggested_value", "suggested_field", "explanation", "confidence"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("field", "bt_code", "description", "required_for"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("rule", "severity", "message"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to MissingField
+   * @throws IOException if the JSON Element is invalid with respect to SchematronValidationError
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!MissingField.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in MissingField is not found in the empty JSON string", MissingField.openapiRequiredFields.toString()));
+        if (!SchematronValidationError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in SchematronValidationError is not found in the empty JSON string", SchematronValidationError.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!MissingField.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `MissingField` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!SchematronValidationError.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `SchematronValidationError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : MissingField.openapiRequiredFields) {
+      for (String requiredField : SchematronValidationError.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("field").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
+      if (!jsonObj.get("rule").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `rule` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rule").toString()));
       }
-      if (!jsonObj.get("bt_code").isJsonPrimitive()) {
+      if ((jsonObj.get("bt_code") != null && !jsonObj.get("bt_code").isJsonNull()) && !jsonObj.get("bt_code").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `bt_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bt_code").toString()));
       }
-      if (!jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      if (!jsonObj.get("severity").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `severity` to be a primitive type in the JSON string but got `%s`", jsonObj.get("severity").toString()));
       }
-      // ensure the required json array is present
-      if (jsonObj.get("required_for") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("required_for").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `required_for` to be an array in the JSON string but got `%s`", jsonObj.get("required_for").toString()));
+      if (!jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
       if ((jsonObj.get("suggested_value") != null && !jsonObj.get("suggested_value").isJsonNull()) && !jsonObj.get("suggested_value").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `suggested_value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suggested_value").toString()));
+      }
+      if ((jsonObj.get("suggested_field") != null && !jsonObj.get("suggested_field").isJsonNull()) && !jsonObj.get("suggested_field").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `suggested_field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("suggested_field").toString()));
+      }
+      if ((jsonObj.get("explanation") != null && !jsonObj.get("explanation").isJsonNull()) && !jsonObj.get("explanation").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `explanation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("explanation").toString()));
       }
   }
 
@@ -332,22 +379,22 @@ public class MissingField {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!MissingField.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'MissingField' and its subtypes
+       if (!SchematronValidationError.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SchematronValidationError' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<MissingField> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(MissingField.class));
+       final TypeAdapter<SchematronValidationError> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SchematronValidationError.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<MissingField>() {
+       return (TypeAdapter<T>) new TypeAdapter<SchematronValidationError>() {
            @Override
-           public void write(JsonWriter out, MissingField value) throws IOException {
+           public void write(JsonWriter out, SchematronValidationError value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public MissingField read(JsonReader in) throws IOException {
+           public SchematronValidationError read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -358,18 +405,18 @@ public class MissingField {
   }
 
   /**
-   * Create an instance of MissingField given an JSON string
+   * Create an instance of SchematronValidationError given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of MissingField
-   * @throws IOException if the JSON string is invalid with respect to MissingField
+   * @return An instance of SchematronValidationError
+   * @throws IOException if the JSON string is invalid with respect to SchematronValidationError
    */
-  public static MissingField fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, MissingField.class);
+  public static SchematronValidationError fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SchematronValidationError.class);
   }
 
   /**
-   * Convert an instance of MissingField to an JSON string
+   * Convert an instance of SchematronValidationError to an JSON string
    *
    * @return JSON string
    */

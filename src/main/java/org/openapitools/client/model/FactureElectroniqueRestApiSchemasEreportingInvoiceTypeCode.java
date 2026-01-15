@@ -11,62 +11,74 @@
  */
 
 
-package org.openapitools.client;
+package org.openapitools.client.model;
 
-import java.util.Map;
+import java.util.Objects;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
- * Representing a Server configuration.
+ * Invoice type codes (UNTDID 1001).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T10:58:39.412196574Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class ServerConfiguration {
-    public String URL;
-    public String description;
-    public Map<String, ServerVariable> variables;
+@JsonAdapter(FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.Adapter.class)
+public enum FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode {
+  
+  _380("380"),
+  
+  _381("381"),
+  
+  _384("384"),
+  
+  _389("389"),
+  
+  _386("386");
 
-    /**
-     * @param URL A URL to the target host.
-     * @param description A description of the host designated by the URL.
-     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
-     */
-    public ServerConfiguration(String URL, String description, Map<String, ServerVariable> variables) {
-        this.URL = URL;
-        this.description = description;
-        this.variables = variables;
+  private String value;
+
+  FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
+
+  public static FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode fromValue(String value) {
+    for (FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode b : FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
+    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+  }
+
+  public static class Adapter extends TypeAdapter<FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
-    /**
-     * Format URL template using given variables.
-     *
-     * @param variables A map between a variable name and its value.
-     * @return Formatted URL.
-     */
-    public String URL(Map<String, String> variables) {
-        String url = this.URL;
-
-        // go through variables and replace placeholders
-        for (Map.Entry<String, ServerVariable> variable: this.variables.entrySet()) {
-            String name = variable.getKey();
-            ServerVariable serverVariable = variable.getValue();
-            String value = serverVariable.defaultValue;
-
-            if (variables != null && variables.containsKey(name)) {
-                value = variables.get(name);
-                if (serverVariable.enumValues.size() > 0 && !serverVariable.enumValues.contains(value)) {
-                    throw new IllegalArgumentException("The variable " + name + " in the server URL has invalid value " + value + ".");
-                }
-            }
-            url = url.replace("{" + name + "}", value);
-        }
-        return url;
+    @Override
+    public FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.fromValue(value);
     }
+  }
 
-    /**
-     * Format URL template using default server variables.
-     *
-     * @return Formatted URL.
-     */
-    public String URL() {
-        return URL(null);
-    }
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.fromValue(value);
+  }
 }
+

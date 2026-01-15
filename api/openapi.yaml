@@ -6019,7 +6019,7 @@ components:
         celui utilise pour la generation Factur-X, garantissant une coherence totale.
       example:
         pdf_regenerated: false
-        processing_time_ms: 9
+        processing_time_ms: 3
         pdf_regenerated_reason: pdf_regenerated_reason
         conversion_id: conversion_id
         files:
@@ -6038,16 +6038,22 @@ components:
           schematron_rules_passed: 2
           profile: profile
           errors:
-          - msg: msg
-            loc:
-            - Location_inner
-            - Location_inner
-            type: type
-          - msg: msg
-            loc:
-            - Location_inner
-            - Location_inner
-            type: type
+          - severity: severity
+            bt_code: bt_code
+            suggested_field: suggested_field
+            confidence: 0.9301444243932576
+            rule: rule
+            message: message
+            explanation: explanation
+            suggested_value: suggested_value
+          - severity: severity
+            bt_code: bt_code
+            suggested_field: suggested_field
+            confidence: 0.9301444243932576
+            rule: rule
+            message: message
+            explanation: explanation
+            suggested_value: suggested_value
           xml_embedded: true
         status: success
         document_type:
@@ -6109,7 +6115,7 @@ components:
         missing_fields:
         - field: field
           bt_code: bt_code
-          confidence: 3.616076749251911
+          confidence: 2.027123023002322
           required_for:
           - required_for
           - required_for
@@ -6117,7 +6123,7 @@ components:
           suggested_value: suggested_value
         - field: field
           bt_code: bt_code
-          confidence: 3.616076749251911
+          confidence: 2.027123023002322
           required_for:
           - required_for
           - required_for
@@ -6660,6 +6666,28 @@ components:
       - "10.4"
       title: EReportingFlowType
       type: string
+    EReportingValidationError:
+      description: Validation error detail for E-Reporting.
+      example:
+        code: code
+        field: field
+        message: message
+      properties:
+        field:
+          description: Field path with error
+          title: Field
+          type: string
+        message:
+          description: Error message
+          title: Message
+          type: string
+        code:
+          nullable: true
+          type: string
+      required:
+      - field
+      - message
+      title: EReportingValidationError
     ElectronicAddress:
       description: |-
         Represents an electronic invoicing address, composed of an identifier
@@ -7457,7 +7485,7 @@ components:
           type: string
         typeCode:
           allOf:
-          - $ref: "#/components/schemas/InvoiceTypeCode"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode"
           default: "380"
           description: Invoice type code
         currency:
@@ -7569,15 +7597,80 @@ components:
       - label
       title: InvoiceStatus
     InvoiceTypeCode:
-      description: Invoice type codes (UNTDID 1001).
+      description: |-
+        Document type according to BR-FR-04 (UNTDID 1001 codes).
+
+        | Code | Name | Description |
+        |------|------|-------------|
+        | 380 | INVOICE | Commercial invoice |
+        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
+        | 393 | FACTORED_INVOICE | Factored invoice |
+        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
+        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
+        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
+        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
+        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
+        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
+        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
+        | 381 | CREDIT_NOTE | Credit note |
+        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
+        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
+        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
+        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
+        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
       enum:
       - "380"
-      - "381"
-      - "384"
       - "389"
+      - "393"
+      - "501"
       - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
       title: InvoiceTypeCode
       type: string
+      x-enum-descriptions:
+      - Commercial Invoice
+      - Self-billed Invoice
+      - Factored Invoice
+      - Self-billed Factored Invoice
+      - Prepayment Invoice
+      - Self-billed Prepayment Invoice
+      - Corrective Invoice
+      - Self-billed Corrective Invoice
+      - Factored Corrective Invoice
+      - Self-billed Factored Corrective Invoice
+      - Credit Note
+      - Self-billed Credit Note
+      - Global Allowance Credit Note
+      - Factored Credit Note
+      - Self-billed Factored Credit Note
+      - Prepayment Credit Note
+      x-enum-varnames:
+      - INVOICE
+      - SELF_BILLED_INVOICE
+      - FACTORED_INVOICE
+      - SELF_BILLED_FACTORED_INVOICE
+      - PREPAYMENT_INVOICE
+      - SELF_BILLED_PREPAYMENT_INVOICE
+      - CORRECTIVE_INVOICE
+      - SELF_BILLED_CORRECTIVE_INVOICE
+      - FACTORED_CORRECTIVE_INVOICE
+      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
+      - CREDIT_NOTE
+      - SELF_BILLED_CREDIT_NOTE
+      - GLOBAL_ALLOWANCE_CREDIT_NOTE
+      - FACTORED_CREDIT_NOTE
+      - SELF_BILLED_FACTORED_CREDIT_NOTE
+      - PREPAYMENT_CREDIT_NOTE
     InvoiceTypeCode-Output:
       description: |-
         Document type according to BR-FR-04 (UNTDID 1001 codes).
@@ -7716,7 +7809,7 @@ components:
       example:
         field: field
         bt_code: bt_code
-        confidence: 3.616076749251911
+        confidence: 2.027123023002322
         required_for:
         - required_for
         - required_for
@@ -8098,6 +8191,52 @@ components:
       - siret
       title: RoutingCodeInclude
       type: string
+    SchematronValidationError:
+      description: Erreur de validation Schematron avec suggestion de correction.
+      example:
+        severity: severity
+        bt_code: bt_code
+        suggested_field: suggested_field
+        confidence: 0.9301444243932576
+        rule: rule
+        message: message
+        explanation: explanation
+        suggested_value: suggested_value
+      properties:
+        rule:
+          description: "Code de la regle (BR-XX, BR-FR-XX)"
+          title: Rule
+          type: string
+        bt_code:
+          nullable: true
+          type: string
+        severity:
+          description: "Gravite: error, warning"
+          title: Severity
+          type: string
+        message:
+          description: Message d'erreur
+          title: Message
+          type: string
+        suggested_value:
+          nullable: true
+          type: string
+        suggested_field:
+          nullable: true
+          type: string
+        explanation:
+          nullable: true
+          type: string
+        confidence:
+          maximum: 1.0
+          minimum: 0.0
+          nullable: true
+          type: number
+      required:
+      - message
+      - rule
+      - severity
+      title: SchematronValidationError
     SchemeID:
       description: |-
         Identification scheme codes (Electronic Address Scheme - EAS),
@@ -8425,7 +8564,7 @@ components:
           type: string
         invoiceType:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__models__InvoiceTypeCode"
+          - $ref: "#/components/schemas/InvoiceTypeCode"
           default: "380"
           description: "Document type (UNTDID 1001). Default: 380 (Invoice)."
         precedingInvoiceReference:
@@ -9015,13 +9154,13 @@ components:
         errors:
           description: List of validation errors (if any)
           items:
-            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__ValidationError"
+            $ref: "#/components/schemas/EReportingValidationError"
           title: Errors
           type: array
         warnings:
           description: List of validation warnings (if any)
           items:
-            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__ValidationError"
+            $ref: "#/components/schemas/EReportingValidationError"
           title: Warnings
           type: array
         message:
@@ -9114,16 +9253,22 @@ components:
         schematron_rules_passed: 2
         profile: profile
         errors:
-        - msg: msg
-          loc:
-          - Location_inner
-          - Location_inner
-          type: type
-        - msg: msg
-          loc:
-          - Location_inner
-          - Location_inner
-          type: type
+        - severity: severity
+          bt_code: bt_code
+          suggested_field: suggested_field
+          confidence: 0.9301444243932576
+          rule: rule
+          message: message
+          explanation: explanation
+          suggested_value: suggested_value
+        - severity: severity
+          bt_code: bt_code
+          suggested_field: suggested_field
+          confidence: 0.9301444243932576
+          rule: rule
+          message: message
+          explanation: explanation
+          suggested_value: suggested_value
         xml_embedded: true
       properties:
         profile:
@@ -9150,7 +9295,7 @@ components:
           type: boolean
         errors:
           items:
-            $ref: "#/components/schemas/ValidationError"
+            $ref: "#/components/schemas/SchematronValidationError"
           title: Errors
           type: array
       required:
@@ -9323,103 +9468,16 @@ components:
       - label
       - status
       title: VerifiedFieldSchema
-    facture_electronique__models__InvoiceTypeCode:
-      description: |-
-        Document type according to BR-FR-04 (UNTDID 1001 codes).
-
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
-        | 393 | FACTORED_INVOICE | Factored invoice |
-        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
-        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
-        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
-        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
-        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
-        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
-        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
-        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
-        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
-        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
-        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+    facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
+      description: Invoice type codes (UNTDID 1001).
       enum:
       - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
       - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
+      - "384"
+      - "389"
+      - "386"
       title: InvoiceTypeCode
       type: string
-      x-enum-descriptions:
-      - Commercial Invoice
-      - Self-billed Invoice
-      - Factored Invoice
-      - Self-billed Factored Invoice
-      - Prepayment Invoice
-      - Self-billed Prepayment Invoice
-      - Corrective Invoice
-      - Self-billed Corrective Invoice
-      - Factored Corrective Invoice
-      - Self-billed Factored Corrective Invoice
-      - Credit Note
-      - Self-billed Credit Note
-      - Global Allowance Credit Note
-      - Factored Credit Note
-      - Self-billed Factored Credit Note
-      - Prepayment Credit Note
-      x-enum-varnames:
-      - INVOICE
-      - SELF_BILLED_INVOICE
-      - FACTORED_INVOICE
-      - SELF_BILLED_FACTORED_INVOICE
-      - PREPAYMENT_INVOICE
-      - SELF_BILLED_PREPAYMENT_INVOICE
-      - CORRECTIVE_INVOICE
-      - SELF_BILLED_CORRECTIVE_INVOICE
-      - FACTORED_CORRECTIVE_INVOICE
-      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
-      - CREDIT_NOTE
-      - SELF_BILLED_CREDIT_NOTE
-      - GLOBAL_ALLOWANCE_CREDIT_NOTE
-      - FACTORED_CREDIT_NOTE
-      - SELF_BILLED_FACTORED_CREDIT_NOTE
-      - PREPAYMENT_CREDIT_NOTE
-    facture_electronique__rest_api__schemas__ereporting__ValidationError:
-      description: Validation error detail.
-      example:
-        code: code
-        field: field
-        message: message
-      properties:
-        field:
-          description: Field path with error
-          title: Field
-          type: string
-        message:
-          description: Error message
-          title: Message
-          type: string
-        code:
-          nullable: true
-          type: string
-      required:
-      - field
-      - message
-      title: ValidationError
     facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
       description: |-
         Optional Chorus Pro credentials.
