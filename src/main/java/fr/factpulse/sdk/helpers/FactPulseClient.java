@@ -488,16 +488,39 @@ public class FactPulseClient {
 
     // ==================== AFNOR Directory ====================
 
-    public Map<String, Object> lookupSiretAfnor(String siret) throws FactPulseException {
-        return makeAfnorRequest("GET", "/directory/siret/" + siret, null, null);
+    /** Gets a facility by SIRET in the AFNOR directory. */
+    public Map<String, Object> getSiretAfnor(String siret) throws FactPulseException {
+        return makeAfnorRequest("GET", "/directory/v1/siret/code-insee:" + siret, null, null);
     }
 
-    public Map<String, Object> lookupSirenAfnor(String siren) throws FactPulseException {
-        return makeAfnorRequest("GET", "/directory/siren/" + siren, null, null);
+    /** Gets a legal unit by SIREN in the AFNOR directory. */
+    public Map<String, Object> getSirenAfnor(String siren) throws FactPulseException {
+        return makeAfnorRequest("GET", "/directory/v1/siren/code-insee:" + siren, null, null);
     }
 
-    public Map<String, Object> listRoutingCodesAfnor(String siren) throws FactPulseException {
-        return makeAfnorRequest("GET", "/directory/siren/" + siren + "/routing-codes", null, null);
+    /** Searches for legal units (SIREN) in the AFNOR directory. */
+    public Map<String, Object> searchSirenAfnor(Map<String, Object> filters, int limit) throws FactPulseException {
+        if (limit <= 0) limit = 25;
+        if (filters == null) filters = new LinkedHashMap<>();
+        Map<String, Object> searchBody = new LinkedHashMap<>();
+        searchBody.put("filters", filters);
+        searchBody.put("limit", limit);
+        return makeAfnorRequest("POST", "/directory/v1/siren/search", searchBody, null);
+    }
+
+    /** Searches for routing codes in the AFNOR directory. */
+    public Map<String, Object> searchRoutingCodesAfnor(Map<String, Object> filters, int limit) throws FactPulseException {
+        if (limit <= 0) limit = 25;
+        if (filters == null) filters = new LinkedHashMap<>();
+        Map<String, Object> searchBody = new LinkedHashMap<>();
+        searchBody.put("filters", filters);
+        searchBody.put("limit", limit);
+        return makeAfnorRequest("POST", "/directory/v1/routing-code/search", searchBody, null);
+    }
+
+    /** Gets a routing code by SIRET and routing identifier. */
+    public Map<String, Object> getRoutingCodeAfnor(String siret, String routingIdentifier) throws FactPulseException {
+        return makeAfnorRequest("GET", "/directory/v1/routing-code/siret:" + siret + "/code:" + routingIdentifier, null, null);
     }
 
     // =========================================================================

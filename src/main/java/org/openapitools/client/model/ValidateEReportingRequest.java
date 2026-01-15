@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to validate e-reporting data without submitting.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T10:58:39.412196574Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T11:27:34.204113558Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ValidateEReportingRequest {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)

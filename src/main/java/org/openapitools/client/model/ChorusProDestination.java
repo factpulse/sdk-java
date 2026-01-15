@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasProcessingChorusProCredentials;
+import org.openapitools.client.model.ChorusProCredentials;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Specific configuration for Chorus Pro destination.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T10:58:39.412196574Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T11:27:34.204113558Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ChorusProDestination {
   /**
    * Gets or Sets type
@@ -110,7 +110,7 @@ public class ChorusProDestination {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
-  private FactureElectroniqueRestApiSchemasProcessingChorusProCredentials credentials;
+  private ChorusProCredentials credentials;
 
   public ChorusProDestination() {
   }
@@ -134,7 +134,7 @@ public class ChorusProDestination {
   }
 
 
-  public ChorusProDestination credentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasProcessingChorusProCredentials credentials) {
+  public ChorusProDestination credentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
     return this;
   }
@@ -144,11 +144,11 @@ public class ChorusProDestination {
    * @return credentials
    */
   @javax.annotation.Nullable
-  public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials getCredentials() {
+  public ChorusProCredentials getCredentials() {
     return credentials;
   }
 
-  public void setCredentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasProcessingChorusProCredentials credentials) {
+  public void setCredentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
   }
 
@@ -246,7 +246,7 @@ public class ChorusProDestination {
       }
       // validate the optional field `credentials`
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
-        FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
+        ChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
   }
 
