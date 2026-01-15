@@ -10,7 +10,7 @@ Invoice for B2B international reporting (flux 10.1).  Used for unitary declarati
 |------------ | ------------- | ------------- | -------------|
 |**invoiceId** | **String** | Invoice identifier |  |
 |**issueDate** | **LocalDate** | Invoice issue date |  |
-|**typeCode** | **FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode** | Invoice type code |  [optional] |
+|**typeCode** | **InvoiceTypeCode** | Invoice type code |  [optional] |
 |**currency** | [**Currency**](Currency.md) |  |  [optional] |
 |**dueDate** | **LocalDate** |  |  [optional] |
 |**sellerSiren** | **String** | Seller SIREN/SIRET |  |
