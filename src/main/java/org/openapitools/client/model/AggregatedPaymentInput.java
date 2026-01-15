@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Aggregated payment for B2C (flux 10.4).  Used for B2C payment aggregates.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T08:08:45.525409714Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T09:28:58.594801679Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AggregatedPaymentInput {
   public static final String SERIALIZED_NAME_PAYMENT_DATE = "paymentDate";
   @SerializedName(SERIALIZED_NAME_PAYMENT_DATE)
@@ -63,7 +63,7 @@ public class AggregatedPaymentInput {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   @javax.annotation.Nullable
-  private Currency currency = EUR;
+  private Currency currency = null;
 
   public static final String SERIALIZED_NAME_AMOUNTS_BY_RATE = "amountsByRate";
   @SerializedName(SERIALIZED_NAME_AMOUNTS_BY_RATE)

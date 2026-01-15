@@ -13,7 +13,7 @@ Informations sur la validation.
 |**schematronRulesTotal** | **Integer** | Total regles |  |
 |**pdfaCompliant** | **Boolean** | PDF/A-3 conforme |  [optional] |
 |**xmlEmbedded** | **Boolean** | XML embarque dans PDF |  [optional] |
-|**errors** | [**List&lt;FactureElectroniqueRestApiSchemasConvertValidationError&gt;**](FactureElectroniqueRestApiSchemasConvertValidationError.md) |  |  [optional] |
+|**errors** | [**List&lt;ValidationError&gt;**](ValidationError.md) |  |  [optional] |
 
 
 

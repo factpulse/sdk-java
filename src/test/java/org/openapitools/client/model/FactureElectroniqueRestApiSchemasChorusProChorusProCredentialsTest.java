@@ -19,88 +19,62 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasConvertValidationError
+ * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
  */
-public class FactureElectroniqueRestApiSchemasConvertValidationErrorTest {
-    private final FactureElectroniqueRestApiSchemasConvertValidationError model = new FactureElectroniqueRestApiSchemasConvertValidationError();
+public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest {
+    private final FactureElectroniqueRestApiSchemasChorusProChorusProCredentials model = new FactureElectroniqueRestApiSchemasChorusProChorusProCredentials();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasConvertValidationError
+     * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasConvertValidationError() {
-        // TODO: test FactureElectroniqueRestApiSchemasConvertValidationError
+    public void testFactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
+        // TODO: test FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
     }
 
     /**
-     * Test the property 'rule'
+     * Test the property 'pisteClientId'
      */
     @Test
-    public void ruleTest() {
-        // TODO: test rule
+    public void pisteClientIdTest() {
+        // TODO: test pisteClientId
     }
 
     /**
-     * Test the property 'btCode'
+     * Test the property 'pisteClientSecret'
      */
     @Test
-    public void btCodeTest() {
-        // TODO: test btCode
+    public void pisteClientSecretTest() {
+        // TODO: test pisteClientSecret
     }
 
     /**
-     * Test the property 'severity'
+     * Test the property 'chorusProLogin'
      */
     @Test
-    public void severityTest() {
-        // TODO: test severity
+    public void chorusProLoginTest() {
+        // TODO: test chorusProLogin
     }
 
     /**
-     * Test the property 'message'
+     * Test the property 'chorusProPassword'
      */
     @Test
-    public void messageTest() {
-        // TODO: test message
+    public void chorusProPasswordTest() {
+        // TODO: test chorusProPassword
     }
 
     /**
-     * Test the property 'suggestedValue'
+     * Test the property 'sandbox'
      */
     @Test
-    public void suggestedValueTest() {
-        // TODO: test suggestedValue
-    }
-
-    /**
-     * Test the property 'suggestedField'
-     */
-    @Test
-    public void suggestedFieldTest() {
-        // TODO: test suggestedField
-    }
-
-    /**
-     * Test the property 'explanation'
-     */
-    @Test
-    public void explanationTest() {
-        // TODO: test explanation
-    }
-
-    /**
-     * Test the property 'confidence'
-     */
-    @Test
-    public void confidenceTest() {
-        // TODO: test confidence
+    public void sandboxTest() {
+        // TODO: test sandbox
     }
 
 }

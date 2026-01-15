@@ -344,4 +344,5 @@
             <url>https://maven.pkg.github.com/factpulse/sdk-java</url>
         </repository>
     </distributionManagement>
+
 </project>
