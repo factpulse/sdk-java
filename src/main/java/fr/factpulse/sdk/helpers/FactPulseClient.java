@@ -348,7 +348,11 @@ public class FactPulseClient {
                     Type type = new TypeToken<Map<String, Object>>(){}.getType();
                     Map<String, Object> result = gson.fromJson(responseBody, type);
                     String taskId = (String) result.get("taskId");
-                    if (taskId == null) throw new FactPulseValidationException("No task ID");
+                    if (taskId == null) {
+                        System.err.println("DEBUG: Response body: " + responseBody);
+                        System.err.println("DEBUG: Parsed result: " + result);
+                        throw new FactPulseValidationException("No task ID");
+                    }
                     if (!sync) return taskId.getBytes();
                     Map<String, Object> pollResult = pollTask(taskId, timeout, null);
                     if (pollResult.containsKey("content_b64")) return Base64.getDecoder().decode((String) pollResult.get("content_b64"));
