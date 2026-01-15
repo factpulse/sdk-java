@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORDirectoryLinePost201Response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T09:28:58.594801679Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T09:59:35.346089835Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORDirectoryLinePost201Response {
   public static final String SERIALIZED_NAME_ID_INSTANCE = "idInstance";
   @SerializedName(SERIALIZED_NAME_ID_INSTANCE)
