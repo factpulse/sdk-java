@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,130 +46,130 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this &#x60;credentials&#x60; field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
+ * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don&#39;t want to store their credentials
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T15:37:22.505660611Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T16:20:25.270629684Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
   public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "pisteClientId";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String pisteClientId;
 
   public static final String SERIALIZED_NAME_PISTE_CLIENT_SECRET = "pisteClientSecret";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_SECRET)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String pisteClientSecret;
 
-  public static final String SERIALIZED_NAME_CHORUS_LOGIN = "chorusLogin";
-  @SerializedName(SERIALIZED_NAME_CHORUS_LOGIN)
-  @javax.annotation.Nullable
-  private String chorusLogin;
+  public static final String SERIALIZED_NAME_CHORUS_PRO_LOGIN = "chorusProLogin";
+  @SerializedName(SERIALIZED_NAME_CHORUS_PRO_LOGIN)
+  @javax.annotation.Nonnull
+  private String chorusProLogin;
 
-  public static final String SERIALIZED_NAME_CHORUS_PASSWORD = "chorusPassword";
-  @SerializedName(SERIALIZED_NAME_CHORUS_PASSWORD)
-  @javax.annotation.Nullable
-  private String chorusPassword;
+  public static final String SERIALIZED_NAME_CHORUS_PRO_PASSWORD = "chorusProPassword";
+  @SerializedName(SERIALIZED_NAME_CHORUS_PRO_PASSWORD)
+  @javax.annotation.Nonnull
+  private String chorusProPassword;
 
-  public static final String SERIALIZED_NAME_SANDBOX_MODE = "sandboxMode";
-  @SerializedName(SERIALIZED_NAME_SANDBOX_MODE)
+  public static final String SERIALIZED_NAME_SANDBOX = "sandbox";
+  @SerializedName(SERIALIZED_NAME_SANDBOX)
   @javax.annotation.Nullable
-  private Boolean sandboxMode = true;
+  private Boolean sandbox = true;
 
-  public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials() {
+  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
   }
 
-  public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials pisteClientId(@javax.annotation.Nullable String pisteClientId) {
+  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials pisteClientId(@javax.annotation.Nonnull String pisteClientId) {
     this.pisteClientId = pisteClientId;
     return this;
   }
 
   /**
-   * Get pisteClientId
+   * PISTE Client ID (government API portal)
    * @return pisteClientId
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getPisteClientId() {
     return pisteClientId;
   }
 
-  public void setPisteClientId(@javax.annotation.Nullable String pisteClientId) {
+  public void setPisteClientId(@javax.annotation.Nonnull String pisteClientId) {
     this.pisteClientId = pisteClientId;
   }
 
 
-  public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials pisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
+  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials pisteClientSecret(@javax.annotation.Nonnull String pisteClientSecret) {
     this.pisteClientSecret = pisteClientSecret;
     return this;
   }
 
   /**
-   * Get pisteClientSecret
+   * PISTE Client Secret
    * @return pisteClientSecret
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getPisteClientSecret() {
     return pisteClientSecret;
   }
 
-  public void setPisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
+  public void setPisteClientSecret(@javax.annotation.Nonnull String pisteClientSecret) {
     this.pisteClientSecret = pisteClientSecret;
   }
 
 
-  public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials chorusLogin(@javax.annotation.Nullable String chorusLogin) {
-    this.chorusLogin = chorusLogin;
+  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials chorusProLogin(@javax.annotation.Nonnull String chorusProLogin) {
+    this.chorusProLogin = chorusProLogin;
     return this;
   }
 
   /**
-   * Get chorusLogin
-   * @return chorusLogin
+   * Chorus Pro login
+   * @return chorusProLogin
    */
-  @javax.annotation.Nullable
-  public String getChorusLogin() {
-    return chorusLogin;
+  @javax.annotation.Nonnull
+  public String getChorusProLogin() {
+    return chorusProLogin;
   }
 
-  public void setChorusLogin(@javax.annotation.Nullable String chorusLogin) {
-    this.chorusLogin = chorusLogin;
+  public void setChorusProLogin(@javax.annotation.Nonnull String chorusProLogin) {
+    this.chorusProLogin = chorusProLogin;
   }
 
 
-  public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials chorusPassword(@javax.annotation.Nullable String chorusPassword) {
-    this.chorusPassword = chorusPassword;
+  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials chorusProPassword(@javax.annotation.Nonnull String chorusProPassword) {
+    this.chorusProPassword = chorusProPassword;
     return this;
   }
 
   /**
-   * Get chorusPassword
-   * @return chorusPassword
+   * Chorus Pro password
+   * @return chorusProPassword
    */
-  @javax.annotation.Nullable
-  public String getChorusPassword() {
-    return chorusPassword;
+  @javax.annotation.Nonnull
+  public String getChorusProPassword() {
+    return chorusProPassword;
   }
 
-  public void setChorusPassword(@javax.annotation.Nullable String chorusPassword) {
-    this.chorusPassword = chorusPassword;
+  public void setChorusProPassword(@javax.annotation.Nonnull String chorusProPassword) {
+    this.chorusProPassword = chorusProPassword;
   }
 
 
-  public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials sandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
-    this.sandboxMode = sandboxMode;
+  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials sandbox(@javax.annotation.Nullable Boolean sandbox) {
+    this.sandbox = sandbox;
     return this;
   }
 
   /**
-   * [MODE 2] Use sandbox mode (default: True)
-   * @return sandboxMode
+   * Use sandbox environment (true) or production (false)
+   * @return sandbox
    */
   @javax.annotation.Nullable
-  public Boolean getSandboxMode() {
-    return sandboxMode;
+  public Boolean getSandbox() {
+    return sandbox;
   }
 
-  public void setSandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
-    this.sandboxMode = sandboxMode;
+  public void setSandbox(@javax.annotation.Nullable Boolean sandbox) {
+    this.sandbox = sandbox;
   }
 
 
@@ -183,39 +182,28 @@ public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FactureElectroniqueRestApiSchemasProcessingChorusProCredentials factureElectroniqueRestApiSchemasProcessingChorusProCredentials = (FactureElectroniqueRestApiSchemasProcessingChorusProCredentials) o;
-    return Objects.equals(this.pisteClientId, factureElectroniqueRestApiSchemasProcessingChorusProCredentials.pisteClientId) &&
-        Objects.equals(this.pisteClientSecret, factureElectroniqueRestApiSchemasProcessingChorusProCredentials.pisteClientSecret) &&
-        Objects.equals(this.chorusLogin, factureElectroniqueRestApiSchemasProcessingChorusProCredentials.chorusLogin) &&
-        Objects.equals(this.chorusPassword, factureElectroniqueRestApiSchemasProcessingChorusProCredentials.chorusPassword) &&
-        Objects.equals(this.sandboxMode, factureElectroniqueRestApiSchemasProcessingChorusProCredentials.sandboxMode);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    FactureElectroniqueRestApiSchemasChorusProChorusProCredentials factureElectroniqueRestApiSchemasChorusProChorusProCredentials = (FactureElectroniqueRestApiSchemasChorusProChorusProCredentials) o;
+    return Objects.equals(this.pisteClientId, factureElectroniqueRestApiSchemasChorusProChorusProCredentials.pisteClientId) &&
+        Objects.equals(this.pisteClientSecret, factureElectroniqueRestApiSchemasChorusProChorusProCredentials.pisteClientSecret) &&
+        Objects.equals(this.chorusProLogin, factureElectroniqueRestApiSchemasChorusProChorusProCredentials.chorusProLogin) &&
+        Objects.equals(this.chorusProPassword, factureElectroniqueRestApiSchemasChorusProChorusProCredentials.chorusProPassword) &&
+        Objects.equals(this.sandbox, factureElectroniqueRestApiSchemasChorusProChorusProCredentials.sandbox);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pisteClientId, pisteClientSecret, chorusLogin, chorusPassword, sandboxMode);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(pisteClientId, pisteClientSecret, chorusProLogin, chorusProPassword, sandbox);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {\n");
+    sb.append("class FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {\n");
     sb.append("    pisteClientId: ").append(toIndentedString(pisteClientId)).append("\n");
     sb.append("    pisteClientSecret: ").append(toIndentedString(pisteClientSecret)).append("\n");
-    sb.append("    chorusLogin: ").append(toIndentedString(chorusLogin)).append("\n");
-    sb.append("    chorusPassword: ").append(toIndentedString(chorusPassword)).append("\n");
-    sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
+    sb.append("    chorusProLogin: ").append(toIndentedString(chorusProLogin)).append("\n");
+    sb.append("    chorusProPassword: ").append(toIndentedString(chorusProPassword)).append("\n");
+    sb.append("    sandbox: ").append(toIndentedString(sandbox)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -237,44 +225,51 @@ public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusLogin", "chorusPassword", "sandboxMode"));
+    openapiFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword", "sandbox"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasProcessingChorusProCredentials is not found in the empty JSON string", FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.openapiRequiredFields.toString()));
+        if (!FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasChorusProChorusProCredentials is not found in the empty JSON string", FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasProcessingChorusProCredentials` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasChorusProChorusProCredentials` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("pisteClientId") != null && !jsonObj.get("pisteClientId").isJsonNull()) && !jsonObj.get("pisteClientId").isJsonPrimitive()) {
+      if (!jsonObj.get("pisteClientId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientId").toString()));
       }
-      if ((jsonObj.get("pisteClientSecret") != null && !jsonObj.get("pisteClientSecret").isJsonNull()) && !jsonObj.get("pisteClientSecret").isJsonPrimitive()) {
+      if (!jsonObj.get("pisteClientSecret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientSecret").toString()));
       }
-      if ((jsonObj.get("chorusLogin") != null && !jsonObj.get("chorusLogin").isJsonNull()) && !jsonObj.get("chorusLogin").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusLogin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusLogin").toString()));
+      if (!jsonObj.get("chorusProLogin").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProLogin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProLogin").toString()));
       }
-      if ((jsonObj.get("chorusPassword") != null && !jsonObj.get("chorusPassword").isJsonNull()) && !jsonObj.get("chorusPassword").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusPassword` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusPassword").toString()));
+      if (!jsonObj.get("chorusProPassword").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProPassword` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProPassword").toString()));
       }
   }
 
@@ -282,22 +277,22 @@ public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasProcessingChorusProCredentials' and its subtypes
+       if (!FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasChorusProChorusProCredentials' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FactureElectroniqueRestApiSchemasProcessingChorusProCredentials> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.class));
+       final TypeAdapter<FactureElectroniqueRestApiSchemasChorusProChorusProCredentials> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasProcessingChorusProCredentials>() {
+       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasChorusProChorusProCredentials>() {
            @Override
-           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasProcessingChorusProCredentials value) throws IOException {
+           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasChorusProChorusProCredentials value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FactureElectroniqueRestApiSchemasProcessingChorusProCredentials read(JsonReader in) throws IOException {
+           public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -308,18 +303,18 @@ public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {
   }
 
   /**
-   * Create an instance of FactureElectroniqueRestApiSchemasProcessingChorusProCredentials given an JSON string
+   * Create an instance of FactureElectroniqueRestApiSchemasChorusProChorusProCredentials given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
-   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+   * @return An instance of FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
    */
-  public static FactureElectroniqueRestApiSchemasProcessingChorusProCredentials fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.class);
+  public static FactureElectroniqueRestApiSchemasChorusProChorusProCredentials fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.class);
   }
 
   /**
-   * Convert an instance of FactureElectroniqueRestApiSchemasProcessingChorusProCredentials to an JSON string
+   * Convert an instance of FactureElectroniqueRestApiSchemasChorusProChorusProCredentials to an JSON string
    *
    * @return JSON string
    */

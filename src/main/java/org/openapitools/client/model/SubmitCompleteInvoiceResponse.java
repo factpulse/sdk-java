@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Complete response after automated submission.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T15:37:22.505660611Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T16:20:25.270629684Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SubmitCompleteInvoiceResponse {
   public static final String SERIALIZED_NAME_SUCCESS = "success";
   @SerializedName(SERIALIZED_NAME_SUCCESS)

@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Item classification identifier (BG-31).  Product classification according to a classification scheme.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T15:37:22.505660611Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T16:20:25.270629684Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ProductClassification {
   public static final String SERIALIZED_NAME_CLASS_CODE = "class_code";
   @SerializedName(SERIALIZED_NAME_CLASS_CODE)

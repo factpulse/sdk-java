@@ -271,11 +271,11 @@ public class FactPulseClient {
                 if (response.code() == 401) { resetAuth(); continue; }
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
                 Map<String, Object> data = gson.fromJson(response.body().string(), type);
-                String statut = (String) data.get("statut");
-                if ("SUCCESS".equals(statut)) return data.get("resultat") instanceof Map ? (Map<String, Object>) data.get("resultat") : new HashMap<>();
-                if ("FAILURE".equals(statut)) {
+                String status = (String) data.get("status");
+                if ("SUCCESS".equals(status)) return data.get("result") instanceof Map ? (Map<String, Object>) data.get("result") : new HashMap<>();
+                if ("FAILURE".equals(status)) {
                     // Format AFNOR: errorMessage, details
-                    Map<String, Object> res = (Map<String, Object>) data.get("resultat");
+                    Map<String, Object> res = (Map<String, Object>) data.get("result");
                     List<ValidationErrorDetail> errors = new ArrayList<>();
                     if (res != null && res.containsKey("details"))
                         for (Map<String, Object> e : (List<Map<String, Object>>) res.get("details")) errors.add(ValidationErrorDetail.fromMap(e));

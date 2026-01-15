@@ -13,69 +13,72 @@
 
 package org.openapitools.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+ * Invoice type codes (UNTDID 1001).
  */
-public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest {
-    private final FactureElectroniqueRestApiSchemasProcessingChorusProCredentials model = new FactureElectroniqueRestApiSchemasProcessingChorusProCredentials();
+@JsonAdapter(FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.Adapter.class)
+public enum FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode {
+  
+  _380("380"),
+  
+  _381("381"),
+  
+  _384("384"),
+  
+  _389("389"),
+  
+  _386("386");
 
-    /**
-     * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
-     */
-    @Test
-    public void testFactureElectroniqueRestApiSchemasProcessingChorusProCredentials() {
-        // TODO: test FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+  private String value;
+
+  FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
+
+  public static FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode fromValue(String value) {
+    for (FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode b : FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
+    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+  }
+
+  public static class Adapter extends TypeAdapter<FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
-    /**
-     * Test the property 'pisteClientId'
-     */
-    @Test
-    public void pisteClientIdTest() {
-        // TODO: test pisteClientId
+    @Override
+    public FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.fromValue(value);
     }
+  }
 
-    /**
-     * Test the property 'pisteClientSecret'
-     */
-    @Test
-    public void pisteClientSecretTest() {
-        // TODO: test pisteClientSecret
-    }
-
-    /**
-     * Test the property 'chorusLogin'
-     */
-    @Test
-    public void chorusLoginTest() {
-        // TODO: test chorusLogin
-    }
-
-    /**
-     * Test the property 'chorusPassword'
-     */
-    @Test
-    public void chorusPasswordTest() {
-        // TODO: test chorusPassword
-    }
-
-    /**
-     * Test the property 'sandboxMode'
-     */
-    @Test
-    public void sandboxModeTest() {
-        // TODO: test sandboxMode
-    }
-
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.fromValue(value);
+  }
 }
+
