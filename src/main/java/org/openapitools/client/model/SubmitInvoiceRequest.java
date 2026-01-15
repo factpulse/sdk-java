@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasChorusProChorusProCredentials;
+import org.openapitools.client.model.ChorusProCredentials;
 import org.openapitools.client.model.SubmitGrossAmount;
 import org.openapitools.client.model.SubmitNetAmount;
 import org.openapitools.client.model.SubmitVatAmount;
@@ -53,12 +53,12 @@ import org.openapitools.client.JSON;
 /**
  * Submit an invoice to Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T11:27:34.204113558Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-15T12:28:01.463382445Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SubmitInvoiceRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
-  private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
+  private ChorusProCredentials credentials;
 
   public static final String SERIALIZED_NAME_INVOICE_NUMBER = "invoiceNumber";
   @SerializedName(SERIALIZED_NAME_INVOICE_NUMBER)
@@ -133,7 +133,7 @@ public class SubmitInvoiceRequest {
   public SubmitInvoiceRequest() {
   }
 
-  public SubmitInvoiceRequest credentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
+  public SubmitInvoiceRequest credentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
     return this;
   }
@@ -143,11 +143,11 @@ public class SubmitInvoiceRequest {
    * @return credentials
    */
   @javax.annotation.Nullable
-  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials getCredentials() {
+  public ChorusProCredentials getCredentials() {
     return credentials;
   }
 
-  public void setCredentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
+  public void setCredentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
   }
 
@@ -537,7 +537,7 @@ public class SubmitInvoiceRequest {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `credentials`
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
-        FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
+        ChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
       if (!jsonObj.get("invoiceNumber").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoiceNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceNumber").toString()));
