@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Wrapper for postal addresses
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-16T14:10:35.789559027Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-16T14:47:29.671230468Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORAddressPut {
   public static final String SERIALIZED_NAME_LIGNE_ADRESSE1 = "ligneAdresse1";
   @SerializedName(SERIALIZED_NAME_LIGNE_ADRESSE1)

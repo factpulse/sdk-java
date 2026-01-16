@@ -58,7 +58,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to create a PPF-compliant aggregated e-reporting submission.  This schema allows creating a SINGLE report file containing multiple flux types, as expected by the PPF and PA platforms: - TransactionsReport: Contains both Invoice (10.1) and Transactions (10.3) - PaymentsReport: Contains both Invoice payments (10.2) and Transaction payments (10.4)  Source: Specifications externes v3.1, XSD ereporting.xsd
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-16T14:10:35.789559027Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-16T14:47:29.671230468Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class CreateAggregatedReportRequest {
   public static final String SERIALIZED_NAME_REPORT_ID = "reportId";
   @SerializedName(SERIALIZED_NAME_REPORT_ID)
