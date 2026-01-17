@@ -355,6 +355,28 @@ public class FactPulseClient {
                     }
                     if (!sync) return taskId.getBytes();
                     Map<String, Object> pollResult = pollTask(taskId, timeout, null);
+
+                    // Check for business error (task succeeded but business result is ERROR)
+                    if ("ERROR".equals(pollResult.get("status"))) {
+                        String errorMsg = pollResult.containsKey("errorMessage") ? (String) pollResult.get("errorMessage") : "Business error";
+                        List<ValidationErrorDetail> errors = new ArrayList<>();
+                        if (pollResult.containsKey("details") && pollResult.get("details") instanceof List) {
+                            for (Object d : (List<?>) pollResult.get("details")) {
+                                if (d instanceof Map) {
+                                    Map<?, ?> det = (Map<?, ?>) d;
+                                    errors.add(new ValidationErrorDetail(
+                                        det.containsKey("level") ? det.get("level").toString() : "ERROR",
+                                        det.containsKey("item") ? det.get("item").toString() : "",
+                                        det.containsKey("reason") ? det.get("reason").toString() : "",
+                                        det.containsKey("source") ? det.get("source").toString() : null,
+                                        det.containsKey("code") ? det.get("code").toString() : null
+                                    ));
+                                }
+                            }
+                        }
+                        throw new FactPulseValidationException(errorMsg, errors);
+                    }
+
                     if (pollResult.containsKey("content_b64")) return Base64.getDecoder().decode((String) pollResult.get("content_b64"));
                     throw new FactPulseValidationException("No content in result");
                 }
