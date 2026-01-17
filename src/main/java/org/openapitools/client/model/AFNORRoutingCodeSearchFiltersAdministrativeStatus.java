@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORRoutingCodeSearchFiltersAdministrativeStatus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:30:45.476176263Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:49:21.684531101Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORRoutingCodeSearchFiltersAdministrativeStatus {
   public static final String SERIALIZED_NAME_OP = "op";
   @SerializedName(SERIALIZED_NAME_OP)

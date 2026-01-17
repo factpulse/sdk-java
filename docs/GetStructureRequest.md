@@ -8,7 +8,7 @@ Get structure details.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**credentials** | [**ChorusProCredentials**](ChorusProCredentials.md) |  |  [optional] |
+|**credentials** | [**FactureElectroniqueRestApiSchemasChorusProChorusProCredentials**](FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md) |  |  [optional] |
 |**structureId** | **Integer** | Chorus Pro structure ID |  |
 |**languageCode** | **String** | Language code (fr, en) |  [optional] |
 
