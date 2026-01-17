@@ -56,7 +56,7 @@ import org.openapitools.client.JSON;
 /**
  * Simplified invoice data (minimal format for auto-enrichment).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:27:39.966192286Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:30:45.476176263Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SimplifiedInvoiceData {
   public static final String SERIALIZED_NAME_NUMBER = "number";
   @SerializedName(SERIALIZED_NAME_NUMBER)
