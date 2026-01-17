@@ -20,8 +20,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,106 +48,42 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Erreur de validation.
+ * Response for validation errors.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T15:30:45.984756206Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T15:37:19.714838713Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ValidationErrorResponse {
-  public static final String SERIALIZED_NAME_FIELD = "field";
-  @SerializedName(SERIALIZED_NAME_FIELD)
+  public static final String SERIALIZED_NAME_DETAIL = "detail";
+  @SerializedName(SERIALIZED_NAME_DETAIL)
   @javax.annotation.Nonnull
-  private String field;
-
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  @javax.annotation.Nonnull
-  private String message;
-
-  public static final String SERIALIZED_NAME_RULE = "rule";
-  @SerializedName(SERIALIZED_NAME_RULE)
-  @javax.annotation.Nullable
-  private String rule;
-
-  public static final String SERIALIZED_NAME_SEVERITY = "severity";
-  @SerializedName(SERIALIZED_NAME_SEVERITY)
-  @javax.annotation.Nullable
-  private String severity = "error";
+  private List<String> detail = new ArrayList<>();
 
   public ValidationErrorResponse() {
   }
 
-  public ValidationErrorResponse field(@javax.annotation.Nonnull String field) {
-    this.field = field;
+  public ValidationErrorResponse detail(@javax.annotation.Nonnull List<String> detail) {
+    this.detail = detail;
+    return this;
+  }
+
+  public ValidationErrorResponse addDetailItem(String detailItem) {
+    if (this.detail == null) {
+      this.detail = new ArrayList<>();
+    }
+    this.detail.add(detailItem);
     return this;
   }
 
   /**
-   * Champ concerné
-   * @return field
+   * List of detected validation errors.
+   * @return detail
    */
   @javax.annotation.Nonnull
-  public String getField() {
-    return field;
+  public List<String> getDetail() {
+    return detail;
   }
 
-  public void setField(@javax.annotation.Nonnull String field) {
-    this.field = field;
-  }
-
-
-  public ValidationErrorResponse message(@javax.annotation.Nonnull String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Message d&#39;erreur
-   * @return message
-   */
-  @javax.annotation.Nonnull
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(@javax.annotation.Nonnull String message) {
-    this.message = message;
-  }
-
-
-  public ValidationErrorResponse rule(@javax.annotation.Nullable String rule) {
-    this.rule = rule;
-    return this;
-  }
-
-  /**
-   * Get rule
-   * @return rule
-   */
-  @javax.annotation.Nullable
-  public String getRule() {
-    return rule;
-  }
-
-  public void setRule(@javax.annotation.Nullable String rule) {
-    this.rule = rule;
-  }
-
-
-  public ValidationErrorResponse severity(@javax.annotation.Nullable String severity) {
-    this.severity = severity;
-    return this;
-  }
-
-  /**
-   * Sévérité (error/warning)
-   * @return severity
-   */
-  @javax.annotation.Nullable
-  public String getSeverity() {
-    return severity;
-  }
-
-  public void setSeverity(@javax.annotation.Nullable String severity) {
-    this.severity = severity;
+  public void setDetail(@javax.annotation.Nonnull List<String> detail) {
+    this.detail = detail;
   }
 
 
@@ -160,36 +97,19 @@ public class ValidationErrorResponse {
       return false;
     }
     ValidationErrorResponse validationErrorResponse = (ValidationErrorResponse) o;
-    return Objects.equals(this.field, validationErrorResponse.field) &&
-        Objects.equals(this.message, validationErrorResponse.message) &&
-        Objects.equals(this.rule, validationErrorResponse.rule) &&
-        Objects.equals(this.severity, validationErrorResponse.severity);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    return Objects.equals(this.detail, validationErrorResponse.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, message, rule, severity);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(detail);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ValidationErrorResponse {\n");
-    sb.append("    field: ").append(toIndentedString(field)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
-    sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -211,10 +131,10 @@ public class ValidationErrorResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("field", "message", "rule", "severity"));
+    openapiFields = new HashSet<String>(Arrays.asList("detail"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("field", "message"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("detail"));
   }
 
   /**
@@ -245,17 +165,11 @@ public class ValidationErrorResponse {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("field").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
-      }
-      if (!jsonObj.get("message").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
-      }
-      if ((jsonObj.get("rule") != null && !jsonObj.get("rule").isJsonNull()) && !jsonObj.get("rule").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `rule` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rule").toString()));
-      }
-      if ((jsonObj.get("severity") != null && !jsonObj.get("severity").isJsonNull()) && !jsonObj.get("severity").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `severity` to be a primitive type in the JSON string but got `%s`", jsonObj.get("severity").toString()));
+      // ensure the required json array is present
+      if (jsonObj.get("detail") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("detail").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `detail` to be an array in the JSON string but got `%s`", jsonObj.get("detail").toString()));
       }
   }
 

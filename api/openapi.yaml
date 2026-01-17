@@ -662,7 +662,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/facture_electronique__rest_api__schemas__validation__ValidationErrorResponse"
+                $ref: "#/components/schemas/ValidationErrorResponse"
           description: XML does not comply with Factur-X profile rules
         "422":
           content:
@@ -9616,13 +9616,13 @@ components:
         errors:
           description: Liste des erreurs
           items:
-            $ref: "#/components/schemas/ValidationErrorResponse"
+            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
           title: Errors
           type: array
         warnings:
           description: Liste des avertissements
           items:
-            $ref: "#/components/schemas/ValidationErrorResponse"
+            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
           title: Warnings
           type: array
       required:
@@ -9753,32 +9753,20 @@ components:
       - reason
       title: ValidationErrorDetail
     ValidationErrorResponse:
-      description: Erreur de validation.
+      description: Response for validation errors.
       example:
-        severity: error
-        field: field
-        rule: rule
-        message: message
+        detail:
+        - detail
+        - detail
       properties:
-        field:
-          description: Champ concerné
-          title: Field
-          type: string
-        message:
-          description: Message d'erreur
-          title: Message
-          type: string
-        rule:
-          nullable: true
-          type: string
-        severity:
-          default: error
-          description: Sévérité (error/warning)
-          title: Severity
-          type: string
+        detail:
+          description: List of detected validation errors.
+          items:
+            type: string
+          title: Detail
+          type: array
       required:
-      - field
-      - message
+      - detail
       title: ValidationErrorResponse
     ValidationInfo:
       description: Informations sur la validation.
@@ -10003,6 +9991,34 @@ components:
       - label
       - status
       title: VerifiedFieldSchema
+    facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse:
+      description: Erreur de validation.
+      example:
+        severity: error
+        field: field
+        rule: rule
+        message: message
+      properties:
+        field:
+          description: Champ concerné
+          title: Field
+          type: string
+        message:
+          description: Message d'erreur
+          title: Message
+          type: string
+        rule:
+          nullable: true
+          type: string
+        severity:
+          default: error
+          description: Sévérité (error/warning)
+          title: Severity
+          type: string
+      required:
+      - field
+      - message
+      title: ValidationErrorResponse
     facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
       description: |-
         Chorus Pro credentials for Zero-Trust mode.
@@ -10063,22 +10079,6 @@ components:
       - "386"
       title: InvoiceTypeCode
       type: string
-    facture_electronique__rest_api__schemas__validation__ValidationErrorResponse:
-      description: Response for validation errors.
-      example:
-        detail:
-        - detail
-        - detail
-      properties:
-        detail:
-          description: List of detected validation errors.
-          items:
-            type: string
-          title: Detail
-          type: array
-      required:
-      - detail
-      title: ValidationErrorResponse
     AdditionalDocument:
       description: |-
         Additional supporting document (BG-24).

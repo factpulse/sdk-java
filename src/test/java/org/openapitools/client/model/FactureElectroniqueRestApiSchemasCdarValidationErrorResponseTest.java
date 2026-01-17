@@ -19,32 +19,55 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+ * Model tests for FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
  */
-public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponseTest {
-    private final FactureElectroniqueRestApiSchemasValidationValidationErrorResponse model = new FactureElectroniqueRestApiSchemasValidationValidationErrorResponse();
+public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponseTest {
+    private final FactureElectroniqueRestApiSchemasCdarValidationErrorResponse model = new FactureElectroniqueRestApiSchemasCdarValidationErrorResponse();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+     * Model tests for FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasValidationValidationErrorResponse() {
-        // TODO: test FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+    public void testFactureElectroniqueRestApiSchemasCdarValidationErrorResponse() {
+        // TODO: test FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
     }
 
     /**
-     * Test the property 'detail'
+     * Test the property 'field'
      */
     @Test
-    public void detailTest() {
-        // TODO: test detail
+    public void fieldTest() {
+        // TODO: test field
+    }
+
+    /**
+     * Test the property 'message'
+     */
+    @Test
+    public void messageTest() {
+        // TODO: test message
+    }
+
+    /**
+     * Test the property 'rule'
+     */
+    @Test
+    public void ruleTest() {
+        // TODO: test rule
+    }
+
+    /**
+     * Test the property 'severity'
+     */
+    @Test
+    public void severityTest() {
+        // TODO: test severity
     }
 
 }
