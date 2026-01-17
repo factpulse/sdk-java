@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasChorusProChorusProCredentials;
+import org.openapitools.client.model.ChorusProCredentials;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -50,12 +50,12 @@ import org.openapitools.client.JSON;
 /**
  * Get structure details.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:15:22.072430177Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:27:39.966192286Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GetStructureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
-  private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
+  private ChorusProCredentials credentials;
 
   public static final String SERIALIZED_NAME_STRUCTURE_ID = "structureId";
   @SerializedName(SERIALIZED_NAME_STRUCTURE_ID)
@@ -70,7 +70,7 @@ public class GetStructureRequest {
   public GetStructureRequest() {
   }
 
-  public GetStructureRequest credentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
+  public GetStructureRequest credentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
     return this;
   }
@@ -80,11 +80,11 @@ public class GetStructureRequest {
    * @return credentials
    */
   @javax.annotation.Nullable
-  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials getCredentials() {
+  public ChorusProCredentials getCredentials() {
     return credentials;
   }
 
-  public void setCredentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
+  public void setCredentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
   }
 
@@ -222,7 +222,7 @@ public class GetStructureRequest {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `credentials`
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
-        FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
+        ChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
       if ((jsonObj.get("languageCode") != null && !jsonObj.get("languageCode").isJsonNull()) && !jsonObj.get("languageCode").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `languageCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("languageCode").toString()));

@@ -8,7 +8,7 @@ Get an invoice.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**credentials** | [**FactureElectroniqueRestApiSchemasChorusProChorusProCredentials**](FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md) |  |  [optional] |
+|**credentials** | [**ChorusProCredentials**](ChorusProCredentials.md) |  |  [optional] |
 |**chorusInvoiceId** | **Integer** | Chorus Pro invoice ID |  |
 
 

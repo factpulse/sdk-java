@@ -2,17 +2,17 @@
 
 # ChorusProCredentials
 
-Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this `credentials` field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
+Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don't want to store their credentials
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**pisteClientId** | **String** |  |  [optional] |
-|**pisteClientSecret** | **String** |  |  [optional] |
-|**chorusLogin** | **String** |  |  [optional] |
-|**chorusPassword** | **String** |  |  [optional] |
-|**sandboxMode** | **Boolean** | [MODE 2] Use sandbox mode (default: True) |  [optional] |
+|**pisteClientId** | **String** | PISTE Client ID (government API portal) |  |
+|**pisteClientSecret** | **String** | PISTE Client Secret |  |
+|**chorusProLogin** | **String** | Chorus Pro login |  |
+|**chorusProPassword** | **String** | Chorus Pro password |  |
+|**sandbox** | **Boolean** | Use sandbox environment (true) or production (false) |  [optional] |
 
 
 
