@@ -20,62 +20,45 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+ * Model tests for ActionCodeInfo
  */
-public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest {
-    private final FactureElectroniqueRestApiSchemasProcessingChorusProCredentials model = new FactureElectroniqueRestApiSchemasProcessingChorusProCredentials();
+public class ActionCodeInfoTest {
+    private final ActionCodeInfo model = new ActionCodeInfo();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+     * Model tests for ActionCodeInfo
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasProcessingChorusProCredentials() {
-        // TODO: test FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+    public void testActionCodeInfo() {
+        // TODO: test ActionCodeInfo
     }
 
     /**
-     * Test the property 'pisteClientId'
+     * Test the property 'code'
      */
     @Test
-    public void pisteClientIdTest() {
-        // TODO: test pisteClientId
+    public void codeTest() {
+        // TODO: test code
     }
 
     /**
-     * Test the property 'pisteClientSecret'
+     * Test the property 'name'
      */
     @Test
-    public void pisteClientSecretTest() {
-        // TODO: test pisteClientSecret
+    public void nameTest() {
+        // TODO: test name
     }
 
     /**
-     * Test the property 'chorusLogin'
+     * Test the property 'description'
      */
     @Test
-    public void chorusLoginTest() {
-        // TODO: test chorusLogin
-    }
-
-    /**
-     * Test the property 'chorusPassword'
-     */
-    @Test
-    public void chorusPasswordTest() {
-        // TODO: test chorusPassword
-    }
-
-    /**
-     * Test the property 'sandboxMode'
-     */
-    @Test
-    public void sandboxModeTest() {
-        // TODO: test sandboxMode
+    public void descriptionTest() {
+        // TODO: test description
     }
 
 }

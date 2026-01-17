@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,130 +47,130 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don&#39;t want to store their credentials
+ * Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this &#x60;credentials&#x60; field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-16T14:47:29.671230468Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T12:42:07.045587328Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class ChorusProCredentials {
   public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "pisteClientId";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String pisteClientId;
 
   public static final String SERIALIZED_NAME_PISTE_CLIENT_SECRET = "pisteClientSecret";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_SECRET)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String pisteClientSecret;
 
-  public static final String SERIALIZED_NAME_CHORUS_PRO_LOGIN = "chorusProLogin";
-  @SerializedName(SERIALIZED_NAME_CHORUS_PRO_LOGIN)
-  @javax.annotation.Nonnull
-  private String chorusProLogin;
-
-  public static final String SERIALIZED_NAME_CHORUS_PRO_PASSWORD = "chorusProPassword";
-  @SerializedName(SERIALIZED_NAME_CHORUS_PRO_PASSWORD)
-  @javax.annotation.Nonnull
-  private String chorusProPassword;
-
-  public static final String SERIALIZED_NAME_SANDBOX = "sandbox";
-  @SerializedName(SERIALIZED_NAME_SANDBOX)
+  public static final String SERIALIZED_NAME_CHORUS_LOGIN = "chorusLogin";
+  @SerializedName(SERIALIZED_NAME_CHORUS_LOGIN)
   @javax.annotation.Nullable
-  private Boolean sandbox = true;
+  private String chorusLogin;
+
+  public static final String SERIALIZED_NAME_CHORUS_PASSWORD = "chorusPassword";
+  @SerializedName(SERIALIZED_NAME_CHORUS_PASSWORD)
+  @javax.annotation.Nullable
+  private String chorusPassword;
+
+  public static final String SERIALIZED_NAME_SANDBOX_MODE = "sandboxMode";
+  @SerializedName(SERIALIZED_NAME_SANDBOX_MODE)
+  @javax.annotation.Nullable
+  private Boolean sandboxMode = true;
 
   public ChorusProCredentials() {
   }
 
-  public ChorusProCredentials pisteClientId(@javax.annotation.Nonnull String pisteClientId) {
+  public ChorusProCredentials pisteClientId(@javax.annotation.Nullable String pisteClientId) {
     this.pisteClientId = pisteClientId;
     return this;
   }
 
   /**
-   * PISTE Client ID (government API portal)
+   * Get pisteClientId
    * @return pisteClientId
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getPisteClientId() {
     return pisteClientId;
   }
 
-  public void setPisteClientId(@javax.annotation.Nonnull String pisteClientId) {
+  public void setPisteClientId(@javax.annotation.Nullable String pisteClientId) {
     this.pisteClientId = pisteClientId;
   }
 
 
-  public ChorusProCredentials pisteClientSecret(@javax.annotation.Nonnull String pisteClientSecret) {
+  public ChorusProCredentials pisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
     this.pisteClientSecret = pisteClientSecret;
     return this;
   }
 
   /**
-   * PISTE Client Secret
+   * Get pisteClientSecret
    * @return pisteClientSecret
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getPisteClientSecret() {
     return pisteClientSecret;
   }
 
-  public void setPisteClientSecret(@javax.annotation.Nonnull String pisteClientSecret) {
+  public void setPisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
     this.pisteClientSecret = pisteClientSecret;
   }
 
 
-  public ChorusProCredentials chorusProLogin(@javax.annotation.Nonnull String chorusProLogin) {
-    this.chorusProLogin = chorusProLogin;
+  public ChorusProCredentials chorusLogin(@javax.annotation.Nullable String chorusLogin) {
+    this.chorusLogin = chorusLogin;
     return this;
   }
 
   /**
-   * Chorus Pro login
-   * @return chorusProLogin
-   */
-  @javax.annotation.Nonnull
-  public String getChorusProLogin() {
-    return chorusProLogin;
-  }
-
-  public void setChorusProLogin(@javax.annotation.Nonnull String chorusProLogin) {
-    this.chorusProLogin = chorusProLogin;
-  }
-
-
-  public ChorusProCredentials chorusProPassword(@javax.annotation.Nonnull String chorusProPassword) {
-    this.chorusProPassword = chorusProPassword;
-    return this;
-  }
-
-  /**
-   * Chorus Pro password
-   * @return chorusProPassword
-   */
-  @javax.annotation.Nonnull
-  public String getChorusProPassword() {
-    return chorusProPassword;
-  }
-
-  public void setChorusProPassword(@javax.annotation.Nonnull String chorusProPassword) {
-    this.chorusProPassword = chorusProPassword;
-  }
-
-
-  public ChorusProCredentials sandbox(@javax.annotation.Nullable Boolean sandbox) {
-    this.sandbox = sandbox;
-    return this;
-  }
-
-  /**
-   * Use sandbox environment (true) or production (false)
-   * @return sandbox
+   * Get chorusLogin
+   * @return chorusLogin
    */
   @javax.annotation.Nullable
-  public Boolean getSandbox() {
-    return sandbox;
+  public String getChorusLogin() {
+    return chorusLogin;
   }
 
-  public void setSandbox(@javax.annotation.Nullable Boolean sandbox) {
-    this.sandbox = sandbox;
+  public void setChorusLogin(@javax.annotation.Nullable String chorusLogin) {
+    this.chorusLogin = chorusLogin;
+  }
+
+
+  public ChorusProCredentials chorusPassword(@javax.annotation.Nullable String chorusPassword) {
+    this.chorusPassword = chorusPassword;
+    return this;
+  }
+
+  /**
+   * Get chorusPassword
+   * @return chorusPassword
+   */
+  @javax.annotation.Nullable
+  public String getChorusPassword() {
+    return chorusPassword;
+  }
+
+  public void setChorusPassword(@javax.annotation.Nullable String chorusPassword) {
+    this.chorusPassword = chorusPassword;
+  }
+
+
+  public ChorusProCredentials sandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
+    this.sandboxMode = sandboxMode;
+    return this;
+  }
+
+  /**
+   * [MODE 2] Use sandbox mode (default: True)
+   * @return sandboxMode
+   */
+  @javax.annotation.Nullable
+  public Boolean getSandboxMode() {
+    return sandboxMode;
+  }
+
+  public void setSandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
+    this.sandboxMode = sandboxMode;
   }
 
 
@@ -185,14 +186,25 @@ public class ChorusProCredentials {
     ChorusProCredentials chorusProCredentials = (ChorusProCredentials) o;
     return Objects.equals(this.pisteClientId, chorusProCredentials.pisteClientId) &&
         Objects.equals(this.pisteClientSecret, chorusProCredentials.pisteClientSecret) &&
-        Objects.equals(this.chorusProLogin, chorusProCredentials.chorusProLogin) &&
-        Objects.equals(this.chorusProPassword, chorusProCredentials.chorusProPassword) &&
-        Objects.equals(this.sandbox, chorusProCredentials.sandbox);
+        Objects.equals(this.chorusLogin, chorusProCredentials.chorusLogin) &&
+        Objects.equals(this.chorusPassword, chorusProCredentials.chorusPassword) &&
+        Objects.equals(this.sandboxMode, chorusProCredentials.sandboxMode);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pisteClientId, pisteClientSecret, chorusProLogin, chorusProPassword, sandbox);
+    return Objects.hash(pisteClientId, pisteClientSecret, chorusLogin, chorusPassword, sandboxMode);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -201,9 +213,9 @@ public class ChorusProCredentials {
     sb.append("class ChorusProCredentials {\n");
     sb.append("    pisteClientId: ").append(toIndentedString(pisteClientId)).append("\n");
     sb.append("    pisteClientSecret: ").append(toIndentedString(pisteClientSecret)).append("\n");
-    sb.append("    chorusProLogin: ").append(toIndentedString(chorusProLogin)).append("\n");
-    sb.append("    chorusProPassword: ").append(toIndentedString(chorusProPassword)).append("\n");
-    sb.append("    sandbox: ").append(toIndentedString(sandbox)).append("\n");
+    sb.append("    chorusLogin: ").append(toIndentedString(chorusLogin)).append("\n");
+    sb.append("    chorusPassword: ").append(toIndentedString(chorusPassword)).append("\n");
+    sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -225,10 +237,10 @@ public class ChorusProCredentials {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword", "sandbox"));
+    openapiFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusLogin", "chorusPassword", "sandboxMode"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -251,25 +263,18 @@ public class ChorusProCredentials {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ChorusProCredentials` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ChorusProCredentials.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("pisteClientId").isJsonPrimitive()) {
+      if ((jsonObj.get("pisteClientId") != null && !jsonObj.get("pisteClientId").isJsonNull()) && !jsonObj.get("pisteClientId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientId").toString()));
       }
-      if (!jsonObj.get("pisteClientSecret").isJsonPrimitive()) {
+      if ((jsonObj.get("pisteClientSecret") != null && !jsonObj.get("pisteClientSecret").isJsonNull()) && !jsonObj.get("pisteClientSecret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientSecret").toString()));
       }
-      if (!jsonObj.get("chorusProLogin").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProLogin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProLogin").toString()));
+      if ((jsonObj.get("chorusLogin") != null && !jsonObj.get("chorusLogin").isJsonNull()) && !jsonObj.get("chorusLogin").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusLogin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusLogin").toString()));
       }
-      if (!jsonObj.get("chorusProPassword").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProPassword` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProPassword").toString()));
+      if ((jsonObj.get("chorusPassword") != null && !jsonObj.get("chorusPassword").isJsonNull()) && !jsonObj.get("chorusPassword").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusPassword` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusPassword").toString()));
       }
   }
 

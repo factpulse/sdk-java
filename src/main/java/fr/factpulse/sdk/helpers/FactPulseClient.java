@@ -731,7 +731,7 @@ public class FactPulseClient {
             if (validate) {
                 Map<String, Object> validation = validateFacturxPdf(tempFile.getAbsolutePath(), profile);
                 result.put("validation", validation);
-                if (!Boolean.TRUE.equals(validation.get("is_compliant"))) {
+                if (!Boolean.TRUE.equals(validation.get("isCompliant"))) {
                     if (options.containsKey("outputPath")) {
                         Files.write(new File((String) options.get("outputPath")).toPath(), pdfBytes);
                         result.put("pdfPath", options.get("outputPath"));

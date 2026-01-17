@@ -662,7 +662,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ValidationErrorResponse"
+                $ref: "#/components/schemas/facture_electronique__rest_api__schemas__validation__ValidationErrorResponse"
           description: XML does not comply with Factur-X profile rules
         "422":
           content:
@@ -4633,6 +4633,317 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /api/v1/cdar/generate:
+    post:
+      description: |-
+        Génère un message XML CDAR (Cross Domain Acknowledgement and Response)
+        pour communiquer le statut d'une facture.
+
+        **Types de messages:**
+        - **23** (Traitement): Message de cycle de vie standard
+        - **305** (Transmission): Message de transmission entre plateformes
+
+        **Règles métier:**
+        - BR-FR-CDV-14: Le statut 212 (ENCAISSEE) requiert un montant encaissé
+        - BR-FR-CDV-15: Les statuts 206/207/208/210/213/501 requièrent un code motif
+      operationId: generate_cdar_api_v1_cdar_generate_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCDARRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateCDARResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      summary: Générer un message CDAR
+      tags:
+      - CDAR - Cycle de Vie
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/cdar/validate:
+    post:
+      description: |-
+        Valide les données CDAR sans générer le XML.
+
+        Vérifie:
+        - Les formats des champs (SIREN, dates, etc.)
+        - Les codes enums (statut, motif, action)
+        - Les règles métier BR-FR-CDV-*
+      operationId: validate_cdar_api_v1_cdar_validate_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ValidateCDARRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidateCDARResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      summary: Valider des données CDAR
+      tags:
+      - CDAR - Cycle de Vie
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/cdar/submit:
+    post:
+      description: |-
+        Génère un message CDAR et le soumet à la plateforme PA/PDP.
+
+        Nécessite une authentification AFNOR valide.
+
+        **Types de flux (flowType):**
+        - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur)
+        - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
+      operationId: submit_cdar_api_v1_cdar_submit_post
+      parameters:
+      - explode: true
+        in: query
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: jwt_token
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: client_uid
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_submit_cdar_api_v1_cdar_submit_post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmitCDARResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      summary: Générer et soumettre un message CDAR
+      tags:
+      - CDAR - Cycle de Vie
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/cdar/submit-xml:
+    post:
+      description: |-
+        Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.
+
+        Utile pour soumettre des XML générés par d'autres systèmes.
+      operationId: submit_cdar_xml_api_v1_cdar_submit_xml_post
+      parameters:
+      - explode: true
+        in: query
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: jwt_token
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: client_uid
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body_submit_cdar_xml_api_v1_cdar_submit_xml_post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmitCDARResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      summary: Soumettre un XML CDAR pré-généré
+      tags:
+      - CDAR - Cycle de Vie
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/cdar/status-codes:
+    get:
+      description: |-
+        Retourne la liste complète des codes statut de facture (BR-FR-CDV-CL-06).
+
+        Ces codes indiquent l'état du cycle de vie d'une facture.
+      operationId: get_status_codes_api_v1_cdar_status_codes_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusCodesResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+      summary: Liste des codes statut CDAR
+      tags:
+      - CDAR - Cycle de Vie
+      x-accepts:
+      - application/json
+  /api/v1/cdar/reason-codes:
+    get:
+      description: |-
+        Retourne la liste complète des codes motif de statut (BR-FR-CDV-CL-09).
+
+        Ces codes expliquent la raison d'un statut particulier.
+      operationId: get_reason_codes_api_v1_cdar_reason_codes_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReasonCodesResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+      summary: Liste des codes motif CDAR
+      tags:
+      - CDAR - Cycle de Vie
+      x-accepts:
+      - application/json
+  /api/v1/cdar/action-codes:
+    get:
+      description: |-
+        Retourne la liste complète des codes action (BR-FR-CDV-CL-10).
+
+        Ces codes indiquent l'action demandée sur la facture.
+      operationId: get_action_codes_api_v1_cdar_action_codes_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionCodesResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+      summary: Liste des codes action CDAR
+      tags:
+      - CDAR - Cycle de Vie
+      x-accepts:
+      - application/json
   /api/v1/download/{download_id}:
     get:
       description: |-
@@ -4978,6 +5289,62 @@ components:
       - EXTENDED
       title: APIProfile
       type: string
+    ActionCodeInfo:
+      description: Information sur un code action.
+      example:
+        code: code
+        name: name
+        description: description
+      properties:
+        code:
+          description: Code
+          title: Code
+          type: string
+        name:
+          description: Nom Python de l'enum
+          title: Name
+          type: string
+        description:
+          description: Description
+          title: Description
+          type: string
+      required:
+      - code
+      - description
+      - name
+      title: ActionCodeInfo
+    ActionCodesResponse:
+      description: Liste des codes action disponibles.
+      example:
+        codes:
+        - code: code
+          name: name
+          description: description
+        - code: code
+          name: name
+          description: description
+        count: 0
+        source: BR-FR-CDV-CL-10
+      properties:
+        codes:
+          description: Liste des codes action
+          items:
+            $ref: "#/components/schemas/ActionCodeInfo"
+          title: Codes
+          type: array
+        count:
+          description: Nombre de codes
+          title: Count
+          type: integer
+        source:
+          default: BR-FR-CDV-CL-10
+          description: Règle source
+          title: Source
+          type: string
+      required:
+      - codes
+      - count
+      title: ActionCodesResponse
     AggregatedPaymentInput:
       description: |-
         Aggregated payment for B2C (flux 10.4).
@@ -5232,6 +5599,28 @@ components:
       required:
       - pdf_file
       title: Body_sign_pdf_async_api_v1_processing_sign_pdf_async_post
+    Body_submit_cdar_api_v1_cdar_submit_post:
+      properties:
+        request:
+          $ref: "#/components/schemas/SubmitCDARRequest"
+        pdp_credentials:
+          allOf:
+          - $ref: "#/components/schemas/PDPCredentials"
+          nullable: true
+      required:
+      - request
+      title: Body_submit_cdar_api_v1_cdar_submit_post
+    Body_submit_cdar_xml_api_v1_cdar_submit_xml_post:
+      properties:
+        request:
+          $ref: "#/components/schemas/SubmitCDARXMLRequest"
+        pdp_credentials:
+          allOf:
+          - $ref: "#/components/schemas/PDPCredentials"
+          nullable: true
+      required:
+      - request
+      title: Body_submit_cdar_xml_api_v1_cdar_submit_xml_post
     Body_submit_xml_ereporting_api_v1_ereporting_submit_xml_post:
       properties:
         xml_file:
@@ -5534,53 +5923,39 @@ components:
       title: CertificateInfoResponse
     ChorusProCredentials:
       description: |-
-        Chorus Pro credentials for Zero-Trust mode.
+        Optional Chorus Pro credentials.
 
-        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+        **MODE 1 - JWT retrieval (recommended):**
+        Do not provide this `credentials` field in the payload.
+        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
 
-        **Security**:
-        - Credentials are never persisted in the database
-        - They are used only for the duration of the request
-        - Secure transmission via HTTPS
-
-        **Use cases**:
-        - High-security environments (banks, administrations)
-        - Strict GDPR compliance
-        - Tests with temporary credentials
-        - Users who don't want to store their credentials
+        **MODE 2 - Credentials in payload:**
+        Provide all required fields below.
+        Useful for tests or third-party integrations.
       example:
-        chorusProLogin: my_login@company.fr
-        chorusProPassword: MyPassword123!
-        pisteClientId: my_client_id
-        pisteClientSecret: my_secret
-        sandbox: true
+        chorusLogin: my_login@company.fr
+        chorusPassword: MyPassword123!
+        pisteClientId: my_piste_client_id
+        pisteClientSecret: my_piste_secret
+        sandboxMode: true
       properties:
         pisteClientId:
-          description: PISTE Client ID (government API portal)
-          title: Pisteclientid
+          nullable: true
           type: string
         pisteClientSecret:
-          description: PISTE Client Secret
-          title: Pisteclientsecret
+          nullable: true
           type: string
-        chorusProLogin:
-          description: Chorus Pro login
-          title: Chorusprologin
+        chorusLogin:
+          nullable: true
           type: string
-        chorusProPassword:
-          description: Chorus Pro password
-          title: Choruspropassword
+        chorusPassword:
+          nullable: true
           type: string
-        sandbox:
+        sandboxMode:
           default: true
-          description: Use sandbox environment (true) or production (false)
-          title: Sandbox
+          description: "[MODE 2] Use sandbox mode (default: True)"
+          title: Sandboxmode
           type: boolean
-      required:
-      - chorusProLogin
-      - chorusProPassword
-      - pisteClientId
-      - pisteClientSecret
       title: ChorusProCredentials
     ChorusProDestination:
       description: Specific configuration for Chorus Pro destination.
@@ -5593,7 +5968,7 @@ components:
           type: string
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__processing__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
       title: ChorusProDestination
     ChorusProResult:
@@ -6101,6 +6476,115 @@ components:
       - reportId
       - sender
       title: CreateAggregatedReportRequest
+    CreateCDARRequest:
+      description: Requête de création d'un message CDAR.
+      example:
+        reasonText: reasonText
+        senderSiren: senderSiren
+        invoiceIssueDate: 2000-01-23
+        invoiceBuyerSiren: invoiceBuyerSiren
+        typeCode: "23"
+        businessProcess: REGULATED
+        senderName: senderName
+        invoiceSellerSiren: invoiceSellerSiren
+        recipients:
+        - siren: siren
+          role: BY
+          name: name
+          siret: siret
+          email: email
+        - siren: siren
+          role: BY
+          name: name
+          siret: siret
+          email: email
+        senderEmail: senderEmail
+        invoiceTypeCode: "380"
+        documentId: documentId
+        invoiceId: invoiceId
+        actionCode: actionCode
+        encaisseAmount: 0.8008281904610115
+        reasonCode: reasonCode
+        senderRole: WK
+        status: status
+      properties:
+        documentId:
+          description: Identifiant unique du message CDAR
+          title: Documentid
+          type: string
+        businessProcess:
+          default: REGULATED
+          description: "Code processus métier (REGULATED, B2C, B2BINT, etc.)"
+          title: Businessprocess
+          type: string
+        typeCode:
+          default: "23"
+          description: "Type de message (23=Traitement, 305=Transmission)"
+          title: Typecode
+          type: string
+        senderSiren:
+          description: SIREN de l'émetteur (9 chiffres)
+          title: Sendersiren
+          type: string
+        senderRole:
+          default: WK
+          description: "Rôle de l'émetteur (WK, SE, BY, etc.)"
+          title: Senderrole
+          type: string
+        senderName:
+          nullable: true
+          type: string
+        senderEmail:
+          nullable: true
+          type: string
+        recipients:
+          description: Liste des destinataires
+          items:
+            $ref: "#/components/schemas/RecipientInput"
+          title: Recipients
+          type: array
+        invoiceId:
+          description: Identifiant de la facture (BT-1)
+          title: Invoiceid
+          type: string
+        invoiceIssueDate:
+          description: Date d'émission de la facture (YYYY-MM-DD)
+          format: date
+          title: Invoiceissuedate
+          type: string
+        invoiceTypeCode:
+          default: "380"
+          description: "Type de document (380=Facture, 381=Avoir)"
+          title: Invoicetypecode
+          type: string
+        invoiceSellerSiren:
+          nullable: true
+          type: string
+        invoiceBuyerSiren:
+          nullable: true
+          type: string
+        status:
+          description: Code statut de la facture (200-601)
+          title: Status
+          type: string
+        reasonCode:
+          nullable: true
+          type: string
+        reasonText:
+          nullable: true
+          type: string
+        actionCode:
+          nullable: true
+          type: string
+        encaisseAmount:
+          $ref: "#/components/schemas/Encaisseamount"
+      required:
+      - documentId
+      - invoiceId
+      - invoiceIssueDate
+      - senderSiren
+      - status
+      title: CreateCDARRequest
     CreateEReportingRequest:
       description: |-
         Request to create an e-reporting submission.
@@ -6536,6 +7020,41 @@ components:
       - xml
       - xmlSize
       title: GenerateAggregatedReportResponse
+    GenerateCDARResponse:
+      description: Réponse de génération de message CDAR.
+      example:
+        sha256: sha256
+        xml: xml
+        documentId: documentId
+        message: message
+        xmlSize: 0
+      properties:
+        documentId:
+          title: Documentid
+          type: string
+        xml:
+          description: XML CDAR généré
+          title: Xml
+          type: string
+        xmlSize:
+          description: Taille du XML en octets
+          title: Xmlsize
+          type: integer
+        sha256:
+          description: Hash SHA256 du XML
+          title: Sha256
+          type: string
+        message:
+          description: Message de succès
+          title: Message
+          type: string
+      required:
+      - documentId
+      - message
+      - sha256
+      - xml
+      - xmlSize
+      title: GenerateCDARResponse
     GenerateCertificateRequest:
       description: |-
         Request to generate a self-signed X.509 test certificate.
@@ -6737,7 +7256,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         siret:
           description: Structure SIRET (14 digits)
@@ -6787,7 +7306,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         chorusInvoiceId:
           description: Chorus Pro invoice ID
@@ -6852,7 +7371,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureId:
           description: Chorus Pro structure ID
@@ -7667,6 +8186,53 @@ components:
       - xmpFacturxCompliant
       - xmpPresent
       title: PDFValidationResultAPI
+    PDPCredentials:
+      description: |-
+        PDP credentials for zero-storage strategy (Strategy B).
+
+        Allows providing PDP credentials directly in the request
+        instead of storing them in Django.
+
+        Useful for:
+        - Ad-hoc tests without persisting credentials
+        - Temporary integrations
+        - Development environments
+      example:
+        clientId: factpulse_prod_abc123
+        clientSecret: secret_xyz789
+        directoryServiceUrl: https://api.pdp-example.fr/directory/v1
+        flowServiceUrl: https://api.pdp-example.fr/flow/v1
+        tokenUrl: https://auth.pdp-example.fr/oauth/token
+      properties:
+        flowServiceUrl:
+          description: Base URL of the AFNOR Flow Service
+          example: https://api.pdp-example.fr/flow/v1
+          title: Flowserviceurl
+          type: string
+        directoryServiceUrl:
+          nullable: true
+          type: string
+        tokenUrl:
+          description: OAuth2 server URL
+          example: https://auth.pdp-example.fr/oauth/token
+          title: Tokenurl
+          type: string
+        clientId:
+          description: OAuth2 Client ID
+          example: factpulse_prod_abc123
+          title: Clientid
+          type: string
+        clientSecret:
+          description: OAuth2 Client Secret (sensitive)
+          example: secret_xyz789
+          title: Clientsecret
+          type: string
+      required:
+      - clientId
+      - clientSecret
+      - flowServiceUrl
+      - tokenUrl
+      title: PDPCredentials
     PageDimensionsSchema:
       description: PDF page dimensions.
       example:
@@ -7765,6 +8331,89 @@ components:
       - NotApplicable
       title: ProcessingRule
       type: string
+    ReasonCodeInfo:
+      description: Information sur un code motif.
+      example:
+        code: code
+        name: name
+        description: description
+      properties:
+        code:
+          description: Code
+          title: Code
+          type: string
+        name:
+          description: Nom Python de l'enum
+          title: Name
+          type: string
+        description:
+          description: Description
+          title: Description
+          type: string
+      required:
+      - code
+      - description
+      - name
+      title: ReasonCodeInfo
+    ReasonCodesResponse:
+      description: Liste des codes motif disponibles.
+      example:
+        codes:
+        - code: code
+          name: name
+          description: description
+        - code: code
+          name: name
+          description: description
+        count: 0
+        source: BR-FR-CDV-CL-09
+      properties:
+        codes:
+          description: Liste des codes motif
+          items:
+            $ref: "#/components/schemas/ReasonCodeInfo"
+          title: Codes
+          type: array
+        count:
+          description: Nombre de codes
+          title: Count
+          type: integer
+        source:
+          default: BR-FR-CDV-CL-09
+          description: Règle source
+          title: Source
+          type: string
+      required:
+      - codes
+      - count
+      title: ReasonCodesResponse
+    RecipientInput:
+      description: Destinataire du message CDAR.
+      example:
+        siren: siren
+        role: BY
+        name: name
+        siret: siret
+        email: email
+      properties:
+        siren:
+          nullable: true
+          type: string
+        siret:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        role:
+          default: BY
+          description: "Code rôle (BY, SE, WK, etc.)"
+          title: Role
+          type: string
+        email:
+          nullable: true
+          type: string
+      title: RecipientInput
     ReportPeriod:
       description: Reporting period.
       properties:
@@ -7976,7 +8625,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureIdentifier:
           nullable: true
@@ -8199,6 +8848,62 @@ components:
       - recipient
       - supplier
       title: SimplifiedInvoiceData
+    StatusCodeInfo:
+      description: Information sur un code statut.
+      example:
+        code: code
+        name: name
+        description: description
+      properties:
+        code:
+          description: Code numérique
+          title: Code
+          type: string
+        name:
+          description: Nom Python de l'enum
+          title: Name
+          type: string
+        description:
+          description: Description
+          title: Description
+          type: string
+      required:
+      - code
+      - description
+      - name
+      title: StatusCodeInfo
+    StatusCodesResponse:
+      description: Liste des codes statut disponibles.
+      example:
+        codes:
+        - code: code
+          name: name
+          description: description
+        - code: code
+          name: name
+          description: description
+        count: 0
+        source: BR-FR-CDV-CL-06
+      properties:
+        codes:
+          description: Liste des codes statut
+          items:
+            $ref: "#/components/schemas/StatusCodeInfo"
+          title: Codes
+          type: array
+        count:
+          description: Nombre de codes
+          title: Count
+          type: integer
+        source:
+          default: BR-FR-CDV-CL-06
+          description: Règle source
+          title: Source
+          type: string
+      required:
+      - codes
+      - count
+      title: StatusCodesResponse
     StructureInfo:
       description: Structure information.
       example:
@@ -8316,6 +9021,136 @@ components:
       required:
       - data
       title: SubmitAggregatedReportRequest
+    SubmitCDARRequest:
+      description: Requête de soumission CDAR (génération + envoi).
+      properties:
+        documentId:
+          description: Identifiant unique du message CDAR
+          title: Documentid
+          type: string
+        businessProcess:
+          default: REGULATED
+          description: "Code processus métier (REGULATED, B2C, B2BINT, etc.)"
+          title: Businessprocess
+          type: string
+        typeCode:
+          default: "23"
+          description: "Type de message (23=Traitement, 305=Transmission)"
+          title: Typecode
+          type: string
+        senderSiren:
+          description: SIREN de l'émetteur (9 chiffres)
+          title: Sendersiren
+          type: string
+        senderRole:
+          default: WK
+          description: "Rôle de l'émetteur (WK, SE, BY, etc.)"
+          title: Senderrole
+          type: string
+        senderName:
+          nullable: true
+          type: string
+        senderEmail:
+          nullable: true
+          type: string
+        recipients:
+          description: Liste des destinataires
+          items:
+            $ref: "#/components/schemas/RecipientInput"
+          title: Recipients
+          type: array
+        invoiceId:
+          description: Identifiant de la facture (BT-1)
+          title: Invoiceid
+          type: string
+        invoiceIssueDate:
+          description: Date d'émission de la facture (YYYY-MM-DD)
+          format: date
+          title: Invoiceissuedate
+          type: string
+        invoiceTypeCode:
+          default: "380"
+          description: "Type de document (380=Facture, 381=Avoir)"
+          title: Invoicetypecode
+          type: string
+        invoiceSellerSiren:
+          nullable: true
+          type: string
+        invoiceBuyerSiren:
+          nullable: true
+          type: string
+        status:
+          description: Code statut de la facture (200-601)
+          title: Status
+          type: string
+        reasonCode:
+          nullable: true
+          type: string
+        reasonText:
+          nullable: true
+          type: string
+        actionCode:
+          nullable: true
+          type: string
+        encaisseAmount:
+          $ref: "#/components/schemas/Encaisseamount"
+        flowType:
+          default: CustomerInvoiceLC
+          description: "Type de flux AFNOR (CustomerInvoiceLC, SupplierInvoiceLC,\
+            \ etc.)"
+          title: Flowtype
+          type: string
+      required:
+      - documentId
+      - invoiceId
+      - invoiceIssueDate
+      - senderSiren
+      - status
+      title: SubmitCDARRequest
+    SubmitCDARResponse:
+      description: Réponse de soumission CDAR.
+      example:
+        documentId: documentId
+        message: message
+        flowId: flowId
+        status: status
+      properties:
+        flowId:
+          description: Identifiant du flux AFNOR
+          title: Flowid
+          type: string
+        status:
+          description: Statut de la soumission
+          title: Status
+          type: string
+        message:
+          nullable: true
+          type: string
+        documentId:
+          nullable: true
+          type: string
+      required:
+      - flowId
+      - status
+      title: SubmitCDARResponse
+    SubmitCDARXMLRequest:
+      description: Requête de soumission d'un XML CDAR pré-généré.
+      properties:
+        xml:
+          description: XML CDAR à soumettre
+          title: Xml
+          type: string
+        flowType:
+          default: CustomerInvoiceLC
+          description: Type de flux AFNOR
+          title: Flowtype
+          type: string
+        filename:
+          nullable: true
+          type: string
+      required:
+      - xml
+      title: SubmitCDARXMLRequest
     SubmitCompleteInvoiceRequest:
       description: |-
         Request to submit a complete invoice (generation + submission).
@@ -8555,7 +9390,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         invoiceNumber:
           description: Invoice number
@@ -8714,6 +9549,85 @@ components:
       - RE
       title: TransmissionTypeCode
       type: string
+    ValidateCDARRequest:
+      description: Requête de validation CDAR.
+      example:
+        senderSiren: senderSiren
+        invoiceIssueDate: 2000-01-23
+        documentId: documentId
+        invoiceId: invoiceId
+        encaisseAmount: 0.8008281904610115
+        reasonCode: reasonCode
+        senderRole: senderRole
+        status: status
+      properties:
+        documentId:
+          nullable: true
+          type: string
+        senderSiren:
+          nullable: true
+          type: string
+        senderRole:
+          nullable: true
+          type: string
+        invoiceId:
+          nullable: true
+          type: string
+        invoiceIssueDate:
+          format: date
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        reasonCode:
+          nullable: true
+          type: string
+        encaisseAmount:
+          $ref: "#/components/schemas/Encaisseamount_1"
+      title: ValidateCDARRequest
+    ValidateCDARResponse:
+      description: Réponse de validation CDAR.
+      example:
+        valid: true
+        warnings:
+        - severity: error
+          field: field
+          rule: rule
+          message: message
+        - severity: error
+          field: field
+          rule: rule
+          message: message
+        errors:
+        - severity: error
+          field: field
+          rule: rule
+          message: message
+        - severity: error
+          field: field
+          rule: rule
+          message: message
+      properties:
+        valid:
+          description: Résultat de validation
+          title: Valid
+          type: boolean
+        errors:
+          description: Liste des erreurs
+          items:
+            $ref: "#/components/schemas/ValidationErrorResponse"
+          title: Errors
+          type: array
+        warnings:
+          description: Liste des avertissements
+          items:
+            $ref: "#/components/schemas/ValidationErrorResponse"
+          title: Warnings
+          type: array
+      required:
+      - valid
+      title: ValidateCDARResponse
     ValidateEReportingRequest:
       description: Request to validate e-reporting data without submitting.
       example:
@@ -8839,20 +9753,32 @@ components:
       - reason
       title: ValidationErrorDetail
     ValidationErrorResponse:
-      description: Response for validation errors.
+      description: Erreur de validation.
       example:
-        detail:
-        - detail
-        - detail
+        severity: error
+        field: field
+        rule: rule
+        message: message
       properties:
-        detail:
-          description: List of detected validation errors.
-          items:
-            type: string
-          title: Detail
-          type: array
+        field:
+          description: Champ concerné
+          title: Field
+          type: string
+        message:
+          description: Message d'erreur
+          title: Message
+          type: string
+        rule:
+          nullable: true
+          type: string
+        severity:
+          default: error
+          description: Sévérité (error/warning)
+          title: Severity
+          type: string
       required:
-      - detail
+      - field
+      - message
       title: ValidationErrorResponse
     ValidationInfo:
       description: Informations sur la validation.
@@ -9077,6 +10003,56 @@ components:
       - label
       - status
       title: VerifiedFieldSchema
+    facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
+      description: |-
+        Chorus Pro credentials for Zero-Trust mode.
+
+        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+
+        **Security**:
+        - Credentials are never persisted in the database
+        - They are used only for the duration of the request
+        - Secure transmission via HTTPS
+
+        **Use cases**:
+        - High-security environments (banks, administrations)
+        - Strict GDPR compliance
+        - Tests with temporary credentials
+        - Users who don't want to store their credentials
+      example:
+        chorusProLogin: my_login@company.fr
+        chorusProPassword: MyPassword123!
+        pisteClientId: my_client_id
+        pisteClientSecret: my_secret
+        sandbox: true
+      properties:
+        pisteClientId:
+          description: PISTE Client ID (government API portal)
+          title: Pisteclientid
+          type: string
+        pisteClientSecret:
+          description: PISTE Client Secret
+          title: Pisteclientsecret
+          type: string
+        chorusProLogin:
+          description: Chorus Pro login
+          title: Chorusprologin
+          type: string
+        chorusProPassword:
+          description: Chorus Pro password
+          title: Choruspropassword
+          type: string
+        sandbox:
+          default: true
+          description: Use sandbox environment (true) or production (false)
+          title: Sandbox
+          type: boolean
+      required:
+      - chorusProLogin
+      - chorusProPassword
+      - pisteClientId
+      - pisteClientSecret
+      title: ChorusProCredentials
     facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
       description: Invoice type codes (UNTDID 1001).
       enum:
@@ -9087,42 +10063,22 @@ components:
       - "386"
       title: InvoiceTypeCode
       type: string
-    facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
-      description: |-
-        Optional Chorus Pro credentials.
-
-        **MODE 1 - JWT retrieval (recommended):**
-        Do not provide this `credentials` field in the payload.
-        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
-
-        **MODE 2 - Credentials in payload:**
-        Provide all required fields below.
-        Useful for tests or third-party integrations.
+    facture_electronique__rest_api__schemas__validation__ValidationErrorResponse:
+      description: Response for validation errors.
       example:
-        chorusLogin: my_login@company.fr
-        chorusPassword: MyPassword123!
-        pisteClientId: my_piste_client_id
-        pisteClientSecret: my_piste_secret
-        sandboxMode: true
+        detail:
+        - detail
+        - detail
       properties:
-        pisteClientId:
-          nullable: true
-          type: string
-        pisteClientSecret:
-          nullable: true
-          type: string
-        chorusLogin:
-          nullable: true
-          type: string
-        chorusPassword:
-          nullable: true
-          type: string
-        sandboxMode:
-          default: true
-          description: "[MODE 2] Use sandbox mode (default: True)"
-          title: Sandboxmode
-          type: boolean
-      title: ChorusProCredentials
+        detail:
+          description: List of detected validation errors.
+          items:
+            type: string
+          title: Detail
+          type: array
+      required:
+      - detail
+      title: ValidationErrorResponse
     AdditionalDocument:
       description: |-
         Additional supporting document (BG-24).
@@ -10125,53 +11081,6 @@ components:
       - supplier
       - totals
       title: FacturXInvoice
-    PDPCredentials:
-      description: |-
-        PDP credentials for zero-storage strategy (Strategy B).
-
-        Allows providing PDP credentials directly in the request
-        instead of storing them in Django.
-
-        Useful for:
-        - Ad-hoc tests without persisting credentials
-        - Temporary integrations
-        - Development environments
-      example:
-        clientId: factpulse_prod_abc123
-        clientSecret: secret_xyz789
-        directoryServiceUrl: https://api.pdp-example.fr/directory/v1
-        flowServiceUrl: https://api.pdp-example.fr/flow/v1
-        tokenUrl: https://auth.pdp-example.fr/oauth/token
-      properties:
-        flowServiceUrl:
-          description: Base URL of the AFNOR Flow Service
-          example: https://api.pdp-example.fr/flow/v1
-          title: Flowserviceurl
-          type: string
-        directoryServiceUrl:
-          nullable: true
-          type: string
-        tokenUrl:
-          description: OAuth2 server URL
-          example: https://auth.pdp-example.fr/oauth/token
-          title: Tokenurl
-          type: string
-        clientId:
-          description: OAuth2 Client ID
-          example: factpulse_prod_abc123
-          title: Clientid
-          type: string
-        clientSecret:
-          description: OAuth2 Client Secret (sensitive)
-          example: secret_xyz789
-          title: Clientsecret
-          type: string
-      required:
-      - clientId
-      - clientSecret
-      - flowServiceUrl
-      - tokenUrl
-      title: PDPCredentials
     FlowProfile:
       description: Supported flow profiles.
       enum:
@@ -13331,6 +14240,14 @@ components:
       description: Total VAT amount
       example: "2000.00"
       title: Taxamount
+    Encaisseamount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: Montant encaissé (requis pour statut 212)
+      nullable: true
+      title: Encaisseamount
     Sellercountry:
       anyOf:
       - $ref: "#/components/schemas/CountryCode"
@@ -13440,6 +14357,13 @@ components:
       description: VAT amount
       example: "2000.00"
       title: Taxamount
+    Encaisseamount_1:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      nullable: true
+      title: Encaisseamount
     Location_inner:
       anyOf:
       - type: string
