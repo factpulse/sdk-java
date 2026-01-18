@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Response after generating a test certificate.  Contains certificate PEM, private key PEM, and optionally PKCS#12.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:42:51.689235223Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:51:55.825427821Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GenerateCertificateResponse {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)

@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Payment linked to a specific invoice (flux 10.2).  Used for B2B international invoice payments.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:42:51.689235223Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:51:55.825427821Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class InvoicePaymentInput {
   public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
   @SerializedName(SERIALIZED_NAME_INVOICE_ID)
