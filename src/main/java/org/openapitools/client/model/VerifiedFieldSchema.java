@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * A verified field with all its information (extraction + compliance + location).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:51:55.825427821Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:07:48.124130264Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class VerifiedFieldSchema {
   public static final String SERIALIZED_NAME_BUSINESS_TERM = "businessTerm";
   @SerializedName(SERIALIZED_NAME_BUSINESS_TERM)
