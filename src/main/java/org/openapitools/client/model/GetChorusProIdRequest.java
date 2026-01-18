@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasChorusProChorusProCredentials;
+import org.openapitools.client.model.ChorusProCredentials;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -50,12 +50,12 @@ import org.openapitools.client.JSON;
 /**
  * Get Chorus Pro ID from SIRET.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:30:28.470728049Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:35:36.687645016Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class GetChorusProIdRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
   @javax.annotation.Nullable
-  private FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials;
+  private ChorusProCredentials credentials;
 
   public static final String SERIALIZED_NAME_SIRET = "siret";
   @SerializedName(SERIALIZED_NAME_SIRET)
@@ -70,7 +70,7 @@ public class GetChorusProIdRequest {
   public GetChorusProIdRequest() {
   }
 
-  public GetChorusProIdRequest credentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
+  public GetChorusProIdRequest credentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
     return this;
   }
@@ -80,11 +80,11 @@ public class GetChorusProIdRequest {
    * @return credentials
    */
   @javax.annotation.Nullable
-  public FactureElectroniqueRestApiSchemasChorusProChorusProCredentials getCredentials() {
+  public ChorusProCredentials getCredentials() {
     return credentials;
   }
 
-  public void setCredentials(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasChorusProChorusProCredentials credentials) {
+  public void setCredentials(@javax.annotation.Nullable ChorusProCredentials credentials) {
     this.credentials = credentials;
   }
 
@@ -222,7 +222,7 @@ public class GetChorusProIdRequest {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `credentials`
       if (jsonObj.get("credentials") != null && !jsonObj.get("credentials").isJsonNull()) {
-        FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
+        ChorusProCredentials.validateJsonElement(jsonObj.get("credentials"));
       }
       if (!jsonObj.get("siret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));

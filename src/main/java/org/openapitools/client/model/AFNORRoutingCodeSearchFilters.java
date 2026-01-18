@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORRoutingCodeSearchFilters
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:30:28.470728049Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:35:36.687645016Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORRoutingCodeSearchFilters {
   public static final String SERIALIZED_NAME_ROUTING_IDENTIFIER = "routingIdentifier";
   @SerializedName(SERIALIZED_NAME_ROUTING_IDENTIFIER)
