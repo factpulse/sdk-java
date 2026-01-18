@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Information about the supplier / seller (BG-4).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:49:21.684531101Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:22:15.035094458Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class Supplier {
   public static final String SERIALIZED_NAME_ELECTRONIC_ADDRESS = "electronic_address";
   @SerializedName(SERIALIZED_NAME_ELECTRONIC_ADDRESS)
@@ -591,7 +591,7 @@ public class Supplier {
     openapiFields = new HashSet<String>(Arrays.asList("electronic_address", "supplier_id", "private_id", "supplier_bank_account_code", "supplier_service_id", "name", "trading_business_name", "legal_description", "siren", "siret", "vat_number", "iban", "bic", "bank_account_name", "proprietaryId", "postal_address", "contact", "global_ids"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("electronic_address", "supplier_id"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("supplier_id"));
   }
 
   /**
@@ -622,8 +622,10 @@ public class Supplier {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `electronic_address`
-      ElectronicAddress.validateJsonElement(jsonObj.get("electronic_address"));
+      // validate the optional field `electronic_address`
+      if (jsonObj.get("electronic_address") != null && !jsonObj.get("electronic_address").isJsonNull()) {
+        ElectronicAddress.validateJsonElement(jsonObj.get("electronic_address"));
+      }
       if ((jsonObj.get("private_id") != null && !jsonObj.get("private_id").isJsonNull()) && !jsonObj.get("private_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `private_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("private_id").toString()));
       }

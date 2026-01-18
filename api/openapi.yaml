@@ -7626,7 +7626,7 @@ components:
           type: string
         typeCode:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode"
+          - $ref: "#/components/schemas/InvoiceTypeCode"
           default: "380"
           description: Invoice type code
         currency:
@@ -7738,80 +7738,15 @@ components:
       - label
       title: InvoiceStatus
     InvoiceTypeCode:
-      description: |-
-        Document type according to BR-FR-04 (UNTDID 1001 codes).
-
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
-        | 393 | FACTORED_INVOICE | Factored invoice |
-        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
-        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
-        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
-        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
-        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
-        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
-        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
-        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
-        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
-        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
-        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+      description: Invoice type codes (UNTDID 1001).
       enum:
       - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
       - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
+      - "384"
+      - "389"
+      - "386"
       title: InvoiceTypeCode
       type: string
-      x-enum-descriptions:
-      - Commercial Invoice
-      - Self-billed Invoice
-      - Factored Invoice
-      - Self-billed Factored Invoice
-      - Prepayment Invoice
-      - Self-billed Prepayment Invoice
-      - Corrective Invoice
-      - Self-billed Corrective Invoice
-      - Factored Corrective Invoice
-      - Self-billed Factored Corrective Invoice
-      - Credit Note
-      - Self-billed Credit Note
-      - Global Allowance Credit Note
-      - Factored Credit Note
-      - Self-billed Factored Credit Note
-      - Prepayment Credit Note
-      x-enum-varnames:
-      - INVOICE
-      - SELF_BILLED_INVOICE
-      - FACTORED_INVOICE
-      - SELF_BILLED_FACTORED_INVOICE
-      - PREPAYMENT_INVOICE
-      - SELF_BILLED_PREPAYMENT_INVOICE
-      - CORRECTIVE_INVOICE
-      - SELF_BILLED_CORRECTIVE_INVOICE
-      - FACTORED_CORRECTIVE_INVOICE
-      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
-      - CREDIT_NOTE
-      - SELF_BILLED_CREDIT_NOTE
-      - GLOBAL_ALLOWANCE_CREDIT_NOTE
-      - FACTORED_CREDIT_NOTE
-      - SELF_BILLED_FACTORED_CREDIT_NOTE
-      - PREPAYMENT_CREDIT_NOTE
     InvoiceTypeCode-Output:
       description: |-
         Document type according to BR-FR-04 (UNTDID 1001 codes).
@@ -8503,23 +8438,27 @@ components:
       title: SchematronValidationError
     SchemeID:
       description: |-
-        Identification scheme codes (Electronic Address Scheme - EAS),
-        mainly for electronic invoice addressing.
+        Identification scheme codes (Electronic Address Scheme - EAS).
 
-        **Possible values:**
-        - `0225`: FR_SIREN - French SIREN (most common for France)
-        - `0009`: FR_SIRET - French SIRET
-        - `0002`: FR_SIREN_OLD - French SIREN (old code, for legal organization ID)
+        **Electronic Address (routing for PDP/Chorus Pro):**
+        - `0225`: FR_ELECTRONIC_ADDRESS - French electronic billing address (BT-34/BT-49)
+                    Format: SIREN or SIREN_SUFFIX (e.g., "920195229_92019522900017")
+
+        **Legal Identifiers (entity identification):**
+        - `0002`: FR_SIREN - French SIREN (9 digits) for BT-30/BT-47
+        - `0009`: FR_SIRET - French SIRET (14 digits) for BT-29/BT-46
+
+        **Other schemes:**
         - `0088`: GLN - Global Location Number
         - `0060`: DUNS - Data Universal Numbering System
         - `9957`: FR_VAT_INTRA - French intra-community VAT number
         - `0199`: GLEIF - Global Legal Entity Identifier Foundation
         - `0231`: DT_DIRECTORY_ID - Directory ID for tax administration
-        - `EM`: EMAIL - Email-based electronic address (BT-34/BT-49)
+        - `EM`: EMAIL - Email-based electronic address
       enum:
       - "0225"
-      - "0009"
       - "0002"
+      - "0009"
       - "0088"
       - "0060"
       - "9957"
@@ -8538,9 +8477,9 @@ components:
       title: SchemeID
       type: string
       x-enum-varnames:
+      - FR_ELECTRONIC_ADDRESS
       - FR_SIREN
       - FR_SIRET
-      - FR_SIREN_OLD
       - GLN
       - DUNS
       - FR_VAT_INTRA
@@ -8557,9 +8496,9 @@ components:
       - NL_VAT
       - PT_VAT
       x-enum-descriptions:
-      - FR_SIREN - French SIREN (most common for France)
-      - FR_SIRET - French SIRET
-      - "FR_SIREN_OLD - French SIREN (old code, for legal organization ID)"
+      - FR_ELECTRONIC_ADDRESS - French electronic billing address (BT-34/BT-49)
+      - FR_SIREN - French SIREN (9 digits) - Legal organization ID
+      - FR_SIRET - French SIRET (14 digits) - Establishment ID
       - GLN - Global Location Number (GLN)
       - DUNS - Data Universal Numbering System (DUNS)
       - FR_VAT_INTRA - French intra-community VAT number
@@ -8828,7 +8767,7 @@ components:
           type: string
         invoiceType:
           allOf:
-          - $ref: "#/components/schemas/InvoiceTypeCode"
+          - $ref: "#/components/schemas/facture_electronique__models__InvoiceTypeCode"
           default: "380"
           description: "Document type (UNTDID 1001). Default: 380 (Invoice)."
         precedingInvoiceReference:
@@ -10003,6 +9942,81 @@ components:
       - label
       - status
       title: VerifiedFieldSchema
+    facture_electronique__models__InvoiceTypeCode:
+      description: |-
+        Document type according to BR-FR-04 (UNTDID 1001 codes).
+
+        | Code | Name | Description |
+        |------|------|-------------|
+        | 380 | INVOICE | Commercial invoice |
+        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
+        | 393 | FACTORED_INVOICE | Factored invoice |
+        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
+        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
+        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
+        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
+        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
+        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
+        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
+        | 381 | CREDIT_NOTE | Credit note |
+        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
+        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
+        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
+        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
+        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+      enum:
+      - "380"
+      - "389"
+      - "393"
+      - "501"
+      - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
+      title: InvoiceTypeCode
+      type: string
+      x-enum-descriptions:
+      - Commercial Invoice
+      - Self-billed Invoice
+      - Factored Invoice
+      - Self-billed Factored Invoice
+      - Prepayment Invoice
+      - Self-billed Prepayment Invoice
+      - Corrective Invoice
+      - Self-billed Corrective Invoice
+      - Factored Corrective Invoice
+      - Self-billed Factored Corrective Invoice
+      - Credit Note
+      - Self-billed Credit Note
+      - Global Allowance Credit Note
+      - Factored Credit Note
+      - Self-billed Factored Credit Note
+      - Prepayment Credit Note
+      x-enum-varnames:
+      - INVOICE
+      - SELF_BILLED_INVOICE
+      - FACTORED_INVOICE
+      - SELF_BILLED_FACTORED_INVOICE
+      - PREPAYMENT_INVOICE
+      - SELF_BILLED_PREPAYMENT_INVOICE
+      - CORRECTIVE_INVOICE
+      - SELF_BILLED_CORRECTIVE_INVOICE
+      - FACTORED_CORRECTIVE_INVOICE
+      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
+      - CREDIT_NOTE
+      - SELF_BILLED_CREDIT_NOTE
+      - GLOBAL_ALLOWANCE_CREDIT_NOTE
+      - FACTORED_CREDIT_NOTE
+      - SELF_BILLED_FACTORED_CREDIT_NOTE
+      - PREPAYMENT_CREDIT_NOTE
     facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
       description: |-
         Chorus Pro credentials for Zero-Trust mode.
@@ -10053,16 +10067,6 @@ components:
       - pisteClientId
       - pisteClientSecret
       title: ChorusProCredentials
-    facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
-      description: Invoice type codes (UNTDID 1001).
-      enum:
-      - "380"
-      - "381"
-      - "384"
-      - "389"
-      - "386"
-      title: InvoiceTypeCode
-      type: string
     facture_electronique__rest_api__schemas__validation__ValidationErrorResponse:
       description: Response for validation errors.
       example:
@@ -10677,8 +10681,6 @@ components:
             $ref: "#/components/schemas/ElectronicAddress"
           nullable: true
           type: array
-      required:
-      - electronic_address
       title: Recipient
     SubmissionMode:
       description: Invoice submission mode on Chorus Pro.
@@ -10781,7 +10783,6 @@ components:
           nullable: true
           type: array
       required:
-      - electronic_address
       - supplier_id
       title: Supplier
     TaxRepresentative:

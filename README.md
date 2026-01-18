@@ -18,14 +18,14 @@ Official Java client for the FactPulse API - French electronic invoicing.
 <dependency>
     <groupId>fr.factpulse</groupId>
     <artifactId>factpulse-sdk</artifactId>
-    <version>3.0.37</version>
+    <version>3.1.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'fr.factpulse:factpulse-sdk:3.0.37'
+implementation 'fr.factpulse:factpulse-sdk:3.1.0'
 ```
 
 ## Quick Start

@@ -161,8 +161,8 @@ docs/ErrorSource.md
 docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
+docs/FactureElectroniqueModelsInvoiceTypeCode.md
 docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
-docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
 docs/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.md
 docs/FieldStatus.md
 docs/FileInfo.md
@@ -497,8 +497,8 @@ src/main/java/org/openapitools/client/model/ErrorSource.java
 src/main/java/org/openapitools/client/model/ExtractionInfo.java
 src/main/java/org/openapitools/client/model/FacturXInvoice.java
 src/main/java/org/openapitools/client/model/FacturXPDFInfo.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCode.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.java
 src/main/java/org/openapitools/client/model/FieldStatus.java
 src/main/java/org/openapitools/client/model/FileInfo.java
@@ -802,8 +802,8 @@ src/test/java/org/openapitools/client/model/ErrorSourceTest.java
 src/test/java/org/openapitools/client/model/ExtractionInfoTest.java
 src/test/java/org/openapitools/client/model/FacturXInvoiceTest.java
 src/test/java/org/openapitools/client/model/FacturXPDFInfoTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCodeTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCodeTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasValidationValidationErrorResponseTest.java
 src/test/java/org/openapitools/client/model/FieldStatusTest.java
 src/test/java/org/openapitools/client/model/FileInfoTest.java

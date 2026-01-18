@@ -8,7 +8,7 @@ Information about the supplier / seller (BG-4).
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**electronicAddress** | [**ElectronicAddress**](ElectronicAddress.md) |  |  |
+|**electronicAddress** | [**ElectronicAddress**](ElectronicAddress.md) |  |  [optional] |
 |**supplierId** | **Integer** |  |  |
 |**privateId** | **String** |  |  [optional] |
 |**supplierBankAccountCode** | **Integer** |  |  [optional] |

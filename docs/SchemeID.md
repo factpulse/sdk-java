@@ -5,11 +5,11 @@
 ## Enum
 
 
-* `FR_SIREN` (value: `"0225"`)
+* `FR_ELECTRONIC_ADDRESS` (value: `"0225"`)
+
+* `FR_SIREN` (value: `"0002"`)
 
 * `FR_SIRET` (value: `"0009"`)
-
-* `FR_SIREN_OLD` (value: `"0002"`)
 
 * `GLN` (value: `"0088"`)
 

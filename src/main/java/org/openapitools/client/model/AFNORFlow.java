@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * The properties of a Flow resource
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:49:21.684531101Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:22:15.035094458Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class AFNORFlow {
   public static final String SERIALIZED_NAME_SUBMITTED_AT = "submittedAt";
   @SerializedName(SERIALIZED_NAME_SUBMITTED_AT)

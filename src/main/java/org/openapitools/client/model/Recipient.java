@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Information about the invoice recipient / buyer (BG-7).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-17T16:49:21.684531101Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:22:15.035094458Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class Recipient {
   public static final String SERIALIZED_NAME_ELECTRONIC_ADDRESS = "electronic_address";
   @SerializedName(SERIALIZED_NAME_ELECTRONIC_ADDRESS)
@@ -357,7 +357,7 @@ public class Recipient {
     openapiFields = new HashSet<String>(Arrays.asList("electronic_address", "executing_service_code", "name", "siren", "siret", "vat_number", "postal_address", "contact", "global_ids"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("electronic_address"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -380,16 +380,11 @@ public class Recipient {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `Recipient` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : Recipient.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `electronic_address`
-      ElectronicAddress.validateJsonElement(jsonObj.get("electronic_address"));
+      // validate the optional field `electronic_address`
+      if (jsonObj.get("electronic_address") != null && !jsonObj.get("electronic_address").isJsonNull()) {
+        ElectronicAddress.validateJsonElement(jsonObj.get("electronic_address"));
+      }
       if ((jsonObj.get("executing_service_code") != null && !jsonObj.get("executing_service_code").isJsonNull()) && !jsonObj.get("executing_service_code").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `executing_service_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("executing_service_code").toString()));
       }
