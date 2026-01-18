@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Delivery location information (BG-15 Deliver to).  Represents the party or location where goods/services are delivered.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:37:47.571926372Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:58:13.053931371Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class DeliveryParty {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

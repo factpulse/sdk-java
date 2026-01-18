@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * PDP credentials for zero-storage strategy (Strategy B).  Allows providing PDP credentials directly in the request instead of storing them in Django.  Useful for: - Ad-hoc tests without persisting credentials - Temporary integrations - Development environments
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:37:47.571926372Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:58:13.053931371Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class PDPCredentials {
   public static final String SERIALIZED_NAME_FLOW_SERVICE_URL = "flowServiceUrl";
   @SerializedName(SERIALIZED_NAME_FLOW_SERVICE_URL)

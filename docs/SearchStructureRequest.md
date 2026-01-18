@@ -8,7 +8,7 @@ Search structures by criteria.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**credentials** | [**FactureElectroniqueRestApiSchemasChorusProChorusProCredentials**](FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md) |  |  [optional] |
+|**credentials** | [**ChorusProCredentials**](ChorusProCredentials.md) |  |  [optional] |
 |**structureIdentifier** | **String** |  |  [optional] |
 |**structureIdentifierType** | **String** |  |  [optional] |
 |**companyName** | **String** |  |  [optional] |

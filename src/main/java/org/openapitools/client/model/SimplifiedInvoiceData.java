@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.client.model.InvoiceTypeCode;
+import org.openapitools.client.model.FactureElectroniqueModelsInvoiceTypeCode;
 import org.openapitools.client.model.InvoicingFrameworkCode;
 import org.openapitools.client.model.OperationNature;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -56,7 +56,7 @@ import org.openapitools.client.JSON;
 /**
  * Simplified invoice data (minimal format for auto-enrichment).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:37:47.571926372Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:58:13.053931371Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SimplifiedInvoiceData {
   public static final String SERIALIZED_NAME_NUMBER = "number";
   @SerializedName(SERIALIZED_NAME_NUMBER)
@@ -106,7 +106,7 @@ public class SimplifiedInvoiceData {
   public static final String SERIALIZED_NAME_INVOICE_TYPE = "invoiceType";
   @SerializedName(SERIALIZED_NAME_INVOICE_TYPE)
   @javax.annotation.Nullable
-  private InvoiceTypeCode invoiceType = InvoiceTypeCode.INVOICE;
+  private FactureElectroniqueModelsInvoiceTypeCode invoiceType = FactureElectroniqueModelsInvoiceTypeCode.INVOICE;
 
   public static final String SERIALIZED_NAME_PRECEDING_INVOICE_REFERENCE = "precedingInvoiceReference";
   @SerializedName(SERIALIZED_NAME_PRECEDING_INVOICE_REFERENCE)
@@ -323,7 +323,7 @@ public class SimplifiedInvoiceData {
   }
 
 
-  public SimplifiedInvoiceData invoiceType(@javax.annotation.Nullable InvoiceTypeCode invoiceType) {
+  public SimplifiedInvoiceData invoiceType(@javax.annotation.Nullable FactureElectroniqueModelsInvoiceTypeCode invoiceType) {
     this.invoiceType = invoiceType;
     return this;
   }
@@ -333,11 +333,11 @@ public class SimplifiedInvoiceData {
    * @return invoiceType
    */
   @javax.annotation.Nullable
-  public InvoiceTypeCode getInvoiceType() {
+  public FactureElectroniqueModelsInvoiceTypeCode getInvoiceType() {
     return invoiceType;
   }
 
-  public void setInvoiceType(@javax.annotation.Nullable InvoiceTypeCode invoiceType) {
+  public void setInvoiceType(@javax.annotation.Nullable FactureElectroniqueModelsInvoiceTypeCode invoiceType) {
     this.invoiceType = invoiceType;
   }
 
@@ -535,7 +535,7 @@ public class SimplifiedInvoiceData {
       }
       // validate the optional field `invoiceType`
       if (jsonObj.get("invoiceType") != null && !jsonObj.get("invoiceType").isJsonNull()) {
-        InvoiceTypeCode.validateJsonElement(jsonObj.get("invoiceType"));
+        FactureElectroniqueModelsInvoiceTypeCode.validateJsonElement(jsonObj.get("invoiceType"));
       }
       if ((jsonObj.get("precedingInvoiceReference") != null && !jsonObj.get("precedingInvoiceReference").isJsonNull()) && !jsonObj.get("precedingInvoiceReference").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `precedingInvoiceReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("precedingInvoiceReference").toString()));
