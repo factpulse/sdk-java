@@ -84,15 +84,20 @@ public class FactPulseClient {
 
             Map<String, Object> result = parseResponse(response);
 
-            // Auto-poll if taskId present
-            if (result.containsKey("taskId")) {
-                result = poll((String) result.get("taskId"));
+            // Auto-poll: support both taskId (camelCase) and task_id (snake_case)
+            String taskId = result.containsKey("taskId") ? (String) result.get("taskId")
+                          : result.containsKey("task_id") ? (String) result.get("task_id") : null;
+            if (taskId != null) {
+                result = poll(taskId);
             }
 
-            // Auto-decode base64
-            if (result.containsKey("content_b64")) {
-                result.put("content", Base64.getDecoder().decode((String) result.get("content_b64")));
+            // Auto-decode: support both content_b64 and contentB64
+            String b64Content = result.containsKey("content_b64") ? (String) result.get("content_b64")
+                              : result.containsKey("contentB64") ? (String) result.get("contentB64") : null;
+            if (b64Content != null) {
+                result.put("content", Base64.getDecoder().decode(b64Content));
                 result.remove("content_b64");
+                result.remove("contentB64");
             }
 
             return result;
@@ -164,9 +169,13 @@ public class FactPulseClient {
 
                 if ("SUCCESS".equals(status)) {
                     Map<String, Object> result = (Map<String, Object>) data.getOrDefault("result", new HashMap<>());
-                    if (result.containsKey("content_b64")) {
-                        result.put("content", Base64.getDecoder().decode((String) result.get("content_b64")));
+                    // Support both content_b64 and contentB64
+                    String b64Content = result.containsKey("content_b64") ? (String) result.get("content_b64")
+                                      : result.containsKey("contentB64") ? (String) result.get("contentB64") : null;
+                    if (b64Content != null) {
+                        result.put("content", Base64.getDecoder().decode(b64Content));
                         result.remove("content_b64");
+                        result.remove("contentB64");
                     }
                     return result;
                 }

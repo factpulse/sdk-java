@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Complete response after automated submission.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:07:48.124130264Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:37:47.571926372Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SubmitCompleteInvoiceResponse {
   public static final String SERIALIZED_NAME_SUCCESS = "success";
   @SerializedName(SERIALIZED_NAME_SUCCESS)
@@ -143,10 +143,10 @@ public class SubmitCompleteInvoiceResponse {
   @javax.annotation.Nullable
   private SignatureInfo signature;
 
-  public static final String SERIALIZED_NAME_PDF_BASE64 = "pdfBase64";
-  @SerializedName(SERIALIZED_NAME_PDF_BASE64)
+  public static final String SERIALIZED_NAME_CONTENT_B64 = "contentB64";
+  @SerializedName(SERIALIZED_NAME_CONTENT_B64)
   @javax.annotation.Nonnull
-  private String pdfBase64;
+  private String contentB64;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -289,22 +289,22 @@ public class SubmitCompleteInvoiceResponse {
   }
 
 
-  public SubmitCompleteInvoiceResponse pdfBase64(@javax.annotation.Nonnull String pdfBase64) {
-    this.pdfBase64 = pdfBase64;
+  public SubmitCompleteInvoiceResponse contentB64(@javax.annotation.Nonnull String contentB64) {
+    this.contentB64 = contentB64;
     return this;
   }
 
   /**
    * Generated Factur-X PDF (and signed if requested) base64-encoded
-   * @return pdfBase64
+   * @return contentB64
    */
   @javax.annotation.Nonnull
-  public String getPdfBase64() {
-    return pdfBase64;
+  public String getContentB64() {
+    return contentB64;
   }
 
-  public void setPdfBase64(@javax.annotation.Nonnull String pdfBase64) {
-    this.pdfBase64 = pdfBase64;
+  public void setContentB64(@javax.annotation.Nonnull String contentB64) {
+    this.contentB64 = contentB64;
   }
 
 
@@ -344,7 +344,7 @@ public class SubmitCompleteInvoiceResponse {
         Objects.equals(this.enrichedInvoice, submitCompleteInvoiceResponse.enrichedInvoice) &&
         Objects.equals(this.facturxPdf, submitCompleteInvoiceResponse.facturxPdf) &&
         Objects.equals(this.signature, submitCompleteInvoiceResponse.signature) &&
-        Objects.equals(this.pdfBase64, submitCompleteInvoiceResponse.pdfBase64) &&
+        Objects.equals(this.contentB64, submitCompleteInvoiceResponse.contentB64) &&
         Objects.equals(this.message, submitCompleteInvoiceResponse.message);
   }
 
@@ -354,7 +354,7 @@ public class SubmitCompleteInvoiceResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, destinationType, chorusResult, afnorResult, enrichedInvoice, facturxPdf, signature, pdfBase64, message);
+    return Objects.hash(success, destinationType, chorusResult, afnorResult, enrichedInvoice, facturxPdf, signature, contentB64, message);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -375,7 +375,7 @@ public class SubmitCompleteInvoiceResponse {
     sb.append("    enrichedInvoice: ").append(toIndentedString(enrichedInvoice)).append("\n");
     sb.append("    facturxPdf: ").append(toIndentedString(facturxPdf)).append("\n");
     sb.append("    signature: ").append(toIndentedString(signature)).append("\n");
-    sb.append("    pdfBase64: ").append(toIndentedString(pdfBase64)).append("\n");
+    sb.append("    contentB64: ").append(toIndentedString(contentB64)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -398,10 +398,10 @@ public class SubmitCompleteInvoiceResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("success", "destinationType", "chorusResult", "afnorResult", "enrichedInvoice", "facturxPdf", "signature", "pdfBase64", "message"));
+    openapiFields = new HashSet<String>(Arrays.asList("success", "destinationType", "chorusResult", "afnorResult", "enrichedInvoice", "facturxPdf", "signature", "contentB64", "message"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("success", "destinationType", "enrichedInvoice", "facturxPdf", "pdfBase64", "message"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("success", "destinationType", "enrichedInvoice", "facturxPdf", "contentB64", "message"));
   }
 
   /**
@@ -453,8 +453,8 @@ public class SubmitCompleteInvoiceResponse {
       if (jsonObj.get("signature") != null && !jsonObj.get("signature").isJsonNull()) {
         SignatureInfo.validateJsonElement(jsonObj.get("signature"));
       }
-      if (!jsonObj.get("pdfBase64").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pdfBase64` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pdfBase64").toString()));
+      if (!jsonObj.get("contentB64").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `contentB64` to be a primitive type in the JSON string but got `%s`", jsonObj.get("contentB64").toString()));
       }
       if (!jsonObj.get("message").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));

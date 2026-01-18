@@ -13,20 +13,72 @@
 
 package org.openapitools.client.model;
 
+import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.JsonElement;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
- * Model tests for FactureElectroniqueModelsInvoiceTypeCode
+ * Invoice type codes (UNTDID 1001).
  */
-public class FactureElectroniqueModelsInvoiceTypeCodeTest {
-    /**
-     * Model tests for FactureElectroniqueModelsInvoiceTypeCode
-     */
-    @Test
-    public void testFactureElectroniqueModelsInvoiceTypeCode() {
-        // TODO: test FactureElectroniqueModelsInvoiceTypeCode
+@JsonAdapter(FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.Adapter.class)
+public enum FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode {
+  
+  _380("380"),
+  
+  _381("381"),
+  
+  _384("384"),
+  
+  _389("389"),
+  
+  _386("386");
+
+  private String value;
+
+  FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
+
+  public static FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode fromValue(String value) {
+    for (FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode b : FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
+    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+  }
+
+  public static class Adapter extends TypeAdapter<FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode> {
+    @Override
+    public void write(final JsonWriter jsonWriter, final FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode enumeration) throws IOException {
+      jsonWriter.value(enumeration.getValue());
     }
 
+    @Override
+    public FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode read(final JsonReader jsonReader) throws IOException {
+      String value = jsonReader.nextString();
+      return FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.fromValue(value);
+    }
+  }
+
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+    String value = jsonElement.getAsString();
+    FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.fromValue(value);
+  }
 }
+

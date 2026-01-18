@@ -15,7 +15,7 @@ Complete response after automated submission.
 |**enrichedInvoice** | [**EnrichedInvoiceInfo**](EnrichedInvoiceInfo.md) | Enriched invoice data |  |
 |**facturxPdf** | [**FacturXPDFInfo**](FacturXPDFInfo.md) | Generated PDF information |  |
 |**signature** | [**SignatureInfo**](SignatureInfo.md) |  |  [optional] |
-|**pdfBase64** | **String** | Generated Factur-X PDF (and signed if requested) base64-encoded |  |
+|**contentB64** | **String** | Generated Factur-X PDF (and signed if requested) base64-encoded |  |
 |**message** | **String** | Return message |  |
 
 

@@ -100,11 +100,11 @@ public class SubmitCompleteInvoiceResponseTest {
     }
 
     /**
-     * Test the property 'pdfBase64'
+     * Test the property 'contentB64'
      */
     @Test
-    public void pdfBase64Test() {
-        // TODO: test pdfBase64
+    public void contentB64Test() {
+        // TODO: test contentB64
     }
 
     /**
