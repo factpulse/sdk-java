@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Information about the invoice recipient / buyer (BG-7).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:35:36.687645016Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T15:42:51.689235223Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class Recipient {
   public static final String SERIALIZED_NAME_ELECTRONIC_ADDRESS = "electronic_address";
   @SerializedName(SERIALIZED_NAME_ELECTRONIC_ADDRESS)
