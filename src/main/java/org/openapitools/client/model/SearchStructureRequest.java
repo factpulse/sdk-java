@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Search structures by criteria.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-18T16:58:13.053931371Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-19T09:29:41.585760926Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
 public class SearchStructureRequest {
   public static final String SERIALIZED_NAME_CREDENTIALS = "credentials";
   @SerializedName(SERIALIZED_NAME_CREDENTIALS)
