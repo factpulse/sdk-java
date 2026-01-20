@@ -2,7 +2,7 @@
 
 # Amount
 
-Payment amount
+Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
 
 ## Properties
 

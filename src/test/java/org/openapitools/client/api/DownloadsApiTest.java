@@ -46,20 +46,6 @@ public class DownloadsApiTest {
     }
 
     /**
-     * Check if a file exists
-     *
-     * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void checkFileApiV1DownloadDownloadIdHead_0Test() throws ApiException {
-        String downloadId = null;
-        Object response = api.checkFileApiV1DownloadDownloadIdHead_0(downloadId);
-        // TODO: test validations
-    }
-
-    /**
      * Download a temporary file
      *
      * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using &#x60;webhook_mode: \&quot;download_url\&quot;&#x60; - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
@@ -71,21 +57,6 @@ public class DownloadsApiTest {
         String downloadId = null;
         Boolean deleteAfter = null;
         Object response = api.downloadFileApiV1DownloadDownloadIdGet(downloadId, deleteAfter);
-        // TODO: test validations
-    }
-
-    /**
-     * Download a temporary file
-     *
-     * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using &#x60;webhook_mode: \&quot;download_url\&quot;&#x60; - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void downloadFileApiV1DownloadDownloadIdGet_0Test() throws ApiException {
-        String downloadId = null;
-        Boolean deleteAfter = null;
-        Object response = api.downloadFileApiV1DownloadDownloadIdGet_0(downloadId, deleteAfter);
         // TODO: test validations
     }
 

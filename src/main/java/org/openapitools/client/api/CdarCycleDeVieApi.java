@@ -29,13 +29,16 @@ import java.io.IOException;
 
 import org.openapitools.client.model.APIError;
 import org.openapitools.client.model.ActionCodesResponse;
-import org.openapitools.client.model.BodySubmitCdarApiV1CdarSubmitPost;
-import org.openapitools.client.model.BodySubmitCdarXmlApiV1CdarSubmitXmlPost;
 import org.openapitools.client.model.CreateCDARRequest;
+import org.openapitools.client.model.EncaisseeRequest;
 import org.openapitools.client.model.GenerateCDARResponse;
 import org.openapitools.client.model.ReasonCodesResponse;
+import org.openapitools.client.model.RefuseeRequest;
+import org.openapitools.client.model.SimplifiedCDARResponse;
 import org.openapitools.client.model.StatusCodesResponse;
+import org.openapitools.client.model.SubmitCDARRequest;
 import org.openapitools.client.model.SubmitCDARResponse;
+import org.openapitools.client.model.SubmitCDARXMLRequest;
 import org.openapitools.client.model.ValidateCDARRequest;
 import org.openapitools.client.model.ValidateCDARResponse;
 
@@ -614,10 +617,7 @@ public class CdarCycleDeVieApi {
     }
     /**
      * Build call for submitCdarApiV1CdarSubmitPost
-     * @param userId  (required)
-     * @param bodySubmitCdarApiV1CdarSubmitPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * @param submitCDARRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -632,7 +632,7 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call submitCdarApiV1CdarSubmitPostCall(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call submitCdarApiV1CdarSubmitPostCall(@javax.annotation.Nonnull SubmitCDARRequest submitCDARRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -646,7 +646,7 @@ public class CdarCycleDeVieApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodySubmitCdarApiV1CdarSubmitPost;
+        Object localVarPostBody = submitCDARRequest;
 
         // create path and map variables
         String localVarPath = "/api/v1/cdar/submit";
@@ -657,18 +657,6 @@ public class CdarCycleDeVieApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (userId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("user_id", userId));
-        }
-
-        if (jwtToken != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("jwt_token", jwtToken));
-        }
-
-        if (clientUid != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("client_uid", clientUid));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -690,28 +678,20 @@ public class CdarCycleDeVieApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call submitCdarApiV1CdarSubmitPostValidateBeforeCall(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling submitCdarApiV1CdarSubmitPost(Async)");
+    private okhttp3.Call submitCdarApiV1CdarSubmitPostValidateBeforeCall(@javax.annotation.Nonnull SubmitCDARRequest submitCDARRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'submitCDARRequest' is set
+        if (submitCDARRequest == null) {
+            throw new ApiException("Missing the required parameter 'submitCDARRequest' when calling submitCdarApiV1CdarSubmitPost(Async)");
         }
 
-        // verify the required parameter 'bodySubmitCdarApiV1CdarSubmitPost' is set
-        if (bodySubmitCdarApiV1CdarSubmitPost == null) {
-            throw new ApiException("Missing the required parameter 'bodySubmitCdarApiV1CdarSubmitPost' when calling submitCdarApiV1CdarSubmitPost(Async)");
-        }
-
-        return submitCdarApiV1CdarSubmitPostCall(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid, _callback);
+        return submitCdarApiV1CdarSubmitPostCall(submitCDARRequest, _callback);
 
     }
 
     /**
      * Générer et soumettre un message CDAR
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
-     * @param userId  (required)
-     * @param bodySubmitCdarApiV1CdarSubmitPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+     * @param submitCDARRequest  (required)
      * @return SubmitCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -725,18 +705,15 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public SubmitCDARResponse submitCdarApiV1CdarSubmitPost(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid) throws ApiException {
-        ApiResponse<SubmitCDARResponse> localVarResp = submitCdarApiV1CdarSubmitPostWithHttpInfo(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid);
+    public SubmitCDARResponse submitCdarApiV1CdarSubmitPost(@javax.annotation.Nonnull SubmitCDARRequest submitCDARRequest) throws ApiException {
+        ApiResponse<SubmitCDARResponse> localVarResp = submitCdarApiV1CdarSubmitPostWithHttpInfo(submitCDARRequest);
         return localVarResp.getData();
     }
 
     /**
      * Générer et soumettre un message CDAR
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
-     * @param userId  (required)
-     * @param bodySubmitCdarApiV1CdarSubmitPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+     * @param submitCDARRequest  (required)
      * @return ApiResponse&lt;SubmitCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -750,19 +727,16 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SubmitCDARResponse> submitCdarApiV1CdarSubmitPostWithHttpInfo(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid) throws ApiException {
-        okhttp3.Call localVarCall = submitCdarApiV1CdarSubmitPostValidateBeforeCall(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid, null);
+    public ApiResponse<SubmitCDARResponse> submitCdarApiV1CdarSubmitPostWithHttpInfo(@javax.annotation.Nonnull SubmitCDARRequest submitCDARRequest) throws ApiException {
+        okhttp3.Call localVarCall = submitCdarApiV1CdarSubmitPostValidateBeforeCall(submitCDARRequest, null);
         Type localVarReturnType = new TypeToken<SubmitCDARResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Générer et soumettre un message CDAR (asynchronously)
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
-     * @param userId  (required)
-     * @param bodySubmitCdarApiV1CdarSubmitPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+     * @param submitCDARRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -777,19 +751,16 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call submitCdarApiV1CdarSubmitPostAsync(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid, final ApiCallback<SubmitCDARResponse> _callback) throws ApiException {
+    public okhttp3.Call submitCdarApiV1CdarSubmitPostAsync(@javax.annotation.Nonnull SubmitCDARRequest submitCDARRequest, final ApiCallback<SubmitCDARResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = submitCdarApiV1CdarSubmitPostValidateBeforeCall(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid, _callback);
+        okhttp3.Call localVarCall = submitCdarApiV1CdarSubmitPostValidateBeforeCall(submitCDARRequest, _callback);
         Type localVarReturnType = new TypeToken<SubmitCDARResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for submitCdarXmlApiV1CdarSubmitXmlPost
-     * @param userId  (required)
-     * @param bodySubmitCdarXmlApiV1CdarSubmitXmlPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * @param submitCDARXMLRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -804,7 +775,7 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call submitCdarXmlApiV1CdarSubmitXmlPostCall(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call submitCdarXmlApiV1CdarSubmitXmlPostCall(@javax.annotation.Nonnull SubmitCDARXMLRequest submitCDARXMLRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -818,7 +789,7 @@ public class CdarCycleDeVieApi {
             basePath = null;
         }
 
-        Object localVarPostBody = bodySubmitCdarXmlApiV1CdarSubmitXmlPost;
+        Object localVarPostBody = submitCDARXMLRequest;
 
         // create path and map variables
         String localVarPath = "/api/v1/cdar/submit-xml";
@@ -828,18 +799,6 @@ public class CdarCycleDeVieApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (userId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("user_id", userId));
-        }
-
-        if (jwtToken != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("jwt_token", jwtToken));
-        }
-
-        if (clientUid != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("client_uid", clientUid));
-        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -862,28 +821,20 @@ public class CdarCycleDeVieApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call submitCdarXmlApiV1CdarSubmitXmlPostValidateBeforeCall(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'userId' is set
-        if (userId == null) {
-            throw new ApiException("Missing the required parameter 'userId' when calling submitCdarXmlApiV1CdarSubmitXmlPost(Async)");
+    private okhttp3.Call submitCdarXmlApiV1CdarSubmitXmlPostValidateBeforeCall(@javax.annotation.Nonnull SubmitCDARXMLRequest submitCDARXMLRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'submitCDARXMLRequest' is set
+        if (submitCDARXMLRequest == null) {
+            throw new ApiException("Missing the required parameter 'submitCDARXMLRequest' when calling submitCdarXmlApiV1CdarSubmitXmlPost(Async)");
         }
 
-        // verify the required parameter 'bodySubmitCdarXmlApiV1CdarSubmitXmlPost' is set
-        if (bodySubmitCdarXmlApiV1CdarSubmitXmlPost == null) {
-            throw new ApiException("Missing the required parameter 'bodySubmitCdarXmlApiV1CdarSubmitXmlPost' when calling submitCdarXmlApiV1CdarSubmitXmlPost(Async)");
-        }
-
-        return submitCdarXmlApiV1CdarSubmitXmlPostCall(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid, _callback);
+        return submitCdarXmlApiV1CdarSubmitXmlPostCall(submitCDARXMLRequest, _callback);
 
     }
 
     /**
      * Soumettre un XML CDAR pré-généré
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.
-     * @param userId  (required)
-     * @param bodySubmitCdarXmlApiV1CdarSubmitXmlPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+     * @param submitCDARXMLRequest  (required)
      * @return SubmitCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -897,18 +848,15 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public SubmitCDARResponse submitCdarXmlApiV1CdarSubmitXmlPost(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid) throws ApiException {
-        ApiResponse<SubmitCDARResponse> localVarResp = submitCdarXmlApiV1CdarSubmitXmlPostWithHttpInfo(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid);
+    public SubmitCDARResponse submitCdarXmlApiV1CdarSubmitXmlPost(@javax.annotation.Nonnull SubmitCDARXMLRequest submitCDARXMLRequest) throws ApiException {
+        ApiResponse<SubmitCDARResponse> localVarResp = submitCdarXmlApiV1CdarSubmitXmlPostWithHttpInfo(submitCDARXMLRequest);
         return localVarResp.getData();
     }
 
     /**
      * Soumettre un XML CDAR pré-généré
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.
-     * @param userId  (required)
-     * @param bodySubmitCdarXmlApiV1CdarSubmitXmlPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+     * @param submitCDARXMLRequest  (required)
      * @return ApiResponse&lt;SubmitCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -922,19 +870,16 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SubmitCDARResponse> submitCdarXmlApiV1CdarSubmitXmlPostWithHttpInfo(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid) throws ApiException {
-        okhttp3.Call localVarCall = submitCdarXmlApiV1CdarSubmitXmlPostValidateBeforeCall(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid, null);
+    public ApiResponse<SubmitCDARResponse> submitCdarXmlApiV1CdarSubmitXmlPostWithHttpInfo(@javax.annotation.Nonnull SubmitCDARXMLRequest submitCDARXMLRequest) throws ApiException {
+        okhttp3.Call localVarCall = submitCdarXmlApiV1CdarSubmitXmlPostValidateBeforeCall(submitCDARXMLRequest, null);
         Type localVarReturnType = new TypeToken<SubmitCDARResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Soumettre un XML CDAR pré-généré (asynchronously)
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.
-     * @param userId  (required)
-     * @param bodySubmitCdarXmlApiV1CdarSubmitXmlPost  (required)
-     * @param jwtToken  (optional)
-     * @param clientUid  (optional)
+     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+     * @param submitCDARXMLRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -949,10 +894,296 @@ public class CdarCycleDeVieApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call submitCdarXmlApiV1CdarSubmitXmlPostAsync(@javax.annotation.Nonnull Integer userId, @javax.annotation.Nonnull BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost, @javax.annotation.Nullable String jwtToken, @javax.annotation.Nullable String clientUid, final ApiCallback<SubmitCDARResponse> _callback) throws ApiException {
+    public okhttp3.Call submitCdarXmlApiV1CdarSubmitXmlPostAsync(@javax.annotation.Nonnull SubmitCDARXMLRequest submitCDARXMLRequest, final ApiCallback<SubmitCDARResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = submitCdarXmlApiV1CdarSubmitXmlPostValidateBeforeCall(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid, _callback);
+        okhttp3.Call localVarCall = submitCdarXmlApiV1CdarSubmitXmlPostValidateBeforeCall(submitCDARXMLRequest, _callback);
         Type localVarReturnType = new TypeToken<SubmitCDARResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for submitEncaisseeApiV1CdarEncaisseePost
+     * @param encaisseeRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call submitEncaisseeApiV1CdarEncaisseePostCall(@javax.annotation.Nonnull EncaisseeRequest encaisseeRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = encaisseeRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/cdar/encaissee";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call submitEncaisseeApiV1CdarEncaisseePostValidateBeforeCall(@javax.annotation.Nonnull EncaisseeRequest encaisseeRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'encaisseeRequest' is set
+        if (encaisseeRequest == null) {
+            throw new ApiException("Missing the required parameter 'encaisseeRequest' when calling submitEncaisseeApiV1CdarEncaisseePost(Async)");
+        }
+
+        return submitEncaisseeApiV1CdarEncaisseePostCall(encaisseeRequest, _callback);
+
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut ENCAISSÉE (212)
+     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @param encaisseeRequest  (required)
+     * @return SimplifiedCDARResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public SimplifiedCDARResponse submitEncaisseeApiV1CdarEncaisseePost(@javax.annotation.Nonnull EncaisseeRequest encaisseeRequest) throws ApiException {
+        ApiResponse<SimplifiedCDARResponse> localVarResp = submitEncaisseeApiV1CdarEncaisseePostWithHttpInfo(encaisseeRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut ENCAISSÉE (212)
+     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @param encaisseeRequest  (required)
+     * @return ApiResponse&lt;SimplifiedCDARResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SimplifiedCDARResponse> submitEncaisseeApiV1CdarEncaisseePostWithHttpInfo(@javax.annotation.Nonnull EncaisseeRequest encaisseeRequest) throws ApiException {
+        okhttp3.Call localVarCall = submitEncaisseeApiV1CdarEncaisseePostValidateBeforeCall(encaisseeRequest, null);
+        Type localVarReturnType = new TypeToken<SimplifiedCDARResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut ENCAISSÉE (212) (asynchronously)
+     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @param encaisseeRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call submitEncaisseeApiV1CdarEncaisseePostAsync(@javax.annotation.Nonnull EncaisseeRequest encaisseeRequest, final ApiCallback<SimplifiedCDARResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = submitEncaisseeApiV1CdarEncaisseePostValidateBeforeCall(encaisseeRequest, _callback);
+        Type localVarReturnType = new TypeToken<SimplifiedCDARResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for submitRefuseeApiV1CdarRefuseePost
+     * @param refuseeRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call submitRefuseeApiV1CdarRefuseePostCall(@javax.annotation.Nonnull RefuseeRequest refuseeRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = refuseeRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/cdar/refusee";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call submitRefuseeApiV1CdarRefuseePostValidateBeforeCall(@javax.annotation.Nonnull RefuseeRequest refuseeRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'refuseeRequest' is set
+        if (refuseeRequest == null) {
+            throw new ApiException("Missing the required parameter 'refuseeRequest' when calling submitRefuseeApiV1CdarRefuseePost(Async)");
+        }
+
+        return submitRefuseeApiV1CdarRefuseePostCall(refuseeRequest, _callback);
+
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut REFUSÉE (210)
+     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @param refuseeRequest  (required)
+     * @return SimplifiedCDARResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public SimplifiedCDARResponse submitRefuseeApiV1CdarRefuseePost(@javax.annotation.Nonnull RefuseeRequest refuseeRequest) throws ApiException {
+        ApiResponse<SimplifiedCDARResponse> localVarResp = submitRefuseeApiV1CdarRefuseePostWithHttpInfo(refuseeRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut REFUSÉE (210)
+     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @param refuseeRequest  (required)
+     * @return ApiResponse&lt;SimplifiedCDARResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<SimplifiedCDARResponse> submitRefuseeApiV1CdarRefuseePostWithHttpInfo(@javax.annotation.Nonnull RefuseeRequest refuseeRequest) throws ApiException {
+        okhttp3.Call localVarCall = submitRefuseeApiV1CdarRefuseePostValidateBeforeCall(refuseeRequest, null);
+        Type localVarReturnType = new TypeToken<SimplifiedCDARResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut REFUSÉE (210) (asynchronously)
+     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @param refuseeRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call submitRefuseeApiV1CdarRefuseePostAsync(@javax.annotation.Nonnull RefuseeRequest refuseeRequest, final ApiCallback<SimplifiedCDARResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = submitRefuseeApiV1CdarRefuseePostValidateBeforeCall(refuseeRequest, _callback);
+        Type localVarReturnType = new TypeToken<SimplifiedCDARResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

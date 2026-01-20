@@ -20,40 +20,46 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.PDPCredentials;
-import org.openapitools.client.model.SubmitCDARXMLRequest;
 import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for BodySubmitCdarXmlApiV1CdarSubmitXmlPost
+ * Model tests for ClientUpdateRequest
  */
-public class BodySubmitCdarXmlApiV1CdarSubmitXmlPostTest {
-    private final BodySubmitCdarXmlApiV1CdarSubmitXmlPost model = new BodySubmitCdarXmlApiV1CdarSubmitXmlPost();
+public class ClientUpdateRequestTest {
+    private final ClientUpdateRequest model = new ClientUpdateRequest();
 
     /**
-     * Model tests for BodySubmitCdarXmlApiV1CdarSubmitXmlPost
+     * Model tests for ClientUpdateRequest
      */
     @Test
-    public void testBodySubmitCdarXmlApiV1CdarSubmitXmlPost() {
-        // TODO: test BodySubmitCdarXmlApiV1CdarSubmitXmlPost
+    public void testClientUpdateRequest() {
+        // TODO: test ClientUpdateRequest
     }
 
     /**
-     * Test the property 'request'
+     * Test the property 'name'
      */
     @Test
-    public void requestTest() {
-        // TODO: test request
+    public void nameTest() {
+        // TODO: test name
     }
 
     /**
-     * Test the property 'pdpCredentials'
+     * Test the property 'description'
      */
     @Test
-    public void pdpCredentialsTest() {
-        // TODO: test pdpCredentials
+    public void descriptionTest() {
+        // TODO: test description
+    }
+
+    /**
+     * Test the property 'siret'
+     */
+    @Test
+    public void siretTest() {
+        // TODO: test siret
     }
 
 }

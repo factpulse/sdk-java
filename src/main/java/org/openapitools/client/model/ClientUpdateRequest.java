@@ -21,8 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.PDPCredentials;
-import org.openapitools.client.model.SubmitCDARXMLRequest;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -49,58 +47,82 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * BodySubmitCdarXmlApiV1CdarSubmitXmlPost
+ * Partial client update request.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-19T09:43:55.754126216Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
-  public static final String SERIALIZED_NAME_REQUEST = "request";
-  @SerializedName(SERIALIZED_NAME_REQUEST)
-  @javax.annotation.Nonnull
-  private SubmitCDARXMLRequest request;
-
-  public static final String SERIALIZED_NAME_PDP_CREDENTIALS = "pdp_credentials";
-  @SerializedName(SERIALIZED_NAME_PDP_CREDENTIALS)
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+public class ClientUpdateRequest {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
-  private PDPCredentials pdpCredentials;
+  private String name;
 
-  public BodySubmitCdarXmlApiV1CdarSubmitXmlPost() {
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
+  private String description;
+
+  public static final String SERIALIZED_NAME_SIRET = "siret";
+  @SerializedName(SERIALIZED_NAME_SIRET)
+  @javax.annotation.Nullable
+  private String siret;
+
+  public ClientUpdateRequest() {
   }
 
-  public BodySubmitCdarXmlApiV1CdarSubmitXmlPost request(@javax.annotation.Nonnull SubmitCDARXMLRequest request) {
-    this.request = request;
+  public ClientUpdateRequest name(@javax.annotation.Nullable String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get request
-   * @return request
+   * Get name
+   * @return name
    */
-  @javax.annotation.Nonnull
-  public SubmitCDARXMLRequest getRequest() {
-    return request;
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
   }
 
-  public void setRequest(@javax.annotation.Nonnull SubmitCDARXMLRequest request) {
-    this.request = request;
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
   }
 
 
-  public BodySubmitCdarXmlApiV1CdarSubmitXmlPost pdpCredentials(@javax.annotation.Nullable PDPCredentials pdpCredentials) {
-    this.pdpCredentials = pdpCredentials;
+  public ClientUpdateRequest description(@javax.annotation.Nullable String description) {
+    this.description = description;
     return this;
   }
 
   /**
-   * Get pdpCredentials
-   * @return pdpCredentials
+   * Get description
+   * @return description
    */
   @javax.annotation.Nullable
-  public PDPCredentials getPdpCredentials() {
-    return pdpCredentials;
+  public String getDescription() {
+    return description;
   }
 
-  public void setPdpCredentials(@javax.annotation.Nullable PDPCredentials pdpCredentials) {
-    this.pdpCredentials = pdpCredentials;
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
+  }
+
+
+  public ClientUpdateRequest siret(@javax.annotation.Nullable String siret) {
+    this.siret = siret;
+    return this;
+  }
+
+  /**
+   * Get siret
+   * @return siret
+   */
+  @javax.annotation.Nullable
+  public String getSiret() {
+    return siret;
+  }
+
+  public void setSiret(@javax.annotation.Nullable String siret) {
+    this.siret = siret;
   }
 
 
@@ -113,9 +135,10 @@ public class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost = (BodySubmitCdarXmlApiV1CdarSubmitXmlPost) o;
-    return Objects.equals(this.request, bodySubmitCdarXmlApiV1CdarSubmitXmlPost.request) &&
-        Objects.equals(this.pdpCredentials, bodySubmitCdarXmlApiV1CdarSubmitXmlPost.pdpCredentials);
+    ClientUpdateRequest clientUpdateRequest = (ClientUpdateRequest) o;
+    return Objects.equals(this.name, clientUpdateRequest.name) &&
+        Objects.equals(this.description, clientUpdateRequest.description) &&
+        Objects.equals(this.siret, clientUpdateRequest.siret);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -124,7 +147,7 @@ public class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
 
   @Override
   public int hashCode() {
-    return Objects.hash(request, pdpCredentials);
+    return Objects.hash(name, description, siret);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -137,9 +160,10 @@ public class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {\n");
-    sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    sb.append("    pdpCredentials: ").append(toIndentedString(pdpCredentials)).append("\n");
+    sb.append("class ClientUpdateRequest {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    siret: ").append(toIndentedString(siret)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -161,45 +185,41 @@ public class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("request", "pdp_credentials"));
+    openapiFields = new HashSet<String>(Arrays.asList("name", "description", "siret"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("request"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to BodySubmitCdarXmlApiV1CdarSubmitXmlPost
+   * @throws IOException if the JSON Element is invalid with respect to ClientUpdateRequest
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!BodySubmitCdarXmlApiV1CdarSubmitXmlPost.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in BodySubmitCdarXmlApiV1CdarSubmitXmlPost is not found in the empty JSON string", BodySubmitCdarXmlApiV1CdarSubmitXmlPost.openapiRequiredFields.toString()));
+        if (!ClientUpdateRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in ClientUpdateRequest is not found in the empty JSON string", ClientUpdateRequest.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!BodySubmitCdarXmlApiV1CdarSubmitXmlPost.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `BodySubmitCdarXmlApiV1CdarSubmitXmlPost` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : BodySubmitCdarXmlApiV1CdarSubmitXmlPost.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        if (!ClientUpdateRequest.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ClientUpdateRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `request`
-      SubmitCDARXMLRequest.validateJsonElement(jsonObj.get("request"));
-      // validate the optional field `pdp_credentials`
-      if (jsonObj.get("pdp_credentials") != null && !jsonObj.get("pdp_credentials").isJsonNull()) {
-        PDPCredentials.validateJsonElement(jsonObj.get("pdp_credentials"));
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if ((jsonObj.get("siret") != null && !jsonObj.get("siret").isJsonNull()) && !jsonObj.get("siret").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `siret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("siret").toString()));
       }
   }
 
@@ -207,22 +227,22 @@ public class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!BodySubmitCdarXmlApiV1CdarSubmitXmlPost.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'BodySubmitCdarXmlApiV1CdarSubmitXmlPost' and its subtypes
+       if (!ClientUpdateRequest.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ClientUpdateRequest' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<BodySubmitCdarXmlApiV1CdarSubmitXmlPost> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(BodySubmitCdarXmlApiV1CdarSubmitXmlPost.class));
+       final TypeAdapter<ClientUpdateRequest> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ClientUpdateRequest.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<BodySubmitCdarXmlApiV1CdarSubmitXmlPost>() {
+       return (TypeAdapter<T>) new TypeAdapter<ClientUpdateRequest>() {
            @Override
-           public void write(JsonWriter out, BodySubmitCdarXmlApiV1CdarSubmitXmlPost value) throws IOException {
+           public void write(JsonWriter out, ClientUpdateRequest value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public BodySubmitCdarXmlApiV1CdarSubmitXmlPost read(JsonReader in) throws IOException {
+           public ClientUpdateRequest read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -233,18 +253,18 @@ public class BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
   }
 
   /**
-   * Create an instance of BodySubmitCdarXmlApiV1CdarSubmitXmlPost given an JSON string
+   * Create an instance of ClientUpdateRequest given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of BodySubmitCdarXmlApiV1CdarSubmitXmlPost
-   * @throws IOException if the JSON string is invalid with respect to BodySubmitCdarXmlApiV1CdarSubmitXmlPost
+   * @return An instance of ClientUpdateRequest
+   * @throws IOException if the JSON string is invalid with respect to ClientUpdateRequest
    */
-  public static BodySubmitCdarXmlApiV1CdarSubmitXmlPost fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, BodySubmitCdarXmlApiV1CdarSubmitXmlPost.class);
+  public static ClientUpdateRequest fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ClientUpdateRequest.class);
   }
 
   /**
-   * Convert an instance of BodySubmitCdarXmlApiV1CdarSubmitXmlPost to an JSON string
+   * Convert an instance of ClientUpdateRequest to an JSON string
    *
    * @return JSON string
    */

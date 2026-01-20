@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.Amount;
+import org.openapitools.client.model.Amount1;
 import org.openapitools.client.model.Rate;
 
 import com.google.gson.Gson;
@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Payment amount for a specific VAT rate.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-19T09:43:55.754126216Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class PaymentAmountByRate {
   public static final String SERIALIZED_NAME_RATE = "rate";
   @SerializedName(SERIALIZED_NAME_RATE)
@@ -60,7 +60,7 @@ public class PaymentAmountByRate {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   @javax.annotation.Nonnull
-  private Amount amount;
+  private Amount1 amount;
 
   public PaymentAmountByRate() {
   }
@@ -84,7 +84,7 @@ public class PaymentAmountByRate {
   }
 
 
-  public PaymentAmountByRate amount(@javax.annotation.Nonnull Amount amount) {
+  public PaymentAmountByRate amount(@javax.annotation.Nonnull Amount1 amount) {
     this.amount = amount;
     return this;
   }
@@ -94,11 +94,11 @@ public class PaymentAmountByRate {
    * @return amount
    */
   @javax.annotation.Nonnull
-  public Amount getAmount() {
+  public Amount1 getAmount() {
     return amount;
   }
 
-  public void setAmount(@javax.annotation.Nonnull Amount amount) {
+  public void setAmount(@javax.annotation.Nonnull Amount1 amount) {
     this.amount = amount;
   }
 
@@ -186,7 +186,7 @@ public class PaymentAmountByRate {
       // validate the required field `rate`
       Rate.validateJsonElement(jsonObj.get("rate"));
       // validate the required field `amount`
-      Amount.validateJsonElement(jsonObj.get("amount"));
+      Amount1.validateJsonElement(jsonObj.get("amount"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

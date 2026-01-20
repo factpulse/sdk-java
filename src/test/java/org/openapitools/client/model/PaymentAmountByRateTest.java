@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.Amount;
+import org.openapitools.client.model.Amount1;
 import org.openapitools.client.model.Rate;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

@@ -22,7 +22,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AllowanceChargeReasonCode;
-import org.openapitools.client.model.Amount1;
+import org.openapitools.client.model.Amount2;
 import org.openapitools.client.model.BaseAmount;
 import org.openapitools.client.model.Percentage;
 import org.openapitools.client.model.VATCategory;
@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * Document-level or line-level allowance/charge.  Represents BG-20 (Document level allowances), BG-21 (Document level charges), BG-27 (Invoice line allowances), or BG-28 (Invoice line charges).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-19T09:43:55.754126216Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class AllowanceCharge {
   public static final String SERIALIZED_NAME_IS_CHARGE = "is_charge";
   @SerializedName(SERIALIZED_NAME_IS_CHARGE)
@@ -65,7 +65,7 @@ public class AllowanceCharge {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   @javax.annotation.Nonnull
-  private Amount1 amount;
+  private Amount2 amount;
 
   public static final String SERIALIZED_NAME_BASE_AMOUNT = "base_amount";
   @SerializedName(SERIALIZED_NAME_BASE_AMOUNT)
@@ -119,7 +119,7 @@ public class AllowanceCharge {
   }
 
 
-  public AllowanceCharge amount(@javax.annotation.Nonnull Amount1 amount) {
+  public AllowanceCharge amount(@javax.annotation.Nonnull Amount2 amount) {
     this.amount = amount;
     return this;
   }
@@ -129,11 +129,11 @@ public class AllowanceCharge {
    * @return amount
    */
   @javax.annotation.Nonnull
-  public Amount1 getAmount() {
+  public Amount2 getAmount() {
     return amount;
   }
 
-  public void setAmount(@javax.annotation.Nonnull Amount1 amount) {
+  public void setAmount(@javax.annotation.Nonnull Amount2 amount) {
     this.amount = amount;
   }
 
@@ -356,7 +356,7 @@ public class AllowanceCharge {
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `amount`
-      Amount1.validateJsonElement(jsonObj.get("amount"));
+      Amount2.validateJsonElement(jsonObj.get("amount"));
       // validate the optional field `base_amount`
       if (jsonObj.get("base_amount") != null && !jsonObj.get("base_amount").isJsonNull()) {
         BaseAmount.validateJsonElement(jsonObj.get("base_amount"));

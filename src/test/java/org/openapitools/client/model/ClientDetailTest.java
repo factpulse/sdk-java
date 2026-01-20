@@ -13,142 +13,119 @@
 
 package org.openapitools.client.model;
 
-import java.util.Objects;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
-import com.google.gson.JsonElement;
 import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+import java.util.UUID;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
- * Document type according to BR-FR-04 (UNTDID 1001 codes).  | Code | Name | Description | |------|------|-------------| | 380 | INVOICE | Commercial invoice | | 389 | SELF_BILLED_INVOICE | Self-billed invoice | | 393 | FACTORED_INVOICE | Factored invoice | | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice | | 386 | PREPAYMENT_INVOICE | Prepayment invoice | | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice | | 384 | CORRECTIVE_INVOICE | Corrective invoice | | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice | | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice | | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice | | 381 | CREDIT_NOTE | Credit note | | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note | | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance | | 396 | FACTORED_CREDIT_NOTE | Factored credit note | | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note | | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+ * Model tests for ClientDetail
  */
-@JsonAdapter(FactureElectroniqueModelsInvoiceTypeCode.Adapter.class)
-public enum FactureElectroniqueModelsInvoiceTypeCode {
-  
-  /**
-   * Commercial Invoice
-   */
-  INVOICE("380"),
-  
-  /**
-   * Self-billed Invoice
-   */
-  SELF_BILLED_INVOICE("389"),
-  
-  /**
-   * Factored Invoice
-   */
-  FACTORED_INVOICE("393"),
-  
-  /**
-   * Self-billed Factored Invoice
-   */
-  SELF_BILLED_FACTORED_INVOICE("501"),
-  
-  /**
-   * Prepayment Invoice
-   */
-  PREPAYMENT_INVOICE("386"),
-  
-  /**
-   * Self-billed Prepayment Invoice
-   */
-  SELF_BILLED_PREPAYMENT_INVOICE("500"),
-  
-  /**
-   * Corrective Invoice
-   */
-  CORRECTIVE_INVOICE("384"),
-  
-  /**
-   * Self-billed Corrective Invoice
-   */
-  SELF_BILLED_CORRECTIVE_INVOICE("471"),
-  
-  /**
-   * Factored Corrective Invoice
-   */
-  FACTORED_CORRECTIVE_INVOICE("472"),
-  
-  /**
-   * Self-billed Factored Corrective Invoice
-   */
-  SELF_BILLED_FACTORED_CORRECTIVE_INVOICE("473"),
-  
-  /**
-   * Credit Note
-   */
-  CREDIT_NOTE("381"),
-  
-  /**
-   * Self-billed Credit Note
-   */
-  SELF_BILLED_CREDIT_NOTE("261"),
-  
-  /**
-   * Global Allowance Credit Note
-   */
-  GLOBAL_ALLOWANCE_CREDIT_NOTE("262"),
-  
-  /**
-   * Factored Credit Note
-   */
-  FACTORED_CREDIT_NOTE("396"),
-  
-  /**
-   * Self-billed Factored Credit Note
-   */
-  SELF_BILLED_FACTORED_CREDIT_NOTE("502"),
-  
-  /**
-   * Prepayment Credit Note
-   */
-  PREPAYMENT_CREDIT_NOTE("503");
+public class ClientDetailTest {
+    private final ClientDetail model = new ClientDetail();
 
-  private String value;
-
-  FactureElectroniqueModelsInvoiceTypeCode(String value) {
-    this.value = value;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  public static FactureElectroniqueModelsInvoiceTypeCode fromValue(String value) {
-    for (FactureElectroniqueModelsInvoiceTypeCode b : FactureElectroniqueModelsInvoiceTypeCode.values()) {
-      if (b.value.equals(value)) {
-        return b;
-      }
-    }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
-  }
-
-  public static class Adapter extends TypeAdapter<FactureElectroniqueModelsInvoiceTypeCode> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final FactureElectroniqueModelsInvoiceTypeCode enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    /**
+     * Model tests for ClientDetail
+     */
+    @Test
+    public void testClientDetail() {
+        // TODO: test ClientDetail
     }
 
-    @Override
-    public FactureElectroniqueModelsInvoiceTypeCode read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return FactureElectroniqueModelsInvoiceTypeCode.fromValue(value);
+    /**
+     * Test the property 'uid'
+     */
+    @Test
+    public void uidTest() {
+        // TODO: test uid
     }
-  }
 
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    String value = jsonElement.getAsString();
-    FactureElectroniqueModelsInvoiceTypeCode.fromValue(value);
-  }
+    /**
+     * Test the property 'name'
+     */
+    @Test
+    public void nameTest() {
+        // TODO: test name
+    }
+
+    /**
+     * Test the property 'siret'
+     */
+    @Test
+    public void siretTest() {
+        // TODO: test siret
+    }
+
+    /**
+     * Test the property 'description'
+     */
+    @Test
+    public void descriptionTest() {
+        // TODO: test description
+    }
+
+    /**
+     * Test the property 'isActive'
+     */
+    @Test
+    public void isActiveTest() {
+        // TODO: test isActive
+    }
+
+    /**
+     * Test the property 'hasConfigPdp'
+     */
+    @Test
+    public void hasConfigPdpTest() {
+        // TODO: test hasConfigPdp
+    }
+
+    /**
+     * Test the property 'pdpIsActive'
+     */
+    @Test
+    public void pdpIsActiveTest() {
+        // TODO: test pdpIsActive
+    }
+
+    /**
+     * Test the property 'pdpIsMock'
+     */
+    @Test
+    public void pdpIsMockTest() {
+        // TODO: test pdpIsMock
+    }
+
+    /**
+     * Test the property 'hasConfigChorus'
+     */
+    @Test
+    public void hasConfigChorusTest() {
+        // TODO: test hasConfigChorus
+    }
+
+    /**
+     * Test the property 'createdAt'
+     */
+    @Test
+    public void createdAtTest() {
+        // TODO: test createdAt
+    }
+
+    /**
+     * Test the property 'updatedAt'
+     */
+    @Test
+    public void updatedAtTest() {
+        // TODO: test updatedAt
+    }
+
 }
-

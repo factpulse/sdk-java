@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORRoutingCodePayloadHistoryLegalUnitFacility
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-19T09:43:55.754126216Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class AFNORRoutingCodePayloadHistoryLegalUnitFacility {
   public static final String SERIALIZED_NAME_ROUTING_IDENTIFIER = "routingIdentifier";
   @SerializedName(SERIALIZED_NAME_ROUTING_IDENTIFIER)

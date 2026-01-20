@@ -27,6 +27,10 @@ Requête de soumission CDAR (génération + envoi).
 |**actionCode** | **String** |  |  [optional] |
 |**encaisseAmount** | [**Encaisseamount**](Encaisseamount.md) |  |  [optional] |
 |**flowType** | **String** | Type de flux AFNOR (CustomerInvoiceLC, SupplierInvoiceLC, etc.) |  [optional] |
+|**pdpFlowServiceUrl** | **String** |  |  [optional] |
+|**pdpTokenUrl** | **String** |  |  [optional] |
+|**pdpClientId** | **String** |  |  [optional] |
+|**pdpClientSecret** | **String** |  |  [optional] |
 
 
 

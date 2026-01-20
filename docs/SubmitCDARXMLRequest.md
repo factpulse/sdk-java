@@ -11,6 +11,10 @@ Requête de soumission d'un XML CDAR pré-généré.
 |**xml** | **String** | XML CDAR à soumettre |  |
 |**flowType** | **String** | Type de flux AFNOR |  [optional] |
 |**filename** | **String** |  |  [optional] |
+|**pdpFlowServiceUrl** | **String** |  |  [optional] |
+|**pdpTokenUrl** | **String** |  |  [optional] |
+|**pdpClientId** | **String** |  |  [optional] |
+|**pdpClientSecret** | **String** |  |  [optional] |
 
 
 

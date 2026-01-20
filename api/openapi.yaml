@@ -100,13 +100,13 @@ tags:
     \ JWT `client_uid`\n- **Django decides** the environment (test/production via\
     \ configured URLs)\n- Convenient for production\n\n**Example**:\n```json\n{\n\
     \  \"name\": \"Invoice INV-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\"\
-    : \"EN16931\"\n}\n```\n\n**JWT must contain**: `client_uid` claim pointing to\
-    \ a registered PDP config\n\n---\n\n### Mode 2: Zero-Trust (Zero-Storage)\n- PDP\
-    \ credentials are passed in the `pdp_credentials` field of each request\n- Never\
-    \ stored in database\n- **Client decides** the environment via URLs in credentials\n\
-    - Maximum security, GDPR compliant\n\n**Example**:\n```json\n{\n  \"name\": \"\
-    Invoice INV-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\": \"EN16931\"\
-    ,\n  \"pdp_credentials\": {\n    \"flow_service_url\": \"https://pdp-production.example.fr/flow/v1\"\
+    : \"CIUS\"\n}\n```\n\n**JWT must contain**: `client_uid` claim pointing to a registered\
+    \ PDP config\n\n---\n\n### Mode 2: Zero-Trust (Zero-Storage)\n- PDP credentials\
+    \ are passed in the `pdp_credentials` field of each request\n- Never stored in\
+    \ database\n- **Client decides** the environment via URLs in credentials\n- Maximum\
+    \ security, GDPR compliant\n\n**Example**:\n```json\n{\n  \"name\": \"Invoice\
+    \ INV-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\": \"CIUS\",\n\
+    \  \"pdp_credentials\": {\n    \"flow_service_url\": \"https://pdp-production.example.fr/flow/v1\"\
     ,\n    \"token_url\": \"https://auth.example.fr/oauth/token\",\n    \"client_id\"\
     : \"client_prod_123\",\n    \"client_secret\": \"secret_prod_456\",\n    \"directory_service_url\"\
     : \"https://pdp-production.example.fr/directory/v1\"\n  }\n}\n```\n\n---\n\n**PDPCredentials\
@@ -230,6 +230,19 @@ tags:
     \ after 1 hour\n\n### Security\n\n- JWT authentication required\n- Only the user\
     \ who initiated the task can download the file\n        "
   name: Downloads
+- description: "\n## Factpulse Client Management\n\nCRUD operations for Factpulse\
+    \ account clients and their PA/PDP credentials configuration.\n\n### Access Scopes\n\
+    \n**Account Level** (JWT without `client_uid`):\n- `GET /clients`: List all clients\
+    \ for the account\n- `POST /clients`: Create a new client\n\n**Client Level**\
+    \ (JWT with `client_uid`):\n- `GET /clients/{uid}`: Client details\n- `PATCH /clients/{uid}`:\
+    \ Update a client\n- `POST /clients/{uid}/activer`: Activate a client\n- `POST\
+    \ /clients/{uid}/desactiver`: Deactivate a client\n- `GET /clients/{uid}/pdp-config`:\
+    \ PDP configuration (secrets masked)\n- `PUT /clients/{uid}/pdp-config`: Configure/update\
+    \ PDP\n\n### Security\n\n- **JWT with client_uid**: The token's `client_uid` must\
+    \ match the URL's `{uid}`\n- **Secrets**: `client_secret` is sent but NEVER returned\
+    \ in responses\n- **Authorization**: Delegated to Django (team/permissions verification)\n\
+    \        "
+  name: Client Management
 paths:
   /api/v1/processing/generate-invoice:
     post:
@@ -4734,42 +4747,19 @@ paths:
       description: |-
         Génère un message CDAR et le soumet à la plateforme PA/PDP.
 
-        Nécessite une authentification AFNOR valide.
+        **Stratégies d'authentification:**
+        1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend
+        2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
 
         **Types de flux (flowType):**
         - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur)
         - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
       operationId: submit_cdar_api_v1_cdar_submit_post
-      parameters:
-      - explode: true
-        in: query
-        name: user_id
-        required: true
-        schema:
-          title: User Id
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: jwt_token
-        required: false
-        schema:
-          nullable: true
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: client_uid
-        required: false
-        schema:
-          nullable: true
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Body_submit_cdar_api_v1_cdar_submit_post"
+              $ref: "#/components/schemas/SubmitCDARRequest"
         required: true
       responses:
         "200":
@@ -4807,37 +4797,16 @@ paths:
         Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.
 
         Utile pour soumettre des XML générés par d'autres systèmes.
+
+        **Stratégies d'authentification:**
+        1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend
+        2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
       operationId: submit_cdar_xml_api_v1_cdar_submit_xml_post
-      parameters:
-      - explode: true
-        in: query
-        name: user_id
-        required: true
-        schema:
-          title: User Id
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: jwt_token
-        required: false
-        schema:
-          nullable: true
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: client_uid
-        required: false
-        schema:
-          nullable: true
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Body_submit_cdar_xml_api_v1_cdar_submit_xml_post"
+              $ref: "#/components/schemas/SubmitCDARXMLRequest"
         required: true
       responses:
         "200":
@@ -4944,6 +4913,115 @@ paths:
       - CDAR - Cycle de Vie
       x-accepts:
       - application/json
+  /api/v1/cdar/refusee:
+    post:
+      description: |-
+        **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.
+
+        Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).
+
+        **Cas d'usage:** L'acheteur refuse une facture reçue.
+
+        **Codes motif autorisés (BR-FR-CDV-CL-09):**
+        - `TX_TVA_ERR`: Taux de TVA erroné
+        - `MONTANTTOTAL_ERR`: Montant total erroné
+        - `CALCUL_ERR`: Erreur de calcul
+        - `NON_CONFORME`: Non conforme
+        - `DOUBLON`: Doublon
+        - `DEST_ERR`: Destinataire erroné
+        - `TRANSAC_INC`: Transaction incomplète
+        - `EMMET_INC`: Émetteur inconnu
+        - `CONTRAT_TERM`: Contrat terminé
+        - `DOUBLE_FACT`: Double facturation
+        - `CMD_ERR`: Commande erronée
+        - `ADR_ERR`: Adresse erronée
+        - `REF_CT_ABSENT`: Référence contrat absente
+
+        **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+      operationId: submit_refusee_api_v1_cdar_refusee_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefuseeRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimplifiedCDARResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      summary: "[Simplifié] Soumettre un statut REFUSÉE (210)"
+      tags:
+      - CDAR - Cycle de Vie
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/cdar/encaissee:
+    post:
+      description: |-
+        **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.
+
+        Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).
+
+        **Cas d'usage:** L'acheteur confirme le paiement d'une facture.
+
+        **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+      operationId: submit_encaissee_api_v1_cdar_encaissee_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EncaisseeRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimplifiedCDARResponse"
+          description: Successful Response
+        "400":
+          description: Requête invalide
+        "422":
+          description: Erreur de validation
+        "500":
+          description: Erreur serveur
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      summary: "[Simplifié] Soumettre un statut ENCAISSÉE (212)"
+      tags:
+      - CDAR - Cycle de Vie
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /api/v1/download/{download_id}:
     get:
       description: |-
@@ -5020,7 +5098,6 @@ paths:
       summary: Download a temporary file
       tags:
       - Downloads
-      - Downloads
       x-accepts:
       - application/json
       - application/octet-stream
@@ -5069,7 +5146,448 @@ paths:
       summary: Check if a file exists
       tags:
       - Downloads
-      - Downloads
+      x-accepts:
+      - application/json
+  /api/v1/clients:
+    get:
+      description: |-
+        Paginated list of clients for the account.
+
+        **Scope**: Account level (JWT without client_uid)
+
+        **Pagination**:
+        - `page`: Page number (default: 1)
+        - `pageSize`: Page size (default: 20, max: 100)
+      operationId: list_clients_api_v1_clients_get
+      parameters:
+      - description: Page number
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          description: Page number
+          minimum: 1
+          title: Page
+          type: integer
+        style: form
+      - description: Page size
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 20
+          description: Page size
+          maximum: 100
+          minimum: 1
+          title: Pagesize
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientListResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: List clients
+      tags:
+      - Client Management
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Create a new client for the account.
+
+        **Scope**: Account level (JWT without client_uid)
+
+        **Fields**:
+        - `name`: Client name (required)
+        - `description`: Optional description
+        - `siret`: Optional SIRET (14 digits)
+      operationId: create_client_api_v1_clients_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientCreateRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientDetail"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Create a client
+      tags:
+      - Client Management
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}:
+    get:
+      description: |-
+        Get details of a client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **Security**: If the JWT contains a client_uid, it must match the {uid}
+        in the URL, otherwise a 403 error is returned.
+      operationId: get_client_api_v1_clients__uid__get
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientDetail"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Get client details
+      tags:
+      - Client Management
+      x-accepts:
+      - application/json
+    patch:
+      description: |-
+        Update client information (partial update).
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **Updatable fields**:
+        - `name`: Client name
+        - `description`: Description
+        - `siret`: SIRET (14 digits)
+
+        Only provided fields are updated.
+      operationId: update_client_api_v1_clients__uid__patch
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientUpdateRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientDetail"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Update a client
+      tags:
+      - Client Management
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}/activer:
+    post:
+      description: |-
+        Activate a deactivated client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+      operationId: activate_client_api_v1_clients__uid__activer_post
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientActivateResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Activate a client
+      tags:
+      - Client Management
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}/desactiver:
+    post:
+      description: |-
+        Deactivate an active client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **Note**: A deactivated client cannot be used for API calls
+        (AFNOR, Chorus Pro, etc.).
+      operationId: deactivate_client_api_v1_clients__uid__desactiver_post
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientActivateResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Deactivate a client
+      tags:
+      - Client Management
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}/pdp-config:
+    get:
+      description: |-
+        Get the PDP (PA/PDP) configuration for a client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **Security**: The client secret is never returned. Only a status
+        (`secretStatus`) indicates whether a secret is configured.
+
+        **Response**:
+        - If configured: all config details (URLs, client_id, secret status)
+        - If not configured: `isConfigured: false` with a message
+      operationId: get_pdp_config_api_v1_clients__uid__pdp_config_get
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PDPConfigResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Get client PDP configuration
+      tags:
+      - Client Management
+      x-accepts:
+      - application/json
+    put:
+      description: |-
+        Configure or update the PDP (PA/PDP) configuration for a client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **Required fields**:
+        - `flowServiceUrl`: PDP Flow Service URL
+        - `tokenUrl`: PDP OAuth token URL
+        - `oauthClientId`: OAuth Client ID
+        - `clientSecret`: OAuth Client Secret (sent but NEVER returned)
+
+        **Optional fields**:
+        - `isActive`: Enable/disable the config (default: true)
+        - `modeSandbox`: Sandbox mode (default: false)
+
+        **Security**: The `clientSecret` is stored encrypted on Django side
+        and is never returned in API responses.
+      operationId: update_pdp_config_api_v1_clients__uid__pdp_config_put
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PDPConfigUpdateRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PDPConfigResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      summary: Configure client PDP
+      tags:
+      - Client Management
+      x-content-type: application/json
       x-accepts:
       - application/json
   /:
@@ -5599,28 +6117,6 @@ components:
       required:
       - pdf_file
       title: Body_sign_pdf_async_api_v1_processing_sign_pdf_async_post
-    Body_submit_cdar_api_v1_cdar_submit_post:
-      properties:
-        request:
-          $ref: "#/components/schemas/SubmitCDARRequest"
-        pdp_credentials:
-          allOf:
-          - $ref: "#/components/schemas/PDPCredentials"
-          nullable: true
-      required:
-      - request
-      title: Body_submit_cdar_api_v1_cdar_submit_post
-    Body_submit_cdar_xml_api_v1_cdar_submit_xml_post:
-      properties:
-        request:
-          $ref: "#/components/schemas/SubmitCDARXMLRequest"
-        pdp_credentials:
-          allOf:
-          - $ref: "#/components/schemas/PDPCredentials"
-          nullable: true
-      required:
-      - request
-      title: Body_submit_cdar_xml_api_v1_cdar_submit_xml_post
     Body_submit_xml_ereporting_api_v1_ereporting_submit_xml_post:
       properties:
         xml_file:
@@ -6001,6 +6497,264 @@ components:
       required:
       - chorusInvoiceId
       title: ChorusProResult
+    ClientActivateResponse:
+      description: Client activation/deactivation response.
+      example:
+        uid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        isActive: true
+        message: message
+      properties:
+        uid:
+          description: Unique client identifier
+          format: uuid
+          title: Uid
+          type: string
+        isActive:
+          description: New status
+          title: Isactive
+          type: boolean
+        message:
+          description: Confirmation message
+          title: Message
+          type: string
+      required:
+      - isActive
+      - message
+      - uid
+      title: ClientActivateResponse
+    ClientCreateRequest:
+      description: Client creation request.
+      example:
+        name: name
+        description: description
+        siret: siret
+      properties:
+        name:
+          description: Client name
+          maxLength: 255
+          minLength: 1
+          title: Name
+          type: string
+        description:
+          maxLength: 1000
+          nullable: true
+          type: string
+        siret:
+          nullable: true
+          pattern: "^\\d{14}$"
+          type: string
+      required:
+      - name
+      title: ClientCreateRequest
+    ClientDetail:
+      description: Detailed client view (same fields for now).
+      example:
+        hasConfigChorus: true
+        uid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        description: description
+        pdpIsActive: true
+        pdpIsMock: true
+        isActive: true
+        siret: siret
+        hasConfigPdp: true
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        uid:
+          description: Unique client identifier
+          format: uuid
+          title: Uid
+          type: string
+        name:
+          description: Client name
+          title: Name
+          type: string
+        siret:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        isActive:
+          description: Whether the client is active
+          title: Isactive
+          type: boolean
+        hasConfigPdp:
+          description: Whether PDP config exists
+          title: Hasconfigpdp
+          type: boolean
+        pdpIsActive:
+          nullable: true
+          type: boolean
+        pdpIsMock:
+          nullable: true
+          type: boolean
+        hasConfigChorus:
+          description: Whether Chorus Pro config exists
+          title: Hasconfigchorus
+          type: boolean
+        createdAt:
+          description: Creation date
+          format: date-time
+          title: Createdat
+          type: string
+        updatedAt:
+          description: Last update date
+          format: date-time
+          title: Updatedat
+          type: string
+      required:
+      - createdAt
+      - hasConfigChorus
+      - hasConfigPdp
+      - isActive
+      - name
+      - uid
+      - updatedAt
+      title: ClientDetail
+    ClientListResponse:
+      description: Paginated client list response.
+      example:
+        total: 0
+        pageSize: 1
+        page: 6
+        results:
+        - hasConfigChorus: true
+          uid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          description: description
+          pdpIsActive: true
+          pdpIsMock: true
+          isActive: true
+          siret: siret
+          hasConfigPdp: true
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - hasConfigChorus: true
+          uid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          description: description
+          pdpIsActive: true
+          pdpIsMock: true
+          isActive: true
+          siret: siret
+          hasConfigPdp: true
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        results:
+          description: List of clients
+          items:
+            $ref: "#/components/schemas/ClientSummary"
+          title: Results
+          type: array
+        total:
+          description: Total number of clients
+          title: Total
+          type: integer
+        page:
+          description: Current page
+          title: Page
+          type: integer
+        pageSize:
+          description: Page size
+          title: Pagesize
+          type: integer
+      required:
+      - page
+      - pageSize
+      - results
+      - total
+      title: ClientListResponse
+    ClientSummary:
+      description: Client list view.
+      example:
+        hasConfigChorus: true
+        uid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        description: description
+        pdpIsActive: true
+        pdpIsMock: true
+        isActive: true
+        siret: siret
+        hasConfigPdp: true
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        uid:
+          description: Unique client identifier
+          format: uuid
+          title: Uid
+          type: string
+        name:
+          description: Client name
+          title: Name
+          type: string
+        siret:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        isActive:
+          description: Whether the client is active
+          title: Isactive
+          type: boolean
+        hasConfigPdp:
+          description: Whether PDP config exists
+          title: Hasconfigpdp
+          type: boolean
+        pdpIsActive:
+          nullable: true
+          type: boolean
+        pdpIsMock:
+          nullable: true
+          type: boolean
+        hasConfigChorus:
+          description: Whether Chorus Pro config exists
+          title: Hasconfigchorus
+          type: boolean
+        createdAt:
+          description: Creation date
+          format: date-time
+          title: Createdat
+          type: string
+        updatedAt:
+          description: Last update date
+          format: date-time
+          title: Updatedat
+          type: string
+      required:
+      - createdAt
+      - hasConfigChorus
+      - hasConfigPdp
+      - isActive
+      - name
+      - uid
+      - updatedAt
+      title: ClientSummary
+    ClientUpdateRequest:
+      description: Partial client update request.
+      example:
+        name: name
+        description: description
+        siret: siret
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        description:
+          maxLength: 1000
+          nullable: true
+          type: string
+        siret:
+          nullable: true
+          pattern: "^\\d{14}$"
+          type: string
+      title: ClientUpdateRequest
     ConvertResumeRequest:
       description: |-
         Requete de reprise de conversion avec corrections.
@@ -6827,6 +7581,66 @@ components:
       required:
       - identifier
       title: ElectronicAddress
+    EncaisseeRequest:
+      description: |-
+        Requête simplifiée pour soumettre un statut ENCAISSÉE (212).
+
+        Statut obligatoire PPF - Le paiement a été effectué.
+        Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
+      example:
+        amount: 0.8008281904610115
+        senderSiren: senderSiren
+        invoiceIssueDate: 2000-01-23
+        pdpClientSecret: pdpClientSecret
+        invoiceId: invoiceId
+        currency: EUR
+        pdpFlowServiceUrl: pdpFlowServiceUrl
+        pdpTokenUrl: pdpTokenUrl
+        pdpClientId: pdpClientId
+        flowType: SupplierInvoiceLC
+      properties:
+        invoiceId:
+          description: Identifiant de la facture (BT-1)
+          title: Invoiceid
+          type: string
+        invoiceIssueDate:
+          description: Date d'émission de la facture (YYYY-MM-DD)
+          format: date
+          title: Invoiceissuedate
+          type: string
+        senderSiren:
+          nullable: true
+          type: string
+        flowType:
+          default: SupplierInvoiceLC
+          description: "Type de flux: SupplierInvoiceLC (acheteur) ou CustomerInvoiceLC\
+            \ (vendeur)"
+          title: Flowtype
+          type: string
+        pdpFlowServiceUrl:
+          nullable: true
+          type: string
+        pdpTokenUrl:
+          nullable: true
+          type: string
+        pdpClientId:
+          nullable: true
+          type: string
+        pdpClientSecret:
+          nullable: true
+          type: string
+        amount:
+          $ref: "#/components/schemas/Amount"
+        currency:
+          default: EUR
+          description: Code devise ISO 4217
+          title: Currency
+          type: string
+      required:
+      - amount
+      - invoiceId
+      - invoiceIssueDate
+      title: EncaisseeRequest
     EnrichedInvoiceInfo:
       description: Information about the enriched invoice.
       properties:
@@ -7640,7 +8454,7 @@ components:
           type: string
         typeCode:
           allOf:
-          - $ref: "#/components/schemas/InvoiceTypeCode"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode"
           default: "380"
           description: Invoice type code
         currency:
@@ -7752,15 +8566,80 @@ components:
       - label
       title: InvoiceStatus
     InvoiceTypeCode:
-      description: Invoice type codes (UNTDID 1001).
+      description: |-
+        Document type according to BR-FR-04 (UNTDID 1001 codes).
+
+        | Code | Name | Description |
+        |------|------|-------------|
+        | 380 | INVOICE | Commercial invoice |
+        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
+        | 393 | FACTORED_INVOICE | Factored invoice |
+        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
+        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
+        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
+        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
+        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
+        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
+        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
+        | 381 | CREDIT_NOTE | Credit note |
+        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
+        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
+        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
+        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
+        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
       enum:
       - "380"
-      - "381"
-      - "384"
       - "389"
+      - "393"
+      - "501"
       - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
       title: InvoiceTypeCode
       type: string
+      x-enum-descriptions:
+      - Commercial Invoice
+      - Self-billed Invoice
+      - Factored Invoice
+      - Self-billed Factored Invoice
+      - Prepayment Invoice
+      - Self-billed Prepayment Invoice
+      - Corrective Invoice
+      - Self-billed Corrective Invoice
+      - Factored Corrective Invoice
+      - Self-billed Factored Corrective Invoice
+      - Credit Note
+      - Self-billed Credit Note
+      - Global Allowance Credit Note
+      - Factored Credit Note
+      - Self-billed Factored Credit Note
+      - Prepayment Credit Note
+      x-enum-varnames:
+      - INVOICE
+      - SELF_BILLED_INVOICE
+      - FACTORED_INVOICE
+      - SELF_BILLED_FACTORED_INVOICE
+      - PREPAYMENT_INVOICE
+      - SELF_BILLED_PREPAYMENT_INVOICE
+      - CORRECTIVE_INVOICE
+      - SELF_BILLED_CORRECTIVE_INVOICE
+      - FACTORED_CORRECTIVE_INVOICE
+      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
+      - CREDIT_NOTE
+      - SELF_BILLED_CREDIT_NOTE
+      - GLOBAL_ALLOWANCE_CREDIT_NOTE
+      - FACTORED_CREDIT_NOTE
+      - SELF_BILLED_FACTORED_CREDIT_NOTE
+      - PREPAYMENT_CREDIT_NOTE
     InvoiceTypeCode-Output:
       description: |-
         Document type according to BR-FR-04 (UNTDID 1001 codes).
@@ -8135,53 +9014,116 @@ components:
       - xmpFacturxCompliant
       - xmpPresent
       title: PDFValidationResultAPI
-    PDPCredentials:
-      description: |-
-        PDP credentials for zero-storage strategy (Strategy B).
-
-        Allows providing PDP credentials directly in the request
-        instead of storing them in Django.
-
-        Useful for:
-        - Ad-hoc tests without persisting credentials
-        - Temporary integrations
-        - Development environments
+    PDPConfigResponse:
+      description: PDP configuration (secrets masked).
       example:
-        clientId: factpulse_prod_abc123
-        clientSecret: secret_xyz789
-        directoryServiceUrl: https://api.pdp-example.fr/directory/v1
-        flowServiceUrl: https://api.pdp-example.fr/flow/v1
-        tokenUrl: https://auth.pdp-example.fr/oauth/token
+        isConfigured: true
+        tokenUrl: tokenUrl
+        oauthClientId: oauthClientId
+        lastTestError: lastTestError
+        secretStatus: ""
+        isActive: true
+        message: message
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        modeSandbox: true
+        flowServiceUrl: flowServiceUrl
+        lastTestSuccess: true
+        id: 0
+        lastTestAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        isConfigured:
+          description: Whether PDP config exists
+          title: Isconfigured
+          type: boolean
+        id:
+          nullable: true
+          type: integer
+        isActive:
+          nullable: true
+          type: boolean
+        modeSandbox:
+          nullable: true
+          type: boolean
         flowServiceUrl:
-          description: Base URL of the AFNOR Flow Service
-          example: https://api.pdp-example.fr/flow/v1
-          title: Flowserviceurl
-          type: string
-        directoryServiceUrl:
           nullable: true
           type: string
         tokenUrl:
-          description: OAuth2 server URL
-          example: https://auth.pdp-example.fr/oauth/token
+          nullable: true
+          type: string
+        oauthClientId:
+          nullable: true
+          type: string
+        secretStatus:
+          allOf:
+          - $ref: "#/components/schemas/SecretStatus"
+          nullable: true
+        lastTestAt:
+          format: date-time
+          nullable: true
+          type: string
+        lastTestSuccess:
+          nullable: true
+          type: boolean
+        lastTestError:
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          nullable: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+      required:
+      - isConfigured
+      title: PDPConfigResponse
+    PDPConfigUpdateRequest:
+      description: PDP configuration update request.
+      example:
+        tokenUrl: tokenUrl
+        oauthClientId: oauthClientId
+        modeSandbox: false
+        flowServiceUrl: flowServiceUrl
+        clientSecret: clientSecret
+        isActive: true
+      properties:
+        isActive:
+          default: true
+          description: Whether config is active
+          title: Isactive
+          type: boolean
+        modeSandbox:
+          default: false
+          description: Sandbox mode
+          title: Modesandbox
+          type: boolean
+        flowServiceUrl:
+          description: PDP Flow Service URL
+          title: Flowserviceurl
+          type: string
+        tokenUrl:
+          description: PDP OAuth token URL
           title: Tokenurl
           type: string
-        clientId:
-          description: OAuth2 Client ID
-          example: factpulse_prod_abc123
-          title: Clientid
+        oauthClientId:
+          description: OAuth Client ID
+          title: Oauthclientid
           type: string
         clientSecret:
-          description: OAuth2 Client Secret (sensitive)
-          example: secret_xyz789
+          description: OAuth Client Secret (sent but never returned)
           title: Clientsecret
           type: string
       required:
-      - clientId
       - clientSecret
       - flowServiceUrl
+      - oauthClientId
       - tokenUrl
-      title: PDPCredentials
+      title: PDPConfigUpdateRequest
     PageDimensionsSchema:
       description: PDF page dimensions.
       example:
@@ -8206,7 +9148,7 @@ components:
         rate:
           $ref: "#/components/schemas/Rate"
         amount:
-          $ref: "#/components/schemas/Amount"
+          $ref: "#/components/schemas/Amount_1"
       required:
       - amount
       - rate
@@ -8363,6 +9305,83 @@ components:
           nullable: true
           type: string
       title: RecipientInput
+    RefuseeRequest:
+      description: |-
+        Requête simplifiée pour soumettre un statut REFUSÉE (210).
+
+        Statut obligatoire PPF - Le destinataire refuse la facture.
+        Un code motif est OBLIGATOIRE (BR-FR-CDV-15).
+
+        Codes motif autorisés (BR-FR-CDV-CL-09_MDT-113_210):
+        - TX_TVA_ERR: Taux de TVA erroné
+        - MONTANTTOTAL_ERR: Montant total erroné
+        - CALCUL_ERR: Erreur de calcul
+        - NON_CONFORME: Non conforme
+        - DOUBLON: Doublon
+        - DEST_ERR: Destinataire erroné
+        - TRANSAC_INC: Transaction incomplète
+        - EMMET_INC: Émetteur inconnu
+        - CONTRAT_TERM: Contrat terminé
+        - DOUBLE_FACT: Double facturation
+        - CMD_ERR: Commande erronée
+        - ADR_ERR: Adresse erronée
+        - REF_CT_ABSENT: Référence contrat absente
+      example:
+        reasonText: reasonText
+        senderSiren: senderSiren
+        invoiceIssueDate: 2000-01-23
+        pdpClientSecret: pdpClientSecret
+        invoiceId: invoiceId
+        pdpFlowServiceUrl: pdpFlowServiceUrl
+        reasonCode: reasonCode
+        pdpTokenUrl: pdpTokenUrl
+        pdpClientId: pdpClientId
+        flowType: SupplierInvoiceLC
+      properties:
+        invoiceId:
+          description: Identifiant de la facture (BT-1)
+          title: Invoiceid
+          type: string
+        invoiceIssueDate:
+          description: Date d'émission de la facture (YYYY-MM-DD)
+          format: date
+          title: Invoiceissuedate
+          type: string
+        senderSiren:
+          nullable: true
+          type: string
+        flowType:
+          default: SupplierInvoiceLC
+          description: "Type de flux: SupplierInvoiceLC (acheteur) ou CustomerInvoiceLC\
+            \ (vendeur)"
+          title: Flowtype
+          type: string
+        pdpFlowServiceUrl:
+          nullable: true
+          type: string
+        pdpTokenUrl:
+          nullable: true
+          type: string
+        pdpClientId:
+          nullable: true
+          type: string
+        pdpClientSecret:
+          nullable: true
+          type: string
+        reasonCode:
+          description: "Code motif du refus (obligatoire). Valeurs autorisées: TX_TVA_ERR,\
+            \ MONTANTTOTAL_ERR, CALCUL_ERR, NON_CONFORME, DOUBLON, DEST_ERR, TRANSAC_INC,\
+            \ EMMET_INC, CONTRAT_TERM, DOUBLE_FACT, CMD_ERR, ADR_ERR, REF_CT_ABSENT"
+          title: Reasoncode
+          type: string
+        reasonText:
+          nullable: true
+          type: string
+      required:
+      - invoiceId
+      - invoiceIssueDate
+      - reasonCode
+      title: RefuseeRequest
     ReportPeriod:
       description: Reporting period.
       properties:
@@ -8635,6 +9654,21 @@ components:
       - message
       - returnCode
       title: SearchStructureResponse
+    SecretStatus:
+      description: Secret status (never exposes the secret itself).
+      properties:
+        status:
+          description: "Secret status: 'active', 'missing', etc."
+          title: Status
+          type: string
+        message:
+          description: Descriptive status message
+          title: Message
+          type: string
+      required:
+      - message
+      - status
+      title: SecretStatus
     SignatureInfo:
       description: Information about the electronic signature.
       properties:
@@ -8735,6 +9769,42 @@ components:
           title: Usetimestamp
           type: boolean
       title: SignatureParameters
+    SimplifiedCDARResponse:
+      description: Réponse pour les endpoints CDAR simplifiés.
+      example:
+        documentId: documentId
+        invoiceId: invoiceId
+        message: message
+        flowId: flowId
+        status: status
+      properties:
+        flowId:
+          description: Identifiant du flux AFNOR
+          title: Flowid
+          type: string
+        documentId:
+          description: Identifiant du message CDAR généré
+          title: Documentid
+          type: string
+        status:
+          description: Code statut soumis (210 ou 212)
+          title: Status
+          type: string
+        invoiceId:
+          description: Identifiant de la facture
+          title: Invoiceid
+          type: string
+        message:
+          description: Message de confirmation
+          title: Message
+          type: string
+      required:
+      - documentId
+      - flowId
+      - invoiceId
+      - message
+      - status
+      title: SimplifiedCDARResponse
     SimplifiedInvoiceData:
       description: Simplified invoice data (minimal format for auto-enrichment).
       properties:
@@ -8781,7 +9851,7 @@ components:
           type: string
         invoiceType:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__models__InvoiceTypeCode"
+          - $ref: "#/components/schemas/InvoiceTypeCode"
           default: "380"
           description: "Document type (UNTDID 1001). Default: 380 (Invoice)."
         precedingInvoiceReference:
@@ -8976,6 +10046,40 @@ components:
       title: SubmitAggregatedReportRequest
     SubmitCDARRequest:
       description: Requête de soumission CDAR (génération + envoi).
+      example:
+        reasonText: reasonText
+        senderSiren: senderSiren
+        invoiceIssueDate: 2000-01-23
+        invoiceBuyerSiren: invoiceBuyerSiren
+        pdpFlowServiceUrl: pdpFlowServiceUrl
+        pdpTokenUrl: pdpTokenUrl
+        pdpClientId: pdpClientId
+        typeCode: "23"
+        businessProcess: REGULATED
+        senderName: senderName
+        invoiceSellerSiren: invoiceSellerSiren
+        recipients:
+        - siren: siren
+          role: BY
+          name: name
+          siret: siret
+          email: email
+        - siren: siren
+          role: BY
+          name: name
+          siret: siret
+          email: email
+        pdpClientSecret: pdpClientSecret
+        senderEmail: senderEmail
+        invoiceTypeCode: "380"
+        documentId: documentId
+        invoiceId: invoiceId
+        actionCode: actionCode
+        encaisseAmount: 0.8008281904610115
+        reasonCode: reasonCode
+        senderRole: WK
+        status: status
+        flowType: CustomerInvoiceLC
       properties:
         documentId:
           description: Identifiant unique du message CDAR
@@ -9053,6 +10157,18 @@ components:
             \ etc.)"
           title: Flowtype
           type: string
+        pdpFlowServiceUrl:
+          nullable: true
+          type: string
+        pdpTokenUrl:
+          nullable: true
+          type: string
+        pdpClientId:
+          nullable: true
+          type: string
+        pdpClientSecret:
+          nullable: true
+          type: string
       required:
       - documentId
       - invoiceId
@@ -9088,6 +10204,14 @@ components:
       title: SubmitCDARResponse
     SubmitCDARXMLRequest:
       description: Requête de soumission d'un XML CDAR pré-généré.
+      example:
+        filename: filename
+        xml: xml
+        pdpClientSecret: pdpClientSecret
+        pdpFlowServiceUrl: pdpFlowServiceUrl
+        pdpTokenUrl: pdpTokenUrl
+        pdpClientId: pdpClientId
+        flowType: CustomerInvoiceLC
       properties:
         xml:
           description: XML CDAR à soumettre
@@ -9099,6 +10223,18 @@ components:
           title: Flowtype
           type: string
         filename:
+          nullable: true
+          type: string
+        pdpFlowServiceUrl:
+          nullable: true
+          type: string
+        pdpTokenUrl:
+          nullable: true
+          type: string
+        pdpClientId:
+          nullable: true
+          type: string
+        pdpClientSecret:
           nullable: true
           type: string
       required:
@@ -9944,81 +11080,6 @@ components:
       - label
       - status
       title: VerifiedFieldSchema
-    facture_electronique__models__InvoiceTypeCode:
-      description: |-
-        Document type according to BR-FR-04 (UNTDID 1001 codes).
-
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
-        | 393 | FACTORED_INVOICE | Factored invoice |
-        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
-        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
-        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
-        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
-        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
-        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
-        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
-        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
-        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
-        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
-        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
-      enum:
-      - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
-      - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
-      title: InvoiceTypeCode
-      type: string
-      x-enum-descriptions:
-      - Commercial Invoice
-      - Self-billed Invoice
-      - Factored Invoice
-      - Self-billed Factored Invoice
-      - Prepayment Invoice
-      - Self-billed Prepayment Invoice
-      - Corrective Invoice
-      - Self-billed Corrective Invoice
-      - Factored Corrective Invoice
-      - Self-billed Factored Corrective Invoice
-      - Credit Note
-      - Self-billed Credit Note
-      - Global Allowance Credit Note
-      - Factored Credit Note
-      - Self-billed Factored Credit Note
-      - Prepayment Credit Note
-      x-enum-varnames:
-      - INVOICE
-      - SELF_BILLED_INVOICE
-      - FACTORED_INVOICE
-      - SELF_BILLED_FACTORED_INVOICE
-      - PREPAYMENT_INVOICE
-      - SELF_BILLED_PREPAYMENT_INVOICE
-      - CORRECTIVE_INVOICE
-      - SELF_BILLED_CORRECTIVE_INVOICE
-      - FACTORED_CORRECTIVE_INVOICE
-      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
-      - CREDIT_NOTE
-      - SELF_BILLED_CREDIT_NOTE
-      - GLOBAL_ALLOWANCE_CREDIT_NOTE
-      - FACTORED_CREDIT_NOTE
-      - SELF_BILLED_FACTORED_CREDIT_NOTE
-      - PREPAYMENT_CREDIT_NOTE
     facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse:
       description: Erreur de validation.
       example:
@@ -10047,6 +11108,16 @@ components:
       - field
       - message
       title: ValidationErrorResponse
+    facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
+      description: Invoice type codes (UNTDID 1001).
+      enum:
+      - "380"
+      - "381"
+      - "384"
+      - "389"
+      - "386"
+      title: InvoiceTypeCode
+      type: string
     facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
       description: |-
         Optional Chorus Pro credentials.
@@ -10120,7 +11191,7 @@ components:
           title: Is Charge
           type: boolean
         amount:
-          $ref: "#/components/schemas/Amount_1"
+          $ref: "#/components/schemas/Amount_2"
         base_amount:
           $ref: "#/components/schemas/Base_Amount"
         percentage:
@@ -11082,6 +12153,53 @@ components:
       - supplier
       - totals
       title: FacturXInvoice
+    PDPCredentials:
+      description: |-
+        PDP credentials for zero-storage strategy (Strategy B).
+
+        Allows providing PDP credentials directly in the request
+        instead of storing them in Django.
+
+        Useful for:
+        - Ad-hoc tests without persisting credentials
+        - Temporary integrations
+        - Development environments
+      example:
+        clientId: factpulse_prod_abc123
+        clientSecret: secret_xyz789
+        directoryServiceUrl: https://api.pdp-example.fr/directory/v1
+        flowServiceUrl: https://api.pdp-example.fr/flow/v1
+        tokenUrl: https://auth.pdp-example.fr/oauth/token
+      properties:
+        flowServiceUrl:
+          description: Base URL of the AFNOR Flow Service
+          example: https://api.pdp-example.fr/flow/v1
+          title: Flowserviceurl
+          type: string
+        directoryServiceUrl:
+          nullable: true
+          type: string
+        tokenUrl:
+          description: OAuth2 server URL
+          example: https://auth.pdp-example.fr/oauth/token
+          title: Tokenurl
+          type: string
+        clientId:
+          description: OAuth2 Client ID
+          example: factpulse_prod_abc123
+          title: Clientid
+          type: string
+        clientSecret:
+          description: OAuth2 Client Secret (sensitive)
+          example: secret_xyz789
+          title: Clientsecret
+          type: string
+      required:
+      - clientId
+      - clientSecret
+      - flowServiceUrl
+      - tokenUrl
+      title: PDPCredentials
     FlowProfile:
       description: Supported flow profiles.
       enum:
@@ -14249,6 +15367,13 @@ components:
       description: Montant encaissé (requis pour statut 212)
       nullable: true
       title: Encaisseamount
+    Amount:
+      anyOf:
+      - type: number
+      - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+        type: string
+      description: "Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)"
+      title: Amount
     Sellercountry:
       anyOf:
       - $ref: "#/components/schemas/CountryCode"
@@ -14292,7 +15417,7 @@ components:
       description: VAT rate
       example: "20.00"
       title: Rate
-    Amount:
+    Amount_1:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
@@ -14369,7 +15494,7 @@ components:
       anyOf:
       - type: string
       - type: integer
-    Amount_1:
+    Amount_2:
       anyOf:
       - type: number
       - pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"

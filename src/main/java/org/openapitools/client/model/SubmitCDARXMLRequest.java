@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Requête de soumission d&#39;un XML CDAR pré-généré.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-19T09:43:55.754126216Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class SubmitCDARXMLRequest {
   public static final String SERIALIZED_NAME_XML = "xml";
   @SerializedName(SERIALIZED_NAME_XML)
@@ -65,6 +65,26 @@ public class SubmitCDARXMLRequest {
   @SerializedName(SERIALIZED_NAME_FILENAME)
   @javax.annotation.Nullable
   private String filename;
+
+  public static final String SERIALIZED_NAME_PDP_FLOW_SERVICE_URL = "pdpFlowServiceUrl";
+  @SerializedName(SERIALIZED_NAME_PDP_FLOW_SERVICE_URL)
+  @javax.annotation.Nullable
+  private String pdpFlowServiceUrl;
+
+  public static final String SERIALIZED_NAME_PDP_TOKEN_URL = "pdpTokenUrl";
+  @SerializedName(SERIALIZED_NAME_PDP_TOKEN_URL)
+  @javax.annotation.Nullable
+  private String pdpTokenUrl;
+
+  public static final String SERIALIZED_NAME_PDP_CLIENT_ID = "pdpClientId";
+  @SerializedName(SERIALIZED_NAME_PDP_CLIENT_ID)
+  @javax.annotation.Nullable
+  private String pdpClientId;
+
+  public static final String SERIALIZED_NAME_PDP_CLIENT_SECRET = "pdpClientSecret";
+  @SerializedName(SERIALIZED_NAME_PDP_CLIENT_SECRET)
+  @javax.annotation.Nullable
+  private String pdpClientSecret;
 
   public SubmitCDARXMLRequest() {
   }
@@ -126,6 +146,82 @@ public class SubmitCDARXMLRequest {
   }
 
 
+  public SubmitCDARXMLRequest pdpFlowServiceUrl(@javax.annotation.Nullable String pdpFlowServiceUrl) {
+    this.pdpFlowServiceUrl = pdpFlowServiceUrl;
+    return this;
+  }
+
+  /**
+   * Get pdpFlowServiceUrl
+   * @return pdpFlowServiceUrl
+   */
+  @javax.annotation.Nullable
+  public String getPdpFlowServiceUrl() {
+    return pdpFlowServiceUrl;
+  }
+
+  public void setPdpFlowServiceUrl(@javax.annotation.Nullable String pdpFlowServiceUrl) {
+    this.pdpFlowServiceUrl = pdpFlowServiceUrl;
+  }
+
+
+  public SubmitCDARXMLRequest pdpTokenUrl(@javax.annotation.Nullable String pdpTokenUrl) {
+    this.pdpTokenUrl = pdpTokenUrl;
+    return this;
+  }
+
+  /**
+   * Get pdpTokenUrl
+   * @return pdpTokenUrl
+   */
+  @javax.annotation.Nullable
+  public String getPdpTokenUrl() {
+    return pdpTokenUrl;
+  }
+
+  public void setPdpTokenUrl(@javax.annotation.Nullable String pdpTokenUrl) {
+    this.pdpTokenUrl = pdpTokenUrl;
+  }
+
+
+  public SubmitCDARXMLRequest pdpClientId(@javax.annotation.Nullable String pdpClientId) {
+    this.pdpClientId = pdpClientId;
+    return this;
+  }
+
+  /**
+   * Get pdpClientId
+   * @return pdpClientId
+   */
+  @javax.annotation.Nullable
+  public String getPdpClientId() {
+    return pdpClientId;
+  }
+
+  public void setPdpClientId(@javax.annotation.Nullable String pdpClientId) {
+    this.pdpClientId = pdpClientId;
+  }
+
+
+  public SubmitCDARXMLRequest pdpClientSecret(@javax.annotation.Nullable String pdpClientSecret) {
+    this.pdpClientSecret = pdpClientSecret;
+    return this;
+  }
+
+  /**
+   * Get pdpClientSecret
+   * @return pdpClientSecret
+   */
+  @javax.annotation.Nullable
+  public String getPdpClientSecret() {
+    return pdpClientSecret;
+  }
+
+  public void setPdpClientSecret(@javax.annotation.Nullable String pdpClientSecret) {
+    this.pdpClientSecret = pdpClientSecret;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -138,7 +234,11 @@ public class SubmitCDARXMLRequest {
     SubmitCDARXMLRequest submitCDARXMLRequest = (SubmitCDARXMLRequest) o;
     return Objects.equals(this.xml, submitCDARXMLRequest.xml) &&
         Objects.equals(this.flowType, submitCDARXMLRequest.flowType) &&
-        Objects.equals(this.filename, submitCDARXMLRequest.filename);
+        Objects.equals(this.filename, submitCDARXMLRequest.filename) &&
+        Objects.equals(this.pdpFlowServiceUrl, submitCDARXMLRequest.pdpFlowServiceUrl) &&
+        Objects.equals(this.pdpTokenUrl, submitCDARXMLRequest.pdpTokenUrl) &&
+        Objects.equals(this.pdpClientId, submitCDARXMLRequest.pdpClientId) &&
+        Objects.equals(this.pdpClientSecret, submitCDARXMLRequest.pdpClientSecret);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -147,7 +247,7 @@ public class SubmitCDARXMLRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(xml, flowType, filename);
+    return Objects.hash(xml, flowType, filename, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -164,6 +264,10 @@ public class SubmitCDARXMLRequest {
     sb.append("    xml: ").append(toIndentedString(xml)).append("\n");
     sb.append("    flowType: ").append(toIndentedString(flowType)).append("\n");
     sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
+    sb.append("    pdpFlowServiceUrl: ").append(toIndentedString(pdpFlowServiceUrl)).append("\n");
+    sb.append("    pdpTokenUrl: ").append(toIndentedString(pdpTokenUrl)).append("\n");
+    sb.append("    pdpClientId: ").append(toIndentedString(pdpClientId)).append("\n");
+    sb.append("    pdpClientSecret: ").append(toIndentedString(pdpClientSecret)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -185,7 +289,7 @@ public class SubmitCDARXMLRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("xml", "flowType", "filename"));
+    openapiFields = new HashSet<String>(Arrays.asList("xml", "flowType", "filename", "pdpFlowServiceUrl", "pdpTokenUrl", "pdpClientId", "pdpClientSecret"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("xml"));
@@ -227,6 +331,18 @@ public class SubmitCDARXMLRequest {
       }
       if ((jsonObj.get("filename") != null && !jsonObj.get("filename").isJsonNull()) && !jsonObj.get("filename").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `filename` to be a primitive type in the JSON string but got `%s`", jsonObj.get("filename").toString()));
+      }
+      if ((jsonObj.get("pdpFlowServiceUrl") != null && !jsonObj.get("pdpFlowServiceUrl").isJsonNull()) && !jsonObj.get("pdpFlowServiceUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pdpFlowServiceUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pdpFlowServiceUrl").toString()));
+      }
+      if ((jsonObj.get("pdpTokenUrl") != null && !jsonObj.get("pdpTokenUrl").isJsonNull()) && !jsonObj.get("pdpTokenUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pdpTokenUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pdpTokenUrl").toString()));
+      }
+      if ((jsonObj.get("pdpClientId") != null && !jsonObj.get("pdpClientId").isJsonNull()) && !jsonObj.get("pdpClientId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pdpClientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pdpClientId").toString()));
+      }
+      if ((jsonObj.get("pdpClientSecret") != null && !jsonObj.get("pdpClientSecret").isJsonNull()) && !jsonObj.get("pdpClientSecret").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pdpClientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pdpClientSecret").toString()));
       }
   }
 

@@ -21,9 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.PDPCredentials;
-import org.openapitools.client.model.SubmitCDARRequest;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.UUID;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,58 +47,82 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * BodySubmitCdarApiV1CdarSubmitPost
+ * Client activation/deactivation response.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-19T09:43:55.754126216Z[Etc/UTC]", comments = "Generator version: 7.19.0-SNAPSHOT")
-public class BodySubmitCdarApiV1CdarSubmitPost {
-  public static final String SERIALIZED_NAME_REQUEST = "request";
-  @SerializedName(SERIALIZED_NAME_REQUEST)
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+public class ClientActivateResponse {
+  public static final String SERIALIZED_NAME_UID = "uid";
+  @SerializedName(SERIALIZED_NAME_UID)
   @javax.annotation.Nonnull
-  private SubmitCDARRequest request;
+  private UUID uid;
 
-  public static final String SERIALIZED_NAME_PDP_CREDENTIALS = "pdp_credentials";
-  @SerializedName(SERIALIZED_NAME_PDP_CREDENTIALS)
-  @javax.annotation.Nullable
-  private PDPCredentials pdpCredentials;
+  public static final String SERIALIZED_NAME_IS_ACTIVE = "isActive";
+  @SerializedName(SERIALIZED_NAME_IS_ACTIVE)
+  @javax.annotation.Nonnull
+  private Boolean isActive;
 
-  public BodySubmitCdarApiV1CdarSubmitPost() {
+  public static final String SERIALIZED_NAME_MESSAGE = "message";
+  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  @javax.annotation.Nonnull
+  private String message;
+
+  public ClientActivateResponse() {
   }
 
-  public BodySubmitCdarApiV1CdarSubmitPost request(@javax.annotation.Nonnull SubmitCDARRequest request) {
-    this.request = request;
+  public ClientActivateResponse uid(@javax.annotation.Nonnull UUID uid) {
+    this.uid = uid;
     return this;
   }
 
   /**
-   * Get request
-   * @return request
+   * Unique client identifier
+   * @return uid
    */
   @javax.annotation.Nonnull
-  public SubmitCDARRequest getRequest() {
-    return request;
+  public UUID getUid() {
+    return uid;
   }
 
-  public void setRequest(@javax.annotation.Nonnull SubmitCDARRequest request) {
-    this.request = request;
+  public void setUid(@javax.annotation.Nonnull UUID uid) {
+    this.uid = uid;
   }
 
 
-  public BodySubmitCdarApiV1CdarSubmitPost pdpCredentials(@javax.annotation.Nullable PDPCredentials pdpCredentials) {
-    this.pdpCredentials = pdpCredentials;
+  public ClientActivateResponse isActive(@javax.annotation.Nonnull Boolean isActive) {
+    this.isActive = isActive;
     return this;
   }
 
   /**
-   * Get pdpCredentials
-   * @return pdpCredentials
+   * New status
+   * @return isActive
    */
-  @javax.annotation.Nullable
-  public PDPCredentials getPdpCredentials() {
-    return pdpCredentials;
+  @javax.annotation.Nonnull
+  public Boolean getIsActive() {
+    return isActive;
   }
 
-  public void setPdpCredentials(@javax.annotation.Nullable PDPCredentials pdpCredentials) {
-    this.pdpCredentials = pdpCredentials;
+  public void setIsActive(@javax.annotation.Nonnull Boolean isActive) {
+    this.isActive = isActive;
+  }
+
+
+  public ClientActivateResponse message(@javax.annotation.Nonnull String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Confirmation message
+   * @return message
+   */
+  @javax.annotation.Nonnull
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(@javax.annotation.Nonnull String message) {
+    this.message = message;
   }
 
 
@@ -113,33 +135,24 @@ public class BodySubmitCdarApiV1CdarSubmitPost {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost = (BodySubmitCdarApiV1CdarSubmitPost) o;
-    return Objects.equals(this.request, bodySubmitCdarApiV1CdarSubmitPost.request) &&
-        Objects.equals(this.pdpCredentials, bodySubmitCdarApiV1CdarSubmitPost.pdpCredentials);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    ClientActivateResponse clientActivateResponse = (ClientActivateResponse) o;
+    return Objects.equals(this.uid, clientActivateResponse.uid) &&
+        Objects.equals(this.isActive, clientActivateResponse.isActive) &&
+        Objects.equals(this.message, clientActivateResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(request, pdpCredentials);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(uid, isActive, message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BodySubmitCdarApiV1CdarSubmitPost {\n");
-    sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    sb.append("    pdpCredentials: ").append(toIndentedString(pdpCredentials)).append("\n");
+    sb.append("class ClientActivateResponse {\n");
+    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -161,45 +174,45 @@ public class BodySubmitCdarApiV1CdarSubmitPost {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("request", "pdp_credentials"));
+    openapiFields = new HashSet<String>(Arrays.asList("uid", "isActive", "message"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("request"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("uid", "isActive", "message"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to BodySubmitCdarApiV1CdarSubmitPost
+   * @throws IOException if the JSON Element is invalid with respect to ClientActivateResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!BodySubmitCdarApiV1CdarSubmitPost.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in BodySubmitCdarApiV1CdarSubmitPost is not found in the empty JSON string", BodySubmitCdarApiV1CdarSubmitPost.openapiRequiredFields.toString()));
+        if (!ClientActivateResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in ClientActivateResponse is not found in the empty JSON string", ClientActivateResponse.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!BodySubmitCdarApiV1CdarSubmitPost.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `BodySubmitCdarApiV1CdarSubmitPost` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!ClientActivateResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ClientActivateResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : BodySubmitCdarApiV1CdarSubmitPost.openapiRequiredFields) {
+      for (String requiredField : ClientActivateResponse.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `request`
-      SubmitCDARRequest.validateJsonElement(jsonObj.get("request"));
-      // validate the optional field `pdp_credentials`
-      if (jsonObj.get("pdp_credentials") != null && !jsonObj.get("pdp_credentials").isJsonNull()) {
-        PDPCredentials.validateJsonElement(jsonObj.get("pdp_credentials"));
+      if (!jsonObj.get("uid").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `uid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uid").toString()));
+      }
+      if (!jsonObj.get("message").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }
   }
 
@@ -207,22 +220,22 @@ public class BodySubmitCdarApiV1CdarSubmitPost {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!BodySubmitCdarApiV1CdarSubmitPost.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'BodySubmitCdarApiV1CdarSubmitPost' and its subtypes
+       if (!ClientActivateResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ClientActivateResponse' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<BodySubmitCdarApiV1CdarSubmitPost> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(BodySubmitCdarApiV1CdarSubmitPost.class));
+       final TypeAdapter<ClientActivateResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ClientActivateResponse.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<BodySubmitCdarApiV1CdarSubmitPost>() {
+       return (TypeAdapter<T>) new TypeAdapter<ClientActivateResponse>() {
            @Override
-           public void write(JsonWriter out, BodySubmitCdarApiV1CdarSubmitPost value) throws IOException {
+           public void write(JsonWriter out, ClientActivateResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public BodySubmitCdarApiV1CdarSubmitPost read(JsonReader in) throws IOException {
+           public ClientActivateResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -233,18 +246,18 @@ public class BodySubmitCdarApiV1CdarSubmitPost {
   }
 
   /**
-   * Create an instance of BodySubmitCdarApiV1CdarSubmitPost given an JSON string
+   * Create an instance of ClientActivateResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of BodySubmitCdarApiV1CdarSubmitPost
-   * @throws IOException if the JSON string is invalid with respect to BodySubmitCdarApiV1CdarSubmitPost
+   * @return An instance of ClientActivateResponse
+   * @throws IOException if the JSON string is invalid with respect to ClientActivateResponse
    */
-  public static BodySubmitCdarApiV1CdarSubmitPost fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, BodySubmitCdarApiV1CdarSubmitPost.class);
+  public static ClientActivateResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ClientActivateResponse.class);
   }
 
   /**
-   * Convert an instance of BodySubmitCdarApiV1CdarSubmitPost to an JSON string
+   * Convert an instance of ClientActivateResponse to an JSON string
    *
    * @return JSON string
    */

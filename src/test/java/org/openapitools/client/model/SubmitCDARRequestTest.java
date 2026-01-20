@@ -195,4 +195,36 @@ public class SubmitCDARRequestTest {
         // TODO: test flowType
     }
 
+    /**
+     * Test the property 'pdpFlowServiceUrl'
+     */
+    @Test
+    public void pdpFlowServiceUrlTest() {
+        // TODO: test pdpFlowServiceUrl
+    }
+
+    /**
+     * Test the property 'pdpTokenUrl'
+     */
+    @Test
+    public void pdpTokenUrlTest() {
+        // TODO: test pdpTokenUrl
+    }
+
+    /**
+     * Test the property 'pdpClientId'
+     */
+    @Test
+    public void pdpClientIdTest() {
+        // TODO: test pdpClientId
+    }
+
+    /**
+     * Test the property 'pdpClientSecret'
+     */
+    @Test
+    public void pdpClientSecretTest() {
+        // TODO: test pdpClientSecret
+    }
+
 }

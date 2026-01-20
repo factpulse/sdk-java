@@ -16,13 +16,16 @@ package org.openapitools.client.api;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.APIError;
 import org.openapitools.client.model.ActionCodesResponse;
-import org.openapitools.client.model.BodySubmitCdarApiV1CdarSubmitPost;
-import org.openapitools.client.model.BodySubmitCdarXmlApiV1CdarSubmitXmlPost;
 import org.openapitools.client.model.CreateCDARRequest;
+import org.openapitools.client.model.EncaisseeRequest;
 import org.openapitools.client.model.GenerateCDARResponse;
 import org.openapitools.client.model.ReasonCodesResponse;
+import org.openapitools.client.model.RefuseeRequest;
+import org.openapitools.client.model.SimplifiedCDARResponse;
 import org.openapitools.client.model.StatusCodesResponse;
+import org.openapitools.client.model.SubmitCDARRequest;
 import org.openapitools.client.model.SubmitCDARResponse;
+import org.openapitools.client.model.SubmitCDARXMLRequest;
 import org.openapitools.client.model.ValidateCDARRequest;
 import org.openapitools.client.model.ValidateCDARResponse;
 import org.junit.jupiter.api.Disabled;
@@ -97,34 +100,56 @@ public class CdarCycleDeVieApiTest {
     /**
      * Générer et soumettre un message CDAR
      *
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void submitCdarApiV1CdarSubmitPostTest() throws ApiException {
-        Integer userId = null;
-        BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost = null;
-        String jwtToken = null;
-        String clientUid = null;
-        SubmitCDARResponse response = api.submitCdarApiV1CdarSubmitPost(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid);
+        SubmitCDARRequest submitCDARRequest = null;
+        SubmitCDARResponse response = api.submitCdarApiV1CdarSubmitPost(submitCDARRequest);
         // TODO: test validations
     }
 
     /**
      * Soumettre un XML CDAR pré-généré
      *
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.
+     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
      *
      * @throws ApiException if the Api call fails
      */
     @Test
     public void submitCdarXmlApiV1CdarSubmitXmlPostTest() throws ApiException {
-        Integer userId = null;
-        BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost = null;
-        String jwtToken = null;
-        String clientUid = null;
-        SubmitCDARResponse response = api.submitCdarXmlApiV1CdarSubmitXmlPost(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid);
+        SubmitCDARXMLRequest submitCDARXMLRequest = null;
+        SubmitCDARResponse response = api.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut ENCAISSÉE (212)
+     *
+     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void submitEncaisseeApiV1CdarEncaisseePostTest() throws ApiException {
+        EncaisseeRequest encaisseeRequest = null;
+        SimplifiedCDARResponse response = api.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest);
+        // TODO: test validations
+    }
+
+    /**
+     * [Simplifié] Soumettre un statut REFUSÉE (210)
+     *
+     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void submitRefuseeApiV1CdarRefuseePostTest() throws ApiException {
+        RefuseeRequest refuseeRequest = null;
+        SimplifiedCDARResponse response = api.submitRefuseeApiV1CdarRefuseePost(refuseeRequest);
         // TODO: test validations
     }
 

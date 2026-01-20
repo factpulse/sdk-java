@@ -20,40 +20,61 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.PDPCredentials;
-import org.openapitools.client.model.SubmitCDARRequest;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for BodySubmitCdarApiV1CdarSubmitPost
+ * Model tests for SimplifiedCDARResponse
  */
-public class BodySubmitCdarApiV1CdarSubmitPostTest {
-    private final BodySubmitCdarApiV1CdarSubmitPost model = new BodySubmitCdarApiV1CdarSubmitPost();
+public class SimplifiedCDARResponseTest {
+    private final SimplifiedCDARResponse model = new SimplifiedCDARResponse();
 
     /**
-     * Model tests for BodySubmitCdarApiV1CdarSubmitPost
+     * Model tests for SimplifiedCDARResponse
      */
     @Test
-    public void testBodySubmitCdarApiV1CdarSubmitPost() {
-        // TODO: test BodySubmitCdarApiV1CdarSubmitPost
+    public void testSimplifiedCDARResponse() {
+        // TODO: test SimplifiedCDARResponse
     }
 
     /**
-     * Test the property 'request'
+     * Test the property 'flowId'
      */
     @Test
-    public void requestTest() {
-        // TODO: test request
+    public void flowIdTest() {
+        // TODO: test flowId
     }
 
     /**
-     * Test the property 'pdpCredentials'
+     * Test the property 'documentId'
      */
     @Test
-    public void pdpCredentialsTest() {
-        // TODO: test pdpCredentials
+    public void documentIdTest() {
+        // TODO: test documentId
+    }
+
+    /**
+     * Test the property 'status'
+     */
+    @Test
+    public void statusTest() {
+        // TODO: test status
+    }
+
+    /**
+     * Test the property 'invoiceId'
+     */
+    @Test
+    public void invoiceIdTest() {
+        // TODO: test invoiceId
+    }
+
+    /**
+     * Test the property 'message'
+     */
+    @Test
+    public void messageTest() {
+        // TODO: test message
     }
 
 }

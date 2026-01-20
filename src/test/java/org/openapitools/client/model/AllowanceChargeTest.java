@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AllowanceChargeReasonCode;
-import org.openapitools.client.model.Amount1;
+import org.openapitools.client.model.Amount2;
 import org.openapitools.client.model.BaseAmount;
 import org.openapitools.client.model.Percentage;
 import org.openapitools.client.model.VATCategory;

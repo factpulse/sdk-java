@@ -18,15 +18,15 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueModelsInvoiceTypeCode
+ * Model tests for FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode
  */
-public class FactureElectroniqueModelsInvoiceTypeCodeTest {
+public class FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCodeTest {
     /**
-     * Model tests for FactureElectroniqueModelsInvoiceTypeCode
+     * Model tests for FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode
      */
     @Test
-    public void testFactureElectroniqueModelsInvoiceTypeCode() {
-        // TODO: test FactureElectroniqueModelsInvoiceTypeCode
+    public void testFactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode() {
+        // TODO: test FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode
     }
 
 }

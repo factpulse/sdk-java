@@ -10,6 +10,8 @@ All URIs are relative to *https://factpulse.fr*
 | [**getStatusCodesApiV1CdarStatusCodesGet**](CdarCycleDeVieApi.md#getStatusCodesApiV1CdarStatusCodesGet) | **GET** /api/v1/cdar/status-codes | Liste des codes statut CDAR |
 | [**submitCdarApiV1CdarSubmitPost**](CdarCycleDeVieApi.md#submitCdarApiV1CdarSubmitPost) | **POST** /api/v1/cdar/submit | Générer et soumettre un message CDAR |
 | [**submitCdarXmlApiV1CdarSubmitXmlPost**](CdarCycleDeVieApi.md#submitCdarXmlApiV1CdarSubmitXmlPost) | **POST** /api/v1/cdar/submit-xml | Soumettre un XML CDAR pré-généré |
+| [**submitEncaisseeApiV1CdarEncaisseePost**](CdarCycleDeVieApi.md#submitEncaisseeApiV1CdarEncaisseePost) | **POST** /api/v1/cdar/encaissee | [Simplifié] Soumettre un statut ENCAISSÉE (212) |
+| [**submitRefuseeApiV1CdarRefuseePost**](CdarCycleDeVieApi.md#submitRefuseeApiV1CdarRefuseePost) | **POST** /api/v1/cdar/refusee | [Simplifié] Soumettre un statut REFUSÉE (210) |
 | [**validateCdarApiV1CdarValidatePost**](CdarCycleDeVieApi.md#validateCdarApiV1CdarValidatePost) | **POST** /api/v1/cdar/validate | Valider des données CDAR |
 
 
@@ -269,11 +271,11 @@ No authorization required
 
 <a id="submitCdarApiV1CdarSubmitPost"></a>
 # **submitCdarApiV1CdarSubmitPost**
-> SubmitCDARResponse submitCdarApiV1CdarSubmitPost(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid)
+> SubmitCDARResponse submitCdarApiV1CdarSubmitPost(submitCDARRequest)
 
 Générer et soumettre un message CDAR
 
-Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
 
 ### Example
 ```java
@@ -295,12 +297,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     CdarCycleDeVieApi apiInstance = new CdarCycleDeVieApi(defaultClient);
-    Integer userId = 56; // Integer | 
-    BodySubmitCdarApiV1CdarSubmitPost bodySubmitCdarApiV1CdarSubmitPost = new BodySubmitCdarApiV1CdarSubmitPost(); // BodySubmitCdarApiV1CdarSubmitPost | 
-    String jwtToken = "jwtToken_example"; // String | 
-    String clientUid = "clientUid_example"; // String | 
+    SubmitCDARRequest submitCDARRequest = new SubmitCDARRequest(); // SubmitCDARRequest | 
     try {
-      SubmitCDARResponse result = apiInstance.submitCdarApiV1CdarSubmitPost(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid);
+      SubmitCDARResponse result = apiInstance.submitCdarApiV1CdarSubmitPost(submitCDARRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CdarCycleDeVieApi#submitCdarApiV1CdarSubmitPost");
@@ -317,10 +316,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **userId** | **Integer**|  | |
-| **bodySubmitCdarApiV1CdarSubmitPost** | [**BodySubmitCdarApiV1CdarSubmitPost**](BodySubmitCdarApiV1CdarSubmitPost.md)|  | |
-| **jwtToken** | **String**|  | [optional] |
-| **clientUid** | **String**|  | [optional] |
+| **submitCDARRequest** | [**SubmitCDARRequest**](SubmitCDARRequest.md)|  | |
 
 ### Return type
 
@@ -346,11 +342,11 @@ public class Example {
 
 <a id="submitCdarXmlApiV1CdarSubmitXmlPost"></a>
 # **submitCdarXmlApiV1CdarSubmitXmlPost**
-> SubmitCDARResponse submitCdarXmlApiV1CdarSubmitXmlPost(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid)
+> SubmitCDARResponse submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest)
 
 Soumettre un XML CDAR pré-généré
 
-Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.
+Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
 
 ### Example
 ```java
@@ -372,12 +368,9 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     CdarCycleDeVieApi apiInstance = new CdarCycleDeVieApi(defaultClient);
-    Integer userId = 56; // Integer | 
-    BodySubmitCdarXmlApiV1CdarSubmitXmlPost bodySubmitCdarXmlApiV1CdarSubmitXmlPost = new BodySubmitCdarXmlApiV1CdarSubmitXmlPost(); // BodySubmitCdarXmlApiV1CdarSubmitXmlPost | 
-    String jwtToken = "jwtToken_example"; // String | 
-    String clientUid = "clientUid_example"; // String | 
+    SubmitCDARXMLRequest submitCDARXMLRequest = new SubmitCDARXMLRequest(); // SubmitCDARXMLRequest | 
     try {
-      SubmitCDARResponse result = apiInstance.submitCdarXmlApiV1CdarSubmitXmlPost(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid);
+      SubmitCDARResponse result = apiInstance.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CdarCycleDeVieApi#submitCdarXmlApiV1CdarSubmitXmlPost");
@@ -394,14 +387,153 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **userId** | **Integer**|  | |
-| **bodySubmitCdarXmlApiV1CdarSubmitXmlPost** | [**BodySubmitCdarXmlApiV1CdarSubmitXmlPost**](BodySubmitCdarXmlApiV1CdarSubmitXmlPost.md)|  | |
-| **jwtToken** | **String**|  | [optional] |
-| **clientUid** | **String**|  | [optional] |
+| **submitCDARXMLRequest** | [**SubmitCDARXMLRequest**](SubmitCDARXMLRequest.md)|  | |
 
 ### Return type
 
 [**SubmitCDARResponse**](SubmitCDARResponse.md)
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Requête invalide |  -  |
+| **422** | Erreur de validation |  -  |
+| **500** | Erreur serveur |  -  |
+| **401** | Authentication required - Invalid or missing JWT token |  -  |
+
+<a id="submitEncaisseeApiV1CdarEncaisseePost"></a>
+# **submitEncaisseeApiV1CdarEncaisseePost**
+> SimplifiedCDARResponse submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest)
+
+[Simplifié] Soumettre un statut ENCAISSÉE (212)
+
+**Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.CdarCycleDeVieApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    CdarCycleDeVieApi apiInstance = new CdarCycleDeVieApi(defaultClient);
+    EncaisseeRequest encaisseeRequest = new EncaisseeRequest(); // EncaisseeRequest | 
+    try {
+      SimplifiedCDARResponse result = apiInstance.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CdarCycleDeVieApi#submitEncaisseeApiV1CdarEncaisseePost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **encaisseeRequest** | [**EncaisseeRequest**](EncaisseeRequest.md)|  | |
+
+### Return type
+
+[**SimplifiedCDARResponse**](SimplifiedCDARResponse.md)
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Requête invalide |  -  |
+| **422** | Erreur de validation |  -  |
+| **500** | Erreur serveur |  -  |
+| **401** | Authentication required - Invalid or missing JWT token |  -  |
+
+<a id="submitRefuseeApiV1CdarRefuseePost"></a>
+# **submitRefuseeApiV1CdarRefuseePost**
+> SimplifiedCDARResponse submitRefuseeApiV1CdarRefuseePost(refuseeRequest)
+
+[Simplifié] Soumettre un statut REFUSÉE (210)
+
+**Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.CdarCycleDeVieApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    CdarCycleDeVieApi apiInstance = new CdarCycleDeVieApi(defaultClient);
+    RefuseeRequest refuseeRequest = new RefuseeRequest(); // RefuseeRequest | 
+    try {
+      SimplifiedCDARResponse result = apiInstance.submitRefuseeApiV1CdarRefuseePost(refuseeRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CdarCycleDeVieApi#submitRefuseeApiV1CdarRefuseePost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **refuseeRequest** | [**RefuseeRequest**](RefuseeRequest.md)|  | |
+
+### Return type
+
+[**SimplifiedCDARResponse**](SimplifiedCDARResponse.md)
 
 ### Authorization
 
