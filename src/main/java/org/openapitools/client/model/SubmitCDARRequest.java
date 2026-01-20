@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Requête de soumission CDAR (génération + envoi).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:28:00.827890704Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:34:49.092416481Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class SubmitCDARRequest {
   public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
