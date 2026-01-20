@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Réponse de soumission CDAR.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:48:53.893568338Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:57:32.426106906Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class SubmitCDARResponse {
   public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)

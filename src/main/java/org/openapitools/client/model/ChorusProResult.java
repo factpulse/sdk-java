@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Result of submission to Chorus Pro.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:48:53.893568338Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:57:32.426106906Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class ChorusProResult {
   public static final String SERIALIZED_NAME_CHORUS_INVOICE_ID = "chorusInvoiceId";
   @SerializedName(SERIALIZED_NAME_CHORUS_INVOICE_ID)
