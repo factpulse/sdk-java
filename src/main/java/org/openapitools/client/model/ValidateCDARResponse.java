@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasCdarValidationErrorResponse;
+import org.openapitools.client.model.ValidationErrorResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Réponse de validation CDAR.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:28:00.827890704Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class ValidateCDARResponse {
   public static final String SERIALIZED_NAME_VALID = "valid";
   @SerializedName(SERIALIZED_NAME_VALID)
@@ -61,12 +61,12 @@ public class ValidateCDARResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
   @javax.annotation.Nullable
-  private List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> errors = new ArrayList<>();
+  private List<ValidationErrorResponse> errors = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_WARNINGS = "warnings";
   @SerializedName(SERIALIZED_NAME_WARNINGS)
   @javax.annotation.Nullable
-  private List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> warnings = new ArrayList<>();
+  private List<ValidationErrorResponse> warnings = new ArrayList<>();
 
   public ValidateCDARResponse() {
   }
@@ -90,12 +90,12 @@ public class ValidateCDARResponse {
   }
 
 
-  public ValidateCDARResponse errors(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> errors) {
+  public ValidateCDARResponse errors(@javax.annotation.Nullable List<ValidationErrorResponse> errors) {
     this.errors = errors;
     return this;
   }
 
-  public ValidateCDARResponse addErrorsItem(FactureElectroniqueRestApiSchemasCdarValidationErrorResponse errorsItem) {
+  public ValidateCDARResponse addErrorsItem(ValidationErrorResponse errorsItem) {
     if (this.errors == null) {
       this.errors = new ArrayList<>();
     }
@@ -108,21 +108,21 @@ public class ValidateCDARResponse {
    * @return errors
    */
   @javax.annotation.Nullable
-  public List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> getErrors() {
+  public List<ValidationErrorResponse> getErrors() {
     return errors;
   }
 
-  public void setErrors(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> errors) {
+  public void setErrors(@javax.annotation.Nullable List<ValidationErrorResponse> errors) {
     this.errors = errors;
   }
 
 
-  public ValidateCDARResponse warnings(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> warnings) {
+  public ValidateCDARResponse warnings(@javax.annotation.Nullable List<ValidationErrorResponse> warnings) {
     this.warnings = warnings;
     return this;
   }
 
-  public ValidateCDARResponse addWarningsItem(FactureElectroniqueRestApiSchemasCdarValidationErrorResponse warningsItem) {
+  public ValidateCDARResponse addWarningsItem(ValidationErrorResponse warningsItem) {
     if (this.warnings == null) {
       this.warnings = new ArrayList<>();
     }
@@ -135,11 +135,11 @@ public class ValidateCDARResponse {
    * @return warnings
    */
   @javax.annotation.Nullable
-  public List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> getWarnings() {
+  public List<ValidationErrorResponse> getWarnings() {
     return warnings;
   }
 
-  public void setWarnings(@javax.annotation.Nullable List<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> warnings) {
+  public void setWarnings(@javax.annotation.Nullable List<ValidationErrorResponse> warnings) {
     this.warnings = warnings;
   }
 
@@ -236,7 +236,7 @@ public class ValidateCDARResponse {
 
           // validate the optional field `errors` (array)
           for (int i = 0; i < jsonArrayerrors.size(); i++) {
-            FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.validateJsonElement(jsonArrayerrors.get(i));
+            ValidationErrorResponse.validateJsonElement(jsonArrayerrors.get(i));
           };
         }
       }
@@ -250,7 +250,7 @@ public class ValidateCDARResponse {
 
           // validate the optional field `warnings` (array)
           for (int i = 0; i < jsonArraywarnings.size(); i++) {
-            FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.validateJsonElement(jsonArraywarnings.get(i));
+            ValidationErrorResponse.validateJsonElement(jsonArraywarnings.get(i));
           };
         }
       }

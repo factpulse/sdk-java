@@ -30,6 +30,7 @@ import java.io.IOException;
 import org.openapitools.client.model.APIError;
 import org.openapitools.client.model.APIProfile;
 import org.openapitools.client.model.AsyncTaskStatus;
+import org.openapitools.client.model.FactureElectroniqueRestApiSchemasValidationValidationErrorResponse;
 import java.io.File;
 import org.openapitools.client.model.GenerateCertificateRequest;
 import org.openapitools.client.model.GenerateCertificateResponse;
@@ -39,7 +40,6 @@ import org.openapitools.client.model.PDFValidationResultAPI;
 import org.openapitools.client.model.SubmitCompleteInvoiceRequest;
 import org.openapitools.client.model.SubmitCompleteInvoiceResponse;
 import org.openapitools.client.model.TaskResponse;
-import org.openapitools.client.model.ValidationErrorResponse;
 import org.openapitools.client.model.ValidationSuccessResponse;
 
 import java.lang.reflect.Type;

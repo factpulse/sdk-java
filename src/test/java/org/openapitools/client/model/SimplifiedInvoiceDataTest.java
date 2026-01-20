@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.client.model.InvoiceTypeCode;
+import org.openapitools.client.model.FactureElectroniqueModelsInvoiceTypeCode;
 import org.openapitools.client.model.InvoicingFrameworkCode;
 import org.openapitools.client.model.OperationNature;
 import org.openapitools.jackson.nullable.JsonNullable;

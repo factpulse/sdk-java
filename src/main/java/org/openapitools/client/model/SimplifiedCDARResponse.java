@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Réponse pour les endpoints CDAR simplifiés.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:22:46.899608325Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:28:00.827890704Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class SimplifiedCDARResponse {
   public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)
