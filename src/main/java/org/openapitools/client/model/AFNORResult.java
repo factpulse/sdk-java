@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Result of submission to AFNOR PDP.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:34:49.092416481Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:48:53.893568338Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class AFNORResult {
   public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
   @SerializedName(SERIALIZED_NAME_FLOW_ID)

@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Information about the supplier / seller (BG-4).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:34:49.092416481Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:48:53.893568338Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class Supplier {
   public static final String SERIALIZED_NAME_ELECTRONIC_ADDRESS = "electronic_address";
   @SerializedName(SERIALIZED_NAME_ELECTRONIC_ADDRESS)
