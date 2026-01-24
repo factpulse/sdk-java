@@ -1,6 +1,6 @@
 /*
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,130 +47,130 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don&#39;t want to store their credentials
+ * Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this &#x60;credentials&#x60; field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:57:32.426106906Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-24T11:06:22.346262583Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class ChorusProCredentials {
   public static final String SERIALIZED_NAME_PISTE_CLIENT_ID = "pisteClientId";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_ID)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String pisteClientId;
 
   public static final String SERIALIZED_NAME_PISTE_CLIENT_SECRET = "pisteClientSecret";
   @SerializedName(SERIALIZED_NAME_PISTE_CLIENT_SECRET)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String pisteClientSecret;
 
-  public static final String SERIALIZED_NAME_CHORUS_PRO_LOGIN = "chorusProLogin";
-  @SerializedName(SERIALIZED_NAME_CHORUS_PRO_LOGIN)
-  @javax.annotation.Nonnull
-  private String chorusProLogin;
-
-  public static final String SERIALIZED_NAME_CHORUS_PRO_PASSWORD = "chorusProPassword";
-  @SerializedName(SERIALIZED_NAME_CHORUS_PRO_PASSWORD)
-  @javax.annotation.Nonnull
-  private String chorusProPassword;
-
-  public static final String SERIALIZED_NAME_SANDBOX = "sandbox";
-  @SerializedName(SERIALIZED_NAME_SANDBOX)
+  public static final String SERIALIZED_NAME_CHORUS_LOGIN = "chorusLogin";
+  @SerializedName(SERIALIZED_NAME_CHORUS_LOGIN)
   @javax.annotation.Nullable
-  private Boolean sandbox = true;
+  private String chorusLogin;
+
+  public static final String SERIALIZED_NAME_CHORUS_PASSWORD = "chorusPassword";
+  @SerializedName(SERIALIZED_NAME_CHORUS_PASSWORD)
+  @javax.annotation.Nullable
+  private String chorusPassword;
+
+  public static final String SERIALIZED_NAME_SANDBOX_MODE = "sandboxMode";
+  @SerializedName(SERIALIZED_NAME_SANDBOX_MODE)
+  @javax.annotation.Nullable
+  private Boolean sandboxMode = true;
 
   public ChorusProCredentials() {
   }
 
-  public ChorusProCredentials pisteClientId(@javax.annotation.Nonnull String pisteClientId) {
+  public ChorusProCredentials pisteClientId(@javax.annotation.Nullable String pisteClientId) {
     this.pisteClientId = pisteClientId;
     return this;
   }
 
   /**
-   * PISTE Client ID (government API portal)
+   * Get pisteClientId
    * @return pisteClientId
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getPisteClientId() {
     return pisteClientId;
   }
 
-  public void setPisteClientId(@javax.annotation.Nonnull String pisteClientId) {
+  public void setPisteClientId(@javax.annotation.Nullable String pisteClientId) {
     this.pisteClientId = pisteClientId;
   }
 
 
-  public ChorusProCredentials pisteClientSecret(@javax.annotation.Nonnull String pisteClientSecret) {
+  public ChorusProCredentials pisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
     this.pisteClientSecret = pisteClientSecret;
     return this;
   }
 
   /**
-   * PISTE Client Secret
+   * Get pisteClientSecret
    * @return pisteClientSecret
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public String getPisteClientSecret() {
     return pisteClientSecret;
   }
 
-  public void setPisteClientSecret(@javax.annotation.Nonnull String pisteClientSecret) {
+  public void setPisteClientSecret(@javax.annotation.Nullable String pisteClientSecret) {
     this.pisteClientSecret = pisteClientSecret;
   }
 
 
-  public ChorusProCredentials chorusProLogin(@javax.annotation.Nonnull String chorusProLogin) {
-    this.chorusProLogin = chorusProLogin;
+  public ChorusProCredentials chorusLogin(@javax.annotation.Nullable String chorusLogin) {
+    this.chorusLogin = chorusLogin;
     return this;
   }
 
   /**
-   * Chorus Pro login
-   * @return chorusProLogin
-   */
-  @javax.annotation.Nonnull
-  public String getChorusProLogin() {
-    return chorusProLogin;
-  }
-
-  public void setChorusProLogin(@javax.annotation.Nonnull String chorusProLogin) {
-    this.chorusProLogin = chorusProLogin;
-  }
-
-
-  public ChorusProCredentials chorusProPassword(@javax.annotation.Nonnull String chorusProPassword) {
-    this.chorusProPassword = chorusProPassword;
-    return this;
-  }
-
-  /**
-   * Chorus Pro password
-   * @return chorusProPassword
-   */
-  @javax.annotation.Nonnull
-  public String getChorusProPassword() {
-    return chorusProPassword;
-  }
-
-  public void setChorusProPassword(@javax.annotation.Nonnull String chorusProPassword) {
-    this.chorusProPassword = chorusProPassword;
-  }
-
-
-  public ChorusProCredentials sandbox(@javax.annotation.Nullable Boolean sandbox) {
-    this.sandbox = sandbox;
-    return this;
-  }
-
-  /**
-   * Use sandbox environment (true) or production (false)
-   * @return sandbox
+   * Get chorusLogin
+   * @return chorusLogin
    */
   @javax.annotation.Nullable
-  public Boolean getSandbox() {
-    return sandbox;
+  public String getChorusLogin() {
+    return chorusLogin;
   }
 
-  public void setSandbox(@javax.annotation.Nullable Boolean sandbox) {
-    this.sandbox = sandbox;
+  public void setChorusLogin(@javax.annotation.Nullable String chorusLogin) {
+    this.chorusLogin = chorusLogin;
+  }
+
+
+  public ChorusProCredentials chorusPassword(@javax.annotation.Nullable String chorusPassword) {
+    this.chorusPassword = chorusPassword;
+    return this;
+  }
+
+  /**
+   * Get chorusPassword
+   * @return chorusPassword
+   */
+  @javax.annotation.Nullable
+  public String getChorusPassword() {
+    return chorusPassword;
+  }
+
+  public void setChorusPassword(@javax.annotation.Nullable String chorusPassword) {
+    this.chorusPassword = chorusPassword;
+  }
+
+
+  public ChorusProCredentials sandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
+    this.sandboxMode = sandboxMode;
+    return this;
+  }
+
+  /**
+   * [MODE 2] Use sandbox mode (default: True)
+   * @return sandboxMode
+   */
+  @javax.annotation.Nullable
+  public Boolean getSandboxMode() {
+    return sandboxMode;
+  }
+
+  public void setSandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
+    this.sandboxMode = sandboxMode;
   }
 
 
@@ -185,14 +186,25 @@ public class ChorusProCredentials {
     ChorusProCredentials chorusProCredentials = (ChorusProCredentials) o;
     return Objects.equals(this.pisteClientId, chorusProCredentials.pisteClientId) &&
         Objects.equals(this.pisteClientSecret, chorusProCredentials.pisteClientSecret) &&
-        Objects.equals(this.chorusProLogin, chorusProCredentials.chorusProLogin) &&
-        Objects.equals(this.chorusProPassword, chorusProCredentials.chorusProPassword) &&
-        Objects.equals(this.sandbox, chorusProCredentials.sandbox);
+        Objects.equals(this.chorusLogin, chorusProCredentials.chorusLogin) &&
+        Objects.equals(this.chorusPassword, chorusProCredentials.chorusPassword) &&
+        Objects.equals(this.sandboxMode, chorusProCredentials.sandboxMode);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(pisteClientId, pisteClientSecret, chorusProLogin, chorusProPassword, sandbox);
+    return Objects.hash(pisteClientId, pisteClientSecret, chorusLogin, chorusPassword, sandboxMode);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -201,9 +213,9 @@ public class ChorusProCredentials {
     sb.append("class ChorusProCredentials {\n");
     sb.append("    pisteClientId: ").append(toIndentedString(pisteClientId)).append("\n");
     sb.append("    pisteClientSecret: ").append(toIndentedString(pisteClientSecret)).append("\n");
-    sb.append("    chorusProLogin: ").append(toIndentedString(chorusProLogin)).append("\n");
-    sb.append("    chorusProPassword: ").append(toIndentedString(chorusProPassword)).append("\n");
-    sb.append("    sandbox: ").append(toIndentedString(sandbox)).append("\n");
+    sb.append("    chorusLogin: ").append(toIndentedString(chorusLogin)).append("\n");
+    sb.append("    chorusPassword: ").append(toIndentedString(chorusPassword)).append("\n");
+    sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -225,10 +237,10 @@ public class ChorusProCredentials {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword", "sandbox"));
+    openapiFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusLogin", "chorusPassword", "sandboxMode"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("pisteClientId", "pisteClientSecret", "chorusProLogin", "chorusProPassword"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -251,25 +263,18 @@ public class ChorusProCredentials {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ChorusProCredentials` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ChorusProCredentials.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("pisteClientId").isJsonPrimitive()) {
+      if ((jsonObj.get("pisteClientId") != null && !jsonObj.get("pisteClientId").isJsonNull()) && !jsonObj.get("pisteClientId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientId").toString()));
       }
-      if (!jsonObj.get("pisteClientSecret").isJsonPrimitive()) {
+      if ((jsonObj.get("pisteClientSecret") != null && !jsonObj.get("pisteClientSecret").isJsonNull()) && !jsonObj.get("pisteClientSecret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pisteClientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pisteClientSecret").toString()));
       }
-      if (!jsonObj.get("chorusProLogin").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProLogin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProLogin").toString()));
+      if ((jsonObj.get("chorusLogin") != null && !jsonObj.get("chorusLogin").isJsonNull()) && !jsonObj.get("chorusLogin").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusLogin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusLogin").toString()));
       }
-      if (!jsonObj.get("chorusProPassword").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusProPassword` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusProPassword").toString()));
+      if ((jsonObj.get("chorusPassword") != null && !jsonObj.get("chorusPassword").isJsonNull()) && !jsonObj.get("chorusPassword").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `chorusPassword` to be a primitive type in the JSON string but got `%s`", jsonObj.get("chorusPassword").toString()));
       }
   }
 

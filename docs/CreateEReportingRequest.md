@@ -12,7 +12,8 @@ Request to create an e-reporting submission.  Supports all four flux types: - 10
 |**reportName** | **String** |  |  [optional] |
 |**flowType** | **EReportingFlowType** | E-Reporting flux type (for internal routing) |  |
 |**transmissionType** | **TransmissionTypeCode** | Transmission type (TT-4 TypeCode): IN&#x3D;Initial, RE&#x3D;Rectificative |  [optional] |
-|**sender** | [**ReportSender**](ReportSender.md) | Report sender (declarant) |  |
+|**sender** | [**ReportSender**](ReportSender.md) | Report sender (PA transmitting the report) |  |
+|**issuer** | [**ReportIssuer**](ReportIssuer.md) |  |  [optional] |
 |**period** | [**ReportPeriod**](ReportPeriod.md) | Reporting period |  |
 |**invoices** | [**List&lt;InvoiceInput&gt;**](InvoiceInput.md) |  |  [optional] |
 |**transactions** | [**List&lt;AggregatedTransactionInput&gt;**](AggregatedTransactionInput.md) |  |  [optional] |

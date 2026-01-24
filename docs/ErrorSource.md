@@ -19,6 +19,8 @@
 
 * `CHORUS_PRO` (value: `"chorus_pro"`)
 
+* `EREPORTING` (value: `"ereporting"`)
+
 * `SYSTEM` (value: `"system"`)
 
 

@@ -1,6 +1,6 @@
 /*
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -49,9 +49,9 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Requête simplifiée pour soumettre un statut ENCAISSÉE (212).  Statut obligatoire PPF - Le paiement a été effectué. Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
+ * Requête simplifiée pour soumettre un statut ENCAISSÉE (212).  **Usage** : Pour une facture ÉMISE (vous êtes vendeur). Le vendeur confirme l&#39;encaissement et envoie le statut à l&#39;acheteur.  Statut obligatoire PPF - Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-20T10:57:32.426106906Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-24T11:06:22.346262583Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class EncaisseeRequest {
   public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
   @SerializedName(SERIALIZED_NAME_INVOICE_ID)
@@ -63,6 +63,26 @@ public class EncaisseeRequest {
   @javax.annotation.Nonnull
   private LocalDate invoiceIssueDate;
 
+  public static final String SERIALIZED_NAME_INVOICE_BUYER_SIREN = "invoiceBuyerSiren";
+  @SerializedName(SERIALIZED_NAME_INVOICE_BUYER_SIREN)
+  @javax.annotation.Nonnull
+  private String invoiceBuyerSiren;
+
+  public static final String SERIALIZED_NAME_INVOICE_BUYER_ELECTRONIC_ADDRESS = "invoiceBuyerElectronicAddress";
+  @SerializedName(SERIALIZED_NAME_INVOICE_BUYER_ELECTRONIC_ADDRESS)
+  @javax.annotation.Nonnull
+  private String invoiceBuyerElectronicAddress;
+
+  public static final String SERIALIZED_NAME_AMOUNT = "amount";
+  @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nonnull
+  private Amount amount;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
+  private String currency = "EUR";
+
   public static final String SERIALIZED_NAME_SENDER_SIREN = "senderSiren";
   @SerializedName(SERIALIZED_NAME_SENDER_SIREN)
   @javax.annotation.Nullable
@@ -71,7 +91,7 @@ public class EncaisseeRequest {
   public static final String SERIALIZED_NAME_FLOW_TYPE = "flowType";
   @SerializedName(SERIALIZED_NAME_FLOW_TYPE)
   @javax.annotation.Nullable
-  private String flowType = "SupplierInvoiceLC";
+  private String flowType = "CustomerInvoiceLC";
 
   public static final String SERIALIZED_NAME_PDP_FLOW_SERVICE_URL = "pdpFlowServiceUrl";
   @SerializedName(SERIALIZED_NAME_PDP_FLOW_SERVICE_URL)
@@ -92,16 +112,6 @@ public class EncaisseeRequest {
   @SerializedName(SERIALIZED_NAME_PDP_CLIENT_SECRET)
   @javax.annotation.Nullable
   private String pdpClientSecret;
-
-  public static final String SERIALIZED_NAME_AMOUNT = "amount";
-  @SerializedName(SERIALIZED_NAME_AMOUNT)
-  @javax.annotation.Nonnull
-  private Amount amount;
-
-  public static final String SERIALIZED_NAME_CURRENCY = "currency";
-  @SerializedName(SERIALIZED_NAME_CURRENCY)
-  @javax.annotation.Nullable
-  private String currency = "EUR";
 
   public EncaisseeRequest() {
   }
@@ -144,6 +154,82 @@ public class EncaisseeRequest {
   }
 
 
+  public EncaisseeRequest invoiceBuyerSiren(@javax.annotation.Nonnull String invoiceBuyerSiren) {
+    this.invoiceBuyerSiren = invoiceBuyerSiren;
+    return this;
+  }
+
+  /**
+   * SIREN de l&#39;acheteur (destinataire du statut)
+   * @return invoiceBuyerSiren
+   */
+  @javax.annotation.Nonnull
+  public String getInvoiceBuyerSiren() {
+    return invoiceBuyerSiren;
+  }
+
+  public void setInvoiceBuyerSiren(@javax.annotation.Nonnull String invoiceBuyerSiren) {
+    this.invoiceBuyerSiren = invoiceBuyerSiren;
+  }
+
+
+  public EncaisseeRequest invoiceBuyerElectronicAddress(@javax.annotation.Nonnull String invoiceBuyerElectronicAddress) {
+    this.invoiceBuyerElectronicAddress = invoiceBuyerElectronicAddress;
+    return this;
+  }
+
+  /**
+   * Adresse électronique de l&#39;acheteur (MDT-73)
+   * @return invoiceBuyerElectronicAddress
+   */
+  @javax.annotation.Nonnull
+  public String getInvoiceBuyerElectronicAddress() {
+    return invoiceBuyerElectronicAddress;
+  }
+
+  public void setInvoiceBuyerElectronicAddress(@javax.annotation.Nonnull String invoiceBuyerElectronicAddress) {
+    this.invoiceBuyerElectronicAddress = invoiceBuyerElectronicAddress;
+  }
+
+
+  public EncaisseeRequest amount(@javax.annotation.Nonnull Amount amount) {
+    this.amount = amount;
+    return this;
+  }
+
+  /**
+   * Get amount
+   * @return amount
+   */
+  @javax.annotation.Nonnull
+  public Amount getAmount() {
+    return amount;
+  }
+
+  public void setAmount(@javax.annotation.Nonnull Amount amount) {
+    this.amount = amount;
+  }
+
+
+  public EncaisseeRequest currency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * Code devise ISO 4217
+   * @return currency
+   */
+  @javax.annotation.Nullable
+  public String getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+  }
+
+
   public EncaisseeRequest senderSiren(@javax.annotation.Nullable String senderSiren) {
     this.senderSiren = senderSiren;
     return this;
@@ -169,7 +255,7 @@ public class EncaisseeRequest {
   }
 
   /**
-   * Type de flux: SupplierInvoiceLC (acheteur) ou CustomerInvoiceLC (vendeur)
+   * Type de flux (CustomerInvoiceLC pour facture émise)
    * @return flowType
    */
   @javax.annotation.Nullable
@@ -258,44 +344,6 @@ public class EncaisseeRequest {
   }
 
 
-  public EncaisseeRequest amount(@javax.annotation.Nonnull Amount amount) {
-    this.amount = amount;
-    return this;
-  }
-
-  /**
-   * Get amount
-   * @return amount
-   */
-  @javax.annotation.Nonnull
-  public Amount getAmount() {
-    return amount;
-  }
-
-  public void setAmount(@javax.annotation.Nonnull Amount amount) {
-    this.amount = amount;
-  }
-
-
-  public EncaisseeRequest currency(@javax.annotation.Nullable String currency) {
-    this.currency = currency;
-    return this;
-  }
-
-  /**
-   * Code devise ISO 4217
-   * @return currency
-   */
-  @javax.annotation.Nullable
-  public String getCurrency() {
-    return currency;
-  }
-
-  public void setCurrency(@javax.annotation.Nullable String currency) {
-    this.currency = currency;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -308,14 +356,16 @@ public class EncaisseeRequest {
     EncaisseeRequest encaisseeRequest = (EncaisseeRequest) o;
     return Objects.equals(this.invoiceId, encaisseeRequest.invoiceId) &&
         Objects.equals(this.invoiceIssueDate, encaisseeRequest.invoiceIssueDate) &&
+        Objects.equals(this.invoiceBuyerSiren, encaisseeRequest.invoiceBuyerSiren) &&
+        Objects.equals(this.invoiceBuyerElectronicAddress, encaisseeRequest.invoiceBuyerElectronicAddress) &&
+        Objects.equals(this.amount, encaisseeRequest.amount) &&
+        Objects.equals(this.currency, encaisseeRequest.currency) &&
         Objects.equals(this.senderSiren, encaisseeRequest.senderSiren) &&
         Objects.equals(this.flowType, encaisseeRequest.flowType) &&
         Objects.equals(this.pdpFlowServiceUrl, encaisseeRequest.pdpFlowServiceUrl) &&
         Objects.equals(this.pdpTokenUrl, encaisseeRequest.pdpTokenUrl) &&
         Objects.equals(this.pdpClientId, encaisseeRequest.pdpClientId) &&
-        Objects.equals(this.pdpClientSecret, encaisseeRequest.pdpClientSecret) &&
-        Objects.equals(this.amount, encaisseeRequest.amount) &&
-        Objects.equals(this.currency, encaisseeRequest.currency);
+        Objects.equals(this.pdpClientSecret, encaisseeRequest.pdpClientSecret);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -324,7 +374,7 @@ public class EncaisseeRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(invoiceId, invoiceIssueDate, senderSiren, flowType, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, amount, currency);
+    return Objects.hash(invoiceId, invoiceIssueDate, invoiceBuyerSiren, invoiceBuyerElectronicAddress, amount, currency, senderSiren, flowType, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -340,14 +390,16 @@ public class EncaisseeRequest {
     sb.append("class EncaisseeRequest {\n");
     sb.append("    invoiceId: ").append(toIndentedString(invoiceId)).append("\n");
     sb.append("    invoiceIssueDate: ").append(toIndentedString(invoiceIssueDate)).append("\n");
+    sb.append("    invoiceBuyerSiren: ").append(toIndentedString(invoiceBuyerSiren)).append("\n");
+    sb.append("    invoiceBuyerElectronicAddress: ").append(toIndentedString(invoiceBuyerElectronicAddress)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    senderSiren: ").append(toIndentedString(senderSiren)).append("\n");
     sb.append("    flowType: ").append(toIndentedString(flowType)).append("\n");
     sb.append("    pdpFlowServiceUrl: ").append(toIndentedString(pdpFlowServiceUrl)).append("\n");
     sb.append("    pdpTokenUrl: ").append(toIndentedString(pdpTokenUrl)).append("\n");
     sb.append("    pdpClientId: ").append(toIndentedString(pdpClientId)).append("\n");
     sb.append("    pdpClientSecret: ").append(toIndentedString(pdpClientSecret)).append("\n");
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -369,10 +421,10 @@ public class EncaisseeRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("invoiceId", "invoiceIssueDate", "senderSiren", "flowType", "pdpFlowServiceUrl", "pdpTokenUrl", "pdpClientId", "pdpClientSecret", "amount", "currency"));
+    openapiFields = new HashSet<String>(Arrays.asList("invoiceId", "invoiceIssueDate", "invoiceBuyerSiren", "invoiceBuyerElectronicAddress", "amount", "currency", "senderSiren", "flowType", "pdpFlowServiceUrl", "pdpTokenUrl", "pdpClientId", "pdpClientSecret"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoiceId", "invoiceIssueDate", "amount"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoiceId", "invoiceIssueDate", "invoiceBuyerSiren", "invoiceBuyerElectronicAddress", "amount"));
   }
 
   /**
@@ -406,6 +458,17 @@ public class EncaisseeRequest {
       if (!jsonObj.get("invoiceId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoiceId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceId").toString()));
       }
+      if (!jsonObj.get("invoiceBuyerSiren").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoiceBuyerSiren` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceBuyerSiren").toString()));
+      }
+      if (!jsonObj.get("invoiceBuyerElectronicAddress").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `invoiceBuyerElectronicAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceBuyerElectronicAddress").toString()));
+      }
+      // validate the required field `amount`
+      Amount.validateJsonElement(jsonObj.get("amount"));
+      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
+      }
       if ((jsonObj.get("senderSiren") != null && !jsonObj.get("senderSiren").isJsonNull()) && !jsonObj.get("senderSiren").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `senderSiren` to be a primitive type in the JSON string but got `%s`", jsonObj.get("senderSiren").toString()));
       }
@@ -423,11 +486,6 @@ public class EncaisseeRequest {
       }
       if ((jsonObj.get("pdpClientSecret") != null && !jsonObj.get("pdpClientSecret").isJsonNull()) && !jsonObj.get("pdpClientSecret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `pdpClientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pdpClientSecret").toString()));
-      }
-      // validate the required field `amount`
-      Amount.validateJsonElement(jsonObj.get("amount"));
-      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
   }
 

@@ -1,20 +1,20 @@
-# EReportingApi
+# Flux10EReportingApi
 
 All URIs are relative to *https://factpulse.fr*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost**](EReportingApi.md#generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost) | **POST** /api/v1/ereporting/generate-aggregated | Generate aggregated e-reporting XML (PPF-compliant) |
-| [**generateEreportingApiV1EreportingGeneratePost**](EReportingApi.md#generateEreportingApiV1EreportingGeneratePost) | **POST** /api/v1/ereporting/generate | Generate e-reporting XML |
-| [**generateEreportingDownloadApiV1EreportingGenerateDownloadPost**](EReportingApi.md#generateEreportingDownloadApiV1EreportingGenerateDownloadPost) | **POST** /api/v1/ereporting/generate/download | Generate and download e-reporting XML |
-| [**listCategoryCodesApiV1EreportingCategoryCodesGet**](EReportingApi.md#listCategoryCodesApiV1EreportingCategoryCodesGet) | **GET** /api/v1/ereporting/category-codes | List PPF-compliant category codes |
-| [**listFlowTypesApiV1EreportingFlowTypesGet**](EReportingApi.md#listFlowTypesApiV1EreportingFlowTypesGet) | **GET** /api/v1/ereporting/flow-types | List available flow types |
-| [**submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost**](EReportingApi.md#submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost) | **POST** /api/v1/ereporting/submit-aggregated | Submit aggregated e-reporting to PA/PDP |
-| [**submitEreportingApiV1EreportingSubmitPost**](EReportingApi.md#submitEreportingApiV1EreportingSubmitPost) | **POST** /api/v1/ereporting/submit | Submit e-reporting to PA/PDP |
-| [**submitXmlEreportingApiV1EreportingSubmitXmlPost**](EReportingApi.md#submitXmlEreportingApiV1EreportingSubmitXmlPost) | **POST** /api/v1/ereporting/submit-xml | Submit pre-generated e-reporting XML |
-| [**validateAggregatedEreportingApiV1EreportingValidateAggregatedPost**](EReportingApi.md#validateAggregatedEreportingApiV1EreportingValidateAggregatedPost) | **POST** /api/v1/ereporting/validate-aggregated | Validate aggregated e-reporting data |
-| [**validateEreportingApiV1EreportingValidatePost**](EReportingApi.md#validateEreportingApiV1EreportingValidatePost) | **POST** /api/v1/ereporting/validate | Validate e-reporting data |
-| [**validateXmlEreportingApiV1EreportingValidateXmlPost**](EReportingApi.md#validateXmlEreportingApiV1EreportingValidateXmlPost) | **POST** /api/v1/ereporting/validate-xml | Validate e-reporting XML against PPF XSD schemas and business rules |
+| [**generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost**](Flux10EReportingApi.md#generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost) | **POST** /api/v1/ereporting/generate-aggregated | Generate aggregated e-reporting XML (PPF-compliant) |
+| [**generateEreportingApiV1EreportingGeneratePost**](Flux10EReportingApi.md#generateEreportingApiV1EreportingGeneratePost) | **POST** /api/v1/ereporting/generate | Generate e-reporting XML |
+| [**generateEreportingDownloadApiV1EreportingGenerateDownloadPost**](Flux10EReportingApi.md#generateEreportingDownloadApiV1EreportingGenerateDownloadPost) | **POST** /api/v1/ereporting/generate/download | Generate and download e-reporting XML |
+| [**listCategoryCodesApiV1EreportingCategoryCodesGet**](Flux10EReportingApi.md#listCategoryCodesApiV1EreportingCategoryCodesGet) | **GET** /api/v1/ereporting/category-codes | List PPF-compliant category codes |
+| [**listFlowTypesApiV1EreportingFlowTypesGet**](Flux10EReportingApi.md#listFlowTypesApiV1EreportingFlowTypesGet) | **GET** /api/v1/ereporting/flow-types | List available flow types |
+| [**submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost**](Flux10EReportingApi.md#submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost) | **POST** /api/v1/ereporting/submit-aggregated | Submit aggregated e-reporting to PA/PDP |
+| [**submitEreportingApiV1EreportingSubmitPost**](Flux10EReportingApi.md#submitEreportingApiV1EreportingSubmitPost) | **POST** /api/v1/ereporting/submit | Submit e-reporting to PA/PDP |
+| [**submitXmlEreportingApiV1EreportingSubmitXmlPost**](Flux10EReportingApi.md#submitXmlEreportingApiV1EreportingSubmitXmlPost) | **POST** /api/v1/ereporting/submit-xml | Submit pre-generated e-reporting XML |
+| [**validateAggregatedEreportingApiV1EreportingValidateAggregatedPost**](Flux10EReportingApi.md#validateAggregatedEreportingApiV1EreportingValidateAggregatedPost) | **POST** /api/v1/ereporting/validate-aggregated | Validate aggregated e-reporting data |
+| [**validateEreportingApiV1EreportingValidatePost**](Flux10EReportingApi.md#validateEreportingApiV1EreportingValidatePost) | **POST** /api/v1/ereporting/validate | Validate e-reporting data |
+| [**validateXmlEreportingApiV1EreportingValidateXmlPost**](Flux10EReportingApi.md#validateXmlEreportingApiV1EreportingValidateXmlPost) | **POST** /api/v1/ereporting/validate-xml | Validate e-reporting XML (PPF Annexe 6 v1.9 compliant) |
 
 
 <a id="generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost"></a>
@@ -33,7 +33,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -44,13 +44,13 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     CreateAggregatedReportRequest createAggregatedReportRequest = new CreateAggregatedReportRequest(); // CreateAggregatedReportRequest | 
     try {
       GenerateAggregatedReportResponse result = apiInstance.generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost(createAggregatedReportRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost");
+      System.err.println("Exception when calling Flux10EReportingApi#generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -104,7 +104,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -115,13 +115,13 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     CreateEReportingRequest createEReportingRequest = new CreateEReportingRequest(); // CreateEReportingRequest | 
     try {
       GenerateEReportingResponse result = apiInstance.generateEreportingApiV1EreportingGeneratePost(createEReportingRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#generateEreportingApiV1EreportingGeneratePost");
+      System.err.println("Exception when calling Flux10EReportingApi#generateEreportingApiV1EreportingGeneratePost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -175,7 +175,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -186,13 +186,13 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     CreateEReportingRequest createEReportingRequest = new CreateEReportingRequest(); // CreateEReportingRequest | 
     String filename = "filename_example"; // String | Output filename (default: ereporting_{reportId}.xml)
     try {
       apiInstance.generateEreportingDownloadApiV1EreportingGenerateDownloadPost(createEReportingRequest, filename);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#generateEreportingDownloadApiV1EreportingGenerateDownloadPost");
+      System.err.println("Exception when calling Flux10EReportingApi#generateEreportingDownloadApiV1EreportingGenerateDownloadPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -246,19 +246,19 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     try {
       Map<String, Object> result = apiInstance.listCategoryCodesApiV1EreportingCategoryCodesGet();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#listCategoryCodesApiV1EreportingCategoryCodesGet");
+      System.err.println("Exception when calling Flux10EReportingApi#listCategoryCodesApiV1EreportingCategoryCodesGet");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -307,19 +307,19 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     try {
       Map<String, Object> result = apiInstance.listFlowTypesApiV1EreportingFlowTypesGet();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#listFlowTypesApiV1EreportingFlowTypesGet");
+      System.err.println("Exception when calling Flux10EReportingApi#listFlowTypesApiV1EreportingFlowTypesGet");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -369,7 +369,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -380,13 +380,13 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     SubmitAggregatedReportRequest submitAggregatedReportRequest = new SubmitAggregatedReportRequest(); // SubmitAggregatedReportRequest | 
     try {
       SubmitEReportingResponse result = apiInstance.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost");
+      System.err.println("Exception when calling Flux10EReportingApi#submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -440,7 +440,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -451,13 +451,13 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     SubmitEReportingRequest submitEReportingRequest = new SubmitEReportingRequest(); // SubmitEReportingRequest | 
     try {
       SubmitEReportingResponse result = apiInstance.submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#submitEreportingApiV1EreportingSubmitPost");
+      System.err.println("Exception when calling Flux10EReportingApi#submitEreportingApiV1EreportingSubmitPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -511,7 +511,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -522,7 +522,7 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     File xmlFile = new File("/path/to/file"); // File | E-reporting XML file
     String trackingId = "trackingId_example"; // String | 
     Boolean skipValidation = false; // Boolean | Skip XSD validation
@@ -534,7 +534,7 @@ public class Example {
       SubmitEReportingResponse result = apiInstance.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#submitXmlEreportingApiV1EreportingSubmitXmlPost");
+      System.err.println("Exception when calling Flux10EReportingApi#submitXmlEreportingApiV1EreportingSubmitXmlPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -594,7 +594,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -605,13 +605,13 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     CreateAggregatedReportRequest createAggregatedReportRequest = new CreateAggregatedReportRequest(); // CreateAggregatedReportRequest | 
     try {
       Map<String, Object> result = apiInstance.validateAggregatedEreportingApiV1EreportingValidateAggregatedPost(createAggregatedReportRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#validateAggregatedEreportingApiV1EreportingValidateAggregatedPost");
+      System.err.println("Exception when calling Flux10EReportingApi#validateAggregatedEreportingApiV1EreportingValidateAggregatedPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -665,7 +665,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -676,13 +676,13 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     ValidateEReportingRequest validateEReportingRequest = new ValidateEReportingRequest(); // ValidateEReportingRequest | 
     try {
       ValidateEReportingResponse result = apiInstance.validateEreportingApiV1EreportingValidatePost(validateEReportingRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#validateEreportingApiV1EreportingValidatePost");
+      System.err.println("Exception when calling Flux10EReportingApi#validateEreportingApiV1EreportingValidatePost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -722,11 +722,11 @@ public class Example {
 
 <a id="validateXmlEreportingApiV1EreportingValidateXmlPost"></a>
 # **validateXmlEreportingApiV1EreportingValidateXmlPost**
-> Map&lt;String, Object&gt; validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateBusinessRules)
+> Map&lt;String, Object&gt; validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod)
 
-Validate e-reporting XML against PPF XSD schemas and business rules
+Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
 
-Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009&#x3D;SIRET, 0002&#x3D;SIREN, etc.)    - Role codes (UNCL 3035: SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party, etc.)  Returns validation status and detailed error messages if invalid.
+Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals &#x3D; sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002&#x3D;SIREN, 0009&#x3D;SIRET, 0224&#x3D;RoutingCode, etc. - RoleCode (UNCL 3035): SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
 
 ### Example
 ```java
@@ -736,7 +736,7 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.models.*;
-import org.openapitools.client.api.EReportingApi;
+import org.openapitools.client.api.Flux10EReportingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -747,14 +747,15 @@ public class Example {
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
-    EReportingApi apiInstance = new EReportingApi(defaultClient);
+    Flux10EReportingApi apiInstance = new Flux10EReportingApi(defaultClient);
     File xmlFile = new File("/path/to/file"); // File | E-reporting XML file to validate
-    Boolean validateBusinessRules = true; // Boolean | Also validate business rules (ISO codes, enums)
+    Boolean validateCoherence = true; // Boolean | Validate data coherence (REJ_COH)
+    Boolean validatePeriod = true; // Boolean | Validate period coherence (REJ_PER)
     try {
-      Map<String, Object> result = apiInstance.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateBusinessRules);
+      Map<String, Object> result = apiInstance.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling EReportingApi#validateXmlEreportingApiV1EreportingValidateXmlPost");
+      System.err.println("Exception when calling Flux10EReportingApi#validateXmlEreportingApiV1EreportingValidateXmlPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -769,7 +770,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **xmlFile** | **File**| E-reporting XML file to validate | |
-| **validateBusinessRules** | **Boolean**| Also validate business rules (ISO codes, enums) | [optional] [default to true] |
+| **validateCoherence** | **Boolean**| Validate data coherence (REJ_COH) | [optional] [default to true] |
+| **validatePeriod** | **Boolean**| Validate period coherence (REJ_PER) | [optional] [default to true] |
 
 ### Return type
 

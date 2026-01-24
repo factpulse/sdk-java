@@ -4,76 +4,9 @@ All URIs are relative to *https://factpulse.fr*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getAfnorCredentialsApiV1AfnorCredentialsGet**](AfnorPdpPaApi.md#getAfnorCredentialsApiV1AfnorCredentialsGet) | **GET** /api/v1/afnor/credentials | Retrieve stored AFNOR credentials |
 | [**getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet**](AfnorPdpPaApi.md#getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet) | **GET** /api/v1/afnor/incoming-flows/{flow_id} | Retrieve and extract an incoming invoice |
-| [**oauthTokenProxyApiV1AfnorOauthTokenPost**](AfnorPdpPaApi.md#oauthTokenProxyApiV1AfnorOauthTokenPost) | **POST** /api/v1/afnor/oauth/token | OAuth2 endpoint for AFNOR authentication |
+| [**oauthTokenProxyApiV1AfnorOauthTokenPost**](AfnorPdpPaApi.md#oauthTokenProxyApiV1AfnorOauthTokenPost) | **POST** /api/v1/afnor/oauth/token | Test PDP OAuth2 credentials |
 
-
-<a id="getAfnorCredentialsApiV1AfnorCredentialsGet"></a>
-# **getAfnorCredentialsApiV1AfnorCredentialsGet**
-> Object getAfnorCredentialsApiV1AfnorCredentialsGet()
-
-Retrieve stored AFNOR credentials
-
-Retrieves stored AFNOR/PDP credentials for the JWT&#39;s client_uid. This endpoint is used by the SDK in &#39;stored&#39; mode to retrieve credentials before performing AFNOR OAuth itself.
-
-### Example
-```java
-// Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.AfnorPdpPaApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://factpulse.fr");
-    
-    // Configure HTTP bearer authorization: HTTPBearer
-    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
-    HTTPBearer.setBearerToken("BEARER TOKEN");
-
-    AfnorPdpPaApi apiInstance = new AfnorPdpPaApi(defaultClient);
-    try {
-      Object result = apiInstance.getAfnorCredentialsApiV1AfnorCredentialsGet();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AfnorPdpPaApi#getAfnorCredentialsApiV1AfnorCredentialsGet");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**Object**
-
-### Authorization
-
-[HTTPBearer](../README.md#HTTPBearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | AFNOR credentials retrieved successfully |  -  |
-| **400** | No client_uid in JWT |  -  |
-| **401** | Not authenticated - Missing or invalid JWT token |  -  |
-| **404** | Client not found or no AFNOR credentials configured |  -  |
 
 <a id="getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet"></a>
 # **getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet**
@@ -153,9 +86,9 @@ public class Example {
 # **oauthTokenProxyApiV1AfnorOauthTokenPost**
 > Object oauthTokenProxyApiV1AfnorOauthTokenPost()
 
-OAuth2 endpoint for AFNOR authentication
+Test PDP OAuth2 credentials
 
-OAuth2 proxy endpoint to obtain an AFNOR access token. Proxies to AFNOR mock (sandbox) or real PDP depending on MOCK_AFNOR_BASE_URL. This endpoint is public (no Django auth required) as it is called by the AFNOR SDK.
+OAuth2 proxy to validate PDP credentials. Use this endpoint to verify that OAuth credentials (client_id, client_secret) are valid before saving a PDP configuration. This endpoint is public (no authentication required).
 
 ### Example
 ```java
@@ -205,6 +138,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OAuth2 token acquired successfully |  -  |
-| **401** | Invalid credentials |  -  |
+| **200** | OAuth2 token acquired successfully - credentials are valid |  -  |
+| **401** | Invalid credentials - client_id or client_secret is wrong |  -  |
+| **503** | PDP OAuth server unavailable |  -  |
 

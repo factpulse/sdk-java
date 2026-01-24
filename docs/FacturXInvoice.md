@@ -11,7 +11,7 @@ Data model for an invoice to be converted to Factur-X.
 |**invoiceNumber** | **String** |  |  |
 |**paymentDueDate** | **String** |  |  |
 |**invoiceDate** | **String** |  |  [optional] |
-|**submissionMode** | **SubmissionMode** |  |  |
+|**submissionMode** | **SubmissionMode** |  |  [optional] |
 |**recipient** | [**Recipient**](Recipient.md) |  |  |
 |**supplier** | [**Supplier**](Supplier.md) |  |  |
 |**invoicingFramework** | [**InvoicingFramework**](InvoicingFramework.md) |  |  |

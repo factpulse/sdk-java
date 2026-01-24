@@ -1,6 +1,6 @@
 /*
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -45,16 +45,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EReportingApi {
+public class Flux10EReportingApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public EReportingApi() {
+    public Flux10EReportingApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public EReportingApi(ApiClient apiClient) {
+    public Flux10EReportingApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -1543,7 +1543,8 @@ public class EReportingApi {
     /**
      * Build call for validateXmlEreportingApiV1EreportingValidateXmlPost
      * @param xmlFile E-reporting XML file to validate (required)
-     * @param validateBusinessRules Also validate business rules (ISO codes, enums) (optional, default to true)
+     * @param validateCoherence Validate data coherence (REJ_COH) (optional, default to true)
+     * @param validatePeriod Validate period coherence (REJ_PER) (optional, default to true)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1558,7 +1559,7 @@ public class EReportingApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateXmlEreportingApiV1EreportingValidateXmlPostCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateBusinessRules, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call validateXmlEreportingApiV1EreportingValidateXmlPostCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateCoherence, @javax.annotation.Nullable Boolean validatePeriod, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1587,8 +1588,12 @@ public class EReportingApi {
             localVarFormParams.put("xml_file", xmlFile);
         }
 
-        if (validateBusinessRules != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("validate_business_rules", validateBusinessRules));
+        if (validateCoherence != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("validate_coherence", validateCoherence));
+        }
+
+        if (validatePeriod != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("validate_period", validatePeriod));
         }
 
         final String[] localVarAccepts = {
@@ -1612,21 +1617,22 @@ public class EReportingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call validateXmlEreportingApiV1EreportingValidateXmlPostValidateBeforeCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateBusinessRules, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call validateXmlEreportingApiV1EreportingValidateXmlPostValidateBeforeCall(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateCoherence, @javax.annotation.Nullable Boolean validatePeriod, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xmlFile' is set
         if (xmlFile == null) {
             throw new ApiException("Missing the required parameter 'xmlFile' when calling validateXmlEreportingApiV1EreportingValidateXmlPost(Async)");
         }
 
-        return validateXmlEreportingApiV1EreportingValidateXmlPostCall(xmlFile, validateBusinessRules, _callback);
+        return validateXmlEreportingApiV1EreportingValidateXmlPostCall(xmlFile, validateCoherence, validatePeriod, _callback);
 
     }
 
     /**
-     * Validate e-reporting XML against PPF XSD schemas and business rules
-     * Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009&#x3D;SIRET, 0002&#x3D;SIREN, etc.)    - Role codes (UNCL 3035: SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party, etc.)  Returns validation status and detailed error messages if invalid.
+     * Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
+     * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals &#x3D; sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002&#x3D;SIREN, 0009&#x3D;SIRET, 0224&#x3D;RoutingCode, etc. - RoleCode (UNCL 3035): SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
      * @param xmlFile E-reporting XML file to validate (required)
-     * @param validateBusinessRules Also validate business rules (ISO codes, enums) (optional, default to true)
+     * @param validateCoherence Validate data coherence (REJ_COH) (optional, default to true)
+     * @param validatePeriod Validate period coherence (REJ_PER) (optional, default to true)
      * @return Map&lt;String, Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1640,16 +1646,17 @@ public class EReportingApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public Map<String, Object> validateXmlEreportingApiV1EreportingValidateXmlPost(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateBusinessRules) throws ApiException {
-        ApiResponse<Map<String, Object>> localVarResp = validateXmlEreportingApiV1EreportingValidateXmlPostWithHttpInfo(xmlFile, validateBusinessRules);
+    public Map<String, Object> validateXmlEreportingApiV1EreportingValidateXmlPost(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateCoherence, @javax.annotation.Nullable Boolean validatePeriod) throws ApiException {
+        ApiResponse<Map<String, Object>> localVarResp = validateXmlEreportingApiV1EreportingValidateXmlPostWithHttpInfo(xmlFile, validateCoherence, validatePeriod);
         return localVarResp.getData();
     }
 
     /**
-     * Validate e-reporting XML against PPF XSD schemas and business rules
-     * Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009&#x3D;SIRET, 0002&#x3D;SIREN, etc.)    - Role codes (UNCL 3035: SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party, etc.)  Returns validation status and detailed error messages if invalid.
+     * Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
+     * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals &#x3D; sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002&#x3D;SIREN, 0009&#x3D;SIRET, 0224&#x3D;RoutingCode, etc. - RoleCode (UNCL 3035): SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
      * @param xmlFile E-reporting XML file to validate (required)
-     * @param validateBusinessRules Also validate business rules (ISO codes, enums) (optional, default to true)
+     * @param validateCoherence Validate data coherence (REJ_COH) (optional, default to true)
+     * @param validatePeriod Validate period coherence (REJ_PER) (optional, default to true)
      * @return ApiResponse&lt;Map&lt;String, Object&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1663,17 +1670,18 @@ public class EReportingApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Map<String, Object>> validateXmlEreportingApiV1EreportingValidateXmlPostWithHttpInfo(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateBusinessRules) throws ApiException {
-        okhttp3.Call localVarCall = validateXmlEreportingApiV1EreportingValidateXmlPostValidateBeforeCall(xmlFile, validateBusinessRules, null);
+    public ApiResponse<Map<String, Object>> validateXmlEreportingApiV1EreportingValidateXmlPostWithHttpInfo(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateCoherence, @javax.annotation.Nullable Boolean validatePeriod) throws ApiException {
+        okhttp3.Call localVarCall = validateXmlEreportingApiV1EreportingValidateXmlPostValidateBeforeCall(xmlFile, validateCoherence, validatePeriod, null);
         Type localVarReturnType = new TypeToken<Map<String, Object>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Validate e-reporting XML against PPF XSD schemas and business rules (asynchronously)
-     * Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009&#x3D;SIRET, 0002&#x3D;SIREN, etc.)    - Role codes (UNCL 3035: SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party, etc.)  Returns validation status and detailed error messages if invalid.
+     * Validate e-reporting XML (PPF Annexe 6 v1.9 compliant) (asynchronously)
+     * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals &#x3D; sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002&#x3D;SIREN, 0009&#x3D;SIRET, 0224&#x3D;RoutingCode, etc. - RoleCode (UNCL 3035): SE&#x3D;Seller, BY&#x3D;Buyer, WK&#x3D;Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
      * @param xmlFile E-reporting XML file to validate (required)
-     * @param validateBusinessRules Also validate business rules (ISO codes, enums) (optional, default to true)
+     * @param validateCoherence Validate data coherence (REJ_COH) (optional, default to true)
+     * @param validatePeriod Validate period coherence (REJ_PER) (optional, default to true)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1688,9 +1696,9 @@ public class EReportingApi {
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call validateXmlEreportingApiV1EreportingValidateXmlPostAsync(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateBusinessRules, final ApiCallback<Map<String, Object>> _callback) throws ApiException {
+    public okhttp3.Call validateXmlEreportingApiV1EreportingValidateXmlPostAsync(@javax.annotation.Nonnull File xmlFile, @javax.annotation.Nullable Boolean validateCoherence, @javax.annotation.Nullable Boolean validatePeriod, final ApiCallback<Map<String, Object>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = validateXmlEreportingApiV1EreportingValidateXmlPostValidateBeforeCall(xmlFile, validateBusinessRules, _callback);
+        okhttp3.Call localVarCall = validateXmlEreportingApiV1EreportingValidateXmlPostValidateBeforeCall(xmlFile, validateCoherence, validatePeriod, _callback);
         Type localVarReturnType = new TypeToken<Map<String, Object>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

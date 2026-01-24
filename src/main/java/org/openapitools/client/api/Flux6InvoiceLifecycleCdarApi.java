@@ -1,6 +1,6 @@
 /*
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -31,6 +31,7 @@ import org.openapitools.client.model.APIError;
 import org.openapitools.client.model.ActionCodesResponse;
 import org.openapitools.client.model.CreateCDARRequest;
 import org.openapitools.client.model.EncaisseeRequest;
+import java.io.File;
 import org.openapitools.client.model.GenerateCDARResponse;
 import org.openapitools.client.model.ReasonCodesResponse;
 import org.openapitools.client.model.RefuseeRequest;
@@ -48,16 +49,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CdarCycleDeVieApi {
+public class Flux6InvoiceLifecycleCdarApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public CdarCycleDeVieApi() {
+    public Flux6InvoiceLifecycleCdarApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public CdarCycleDeVieApi(ApiClient apiClient) {
+    public Flux6InvoiceLifecycleCdarApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -96,9 +97,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -159,8 +160,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Générer un message CDAR
-     * Génère un message XML CDAR (Cross Domain Acknowledgement and Response) pour communiquer le statut d&#39;une facture.  **Types de messages:** - **23** (Traitement): Message de cycle de vie standard - **305** (Transmission): Message de transmission entre plateformes  **Règles métier:** - BR-FR-CDV-14: Le statut 212 (ENCAISSEE) requiert un montant encaissé - BR-FR-CDV-15: Les statuts 206/207/208/210/213/501 requièrent un code motif
+     * Generate a CDAR message
+     * Generate a CDAR XML message (Cross Domain Acknowledgement and Response) to communicate the status of an invoice.  **Message types:** - **23** (Processing): Standard lifecycle message - **305** (Transmission): Inter-platform transmission message  **Business rules:** - BR-FR-CDV-14: Status 212 (PAID) requires a paid amount - BR-FR-CDV-15: Statuses 206/207/208/210/213/501 require a reason code
      * @param createCDARRequest  (required)
      * @return GenerateCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -169,9 +170,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -181,8 +182,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Générer un message CDAR
-     * Génère un message XML CDAR (Cross Domain Acknowledgement and Response) pour communiquer le statut d&#39;une facture.  **Types de messages:** - **23** (Traitement): Message de cycle de vie standard - **305** (Transmission): Message de transmission entre plateformes  **Règles métier:** - BR-FR-CDV-14: Le statut 212 (ENCAISSEE) requiert un montant encaissé - BR-FR-CDV-15: Les statuts 206/207/208/210/213/501 requièrent un code motif
+     * Generate a CDAR message
+     * Generate a CDAR XML message (Cross Domain Acknowledgement and Response) to communicate the status of an invoice.  **Message types:** - **23** (Processing): Standard lifecycle message - **305** (Transmission): Inter-platform transmission message  **Business rules:** - BR-FR-CDV-14: Status 212 (PAID) requires a paid amount - BR-FR-CDV-15: Statuses 206/207/208/210/213/501 require a reason code
      * @param createCDARRequest  (required)
      * @return ApiResponse&lt;GenerateCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -191,9 +192,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -204,8 +205,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Générer un message CDAR (asynchronously)
-     * Génère un message XML CDAR (Cross Domain Acknowledgement and Response) pour communiquer le statut d&#39;une facture.  **Types de messages:** - **23** (Traitement): Message de cycle de vie standard - **305** (Transmission): Message de transmission entre plateformes  **Règles métier:** - BR-FR-CDV-14: Le statut 212 (ENCAISSEE) requiert un montant encaissé - BR-FR-CDV-15: Les statuts 206/207/208/210/213/501 requièrent un code motif
+     * Generate a CDAR message (asynchronously)
+     * Generate a CDAR XML message (Cross Domain Acknowledgement and Response) to communicate the status of an invoice.  **Message types:** - **23** (Processing): Standard lifecycle message - **305** (Transmission): Inter-platform transmission message  **Business rules:** - BR-FR-CDV-14: Status 212 (PAID) requires a paid amount - BR-FR-CDV-15: Statuses 206/207/208/210/213/501 require a reason code
      * @param createCDARRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -215,9 +216,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -238,9 +239,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getActionCodesApiV1CdarActionCodesGetCall(final ApiCallback _callback) throws ApiException {
@@ -294,8 +295,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes action CDAR
-     * Retourne la liste complète des codes action (BR-FR-CDV-CL-10).  Ces codes indiquent l&#39;action demandée sur la facture.
+     * List of CDAR action codes
+     * Returns the complete list of action codes (BR-FR-CDV-CL-10).  These codes indicate the requested action on the invoice.
      * @return ActionCodesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -303,9 +304,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public ActionCodesResponse getActionCodesApiV1CdarActionCodesGet() throws ApiException {
@@ -314,8 +315,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes action CDAR
-     * Retourne la liste complète des codes action (BR-FR-CDV-CL-10).  Ces codes indiquent l&#39;action demandée sur la facture.
+     * List of CDAR action codes
+     * Returns the complete list of action codes (BR-FR-CDV-CL-10).  These codes indicate the requested action on the invoice.
      * @return ApiResponse&lt;ActionCodesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -323,9 +324,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ActionCodesResponse> getActionCodesApiV1CdarActionCodesGetWithHttpInfo() throws ApiException {
@@ -335,8 +336,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes action CDAR (asynchronously)
-     * Retourne la liste complète des codes action (BR-FR-CDV-CL-10).  Ces codes indiquent l&#39;action demandée sur la facture.
+     * List of CDAR action codes (asynchronously)
+     * Returns the complete list of action codes (BR-FR-CDV-CL-10).  These codes indicate the requested action on the invoice.
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -345,9 +346,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getActionCodesApiV1CdarActionCodesGetAsync(final ApiCallback<ActionCodesResponse> _callback) throws ApiException {
@@ -367,9 +368,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getReasonCodesApiV1CdarReasonCodesGetCall(final ApiCallback _callback) throws ApiException {
@@ -423,8 +424,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes motif CDAR
-     * Retourne la liste complète des codes motif de statut (BR-FR-CDV-CL-09).  Ces codes expliquent la raison d&#39;un statut particulier.
+     * List of CDAR reason codes
+     * Returns the complete list of status reason codes (BR-FR-CDV-CL-09).  These codes explain the reason for a particular status.
      * @return ReasonCodesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -432,9 +433,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public ReasonCodesResponse getReasonCodesApiV1CdarReasonCodesGet() throws ApiException {
@@ -443,8 +444,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes motif CDAR
-     * Retourne la liste complète des codes motif de statut (BR-FR-CDV-CL-09).  Ces codes expliquent la raison d&#39;un statut particulier.
+     * List of CDAR reason codes
+     * Returns the complete list of status reason codes (BR-FR-CDV-CL-09).  These codes explain the reason for a particular status.
      * @return ApiResponse&lt;ReasonCodesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -452,9 +453,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ReasonCodesResponse> getReasonCodesApiV1CdarReasonCodesGetWithHttpInfo() throws ApiException {
@@ -464,8 +465,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes motif CDAR (asynchronously)
-     * Retourne la liste complète des codes motif de statut (BR-FR-CDV-CL-09).  Ces codes expliquent la raison d&#39;un statut particulier.
+     * List of CDAR reason codes (asynchronously)
+     * Returns the complete list of status reason codes (BR-FR-CDV-CL-09).  These codes explain the reason for a particular status.
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -474,9 +475,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getReasonCodesApiV1CdarReasonCodesGetAsync(final ApiCallback<ReasonCodesResponse> _callback) throws ApiException {
@@ -496,9 +497,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getStatusCodesApiV1CdarStatusCodesGetCall(final ApiCallback _callback) throws ApiException {
@@ -552,8 +553,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes statut CDAR
-     * Retourne la liste complète des codes statut de facture (BR-FR-CDV-CL-06).  Ces codes indiquent l&#39;état du cycle de vie d&#39;une facture.
+     * List of CDAR status codes
+     * Returns the complete list of invoice status codes (BR-FR-CDV-CL-06).  These codes indicate the lifecycle state of an invoice.
      * @return StatusCodesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -561,9 +562,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public StatusCodesResponse getStatusCodesApiV1CdarStatusCodesGet() throws ApiException {
@@ -572,8 +573,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes statut CDAR
-     * Retourne la liste complète des codes statut de facture (BR-FR-CDV-CL-06).  Ces codes indiquent l&#39;état du cycle de vie d&#39;une facture.
+     * List of CDAR status codes
+     * Returns the complete list of invoice status codes (BR-FR-CDV-CL-06).  These codes indicate the lifecycle state of an invoice.
      * @return ApiResponse&lt;StatusCodesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -581,9 +582,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<StatusCodesResponse> getStatusCodesApiV1CdarStatusCodesGetWithHttpInfo() throws ApiException {
@@ -593,8 +594,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Liste des codes statut CDAR (asynchronously)
-     * Retourne la liste complète des codes statut de facture (BR-FR-CDV-CL-06).  Ces codes indiquent l&#39;état du cycle de vie d&#39;une facture.
+     * List of CDAR status codes (asynchronously)
+     * Returns the complete list of invoice status codes (BR-FR-CDV-CL-06).  These codes indicate the lifecycle state of an invoice.
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -603,9 +604,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getStatusCodesApiV1CdarStatusCodesGetAsync(final ApiCallback<StatusCodesResponse> _callback) throws ApiException {
@@ -626,9 +627,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -689,8 +690,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Générer et soumettre un message CDAR
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+     * Generate and submit a CDAR message
+     * Generate a CDAR message and submit it to the PA/PDP platform.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request  **Flow types (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Client-side lifecycle (buyer) - &#x60;SupplierInvoiceLC&#x60;: Supplier-side lifecycle (seller)
      * @param submitCDARRequest  (required)
      * @return SubmitCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -699,9 +700,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -711,8 +712,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Générer et soumettre un message CDAR
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+     * Generate and submit a CDAR message
+     * Generate a CDAR message and submit it to the PA/PDP platform.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request  **Flow types (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Client-side lifecycle (buyer) - &#x60;SupplierInvoiceLC&#x60;: Supplier-side lifecycle (seller)
      * @param submitCDARRequest  (required)
      * @return ApiResponse&lt;SubmitCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -721,9 +722,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -734,8 +735,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Générer et soumettre un message CDAR (asynchronously)
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Cycle de vie côté client (acheteur) - &#x60;SupplierInvoiceLC&#x60;: Cycle de vie côté fournisseur (vendeur)
+     * Generate and submit a CDAR message (asynchronously)
+     * Generate a CDAR message and submit it to the PA/PDP platform.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request  **Flow types (flowType):** - &#x60;CustomerInvoiceLC&#x60;: Client-side lifecycle (buyer) - &#x60;SupplierInvoiceLC&#x60;: Supplier-side lifecycle (seller)
      * @param submitCDARRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -745,9 +746,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -769,9 +770,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -832,8 +833,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Soumettre un XML CDAR pré-généré
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+     * Submit a pre-generated CDAR XML
+     * Submit a pre-generated CDAR XML message to the PA/PDP platform.  Useful for submitting XML generated by other systems.  **Validation:** The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission. Invalid XML will be rejected with detailed error messages.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
      * @param submitCDARXMLRequest  (required)
      * @return SubmitCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -842,9 +843,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -854,8 +855,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Soumettre un XML CDAR pré-généré
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+     * Submit a pre-generated CDAR XML
+     * Submit a pre-generated CDAR XML message to the PA/PDP platform.  Useful for submitting XML generated by other systems.  **Validation:** The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission. Invalid XML will be rejected with detailed error messages.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
      * @param submitCDARXMLRequest  (required)
      * @return ApiResponse&lt;SubmitCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -864,9 +865,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -877,8 +878,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Soumettre un XML CDAR pré-généré (asynchronously)
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d&#39;autres systèmes.  **Stratégies d&#39;authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+     * Submit a pre-generated CDAR XML (asynchronously)
+     * Submit a pre-generated CDAR XML message to the PA/PDP platform.  Useful for submitting XML generated by other systems.  **Validation:** The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission. Invalid XML will be rejected with detailed error messages.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
      * @param submitCDARXMLRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -888,9 +889,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -912,9 +913,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -975,8 +976,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * [Simplifié] Soumettre un statut ENCAISSÉE (212)
-     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * [Simplified] Submit PAID status (212) - Issued invoice
+     * **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).  **Use case:** The **seller** confirms payment receipt for an invoice they issued.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The seller (SE &#x3D; Seller) who received payment - **Recipient (RecipientTradeParty):** The buyer (BY &#x3D; Buyer) who paid  **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @param encaisseeRequest  (required)
      * @return SimplifiedCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -985,9 +986,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -997,8 +998,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * [Simplifié] Soumettre un statut ENCAISSÉE (212)
-     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * [Simplified] Submit PAID status (212) - Issued invoice
+     * **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).  **Use case:** The **seller** confirms payment receipt for an invoice they issued.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The seller (SE &#x3D; Seller) who received payment - **Recipient (RecipientTradeParty):** The buyer (BY &#x3D; Buyer) who paid  **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @param encaisseeRequest  (required)
      * @return ApiResponse&lt;SimplifiedCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1007,9 +1008,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1020,8 +1021,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * [Simplifié] Soumettre un statut ENCAISSÉE (212) (asynchronously)
-     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d&#39;usage:** L&#39;acheteur confirme le paiement d&#39;une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * [Simplified] Submit PAID status (212) - Issued invoice (asynchronously)
+     * **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).  **Use case:** The **seller** confirms payment receipt for an invoice they issued.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The seller (SE &#x3D; Seller) who received payment - **Recipient (RecipientTradeParty):** The buyer (BY &#x3D; Buyer) who paid  **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @param encaisseeRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1031,9 +1032,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1055,9 +1056,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1118,8 +1119,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * [Simplifié] Soumettre un statut REFUSÉE (210)
-     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * [Simplified] Submit REFUSED status (210) - Received invoice
+     * **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).  **Use case:** The **buyer** refuses an invoice they received.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The buyer (BY &#x3D; Buyer) refusing the invoice - **Recipient (RecipientTradeParty):** The seller (SE &#x3D; Seller) who issued the invoice  **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml  **Allowed reason codes (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Incorrect VAT rate - &#x60;MONTANTTOTAL_ERR&#x60;: Incorrect total amount - &#x60;CALCUL_ERR&#x60;: Calculation error - &#x60;NON_CONFORME&#x60;: Non-compliant - &#x60;DOUBLON&#x60;: Duplicate - &#x60;DEST_ERR&#x60;: Wrong recipient - &#x60;TRANSAC_INC&#x60;: Incomplete transaction - &#x60;EMMET_INC&#x60;: Unknown issuer - &#x60;CONTRAT_TERM&#x60;: Contract terminated - &#x60;DOUBLE_FACT&#x60;: Double billing - &#x60;CMD_ERR&#x60;: Order error - &#x60;ADR_ERR&#x60;: Address error - &#x60;REF_CT_ABSENT&#x60;: Missing contract reference  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @param refuseeRequest  (required)
      * @return SimplifiedCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1128,9 +1129,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1140,8 +1141,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * [Simplifié] Soumettre un statut REFUSÉE (210)
-     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * [Simplified] Submit REFUSED status (210) - Received invoice
+     * **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).  **Use case:** The **buyer** refuses an invoice they received.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The buyer (BY &#x3D; Buyer) refusing the invoice - **Recipient (RecipientTradeParty):** The seller (SE &#x3D; Seller) who issued the invoice  **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml  **Allowed reason codes (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Incorrect VAT rate - &#x60;MONTANTTOTAL_ERR&#x60;: Incorrect total amount - &#x60;CALCUL_ERR&#x60;: Calculation error - &#x60;NON_CONFORME&#x60;: Non-compliant - &#x60;DOUBLON&#x60;: Duplicate - &#x60;DEST_ERR&#x60;: Wrong recipient - &#x60;TRANSAC_INC&#x60;: Incomplete transaction - &#x60;EMMET_INC&#x60;: Unknown issuer - &#x60;CONTRAT_TERM&#x60;: Contract terminated - &#x60;DOUBLE_FACT&#x60;: Double billing - &#x60;CMD_ERR&#x60;: Order error - &#x60;ADR_ERR&#x60;: Address error - &#x60;REF_CT_ABSENT&#x60;: Missing contract reference  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @param refuseeRequest  (required)
      * @return ApiResponse&lt;SimplifiedCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1150,9 +1151,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1163,8 +1164,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * [Simplifié] Soumettre un statut REFUSÉE (210) (asynchronously)
-     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d&#39;usage:** L&#39;acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Taux de TVA erroné - &#x60;MONTANTTOTAL_ERR&#x60;: Montant total erroné - &#x60;CALCUL_ERR&#x60;: Erreur de calcul - &#x60;NON_CONFORME&#x60;: Non conforme - &#x60;DOUBLON&#x60;: Doublon - &#x60;DEST_ERR&#x60;: Destinataire erroné - &#x60;TRANSAC_INC&#x60;: Transaction incomplète - &#x60;EMMET_INC&#x60;: Émetteur inconnu - &#x60;CONTRAT_TERM&#x60;: Contrat terminé - &#x60;DOUBLE_FACT&#x60;: Double facturation - &#x60;CMD_ERR&#x60;: Commande erronée - &#x60;ADR_ERR&#x60;: Adresse erronée - &#x60;REF_CT_ABSENT&#x60;: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * [Simplified] Submit REFUSED status (210) - Received invoice (asynchronously)
+     * **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).  **Use case:** The **buyer** refuses an invoice they received.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The buyer (BY &#x3D; Buyer) refusing the invoice - **Recipient (RecipientTradeParty):** The seller (SE &#x3D; Seller) who issued the invoice  **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml  **Allowed reason codes (BR-FR-CDV-CL-09):** - &#x60;TX_TVA_ERR&#x60;: Incorrect VAT rate - &#x60;MONTANTTOTAL_ERR&#x60;: Incorrect total amount - &#x60;CALCUL_ERR&#x60;: Calculation error - &#x60;NON_CONFORME&#x60;: Non-compliant - &#x60;DOUBLON&#x60;: Duplicate - &#x60;DEST_ERR&#x60;: Wrong recipient - &#x60;TRANSAC_INC&#x60;: Incomplete transaction - &#x60;EMMET_INC&#x60;: Unknown issuer - &#x60;CONTRAT_TERM&#x60;: Contract terminated - &#x60;DOUBLE_FACT&#x60;: Double billing - &#x60;CMD_ERR&#x60;: Order error - &#x60;ADR_ERR&#x60;: Address error - &#x60;REF_CT_ABSENT&#x60;: Missing contract reference  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @param refuseeRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1174,9 +1175,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1198,9 +1199,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1261,8 +1262,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Valider des données CDAR
-     * Valide les données CDAR sans générer le XML.  Vérifie: - Les formats des champs (SIREN, dates, etc.) - Les codes enums (statut, motif, action) - Les règles métier BR-FR-CDV-*
+     * Validate CDAR structured data
+     * Validate CDAR structured data without generating XML.  **Note:** This endpoint validates structured data fields only. Use &#x60;/validate-xml&#x60; to validate a pre-generated CDAR XML file against XSD and Schematron.  Checks: - Field formats (SIREN, dates, etc.) - Enum codes (status, reason, action) - Business rules BR-FR-CDV-*
      * @param validateCDARRequest  (required)
      * @return ValidateCDARResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1271,9 +1272,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1283,8 +1284,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Valider des données CDAR
-     * Valide les données CDAR sans générer le XML.  Vérifie: - Les formats des champs (SIREN, dates, etc.) - Les codes enums (statut, motif, action) - Les règles métier BR-FR-CDV-*
+     * Validate CDAR structured data
+     * Validate CDAR structured data without generating XML.  **Note:** This endpoint validates structured data fields only. Use &#x60;/validate-xml&#x60; to validate a pre-generated CDAR XML file against XSD and Schematron.  Checks: - Field formats (SIREN, dates, etc.) - Enum codes (status, reason, action) - Business rules BR-FR-CDV-*
      * @param validateCDARRequest  (required)
      * @return ApiResponse&lt;ValidateCDARResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1293,9 +1294,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1306,8 +1307,8 @@ public class CdarCycleDeVieApi {
     }
 
     /**
-     * Valider des données CDAR (asynchronously)
-     * Valide les données CDAR sans générer le XML.  Vérifie: - Les formats des champs (SIREN, dates, etc.) - Les codes enums (statut, motif, action) - Les règles métier BR-FR-CDV-*
+     * Validate CDAR structured data (asynchronously)
+     * Validate CDAR structured data without generating XML.  **Note:** This endpoint validates structured data fields only. Use &#x60;/validate-xml&#x60; to validate a pre-generated CDAR XML file against XSD and Schematron.  Checks: - Field formats (SIREN, dates, etc.) - Enum codes (status, reason, action) - Business rules BR-FR-CDV-*
      * @param validateCDARRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1317,9 +1318,9 @@ public class CdarCycleDeVieApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Requête invalide </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Erreur de validation </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Erreur serveur </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -1327,6 +1328,153 @@ public class CdarCycleDeVieApi {
 
         okhttp3.Call localVarCall = validateCdarApiV1CdarValidatePostValidateBeforeCall(validateCDARRequest, _callback);
         Type localVarReturnType = new TypeToken<ValidateCDARResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for validateXmlCdarApiV1CdarValidateXmlPost
+     * @param xmlFile CDAR XML file to validate (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call validateXmlCdarApiV1CdarValidateXmlPostCall(@javax.annotation.Nonnull File xmlFile, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/cdar/validate-xml";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (xmlFile != null) {
+            localVarFormParams.put("xml_file", xmlFile);
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call validateXmlCdarApiV1CdarValidateXmlPostValidateBeforeCall(@javax.annotation.Nonnull File xmlFile, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'xmlFile' is set
+        if (xmlFile == null) {
+            throw new ApiException("Missing the required parameter 'xmlFile' when calling validateXmlCdarApiV1CdarValidateXmlPost(Async)");
+        }
+
+        return validateXmlCdarApiV1CdarValidateXmlPostCall(xmlFile, _callback);
+
+    }
+
+    /**
+     * Validate CDAR XML against XSD and Schematron BR-FR-CDV
+     * Validates a CDAR XML file against:  1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse 2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle  Returns validation status and detailed error messages if invalid.  **Note:** Use &#x60;/validate&#x60; to validate structured data fields (JSON).
+     * @param xmlFile CDAR XML file to validate (required)
+     * @return Map&lt;String, Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public Map<String, Object> validateXmlCdarApiV1CdarValidateXmlPost(@javax.annotation.Nonnull File xmlFile) throws ApiException {
+        ApiResponse<Map<String, Object>> localVarResp = validateXmlCdarApiV1CdarValidateXmlPostWithHttpInfo(xmlFile);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Validate CDAR XML against XSD and Schematron BR-FR-CDV
+     * Validates a CDAR XML file against:  1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse 2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle  Returns validation status and detailed error messages if invalid.  **Note:** Use &#x60;/validate&#x60; to validate structured data fields (JSON).
+     * @param xmlFile CDAR XML file to validate (required)
+     * @return ApiResponse&lt;Map&lt;String, Object&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Map<String, Object>> validateXmlCdarApiV1CdarValidateXmlPostWithHttpInfo(@javax.annotation.Nonnull File xmlFile) throws ApiException {
+        okhttp3.Call localVarCall = validateXmlCdarApiV1CdarValidateXmlPostValidateBeforeCall(xmlFile, null);
+        Type localVarReturnType = new TypeToken<Map<String, Object>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Validate CDAR XML against XSD and Schematron BR-FR-CDV (asynchronously)
+     * Validates a CDAR XML file against:  1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse 2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle  Returns validation status and detailed error messages if invalid.  **Note:** Use &#x60;/validate&#x60; to validate structured data fields (JSON).
+     * @param xmlFile CDAR XML file to validate (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call validateXmlCdarApiV1CdarValidateXmlPostAsync(@javax.annotation.Nonnull File xmlFile, final ApiCallback<Map<String, Object>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = validateXmlCdarApiV1CdarValidateXmlPostValidateBeforeCall(xmlFile, _callback);
+        Type localVarReturnType = new TypeToken<Map<String, Object>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

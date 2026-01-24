@@ -1,6 +1,6 @@
 /*
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -40,16 +40,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DocumentConversionApi {
+public class FacturXConversionApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public DocumentConversionApi() {
+    public FacturXConversionApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DocumentConversionApi(ApiClient apiClient) {
+    public FacturXConversionApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -79,10 +79,10 @@ public class DocumentConversionApi {
 
     /**
      * Build call for convertDocumentAsyncApiV1ConvertAsyncPost
-     * @param _file Document à convertir (PDF, DOCX, XLSX, JPG, PNG) (required)
-     * @param output Format de sortie: pdf, xml, both (optional, default to pdf)
+     * @param _file Document to convert (PDF, DOCX, XLSX, JPG, PNG) (required)
+     * @param output Output format: pdf, xml, both (optional, default to pdf)
      * @param callbackUrl  (optional)
-     * @param webhookMode Mode de livraison du contenu: &#39;inline&#39; (base64 dans webhook) ou &#39;download_url&#39; (URL temporaire 1h) (optional, default to inline)
+     * @param webhookMode Content delivery mode: &#39;inline&#39; (base64 in webhook) or &#39;download_url&#39; (temporary URL, 1h TTL) (optional, default to inline)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -91,8 +91,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Tâche acceptée </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Task accepted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid file </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -170,12 +170,12 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Convertir un document en Factur-X (mode asynchrone)
-     * Lance une conversion asynchrone via Celery.  ## Workflow  1. **Upload** : Le document est envoyé en multipart/form-data 2. **Task Celery** : La tâche est mise en file d&#39;attente 3. **Callback** : Notification par webhook à la fin  ## Réponses possibles  - **202** : Tâche acceptée, en cours de traitement - **400** : Fichier invalide
-     * @param _file Document à convertir (PDF, DOCX, XLSX, JPG, PNG) (required)
-     * @param output Format de sortie: pdf, xml, both (optional, default to pdf)
+     * Convert a document to Factur-X (async mode)
+     * Launch an asynchronous conversion via Celery.  ## Workflow  1. **Upload**: Document is sent as multipart/form-data 2. **Celery Task**: Task is queued for processing 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **400**: Invalid file
+     * @param _file Document to convert (PDF, DOCX, XLSX, JPG, PNG) (required)
+     * @param output Output format: pdf, xml, both (optional, default to pdf)
      * @param callbackUrl  (optional)
-     * @param webhookMode Mode de livraison du contenu: &#39;inline&#39; (base64 dans webhook) ou &#39;download_url&#39; (URL temporaire 1h) (optional, default to inline)
+     * @param webhookMode Content delivery mode: &#39;inline&#39; (base64 in webhook) or &#39;download_url&#39; (temporary URL, 1h TTL) (optional, default to inline)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -183,8 +183,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Tâche acceptée </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Task accepted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid file </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -195,12 +195,12 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Convertir un document en Factur-X (mode asynchrone)
-     * Lance une conversion asynchrone via Celery.  ## Workflow  1. **Upload** : Le document est envoyé en multipart/form-data 2. **Task Celery** : La tâche est mise en file d&#39;attente 3. **Callback** : Notification par webhook à la fin  ## Réponses possibles  - **202** : Tâche acceptée, en cours de traitement - **400** : Fichier invalide
-     * @param _file Document à convertir (PDF, DOCX, XLSX, JPG, PNG) (required)
-     * @param output Format de sortie: pdf, xml, both (optional, default to pdf)
+     * Convert a document to Factur-X (async mode)
+     * Launch an asynchronous conversion via Celery.  ## Workflow  1. **Upload**: Document is sent as multipart/form-data 2. **Celery Task**: Task is queued for processing 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **400**: Invalid file
+     * @param _file Document to convert (PDF, DOCX, XLSX, JPG, PNG) (required)
+     * @param output Output format: pdf, xml, both (optional, default to pdf)
      * @param callbackUrl  (optional)
-     * @param webhookMode Mode de livraison du contenu: &#39;inline&#39; (base64 dans webhook) ou &#39;download_url&#39; (URL temporaire 1h) (optional, default to inline)
+     * @param webhookMode Content delivery mode: &#39;inline&#39; (base64 in webhook) or &#39;download_url&#39; (temporary URL, 1h TTL) (optional, default to inline)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -208,8 +208,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Tâche acceptée </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Task accepted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid file </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -221,12 +221,12 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Convertir un document en Factur-X (mode asynchrone) (asynchronously)
-     * Lance une conversion asynchrone via Celery.  ## Workflow  1. **Upload** : Le document est envoyé en multipart/form-data 2. **Task Celery** : La tâche est mise en file d&#39;attente 3. **Callback** : Notification par webhook à la fin  ## Réponses possibles  - **202** : Tâche acceptée, en cours de traitement - **400** : Fichier invalide
-     * @param _file Document à convertir (PDF, DOCX, XLSX, JPG, PNG) (required)
-     * @param output Format de sortie: pdf, xml, both (optional, default to pdf)
+     * Convert a document to Factur-X (async mode) (asynchronously)
+     * Launch an asynchronous conversion via Celery.  ## Workflow  1. **Upload**: Document is sent as multipart/form-data 2. **Celery Task**: Task is queued for processing 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **400**: Invalid file
+     * @param _file Document to convert (PDF, DOCX, XLSX, JPG, PNG) (required)
+     * @param output Output format: pdf, xml, both (optional, default to pdf)
      * @param callbackUrl  (optional)
-     * @param webhookMode Mode de livraison du contenu: &#39;inline&#39; (base64 dans webhook) ou &#39;download_url&#39; (URL temporaire 1h) (optional, default to inline)
+     * @param webhookMode Content delivery mode: &#39;inline&#39; (base64 in webhook) or &#39;download_url&#39; (temporary URL, 1h TTL) (optional, default to inline)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -235,8 +235,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 202 </td><td> Tâche acceptée </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Fichier invalide </td><td>  -  </td></tr>
+        <tr><td> 202 </td><td> Task accepted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid file </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -259,8 +259,8 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Fichier téléchargé </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Fichier non trouvé ou expiré </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> File downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found or expired </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -328,8 +328,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Télécharger un fichier généré
-     * Télécharge le fichier Factur-X PDF ou XML généré.  ## Fichiers disponibles  - &#x60;facturx.pdf&#x60; : PDF/A-3 avec XML embarqué - &#x60;facturx.xml&#x60; : XML CII seul (Cross Industry Invoice)  Les fichiers sont disponibles pendant 24 heures après génération.
+     * Download a generated file
+     * Download the generated Factur-X PDF or XML file.  ## Available files  - &#x60;facturx.pdf&#x60;: PDF/A-3 with embedded XML - &#x60;facturx.xml&#x60;: XML CII only (Cross Industry Invoice)  Files are available for 24 hours after generation.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @param filename File to download: &#39;facturx.pdf&#39; or &#39;facturx.xml&#39; (required)
      * @return Object
@@ -338,8 +338,8 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Fichier téléchargé </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Fichier non trouvé ou expiré </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> File downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found or expired </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -350,8 +350,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Télécharger un fichier généré
-     * Télécharge le fichier Factur-X PDF ou XML généré.  ## Fichiers disponibles  - &#x60;facturx.pdf&#x60; : PDF/A-3 avec XML embarqué - &#x60;facturx.xml&#x60; : XML CII seul (Cross Industry Invoice)  Les fichiers sont disponibles pendant 24 heures après génération.
+     * Download a generated file
+     * Download the generated Factur-X PDF or XML file.  ## Available files  - &#x60;facturx.pdf&#x60;: PDF/A-3 with embedded XML - &#x60;facturx.xml&#x60;: XML CII only (Cross Industry Invoice)  Files are available for 24 hours after generation.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @param filename File to download: &#39;facturx.pdf&#39; or &#39;facturx.xml&#39; (required)
      * @return ApiResponse&lt;Object&gt;
@@ -360,8 +360,8 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Fichier téléchargé </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Fichier non trouvé ou expiré </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> File downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found or expired </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -373,8 +373,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Télécharger un fichier généré (asynchronously)
-     * Télécharge le fichier Factur-X PDF ou XML généré.  ## Fichiers disponibles  - &#x60;facturx.pdf&#x60; : PDF/A-3 avec XML embarqué - &#x60;facturx.xml&#x60; : XML CII seul (Cross Industry Invoice)  Les fichiers sont disponibles pendant 24 heures après génération.
+     * Download a generated file (asynchronously)
+     * Download the generated Factur-X PDF or XML file.  ## Available files  - &#x60;facturx.pdf&#x60;: PDF/A-3 with embedded XML - &#x60;facturx.xml&#x60;: XML CII only (Cross Industry Invoice)  Files are available for 24 hours after generation.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @param filename File to download: &#39;facturx.pdf&#39; or &#39;facturx.xml&#39; (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -384,8 +384,8 @@ public class DocumentConversionApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Fichier téléchargé </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Fichier non trouvé ou expiré </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> File downloaded </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> File not found or expired </td><td>  -  </td></tr>
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
@@ -469,8 +469,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Vérifier le statut d&#39;une conversion
-     * Retourne le statut actuel d&#39;une conversion asynchrone.
+     * Check conversion status
+     * Returns the current status of an asynchronous conversion.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @return Map&lt;String, Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -489,8 +489,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Vérifier le statut d&#39;une conversion
-     * Retourne le statut actuel d&#39;une conversion asynchrone.
+     * Check conversion status
+     * Returns the current status of an asynchronous conversion.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @return ApiResponse&lt;Map&lt;String, Object&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -510,8 +510,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Vérifier le statut d&#39;une conversion (asynchronously)
-     * Retourne le statut actuel d&#39;une conversion asynchrone.
+     * Check conversion status (asynchronously)
+     * Returns the current status of an asynchronous conversion.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -544,8 +544,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Conversion not found or expired </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation still failing </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -612,8 +612,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Reprendre une conversion avec corrections
-     * Reprend une conversion après complétion des données manquantes ou correction des erreurs.  L&#39;extraction OCR est conservée, les données sont mises à jour avec les corrections, puis une nouvelle validation Schematron est effectuée.
+     * Resume a conversion with corrections
+     * Resume a conversion after completing missing data or correcting errors.  The OCR extraction is preserved, data is updated with corrections, then a new Schematron validation is performed.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @param convertResumeRequest  (required)
      * @return ConvertSuccessResponse
@@ -623,8 +623,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Conversion not found or expired </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation still failing </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -634,8 +634,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Reprendre une conversion avec corrections
-     * Reprend une conversion après complétion des données manquantes ou correction des erreurs.  L&#39;extraction OCR est conservée, les données sont mises à jour avec les corrections, puis une nouvelle validation Schematron est effectuée.
+     * Resume a conversion with corrections
+     * Resume a conversion after completing missing data or correcting errors.  The OCR extraction is preserved, data is updated with corrections, then a new Schematron validation is performed.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @param convertResumeRequest  (required)
      * @return ApiResponse&lt;ConvertSuccessResponse&gt;
@@ -645,8 +645,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Conversion not found or expired </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation still failing </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */
@@ -657,8 +657,8 @@ public class DocumentConversionApi {
     }
 
     /**
-     * Reprendre une conversion avec corrections (asynchronously)
-     * Reprend une conversion après complétion des données manquantes ou correction des erreurs.  L&#39;extraction OCR est conservée, les données sont mises à jour avec les corrections, puis une nouvelle validation Schematron est effectuée.
+     * Resume a conversion with corrections (asynchronously)
+     * Resume a conversion after completing missing data or correcting errors.  The OCR extraction is preserved, data is updated with corrections, then a new Schematron validation is performed.
      * @param conversionId Conversion ID returned by POST /convert (UUID format) (required)
      * @param convertResumeRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -669,8 +669,8 @@ public class DocumentConversionApi {
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Conversion non trouvée ou expirée </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Validation toujours en échec </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Conversion not found or expired </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation still failing </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
      </table>
      */

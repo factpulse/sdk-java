@@ -5,28 +5,29 @@ info:
     name: FactPulse
     url: https://factpulse.fr/
   description: "\nREST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA,\
-    \ electronic signatures.\n\n## 🎯 Main Features\n\n### 📄 Factur-X Invoice Generation\n\
+    \ electronic signatures.\n\n## 🎯 Main Features\n\n### 📄 Factur-X - Generation\n\
     - **Formats**: XML only or PDF/A-3 with embedded XML\n- **Profiles**: MINIMUM,\
     \ BASIC, EN16931, EXTENDED\n- **Standards**: EN 16931 (EU directive 2014/55),\
     \ ISO 19005-3 (PDF/A-3), CII (UN/CEFACT)\n- **🆕 Simplified Format**: Generation\
-    \ from SIRET + auto-enrichment (Chorus Pro API + Business Search)\n\n### ✅ Validation\
-    \ and Compliance\n- **XML Validation**: Schematron (45 to 210+ rules depending\
-    \ on profile)\n- **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic\
-    \ signatures\n- **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)\n\
-    - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)\n\
-    \n### 📡 AFNOR PDP/PA Integration (XP Z12-013)\n- **Flow Submission**: Send invoices\
-    \ to Partner Dematerialization Platforms\n- **Flow Search**: View submitted invoices\n\
-    - **Download**: Retrieve PDF/A-3 with XML\n- **Directory Service**: Company search\
-    \ (SIREN/SIRET)\n- **Multi-client**: Support for multiple PDP configs per user\
-    \ (stored credentials or zero-storage)\n\n### ✍️ PDF Electronic Signature\n- **Standards**:\
-    \ PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival)\n\
-    - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP)\n- **Validation**:\
-    \ Cryptographic integrity and certificate verification\n- **Certificate Generation**:\
-    \ Self-signed X.509 certificates for testing\n\n### 🔄 Asynchronous Processing\n\
-    - **Celery**: Asynchronous generation, validation and signing\n- **Polling**:\
-    \ Status tracking via `/tasks/{task_id}/status`\n- **No timeout**: Ideal for large\
-    \ files or heavy validations\n\n## 🔒 Authentication\n\nAll requests require a\
-    \ **JWT token** in the Authorization header:\n```\nAuthorization: Bearer YOUR_JWT_TOKEN\n\
+    \ from SIRET + auto-enrichment (Chorus Pro API + Business Search)\n\n### ✅ Factur-X\
+    \ - Validation\n- **XML Validation**: Schematron (45 to 210+ rules depending on\
+    \ profile)\n- **PDF Validation**: PDF/A-3, Factur-X XMP metadata\n- **VeraPDF**:\
+    \ Strict PDF/A validation (146+ ISO 19005-3 rules)\n\n### ✍️ Electronic Signature\n\
+    - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term\
+    \ archival)\n- **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES\
+    \ (QTSP)\n- **Validation**: Cryptographic integrity and certificate verification\n\
+    \n### 📋 Flux 6 - Invoice Lifecycle (CDAR)\n- **CDAR Messages**: Acknowledgements,\
+    \ invoice statuses\n- **PPF Statuses**: REFUSED (210), PAID (212)\n\n### 📊 Flux\
+    \ 10 - E-Reporting\n- **Tax Declarations**: International B2B, B2C\n- **Flow Types**:\
+    \ 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4\
+    \ (B2C payments)\n\n### 📡 AFNOR PDP/PA (XP Z12-013)\n- **Flow Service**: Submit\
+    \ and search flows to PDPs\n- **Directory Service**: Company search (SIREN/SIRET)\n\
+    - **Multi-client**: Support for multiple PDP configs per user\n\n### 🏛️ Chorus\
+    \ Pro\n- **Public Sector Invoicing**: Complete API for Chorus Pro\n\n### ⏳ Async\
+    \ Tasks\n- **Celery**: Asynchronous generation, validation and signing\n- **Polling**:\
+    \ Status tracking via `/tasks/{task_id}/status`\n- **Webhooks**: Automatic notifications\
+    \ when tasks complete\n\n## 🔒 Authentication\n\nAll requests require a **JWT\
+    \ token** in the Authorization header:\n```\nAuthorization: Bearer YOUR_JWT_TOKEN\n\
     ```\n\n### How to obtain a JWT token?\n\n#### 🔑 Method 1: `/api/token/` API (Recommended)\n\
     \n**URL:** `https://factpulse.fr/api/token/`\n\nThis method is **recommended**\
     \ for integration in your applications and CI/CD workflows.\n\n**Prerequisites:**\
@@ -75,14 +76,92 @@ servers:
 - description: Local development
   url: http://localhost:8001
 tags:
-- description: "\n## 📄 Electronic invoice generation and validation\n\n**Main API\
-    \ for generating Factur-X invoices compliant with European standards.**\n\n###\
-    \ Features\n\n- **Factur-X Generation**: MINIMUM, BASIC, EN16931, EXTENDED profiles\n\
-    - **Validation**: Schematron (45 to 210+ rules), VeraPDF (146+ PDF/A-3 rules)\n\
-    - **Electronic Signature**: PAdES-B-B, PAdES-B-T, PAdES-B-LT (eIDAS levels)\n\
-    - **Asynchronous Processing**: Celery support for large files\n- **Auto-enrichment**:\
-    \ Data from Chorus Pro + Business API\n        "
-  name: Invoice Processing
+- description: "\n## 📄 Factur-X Invoice Generation\n\n**Generate electronic invoices\
+    \ compliant with European standards, ready for submission via Flux 2.**\n\n###\
+    \ Features\n\n- **XML/PDF-A3 Generation**: Factur-X compliant invoices with embedded\
+    \ XML\n- **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED\n- **Auto-enrichment**:\
+    \ Data from Chorus Pro + Business Search API\n- **Async Processing**: Celery support\
+    \ for large files\n\n### Applied Standards\n\n- **Factur-X** (France): FNFE-MPE\
+    \ standard\n- **EN 16931**: European semantic standard (directive 2014/55/EU)\n\
+    - **ISO 19005-3** (PDF/A-3): Long-term electronic archiving\n- **Cross Industry\
+    \ Invoice (CII)**: UN/CEFACT XML syntax\n        "
+  name: Factur-X - Generation
+- description: "\n## ✅ Factur-X Invoice Validation\n\n**Schematron and PDF/A validation\
+    \ for European standards compliance.**\n\n### Validation Types\n\n- **XML Schematron\
+    \ Validation**: 45 to 210+ rules depending on profile\n- **PDF/A-3 Validation**:\
+    \ VeraPDF (146+ ISO 19005-3 rules)\n- **Auto-detection**: Automatic Factur-X profile\
+    \ detection\n\n### Validated Rules\n\n- **European Rules (BR-xx)**: 81 EN 16931\
+    \ business rules\n- **French Rules (FR-xx)**: 12 France-specific rules\n- **Calculation\
+    \ Rules (CR-xx)**: 32 calculation rules\n- **Standardized Codes (CL-xx)**: 52\
+    \ code lists\n        "
+  name: Factur-X - Validation
+- description: "\n## 🔍 PDF/XML Factur-X Consistency Verification\n\n**⚠️ Experimental\
+    \ feature** - Verifies that visible PDF data matches the embedded XML.\n\n###\
+    \ Features\n\n- **Native PDF Extraction**: Fast, uses pdfplumber\n- **OCR Extraction**:\
+    \ DocTR service for image PDFs (async)\n- **Comparison**: Compares extracted PDF\
+    \ data with Factur-X XML\n- **Discrepancy Report**: List of differences with severity\
+    \ level\n\n### Verified Fields\n\n**Identification**: BT-1 (invoice #), BT-2 (date),\
+    \ BT-3 (type), BT-5 (currency)\n\n**Parties**:\n- Seller: BT-27 (name), BT-29\
+    \ (SIRET), BT-30 (SIREN), BT-31 (VAT)\n- Buyer: BT-44 (name), BT-46 (SIRET), BT-47\
+    \ (SIREN), BT-48 (VAT)\n\n**Amounts**: BT-109 (excl. tax), BT-110 (VAT), BT-112\
+    \ (incl. tax), BT-115 (amount due)\n\n**Mandatory Notes**: PMT (recovery fees),\
+    \ PMD (late payment penalties), AAB (discount)\n        "
+  name: Factur-X - PDF/XML Verification
+- description: "\n## ✍️ PDF Electronic Signature\n\n**eIDAS-compliant PAdES signature\
+    \ for invoices and PDF documents.**\n\n### Supported Standards\n\n- **PAdES-B-B**:\
+    \ Basic signature\n- **PAdES-B-T**: With RFC 3161 timestamping\n- **PAdES-B-LT**:\
+    \ Long-term archival (embedded validation data)\n\n### eIDAS Levels\n\n- **SES**:\
+    \ Simple Electronic Seal (self-signed)\n- **AdES**: Advanced Electronic Seal (commercial\
+    \ CA)\n- **QES**: Qualified Electronic Seal (QTSP - out of scope)\n\n### Features\n\
+    \n- **Sync Signing**: `/sign-pdf`\n- **Async Signing**: `/sign-pdf-async` (Celery)\n\
+    - **Validation**: `/validate-pdf-signature`\n- **Test Certificate Generation**:\
+    \ `/generate-test-certificate`\n\n**⚠️ Legal Disclaimer**: Generated signatures\
+    \ are electronic seals as defined by the eIDAS regulation.\nLegal validity depends\
+    \ on the certificate used.\n        "
+  name: Electronic Signature
+- description: "\n## 🔄 Document Conversion to Factur-X\n\n**Transform any document\
+    \ (PDF, DOCX, XLSX, images) into a compliant Factur-X invoice.**\n\n### How it\
+    \ works\n\n1. **Upload**: Send your document (PDF, Word, Excel, scan)\n2. **Auto-extraction**:\
+    \ Invoice data is automatically extracted\n3. **Smart Detection**: Document type\
+    \ automatically identified\n4. **Enrichment**: Company data completed from official\
+    \ registries\n5. **Validation**: Compliance verified against EN16931\n6. **Output**:\
+    \ PDF/A-3 with embedded XML, ready for submission\n\n### Supported Document Types\
+    \ (UNTDID 1001)\n\n| Code | Type | Description |\n|------|------|-------------|\n\
+    | 380 | Invoice | Standard commercial invoice |\n| 381 | Credit Note | Refund,\
+    \ correction |\n| 384 | Corrective Invoice | Replaces an erroneous invoice |\n\
+    | 386 | Prepayment Invoice | Deposit or advance payment |\n        "
+  name: Factur-X - Conversion
+- description: "\n## 📋 Flux 6 - Invoice Lifecycle (CDAR)\n\n**Generate and submit\
+    \ CDAR messages (Cross Domain Acknowledgement and Response)\nfor invoice lifecycle\
+    \ management according to AFNOR XP Z12-014.**\n\n### Message Types\n\n- **Type\
+    \ 23** (Processing): Standard lifecycle message\n- **Type 305** (Transmission):\
+    \ Inter-platform transmission message\n\n### Mandatory PPF Statuses\n\n| Code\
+    \ | Status | Description | Issuer |\n|------|--------|-------------|--------|\n\
+    | **210** | REFUSED | Invoice rejected by buyer | Buyer (BY) |\n| **212** | PAID\
+    \ | Payment received confirmed | Seller (SE) |\n\n### Business Rules\n\n- **BR-FR-CDV-14**:\
+    \ Status 212 (PAID) requires a paid amount\n- **BR-FR-CDV-15**: Statuses 206/207/208/210/213/501\
+    \ require a reason code\n\n### Simplified Endpoints for OD\n\n- `POST /cdar/refusee`:\
+    \ Submit REFUSED status (210)\n- `POST /cdar/encaissee`: Submit PAID status (212)\n\
+    \n### Reference\n\n- **AFNOR XP Z12-014**: CDAR message specification\n- **BR-FR-CDV-CL-06**:\
+    \ Invoice status codes\n- **BR-FR-CDV-CL-09**: Status reason codes\n        "
+  name: Flux 6 - Invoice Lifecycle (CDAR)
+- description: "\n## 📊 Flux 10 - E-Reporting for PPF\n\n**Submit transaction and\
+    \ payment data to the tax administration\nvia PA (Approved Platforms) according\
+    \ to AFNOR XP Z12-012.**\n\n### What is E-Reporting?\n\nE-Reporting is the obligation\
+    \ to transmit transaction data to the tax administration\nfor operations outside\
+    \ the scope of e-invoicing (domestic B2B invoices).\n\n### Applicable Cases\n\n\
+    - **International B2B**: Sales/purchases with foreign companies\n- **B2C**: Sales\
+    \ to individuals (consumers)\n- **Payments**: When VAT is due on payment (not\
+    \ on invoice)\n\n### Supported Flow Types\n\n| Code | Name | Data Field | Description\
+    \ |\n|------|------|------------|-------------|\n| **10.1** | B2B Int. Transactions\
+    \ | `invoices` | Unitary international B2B invoices |\n| **10.2** | B2B Int. Payments\
+    \ | `invoicePayments` | Payments for B2B int. invoices |\n| **10.3** | B2C Transactions\
+    \ | `transactions` | Aggregated B2C sales (daily/periodic) |\n| **10.4** | B2C\
+    \ Payments | `aggregatedPayments` | Aggregated B2C payments |\n\n### Standards\
+    \ Compliance\n\n- **AFNOR XP Z12-012** v1.2 - Format descriptions\n- **AFNOR XP\
+    \ Z12-013** v1.1.0 - Flow Service API\n- **PPF External Specs** v3.1 - XSD schemas\n\
+    - **Annexe 6** v1.9 - Semantic format and business rules\n        "
+  name: Flux 10 - E-Reporting
 - description: "\n## 🔑 OAuth2 Authentication for AFNOR PDP\n\n**Endpoint to obtain\
     \ an OAuth2 token for authentication with Partner Dematerialization Platforms.**\n\
     \n### Usage\n\nThis endpoint allows you to obtain an OAuth2 access token required\
@@ -96,26 +175,21 @@ tags:
   name: AFNOR PDP/PA
 - description: "\n## 🔐 AFNOR PDP Authentication Modes\n\n**All AFNOR Flow Service\
     \ endpoints support 2 authentication modes:**\n\n### Mode 1: Stored (Stored Credentials)\n\
-    - PDP credentials are stored encrypted in Django\n- Automatically retrieved via\
-    \ JWT `client_uid`\n- **Django decides** the environment (test/production via\
-    \ configured URLs)\n- Convenient for production\n\n**Example**:\n```json\n{\n\
-    \  \"name\": \"Invoice INV-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\"\
-    : \"CIUS\"\n}\n```\n\n**JWT must contain**: `client_uid` claim pointing to a registered\
+    - PDP credentials stored encrypted in Django\n- Automatically retrieved via JWT\
+    \ `client_uid`\n- **Django decides** the environment (test/production via configured\
+    \ URLs)\n- Convenient for production\n\n**Example**:\n```json\n{\n  \"name\":\
+    \ \"Invoice INV-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\": \"\
+    CIUS\"\n}\n```\n\n**JWT must contain**: `client_uid` claim pointing to a registered\
     \ PDP config\n\n---\n\n### Mode 2: Zero-Trust (Zero-Storage)\n- PDP credentials\
-    \ are passed in the `pdp_credentials` field of each request\n- Never stored in\
-    \ database\n- **Client decides** the environment via URLs in credentials\n- Maximum\
-    \ security, GDPR compliant\n\n**Example**:\n```json\n{\n  \"name\": \"Invoice\
-    \ INV-2025-001\",\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\": \"CIUS\",\n\
-    \  \"pdp_credentials\": {\n    \"flow_service_url\": \"https://pdp-production.example.fr/flow/v1\"\
-    ,\n    \"token_url\": \"https://auth.example.fr/oauth/token\",\n    \"client_id\"\
+    \ passed in the `pdp_credentials` field of each request\n- Never stored in database\n\
+    - **Client decides** the environment via URLs in credentials\n- Maximum security,\
+    \ GDPR compliant\n\n**Example**:\n```json\n{\n  \"name\": \"Invoice INV-2025-001\"\
+    ,\n  \"flowSyntax\": \"CII\",\n  \"flowProfile\": \"CIUS\",\n  \"pdp_credentials\"\
+    : {\n    \"flow_service_url\": \"https://pdp-production.example.fr/flow/v1\",\n\
+    \    \"token_url\": \"https://auth.example.fr/oauth/token\",\n    \"client_id\"\
     : \"client_prod_123\",\n    \"client_secret\": \"secret_prod_456\",\n    \"directory_service_url\"\
-    : \"https://pdp-production.example.fr/directory/v1\"\n  }\n}\n```\n\n---\n\n**PDPCredentials\
-    \ Schema**:\n- `flow_service_url`: Flow Service API URL (invoice submission/search)\n\
-    - `token_url`: OAuth2 URL to obtain token\n- `client_id`: OAuth2 Client ID provided\
-    \ by PDP\n- `client_secret`: OAuth2 Client Secret provided by PDP\n- `directory_service_url`:\
-    \ (Optional) Directory Service API URL\n\n**Note**: All endpoints below support\
-    \ these 2 modes. The `pdp_credentials` field is optional in each request.\n\n📖\
-    \ **Full documentation**: See `OPENAPI_AUTHENTICATION_MODES.md`\n        "
+    : \"https://pdp-production.example.fr/directory/v1\"\n  }\n}\n```\n\n📖 **Full\
+    \ documentation**: See `OPENAPI_AUTHENTICATION_MODES.md`\n        "
   name: AFNOR PDP/PA - Flow Service
 - description: "\n## 🔐 AFNOR Directory Service Authentication Modes\n\nSupports the\
     \ **same 2 authentication modes** as Flow Service.\n\n### Mode 1: Stored\nJWT\
@@ -123,126 +197,55 @@ tags:
     PDP credentials passed in `pdp_credentials` (see Flow Service)\n\n📖 **Full documentation**:\
     \ See \"AFNOR PDP/PA - Flow Service\" tag above\n        "
   name: AFNOR PDP/PA - Directory Service
-- description: "\n## 🔐 Chorus Pro Authentication Modes\n\n**All Chorus Pro endpoints\
-    \ support 2 authentication modes:**\n\n### Mode 1: Stored (Stored Credentials)\n\
-    - Credentials are stored encrypted in Django\n- Automatically retrieved via JWT\
-    \ `client_uid`\n- **Django decides** the environment (sandbox/production)\n- Convenient\
-    \ for production\n\n**Example**:\n```json\n{\n  \"structure_identifier\": \"12345678901234\"\
-    ,\n  \"structure_identifier_type\": \"SIRET\"\n}\n```\n\n**JWT must contain**:\
-    \ `client_uid` claim pointing to a registered Chorus Pro config\n\n---\n\n###\
-    \ Mode 2: Zero-Trust\n- Credentials are passed in the `credentials` field of each\
-    \ request\n- Never stored in database\n- **Client decides** the environment via\
-    \ `\"sandbox\": true/false`\n- Maximum security, GDPR compliant\n\n**Example**:\n\
-    ```json\n{\n  \"credentials\": {\n    \"piste_client_id\": \"my_client_id\",\n\
-    \    \"piste_client_secret\": \"my_secret\",\n    \"chorus_pro_login\": \"login@company.fr\"\
-    ,\n    \"chorus_pro_password\": \"password\",\n    \"sandbox\": true\n  },\n \
-    \ \"structure_identifier\": \"12345678901234\",\n  \"structure_identifier_type\"\
-    : \"SIRET\"\n}\n```\n\n---\n\n**ChorusProCredentials Schema**:\n- `piste_client_id`:\
-    \ PISTE Client ID (government OAuth2 portal)\n- `piste_client_secret`: PISTE Client\
-    \ Secret\n- `chorus_pro_login`: Chorus Pro login\n- `chorus_pro_password`: Chorus\
-    \ Pro password\n- `sandbox`: `true` = test environment, `false` = production\n\
-    \n**Note**: All endpoints below support these 2 modes. The `credentials` field\
-    \ is optional in each request.\n\n📖 **Full documentation**: See `OPENAPI_AUTHENTICATION_MODES.md`\n\
+- description: "\n## 🏛️ Chorus Pro - Public Sector Invoicing\n\n**API for French\
+    \ public sector invoicing via Chorus Pro.**\n\n### Authentication Modes\n\n**Mode\
+    \ 1: Stored (Stored Credentials)**\n- Credentials stored encrypted in Django\n\
+    - Automatically retrieved via JWT `client_uid`\n- **Django decides** the environment\
+    \ (sandbox/production)\n\n**Mode 2: Zero-Trust**\n- Credentials passed in the\
+    \ `credentials` field of each request\n- Never stored in database\n- **Client\
+    \ decides** the environment via `\"sandbox\": true/false`\n\n### ChorusProCredentials\
+    \ Schema\n\n- `piste_client_id`: PISTE Client ID (government OAuth2 portal)\n\
+    - `piste_client_secret`: PISTE Client Secret\n- `chorus_pro_login`: Chorus Pro\
+    \ login\n- `chorus_pro_password`: Chorus Pro password\n- `sandbox`: `true` = test\
+    \ environment, `false` = production\n\n📖 **Full documentation**: See `OPENAPI_AUTHENTICATION_MODES.md`\n\
     \        "
   name: Chorus Pro
-- description: "\n## 🔍 PDF/XML Factur-X Consistency Verification\n\n**Verifies that\
-    \ visible data in the PDF matches the embedded Factur-X XML.**\n\n### Features\n\
-    \n- **Native PDF Extraction**: Fast, uses pdfplumber to extract text\n- **OCR\
-    \ Extraction**: DocTR service for image PDFs (asynchronous)\n- **Comparison**:\
-    \ Compares extracted PDF data with Factur-X XML\n- **Discrepancy Report**: List\
-    \ of differences with severity level (CRITICAL, WARNING, INFO)\n\n### Verified\
-    \ Fields\n\n**Identification**: BT-1 (invoice #), BT-2 (date), BT-3 (type), BT-5\
-    \ (currency)\n\n**Parties**:\n- Seller: BT-27 (name), BT-29 (SIRET), BT-30 (SIREN),\
-    \ BT-31 (VAT)\n- Buyer: BT-44 (name), BT-46 (SIRET), BT-47 (SIREN), BT-48 (VAT)\n\
-    \n**Amounts**: BT-109 (excl. tax), BT-110 (VAT), BT-112 (incl. tax), BT-115 (amount\
-    \ due)\n\n**Mandatory Notes**: PMT (recovery fees), PMD (late payment penalties),\
-    \ AAB (discount)\n\n### Endpoints\n\n- **POST /verify**: Synchronous verification\
-    \ (native PDF only)\n- **POST /verify-async**: Asynchronous verification (with\
-    \ OCR if needed)\n- **GET /verify-async/{id}/status**: Async verification status\n\
-    - **POST /extract**: Extraction only (without XML comparison)\n        "
-  name: PDF/XML Verification
-- description: "\n## 📊 E-Reporting (Flux 10) for PPF\n\n**Submit transaction and\
-    \ payment data to the French tax administration via PA (Plateformes Agréées).**\n\
-    \n### What is E-Reporting?\n\nE-Reporting is the obligation to transmit transaction\
-    \ data to the tax administration\nfor operations that are outside the scope of\
-    \ e-invoicing (B2B domestic invoices).\n\n### Applicable Cases\n\n- **B2B International**:\
-    \ Sales/purchases with foreign companies\n- **B2C**: Sales to individuals (consumers)\n\
-    - **Payments**: When VAT is due on payment (not on invoice)\n\n### Supported Flux\
-    \ Types\n\n| Code | Name | Data Field | Description |\n|------|------|------------|-------------|\n\
-    | **10.1** | B2B Int. Transactions | `invoices` | Unitary B2B international invoices\
-    \ |\n| **10.2** | B2B Int. Payments | `invoicePayments` | Payments for B2B int.\
-    \ invoices |\n| **10.3** | B2C Transactions | `transactions` | Aggregated B2C\
-    \ sales (daily/periodic) |\n| **10.4** | B2C Payments | `aggregatedPayments` |\
-    \ Aggregated B2C payments |\n\n### Workflow\n\n1. **Generate**: Create FRR XML\
-    \ from structured data\n2. **Validate**: Check data consistency and business rules\n\
-    3. **Submit**: Send to PA via AFNOR Flow Service API\n\n### Example (Flux 10.3\
-    \ - B2C Aggregated)\n\n```json\n{\n  \"reportId\": \"EREPORT-2025-001\",\n  \"\
-    flowType\": \"10.3\",\n  \"sender\": {\"siren\": \"123456789\", \"name\": \"Ma\
-    \ Société\"},\n  \"period\": {\"startDate\": \"2025-01-01\", \"endDate\": \"2025-01-31\"\
-    },\n  \"transactions\": [{\n    \"date\": \"2025-01-15\",\n    \"category\": \"\
-    B2C\",\n    \"taxExclusiveAmount\": \"10000.00\",\n    \"taxAmount\": \"2000.00\"\
-    ,\n    \"taxBreakdown\": [{\"rate\": \"20.00\", \"taxableAmount\": \"10000.00\"\
-    , \"taxAmount\": \"2000.00\"}],\n    \"transactionCount\": 150\n  }]\n}\n```\n\
-    \        "
-  name: E-Reporting
-- description: "\n## 🔄 Convert any document to Factur-X\n\n**Transform any document\
-    \ (PDF, DOCX, XLSX, images) into a compliant Factur-X invoice.**\n\n### How it\
-    \ works\n\n1. **Upload**: Send your document (PDF, Word, Excel, image scan)\n\
-    2. **Automatic extraction**: Invoice data is automatically extracted\n3. **Smart\
-    \ detection**: Document type automatically identified (invoice, credit note, etc.)\n\
-    4. **Data enrichment**: Missing company info completed from official registries\n\
-    5. **Validation**: Compliance verified against European standards (EN16931)\n\
-    6. **Output**: PDF/A-3 with embedded XML, ready for submission\n\n### Supported\
-    \ Document Types (UNTDID 1001)\n\n| Code | Type | Description |\n|------|------|-------------|\n\
-    | 380 | Invoice | Standard commercial invoice |\n| 381 | Credit note | Refund,\
-    \ correction of previous invoice |\n| 384 | Corrective invoice | Replaces an erroneous\
-    \ invoice |\n| 386 | Prepayment invoice | Deposit or advance payment |\n\n###\
-    \ Automatic Detection\n\n- **Profile**: EN16931 (standard) or EXTENDED (complex\
-    \ cases: factoring, subcontracting, B2G)\n- **Transaction type**: B2B, B2C, or\
-    \ B2G\n- **Special cases**: Subcontracting, factoring, self-invoicing\n\n### Your\
-    \ PDF is preserved when possible\n\n| Your document | What happens |\n|---------------|--------------|\n\
-    | PDF with complete data | ✅ Your PDF is kept, XML embedded |\n| PDF with missing\
-    \ data | ⚠️ New PDF generated, you're notified |\n| Excel / Word / Image | 📄\
-    \ PDF generated from a standard template |\n\n### Iterative workflow (if data\
-    \ is incomplete)\n\n1. Upload your document\n2. API returns extracted data + missing\
-    \ fields (status `202`)\n3. Complete or correct the data via JSON\n4. Call `/resume`\
-    \ endpoint (no re-upload needed)\n5. Validation replayed → PDF/A-3 generated\n\
-    \n### Endpoints\n\n| Method | Endpoint | Description |\n|--------|----------|-------------|\n\
-    | `POST` | `/convert/async` | Asynchronous conversion (webhook callback) |\n|\
-    \ `POST` | `/convert/{id}/resume` | Resume with corrections |\n| `GET` | `/convert/{id}/status`\
-    \ | Check conversion status |\n| `GET` | `/convert/{id}/download/{file}` | Download\
-    \ PDF or XML |\n        "
-  name: Document Conversion
-- description: "\n## Endpoints de santé\n\nVérification de la disponibilité et du\
-    \ bon fonctionnement des services.\n\n### Endpoints\n\n- `GET /` : Vérification\
-    \ rapide du statut API\n- `GET /healthcheck` : Healthcheck Docker/Kubernetes\n\
-    \        "
-  name: Health
-- description: "\n## Gestion utilisateur\n\nEndpoints pour la gestion du compte utilisateur\
-    \ et des informations de session.\n\n### Endpoints\n\n- `GET /api/v1/me` : Informations\
-    \ sur l'utilisateur connecté et son quota\n        "
-  name: User
-- description: "\n## Temporary file downloads\n\nDownload files generated by asynchronous\
-    \ tasks when using `webhook_mode: \"download_url\"`.\n\n### How it works\n\n1.\
-    \ When submitting an async task, set `webhook_mode: \"download_url\"`\n2. The\
-    \ webhook notification will contain a `download_url` instead of base64 content\n\
-    3. Use this URL to download the file (requires JWT authentication)\n4. Files expire\
-    \ after 1 hour\n\n### Security\n\n- JWT authentication required\n- Only the user\
-    \ who initiated the task can download the file\n        "
-  name: Downloads
-- description: "\n## Factpulse Client Management\n\nCRUD operations for Factpulse\
-    \ account clients and their PA/PDP credentials configuration.\n\n### Access Scopes\n\
-    \n**Account Level** (JWT without `client_uid`):\n- `GET /clients`: List all clients\
-    \ for the account\n- `POST /clients`: Create a new client\n\n**Client Level**\
-    \ (JWT with `client_uid`):\n- `GET /clients/{uid}`: Client details\n- `PATCH /clients/{uid}`:\
-    \ Update a client\n- `POST /clients/{uid}/activer`: Activate a client\n- `POST\
-    \ /clients/{uid}/desactiver`: Deactivate a client\n- `GET /clients/{uid}/pdp-config`:\
+- description: "\n## 👥 FactPulse Client Management\n\n**CRUD operations for FactPulse\
+    \ account clients and their PA/PDP credentials configuration.**\n\n### Access\
+    \ Levels\n\n**Account Level** (JWT without `client_uid`):\n- `GET /clients`: List\
+    \ all clients for the account\n- `POST /clients`: Create a new client\n\n**Client\
+    \ Level** (JWT with `client_uid`):\n- `GET /clients/{uid}`: Client details\n-\
+    \ `PATCH /clients/{uid}`: Update a client\n- `POST /clients/{uid}/activer`: Activate\
+    \ a client\n- `POST /clients/{uid}/desactiver`: Deactivate a client\n- `GET /clients/{uid}/pdp-config`:\
     \ PDP configuration (secrets masked)\n- `PUT /clients/{uid}/pdp-config`: Configure/update\
     \ PDP\n\n### Security\n\n- **JWT with client_uid**: The token's `client_uid` must\
     \ match the URL's `{uid}`\n- **Secrets**: `client_secret` is sent but NEVER returned\
     \ in responses\n- **Authorization**: Delegated to Django (team/permissions verification)\n\
     \        "
   name: Client Management
+- description: "\n## ⏳ Async Tasks (Celery)\n\n**Track the status of asynchronous\
+    \ generation, validation and signing tasks.**\n\n### How it works\n\n1. Submit\
+    \ an async task (e.g., `/generate-invoice`, `/validate-facturx-async`, `/sign-pdf-async`)\n\
+    2. Get the `task_id` (HTTP 202)\n3. Query `/tasks/{task_id}/status` to track progress\n\
+    \n### Possible States\n\n- **PENDING**: Task waiting in queue\n- **STARTED**:\
+    \ Task currently running\n- **SUCCESS**: Task completed successfully (see `result`)\n\
+    - **FAILURE**: System error (unhandled exception)\n- **RETRY**: Task being retried\n\
+    \n### Webhook (recommended)\n\nInstead of polling, you can receive a webhook notification:\n\
+    ```\ncallback_url=https://your-server.com/webhook\n```\n        "
+  name: Async Tasks
+- description: "\n## 📥 Temporary File Downloads\n\n**Download files generated by\
+    \ async tasks when using `webhook_mode: \"download_url\"`.**\n\n### How it works\n\
+    \n1. When submitting an async task, set `webhook_mode: \"download_url\"`\n2. The\
+    \ webhook notification will contain a `download_url` instead of base64 content\n\
+    3. Use this URL to download the file (JWT authentication required)\n4. Files expire\
+    \ after 1 hour\n\n### Security\n\n- JWT authentication required\n- Only the user\
+    \ who initiated the task can download the file\n        "
+  name: Downloads
+- description: "\n## 🏥 Health & Status\n\n**Endpoints for checking service availability\
+    \ and health.**\n\n### Endpoints\n\n- `GET /`: Quick API status check\n- `GET\
+    \ /healthcheck`: Docker/Kubernetes healthcheck\n- `GET /api/v1/me`: Current user\
+    \ info and quota\n        "
+  name: Health
 paths:
   /api/v1/processing/generate-invoice:
     post:
@@ -477,7 +480,7 @@ paths:
       - HTTPBearer: []
       summary: Generate a Factur-X invoice
       tags:
-      - Invoice Processing
+      - Factur-X - Generation
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -542,7 +545,7 @@ paths:
       - HTTPBearer: []
       summary: Get task generation status
       tags:
-      - Invoice Processing
+      - Async Tasks
       x-accepts:
       - application/json
   /api/v1/processing/validate-xml:
@@ -696,7 +699,7 @@ paths:
       - HTTPBearer: []
       summary: Validate an existing Factur-X XML
       tags:
-      - Invoice Processing
+      - Factur-X - Validation
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -873,7 +876,7 @@ paths:
       - HTTPBearer: []
       summary: Validate a complete Factur-X PDF
       tags:
-      - Invoice Processing
+      - Factur-X - Validation
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -1019,7 +1022,7 @@ paths:
       - HTTPBearer: []
       summary: Validate a Factur-X PDF (asynchronous with polling)
       tags:
-      - Invoice Processing
+      - Factur-X - Validation
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -1092,7 +1095,7 @@ paths:
       - HTTPBearer: []
       summary: Sign a PDF with client's certificate (PAdES-B-LT)
       tags:
-      - Invoice Processing
+      - Electronic Signature
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -1149,7 +1152,7 @@ paths:
       - HTTPBearer: []
       summary: Sign a PDF asynchronously (Celery)
       tags:
-      - Invoice Processing
+      - Electronic Signature
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -1218,7 +1221,7 @@ paths:
       - HTTPBearer: []
       summary: Validate electronic signatures of a PDF
       tags:
-      - Invoice Processing
+      - Electronic Signature
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -1331,7 +1334,7 @@ paths:
       - HTTPBearer: []
       summary: Generate a self-signed X.509 test certificate
       tags:
-      - Invoice Processing
+      - Electronic Signature
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1339,6 +1342,7 @@ paths:
     post:
       description: |-
         Unified endpoint to submit a complete invoice to different destinations.
+            **Facture prête pour Flux 2** - Génère une facture Factur-X complète avec signature optionnelle et soumission vers Chorus Pro ou PDP AFNOR.
 
             **Automated workflow:**
             1. **Auto-enrichment** (optional): retrieves data via public APIs and Chorus Pro/AFNOR
@@ -1413,7 +1417,7 @@ paths:
       - HTTPBearer: []
       summary: Submit a complete invoice (generation + signature + submission)
       tags:
-      - Invoice Processing
+      - Factur-X - Generation
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1421,6 +1425,7 @@ paths:
     post:
       description: |-
         Asynchronous version of the `/invoices/submit-complete` endpoint using Celery for background processing.
+            **Facture prête pour Flux 2** - Génère une facture Factur-X complète de manière asynchrone.
 
             **Automated workflow (same as synchronous version):**
             1. **Auto-enrichment** (optional): retrieves data via public APIs and Chorus Pro/AFNOR
@@ -1508,52 +1513,15 @@ paths:
       - HTTPBearer: []
       summary: Submit a complete invoice (asynchronous with Celery)
       tags:
-      - Invoice Processing
+      - Factur-X - Generation
       x-content-type: application/json
-      x-accepts:
-      - application/json
-  /api/v1/afnor/credentials:
-    get:
-      description: Retrieves stored AFNOR/PDP credentials for the JWT's client_uid.
-        This endpoint is used by the SDK in 'stored' mode to retrieve credentials
-        before performing AFNOR OAuth itself.
-      operationId: get_afnor_credentials_api_v1_afnor_credentials_get
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                flow_service_url: https://api.pdp-partner.fr/flow/v1
-                token_url: https://auth.pdp-partner.fr/oauth/token
-                client_id: factpulse_client
-                client_secret: '***'
-              schema: {}
-          description: AFNOR credentials retrieved successfully
-        "400":
-          content:
-            application/json:
-              example:
-                detail:
-                  error: NO_CLIENT_UID
-                  message: No client_uid in JWT. Use zero-trust mode.
-          description: No client_uid in JWT
-        "401":
-          description: Not authenticated - Missing or invalid JWT token
-        "404":
-          description: Client not found or no AFNOR credentials configured
-      security:
-      - HTTPBearer: []
-      summary: Retrieve stored AFNOR credentials
-      tags:
-      - AFNOR PDP/PA
       x-accepts:
       - application/json
   /api/v1/afnor/oauth/token:
     post:
-      description: OAuth2 proxy endpoint to obtain an AFNOR access token. Proxies
-        to AFNOR mock (sandbox) or real PDP depending on MOCK_AFNOR_BASE_URL. This
-        endpoint is public (no Django auth required) as it is called by the AFNOR
-        SDK.
+      description: "OAuth2 proxy to validate PDP credentials. Use this endpoint to\
+        \ verify that OAuth credentials (client_id, client_secret) are valid before\
+        \ saving a PDP configuration. This endpoint is public (no authentication required)."
       operationId: oauth_token_proxy_api_v1_afnor_oauth_token_post
       responses:
         "200":
@@ -1564,10 +1532,12 @@ paths:
                 token_type: Bearer
                 expires_in: 3600
               schema: {}
-          description: OAuth2 token acquired successfully
+          description: OAuth2 token acquired successfully - credentials are valid
         "401":
-          description: Invalid credentials
-      summary: OAuth2 endpoint for AFNOR authentication
+          description: Invalid credentials - client_id or client_secret is wrong
+        "503":
+          description: PDP OAuth server unavailable
+      summary: Test PDP OAuth2 credentials
       tags:
       - AFNOR PDP/PA
       x-accepts:
@@ -3782,8 +3752,7 @@ paths:
       - HTTPBearer: []
       summary: Verify PDF/XML Factur-X compliance (synchronous)
       tags:
-      - PDF/XML Verification
-      - PDF/XML Verification
+      - Factur-X - PDF/XML Verification
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -3866,8 +3835,7 @@ paths:
       - HTTPBearer: []
       summary: Verify PDF/XML Factur-X compliance (asynchronous)
       tags:
-      - PDF/XML Verification
-      - PDF/XML Verification
+      - Factur-X - PDF/XML Verification
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -3922,17 +3890,16 @@ paths:
       - HTTPBearer: []
       summary: Get status of an asynchronous verification
       tags:
-      - PDF/XML Verification
-      - PDF/XML Verification
+      - Factur-X - PDF/XML Verification
       x-accepts:
       - application/json
   /api/v1/convert/{conversion_id}/resume:
     post:
       description: |-
-        Reprend une conversion après complétion des données manquantes ou correction des erreurs.
+        Resume a conversion after completing missing data or correcting errors.
 
-        L'extraction OCR est conservée, les données sont mises à jour avec les corrections,
-        puis une nouvelle validation Schematron est effectuée.
+        The OCR extraction is preserved, data is updated with corrections,
+        then a new Schematron validation is performed.
       operationId: resume_conversion_api_v1_convert__conversion_id__resume_post
       parameters:
       - description: Conversion ID returned by POST /convert (UUID format)
@@ -3959,13 +3926,13 @@ paths:
                 $ref: "#/components/schemas/ConvertSuccessResponse"
           description: Successful Response
         "404":
-          description: Conversion non trouvée ou expirée
+          description: Conversion not found or expired
         "422":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConvertValidationFailedResponse"
-          description: Validation toujours en échec
+          description: Validation still failing
         "401":
           content:
             application/json:
@@ -3977,15 +3944,15 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Reprendre une conversion avec corrections
+      summary: Resume a conversion with corrections
       tags:
-      - Document Conversion
+      - Factur-X - Conversion
       x-content-type: application/json
       x-accepts:
       - application/json
   /api/v1/convert/{conversion_id}/status:
     get:
-      description: Retourne le statut actuel d'une conversion asynchrone.
+      description: Returns the current status of an asynchronous conversion.
       operationId: get_conversion_status_api_v1_convert__conversion_id__status_get
       parameters:
       - description: Conversion ID returned by POST /convert (UUID format)
@@ -4024,22 +3991,22 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Vérifier le statut d'une conversion
+      summary: Check conversion status
       tags:
-      - Document Conversion
+      - Factur-X - Conversion
       x-accepts:
       - application/json
   /api/v1/convert/{conversion_id}/download/{filename}:
     get:
       description: |-
-        Télécharge le fichier Factur-X PDF ou XML généré.
+        Download the generated Factur-X PDF or XML file.
 
-        ## Fichiers disponibles
+        ## Available files
 
-        - `facturx.pdf` : PDF/A-3 avec XML embarqué
-        - `facturx.xml` : XML CII seul (Cross Industry Invoice)
+        - `facturx.pdf`: PDF/A-3 with embedded XML
+        - `facturx.xml`: XML CII only (Cross Industry Invoice)
 
-        Les fichiers sont disponibles pendant 24 heures après génération.
+        Files are available for 24 hours after generation.
       operationId: download_file_api_v1_convert__conversion_id__download__filename__get
       parameters:
       - description: Conversion ID returned by POST /convert (UUID format)
@@ -4067,9 +4034,9 @@ paths:
           content:
             application/json:
               schema: {}
-          description: Fichier téléchargé
+          description: File downloaded
         "404":
-          description: Fichier non trouvé ou expiré
+          description: File not found or expired
         "422":
           content:
             application/json:
@@ -4087,26 +4054,26 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Télécharger un fichier généré
+      summary: Download a generated file
       tags:
-      - Document Conversion
+      - Factur-X - Conversion
       x-accepts:
       - application/json
   /api/v1/convert/async:
     post:
       description: |-
-        Lance une conversion asynchrone via Celery.
+        Launch an asynchronous conversion via Celery.
 
         ## Workflow
 
-        1. **Upload** : Le document est envoyé en multipart/form-data
-        2. **Task Celery** : La tâche est mise en file d'attente
-        3. **Callback** : Notification par webhook à la fin
+        1. **Upload**: Document is sent as multipart/form-data
+        2. **Celery Task**: Task is queued for processing
+        3. **Callback**: Webhook notification on completion
 
-        ## Réponses possibles
+        ## Possible responses
 
-        - **202** : Tâche acceptée, en cours de traitement
-        - **400** : Fichier invalide
+        - **202**: Task accepted, processing
+        - **400**: Invalid file
       operationId: convert_document_async_api_v1_convert_async_post
       requestBody:
         content:
@@ -4121,9 +4088,9 @@ paths:
               schema: {}
           description: Successful Response
         "202":
-          description: Tâche acceptée
+          description: Task accepted
         "400":
-          description: Fichier invalide
+          description: Invalid file
         "422":
           content:
             application/json:
@@ -4141,9 +4108,9 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Convertir un document en Factur-X (mode asynchrone)
+      summary: Convert a document to Factur-X (async mode)
       tags:
-      - Document Conversion
+      - Factur-X - Conversion
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -4193,7 +4160,7 @@ paths:
       - HTTPBearer: []
       summary: Generate e-reporting XML
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4239,7 +4206,7 @@ paths:
       - HTTPBearer: []
       summary: Generate and download e-reporting XML
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4287,7 +4254,7 @@ paths:
       - HTTPBearer: []
       summary: Validate e-reporting data
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4335,7 +4302,7 @@ paths:
       - HTTPBearer: []
       summary: Submit e-reporting to PA/PDP
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4359,7 +4326,7 @@ paths:
           description: Internal server error
       summary: List available flow types
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-accepts:
       - application/json
   /api/v1/ereporting/category-codes:
@@ -4386,7 +4353,7 @@ paths:
           description: Internal server error
       summary: List PPF-compliant category codes
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-accepts:
       - application/json
   /api/v1/ereporting/submit-xml:
@@ -4437,34 +4404,51 @@ paths:
       - HTTPBearer: []
       summary: Submit pre-generated e-reporting XML
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
   /api/v1/ereporting/validate-xml:
     post:
       description: |-
-        Validates an e-reporting XML file against:
+        Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):
 
-        1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality)
-        2. **Business rules**: ISO codes and enum validation
-           - Currency codes (ISO 4217: EUR, USD, GBP, etc.)
-           - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)
-           - Scheme IDs (0009=SIRET, 0002=SIREN, etc.)
-           - Role codes (UNCL 3035: SE=Seller, BY=Buyer, WK=Working party, etc.)
+        **Validation levels:**
+        1. **XSD (REJ_SEMAN)**: Structure, types, cardinality
+        2. **Semantic (REJ_SEMAN)**: Authorized values from codelists
+        3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns)
+        4. **Period (REJ_PER)**: Transaction dates within declared period
 
-        Returns validation status and detailed error messages if invalid.
+        **Validated codes:**
+        - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc.
+        - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party
+        - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1
+        - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O
+        - Currency (ISO 4217), Country (ISO 3166-1)
+
+        Returns structured validation errors with PPF rejection codes.
       operationId: validate_xml_ereporting_api_v1_ereporting_validate_xml_post
       parameters:
-      - description: "Also validate business rules (ISO codes, enums)"
+      - description: Validate data coherence (REJ_COH)
         explode: true
         in: query
-        name: validate_business_rules
+        name: validate_coherence
         required: false
         schema:
           default: true
-          description: "Also validate business rules (ISO codes, enums)"
-          title: Validate Business Rules
+          description: Validate data coherence (REJ_COH)
+          title: Validate Coherence
+          type: boolean
+        style: form
+      - description: Validate period coherence (REJ_PER)
+        explode: true
+        in: query
+        name: validate_period
+        required: false
+        schema:
+          default: true
+          description: Validate period coherence (REJ_PER)
+          title: Validate Period
           type: boolean
         style: form
       requestBody:
@@ -4499,9 +4483,9 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Validate e-reporting XML against PPF XSD schemas and business rules
+      summary: Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -4556,7 +4540,7 @@ paths:
       - HTTPBearer: []
       summary: Generate aggregated e-reporting XML (PPF-compliant)
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4598,7 +4582,7 @@ paths:
       - HTTPBearer: []
       summary: Validate aggregated e-reporting data
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4642,23 +4626,23 @@ paths:
       - HTTPBearer: []
       summary: Submit aggregated e-reporting to PA/PDP
       tags:
-      - E-Reporting
+      - Flux 10 - E-Reporting
       x-content-type: application/json
       x-accepts:
       - application/json
   /api/v1/cdar/generate:
     post:
       description: |-
-        Génère un message XML CDAR (Cross Domain Acknowledgement and Response)
-        pour communiquer le statut d'une facture.
+        Generate a CDAR XML message (Cross Domain Acknowledgement and Response)
+        to communicate the status of an invoice.
 
-        **Types de messages:**
-        - **23** (Traitement): Message de cycle de vie standard
-        - **305** (Transmission): Message de transmission entre plateformes
+        **Message types:**
+        - **23** (Processing): Standard lifecycle message
+        - **305** (Transmission): Inter-platform transmission message
 
-        **Règles métier:**
-        - BR-FR-CDV-14: Le statut 212 (ENCAISSEE) requiert un montant encaissé
-        - BR-FR-CDV-15: Les statuts 206/207/208/210/213/501 requièrent un code motif
+        **Business rules:**
+        - BR-FR-CDV-14: Status 212 (PAID) requires a paid amount
+        - BR-FR-CDV-15: Statuses 206/207/208/210/213/501 require a reason code
       operationId: generate_cdar_api_v1_cdar_generate_post
       requestBody:
         content:
@@ -4674,11 +4658,11 @@ paths:
                 $ref: "#/components/schemas/GenerateCDARResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
+          description: Server error
         "401":
           content:
             application/json:
@@ -4690,21 +4674,24 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Générer un message CDAR
+      summary: Generate a CDAR message
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-content-type: application/json
       x-accepts:
       - application/json
   /api/v1/cdar/validate:
     post:
       description: |-
-        Valide les données CDAR sans générer le XML.
+        Validate CDAR structured data without generating XML.
 
-        Vérifie:
-        - Les formats des champs (SIREN, dates, etc.)
-        - Les codes enums (statut, motif, action)
-        - Les règles métier BR-FR-CDV-*
+        **Note:** This endpoint validates structured data fields only.
+        Use `/validate-xml` to validate a pre-generated CDAR XML file against XSD and Schematron.
+
+        Checks:
+        - Field formats (SIREN, dates, etc.)
+        - Enum codes (status, reason, action)
+        - Business rules BR-FR-CDV-*
       operationId: validate_cdar_api_v1_cdar_validate_post
       requestBody:
         content:
@@ -4720,11 +4707,11 @@ paths:
                 $ref: "#/components/schemas/ValidateCDARResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
+          description: Server error
         "401":
           content:
             application/json:
@@ -4736,24 +4723,73 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Valider des données CDAR
+      summary: Validate CDAR structured data
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/cdar/validate-xml:
+    post:
+      description: |-
+        Validates a CDAR XML file against:
+
+        1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse
+        2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle
+
+        Returns validation status and detailed error messages if invalid.
+
+        **Note:** Use `/validate` to validate structured data fields (JSON).
+      operationId: validate_xml_cdar_api_v1_cdar_validate_xml_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Body_validate_xml_cdar_api_v1_cdar_validate_xml_post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties: {}
+                title: Response Validate Xml Cdar Api V1 Cdar Validate Xml Post
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "422":
+          description: Validation error
+        "500":
+          description: Server error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      summary: Validate CDAR XML against XSD and Schematron BR-FR-CDV
+      tags:
+      - Flux 6 - Invoice Lifecycle (CDAR)
+      x-content-type: multipart/form-data
       x-accepts:
       - application/json
   /api/v1/cdar/submit:
     post:
       description: |-
-        Génère un message CDAR et le soumet à la plateforme PA/PDP.
+        Generate a CDAR message and submit it to the PA/PDP platform.
 
-        **Stratégies d'authentification:**
-        1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend
-        2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+        **Authentication strategies:**
+        1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend
+        2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
 
-        **Types de flux (flowType):**
-        - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur)
-        - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
+        **Flow types (flowType):**
+        - `CustomerInvoiceLC`: Client-side lifecycle (buyer)
+        - `SupplierInvoiceLC`: Supplier-side lifecycle (seller)
       operationId: submit_cdar_api_v1_cdar_submit_post
       requestBody:
         content:
@@ -4769,11 +4805,11 @@ paths:
                 $ref: "#/components/schemas/SubmitCDARResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
+          description: Server error
         "401":
           content:
             application/json:
@@ -4785,22 +4821,26 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Générer et soumettre un message CDAR
+      summary: Generate and submit a CDAR message
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-content-type: application/json
       x-accepts:
       - application/json
   /api/v1/cdar/submit-xml:
     post:
       description: |-
-        Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.
+        Submit a pre-generated CDAR XML message to the PA/PDP platform.
 
-        Utile pour soumettre des XML générés par d'autres systèmes.
+        Useful for submitting XML generated by other systems.
 
-        **Stratégies d'authentification:**
-        1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend
-        2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
+        **Validation:**
+        The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission.
+        Invalid XML will be rejected with detailed error messages.
+
+        **Authentication strategies:**
+        1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend
+        2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
       operationId: submit_cdar_xml_api_v1_cdar_submit_xml_post
       requestBody:
         content:
@@ -4816,11 +4856,11 @@ paths:
                 $ref: "#/components/schemas/SubmitCDARResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
+          description: Server error
         "401":
           content:
             application/json:
@@ -4832,18 +4872,18 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: Soumettre un XML CDAR pré-généré
+      summary: Submit a pre-generated CDAR XML
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-content-type: application/json
       x-accepts:
       - application/json
   /api/v1/cdar/status-codes:
     get:
       description: |-
-        Retourne la liste complète des codes statut de facture (BR-FR-CDV-CL-06).
+        Returns the complete list of invoice status codes (BR-FR-CDV-CL-06).
 
-        Ces codes indiquent l'état du cycle de vie d'une facture.
+        These codes indicate the lifecycle state of an invoice.
       operationId: get_status_codes_api_v1_cdar_status_codes_get
       responses:
         "200":
@@ -4853,22 +4893,22 @@ paths:
                 $ref: "#/components/schemas/StatusCodesResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
-      summary: Liste des codes statut CDAR
+          description: Server error
+      summary: List of CDAR status codes
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-accepts:
       - application/json
   /api/v1/cdar/reason-codes:
     get:
       description: |-
-        Retourne la liste complète des codes motif de statut (BR-FR-CDV-CL-09).
+        Returns the complete list of status reason codes (BR-FR-CDV-CL-09).
 
-        Ces codes expliquent la raison d'un statut particulier.
+        These codes explain the reason for a particular status.
       operationId: get_reason_codes_api_v1_cdar_reason_codes_get
       responses:
         "200":
@@ -4878,22 +4918,22 @@ paths:
                 $ref: "#/components/schemas/ReasonCodesResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
-      summary: Liste des codes motif CDAR
+          description: Server error
+      summary: List of CDAR reason codes
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-accepts:
       - application/json
   /api/v1/cdar/action-codes:
     get:
       description: |-
-        Retourne la liste complète des codes action (BR-FR-CDV-CL-10).
+        Returns the complete list of action codes (BR-FR-CDV-CL-10).
 
-        Ces codes indiquent l'action demandée sur la facture.
+        These codes indicate the requested action on the invoice.
       operationId: get_action_codes_api_v1_cdar_action_codes_get
       responses:
         "200":
@@ -4903,41 +4943,47 @@ paths:
                 $ref: "#/components/schemas/ActionCodesResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
-      summary: Liste des codes action CDAR
+          description: Server error
+      summary: List of CDAR action codes
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-accepts:
       - application/json
   /api/v1/cdar/refusee:
     post:
       description: |-
-        **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.
+        **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.
 
-        Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).
+        This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).
 
-        **Cas d'usage:** L'acheteur refuse une facture reçue.
+        **Use case:** The **buyer** refuses an invoice they received.
 
-        **Codes motif autorisés (BR-FR-CDV-CL-09):**
-        - `TX_TVA_ERR`: Taux de TVA erroné
-        - `MONTANTTOTAL_ERR`: Montant total erroné
-        - `CALCUL_ERR`: Erreur de calcul
-        - `NON_CONFORME`: Non conforme
-        - `DOUBLON`: Doublon
-        - `DEST_ERR`: Destinataire erroné
-        - `TRANSAC_INC`: Transaction incomplète
-        - `EMMET_INC`: Émetteur inconnu
-        - `CONTRAT_TERM`: Contrat terminé
-        - `DOUBLE_FACT`: Double facturation
-        - `CMD_ERR`: Commande erronée
-        - `ADR_ERR`: Adresse erronée
-        - `REF_CT_ABSENT`: Référence contrat absente
+        **Who issues this status?**
+        - **Issuer (IssuerTradeParty):** The buyer (BY = Buyer) refusing the invoice
+        - **Recipient (RecipientTradeParty):** The seller (SE = Seller) who issued the invoice
 
-        **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+        **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml
+
+        **Allowed reason codes (BR-FR-CDV-CL-09):**
+        - `TX_TVA_ERR`: Incorrect VAT rate
+        - `MONTANTTOTAL_ERR`: Incorrect total amount
+        - `CALCUL_ERR`: Calculation error
+        - `NON_CONFORME`: Non-compliant
+        - `DOUBLON`: Duplicate
+        - `DEST_ERR`: Wrong recipient
+        - `TRANSAC_INC`: Incomplete transaction
+        - `EMMET_INC`: Unknown issuer
+        - `CONTRAT_TERM`: Contract terminated
+        - `DOUBLE_FACT`: Double billing
+        - `CMD_ERR`: Order error
+        - `ADR_ERR`: Address error
+        - `REF_CT_ABSENT`: Missing contract reference
+
+        **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
       operationId: submit_refusee_api_v1_cdar_refusee_post
       requestBody:
         content:
@@ -4953,11 +4999,11 @@ paths:
                 $ref: "#/components/schemas/SimplifiedCDARResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
+          description: Server error
         "401":
           content:
             application/json:
@@ -4969,22 +5015,28 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: "[Simplifié] Soumettre un statut REFUSÉE (210)"
+      summary: "[Simplified] Submit REFUSED status (210) - Received invoice"
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-content-type: application/json
       x-accepts:
       - application/json
   /api/v1/cdar/encaissee:
     post:
       description: |-
-        **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.
+        **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.
 
-        Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).
+        This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).
 
-        **Cas d'usage:** L'acheteur confirme le paiement d'une facture.
+        **Use case:** The **seller** confirms payment receipt for an invoice they issued.
 
-        **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+        **Who issues this status?**
+        - **Issuer (IssuerTradeParty):** The seller (SE = Seller) who received payment
+        - **Recipient (RecipientTradeParty):** The buyer (BY = Buyer) who paid
+
+        **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml
+
+        **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
       operationId: submit_encaissee_api_v1_cdar_encaissee_post
       requestBody:
         content:
@@ -5000,11 +5052,11 @@ paths:
                 $ref: "#/components/schemas/SimplifiedCDARResponse"
           description: Successful Response
         "400":
-          description: Requête invalide
+          description: Invalid request
         "422":
-          description: Erreur de validation
+          description: Validation error
         "500":
-          description: Erreur serveur
+          description: Server error
         "401":
           content:
             application/json:
@@ -5016,9 +5068,9 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
-      summary: "[Simplifié] Soumettre un statut ENCAISSÉE (212)"
+      summary: "[Simplified] Submit PAID status (212) - Issued invoice"
       tags:
-      - CDAR - Cycle de Vie
+      - Flux 6 - Invoice Lifecycle (CDAR)
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5669,7 +5721,7 @@ paths:
       - HTTPBearer: []
       summary: Get current user information
       tags:
-      - User
+      - Health
       x-accepts:
       - application/json
 components:
@@ -5968,13 +6020,13 @@ components:
     Body_convert_document_async_api_v1_convert_async_post:
       properties:
         file:
-          description: "Document à convertir (PDF, DOCX, XLSX, JPG, PNG)"
+          description: "Document to convert (PDF, DOCX, XLSX, JPG, PNG)"
           format: binary
           title: File
           type: string
         output:
           default: pdf
-          description: "Format de sortie: pdf, xml, both"
+          description: "Output format: pdf, xml, both"
           title: Output
           type: string
         callback_url:
@@ -5982,8 +6034,8 @@ components:
           type: string
         webhook_mode:
           default: inline
-          description: "Mode de livraison du contenu: 'inline' (base64 dans webhook)\
-            \ ou 'download_url' (URL temporaire 1h)"
+          description: "Content delivery mode: 'inline' (base64 in webhook) or 'download_url'\
+            \ (temporary URL, 1h TTL)"
           title: Webhook Mode
           type: string
       required:
@@ -6228,6 +6280,16 @@ components:
       required:
       - xml_file
       title: Body_validate_xml_api_v1_processing_validate_xml_post
+    Body_validate_xml_cdar_api_v1_cdar_validate_xml_post:
+      properties:
+        xml_file:
+          description: CDAR XML file to validate
+          format: binary
+          title: Xml File
+          type: string
+      required:
+      - xml_file
+      title: Body_validate_xml_cdar_api_v1_cdar_validate_xml_post
     Body_validate_xml_ereporting_api_v1_ereporting_validate_xml_post:
       properties:
         xml_file:
@@ -6419,53 +6481,39 @@ components:
       title: CertificateInfoResponse
     ChorusProCredentials:
       description: |-
-        Chorus Pro credentials for Zero-Trust mode.
+        Optional Chorus Pro credentials.
 
-        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+        **MODE 1 - JWT retrieval (recommended):**
+        Do not provide this `credentials` field in the payload.
+        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
 
-        **Security**:
-        - Credentials are never persisted in the database
-        - They are used only for the duration of the request
-        - Secure transmission via HTTPS
-
-        **Use cases**:
-        - High-security environments (banks, administrations)
-        - Strict GDPR compliance
-        - Tests with temporary credentials
-        - Users who don't want to store their credentials
+        **MODE 2 - Credentials in payload:**
+        Provide all required fields below.
+        Useful for tests or third-party integrations.
       example:
-        chorusProLogin: my_login@company.fr
-        chorusProPassword: MyPassword123!
-        pisteClientId: my_client_id
-        pisteClientSecret: my_secret
-        sandbox: true
+        chorusLogin: my_login@company.fr
+        chorusPassword: MyPassword123!
+        pisteClientId: my_piste_client_id
+        pisteClientSecret: my_piste_secret
+        sandboxMode: true
       properties:
         pisteClientId:
-          description: PISTE Client ID (government API portal)
-          title: Pisteclientid
+          nullable: true
           type: string
         pisteClientSecret:
-          description: PISTE Client Secret
-          title: Pisteclientsecret
+          nullable: true
           type: string
-        chorusProLogin:
-          description: Chorus Pro login
-          title: Chorusprologin
+        chorusLogin:
+          nullable: true
           type: string
-        chorusProPassword:
-          description: Chorus Pro password
-          title: Choruspropassword
+        chorusPassword:
+          nullable: true
           type: string
-        sandbox:
+        sandboxMode:
           default: true
-          description: Use sandbox environment (true) or production (false)
-          title: Sandbox
+          description: "[MODE 2] Use sandbox mode (default: True)"
+          title: Sandboxmode
           type: boolean
-      required:
-      - chorusProLogin
-      - chorusProPassword
-      - pisteClientId
-      - pisteClientSecret
       title: ChorusProCredentials
     ChorusProDestination:
       description: Specific configuration for Chorus Pro destination.
@@ -6478,7 +6526,7 @@ components:
           type: string
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__processing__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
       title: ChorusProDestination
     ChorusProResult:
@@ -7214,7 +7262,11 @@ components:
         sender:
           allOf:
           - $ref: "#/components/schemas/ReportSender"
-          description: Report sender/declarant
+          description: Report sender (PA transmitting the report)
+        issuer:
+          allOf:
+          - $ref: "#/components/schemas/ReportIssuer"
+          nullable: true
         period:
           allOf:
           - $ref: "#/components/schemas/ReportPeriod"
@@ -7404,7 +7456,11 @@ components:
         sender:
           allOf:
           - $ref: "#/components/schemas/ReportSender"
-          description: Report sender (declarant)
+          description: Report sender (PA transmitting the report)
+        issuer:
+          allOf:
+          - $ref: "#/components/schemas/ReportIssuer"
+          nullable: true
         period:
           allOf:
           - $ref: "#/components/schemas/ReportPeriod"
@@ -7585,19 +7641,23 @@ components:
       description: |-
         Requête simplifiée pour soumettre un statut ENCAISSÉE (212).
 
-        Statut obligatoire PPF - Le paiement a été effectué.
-        Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
+        **Usage** : Pour une facture ÉMISE (vous êtes vendeur).
+        Le vendeur confirme l'encaissement et envoie le statut à l'acheteur.
+
+        Statut obligatoire PPF - Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
       example:
         amount: 0.8008281904610115
         senderSiren: senderSiren
         invoiceIssueDate: 2000-01-23
         pdpClientSecret: pdpClientSecret
+        invoiceBuyerElectronicAddress: invoiceBuyerElectronicAddress
+        invoiceBuyerSiren: invoiceBuyerSiren
         invoiceId: invoiceId
         currency: EUR
         pdpFlowServiceUrl: pdpFlowServiceUrl
         pdpTokenUrl: pdpTokenUrl
         pdpClientId: pdpClientId
-        flowType: SupplierInvoiceLC
+        flowType: CustomerInvoiceLC
       properties:
         invoiceId:
           description: Identifiant de la facture (BT-1)
@@ -7608,13 +7668,27 @@ components:
           format: date
           title: Invoiceissuedate
           type: string
+        invoiceBuyerSiren:
+          description: SIREN de l'acheteur (destinataire du statut)
+          title: Invoicebuyersiren
+          type: string
+        invoiceBuyerElectronicAddress:
+          description: Adresse électronique de l'acheteur (MDT-73)
+          title: Invoicebuyerelectronicaddress
+          type: string
+        amount:
+          $ref: "#/components/schemas/Amount"
+        currency:
+          default: EUR
+          description: Code devise ISO 4217
+          title: Currency
+          type: string
         senderSiren:
           nullable: true
           type: string
         flowType:
-          default: SupplierInvoiceLC
-          description: "Type de flux: SupplierInvoiceLC (acheteur) ou CustomerInvoiceLC\
-            \ (vendeur)"
+          default: CustomerInvoiceLC
+          description: Type de flux (CustomerInvoiceLC pour facture émise)
           title: Flowtype
           type: string
         pdpFlowServiceUrl:
@@ -7629,15 +7703,10 @@ components:
         pdpClientSecret:
           nullable: true
           type: string
-        amount:
-          $ref: "#/components/schemas/Amount"
-        currency:
-          default: EUR
-          description: Code devise ISO 4217
-          title: Currency
-          type: string
       required:
       - amount
+      - invoiceBuyerElectronicAddress
+      - invoiceBuyerSiren
       - invoiceId
       - invoiceIssueDate
       title: EncaisseeRequest
@@ -7699,6 +7768,7 @@ components:
       - signature
       - afnor
       - chorus_pro
+      - ereporting
       - system
       type: string
     ExtractionInfo:
@@ -8084,7 +8154,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         siret:
           description: Structure SIRET (14 digits)
@@ -8134,7 +8204,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         chorusInvoiceId:
           description: Chorus Pro invoice ID
@@ -8199,7 +8269,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureId:
           description: Chorus Pro structure ID
@@ -8440,6 +8510,12 @@ components:
         Invoice for B2B international reporting (flux 10.1).
 
         Used for unitary declaration of international B2B invoices.
+        Supports three scenarios:
+        - B2Bi: French seller → Foreign buyer (issuer role = SE)
+        - Bi2B: Foreign seller → French buyer (issuer role = BY)
+        - Bi2Bi: Foreign seller → Foreign buyer (issuer role = SE or BY)
+
+        Source: Annexe 6 v1.9, bloc TG-8 "Invoice"
       properties:
         invoiceId:
           description: Invoice identifier
@@ -8463,10 +8539,11 @@ components:
           format: date
           nullable: true
           type: string
+        sellerId:
+          nullable: true
+          type: string
         sellerSiren:
-          description: Seller SIREN/SIRET
-          example: "123456789"
-          title: Sellersiren
+          nullable: true
           type: string
         sellerVatId:
           nullable: true
@@ -8503,7 +8580,6 @@ components:
       - buyerCountry
       - invoiceId
       - issueDate
-      - sellerSiren
       - taxAmount
       - taxBreakdown
       - taxExclusiveAmount
@@ -8723,6 +8799,25 @@ components:
       - A9_FACTURE_SOUSTRAITANT
       - A12_FACTURE_COTRAITANT
       title: InvoicingFrameworkCode
+      type: string
+    IssuerRoleCode:
+      description: |-
+        Issuer/declarant role codes (TT-15 RoleCode).
+
+        Source: Annexe 6 - Format sémantique FE e-reporting v1.9
+        Reference: UNCL 3035, rule G7.52
+        Path XML: /ReportDocument/Issuer/RoleCode
+
+        Determines who is the declarant for e-reporting:
+        - SE (Seller): French company selling to foreign buyer (B2Bi)
+        - BY (Buyer): French company buying from foreign seller (Bi2B)
+
+        This distinction is critical for flux 10.1 to correctly identify
+        whether the French company is the seller or the buyer.
+      enum:
+      - SE
+      - BY
+      title: IssuerRoleCode
       type: string
     MandatoryNoteSchema:
       description: Mandatory note detected with location and XML/PDF comparison.
@@ -9309,31 +9404,25 @@ components:
       description: |-
         Requête simplifiée pour soumettre un statut REFUSÉE (210).
 
-        Statut obligatoire PPF - Le destinataire refuse la facture.
-        Un code motif est OBLIGATOIRE (BR-FR-CDV-15).
+        **Usage** : Pour une facture REÇUE (vous êtes acheteur).
+        L'acheteur refuse la facture et envoie le statut au vendeur.
+
+        Statut obligatoire PPF - Un code motif est OBLIGATOIRE (BR-FR-CDV-15).
 
         Codes motif autorisés (BR-FR-CDV-CL-09_MDT-113_210):
-        - TX_TVA_ERR: Taux de TVA erroné
-        - MONTANTTOTAL_ERR: Montant total erroné
-        - CALCUL_ERR: Erreur de calcul
-        - NON_CONFORME: Non conforme
-        - DOUBLON: Doublon
-        - DEST_ERR: Destinataire erroné
-        - TRANSAC_INC: Transaction incomplète
-        - EMMET_INC: Émetteur inconnu
-        - CONTRAT_TERM: Contrat terminé
-        - DOUBLE_FACT: Double facturation
-        - CMD_ERR: Commande erronée
-        - ADR_ERR: Adresse erronée
-        - REF_CT_ABSENT: Référence contrat absente
+        - TX_TVA_ERR, MONTANTTOTAL_ERR, CALCUL_ERR, NON_CONFORME, DOUBLON,
+        - DEST_ERR, TRANSAC_INC, EMMET_INC, CONTRAT_TERM, DOUBLE_FACT,
+        - CMD_ERR, ADR_ERR, REF_CT_ABSENT
       example:
+        invoiceSellerSiren: invoiceSellerSiren
         reasonText: reasonText
         senderSiren: senderSiren
         invoiceIssueDate: 2000-01-23
+        invoiceSellerElectronicAddress: invoiceSellerElectronicAddress
         pdpClientSecret: pdpClientSecret
         invoiceId: invoiceId
-        pdpFlowServiceUrl: pdpFlowServiceUrl
         reasonCode: reasonCode
+        pdpFlowServiceUrl: pdpFlowServiceUrl
         pdpTokenUrl: pdpTokenUrl
         pdpClientId: pdpClientId
         flowType: SupplierInvoiceLC
@@ -9347,13 +9436,29 @@ components:
           format: date
           title: Invoiceissuedate
           type: string
+        invoiceSellerSiren:
+          description: "SIREN du vendeur (destinataire du statut, MDT-129)"
+          title: Invoicesellersiren
+          type: string
+        invoiceSellerElectronicAddress:
+          description: Adresse électronique du vendeur (MDT-73)
+          title: Invoicesellerelectronicaddress
+          type: string
+        reasonCode:
+          description: "Code motif du refus (obligatoire). Valeurs: TX_TVA_ERR, MONTANTTOTAL_ERR,\
+            \ CALCUL_ERR, NON_CONFORME, DOUBLON, DEST_ERR, TRANSAC_INC, EMMET_INC,\
+            \ CONTRAT_TERM, DOUBLE_FACT, CMD_ERR, ADR_ERR, REF_CT_ABSENT"
+          title: Reasoncode
+          type: string
+        reasonText:
+          nullable: true
+          type: string
         senderSiren:
           nullable: true
           type: string
         flowType:
           default: SupplierInvoiceLC
-          description: "Type de flux: SupplierInvoiceLC (acheteur) ou CustomerInvoiceLC\
-            \ (vendeur)"
+          description: Type de flux (SupplierInvoiceLC pour facture reçue)
           title: Flowtype
           type: string
         pdpFlowServiceUrl:
@@ -9368,20 +9473,47 @@ components:
         pdpClientSecret:
           nullable: true
           type: string
-        reasonCode:
-          description: "Code motif du refus (obligatoire). Valeurs autorisées: TX_TVA_ERR,\
-            \ MONTANTTOTAL_ERR, CALCUL_ERR, NON_CONFORME, DOUBLON, DEST_ERR, TRANSAC_INC,\
-            \ EMMET_INC, CONTRAT_TERM, DOUBLE_FACT, CMD_ERR, ADR_ERR, REF_CT_ABSENT"
-          title: Reasoncode
-          type: string
-        reasonText:
-          nullable: true
-          type: string
       required:
       - invoiceId
       - invoiceIssueDate
+      - invoiceSellerElectronicAddress
+      - invoiceSellerSiren
       - reasonCode
       title: RefuseeRequest
+    ReportIssuer:
+      description: |-
+        Report issuer/declarant information (TT-12 to TT-16).
+
+        The issuer is the French company declaring the transactions.
+        The role_code determines whether the company is:
+        - SE (Seller): B2Bi case - French company sells to foreign buyer
+        - BY (Buyer): Bi2B case - French company buys from foreign seller
+
+        Source: Annexe 6 v1.9, bloc Issuer
+      properties:
+        siren:
+          description: SIREN or SIRET of the declarant (French company)
+          example: "123456789"
+          maxLength: 14
+          minLength: 9
+          title: Siren
+          type: string
+        name:
+          nullable: true
+          type: string
+        vatId:
+          nullable: true
+          type: string
+        roleCode:
+          allOf:
+          - $ref: "#/components/schemas/IssuerRoleCode"
+          default: SE
+          description: "Role of the declarant (TT-15). SE=Seller (B2Bi: French seller\
+            \ to foreign buyer). BY=Buyer (Bi2B: French buyer from foreign seller)."
+          example: SE
+      required:
+      - siren
+      title: ReportIssuer
     ReportPeriod:
       description: Reporting period.
       properties:
@@ -9402,10 +9534,14 @@ components:
       - startDate
       title: ReportPeriod
     ReportSender:
-      description: Report sender/issuer information.
+      description: |-
+        Report sender information (PA transmitting the report).
+
+        In PPF architecture, the sender is typically the PA (Plateforme Agréée)
+        transmitting on behalf of the declarant (issuer).
       properties:
         siren:
-          description: SIREN or SIRET number
+          description: SIREN or SIRET number of the sender (PA or company)
           example: "123456789"
           maxLength: 14
           minLength: 9
@@ -9597,7 +9733,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureIdentifier:
           nullable: true
@@ -10479,7 +10615,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         invoiceNumber:
           description: Invoice number
@@ -11108,6 +11244,56 @@ components:
       - field
       - message
       title: ValidationErrorResponse
+    facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
+      description: |-
+        Chorus Pro credentials for Zero-Trust mode.
+
+        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+
+        **Security**:
+        - Credentials are never persisted in the database
+        - They are used only for the duration of the request
+        - Secure transmission via HTTPS
+
+        **Use cases**:
+        - High-security environments (banks, administrations)
+        - Strict GDPR compliance
+        - Tests with temporary credentials
+        - Users who don't want to store their credentials
+      example:
+        chorusProLogin: my_login@company.fr
+        chorusProPassword: MyPassword123!
+        pisteClientId: my_client_id
+        pisteClientSecret: my_secret
+        sandbox: true
+      properties:
+        pisteClientId:
+          description: PISTE Client ID (government API portal)
+          title: Pisteclientid
+          type: string
+        pisteClientSecret:
+          description: PISTE Client Secret
+          title: Pisteclientsecret
+          type: string
+        chorusProLogin:
+          description: Chorus Pro login
+          title: Chorusprologin
+          type: string
+        chorusProPassword:
+          description: Chorus Pro password
+          title: Choruspropassword
+          type: string
+        sandbox:
+          default: true
+          description: Use sandbox environment (true) or production (false)
+          title: Sandbox
+          type: boolean
+      required:
+      - chorusProLogin
+      - chorusProPassword
+      - pisteClientId
+      - pisteClientSecret
+      title: ChorusProCredentials
     facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
       description: Invoice type codes (UNTDID 1001).
       enum:
@@ -11118,42 +11304,6 @@ components:
       - "386"
       title: InvoiceTypeCode
       type: string
-    facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
-      description: |-
-        Optional Chorus Pro credentials.
-
-        **MODE 1 - JWT retrieval (recommended):**
-        Do not provide this `credentials` field in the payload.
-        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
-
-        **MODE 2 - Credentials in payload:**
-        Provide all required fields below.
-        Useful for tests or third-party integrations.
-      example:
-        chorusLogin: my_login@company.fr
-        chorusPassword: MyPassword123!
-        pisteClientId: my_piste_client_id
-        pisteClientSecret: my_piste_secret
-        sandboxMode: true
-      properties:
-        pisteClientId:
-          nullable: true
-          type: string
-        pisteClientSecret:
-          nullable: true
-          type: string
-        chorusLogin:
-          nullable: true
-          type: string
-        chorusPassword:
-          nullable: true
-          type: string
-        sandboxMode:
-          default: true
-          description: "[MODE 2] Use sandbox mode (default: True)"
-          title: Sandboxmode
-          type: boolean
-      title: ChorusProCredentials
     AdditionalDocument:
       description: |-
         Additional supporting document (BG-24).
@@ -12053,7 +12203,9 @@ components:
           title: Invoice Date
           type: string
         submission_mode:
-          $ref: "#/components/schemas/SubmissionMode"
+          allOf:
+          - $ref: "#/components/schemas/SubmissionMode"
+          default: DEPOT_PDF_API
         recipient:
           $ref: "#/components/schemas/Recipient"
         supplier:
@@ -12149,7 +12301,6 @@ components:
       - payment_due_date
       - recipient
       - references
-      - submission_mode
       - supplier
       - totals
       title: FacturXInvoice
@@ -15379,16 +15530,16 @@ components:
       - $ref: "#/components/schemas/CountryCode"
       - type: string
       default: FR
-      description: Seller country code (ISO 3166-1 alpha-2). See CountryCode enum
-        for valid values.
+      description: "Seller country code (ISO 3166-1 alpha-2). FR for French seller\
+        \ (B2Bi), other for Bi2B."
       example: FR
       title: Sellercountry
     Buyercountry:
       anyOf:
       - $ref: "#/components/schemas/CountryCode"
       - type: string
-      description: Buyer country code (ISO 3166-1 alpha-2). Must be different from
-        FR for B2B int.
+      description: "Buyer country code (ISO 3166-1 alpha-2). FR for Bi2B, other for\
+        \ B2Bi."
       example: DE
       title: Buyercountry
     Taxexclusiveamount_1:
