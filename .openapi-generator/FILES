@@ -171,9 +171,9 @@ docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
 docs/FacturXPdfXmlVerificationApi.md
 docs/FacturXValidationApi.md
-docs/FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.md
-docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
+docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
+docs/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.md
 docs/FieldStatus.md
 docs/FileInfo.md
 docs/FilesInfo.md
@@ -216,6 +216,8 @@ docs/InvoiceTypeCodeOutput.md
 docs/InvoicingFramework.md
 docs/InvoicingFrameworkCode.md
 docs/IssuerRoleCode.md
+docs/KeyRotationRequest.md
+docs/KeyRotationResponse.md
 docs/LineNetAmount.md
 docs/LineSubType.md
 docs/LineTotalAmount.md
@@ -327,6 +329,9 @@ docs/ValidationSuccessResponse.md
 docs/VatRate.md
 docs/VerificationSuccessResponse.md
 docs/VerifiedFieldSchema.md
+docs/WebhookSecretDeleteResponse.md
+docs/WebhookSecretGenerateResponse.md
+docs/WebhookSecretStatusResponse.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -522,9 +527,9 @@ src/main/java/org/openapitools/client/model/ErrorSource.java
 src/main/java/org/openapitools/client/model/ExtractionInfo.java
 src/main/java/org/openapitools/client/model/FacturXInvoice.java
 src/main/java/org/openapitools/client/model/FacturXPDFInfo.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.java
 src/main/java/org/openapitools/client/model/FieldStatus.java
 src/main/java/org/openapitools/client/model/FileInfo.java
 src/main/java/org/openapitools/client/model/FilesInfo.java
@@ -564,6 +569,8 @@ src/main/java/org/openapitools/client/model/InvoiceTypeCodeOutput.java
 src/main/java/org/openapitools/client/model/InvoicingFramework.java
 src/main/java/org/openapitools/client/model/InvoicingFrameworkCode.java
 src/main/java/org/openapitools/client/model/IssuerRoleCode.java
+src/main/java/org/openapitools/client/model/KeyRotationRequest.java
+src/main/java/org/openapitools/client/model/KeyRotationResponse.java
 src/main/java/org/openapitools/client/model/LineNetAmount.java
 src/main/java/org/openapitools/client/model/LineSubType.java
 src/main/java/org/openapitools/client/model/LineTotalAmount.java
@@ -675,6 +682,9 @@ src/main/java/org/openapitools/client/model/ValidationSuccessResponse.java
 src/main/java/org/openapitools/client/model/VatRate.java
 src/main/java/org/openapitools/client/model/VerificationSuccessResponse.java
 src/main/java/org/openapitools/client/model/VerifiedFieldSchema.java
+src/main/java/org/openapitools/client/model/WebhookSecretDeleteResponse.java
+src/main/java/org/openapitools/client/model/WebhookSecretGenerateResponse.java
+src/main/java/org/openapitools/client/model/WebhookSecretStatusResponse.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaApiTest.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaDirectoryServiceApiTest.java
 src/test/java/org/openapitools/client/api/AfnorPdpPaFlowServiceApiTest.java
@@ -843,9 +853,9 @@ src/test/java/org/openapitools/client/model/ErrorSourceTest.java
 src/test/java/org/openapitools/client/model/ExtractionInfoTest.java
 src/test/java/org/openapitools/client/model/FacturXInvoiceTest.java
 src/test/java/org/openapitools/client/model/FacturXPDFInfoTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasCdarValidationErrorResponseTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCodeTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasValidationValidationErrorResponseTest.java
 src/test/java/org/openapitools/client/model/FieldStatusTest.java
 src/test/java/org/openapitools/client/model/FileInfoTest.java
 src/test/java/org/openapitools/client/model/FilesInfoTest.java
@@ -885,6 +895,8 @@ src/test/java/org/openapitools/client/model/InvoiceTypeCodeTest.java
 src/test/java/org/openapitools/client/model/InvoicingFrameworkCodeTest.java
 src/test/java/org/openapitools/client/model/InvoicingFrameworkTest.java
 src/test/java/org/openapitools/client/model/IssuerRoleCodeTest.java
+src/test/java/org/openapitools/client/model/KeyRotationRequestTest.java
+src/test/java/org/openapitools/client/model/KeyRotationResponseTest.java
 src/test/java/org/openapitools/client/model/LineNetAmountTest.java
 src/test/java/org/openapitools/client/model/LineSubTypeTest.java
 src/test/java/org/openapitools/client/model/LineTotalAmountTest.java
@@ -996,3 +1008,6 @@ src/test/java/org/openapitools/client/model/ValidationSuccessResponseTest.java
 src/test/java/org/openapitools/client/model/VatRateTest.java
 src/test/java/org/openapitools/client/model/VerificationSuccessResponseTest.java
 src/test/java/org/openapitools/client/model/VerifiedFieldSchemaTest.java
+src/test/java/org/openapitools/client/model/WebhookSecretDeleteResponseTest.java
+src/test/java/org/openapitools/client/model/WebhookSecretGenerateResponseTest.java
+src/test/java/org/openapitools/client/model/WebhookSecretStatusResponseTest.java

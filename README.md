@@ -18,14 +18,14 @@ Official Java client for the FactPulse API - French electronic invoicing.
 <dependency>
     <groupId>fr.factpulse</groupId>
     <artifactId>factpulse-sdk</artifactId>
-    <version>4.0.2</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'fr.factpulse:factpulse-sdk:4.0.2'
+implementation 'fr.factpulse:factpulse-sdk:0.1.0'
 ```
 
 ## Quick Start
@@ -54,12 +54,14 @@ public class Main {
         invoiceData.put("number", "INV-2025-001");
 
         Map<String, Object> supplier = new LinkedHashMap<>();
+        supplier.put("name", "ACME Corporation");
         supplier.put("siret", "12345678901234");
         supplier.put("iban", "FR7630001007941234567890185");
         supplier.put("routing_address", "12345678901234");
         invoiceData.put("supplier", supplier);
 
         Map<String, Object> recipient = new LinkedHashMap<>();
+        recipient.put("name", "Client Company SA");
         recipient.put("siret", "98765432109876");
         recipient.put("routing_address", "98765432109876");
         invoiceData.put("recipient", recipient);
@@ -230,6 +232,16 @@ try {
     System.out.println("Details: " + e.getDetails());
 }
 ```
+
+## Available Helpers
+
+The SDK provides the following helper classes:
+
+- `FactPulseClient`: Main HTTP client with auto-auth and polling
+- `FactPulseException`: Base exception class
+- `FactPulseAuthException`: Authentication failure
+- `FactPulseValidationException`: Validation errors with details
+- `FactPulsePollingTimeoutException`: Task polling timeout
 
 ## Resources
 

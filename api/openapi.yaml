@@ -478,6 +478,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Generate a Factur-X invoice
       tags:
       - Factur-X - Generation
@@ -543,6 +544,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Get task generation status
       tags:
       - Async Tasks
@@ -678,7 +680,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ValidationErrorResponse"
+                $ref: "#/components/schemas/facture_electronique__rest_api__schemas__validation__ValidationErrorResponse"
           description: XML does not comply with Factur-X profile rules
         "422":
           content:
@@ -697,6 +699,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate an existing Factur-X XML
       tags:
       - Factur-X - Validation
@@ -874,6 +877,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate a complete Factur-X PDF
       tags:
       - Factur-X - Validation
@@ -1020,6 +1024,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate a Factur-X PDF (asynchronous with polling)
       tags:
       - Factur-X - Validation
@@ -1093,6 +1098,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Sign a PDF with client's certificate (PAdES-B-LT)
       tags:
       - Electronic Signature
@@ -1150,6 +1156,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Sign a PDF asynchronously (Celery)
       tags:
       - Electronic Signature
@@ -1219,6 +1226,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate electronic signatures of a PDF
       tags:
       - Electronic Signature
@@ -1332,6 +1340,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Generate a self-signed X.509 test certificate
       tags:
       - Electronic Signature
@@ -1415,6 +1424,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Submit a complete invoice (generation + signature + submission)
       tags:
       - Factur-X - Generation
@@ -1511,6 +1521,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Submit a complete invoice (asynchronous with Celery)
       tags:
       - Factur-X - Generation
@@ -1569,6 +1580,17 @@ paths:
           title: Include Document
           type: boolean
         style: form
+      - description: Client encryption key for double encryption mode. Must be a base64-encoded
+          AES-256 key (32 bytes). Required only when accessing resources encrypted
+          with encryption_mode='double'.
+        explode: false
+        in: header
+        name: X-Encryption-Key
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1609,6 +1631,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Retrieve and extract an incoming invoice
       tags:
       - AFNOR PDP/PA
@@ -2821,6 +2844,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Search Chorus Pro structures
       tags:
       - Chorus Pro
@@ -2871,6 +2895,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Consult structure details
       tags:
       - Chorus Pro
@@ -2924,6 +2949,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: List structure services
       tags:
       - Chorus Pro
@@ -2980,6 +3006,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: "Utility: Get Chorus Pro ID from SIRET"
       tags:
       - Chorus Pro
@@ -3052,6 +3079,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Submit an invoice to Chorus Pro
       tags:
       - Chorus Pro
@@ -3106,6 +3134,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Consult invoice status
       tags:
       - Chorus Pro
@@ -3159,6 +3188,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Search issued invoices (Supplier)
       tags:
       - Chorus Pro
@@ -3209,6 +3239,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Search received invoices (Recipient)
       tags:
       - Chorus Pro
@@ -3271,6 +3302,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Download a group of invoices
       tags:
       - Chorus Pro
@@ -3341,6 +3373,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Process a received invoice (Recipient)
       tags:
       - Chorus Pro
@@ -3407,6 +3440,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Recycle an invoice (Supplier)
       tags:
       - Chorus Pro
@@ -3473,6 +3507,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Complete a suspended invoice (Supplier)
       tags:
       - Chorus Pro
@@ -3519,6 +3554,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Search invoices to validate (Validator)
       tags:
       - Chorus Pro
@@ -3573,6 +3609,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Consult an invoice (Validator)
       tags:
       - Chorus Pro
@@ -3619,6 +3656,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate or reject an invoice (Validator)
       tags:
       - Chorus Pro
@@ -3677,6 +3715,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Add an attachment
       tags:
       - Chorus Pro
@@ -3750,6 +3789,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Verify PDF/XML Factur-X compliance (synchronous)
       tags:
       - Factur-X - PDF/XML Verification
@@ -3833,6 +3873,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Verify PDF/XML Factur-X compliance (asynchronous)
       tags:
       - Factur-X - PDF/XML Verification
@@ -3888,6 +3929,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Get status of an asynchronous verification
       tags:
       - Factur-X - PDF/XML Verification
@@ -3944,6 +3986,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Resume a conversion with corrections
       tags:
       - Factur-X - Conversion
@@ -3991,6 +4034,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Check conversion status
       tags:
       - Factur-X - Conversion
@@ -4054,6 +4098,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Download a generated file
       tags:
       - Factur-X - Conversion
@@ -4108,6 +4153,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Convert a document to Factur-X (async mode)
       tags:
       - Factur-X - Conversion
@@ -4158,6 +4204,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Generate e-reporting XML
       tags:
       - Flux 10 - E-Reporting
@@ -4204,6 +4251,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Generate and download e-reporting XML
       tags:
       - Flux 10 - E-Reporting
@@ -4252,6 +4300,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate e-reporting data
       tags:
       - Flux 10 - E-Reporting
@@ -4483,6 +4532,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
       tags:
       - Flux 10 - E-Reporting
@@ -4538,6 +4588,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Generate aggregated e-reporting XML (PPF-compliant)
       tags:
       - Flux 10 - E-Reporting
@@ -4580,6 +4631,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate aggregated e-reporting data
       tags:
       - Flux 10 - E-Reporting
@@ -4674,6 +4726,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Generate a CDAR message
       tags:
       - Flux 6 - Invoice Lifecycle (CDAR)
@@ -4723,6 +4776,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate CDAR structured data
       tags:
       - Flux 6 - Invoice Lifecycle (CDAR)
@@ -4772,6 +4826,7 @@ paths:
           description: Authentication required - Invalid or missing JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Validate CDAR XML against XSD and Schematron BR-FR-CDV
       tags:
       - Flux 6 - Invoice Lifecycle (CDAR)
@@ -5147,6 +5202,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Download a temporary file
       tags:
       - Downloads
@@ -5195,6 +5251,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Check if a file exists
       tags:
       - Downloads
@@ -5262,6 +5319,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: List clients
       tags:
       - Client Management
@@ -5309,6 +5367,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Create a client
       tags:
       - Client Management
@@ -5360,6 +5419,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Get client details
       tags:
       - Client Management
@@ -5419,6 +5479,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Update a client
       tags:
       - Client Management
@@ -5467,6 +5528,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Activate a client
       tags:
       - Client Management
@@ -5517,6 +5579,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Deactivate a client
       tags:
       - Client Management
@@ -5571,6 +5634,7 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Get client PDP configuration
       tags:
       - Client Management
@@ -5591,6 +5655,16 @@ paths:
         **Optional fields**:
         - `isActive`: Enable/disable the config (default: true)
         - `modeSandbox`: Sandbox mode (default: false)
+        - `encryptionMode`: Encryption mode (default: "fernet")
+          - "fernet": Server-side encryption only
+          - "double": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)
+
+        **Double Encryption Mode**:
+        When `encryptionMode` is set to "double", you MUST also provide the
+        `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes).
+        This key is used to encrypt the `clientSecret` on the client side before
+        the server encrypts it again with Fernet. The server cannot decrypt the
+        secret without the client key.
 
         **Security**: The `clientSecret` is stored encrypted on Django side
         and is never returned in API responses.
@@ -5603,6 +5677,17 @@ paths:
         schema:
           format: uuid
           title: Uid
+          type: string
+        style: simple
+      - description: Client encryption key for double encryption mode. Must be a base64-encoded
+          AES-256 key (32 bytes). Required only when accessing resources encrypted
+          with encryption_mode='double'.
+        explode: false
+        in: header
+        name: X-Encryption-Key
+        required: false
+        schema:
+          nullable: true
           type: string
         style: simple
       requestBody:
@@ -5636,10 +5721,240 @@ paths:
           description: Validation Error
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Configure client PDP
       tags:
       - Client Management
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}/rotate-encryption-key:
+    post:
+      description: |-
+        Rotate the client encryption key for all secrets in double encryption mode.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **What this does**:
+        1. Decrypts all secrets (PDP, Chorus Pro) using the old key
+        2. Re-encrypts them using the new key
+        3. Saves to database
+
+        **Important notes**:
+        - Both keys must be base64-encoded AES-256 keys (32 bytes each)
+        - The old key becomes invalid immediately after rotation
+        - Only secrets encrypted with `encryptionMode: "double"` are affected
+        - If the client has no double-encrypted secrets, returns 404
+
+        **Security**:
+        - The old key must be valid (decryption is verified)
+        - If decryption fails, rotation is aborted (atomic operation)
+        - Neither key is logged or stored by the server
+      operationId: rotate_encryption_key_api_v1_clients__uid__rotate_encryption_key_post
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KeyRotationRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KeyRotationResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Rotate client encryption key
+      tags:
+      - Client Management
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}/webhook-secret/generate:
+    post:
+      description: |-
+        Generate or regenerate the webhook secret for a client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **Important**: Save the returned secret immediately - it will never be shown again.
+        The secret is used to sign webhooks sent by the server (HMAC-SHA256).
+
+        **If a secret already exists**: It will be replaced by the new one.
+      operationId: generate_webhook_secret_api_v1_clients__uid__webhook_secret_generate_post
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSecretGenerateResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Generate webhook secret
+      tags:
+      - Client Management
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}/webhook-secret/status:
+    get:
+      description: |-
+        Check if a webhook secret is configured for a client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **Response**:
+        - `hasSecret`: Whether a webhook secret is configured
+        - `createdAt`: When the secret was created (if exists)
+
+        **Note**: The secret value is never returned, only its status.
+      operationId: get_webhook_secret_status_api_v1_clients__uid__webhook_secret_status_get
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSecretStatusResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Get webhook secret status
+      tags:
+      - Client Management
+      x-accepts:
+      - application/json
+  /api/v1/clients/{uid}/webhook-secret:
+    delete:
+      description: |-
+        Delete the webhook secret for a client.
+
+        **Scope**: Client level (JWT with client_uid that must match {uid})
+
+        **After deletion**: Webhooks for this client will use the global server key
+        for HMAC signature instead of a client-specific key.
+      operationId: delete_webhook_secret_api_v1_clients__uid__webhook_secret_delete
+      parameters:
+      - explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          format: uuid
+          title: Uid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSecretDeleteResponse"
+          description: Successful Response
+        "400":
+          description: Invalid request
+        "401":
+          description: Missing or invalid JWT token
+        "403":
+          description: Access denied
+        "404":
+          description: Client not found
+        "500":
+          description: Server error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Delete webhook secret
+      tags:
+      - Client Management
       x-accepts:
       - application/json
   /:
@@ -5719,6 +6034,7 @@ paths:
           description: Missing or invalid JWT token
       security:
       - HTTPBearer: []
+      - APIKeyHeader: []
       summary: Get current user information
       tags:
       - Health
@@ -6481,39 +6797,53 @@ components:
       title: CertificateInfoResponse
     ChorusProCredentials:
       description: |-
-        Optional Chorus Pro credentials.
+        Chorus Pro credentials for Zero-Trust mode.
 
-        **MODE 1 - JWT retrieval (recommended):**
-        Do not provide this `credentials` field in the payload.
-        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
+        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
 
-        **MODE 2 - Credentials in payload:**
-        Provide all required fields below.
-        Useful for tests or third-party integrations.
+        **Security**:
+        - Credentials are never persisted in the database
+        - They are used only for the duration of the request
+        - Secure transmission via HTTPS
+
+        **Use cases**:
+        - High-security environments (banks, administrations)
+        - Strict GDPR compliance
+        - Tests with temporary credentials
+        - Users who don't want to store their credentials
       example:
-        chorusLogin: my_login@company.fr
-        chorusPassword: MyPassword123!
-        pisteClientId: my_piste_client_id
-        pisteClientSecret: my_piste_secret
-        sandboxMode: true
+        chorusProLogin: my_login@company.fr
+        chorusProPassword: MyPassword123!
+        pisteClientId: my_client_id
+        pisteClientSecret: my_secret
+        sandbox: true
       properties:
         pisteClientId:
-          nullable: true
+          description: PISTE Client ID (government API portal)
+          title: Pisteclientid
           type: string
         pisteClientSecret:
-          nullable: true
+          description: PISTE Client Secret
+          title: Pisteclientsecret
           type: string
-        chorusLogin:
-          nullable: true
+        chorusProLogin:
+          description: Chorus Pro login
+          title: Chorusprologin
           type: string
-        chorusPassword:
-          nullable: true
+        chorusProPassword:
+          description: Chorus Pro password
+          title: Choruspropassword
           type: string
-        sandboxMode:
+        sandbox:
           default: true
-          description: "[MODE 2] Use sandbox mode (default: True)"
-          title: Sandboxmode
+          description: Use sandbox environment (true) or production (false)
+          title: Sandbox
           type: boolean
+      required:
+      - chorusProLogin
+      - chorusProPassword
+      - pisteClientId
+      - pisteClientSecret
       title: ChorusProCredentials
     ChorusProDestination:
       description: Specific configuration for Chorus Pro destination.
@@ -6526,7 +6856,7 @@ components:
           type: string
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__processing__ChorusProCredentials"
           nullable: true
       title: ChorusProDestination
     ChorusProResult:
@@ -8154,7 +8484,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         siret:
           description: Structure SIRET (14 digits)
@@ -8204,7 +8534,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         chorusInvoiceId:
           description: Chorus Pro invoice ID
@@ -8269,7 +8599,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         structureId:
           description: Chorus Pro structure ID
@@ -8819,6 +9149,62 @@ components:
       - BY
       title: IssuerRoleCode
       type: string
+    KeyRotationRequest:
+      description: |-
+        Request to rotate the client encryption key.
+
+        This operation re-encrypts all secrets from the old key to the new key.
+        Both keys must be base64-encoded AES-256 keys (32 bytes each).
+      example:
+        oldKey: oldKey
+        newKey: newKey
+      properties:
+        oldKey:
+          description: Current encryption key (base64-encoded AES-256)
+          minLength: 40
+          title: Oldkey
+          type: string
+        newKey:
+          description: New encryption key (base64-encoded AES-256)
+          minLength: 40
+          title: Newkey
+          type: string
+      required:
+      - newKey
+      - oldKey
+      title: KeyRotationRequest
+    KeyRotationResponse:
+      description: Response from key rotation operation.
+      example:
+        success: true
+        rotatedCount: 0
+        message: message
+        partialErrors:
+        - partialErrors
+        - partialErrors
+      properties:
+        success:
+          description: Whether rotation was successful
+          title: Success
+          type: boolean
+        message:
+          description: Result message
+          title: Message
+          type: string
+        rotatedCount:
+          description: Number of secrets that were rotated
+          title: Rotatedcount
+          type: integer
+        partialErrors:
+          items:
+            type: string
+          nullable: true
+          type: array
+      required:
+      - message
+      - rotatedCount
+      - success
+      title: KeyRotationResponse
     MandatoryNoteSchema:
       description: Mandatory note detected with location and XML/PDF comparison.
       example:
@@ -9120,6 +9506,7 @@ components:
         isActive: true
         message: message
         createdAt: 2000-01-23T04:56:07.000+00:00
+        encryptionMode: encryptionMode
         modeSandbox: true
         flowServiceUrl: flowServiceUrl
         lastTestSuccess: true
@@ -9147,6 +9534,9 @@ components:
           nullable: true
           type: string
         oauthClientId:
+          nullable: true
+          type: string
+        encryptionMode:
           nullable: true
           type: string
         secretStatus:
@@ -9178,10 +9568,15 @@ components:
       - isConfigured
       title: PDPConfigResponse
     PDPConfigUpdateRequest:
-      description: PDP configuration update request.
+      description: |-
+        PDP configuration update request.
+
+        For encryption_mode='double', the X-Encryption-Key header must also be provided
+        containing a base64-encoded AES-256 key (32 bytes).
       example:
         tokenUrl: tokenUrl
         oauthClientId: oauthClientId
+        encryptionMode: fernet
         modeSandbox: false
         flowServiceUrl: flowServiceUrl
         clientSecret: clientSecret
@@ -9212,6 +9607,12 @@ components:
         clientSecret:
           description: OAuth Client Secret (sent but never returned)
           title: Clientsecret
+          type: string
+        encryptionMode:
+          enum:
+          - fernet
+          - double
+          nullable: true
           type: string
       required:
       - clientSecret
@@ -9733,7 +10134,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         structureIdentifier:
           nullable: true
@@ -9801,6 +10202,12 @@ components:
           description: Descriptive status message
           title: Message
           type: string
+        encryptionMode:
+          nullable: true
+          type: string
+        requiresClientKey:
+          nullable: true
+          type: boolean
       required:
       - message
       - status
@@ -10615,7 +11022,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         invoiceNumber:
           description: Invoice number
@@ -10841,13 +11248,13 @@ components:
         errors:
           description: Liste des erreurs
           items:
-            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
+            $ref: "#/components/schemas/ValidationErrorResponse"
           title: Errors
           type: array
         warnings:
           description: Liste des avertissements
           items:
-            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
+            $ref: "#/components/schemas/ValidationErrorResponse"
           title: Warnings
           type: array
       required:
@@ -10978,20 +11385,32 @@ components:
       - reason
       title: ValidationErrorDetail
     ValidationErrorResponse:
-      description: Response for validation errors.
+      description: Erreur de validation.
       example:
-        detail:
-        - detail
-        - detail
+        severity: error
+        field: field
+        rule: rule
+        message: message
       properties:
-        detail:
-          description: List of detected validation errors.
-          items:
-            type: string
-          title: Detail
-          type: array
+        field:
+          description: Champ concerné
+          title: Field
+          type: string
+        message:
+          description: Message d'erreur
+          title: Message
+          type: string
+        rule:
+          nullable: true
+          type: string
+        severity:
+          default: error
+          description: Sévérité (error/warning)
+          title: Severity
+          type: string
       required:
-      - detail
+      - field
+      - message
       title: ValidationErrorResponse
     ValidationInfo:
       description: Informations sur la validation.
@@ -11216,84 +11635,73 @@ components:
       - label
       - status
       title: VerifiedFieldSchema
-    facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse:
-      description: Erreur de validation.
+    WebhookSecretDeleteResponse:
+      description: Response after deleting webhook secret.
       example:
-        severity: error
-        field: field
-        rule: rule
+        success: true
         message: message
       properties:
-        field:
-          description: Champ concerné
-          title: Field
-          type: string
+        success:
+          description: Whether the secret was deleted successfully
+          title: Success
+          type: boolean
         message:
-          description: Message d'erreur
+          description: Result message
           title: Message
           type: string
-        rule:
+      required:
+      - message
+      - success
+      title: WebhookSecretDeleteResponse
+    WebhookSecretGenerateResponse:
+      description: Response after generating a webhook secret.
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+        message: message
+        webhookSecret: webhookSecret
+      properties:
+        success:
+          description: Whether the secret was generated successfully
+          title: Success
+          type: boolean
+        webhookSecret:
+          description: "The generated webhook secret (save it, it will never be shown\
+            \ again)"
+          title: Webhooksecret
+          type: string
+        message:
+          description: Result message
+          title: Message
+          type: string
+        createdAt:
+          description: When the secret was created
+          format: date-time
+          title: Createdat
+          type: string
+      required:
+      - createdAt
+      - message
+      - success
+      - webhookSecret
+      title: WebhookSecretGenerateResponse
+    WebhookSecretStatusResponse:
+      description: Webhook secret status for a client.
+      example:
+        hasSecret: true
+        createdAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        hasSecret:
+          description: Whether a webhook secret is configured
+          title: Hassecret
+          type: boolean
+        createdAt:
+          format: date-time
           nullable: true
           type: string
-        severity:
-          default: error
-          description: Sévérité (error/warning)
-          title: Severity
-          type: string
       required:
-      - field
-      - message
-      title: ValidationErrorResponse
-    facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
-      description: |-
-        Chorus Pro credentials for Zero-Trust mode.
-
-        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
-
-        **Security**:
-        - Credentials are never persisted in the database
-        - They are used only for the duration of the request
-        - Secure transmission via HTTPS
-
-        **Use cases**:
-        - High-security environments (banks, administrations)
-        - Strict GDPR compliance
-        - Tests with temporary credentials
-        - Users who don't want to store their credentials
-      example:
-        chorusProLogin: my_login@company.fr
-        chorusProPassword: MyPassword123!
-        pisteClientId: my_client_id
-        pisteClientSecret: my_secret
-        sandbox: true
-      properties:
-        pisteClientId:
-          description: PISTE Client ID (government API portal)
-          title: Pisteclientid
-          type: string
-        pisteClientSecret:
-          description: PISTE Client Secret
-          title: Pisteclientsecret
-          type: string
-        chorusProLogin:
-          description: Chorus Pro login
-          title: Chorusprologin
-          type: string
-        chorusProPassword:
-          description: Chorus Pro password
-          title: Choruspropassword
-          type: string
-        sandbox:
-          default: true
-          description: Use sandbox environment (true) or production (false)
-          title: Sandbox
-          type: boolean
-      required:
-      - chorusProLogin
-      - chorusProPassword
-      - pisteClientId
-      - pisteClientSecret
-      title: ChorusProCredentials
+      - hasSecret
+      title: WebhookSecretStatusResponse
     facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
       description: Invoice type codes (UNTDID 1001).
       enum:
@@ -11304,6 +11712,58 @@ components:
       - "386"
       title: InvoiceTypeCode
       type: string
+    facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
+      description: |-
+        Optional Chorus Pro credentials.
+
+        **MODE 1 - JWT retrieval (recommended):**
+        Do not provide this `credentials` field in the payload.
+        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
+
+        **MODE 2 - Credentials in payload:**
+        Provide all required fields below.
+        Useful for tests or third-party integrations.
+      example:
+        chorusLogin: my_login@company.fr
+        chorusPassword: MyPassword123!
+        pisteClientId: my_piste_client_id
+        pisteClientSecret: my_piste_secret
+        sandboxMode: true
+      properties:
+        pisteClientId:
+          nullable: true
+          type: string
+        pisteClientSecret:
+          nullable: true
+          type: string
+        chorusLogin:
+          nullable: true
+          type: string
+        chorusPassword:
+          nullable: true
+          type: string
+        sandboxMode:
+          default: true
+          description: "[MODE 2] Use sandbox mode (default: True)"
+          title: Sandboxmode
+          type: boolean
+      title: ChorusProCredentials
+    facture_electronique__rest_api__schemas__validation__ValidationErrorResponse:
+      description: Response for validation errors.
+      example:
+        detail:
+        - detail
+        - detail
+      properties:
+        detail:
+          description: List of detected validation errors.
+          items:
+            type: string
+          title: Detail
+          type: array
+      required:
+      - detail
+      title: ValidationErrorResponse
     AdditionalDocument:
       description: |-
         Additional supporting document (BG-24).
@@ -15866,4 +16326,8 @@ components:
         pour les instructions détaillées.
       scheme: bearer
       type: http
+    APIKeyHeader:
+      in: header
+      name: X-API-Key
+      type: apiKey
 

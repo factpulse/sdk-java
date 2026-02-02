@@ -62,6 +62,57 @@ public class FactPulseClient {
         return request("GET", path, null, true);
     }
 
+    /** POST multipart request to /api/v1/{path} */
+    public Map<String, Object> postMultipart(String path, Map<String, String> formData, Map<String, byte[]> files) throws IOException, InterruptedException {
+        ensureAuth();
+        String url = apiUrl + "/api/v1/" + path;
+
+        MultipartBody.Builder multipartBuilder = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM);
+
+        // Add form fields
+        if (formData != null) {
+            for (Map.Entry<String, String> entry : formData.entrySet()) {
+                multipartBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+            }
+        }
+
+        // Add files
+        if (files != null) {
+            for (Map.Entry<String, byte[]> entry : files.entrySet()) {
+                multipartBuilder.addFormDataPart(
+                    entry.getKey(),
+                    entry.getKey(),
+                    RequestBody.create(entry.getValue(), MediaType.parse("application/octet-stream"))
+                );
+            }
+        }
+
+        Request request = new Request.Builder()
+            .url(url)
+            .header("Authorization", "Bearer " + token)
+            .post(multipartBuilder.build())
+            .build();
+
+        try (Response response = httpClient.newCall(request).execute()) {
+            if (response.code() == 401) {
+                invalidateToken();
+                return postMultipart(path, formData, files);
+            }
+
+            // Check if response is binary (PDF)
+            String contentType = response.header("Content-Type", "");
+            if (contentType.contains("application/pdf") || contentType.contains("application/octet-stream")) {
+                byte[] content = response.body() != null ? response.body().bytes() : new byte[0];
+                Map<String, Object> result = new HashMap<>();
+                result.put("content", content);
+                return result;
+            }
+
+            return parseResponse(response);
+        }
+    }
+
     private Map<String, Object> request(String method, String path, Map<String, Object> data, boolean retryAuth) throws IOException, InterruptedException {
         ensureAuth();
         String url = apiUrl + "/api/v1/" + path;

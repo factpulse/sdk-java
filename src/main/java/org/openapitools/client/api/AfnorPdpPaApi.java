@@ -77,6 +77,7 @@ public class AfnorPdpPaApi {
      * Build call for getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet
      * @param flowId AFNOR flow ID (UUID format) (required)
      * @param includeDocument Include base64-encoded document in response (optional, default to false)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -92,7 +93,7 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, @javax.annotation.Nullable String xEncryptionKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -137,18 +138,23 @@ public class AfnorPdpPaApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        if (xEncryptionKey != null) {
+            localVarHeaderParams.put("X-Encryption-Key", localVarApiClient.parameterToString(xEncryptionKey));
+        }
+
+
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, @javax.annotation.Nullable String xEncryptionKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'flowId' is set
         if (flowId == null) {
             throw new ApiException("Missing the required parameter 'flowId' when calling getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(Async)");
         }
 
-        return getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetCall(flowId, includeDocument, _callback);
+        return getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetCall(flowId, includeDocument, xEncryptionKey, _callback);
 
     }
 
@@ -157,6 +163,7 @@ public class AfnorPdpPaApi {
      * Downloads an incoming flow from the AFNOR PDP and extracts invoice metadata into a unified JSON format. Supports Factur-X, CII, and UBL formats.
      * @param flowId AFNOR flow ID (UUID format) (required)
      * @param includeDocument Include base64-encoded document in response (optional, default to false)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @return IncomingInvoice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -171,8 +178,8 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public IncomingInvoice getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
-        ApiResponse<IncomingInvoice> localVarResp = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetWithHttpInfo(flowId, includeDocument);
+    public IncomingInvoice getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, @javax.annotation.Nullable String xEncryptionKey) throws ApiException {
+        ApiResponse<IncomingInvoice> localVarResp = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetWithHttpInfo(flowId, includeDocument, xEncryptionKey);
         return localVarResp.getData();
     }
 
@@ -181,6 +188,7 @@ public class AfnorPdpPaApi {
      * Downloads an incoming flow from the AFNOR PDP and extracts invoice metadata into a unified JSON format. Supports Factur-X, CII, and UBL formats.
      * @param flowId AFNOR flow ID (UUID format) (required)
      * @param includeDocument Include base64-encoded document in response (optional, default to false)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @return ApiResponse&lt;IncomingInvoice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -195,8 +203,8 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<IncomingInvoice> getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument) throws ApiException {
-        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(flowId, includeDocument, null);
+    public ApiResponse<IncomingInvoice> getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, @javax.annotation.Nullable String xEncryptionKey) throws ApiException {
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(flowId, includeDocument, xEncryptionKey, null);
         Type localVarReturnType = new TypeToken<IncomingInvoice>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -206,6 +214,7 @@ public class AfnorPdpPaApi {
      * Downloads an incoming flow from the AFNOR PDP and extracts invoice metadata into a unified JSON format. Supports Factur-X, CII, and UBL formats.
      * @param flowId AFNOR flow ID (UUID format) (required)
      * @param includeDocument Include base64-encoded document in response (optional, default to false)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -221,9 +230,9 @@ public class AfnorPdpPaApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetAsync(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, final ApiCallback<IncomingInvoice> _callback) throws ApiException {
+    public okhttp3.Call getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetAsync(@javax.annotation.Nonnull String flowId, @javax.annotation.Nullable Boolean includeDocument, @javax.annotation.Nullable String xEncryptionKey, final ApiCallback<IncomingInvoice> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(flowId, includeDocument, _callback);
+        okhttp3.Call localVarCall = getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGetValidateBeforeCall(flowId, includeDocument, xEncryptionKey, _callback);
         Type localVarReturnType = new TypeToken<IncomingInvoice>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

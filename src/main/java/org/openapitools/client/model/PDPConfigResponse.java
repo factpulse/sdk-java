@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * PDP configuration (secrets masked).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-24T11:06:22.346262583Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class PDPConfigResponse {
   public static final String SERIALIZED_NAME_IS_CONFIGURED = "isConfigured";
   @SerializedName(SERIALIZED_NAME_IS_CONFIGURED)
@@ -87,6 +87,11 @@ public class PDPConfigResponse {
   @SerializedName(SERIALIZED_NAME_OAUTH_CLIENT_ID)
   @javax.annotation.Nullable
   private String oauthClientId;
+
+  public static final String SERIALIZED_NAME_ENCRYPTION_MODE = "encryptionMode";
+  @SerializedName(SERIALIZED_NAME_ENCRYPTION_MODE)
+  @javax.annotation.Nullable
+  private String encryptionMode;
 
   public static final String SERIALIZED_NAME_SECRET_STATUS = "secretStatus";
   @SerializedName(SERIALIZED_NAME_SECRET_STATUS)
@@ -259,6 +264,25 @@ public class PDPConfigResponse {
   }
 
 
+  public PDPConfigResponse encryptionMode(@javax.annotation.Nullable String encryptionMode) {
+    this.encryptionMode = encryptionMode;
+    return this;
+  }
+
+  /**
+   * Get encryptionMode
+   * @return encryptionMode
+   */
+  @javax.annotation.Nullable
+  public String getEncryptionMode() {
+    return encryptionMode;
+  }
+
+  public void setEncryptionMode(@javax.annotation.Nullable String encryptionMode) {
+    this.encryptionMode = encryptionMode;
+  }
+
+
   public PDPConfigResponse secretStatus(@javax.annotation.Nullable SecretStatus secretStatus) {
     this.secretStatus = secretStatus;
     return this;
@@ -409,6 +433,7 @@ public class PDPConfigResponse {
         Objects.equals(this.flowServiceUrl, pdPConfigResponse.flowServiceUrl) &&
         Objects.equals(this.tokenUrl, pdPConfigResponse.tokenUrl) &&
         Objects.equals(this.oauthClientId, pdPConfigResponse.oauthClientId) &&
+        Objects.equals(this.encryptionMode, pdPConfigResponse.encryptionMode) &&
         Objects.equals(this.secretStatus, pdPConfigResponse.secretStatus) &&
         Objects.equals(this.lastTestAt, pdPConfigResponse.lastTestAt) &&
         Objects.equals(this.lastTestSuccess, pdPConfigResponse.lastTestSuccess) &&
@@ -424,7 +449,7 @@ public class PDPConfigResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isConfigured, id, isActive, modeSandbox, flowServiceUrl, tokenUrl, oauthClientId, secretStatus, lastTestAt, lastTestSuccess, lastTestError, createdAt, updatedAt, message);
+    return Objects.hash(isConfigured, id, isActive, modeSandbox, flowServiceUrl, tokenUrl, oauthClientId, encryptionMode, secretStatus, lastTestAt, lastTestSuccess, lastTestError, createdAt, updatedAt, message);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -445,6 +470,7 @@ public class PDPConfigResponse {
     sb.append("    flowServiceUrl: ").append(toIndentedString(flowServiceUrl)).append("\n");
     sb.append("    tokenUrl: ").append(toIndentedString(tokenUrl)).append("\n");
     sb.append("    oauthClientId: ").append(toIndentedString(oauthClientId)).append("\n");
+    sb.append("    encryptionMode: ").append(toIndentedString(encryptionMode)).append("\n");
     sb.append("    secretStatus: ").append(toIndentedString(secretStatus)).append("\n");
     sb.append("    lastTestAt: ").append(toIndentedString(lastTestAt)).append("\n");
     sb.append("    lastTestSuccess: ").append(toIndentedString(lastTestSuccess)).append("\n");
@@ -473,7 +499,7 @@ public class PDPConfigResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("isConfigured", "id", "isActive", "modeSandbox", "flowServiceUrl", "tokenUrl", "oauthClientId", "secretStatus", "lastTestAt", "lastTestSuccess", "lastTestError", "createdAt", "updatedAt", "message"));
+    openapiFields = new HashSet<String>(Arrays.asList("isConfigured", "id", "isActive", "modeSandbox", "flowServiceUrl", "tokenUrl", "oauthClientId", "encryptionMode", "secretStatus", "lastTestAt", "lastTestSuccess", "lastTestError", "createdAt", "updatedAt", "message"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("isConfigured"));
@@ -515,6 +541,9 @@ public class PDPConfigResponse {
       }
       if ((jsonObj.get("oauthClientId") != null && !jsonObj.get("oauthClientId").isJsonNull()) && !jsonObj.get("oauthClientId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `oauthClientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("oauthClientId").toString()));
+      }
+      if ((jsonObj.get("encryptionMode") != null && !jsonObj.get("encryptionMode").isJsonNull()) && !jsonObj.get("encryptionMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `encryptionMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("encryptionMode").toString()));
       }
       // validate the optional field `secretStatus`
       if (jsonObj.get("secretStatus") != null && !jsonObj.get("secretStatus").isJsonNull()) {

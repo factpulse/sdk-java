@@ -59,7 +59,7 @@ import org.openapitools.client.JSON;
 /**
  * Invoice for B2B international reporting (flux 10.1).  Used for unitary declaration of international B2B invoices. Supports three scenarios: - B2Bi: French seller → Foreign buyer (issuer role &#x3D; SE) - Bi2B: Foreign seller → French buyer (issuer role &#x3D; BY) - Bi2Bi: Foreign seller → Foreign buyer (issuer role &#x3D; SE or BY)  Source: Annexe 6 v1.9, bloc TG-8 \&quot;Invoice\&quot;
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-24T11:06:22.346262583Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class InvoiceInput {
   public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
   @SerializedName(SERIALIZED_NAME_INVOICE_ID)

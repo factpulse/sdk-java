@@ -97,6 +97,14 @@ public class PDPConfigResponseTest {
     }
 
     /**
+     * Test the property 'encryptionMode'
+     */
+    @Test
+    public void encryptionModeTest() {
+        // TODO: test encryptionMode
+    }
+
+    /**
      * Test the property 'secretStatus'
      */
     @Test

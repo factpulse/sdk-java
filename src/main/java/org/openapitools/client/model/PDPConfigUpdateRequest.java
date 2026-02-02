@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,9 +47,9 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * PDP configuration update request.
+ * PDP configuration update request.  For encryption_mode&#x3D;&#39;double&#39;, the X-Encryption-Key header must also be provided containing a base64-encoded AES-256 key (32 bytes).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-24T11:06:22.346262583Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class PDPConfigUpdateRequest {
   public static final String SERIALIZED_NAME_IS_ACTIVE = "isActive";
   @SerializedName(SERIALIZED_NAME_IS_ACTIVE)
@@ -79,6 +80,63 @@ public class PDPConfigUpdateRequest {
   @SerializedName(SERIALIZED_NAME_CLIENT_SECRET)
   @javax.annotation.Nonnull
   private String clientSecret;
+
+  /**
+   * Gets or Sets encryptionMode
+   */
+  @JsonAdapter(EncryptionModeEnum.Adapter.class)
+  public enum EncryptionModeEnum {
+    FERNET("fernet"),
+    
+    DOUBLE("double");
+
+    private String value;
+
+    EncryptionModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static EncryptionModeEnum fromValue(String value) {
+      for (EncryptionModeEnum b : EncryptionModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<EncryptionModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final EncryptionModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public EncryptionModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return EncryptionModeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      EncryptionModeEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_ENCRYPTION_MODE = "encryptionMode";
+  @SerializedName(SERIALIZED_NAME_ENCRYPTION_MODE)
+  @javax.annotation.Nullable
+  private EncryptionModeEnum encryptionMode;
 
   public PDPConfigUpdateRequest() {
   }
@@ -197,6 +255,25 @@ public class PDPConfigUpdateRequest {
   }
 
 
+  public PDPConfigUpdateRequest encryptionMode(@javax.annotation.Nullable EncryptionModeEnum encryptionMode) {
+    this.encryptionMode = encryptionMode;
+    return this;
+  }
+
+  /**
+   * Get encryptionMode
+   * @return encryptionMode
+   */
+  @javax.annotation.Nullable
+  public EncryptionModeEnum getEncryptionMode() {
+    return encryptionMode;
+  }
+
+  public void setEncryptionMode(@javax.annotation.Nullable EncryptionModeEnum encryptionMode) {
+    this.encryptionMode = encryptionMode;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -212,12 +289,24 @@ public class PDPConfigUpdateRequest {
         Objects.equals(this.flowServiceUrl, pdPConfigUpdateRequest.flowServiceUrl) &&
         Objects.equals(this.tokenUrl, pdPConfigUpdateRequest.tokenUrl) &&
         Objects.equals(this.oauthClientId, pdPConfigUpdateRequest.oauthClientId) &&
-        Objects.equals(this.clientSecret, pdPConfigUpdateRequest.clientSecret);
+        Objects.equals(this.clientSecret, pdPConfigUpdateRequest.clientSecret) &&
+        Objects.equals(this.encryptionMode, pdPConfigUpdateRequest.encryptionMode);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(isActive, modeSandbox, flowServiceUrl, tokenUrl, oauthClientId, clientSecret);
+    return Objects.hash(isActive, modeSandbox, flowServiceUrl, tokenUrl, oauthClientId, clientSecret, encryptionMode);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -230,6 +319,7 @@ public class PDPConfigUpdateRequest {
     sb.append("    tokenUrl: ").append(toIndentedString(tokenUrl)).append("\n");
     sb.append("    oauthClientId: ").append(toIndentedString(oauthClientId)).append("\n");
     sb.append("    clientSecret: ").append(toIndentedString(clientSecret)).append("\n");
+    sb.append("    encryptionMode: ").append(toIndentedString(encryptionMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,7 +341,7 @@ public class PDPConfigUpdateRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("isActive", "modeSandbox", "flowServiceUrl", "tokenUrl", "oauthClientId", "clientSecret"));
+    openapiFields = new HashSet<String>(Arrays.asList("isActive", "modeSandbox", "flowServiceUrl", "tokenUrl", "oauthClientId", "clientSecret", "encryptionMode"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("flowServiceUrl", "tokenUrl", "oauthClientId", "clientSecret"));
@@ -296,6 +386,13 @@ public class PDPConfigUpdateRequest {
       }
       if (!jsonObj.get("clientSecret").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `clientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientSecret").toString()));
+      }
+      if ((jsonObj.get("encryptionMode") != null && !jsonObj.get("encryptionMode").isJsonNull()) && !jsonObj.get("encryptionMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `encryptionMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("encryptionMode").toString()));
+      }
+      // validate the optional field `encryptionMode`
+      if (jsonObj.get("encryptionMode") != null && !jsonObj.get("encryptionMode").isJsonNull()) {
+        EncryptionModeEnum.validateJsonElement(jsonObj.get("encryptionMode"));
       }
   }
 

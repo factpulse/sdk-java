@@ -19,9 +19,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -40,11 +39,35 @@ public class ValidationErrorResponseTest {
     }
 
     /**
-     * Test the property 'detail'
+     * Test the property 'field'
      */
     @Test
-    public void detailTest() {
-        // TODO: test detail
+    public void fieldTest() {
+        // TODO: test field
+    }
+
+    /**
+     * Test the property 'message'
+     */
+    @Test
+    public void messageTest() {
+        // TODO: test message
+    }
+
+    /**
+     * Test the property 'rule'
+     */
+    @Test
+    public void ruleTest() {
+        // TODO: test rule
+    }
+
+    /**
+     * Test the property 'severity'
+     */
+    @Test
+    public void severityTest() {
+        // TODO: test severity
     }
 
 }

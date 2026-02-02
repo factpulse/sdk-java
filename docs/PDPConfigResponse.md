@@ -15,6 +15,7 @@ PDP configuration (secrets masked).
 |**flowServiceUrl** | **String** |  |  [optional] |
 |**tokenUrl** | **String** |  |  [optional] |
 |**oauthClientId** | **String** |  |  [optional] |
+|**encryptionMode** | **String** |  |  [optional] |
 |**secretStatus** | [**SecretStatus**](SecretStatus.md) |  |  [optional] |
 |**lastTestAt** | **OffsetDateTime** |  |  [optional] |
 |**lastTestSuccess** | **Boolean** |  |  [optional] |

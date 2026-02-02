@@ -10,7 +10,7 @@ All URIs are relative to *https://factpulse.fr*
 
 <a id="getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet"></a>
 # **getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet**
-> IncomingInvoice getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument)
+> IncomingInvoice getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, xEncryptionKey)
 
 Retrieve and extract an incoming invoice
 
@@ -31,6 +31,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -38,8 +44,9 @@ public class Example {
     AfnorPdpPaApi apiInstance = new AfnorPdpPaApi(defaultClient);
     String flowId = "flowId_example"; // String | AFNOR flow ID (UUID format)
     Boolean includeDocument = false; // Boolean | Include base64-encoded document in response
+    String xEncryptionKey = "xEncryptionKey_example"; // String | Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode='double'.
     try {
-      IncomingInvoice result = apiInstance.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument);
+      IncomingInvoice result = apiInstance.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, xEncryptionKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AfnorPdpPaApi#getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet");
@@ -58,6 +65,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| AFNOR flow ID (UUID format) | |
 | **includeDocument** | **Boolean**| Include base64-encoded document in response | [optional] [default to false] |
+| **xEncryptionKey** | **String**| Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. | [optional] |
 
 ### Return type
 
@@ -65,7 +73,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

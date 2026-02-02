@@ -107,6 +107,7 @@ public class ApiClient {
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications.put("HTTPBearer", new HttpBearerAuth("bearer"));
+        authentications.put("APIKeyHeader", new ApiKeyAuth("header", "X-API-Key"));
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
@@ -123,6 +124,7 @@ public class ApiClient {
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications.put("HTTPBearer", new HttpBearerAuth("bearer"));
+        authentications.put("APIKeyHeader", new ApiKeyAuth("header", "X-API-Key"));
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
@@ -147,7 +149,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/4.0.2/java");
+        setUserAgent("OpenAPI-Generator/0.1.0/java");
 
         authentications = new HashMap<String, Authentication>();
     }

@@ -10,6 +10,8 @@ Secret status (never exposes the secret itself).
 |------------ | ------------- | ------------- | -------------|
 |**status** | **String** | Secret status: &#39;active&#39;, &#39;missing&#39;, etc. |  |
 |**message** | **String** | Descriptive status message |  |
+|**encryptionMode** | **String** |  |  [optional] |
+|**requiresClientKey** | **Boolean** |  |  [optional] |
 
 
 

@@ -7,9 +7,13 @@ All URIs are relative to *https://factpulse.fr*
 | [**activateClientApiV1ClientsUidActiverPost**](ClientManagementApi.md#activateClientApiV1ClientsUidActiverPost) | **POST** /api/v1/clients/{uid}/activer | Activate a client |
 | [**createClientApiV1ClientsPost**](ClientManagementApi.md#createClientApiV1ClientsPost) | **POST** /api/v1/clients | Create a client |
 | [**deactivateClientApiV1ClientsUidDesactiverPost**](ClientManagementApi.md#deactivateClientApiV1ClientsUidDesactiverPost) | **POST** /api/v1/clients/{uid}/desactiver | Deactivate a client |
+| [**deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete**](ClientManagementApi.md#deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete) | **DELETE** /api/v1/clients/{uid}/webhook-secret | Delete webhook secret |
+| [**generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost**](ClientManagementApi.md#generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost) | **POST** /api/v1/clients/{uid}/webhook-secret/generate | Generate webhook secret |
 | [**getClientApiV1ClientsUidGet**](ClientManagementApi.md#getClientApiV1ClientsUidGet) | **GET** /api/v1/clients/{uid} | Get client details |
 | [**getPdpConfigApiV1ClientsUidPdpConfigGet**](ClientManagementApi.md#getPdpConfigApiV1ClientsUidPdpConfigGet) | **GET** /api/v1/clients/{uid}/pdp-config | Get client PDP configuration |
+| [**getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet**](ClientManagementApi.md#getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet) | **GET** /api/v1/clients/{uid}/webhook-secret/status | Get webhook secret status |
 | [**listClientsApiV1ClientsGet**](ClientManagementApi.md#listClientsApiV1ClientsGet) | **GET** /api/v1/clients | List clients |
+| [**rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost**](ClientManagementApi.md#rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost) | **POST** /api/v1/clients/{uid}/rotate-encryption-key | Rotate client encryption key |
 | [**updateClientApiV1ClientsUidPatch**](ClientManagementApi.md#updateClientApiV1ClientsUidPatch) | **PATCH** /api/v1/clients/{uid} | Update a client |
 | [**updatePdpConfigApiV1ClientsUidPdpConfigPut**](ClientManagementApi.md#updatePdpConfigApiV1ClientsUidPdpConfigPut) | **PUT** /api/v1/clients/{uid}/pdp-config | Configure client PDP |
 
@@ -37,6 +41,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -69,7 +79,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -110,6 +120,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -142,7 +158,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -183,6 +199,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -215,7 +237,165 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid JWT token |  -  |
+| **403** | Access denied |  -  |
+| **404** | Client not found |  -  |
+| **500** | Server error |  -  |
+| **422** | Validation Error |  -  |
+
+<a id="deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete"></a>
+# **deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete**
+> WebhookSecretDeleteResponse deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid)
+
+Delete webhook secret
+
+Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.ClientManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
+    UUID uid = UUID.randomUUID(); // UUID | 
+    try {
+      WebhookSecretDeleteResponse result = apiInstance.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ClientManagementApi#deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uid** | **UUID**|  | |
+
+### Return type
+
+[**WebhookSecretDeleteResponse**](WebhookSecretDeleteResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid JWT token |  -  |
+| **403** | Access denied |  -  |
+| **404** | Client not found |  -  |
+| **500** | Server error |  -  |
+| **422** | Validation Error |  -  |
+
+<a id="generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost"></a>
+# **generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost**
+> WebhookSecretGenerateResponse generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid)
+
+Generate webhook secret
+
+Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.ClientManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
+    UUID uid = UUID.randomUUID(); // UUID | 
+    try {
+      WebhookSecretGenerateResponse result = apiInstance.generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ClientManagementApi#generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uid** | **UUID**|  | |
+
+### Return type
+
+[**WebhookSecretGenerateResponse**](WebhookSecretGenerateResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -256,6 +436,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -288,7 +474,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -329,6 +515,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -361,7 +553,86 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid JWT token |  -  |
+| **403** | Access denied |  -  |
+| **404** | Client not found |  -  |
+| **500** | Server error |  -  |
+| **422** | Validation Error |  -  |
+
+<a id="getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet"></a>
+# **getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet**
+> WebhookSecretStatusResponse getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid)
+
+Get webhook secret status
+
+Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.ClientManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
+    UUID uid = UUID.randomUUID(); // UUID | 
+    try {
+      WebhookSecretStatusResponse result = apiInstance.getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ClientManagementApi#getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uid** | **UUID**|  | |
+
+### Return type
+
+[**WebhookSecretStatusResponse**](WebhookSecretStatusResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -402,6 +673,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -436,11 +713,92 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid JWT token |  -  |
+| **403** | Access denied |  -  |
+| **404** | Client not found |  -  |
+| **500** | Server error |  -  |
+| **422** | Validation Error |  -  |
+
+<a id="rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost"></a>
+# **rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost**
+> KeyRotationResponse rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid, keyRotationRequest)
+
+Rotate client encryption key
+
+Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.ClientManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
+    UUID uid = UUID.randomUUID(); // UUID | 
+    KeyRotationRequest keyRotationRequest = new KeyRotationRequest(); // KeyRotationRequest | 
+    try {
+      KeyRotationResponse result = apiInstance.rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid, keyRotationRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ClientManagementApi#rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uid** | **UUID**|  | |
+| **keyRotationRequest** | [**KeyRotationRequest**](KeyRotationRequest.md)|  | |
+
+### Return type
+
+[**KeyRotationResponse**](KeyRotationResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -477,6 +835,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -511,7 +875,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -531,11 +895,11 @@ public class Example {
 
 <a id="updatePdpConfigApiV1ClientsUidPdpConfigPut"></a>
 # **updatePdpConfigApiV1ClientsUidPdpConfigPut**
-> PDPConfigResponse updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pdPConfigUpdateRequest)
+> PDPConfigResponse updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pdPConfigUpdateRequest, xEncryptionKey)
 
 Configure client PDP
 
-Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false)  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
+Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
 
 ### Example
 ```java
@@ -552,6 +916,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -559,8 +929,9 @@ public class Example {
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
     UUID uid = UUID.randomUUID(); // UUID | 
     PDPConfigUpdateRequest pdPConfigUpdateRequest = new PDPConfigUpdateRequest(); // PDPConfigUpdateRequest | 
+    String xEncryptionKey = "xEncryptionKey_example"; // String | Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode='double'.
     try {
-      PDPConfigResponse result = apiInstance.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pdPConfigUpdateRequest);
+      PDPConfigResponse result = apiInstance.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pdPConfigUpdateRequest, xEncryptionKey);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ClientManagementApi#updatePdpConfigApiV1ClientsUidPdpConfigPut");
@@ -579,6 +950,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **uid** | **UUID**|  | |
 | **pdPConfigUpdateRequest** | [**PDPConfigUpdateRequest**](PDPConfigUpdateRequest.md)|  | |
+| **xEncryptionKey** | **String**| Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. | [optional] |
 
 ### Return type
 
@@ -586,7 +958,7 @@ public class Example {
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

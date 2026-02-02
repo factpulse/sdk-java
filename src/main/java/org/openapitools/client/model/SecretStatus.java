@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Secret status (never exposes the secret itself).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-24T11:06:22.346262583Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class SecretStatus {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -59,6 +60,16 @@ public class SecretStatus {
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   @javax.annotation.Nonnull
   private String message;
+
+  public static final String SERIALIZED_NAME_ENCRYPTION_MODE = "encryptionMode";
+  @SerializedName(SERIALIZED_NAME_ENCRYPTION_MODE)
+  @javax.annotation.Nullable
+  private String encryptionMode;
+
+  public static final String SERIALIZED_NAME_REQUIRES_CLIENT_KEY = "requiresClientKey";
+  @SerializedName(SERIALIZED_NAME_REQUIRES_CLIENT_KEY)
+  @javax.annotation.Nullable
+  private Boolean requiresClientKey;
 
   public SecretStatus() {
   }
@@ -101,6 +112,44 @@ public class SecretStatus {
   }
 
 
+  public SecretStatus encryptionMode(@javax.annotation.Nullable String encryptionMode) {
+    this.encryptionMode = encryptionMode;
+    return this;
+  }
+
+  /**
+   * Get encryptionMode
+   * @return encryptionMode
+   */
+  @javax.annotation.Nullable
+  public String getEncryptionMode() {
+    return encryptionMode;
+  }
+
+  public void setEncryptionMode(@javax.annotation.Nullable String encryptionMode) {
+    this.encryptionMode = encryptionMode;
+  }
+
+
+  public SecretStatus requiresClientKey(@javax.annotation.Nullable Boolean requiresClientKey) {
+    this.requiresClientKey = requiresClientKey;
+    return this;
+  }
+
+  /**
+   * Get requiresClientKey
+   * @return requiresClientKey
+   */
+  @javax.annotation.Nullable
+  public Boolean getRequiresClientKey() {
+    return requiresClientKey;
+  }
+
+  public void setRequiresClientKey(@javax.annotation.Nullable Boolean requiresClientKey) {
+    this.requiresClientKey = requiresClientKey;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -112,12 +161,25 @@ public class SecretStatus {
     }
     SecretStatus secretStatus = (SecretStatus) o;
     return Objects.equals(this.status, secretStatus.status) &&
-        Objects.equals(this.message, secretStatus.message);
+        Objects.equals(this.message, secretStatus.message) &&
+        Objects.equals(this.encryptionMode, secretStatus.encryptionMode) &&
+        Objects.equals(this.requiresClientKey, secretStatus.requiresClientKey);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, message);
+    return Objects.hash(status, message, encryptionMode, requiresClientKey);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -126,6 +188,8 @@ public class SecretStatus {
     sb.append("class SecretStatus {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    encryptionMode: ").append(toIndentedString(encryptionMode)).append("\n");
+    sb.append("    requiresClientKey: ").append(toIndentedString(requiresClientKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -147,7 +211,7 @@ public class SecretStatus {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("status", "message"));
+    openapiFields = new HashSet<String>(Arrays.asList("status", "message", "encryptionMode", "requiresClientKey"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("status", "message"));
@@ -186,6 +250,9 @@ public class SecretStatus {
       }
       if (!jsonObj.get("message").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+      }
+      if ((jsonObj.get("encryptionMode") != null && !jsonObj.get("encryptionMode").isJsonNull()) && !jsonObj.get("encryptionMode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `encryptionMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("encryptionMode").toString()));
       }
   }
 

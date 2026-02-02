@@ -19,62 +19,40 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+ * Model tests for WebhookSecretStatusResponse
  */
-public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest {
-    private final FactureElectroniqueRestApiSchemasChorusProChorusProCredentials model = new FactureElectroniqueRestApiSchemasChorusProChorusProCredentials();
+public class WebhookSecretStatusResponseTest {
+    private final WebhookSecretStatusResponse model = new WebhookSecretStatusResponse();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+     * Model tests for WebhookSecretStatusResponse
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
-        // TODO: test FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
+    public void testWebhookSecretStatusResponse() {
+        // TODO: test WebhookSecretStatusResponse
     }
 
     /**
-     * Test the property 'pisteClientId'
+     * Test the property 'hasSecret'
      */
     @Test
-    public void pisteClientIdTest() {
-        // TODO: test pisteClientId
+    public void hasSecretTest() {
+        // TODO: test hasSecret
     }
 
     /**
-     * Test the property 'pisteClientSecret'
+     * Test the property 'createdAt'
      */
     @Test
-    public void pisteClientSecretTest() {
-        // TODO: test pisteClientSecret
-    }
-
-    /**
-     * Test the property 'chorusProLogin'
-     */
-    @Test
-    public void chorusProLoginTest() {
-        // TODO: test chorusProLogin
-    }
-
-    /**
-     * Test the property 'chorusProPassword'
-     */
-    @Test
-    public void chorusProPasswordTest() {
-        // TODO: test chorusProPassword
-    }
-
-    /**
-     * Test the property 'sandbox'
-     */
-    @Test
-    public void sandboxTest() {
-        // TODO: test sandbox
+    public void createdAtTest() {
+        // TODO: test createdAt
     }
 
 }

@@ -20,6 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +52,22 @@ public class SecretStatusTest {
     @Test
     public void messageTest() {
         // TODO: test message
+    }
+
+    /**
+     * Test the property 'encryptionMode'
+     */
+    @Test
+    public void encryptionModeTest() {
+        // TODO: test encryptionMode
+    }
+
+    /**
+     * Test the property 'requiresClientKey'
+     */
+    @Test
+    public void requiresClientKeyTest() {
+        // TODO: test requiresClientKey
     }
 
 }

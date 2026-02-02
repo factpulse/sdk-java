@@ -32,6 +32,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://factpulse.fr");
     
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
     // Configure HTTP bearer authorization: HTTPBearer
     HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
     HTTPBearer.setBearerToken("BEARER TOKEN");
@@ -60,7 +66,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

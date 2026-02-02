@@ -20,9 +20,14 @@ import org.openapitools.client.model.ClientDetail;
 import org.openapitools.client.model.ClientListResponse;
 import org.openapitools.client.model.ClientUpdateRequest;
 import org.openapitools.client.model.HTTPValidationError;
+import org.openapitools.client.model.KeyRotationRequest;
+import org.openapitools.client.model.KeyRotationResponse;
 import org.openapitools.client.model.PDPConfigResponse;
 import org.openapitools.client.model.PDPConfigUpdateRequest;
 import java.util.UUID;
+import org.openapitools.client.model.WebhookSecretDeleteResponse;
+import org.openapitools.client.model.WebhookSecretGenerateResponse;
+import org.openapitools.client.model.WebhookSecretStatusResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -82,6 +87,34 @@ public class ClientManagementApiTest {
     }
 
     /**
+     * Delete webhook secret
+     *
+     * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteTest() throws ApiException {
+        UUID uid = null;
+        WebhookSecretDeleteResponse response = api.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid);
+        // TODO: test validations
+    }
+
+    /**
+     * Generate webhook secret
+     *
+     * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostTest() throws ApiException {
+        UUID uid = null;
+        WebhookSecretGenerateResponse response = api.generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid);
+        // TODO: test validations
+    }
+
+    /**
      * Get client details
      *
      * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
@@ -110,6 +143,20 @@ public class ClientManagementApiTest {
     }
 
     /**
+     * Get webhook secret status
+     *
+     * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetTest() throws ApiException {
+        UUID uid = null;
+        WebhookSecretStatusResponse response = api.getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid);
+        // TODO: test validations
+    }
+
+    /**
      * List clients
      *
      * Paginated list of clients for the account.  **Scope**: Account level (JWT without client_uid)  **Pagination**: - &#x60;page&#x60;: Page number (default: 1) - &#x60;pageSize&#x60;: Page size (default: 20, max: 100)
@@ -121,6 +168,21 @@ public class ClientManagementApiTest {
         Integer page = null;
         Integer pageSize = null;
         ClientListResponse response = api.listClientsApiV1ClientsGet(page, pageSize);
+        // TODO: test validations
+    }
+
+    /**
+     * Rotate client encryption key
+     *
+     * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostTest() throws ApiException {
+        UUID uid = null;
+        KeyRotationRequest keyRotationRequest = null;
+        KeyRotationResponse response = api.rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid, keyRotationRequest);
         // TODO: test validations
     }
 
@@ -142,7 +204,7 @@ public class ClientManagementApiTest {
     /**
      * Configure client PDP
      *
-     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false)  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
+     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
      *
      * @throws ApiException if the Api call fails
      */
@@ -150,7 +212,8 @@ public class ClientManagementApiTest {
     public void updatePdpConfigApiV1ClientsUidPdpConfigPutTest() throws ApiException {
         UUID uid = null;
         PDPConfigUpdateRequest pdPConfigUpdateRequest = null;
-        PDPConfigResponse response = api.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pdPConfigUpdateRequest);
+        String xEncryptionKey = null;
+        PDPConfigResponse response = api.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pdPConfigUpdateRequest, xEncryptionKey);
         // TODO: test validations
     }
 

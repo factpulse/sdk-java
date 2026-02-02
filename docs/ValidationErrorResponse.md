@@ -2,13 +2,16 @@
 
 # ValidationErrorResponse
 
-Response for validation errors.
+Erreur de validation.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**detail** | **List&lt;String&gt;** | List of detected validation errors. |  |
+|**field** | **String** | Champ concerné |  |
+|**message** | **String** | Message d&#39;erreur |  |
+|**rule** | **String** |  |  [optional] |
+|**severity** | **String** | Sévérité (error/warning) |  [optional] |
 
 
 

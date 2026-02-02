@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -47,106 +48,58 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Erreur de validation.
+ * Webhook secret status for a client.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-24T11:06:22.346262583Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
-public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
-  public static final String SERIALIZED_NAME_FIELD = "field";
-  @SerializedName(SERIALIZED_NAME_FIELD)
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+public class WebhookSecretStatusResponse {
+  public static final String SERIALIZED_NAME_HAS_SECRET = "hasSecret";
+  @SerializedName(SERIALIZED_NAME_HAS_SECRET)
   @javax.annotation.Nonnull
-  private String field;
+  private Boolean hasSecret;
 
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  @javax.annotation.Nonnull
-  private String message;
-
-  public static final String SERIALIZED_NAME_RULE = "rule";
-  @SerializedName(SERIALIZED_NAME_RULE)
+  public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
   @javax.annotation.Nullable
-  private String rule;
+  private OffsetDateTime createdAt;
 
-  public static final String SERIALIZED_NAME_SEVERITY = "severity";
-  @SerializedName(SERIALIZED_NAME_SEVERITY)
-  @javax.annotation.Nullable
-  private String severity = "error";
-
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse() {
+  public WebhookSecretStatusResponse() {
   }
 
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse field(@javax.annotation.Nonnull String field) {
-    this.field = field;
+  public WebhookSecretStatusResponse hasSecret(@javax.annotation.Nonnull Boolean hasSecret) {
+    this.hasSecret = hasSecret;
     return this;
   }
 
   /**
-   * Champ concerné
-   * @return field
+   * Whether a webhook secret is configured
+   * @return hasSecret
    */
   @javax.annotation.Nonnull
-  public String getField() {
-    return field;
+  public Boolean getHasSecret() {
+    return hasSecret;
   }
 
-  public void setField(@javax.annotation.Nonnull String field) {
-    this.field = field;
+  public void setHasSecret(@javax.annotation.Nonnull Boolean hasSecret) {
+    this.hasSecret = hasSecret;
   }
 
 
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse message(@javax.annotation.Nonnull String message) {
-    this.message = message;
+  public WebhookSecretStatusResponse createdAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
     return this;
   }
 
   /**
-   * Message d&#39;erreur
-   * @return message
-   */
-  @javax.annotation.Nonnull
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(@javax.annotation.Nonnull String message) {
-    this.message = message;
-  }
-
-
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse rule(@javax.annotation.Nullable String rule) {
-    this.rule = rule;
-    return this;
-  }
-
-  /**
-   * Get rule
-   * @return rule
+   * Get createdAt
+   * @return createdAt
    */
   @javax.annotation.Nullable
-  public String getRule() {
-    return rule;
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
   }
 
-  public void setRule(@javax.annotation.Nullable String rule) {
-    this.rule = rule;
-  }
-
-
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse severity(@javax.annotation.Nullable String severity) {
-    this.severity = severity;
-    return this;
-  }
-
-  /**
-   * Sévérité (error/warning)
-   * @return severity
-   */
-  @javax.annotation.Nullable
-  public String getSeverity() {
-    return severity;
-  }
-
-  public void setSeverity(@javax.annotation.Nullable String severity) {
-    this.severity = severity;
+  public void setCreatedAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
   }
 
 
@@ -159,11 +112,9 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FactureElectroniqueRestApiSchemasCdarValidationErrorResponse factureElectroniqueRestApiSchemasCdarValidationErrorResponse = (FactureElectroniqueRestApiSchemasCdarValidationErrorResponse) o;
-    return Objects.equals(this.field, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.field) &&
-        Objects.equals(this.message, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.message) &&
-        Objects.equals(this.rule, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.rule) &&
-        Objects.equals(this.severity, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.severity);
+    WebhookSecretStatusResponse webhookSecretStatusResponse = (WebhookSecretStatusResponse) o;
+    return Objects.equals(this.hasSecret, webhookSecretStatusResponse.hasSecret) &&
+        Objects.equals(this.createdAt, webhookSecretStatusResponse.createdAt);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -172,7 +123,7 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, message, rule, severity);
+    return Objects.hash(hasSecret, createdAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -185,11 +136,9 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {\n");
-    sb.append("    field: ").append(toIndentedString(field)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
-    sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
+    sb.append("class WebhookSecretStatusResponse {\n");
+    sb.append("    hasSecret: ").append(toIndentedString(hasSecret)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -211,74 +160,62 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("field", "message", "rule", "severity"));
+    openapiFields = new HashSet<String>(Arrays.asList("hasSecret", "createdAt"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("field", "message"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("hasSecret"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
+   * @throws IOException if the JSON Element is invalid with respect to WebhookSecretStatusResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasCdarValidationErrorResponse is not found in the empty JSON string", FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiRequiredFields.toString()));
+        if (!WebhookSecretStatusResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in WebhookSecretStatusResponse is not found in the empty JSON string", WebhookSecretStatusResponse.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasCdarValidationErrorResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!WebhookSecretStatusResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `WebhookSecretStatusResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiRequiredFields) {
+      for (String requiredField : WebhookSecretStatusResponse.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("field").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
-      }
-      if (!jsonObj.get("message").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
-      }
-      if ((jsonObj.get("rule") != null && !jsonObj.get("rule").isJsonNull()) && !jsonObj.get("rule").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `rule` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rule").toString()));
-      }
-      if ((jsonObj.get("severity") != null && !jsonObj.get("severity").isJsonNull()) && !jsonObj.get("severity").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `severity` to be a primitive type in the JSON string but got `%s`", jsonObj.get("severity").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasCdarValidationErrorResponse' and its subtypes
+       if (!WebhookSecretStatusResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'WebhookSecretStatusResponse' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.class));
+       final TypeAdapter<WebhookSecretStatusResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(WebhookSecretStatusResponse.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<WebhookSecretStatusResponse>() {
            @Override
-           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasCdarValidationErrorResponse value) throws IOException {
+           public void write(JsonWriter out, WebhookSecretStatusResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse read(JsonReader in) throws IOException {
+           public WebhookSecretStatusResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -289,18 +226,18 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
   }
 
   /**
-   * Create an instance of FactureElectroniqueRestApiSchemasCdarValidationErrorResponse given an JSON string
+   * Create an instance of WebhookSecretStatusResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
-   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
+   * @return An instance of WebhookSecretStatusResponse
+   * @throws IOException if the JSON string is invalid with respect to WebhookSecretStatusResponse
    */
-  public static FactureElectroniqueRestApiSchemasCdarValidationErrorResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.class);
+  public static WebhookSecretStatusResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WebhookSecretStatusResponse.class);
   }
 
   /**
-   * Convert an instance of FactureElectroniqueRestApiSchemasCdarValidationErrorResponse to an JSON string
+   * Convert an instance of WebhookSecretStatusResponse to an JSON string
    *
    * @return JSON string
    */

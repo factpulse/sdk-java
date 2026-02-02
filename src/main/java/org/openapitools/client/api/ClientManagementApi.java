@@ -33,9 +33,14 @@ import org.openapitools.client.model.ClientDetail;
 import org.openapitools.client.model.ClientListResponse;
 import org.openapitools.client.model.ClientUpdateRequest;
 import org.openapitools.client.model.HTTPValidationError;
+import org.openapitools.client.model.KeyRotationRequest;
+import org.openapitools.client.model.KeyRotationResponse;
 import org.openapitools.client.model.PDPConfigResponse;
 import org.openapitools.client.model.PDPConfigUpdateRequest;
 import java.util.UUID;
+import org.openapitools.client.model.WebhookSecretDeleteResponse;
+import org.openapitools.client.model.WebhookSecretGenerateResponse;
+import org.openapitools.client.model.WebhookSecretStatusResponse;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -140,7 +145,7 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -291,7 +296,7 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -442,7 +447,7 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -534,6 +539,308 @@ public class ClientManagementApi {
         return localVarCall;
     }
     /**
+     * Build call for deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete
+     * @param uid  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteCall(@javax.annotation.Nonnull UUID uid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/clients/{uid}/webhook-secret"
+            .replace("{" + "uid" + "}", localVarApiClient.escapeString(uid.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteValidateBeforeCall(@javax.annotation.Nonnull UUID uid, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'uid' is set
+        if (uid == null) {
+            throw new ApiException("Missing the required parameter 'uid' when calling deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(Async)");
+        }
+
+        return deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteCall(uid, _callback);
+
+    }
+
+    /**
+     * Delete webhook secret
+     * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+     * @param uid  (required)
+     * @return WebhookSecretDeleteResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public WebhookSecretDeleteResponse deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(@javax.annotation.Nonnull UUID uid) throws ApiException {
+        ApiResponse<WebhookSecretDeleteResponse> localVarResp = deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteWithHttpInfo(uid);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete webhook secret
+     * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+     * @param uid  (required)
+     * @return ApiResponse&lt;WebhookSecretDeleteResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<WebhookSecretDeleteResponse> deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteWithHttpInfo(@javax.annotation.Nonnull UUID uid) throws ApiException {
+        okhttp3.Call localVarCall = deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteValidateBeforeCall(uid, null);
+        Type localVarReturnType = new TypeToken<WebhookSecretDeleteResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete webhook secret (asynchronously)
+     * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+     * @param uid  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteAsync(@javax.annotation.Nonnull UUID uid, final ApiCallback<WebhookSecretDeleteResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteWebhookSecretApiV1ClientsUidWebhookSecretDeleteValidateBeforeCall(uid, _callback);
+        Type localVarReturnType = new TypeToken<WebhookSecretDeleteResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost
+     * @param uid  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostCall(@javax.annotation.Nonnull UUID uid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/clients/{uid}/webhook-secret/generate"
+            .replace("{" + "uid" + "}", localVarApiClient.escapeString(uid.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostValidateBeforeCall(@javax.annotation.Nonnull UUID uid, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'uid' is set
+        if (uid == null) {
+            throw new ApiException("Missing the required parameter 'uid' when calling generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(Async)");
+        }
+
+        return generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostCall(uid, _callback);
+
+    }
+
+    /**
+     * Generate webhook secret
+     * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+     * @param uid  (required)
+     * @return WebhookSecretGenerateResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public WebhookSecretGenerateResponse generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(@javax.annotation.Nonnull UUID uid) throws ApiException {
+        ApiResponse<WebhookSecretGenerateResponse> localVarResp = generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostWithHttpInfo(uid);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Generate webhook secret
+     * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+     * @param uid  (required)
+     * @return ApiResponse&lt;WebhookSecretGenerateResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<WebhookSecretGenerateResponse> generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostWithHttpInfo(@javax.annotation.Nonnull UUID uid) throws ApiException {
+        okhttp3.Call localVarCall = generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostValidateBeforeCall(uid, null);
+        Type localVarReturnType = new TypeToken<WebhookSecretGenerateResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Generate webhook secret (asynchronously)
+     * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+     * @param uid  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostAsync(@javax.annotation.Nonnull UUID uid, final ApiCallback<WebhookSecretGenerateResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePostValidateBeforeCall(uid, _callback);
+        Type localVarReturnType = new TypeToken<WebhookSecretGenerateResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getClientApiV1ClientsUidGet
      * @param uid  (required)
      * @param _callback Callback for upload/download progress
@@ -593,7 +900,7 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -744,7 +1051,7 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -836,6 +1143,157 @@ public class ClientManagementApi {
         return localVarCall;
     }
     /**
+     * Build call for getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet
+     * @param uid  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetCall(@javax.annotation.Nonnull UUID uid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/clients/{uid}/webhook-secret/status"
+            .replace("{" + "uid" + "}", localVarApiClient.escapeString(uid.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetValidateBeforeCall(@javax.annotation.Nonnull UUID uid, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'uid' is set
+        if (uid == null) {
+            throw new ApiException("Missing the required parameter 'uid' when calling getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(Async)");
+        }
+
+        return getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetCall(uid, _callback);
+
+    }
+
+    /**
+     * Get webhook secret status
+     * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+     * @param uid  (required)
+     * @return WebhookSecretStatusResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public WebhookSecretStatusResponse getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(@javax.annotation.Nonnull UUID uid) throws ApiException {
+        ApiResponse<WebhookSecretStatusResponse> localVarResp = getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetWithHttpInfo(uid);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get webhook secret status
+     * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+     * @param uid  (required)
+     * @return ApiResponse&lt;WebhookSecretStatusResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<WebhookSecretStatusResponse> getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetWithHttpInfo(@javax.annotation.Nonnull UUID uid) throws ApiException {
+        okhttp3.Call localVarCall = getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetValidateBeforeCall(uid, null);
+        Type localVarReturnType = new TypeToken<WebhookSecretStatusResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get webhook secret status (asynchronously)
+     * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+     * @param uid  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetAsync(@javax.annotation.Nonnull UUID uid, final ApiCallback<WebhookSecretStatusResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGetValidateBeforeCall(uid, _callback);
+        Type localVarReturnType = new TypeToken<WebhookSecretStatusResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for listClientsApiV1ClientsGet
      * @param page Page number (optional, default to 1)
      * @param pageSize Page size (optional, default to 20)
@@ -903,7 +1361,7 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -993,6 +1451,167 @@ public class ClientManagementApi {
         return localVarCall;
     }
     /**
+     * Build call for rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost
+     * @param uid  (required)
+     * @param keyRotationRequest  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostCall(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull KeyRotationRequest keyRotationRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = keyRotationRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/clients/{uid}/rotate-encryption-key"
+            .replace("{" + "uid" + "}", localVarApiClient.escapeString(uid.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostValidateBeforeCall(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull KeyRotationRequest keyRotationRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'uid' is set
+        if (uid == null) {
+            throw new ApiException("Missing the required parameter 'uid' when calling rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(Async)");
+        }
+
+        // verify the required parameter 'keyRotationRequest' is set
+        if (keyRotationRequest == null) {
+            throw new ApiException("Missing the required parameter 'keyRotationRequest' when calling rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(Async)");
+        }
+
+        return rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostCall(uid, keyRotationRequest, _callback);
+
+    }
+
+    /**
+     * Rotate client encryption key
+     * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+     * @param uid  (required)
+     * @param keyRotationRequest  (required)
+     * @return KeyRotationResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public KeyRotationResponse rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull KeyRotationRequest keyRotationRequest) throws ApiException {
+        ApiResponse<KeyRotationResponse> localVarResp = rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostWithHttpInfo(uid, keyRotationRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Rotate client encryption key
+     * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+     * @param uid  (required)
+     * @param keyRotationRequest  (required)
+     * @return ApiResponse&lt;KeyRotationResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<KeyRotationResponse> rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostWithHttpInfo(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull KeyRotationRequest keyRotationRequest) throws ApiException {
+        okhttp3.Call localVarCall = rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostValidateBeforeCall(uid, keyRotationRequest, null);
+        Type localVarReturnType = new TypeToken<KeyRotationResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Rotate client encryption key (asynchronously)
+     * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+     * @param uid  (required)
+     * @param keyRotationRequest  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Missing or invalid JWT token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Access denied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Client not found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostAsync(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull KeyRotationRequest keyRotationRequest, final ApiCallback<KeyRotationResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPostValidateBeforeCall(uid, keyRotationRequest, _callback);
+        Type localVarReturnType = new TypeToken<KeyRotationResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updateClientApiV1ClientsUidPatch
      * @param uid  (required)
      * @param clientUpdateRequest  (required)
@@ -1054,7 +1673,7 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1157,6 +1776,7 @@ public class ClientManagementApi {
      * Build call for updatePdpConfigApiV1ClientsUidPdpConfigPut
      * @param uid  (required)
      * @param pdPConfigUpdateRequest  (required)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1173,7 +1793,7 @@ public class ClientManagementApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePdpConfigApiV1ClientsUidPdpConfigPutCall(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updatePdpConfigApiV1ClientsUidPdpConfigPutCall(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, @javax.annotation.Nullable String xEncryptionKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1215,12 +1835,17 @@ public class ClientManagementApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        if (xEncryptionKey != null) {
+            localVarHeaderParams.put("X-Encryption-Key", localVarApiClient.parameterToString(xEncryptionKey));
+        }
+
+
+        String[] localVarAuthNames = new String[] { "APIKeyHeader", "HTTPBearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updatePdpConfigApiV1ClientsUidPdpConfigPutValidateBeforeCall(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updatePdpConfigApiV1ClientsUidPdpConfigPutValidateBeforeCall(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, @javax.annotation.Nullable String xEncryptionKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'uid' is set
         if (uid == null) {
             throw new ApiException("Missing the required parameter 'uid' when calling updatePdpConfigApiV1ClientsUidPdpConfigPut(Async)");
@@ -1231,15 +1856,16 @@ public class ClientManagementApi {
             throw new ApiException("Missing the required parameter 'pdPConfigUpdateRequest' when calling updatePdpConfigApiV1ClientsUidPdpConfigPut(Async)");
         }
 
-        return updatePdpConfigApiV1ClientsUidPdpConfigPutCall(uid, pdPConfigUpdateRequest, _callback);
+        return updatePdpConfigApiV1ClientsUidPdpConfigPutCall(uid, pdPConfigUpdateRequest, xEncryptionKey, _callback);
 
     }
 
     /**
      * Configure client PDP
-     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false)  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
+     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
      * @param uid  (required)
      * @param pdPConfigUpdateRequest  (required)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @return PDPConfigResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1255,16 +1881,17 @@ public class ClientManagementApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public PDPConfigResponse updatePdpConfigApiV1ClientsUidPdpConfigPut(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest) throws ApiException {
-        ApiResponse<PDPConfigResponse> localVarResp = updatePdpConfigApiV1ClientsUidPdpConfigPutWithHttpInfo(uid, pdPConfigUpdateRequest);
+    public PDPConfigResponse updatePdpConfigApiV1ClientsUidPdpConfigPut(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, @javax.annotation.Nullable String xEncryptionKey) throws ApiException {
+        ApiResponse<PDPConfigResponse> localVarResp = updatePdpConfigApiV1ClientsUidPdpConfigPutWithHttpInfo(uid, pdPConfigUpdateRequest, xEncryptionKey);
         return localVarResp.getData();
     }
 
     /**
      * Configure client PDP
-     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false)  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
+     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
      * @param uid  (required)
      * @param pdPConfigUpdateRequest  (required)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @return ApiResponse&lt;PDPConfigResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1280,17 +1907,18 @@ public class ClientManagementApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PDPConfigResponse> updatePdpConfigApiV1ClientsUidPdpConfigPutWithHttpInfo(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest) throws ApiException {
-        okhttp3.Call localVarCall = updatePdpConfigApiV1ClientsUidPdpConfigPutValidateBeforeCall(uid, pdPConfigUpdateRequest, null);
+    public ApiResponse<PDPConfigResponse> updatePdpConfigApiV1ClientsUidPdpConfigPutWithHttpInfo(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, @javax.annotation.Nullable String xEncryptionKey) throws ApiException {
+        okhttp3.Call localVarCall = updatePdpConfigApiV1ClientsUidPdpConfigPutValidateBeforeCall(uid, pdPConfigUpdateRequest, xEncryptionKey, null);
         Type localVarReturnType = new TypeToken<PDPConfigResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Configure client PDP (asynchronously)
-     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false)  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
+     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
      * @param uid  (required)
      * @param pdPConfigUpdateRequest  (required)
+     * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1307,9 +1935,9 @@ public class ClientManagementApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updatePdpConfigApiV1ClientsUidPdpConfigPutAsync(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, final ApiCallback<PDPConfigResponse> _callback) throws ApiException {
+    public okhttp3.Call updatePdpConfigApiV1ClientsUidPdpConfigPutAsync(@javax.annotation.Nonnull UUID uid, @javax.annotation.Nonnull PDPConfigUpdateRequest pdPConfigUpdateRequest, @javax.annotation.Nullable String xEncryptionKey, final ApiCallback<PDPConfigResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updatePdpConfigApiV1ClientsUidPdpConfigPutValidateBeforeCall(uid, pdPConfigUpdateRequest, _callback);
+        okhttp3.Call localVarCall = updatePdpConfigApiV1ClientsUidPdpConfigPutValidateBeforeCall(uid, pdPConfigUpdateRequest, xEncryptionKey, _callback);
         Type localVarReturnType = new TypeToken<PDPConfigResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
