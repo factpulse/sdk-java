@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +46,22 @@ public class ConvertResumeRequestTest {
     @Test
     public void overridesTest() {
         // TODO: test overrides
+    }
+
+    /**
+     * Test the property 'callbackUrl'
+     */
+    @Test
+    public void callbackUrlTest() {
+        // TODO: test callbackUrl
+    }
+
+    /**
+     * Test the property 'webhookMode'
+     */
+    @Test
+    public void webhookModeTest() {
+        // TODO: test webhookMode
     }
 
 }

@@ -9,7 +9,7 @@ Specific configuration for Chorus Pro destination.
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
-|**credentials** | [**FactureElectroniqueRestApiSchemasProcessingChorusProCredentials**](FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md) |  |  [optional] |
+|**credentials** | [**ChorusProCredentials**](ChorusProCredentials.md) |  |  [optional] |
 
 
 

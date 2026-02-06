@@ -20,22 +20,21 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+ * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
  */
-public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest {
-    private final FactureElectroniqueRestApiSchemasProcessingChorusProCredentials model = new FactureElectroniqueRestApiSchemasProcessingChorusProCredentials();
+public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest {
+    private final FactureElectroniqueRestApiSchemasChorusProChorusProCredentials model = new FactureElectroniqueRestApiSchemasChorusProChorusProCredentials();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+     * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasProcessingChorusProCredentials() {
-        // TODO: test FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+    public void testFactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
+        // TODO: test FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
     }
 
     /**
@@ -55,27 +54,27 @@ public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest
     }
 
     /**
-     * Test the property 'chorusLogin'
+     * Test the property 'chorusProLogin'
      */
     @Test
-    public void chorusLoginTest() {
-        // TODO: test chorusLogin
+    public void chorusProLoginTest() {
+        // TODO: test chorusProLogin
     }
 
     /**
-     * Test the property 'chorusPassword'
+     * Test the property 'chorusProPassword'
      */
     @Test
-    public void chorusPasswordTest() {
-        // TODO: test chorusPassword
+    public void chorusProPasswordTest() {
+        // TODO: test chorusProPassword
     }
 
     /**
-     * Test the property 'sandboxMode'
+     * Test the property 'sandbox'
      */
     @Test
-    public void sandboxModeTest() {
-        // TODO: test sandboxMode
+    public void sandboxTest() {
+        // TODO: test sandbox
     }
 
 }

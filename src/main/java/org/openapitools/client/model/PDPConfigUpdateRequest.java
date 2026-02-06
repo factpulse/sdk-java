@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * PDP configuration update request.  For encryption_mode&#x3D;&#39;double&#39;, the X-Encryption-Key header must also be provided containing a base64-encoded AES-256 key (32 bytes).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-06T06:39:18.380466615Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class PDPConfigUpdateRequest {
   public static final String SERIALIZED_NAME_IS_ACTIVE = "isActive";
   @SerializedName(SERIALIZED_NAME_IS_ACTIVE)

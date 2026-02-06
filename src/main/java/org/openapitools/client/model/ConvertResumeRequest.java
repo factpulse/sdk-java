@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,14 +49,24 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Requete de reprise de conversion avec corrections.  Le champ &#x60;overrides&#x60; accepte n&#39;importe quel sous-ensemble de FacturXInvoice. Seuls les champs fournis seront mis a jour (merge profond).  Exemple:     {         \&quot;overrides\&quot;: {             \&quot;supplier\&quot;: {                 \&quot;name\&quot;: \&quot;Ma Société\&quot;,                 \&quot;siret\&quot;: \&quot;12345678901234\&quot;             },             \&quot;totals\&quot;: {                 \&quot;total_net_amount\&quot;: 1000.00             }         }     }
+ * Requete de reprise de conversion avec corrections.  Le champ &#x60;overrides&#x60; accepte n&#39;importe quel sous-ensemble de FacturXInvoice. Seuls les champs fournis seront mis a jour (merge profond).  Exemple:     {         \&quot;overrides\&quot;: {             \&quot;supplier\&quot;: {                 \&quot;name\&quot;: \&quot;Ma Société\&quot;,                 \&quot;siret\&quot;: \&quot;12345678901234\&quot;             },             \&quot;totals\&quot;: {                 \&quot;total_net_amount\&quot;: 1000.00             }         },         \&quot;callback_url\&quot;: \&quot;https://example.com/webhook\&quot;,         \&quot;webhook_mode\&quot;: \&quot;inline\&quot;     }
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-06T06:39:18.380466615Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class ConvertResumeRequest {
   public static final String SERIALIZED_NAME_OVERRIDES = "overrides";
   @SerializedName(SERIALIZED_NAME_OVERRIDES)
   @javax.annotation.Nullable
   private Map<String, Object> overrides = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_CALLBACK_URL = "callback_url";
+  @SerializedName(SERIALIZED_NAME_CALLBACK_URL)
+  @javax.annotation.Nullable
+  private String callbackUrl;
+
+  public static final String SERIALIZED_NAME_WEBHOOK_MODE = "webhook_mode";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_MODE)
+  @javax.annotation.Nullable
+  private String webhookMode = "inline";
 
   public ConvertResumeRequest() {
   }
@@ -87,6 +98,44 @@ public class ConvertResumeRequest {
   }
 
 
+  public ConvertResumeRequest callbackUrl(@javax.annotation.Nullable String callbackUrl) {
+    this.callbackUrl = callbackUrl;
+    return this;
+  }
+
+  /**
+   * Get callbackUrl
+   * @return callbackUrl
+   */
+  @javax.annotation.Nullable
+  public String getCallbackUrl() {
+    return callbackUrl;
+  }
+
+  public void setCallbackUrl(@javax.annotation.Nullable String callbackUrl) {
+    this.callbackUrl = callbackUrl;
+  }
+
+
+  public ConvertResumeRequest webhookMode(@javax.annotation.Nullable String webhookMode) {
+    this.webhookMode = webhookMode;
+    return this;
+  }
+
+  /**
+   * Mode de livraison webhook: &#39;inline&#39; ou &#39;download_url&#39;
+   * @return webhookMode
+   */
+  @javax.annotation.Nullable
+  public String getWebhookMode() {
+    return webhookMode;
+  }
+
+  public void setWebhookMode(@javax.annotation.Nullable String webhookMode) {
+    this.webhookMode = webhookMode;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -97,12 +146,25 @@ public class ConvertResumeRequest {
       return false;
     }
     ConvertResumeRequest convertResumeRequest = (ConvertResumeRequest) o;
-    return Objects.equals(this.overrides, convertResumeRequest.overrides);
+    return Objects.equals(this.overrides, convertResumeRequest.overrides) &&
+        Objects.equals(this.callbackUrl, convertResumeRequest.callbackUrl) &&
+        Objects.equals(this.webhookMode, convertResumeRequest.webhookMode);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(overrides);
+    return Objects.hash(overrides, callbackUrl, webhookMode);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -110,6 +172,8 @@ public class ConvertResumeRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConvertResumeRequest {\n");
     sb.append("    overrides: ").append(toIndentedString(overrides)).append("\n");
+    sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
+    sb.append("    webhookMode: ").append(toIndentedString(webhookMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -131,7 +195,7 @@ public class ConvertResumeRequest {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("overrides"));
+    openapiFields = new HashSet<String>(Arrays.asList("overrides", "callback_url", "webhook_mode"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -158,6 +222,12 @@ public class ConvertResumeRequest {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("callback_url") != null && !jsonObj.get("callback_url").isJsonNull()) && !jsonObj.get("callback_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `callback_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("callback_url").toString()));
+      }
+      if ((jsonObj.get("webhook_mode") != null && !jsonObj.get("webhook_mode").isJsonNull()) && !jsonObj.get("webhook_mode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `webhook_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("webhook_mode").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Response after generating e-reporting XML.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-02T08:09:20.390878433Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-06T06:39:18.380466615Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class GenerateEReportingResponse {
   public static final String SERIALIZED_NAME_REPORT_ID = "reportId";
   @SerializedName(SERIALIZED_NAME_REPORT_ID)

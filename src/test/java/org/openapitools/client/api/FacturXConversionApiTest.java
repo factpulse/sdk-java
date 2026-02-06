@@ -97,4 +97,19 @@ public class FacturXConversionApiTest {
         // TODO: test validations
     }
 
+    /**
+     * Resume a conversion asynchronously
+     *
+     * Resume a conversion after completing missing data or correcting errors (async mode).  The OCR extraction is preserved, data is updated with corrections, then processing is performed asynchronously via Celery.  ## Workflow  1. **Submit corrections**: Corrections are validated and task is queued 2. **Celery Task**: Task processes corrections and generates Factur-X 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **404**: Conversion not found or expired
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPostTest() throws ApiException {
+        String conversionId = null;
+        ConvertResumeRequest convertResumeRequest = null;
+        Object response = api.resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost(conversionId, convertResumeRequest);
+        // TODO: test validations
+    }
+
 }
