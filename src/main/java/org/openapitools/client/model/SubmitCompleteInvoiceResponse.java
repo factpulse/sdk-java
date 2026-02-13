@@ -1,6 +1,6 @@
 /*
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X (CII), UBL 2.1, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Invoice Generation - **Formats**: CII XML, UBL 2.1 XML, or Factur-X PDF/A-3 - **Profiles** (CII/PDF): MINIMUM, BASIC, EN16931, EXTENDED - **UBL**: Always EN16931 compliant - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT), UBL 2.1 (OASIS) - **Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d '{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -21,6 +21,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.client.model.AFNORResult;
 import org.openapitools.client.model.ChorusProResult;
 import org.openapitools.client.model.EnrichedInvoiceInfo;
@@ -54,7 +56,7 @@ import org.openapitools.client.JSON;
 /**
  * Complete response after automated submission.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-06T06:39:18.380466615Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
 public class SubmitCompleteInvoiceResponse {
   public static final String SERIALIZED_NAME_SUCCESS = "success";
   @SerializedName(SERIALIZED_NAME_SUCCESS)
@@ -132,6 +134,11 @@ public class SubmitCompleteInvoiceResponse {
   @SerializedName(SERIALIZED_NAME_ENRICHED_INVOICE)
   @javax.annotation.Nonnull
   private EnrichedInvoiceInfo enrichedInvoice;
+
+  public static final String SERIALIZED_NAME_INVOICE = "invoice";
+  @SerializedName(SERIALIZED_NAME_INVOICE)
+  @javax.annotation.Nonnull
+  private Map<String, Object> invoice = new HashMap<>();
 
   public static final String SERIALIZED_NAME_FACTURX_PDF = "facturxPdf";
   @SerializedName(SERIALIZED_NAME_FACTURX_PDF)
@@ -238,7 +245,7 @@ public class SubmitCompleteInvoiceResponse {
   }
 
   /**
-   * Enriched invoice data
+   * Enriched invoice data (summary)
    * @return enrichedInvoice
    */
   @javax.annotation.Nonnull
@@ -248,6 +255,33 @@ public class SubmitCompleteInvoiceResponse {
 
   public void setEnrichedInvoice(@javax.annotation.Nonnull EnrichedInvoiceInfo enrichedInvoice) {
     this.enrichedInvoice = enrichedInvoice;
+  }
+
+
+  public SubmitCompleteInvoiceResponse invoice(@javax.annotation.Nonnull Map<String, Object> invoice) {
+    this.invoice = invoice;
+    return this;
+  }
+
+  public SubmitCompleteInvoiceResponse putInvoiceItem(String key, Object invoiceItem) {
+    if (this.invoice == null) {
+      this.invoice = new HashMap<>();
+    }
+    this.invoice.put(key, invoiceItem);
+    return this;
+  }
+
+  /**
+   * Complete enriched invoice data (FacturXInvoice format). Use this to regenerate the same invoice.
+   * @return invoice
+   */
+  @javax.annotation.Nonnull
+  public Map<String, Object> getInvoice() {
+    return invoice;
+  }
+
+  public void setInvoice(@javax.annotation.Nonnull Map<String, Object> invoice) {
+    this.invoice = invoice;
   }
 
 
@@ -342,6 +376,7 @@ public class SubmitCompleteInvoiceResponse {
         Objects.equals(this.chorusResult, submitCompleteInvoiceResponse.chorusResult) &&
         Objects.equals(this.afnorResult, submitCompleteInvoiceResponse.afnorResult) &&
         Objects.equals(this.enrichedInvoice, submitCompleteInvoiceResponse.enrichedInvoice) &&
+        Objects.equals(this.invoice, submitCompleteInvoiceResponse.invoice) &&
         Objects.equals(this.facturxPdf, submitCompleteInvoiceResponse.facturxPdf) &&
         Objects.equals(this.signature, submitCompleteInvoiceResponse.signature) &&
         Objects.equals(this.contentB64, submitCompleteInvoiceResponse.contentB64) &&
@@ -354,7 +389,7 @@ public class SubmitCompleteInvoiceResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, destinationType, chorusResult, afnorResult, enrichedInvoice, facturxPdf, signature, contentB64, message);
+    return Objects.hash(success, destinationType, chorusResult, afnorResult, enrichedInvoice, invoice, facturxPdf, signature, contentB64, message);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -373,6 +408,7 @@ public class SubmitCompleteInvoiceResponse {
     sb.append("    chorusResult: ").append(toIndentedString(chorusResult)).append("\n");
     sb.append("    afnorResult: ").append(toIndentedString(afnorResult)).append("\n");
     sb.append("    enrichedInvoice: ").append(toIndentedString(enrichedInvoice)).append("\n");
+    sb.append("    invoice: ").append(toIndentedString(invoice)).append("\n");
     sb.append("    facturxPdf: ").append(toIndentedString(facturxPdf)).append("\n");
     sb.append("    signature: ").append(toIndentedString(signature)).append("\n");
     sb.append("    contentB64: ").append(toIndentedString(contentB64)).append("\n");
@@ -398,10 +434,10 @@ public class SubmitCompleteInvoiceResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("success", "destinationType", "chorusResult", "afnorResult", "enrichedInvoice", "facturxPdf", "signature", "contentB64", "message"));
+    openapiFields = new HashSet<String>(Arrays.asList("success", "destinationType", "chorusResult", "afnorResult", "enrichedInvoice", "invoice", "facturxPdf", "signature", "contentB64", "message"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("success", "destinationType", "enrichedInvoice", "facturxPdf", "contentB64", "message"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("success", "destinationType", "enrichedInvoice", "invoice", "facturxPdf", "contentB64", "message"));
   }
 
   /**

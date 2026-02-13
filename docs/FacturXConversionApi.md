@@ -7,6 +7,7 @@ All URIs are relative to *https://factpulse.fr*
 | [**convertDocumentAsyncApiV1ConvertAsyncPost**](FacturXConversionApi.md#convertDocumentAsyncApiV1ConvertAsyncPost) | **POST** /api/v1/convert/async | Convert a document to Factur-X (async mode) |
 | [**downloadFileApiV1ConvertConversionIdDownloadFilenameGet**](FacturXConversionApi.md#downloadFileApiV1ConvertConversionIdDownloadFilenameGet) | **GET** /api/v1/convert/{conversion_id}/download/{filename} | Download a generated file |
 | [**getConversionStatusApiV1ConvertConversionIdStatusGet**](FacturXConversionApi.md#getConversionStatusApiV1ConvertConversionIdStatusGet) | **GET** /api/v1/convert/{conversion_id}/status | Check conversion status |
+| [**getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet**](FacturXConversionApi.md#getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet) | **GET** /api/v1/convert/tasks/{task_id}/conversion-status | Get typed conversion task status |
 | [**resumeConversionApiV1ConvertConversionIdResumePost**](FacturXConversionApi.md#resumeConversionApiV1ConvertConversionIdResumePost) | **POST** /api/v1/convert/{conversion_id}/resume | Resume a conversion with corrections |
 | [**resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost**](FacturXConversionApi.md#resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost) | **POST** /api/v1/convert/{conversion_id}/resume/async | Resume a conversion asynchronously |
 
@@ -230,6 +231,81 @@ public class Example {
 ### Return type
 
 **Map&lt;String, Object&gt;**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **422** | Validation Error |  -  |
+| **401** | Authentication required - Invalid or missing JWT token |  -  |
+
+<a id="getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet"></a>
+# **getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet**
+> ConversionTaskStatus getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet(taskId)
+
+Get typed conversion task status
+
+Typed status endpoint for document conversion tasks.  Returns a strongly-typed &#x60;result&#x60; discriminated on &#x60;result.status&#x60;: - **SUCCESS**: &#x60;ConversionSuccessTaskResult&#x60; - **PENDING_INPUT**: &#x60;ConversionPendingInputResult&#x60; (missing fields) - **VALIDATION_FAILED**: &#x60;ConversionValidationFailedResult&#x60; - **ERROR**: &#x60;ConversionErrorResult&#x60;
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.FacturXConversionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    FacturXConversionApi apiInstance = new FacturXConversionApi(defaultClient);
+    String taskId = "taskId_example"; // String | Celery task ID returned by POST /convert
+    try {
+      ConversionTaskStatus result = apiInstance.getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet(taskId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FacturXConversionApi#getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | **String**| Celery task ID returned by POST /convert | |
+
+### Return type
+
+[**ConversionTaskStatus**](ConversionTaskStatus.md)
 
 ### Authorization
 

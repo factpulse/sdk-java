@@ -12,7 +12,8 @@ Complete response after automated submission.
 |**destinationType** | [**DestinationTypeEnum**](#DestinationTypeEnum) | Destination type |  |
 |**chorusResult** | [**ChorusProResult**](ChorusProResult.md) |  |  [optional] |
 |**afnorResult** | [**AFNORResult**](AFNORResult.md) |  |  [optional] |
-|**enrichedInvoice** | [**EnrichedInvoiceInfo**](EnrichedInvoiceInfo.md) | Enriched invoice data |  |
+|**enrichedInvoice** | [**EnrichedInvoiceInfo**](EnrichedInvoiceInfo.md) | Enriched invoice data (summary) |  |
+|**invoice** | **Map&lt;String, Object&gt;** | Complete enriched invoice data (FacturXInvoice format). Use this to regenerate the same invoice. |  |
 |**facturxPdf** | [**FacturXPDFInfo**](FacturXPDFInfo.md) | Generated PDF information |  |
 |**signature** | [**SignatureInfo**](SignatureInfo.md) |  |  [optional] |
 |**contentB64** | **String** | Generated Factur-X PDF (and signed if requested) base64-encoded |  |

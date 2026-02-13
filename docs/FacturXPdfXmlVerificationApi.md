@@ -5,6 +5,7 @@ All URIs are relative to *https://factpulse.fr*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet**](FacturXPdfXmlVerificationApi.md#getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet) | **GET** /api/v1/verification/verify-async/{task_id}/status | Get status of an asynchronous verification |
+| [**getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet**](FacturXPdfXmlVerificationApi.md#getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet) | **GET** /api/v1/verification/verify-async/{task_id}/typed-status | Get typed status of an asynchronous verification |
 | [**verifyPdfAsyncApiV1VerificationVerifyAsyncPost**](FacturXPdfXmlVerificationApi.md#verifyPdfAsyncApiV1VerificationVerifyAsyncPost) | **POST** /api/v1/verification/verify-async | Verify PDF/XML Factur-X compliance (asynchronous) |
 | [**verifyPdfSyncApiV1VerificationVerifyPost**](FacturXPdfXmlVerificationApi.md#verifyPdfSyncApiV1VerificationVerifyPost) | **POST** /api/v1/verification/verify | Verify PDF/XML Factur-X compliance (synchronous) |
 
@@ -67,6 +68,81 @@ public class Example {
 ### Return type
 
 [**AsyncTaskStatus**](AsyncTaskStatus.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **422** | Validation Error |  -  |
+| **401** | Authentication required - Invalid or missing JWT token |  -  |
+
+<a id="getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet"></a>
+# **getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet**
+> VerificationTypedTaskStatus getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId)
+
+Get typed status of an asynchronous verification
+
+Typed status endpoint for async verification tasks.  Returns a strongly-typed &#x60;result&#x60; (discriminated on &#x60;result.status&#x60;): - **SUCCESS**: &#x60;VerificationSuccessTaskResult&#x60; with &#x60;verification_result&#x60; - **ERROR**: &#x60;TaskErrorResult&#x60; in AFNOR format
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.FacturXPdfXmlVerificationApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure API key authorization: APIKeyHeader
+    ApiKeyAuth APIKeyHeader = (ApiKeyAuth) defaultClient.getAuthentication("APIKeyHeader");
+    APIKeyHeader.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIKeyHeader.setApiKeyPrefix("Token");
+
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    FacturXPdfXmlVerificationApi apiInstance = new FacturXPdfXmlVerificationApi(defaultClient);
+    String taskId = "taskId_example"; // String | Celery task ID returned by /verify-async endpoint
+    try {
+      VerificationTypedTaskStatus result = apiInstance.getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FacturXPdfXmlVerificationApi#getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | **String**| Celery task ID returned by /verify-async endpoint | |
+
+### Return type
+
+[**VerificationTypedTaskStatus**](VerificationTypedTaskStatus.md)
 
 ### Authorization
 

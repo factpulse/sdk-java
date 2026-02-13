@@ -4,41 +4,42 @@ info:
     email: contact@factpulse.fr
     name: FactPulse
     url: https://factpulse.fr/
-  description: "\nREST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA,\
-    \ electronic signatures.\n\n## 🎯 Main Features\n\n### 📄 Factur-X - Generation\n\
-    - **Formats**: XML only or PDF/A-3 with embedded XML\n- **Profiles**: MINIMUM,\
-    \ BASIC, EN16931, EXTENDED\n- **Standards**: EN 16931 (EU directive 2014/55),\
-    \ ISO 19005-3 (PDF/A-3), CII (UN/CEFACT)\n- **🆕 Simplified Format**: Generation\
-    \ from SIRET + auto-enrichment (Chorus Pro API + Business Search)\n\n### ✅ Factur-X\
-    \ - Validation\n- **XML Validation**: Schematron (45 to 210+ rules depending on\
-    \ profile)\n- **PDF Validation**: PDF/A-3, Factur-X XMP metadata\n- **VeraPDF**:\
-    \ Strict PDF/A validation (146+ ISO 19005-3 rules)\n\n### ✍️ Electronic Signature\n\
-    - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term\
-    \ archival)\n- **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES\
-    \ (QTSP)\n- **Validation**: Cryptographic integrity and certificate verification\n\
-    \n### 📋 Flux 6 - Invoice Lifecycle (CDAR)\n- **CDAR Messages**: Acknowledgements,\
-    \ invoice statuses\n- **PPF Statuses**: REFUSED (210), PAID (212)\n\n### 📊 Flux\
-    \ 10 - E-Reporting\n- **Tax Declarations**: International B2B, B2C\n- **Flow Types**:\
-    \ 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4\
-    \ (B2C payments)\n\n### 📡 AFNOR PDP/PA (XP Z12-013)\n- **Flow Service**: Submit\
-    \ and search flows to PDPs\n- **Directory Service**: Company search (SIREN/SIRET)\n\
-    - **Multi-client**: Support for multiple PDP configs per user\n\n### 🏛️ Chorus\
-    \ Pro\n- **Public Sector Invoicing**: Complete API for Chorus Pro\n\n### ⏳ Async\
-    \ Tasks\n- **Celery**: Asynchronous generation, validation and signing\n- **Polling**:\
-    \ Status tracking via `/tasks/{task_id}/status`\n- **Webhooks**: Automatic notifications\
-    \ when tasks complete\n\n## 🔒 Authentication\n\nAll requests require a **JWT\
-    \ token** in the Authorization header:\n```\nAuthorization: Bearer YOUR_JWT_TOKEN\n\
-    ```\n\n### How to obtain a JWT token?\n\n#### 🔑 Method 1: `/api/token/` API (Recommended)\n\
-    \n**URL:** `https://factpulse.fr/api/token/`\n\nThis method is **recommended**\
-    \ for integration in your applications and CI/CD workflows.\n\n**Prerequisites:**\
-    \ Having set a password on your account\n\n**For users registered via email/password:**\n\
-    - You already have a password, use it directly\n\n**For users registered via OAuth\
-    \ (Google/GitHub):**\n- You must first set a password at: https://factpulse.fr/accounts/password/set/\n\
-    - Once the password is created, you can use the API\n\n**Request example:**\n\
-    ```bash\ncurl -X POST https://factpulse.fr/api/token/ \\\n  -H \"Content-Type:\
-    \ application/json\" \\\n  -d '{\n    \"username\": \"your_email@example.com\"\
-    ,\n    \"password\": \"your_password\"\n  }'\n```\n\n**Optional `client_uid` parameter:**\n\
-    \nTo select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates),\
+  description: "\nREST API for electronic invoicing in France: Factur-X (CII), UBL\
+    \ 2.1, AFNOR PDP/PA, electronic signatures.\n\n## 🎯 Main Features\n\n### 📄 Invoice\
+    \ Generation\n- **Formats**: CII XML, UBL 2.1 XML, or Factur-X PDF/A-3\n- **Profiles**\
+    \ (CII/PDF): MINIMUM, BASIC, EN16931, EXTENDED\n- **UBL**: Always EN16931 compliant\n\
+    - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT),\
+    \ UBL 2.1 (OASIS)\n- **Simplified Format**: Generation from SIRET + auto-enrichment\
+    \ (Chorus Pro API + Business Search)\n\n### ✅ Factur-X - Validation\n- **XML Validation**:\
+    \ Schematron (45 to 210+ rules depending on profile)\n- **PDF Validation**: PDF/A-3,\
+    \ Factur-X XMP metadata\n- **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3\
+    \ rules)\n\n### ✍️ Electronic Signature\n- **Standards**: PAdES-B-B, PAdES-B-T\
+    \ (RFC 3161 timestamping), PAdES-B-LT (long-term archival)\n- **eIDAS Levels**:\
+    \ SES (self-signed), AdES (commercial CA), QES (QTSP)\n- **Validation**: Cryptographic\
+    \ integrity and certificate verification\n\n### 📋 Flux 6 - Invoice Lifecycle\
+    \ (CDAR)\n- **CDAR Messages**: Acknowledgements, invoice statuses\n- **PPF Statuses**:\
+    \ REFUSED (210), PAID (212)\n\n### 📊 Flux 10 - E-Reporting\n- **Tax Declarations**:\
+    \ International B2B, B2C\n- **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B\
+    \ payments), 10.3 (B2C transactions), 10.4 (B2C payments)\n\n### 📡 AFNOR PDP/PA\
+    \ (XP Z12-013)\n- **Flow Service**: Submit and search flows to PDPs\n- **Directory\
+    \ Service**: Company search (SIREN/SIRET)\n- **Multi-client**: Support for multiple\
+    \ PDP configs per user\n\n### 🏛️ Chorus Pro\n- **Public Sector Invoicing**: Complete\
+    \ API for Chorus Pro\n\n### ⏳ Async Tasks\n- **Celery**: Asynchronous generation,\
+    \ validation and signing\n- **Polling**: Status tracking via `/tasks/{task_id}/status`\n\
+    - **Webhooks**: Automatic notifications when tasks complete\n\n## 🔒 Authentication\n\
+    \nAll requests require a **JWT token** in the Authorization header:\n```\nAuthorization:\
+    \ Bearer YOUR_JWT_TOKEN\n```\n\n### How to obtain a JWT token?\n\n#### 🔑 Method\
+    \ 1: `/api/token/` API (Recommended)\n\n**URL:** `https://factpulse.fr/api/token/`\n\
+    \nThis method is **recommended** for integration in your applications and CI/CD\
+    \ workflows.\n\n**Prerequisites:** Having set a password on your account\n\n**For\
+    \ users registered via email/password:**\n- You already have a password, use it\
+    \ directly\n\n**For users registered via OAuth (Google/GitHub):**\n- You must\
+    \ first set a password at: https://factpulse.fr/accounts/password/set/\n- Once\
+    \ the password is created, you can use the API\n\n**Request example:**\n```bash\n\
+    curl -X POST https://factpulse.fr/api/token/ \\\n  -H \"Content-Type: application/json\"\
+    \ \\\n  -d '{\n    \"username\": \"your_email@example.com\",\n    \"password\"\
+    : \"your_password\"\n  }'\n```\n\n**Optional `client_uid` parameter:**\n\nTo select\
+    \ credentials for a specific client (PA/PDP, Chorus Pro, signing certificates),\
     \ add `client_uid`:\n\n```bash\ncurl -X POST https://factpulse.fr/api/token/ \\\
     \n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"username\": \"your_email@example.com\"\
     ,\n    \"password\": \"your_password\",\n    \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"\
@@ -76,16 +77,37 @@ servers:
 - description: Local development
   url: http://localhost:8001
 tags:
-- description: "\n## 📄 Factur-X Invoice Generation\n\n**Generate electronic invoices\
-    \ compliant with European standards, ready for submission via Flux 2.**\n\n###\
-    \ Features\n\n- **XML/PDF-A3 Generation**: Factur-X compliant invoices with embedded\
-    \ XML\n- **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED\n- **Auto-enrichment**:\
-    \ Data from Chorus Pro + Business Search API\n- **Async Processing**: Celery support\
-    \ for large files\n\n### Applied Standards\n\n- **Factur-X** (France): FNFE-MPE\
-    \ standard\n- **EN 16931**: European semantic standard (directive 2014/55/EU)\n\
-    - **ISO 19005-3** (PDF/A-3): Long-term electronic archiving\n- **Cross Industry\
-    \ Invoice (CII)**: UN/CEFACT XML syntax\n        "
-  name: Factur-X - Generation
+- description: "\n## 📄 Electronic Invoice Generation\n\n**Generate electronic invoices\
+    \ in CII, UBL or Factur-X PDF format, compliant with European standards.**\n\n\
+    ### Output Formats\n\n| Format | `output_format` | Description |\n|--------|----------------|-------------|\n\
+    | **CII XML** | `xml` or `cii` | Cross-Industry Invoice (UN/CEFACT) — Factur-X\
+    \ XML syntax |\n| **UBL XML** | `ubl` | Universal Business Language 2.1 (OASIS)\
+    \ |\n| **Factur-X PDF** | `pdf` | PDF/A-3 with embedded CII XML |\n\n### Features\n\
+    \n- **Multi-format**: CII XML, UBL 2.1 XML, or Factur-X PDF/A-3\n- **Profiles**\
+    \ (CII/PDF): MINIMUM, BASIC, EN16931, EXTENDED\n- **UBL**: Always EN16931 compliant\n\
+    - **Auto-enrichment**: Data from Chorus Pro + Business Search API\n- **Async Processing**:\
+    \ Celery support for large files\n- **Unified submission**: Generation + signature\
+    \ + submission in one call\n\n### Applied Standards\n\n- **Factur-X** (France):\
+    \ FNFE-MPE standard (CII syntax)\n- **UBL 2.1** (OASIS): Universal Business Language\n\
+    - **EN 16931**: European semantic standard (directive 2014/55/EU)\n- **ISO 19005-3**\
+    \ (PDF/A-3): Long-term electronic archiving\n- **Schematron**: EN16931-CII, EN16931-UBL,\
+    \ BR-FR-CII, BR-FR-UBL\n        "
+  name: Invoice Generation
+- description: "\n## 🔍 Invoice Parsing\n\n**Parse CII XML, UBL XML, or Factur-X PDF\
+    \ files to extract structured invoice data.**\n\n### Features\n\n- **Multi-format**:\
+    \ Accepts CII (Factur-X) XML, UBL 2.1 XML, or Factur-X PDF\n- **Auto-detection**:\
+    \ Automatically detects the input format\n- **Structured output**: Returns a complete\
+    \ FacturXInvoice object\n- **Profile detection**: Identifies the Factur-X profile\
+    \ (MINIMUM, BASIC, EN16931, EXTENDED)\n- **Async support**: Available in synchronous\
+    \ and asynchronous modes\n        "
+  name: Parse
+- description: "\n## ✅ XML Validation\n\n**Validate CII or UBL XML files against Schematron\
+    \ rules.**\n\n### Features\n\n- **Multi-format**: Validates CII (Factur-X) and\
+    \ UBL 2.1 XML\n- **Auto-detection**: Automatically detects CII vs UBL format\n\
+    - **Profile support**: MINIMUM, BASIC, EN16931, EXTENDED (CII only)\n- **BR-FR\
+    \ rules**: French-specific business rules (auto-detected or configurable)\n  \
+    \      "
+  name: Validation
 - description: "\n## ✅ Factur-X Invoice Validation\n\n**Schematron and PDF/A validation\
     \ for European standards compliance.**\n\n### Validation Types\n\n- **XML Schematron\
     \ Validation**: 45 to 210+ rules depending on profile\n- **PDF/A-3 Validation**:\
@@ -250,15 +272,19 @@ paths:
   /api/v1/processing/generate-invoice:
     post:
       description: |-
-        Generates an electronic invoice in Factur-X format compliant with European standards.
+        Generates an electronic invoice compliant with European standards.
+
+        Supports **two XML syntaxes** defined by EN 16931:
+        - **CII** (Cross-Industry Invoice, UN/CEFACT) — the Factur-X / ZUGFeRD syntax
+        - **UBL 2.1** (Universal Business Language, OASIS) — the Peppol BIS Billing syntax
 
         ## Applied Standards
 
-        - **Factur-X** (France): FNFE-MPE standard (Forum National de la Facture Électronique)
-        - **ZUGFeRD** (Germany): German format compatible with Factur-X
         - **EN 16931**: European semantic standard for electronic invoicing
-        - **ISO 19005-3** (PDF/A-3): Long-term electronic archiving
-        - **Cross Industry Invoice (CII)**: UN/CEFACT XML syntax
+        - **Factur-X / ZUGFeRD** (CII syntax): Franco-German standard
+        - **UBL 2.1** (OASIS): International standard, used by Peppol
+        - **ISO 19005-3** (PDF/A-3): Long-term electronic archiving (PDF output only)
+        - **Schematron**: Business rules validation (EN16931-CII, EN16931-UBL, BR-FR)
 
         ## 🆕 New: Simplified format with auto-enrichment (P0.1)
 
@@ -355,15 +381,18 @@ paths:
 
         ## Output formats
 
-        - **xml**: Generates only Factur-X XML (recommended for testing)
-        - **pdf**: Generates PDF/A-3 with embedded XML (requires `source_pdf`)
+        - **xml** / **cii**: CII XML (Factur-X syntax, UN/CEFACT)
+        - **ubl**: UBL 2.1 XML (OASIS, Peppol BIS Billing 3.0)
+        - **pdf**: Factur-X PDF/A-3 with embedded CII XML (requires `source_pdf`)
 
-        ## Factur-X profiles
+        ## Factur-X profiles (CII only)
 
         - **MINIMUM**: Minimal data (simplified invoice)
         - **BASIC**: Basic information (SMEs)
         - **EN16931**: European standard (recommended, compliant with directive 2014/55/EU)
         - **EXTENDED**: All available data (large accounts)
+
+        When `output_format=ubl`, the profile parameter is ignored (UBL always uses EN16931).
 
         ## What you get
 
@@ -382,8 +411,8 @@ paths:
         content:
           multipart/form-data:
             examples:
-              xml_output:
-                summary: Generate XML only
+              cii_xml:
+                summary: Generate CII XML (Factur-X syntax)
                 value:
                   invoice_data: "{\"invoiceNumber\":\"FACT-2025-001\",\"invoiceDate\"\
                     :\"2025-10-27\",\"paymentDueDate\":\"2025-11-27\",\"submissionMode\"\
@@ -417,8 +446,42 @@ paths:
                     3000.00\"},\"comment\":\"Invoice for October 2025 services\"}"
                   profile: EXTENDED
                   output_format: xml
+              ubl_xml:
+                summary: Generate UBL 2.1 XML
+                value:
+                  invoice_data: "{\"invoiceNumber\":\"FACT-2025-001\",\"invoiceDate\"\
+                    :\"2025-10-27\",\"paymentDueDate\":\"2025-11-27\",\"submissionMode\"\
+                    :\"DEPOT_PDF_API\",\"recipient\":{\"name\":\"Client Test SAS\"\
+                    ,\"electronicAddress\":{\"identifier\":\"12345678901234\",\"schemeId\"\
+                    :\"0225\"},\"postalAddress\":{\"lineOne\":\"456 Avenue des Champs\"\
+                    ,\"postalCode\":\"69001\",\"city\":\"Lyon\",\"countryCode\":\"\
+                    FR\"},\"executingServiceCode\":\"SERVICE01\"},\"supplier\":{\"\
+                    name\":\"Ma Soci\\u00e9t\\u00e9 SAS\",\"supplierId\":12345,\"\
+                    siret\":\"12345678900001\",\"vatNumber\":\"FR12345678900\",\"\
+                    iban\":\"FR7630006000011234567890189\",\"electronicAddress\":{\"\
+                    identifier\":\"12345678900001\",\"schemeId\":\"0225\"},\"postalAddress\"\
+                    :{\"lineOne\":\"123 Rue de la R\\u00e9publique\",\"lineTwo\":\"\
+                    B\\u00e2timent A\",\"postalCode\":\"75001\",\"city\":\"Paris\"\
+                    ,\"countryCode\":\"FR\"}},\"invoicingFramework\":{\"invoicingFrameworkCode\"\
+                    :\"A1_FACTURE_FOURNISSEUR\"},\"references\":{\"invoiceType\":\"\
+                    FACTURE\",\"vatAccountingCode\":\"TVA_SUR_DEBIT\",\"paymentMeans\"\
+                    :\"VIREMENT\",\"invoiceCurrency\":\"EUR\",\"purchaseOrderReference\"\
+                    :\"CMD-2025-042\"},\"invoiceLines\":[{\"lineNumber\":1,\"itemName\"\
+                    :\"Prestation de conseil\",\"quantity\":\"5.00\",\"unit\":\"HEURE\"\
+                    ,\"unitNetPrice\":\"200.00\",\"lineNetAmount\":\"1000.00\",\"\
+                    manualVatRate\":\"20.00\",\"vatCategory\":\"S\",\"reference\"\
+                    :\"REF-CONSEIL-001\"},{\"lineNumber\":2,\"itemName\":\"Formation\
+                    \ d\\u00e9veloppeurs\",\"quantity\":\"3.00\",\"unit\":\"JOUR\"\
+                    ,\"unitNetPrice\":\"500.00\",\"lineNetAmount\":\"1500.00\",\"\
+                    vatCategory\":\"S\",\"manualVatRate\":\"20.00\",\"reference\"\
+                    :\"REF-FORM-002\"}],\"vatLines\":[{\"taxableAmount\":\"2500.00\"\
+                    ,\"vatAmount\":\"500.00\",\"manualRate\":\"20.00\",\"category\"\
+                    :\"S\"}],\"totals\":{\"totalNetAmount\":\"2500.00\",\"vatAmount\"\
+                    :\"500.00\",\"totalGrossAmount\":\"3000.00\",\"amountDue\":\"\
+                    3000.00\"},\"comment\":\"Invoice for October 2025 services\"}"
+                  output_format: ubl
               pdf_output:
-                summary: Generate PDF (requires source_pdf)
+                summary: Generate Factur-X PDF (requires source_pdf)
                 value:
                   invoice_data: "{\"invoiceNumber\":\"FACT-2025-001\",\"invoiceDate\"\
                     :\"2025-10-27\",\"paymentDueDate\":\"2025-11-27\",\"submissionMode\"\
@@ -479,9 +542,9 @@ paths:
       security:
       - HTTPBearer: []
       - APIKeyHeader: []
-      summary: Generate a Factur-X invoice
+      summary: Generate an electronic invoice (CII / UBL / Factur-X PDF)
       tags:
-      - Factur-X - Generation
+      - Invoice Generation
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -550,20 +613,174 @@ paths:
       - Async Tasks
       x-accepts:
       - application/json
+  /api/v1/processing/tasks/{task_id}/generation-status:
+    get:
+      description: |-
+        Typed status endpoint for invoice generation tasks.
+
+        Returns a strongly-typed `result` (discriminated on `result.status`):
+        - **SUCCESS**: `GenerationSuccessResult` with `content_b64` / `xml_content`
+        - **ERROR**: `TaskErrorResult` in AFNOR format
+      operationId: get_generation_task_status_api_v1_processing_tasks__task_id__generation_status_get
+      parameters:
+      - description: Celery task ID returned by /generate-invoice
+        explode: false
+        in: path
+        name: task_id
+        required: true
+        schema:
+          description: Celery task ID returned by /generate-invoice
+          title: Task Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerationTaskStatus"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Get typed generation task status
+      tags:
+      - Async Tasks
+      x-accepts:
+      - application/json
+  /api/v1/processing/tasks/{task_id}/validation-status:
+    get:
+      description: |-
+        Typed status endpoint for Factur-X PDF validation tasks.
+
+        Returns a strongly-typed `result` (discriminated on `result.status`):
+        - **SUCCESS**: `ValidationSuccessTaskResult` with `validation_result`
+        - **ERROR**: `TaskErrorResult` in AFNOR format
+      operationId: get_validation_task_status_api_v1_processing_tasks__task_id__validation_status_get
+      parameters:
+      - description: Celery task ID returned by /validate-pdf
+        explode: false
+        in: path
+        name: task_id
+        required: true
+        schema:
+          description: Celery task ID returned by /validate-pdf
+          title: Task Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationTaskStatus"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Get typed validation task status
+      tags:
+      - Async Tasks
+      x-accepts:
+      - application/json
+  /api/v1/processing/tasks/{task_id}/signature-status:
+    get:
+      description: |-
+        Typed status endpoint for PDF signing tasks.
+
+        Returns a strongly-typed `result` (discriminated on `result.status`):
+        - **SUCCESS**: `SignatureSuccessResult` with `content_b64`, `signer_cn`, etc.
+        - **ERROR**: `TaskErrorResult` in AFNOR format
+      operationId: get_signature_task_status_api_v1_processing_tasks__task_id__signature_status_get
+      parameters:
+      - description: Celery task ID returned by /sign-pdf-async
+        explode: false
+        in: path
+        name: task_id
+        required: true
+        schema:
+          description: Celery task ID returned by /sign-pdf-async
+          title: Task Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SignatureTaskStatus"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Get typed signature task status
+      tags:
+      - Async Tasks
+      x-accepts:
+      - application/json
   /api/v1/processing/validate-xml:
     post:
       description: |-
-        Validates a Factur-X XML file against Schematron business rules according to EN 16931 standard.
+        Validates a CII (Factur-X) or UBL XML file against Schematron business rules.
+
+        The XML format is **auto-detected** from namespace:
+        - CII XML → validated with EN16931-CII + profile-specific + BR-FR-CII Schematrons
+        - UBL XML → validated with EN16931-UBL + BR-FR-UBL Schematrons
 
         ## Applied Standard
 
         **Schematron ISO/IEC 19757-3**: Business rules validation language for XML
         - Semantic validation (beyond XSD syntax)
         - European EN 16931 business rules
-        - French-specific Factur-X rules
+        - French-specific rules (BR-FR-CII or BR-FR-UBL)
         - Arithmetic calculations and data consistency
 
-        ## Profiles and validated rules
+        ## Profiles and validated rules (CII only)
 
         ### MINIMUM (45 rules)
         - Unique invoice identifier
@@ -681,7 +898,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/facture_electronique__rest_api__schemas__validation__ValidationErrorResponse"
-          description: XML does not comply with Factur-X profile rules
+          description: XML does not comply with validation rules
         "422":
           content:
             application/json:
@@ -700,9 +917,9 @@ paths:
       security:
       - HTTPBearer: []
       - APIKeyHeader: []
-      summary: Validate an existing Factur-X XML
+      summary: Validate a CII or UBL XML against Schematron rules
       tags:
-      - Factur-X - Validation
+      - Validation
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -1427,7 +1644,7 @@ paths:
       - APIKeyHeader: []
       summary: Submit a complete invoice (generation + signature + submission)
       tags:
-      - Factur-X - Generation
+      - Invoice Generation
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1524,8 +1741,126 @@ paths:
       - APIKeyHeader: []
       summary: Submit a complete invoice (asynchronous with Celery)
       tags:
-      - Factur-X - Generation
+      - Invoice Generation
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/v1/processing/parse-facturx:
+    post:
+      description: |-
+        Parse a CII XML, UBL XML, or Factur-X PDF and extract the invoice data as a FacturXInvoice model.
+
+        **Use cases:**
+        - Extract invoice data from received invoices (any format)
+        - Round-trip: parse an existing invoice, modify it, and regenerate in another format
+        - Convert between CII and UBL via the FacturXInvoice pivot model
+
+        **Supported formats:**
+        - Factur-X PDF (PDF/A-3 with embedded CII XML)
+        - CII XML (UN/CEFACT Cross-Industry Invoice)
+        - UBL 2.1 XML (OASIS Invoice or CreditNote)
+
+        **Returns:**
+        - `invoice`: Complete FacturXInvoice data (can be used with /generate-invoice)
+        - `detected_profile`: Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED)
+      operationId: parse_facturx_sync_api_v1_processing_parse_facturx_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Body_parse_facturx_sync_api_v1_processing_parse_facturx_post"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                status: SUCCESS
+                invoice:
+                  invoiceNumber: FACT-2025-001
+                  invoiceDate: 2025-01-15
+                detectedProfile: EN16931
+              schema:
+                $ref: "#/components/schemas/ParseFacturXResponse"
+          description: Invoice successfully parsed
+        "400":
+          description: Invalid file format or parsing error
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: "Parse CII, UBL or Factur-X PDF (sync)"
+      tags:
+      - Parse
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /api/v1/processing/parse-facturx/async:
+    post:
+      description: |-
+        Parse a Factur-X file asynchronously using a Celery task.
+
+        **Use case:** For large files or when you want non-blocking processing.
+
+        **Workflow:**
+        1. Submit file with this endpoint -> receive `task_id`
+        2. Poll `/tasks/{task_id}/status` for result
+        3. Result contains `invoice` and `detected_profile`
+
+        **Optional:** Provide `callback_url` to receive a webhook when parsing completes.
+      operationId: parse_facturx_async_api_v1_processing_parse_facturx_async_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Body_parse_facturx_async_api_v1_processing_parse_facturx_async_post"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              example:
+                taskId: abc123-def456-ghi789
+                status: PENDING
+              schema:
+                $ref: "#/components/schemas/TaskResponse"
+          description: Task created
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Parse Factur-X XML or PDF (async)
+      tags:
+      - Parse
+      x-content-type: multipart/form-data
       x-accepts:
       - application/json
   /api/v1/afnor/oauth/token:
@@ -3935,6 +4270,56 @@ paths:
       - Factur-X - PDF/XML Verification
       x-accepts:
       - application/json
+  /api/v1/verification/verify-async/{task_id}/typed-status:
+    get:
+      description: |-
+        Typed status endpoint for async verification tasks.
+
+        Returns a strongly-typed `result` (discriminated on `result.status`):
+        - **SUCCESS**: `VerificationSuccessTaskResult` with `verification_result`
+        - **ERROR**: `TaskErrorResult` in AFNOR format
+      operationId: get_verification_typed_status_api_v1_verification_verify_async__task_id__typed_status_get
+      parameters:
+      - description: Celery task ID returned by /verify-async endpoint
+        explode: false
+        in: path
+        name: task_id
+        required: true
+        schema:
+          description: Celery task ID returned by /verify-async endpoint
+          title: Task Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VerificationTypedTaskStatus"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Get typed status of an asynchronous verification
+      tags:
+      - Factur-X - PDF/XML Verification
+      x-accepts:
+      - application/json
   /api/v1/convert/{conversion_id}/resume:
     post:
       description: |-
@@ -4106,6 +4491,58 @@ paths:
       - HTTPBearer: []
       - APIKeyHeader: []
       summary: Check conversion status
+      tags:
+      - Factur-X - Conversion
+      x-accepts:
+      - application/json
+  /api/v1/convert/tasks/{task_id}/conversion-status:
+    get:
+      description: |-
+        Typed status endpoint for document conversion tasks.
+
+        Returns a strongly-typed `result` discriminated on `result.status`:
+        - **SUCCESS**: `ConversionSuccessTaskResult`
+        - **PENDING_INPUT**: `ConversionPendingInputResult` (missing fields)
+        - **VALIDATION_FAILED**: `ConversionValidationFailedResult`
+        - **ERROR**: `ConversionErrorResult`
+      operationId: get_conversion_task_status_api_v1_convert_tasks__task_id__conversion_status_get
+      parameters:
+      - description: Celery task ID returned by POST /convert
+        explode: false
+        in: path
+        name: task_id
+        required: true
+        schema:
+          description: Celery task ID returned by POST /convert
+          title: Task Id
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversionTaskStatus"
+          description: Successful Response
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+        "401":
+          content:
+            application/json:
+              example:
+                errorCode: AUTHENTICATION_REQUIRED
+                errorMessage: Invalid or missing JWT token
+              schema:
+                $ref: "#/components/schemas/APIError"
+          description: Authentication required - Invalid or missing JWT token
+      security:
+      - HTTPBearer: []
+      - APIKeyHeader: []
+      summary: Get typed conversion task status
       tags:
       - Factur-X - Conversion
       x-accepts:
@@ -6164,6 +6601,29 @@ components:
           - $ref: "#/components/schemas/ProcessingRule"
           nullable: true
       title: AFNORDestination
+    AFNORErrorDetail:
+      description: Error detail in AFNOR format.
+      properties:
+        level:
+          title: Level
+          type: string
+        item:
+          title: Item
+          type: string
+        reason:
+          title: Reason
+          type: string
+        source:
+          nullable: true
+          type: string
+        code:
+          nullable: true
+          type: string
+      required:
+      - item
+      - level
+      - reason
+      title: AFNORErrorDetail
     AFNORResult:
       description: Result of submission to AFNOR PDP.
       properties:
@@ -6441,13 +6901,14 @@ components:
           allOf:
           - $ref: "#/components/schemas/APIProfile"
           default: EXTENDED
-          description: "Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED."
+          description: "Factur-X/CII profile: MINIMUM, BASIC, EN16931 or EXTENDED.\
+            \ Ignored when output_format='ubl' (always EN16931)."
         output_format:
           allOf:
           - $ref: "#/components/schemas/OutputFormat"
           default: xml
-          description: "Output format: 'xml' (XML only) or 'pdf' (Factur-X PDF with\
-            \ embedded XML)."
+          description: "Output format: 'xml' or 'cii' (CII/Factur-X XML), 'ubl' (UBL\
+            \ 2.1 XML), 'pdf' (Factur-X PDF/A-3)."
         auto_enrich:
           default: true
           description: 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format
@@ -6473,6 +6934,29 @@ components:
       required:
       - invoice_data
       title: Body_generate_invoice_api_v1_processing_generate_invoice_post
+    Body_parse_facturx_async_api_v1_processing_parse_facturx_async_post:
+      properties:
+        file:
+          description: Factur-X PDF or XML file to parse
+          format: binary
+          title: File
+          type: string
+        callbackUrl:
+          nullable: true
+          type: string
+      required:
+      - file
+      title: Body_parse_facturx_async_api_v1_processing_parse_facturx_async_post
+    Body_parse_facturx_sync_api_v1_processing_parse_facturx_post:
+      properties:
+        file:
+          description: Factur-X PDF or XML file to parse
+          format: binary
+          title: File
+          type: string
+      required:
+      - file
+      title: Body_parse_facturx_sync_api_v1_processing_parse_facturx_post
     Body_sign_pdf_api_v1_processing_sign_pdf_post:
       properties:
         pdf_file:
@@ -6651,7 +7135,8 @@ components:
     Body_validate_xml_api_v1_processing_validate_xml_post:
       properties:
         xml_file:
-          description: Factur-X XML file to validate (.xml format).
+          description: CII (Factur-X) or UBL XML file to validate (.xml format). Format
+            is auto-detected.
           format: binary
           title: Xml File
           type: string
@@ -6659,7 +7144,8 @@ components:
           allOf:
           - $ref: "#/components/schemas/APIProfile"
           default: EXTENDED
-          description: "Validation profile (MINIMUM, BASIC, EN16931, EXTENDED)."
+          description: "Validation profile (MINIMUM, BASIC, EN16931, EXTENDED). Used\
+            \ for CII only; ignored for UBL (always EN16931)."
         skip_br_fr:
           nullable: true
           type: boolean
@@ -7189,6 +7675,225 @@ components:
           pattern: "^\\d{14}$"
           type: string
       title: ClientUpdateRequest
+    ConversionErrorResult:
+      description: Error result specific to conversion tasks.
+      properties:
+        status:
+          default: ERROR
+          enum:
+          - ERROR
+          title: Status
+          type: string
+        conversion_id:
+          nullable: true
+          type: string
+        errorCode:
+          title: Errorcode
+          type: string
+        errorMessage:
+          title: Errormessage
+          type: string
+        details:
+          items:
+            $ref: "#/components/schemas/AFNORErrorDetail"
+          title: Details
+          type: array
+        traceback:
+          nullable: true
+          type: string
+        processing_time_ms:
+          nullable: true
+          type: integer
+      required:
+      - errorCode
+      - errorMessage
+      title: ConversionErrorResult
+    ConversionExtractionInfo:
+      description: OCR extraction metadata.
+      example:
+        confidence_score: 6.027456183070403
+        ocr_provider: mistral_ocr
+      properties:
+        confidence_score:
+          title: Confidence Score
+          type: number
+        ocr_provider:
+          default: mistral_ocr
+          title: Ocr Provider
+          type: string
+      required:
+      - confidence_score
+      title: ConversionExtractionInfo
+    ConversionPendingInputResult:
+      description: Conversion needs user input (missing fields).
+      properties:
+        status:
+          default: PENDING_INPUT
+          enum:
+          - PENDING_INPUT
+          title: Status
+          type: string
+        conversion_id:
+          title: Conversion Id
+          type: string
+        message:
+          title: Message
+          type: string
+        missing_fields:
+          items:
+            type: string
+          title: Missing Fields
+          type: array
+        extracted_data:
+          additionalProperties: true
+          title: Extracted Data
+          type: object
+        confidence_score:
+          title: Confidence Score
+          type: number
+        processing_time_ms:
+          title: Processing Time Ms
+          type: integer
+      required:
+      - confidence_score
+      - conversion_id
+      - extracted_data
+      - message
+      - missing_fields
+      - processing_time_ms
+      title: ConversionPendingInputResult
+    ConversionSuccessTaskResult:
+      description: Successful result from task_convert_document.
+      example:
+        pdf_regenerated: false
+        processing_time_ms: 1
+        pdf_regenerated_reason: pdf_regenerated_reason
+        conversion_id: conversion_id
+        document_type_code: 0
+        profile: profile
+        content_b64: content_b64
+        extraction:
+          confidence_score: 6.027456183070403
+          ocr_provider: mistral_ocr
+        status: SUCCESS
+        xml_content: xml_content
+      properties:
+        status:
+          default: SUCCESS
+          enum:
+          - SUCCESS
+          title: Status
+          type: string
+        conversion_id:
+          title: Conversion Id
+          type: string
+        document_type_code:
+          title: Document Type Code
+          type: integer
+        profile:
+          title: Profile
+          type: string
+        extraction:
+          $ref: "#/components/schemas/ConversionExtractionInfo"
+        processing_time_ms:
+          title: Processing Time Ms
+          type: integer
+        pdf_regenerated:
+          default: false
+          title: Pdf Regenerated
+          type: boolean
+        pdf_regenerated_reason:
+          nullable: true
+          type: string
+        content_b64:
+          nullable: true
+          type: string
+        xml_content:
+          nullable: true
+          type: string
+      required:
+      - conversion_id
+      - document_type_code
+      - extraction
+      - processing_time_ms
+      - profile
+      title: ConversionSuccessTaskResult
+    ConversionTaskStatus:
+      description: Typed task status for document conversion.
+      example:
+        result:
+          pdf_regenerated: false
+          processing_time_ms: 1
+          pdf_regenerated_reason: pdf_regenerated_reason
+          conversion_id: conversion_id
+          document_type_code: 0
+          profile: profile
+          content_b64: content_b64
+          extraction:
+            confidence_score: 6.027456183070403
+            ocr_provider: mistral_ocr
+          status: SUCCESS
+          xml_content: xml_content
+        taskId: taskId
+        status: PENDING
+      properties:
+        taskId:
+          title: Taskid
+          type: string
+        status:
+          $ref: "#/components/schemas/CeleryStatus"
+        result:
+          $ref: "#/components/schemas/ConversionTaskStatus_result"
+      required:
+      - status
+      - taskId
+      title: ConversionTaskStatus
+    ConversionValidationFailedResult:
+      description: Conversion extracted data failed Schematron validation.
+      properties:
+        status:
+          default: VALIDATION_FAILED
+          enum:
+          - VALIDATION_FAILED
+          title: Status
+          type: string
+        conversion_id:
+          title: Conversion Id
+          type: string
+        message:
+          title: Message
+          type: string
+        extracted_data:
+          additionalProperties: true
+          title: Extracted Data
+          type: object
+        extraction:
+          allOf:
+          - $ref: "#/components/schemas/ConversionExtractionInfo"
+          nullable: true
+        validation_errors:
+          items:
+            additionalProperties: true
+            type: object
+          title: Validation Errors
+          type: array
+        profile:
+          title: Profile
+          type: string
+        processing_time_ms:
+          title: Processing Time Ms
+          type: integer
+        correction_attempted:
+          default: false
+          title: Correction Attempted
+          type: boolean
+      required:
+      - conversion_id
+      - extracted_data
+      - message
+      - processing_time_ms
+      - profile
+      title: ConversionValidationFailedResult
     ConvertResumeRequest:
       description: |-
         Requete de reprise de conversion avec corrections.
@@ -8543,6 +9248,54 @@ components:
       - xml
       - xmlSize
       title: GenerateEReportingResponse
+    GenerationSuccessResult:
+      description: Successful result from task_generate_invoice.
+      example:
+        filename: filename
+        content_b64: content_b64
+        status: SUCCESS
+        xml_content: xml_content
+      properties:
+        status:
+          default: SUCCESS
+          enum:
+          - SUCCESS
+          title: Status
+          type: string
+        content_b64:
+          nullable: true
+          type: string
+        xml_content:
+          nullable: true
+          type: string
+        filename:
+          title: Filename
+          type: string
+      required:
+      - filename
+      title: GenerationSuccessResult
+    GenerationTaskStatus:
+      description: Typed task status for invoice generation.
+      example:
+        result:
+          filename: filename
+          content_b64: content_b64
+          status: SUCCESS
+          xml_content: xml_content
+        taskId: taskId
+        status: PENDING
+      properties:
+        taskId:
+          title: Taskid
+          type: string
+        status:
+          $ref: "#/components/schemas/CeleryStatus"
+        result:
+          $ref: "#/components/schemas/GenerationTaskStatus_result"
+      required:
+      - status
+      - taskId
+      title: GenerationTaskStatus
     GetChorusProIdRequest:
       description: Get Chorus Pro ID from SIRET.
       example:
@@ -8928,7 +9681,7 @@ components:
           type: string
         typeCode:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode"
+          - $ref: "#/components/schemas/InvoiceTypeCode"
           default: "380"
           description: Invoice type code
         currency:
@@ -9040,80 +9793,15 @@ components:
       - label
       title: InvoiceStatus
     InvoiceTypeCode:
-      description: |-
-        Document type according to BR-FR-04 (UNTDID 1001 codes).
-
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
-        | 393 | FACTORED_INVOICE | Factored invoice |
-        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
-        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
-        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
-        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
-        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
-        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
-        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
-        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
-        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
-        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
-        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+      description: Invoice type codes (UNTDID 1001).
       enum:
       - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
       - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
+      - "384"
+      - "389"
+      - "386"
       title: InvoiceTypeCode
       type: string
-      x-enum-descriptions:
-      - Commercial Invoice
-      - Self-billed Invoice
-      - Factored Invoice
-      - Self-billed Factored Invoice
-      - Prepayment Invoice
-      - Self-billed Prepayment Invoice
-      - Corrective Invoice
-      - Self-billed Corrective Invoice
-      - Factored Corrective Invoice
-      - Self-billed Factored Corrective Invoice
-      - Credit Note
-      - Self-billed Credit Note
-      - Global Allowance Credit Note
-      - Factored Credit Note
-      - Self-billed Factored Credit Note
-      - Prepayment Credit Note
-      x-enum-varnames:
-      - INVOICE
-      - SELF_BILLED_INVOICE
-      - FACTORED_INVOICE
-      - SELF_BILLED_FACTORED_INVOICE
-      - PREPAYMENT_INVOICE
-      - SELF_BILLED_PREPAYMENT_INVOICE
-      - CORRECTIVE_INVOICE
-      - SELF_BILLED_CORRECTIVE_INVOICE
-      - FACTORED_CORRECTIVE_INVOICE
-      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
-      - CREDIT_NOTE
-      - SELF_BILLED_CREDIT_NOTE
-      - GLOBAL_ALLOWANCE_CREDIT_NOTE
-      - FACTORED_CREDIT_NOTE
-      - SELF_BILLED_FACTORED_CREDIT_NOTE
-      - PREPAYMENT_CREDIT_NOTE
     InvoiceTypeCode-Output:
       description: |-
         Document type according to BR-FR-04 (UNTDID 1001 codes).
@@ -9396,9 +10084,17 @@ components:
       title: OperationNature
       type: string
     OutputFormat:
-      description: Output format for invoice generation.
+      description: |-
+        Output format for invoice generation.
+
+        - ``xml``: CII XML (Cross-Industry Invoice, Factur-X syntax) — backward-compatible alias
+        - ``cii``: CII XML — explicit alias, same as ``xml``
+        - ``ubl``: UBL 2.1 XML (OASIS Universal Business Language)
+        - ``pdf``: Factur-X PDF/A-3 with embedded CII XML
       enum:
       - xml
+      - cii
+      - ubl
       - pdf
       title: OutputFormat
       type: string
@@ -9706,6 +10402,65 @@ components:
       - height
       - width
       title: PageDimensionsSchema
+    ParseFacturXResponse:
+      description: |-
+        Response from the /parse-facturx endpoint.
+
+        Contains the parsed invoice data, plus metadata about the detected format and profile.
+
+        **Response schema depends on source format:**
+        - **CII / Factur-X**: ``invoice`` contains a ``FacturXInvoice`` dict — round-trip compatible
+          with ``/generate-invoice``.
+        - **UBL**: ``invoice`` contains an ``IncomingInvoice`` dict (simplified extraction with
+          supplier, amounts, dates). Not directly compatible with ``/generate-invoice``.
+      example:
+        detectedProfile: EN16931
+        invoice:
+          invoiceDate: 2025-01-15
+          invoiceNumber: FACT-2025-001
+          paymentDueDate: 2025-02-15
+          recipient:
+            name: CLIENT SA
+            siren: "123456789"
+          supplier:
+            name: MY COMPANY SARL
+            siren: "920195229"
+            siret: "92019522900017"
+            supplierId: 0
+          totals:
+            amountDue: 1200.0
+            totalGrossAmount: 1200.0
+            totalNetAmount: 1000.0
+            vatAmount: 200.0
+        status: SUCCESS
+      properties:
+        status:
+          description: Parsing status
+          enum:
+          - SUCCESS
+          - FAILURE
+          title: Status
+          type: string
+        invoice:
+          additionalProperties: true
+          description: "Parsed invoice data. For CII/Factur-X: FacturXInvoice format\
+            \ (round-trip with /generate-invoice). For UBL: IncomingInvoice format\
+            \ (summary extraction)."
+          title: Invoice
+          type: object
+        detectedFormat:
+          nullable: true
+          type: string
+        detectedProfile:
+          nullable: true
+          type: string
+        error:
+          nullable: true
+          type: string
+      required:
+      - invoice
+      - status
+      title: ParseFacturXResponse
     PaymentAmountByRate:
       description: Payment amount for a specific VAT rate.
       properties:
@@ -10380,6 +11135,89 @@ components:
           title: Usetimestamp
           type: boolean
       title: SignatureParameters
+    SignatureSuccessResult:
+      description: Successful result from task_sign_pdf_from_bytes.
+      example:
+        signature_count: 6
+        filename: filename
+        size_bytes: 0
+        signer_cn: signer_cn
+        content_b64: content_b64
+        signing_date: signing_date
+        validation_details:
+          key: ""
+        status: SUCCESS
+        is_signed: true
+      properties:
+        status:
+          default: SUCCESS
+          enum:
+          - SUCCESS
+          title: Status
+          type: string
+        content_b64:
+          title: Content B64
+          type: string
+        filename:
+          title: Filename
+          type: string
+        size_bytes:
+          title: Size Bytes
+          type: integer
+        is_signed:
+          title: Is Signed
+          type: boolean
+        signature_count:
+          title: Signature Count
+          type: integer
+        signer_cn:
+          title: Signer Cn
+          type: string
+        signing_date:
+          title: Signing Date
+          type: string
+        validation_details:
+          additionalProperties: true
+          title: Validation Details
+          type: object
+      required:
+      - content_b64
+      - filename
+      - is_signed
+      - signature_count
+      - signer_cn
+      - signing_date
+      - size_bytes
+      - validation_details
+      title: SignatureSuccessResult
+    SignatureTaskStatus:
+      description: Typed task status for PDF signing.
+      example:
+        result:
+          signature_count: 6
+          filename: filename
+          size_bytes: 0
+          signer_cn: signer_cn
+          content_b64: content_b64
+          signing_date: signing_date
+          validation_details:
+            key: ""
+          status: SUCCESS
+          is_signed: true
+        taskId: taskId
+        status: PENDING
+      properties:
+        taskId:
+          title: Taskid
+          type: string
+        status:
+          $ref: "#/components/schemas/CeleryStatus"
+        result:
+          $ref: "#/components/schemas/SignatureTaskStatus_result"
+      required:
+      - status
+      - taskId
+      title: SignatureTaskStatus
     SimplifiedCDARResponse:
       description: Réponse pour les endpoints CDAR simplifiés.
       example:
@@ -10462,7 +11300,7 @@ components:
           type: string
         invoiceType:
           allOf:
-          - $ref: "#/components/schemas/InvoiceTypeCode"
+          - $ref: "#/components/schemas/facture_electronique__models__InvoiceTypeCode"
           default: "380"
           description: "Document type (UNTDID 1001). Default: 380 (Invoice)."
         precedingInvoiceReference:
@@ -10960,7 +11798,13 @@ components:
         enrichedInvoice:
           allOf:
           - $ref: "#/components/schemas/EnrichedInvoiceInfo"
-          description: Enriched invoice data
+          description: Enriched invoice data (summary)
+        invoice:
+          additionalProperties: true
+          description: Complete enriched invoice data (FacturXInvoice format). Use
+            this to regenerate the same invoice.
+          title: Invoice
+          type: object
         facturxPdf:
           allOf:
           - $ref: "#/components/schemas/FacturXPDFInfo"
@@ -10982,6 +11826,7 @@ components:
       - destinationType
       - enrichedInvoice
       - facturxPdf
+      - invoice
       - message
       - success
       title: SubmitCompleteInvoiceResponse
@@ -11168,6 +12013,33 @@ components:
       - message
       - returnCode
       title: SubmitInvoiceResponse
+    TaskErrorResult:
+      description: Common error result returned by all task domains.
+      properties:
+        status:
+          default: ERROR
+          enum:
+          - ERROR
+          title: Status
+          type: string
+        errorCode:
+          title: Errorcode
+          type: string
+        errorMessage:
+          title: Errormessage
+          type: string
+        details:
+          items:
+            $ref: "#/components/schemas/AFNORErrorDetail"
+          title: Details
+          type: array
+        traceback:
+          nullable: true
+          type: string
+      required:
+      - errorCode
+      - errorMessage
+      title: TaskErrorResult
     TaskResponse:
       description: Immediate response after submitting an async task.
       example:
@@ -11550,6 +12422,135 @@ components:
       required:
       - message
       title: ValidationSuccessResponse
+    ValidationSuccessTaskResult:
+      description: Successful result from task_validate_facturx_pdf.
+      example:
+        validation_result:
+          pdfaValidationMethod: metadata
+          signatureErrors:
+          - signatureErrors
+          - signatureErrors
+          isSigned: true
+          detectedProfile: detectedProfile
+          summaryMessage: summaryMessage
+          xmlPresent: true
+          pdfaVersion: pdfaVersion
+          xmlErrors:
+          - xmlErrors
+          - xmlErrors
+          failedRules: 6
+          isCompliant: true
+          xmpErrors:
+          - xmpErrors
+          - xmpErrors
+          signatures:
+          - reason: reason
+            fieldName: fieldName
+            signingDate: signingDate
+            isValid: true
+            location: location
+            signer: signer
+          - reason: reason
+            fieldName: fieldName
+            signingDate: signingDate
+            isValid: true
+            location: location
+            signer: signer
+          pdfaWarnings:
+          - pdfaWarnings
+          - pdfaWarnings
+          xmlCompliant: true
+          pdfaErrors:
+          - pdfaErrors
+          - pdfaErrors
+          pdfaCompliant: true
+          validatedRules: 0
+          xmpPresent: true
+          xmpProfile: xmpProfile
+          signatureCount: 1
+          xmpFacturxCompliant: true
+          xmpMetadata:
+            key: ""
+          xmpVersion: xmpVersion
+        status: SUCCESS
+      properties:
+        status:
+          default: SUCCESS
+          enum:
+          - SUCCESS
+          title: Status
+          type: string
+        validation_result:
+          $ref: "#/components/schemas/PDFValidationResultAPI"
+      required:
+      - validation_result
+      title: ValidationSuccessTaskResult
+    ValidationTaskStatus:
+      description: Typed task status for Factur-X validation.
+      example:
+        result:
+          validation_result:
+            pdfaValidationMethod: metadata
+            signatureErrors:
+            - signatureErrors
+            - signatureErrors
+            isSigned: true
+            detectedProfile: detectedProfile
+            summaryMessage: summaryMessage
+            xmlPresent: true
+            pdfaVersion: pdfaVersion
+            xmlErrors:
+            - xmlErrors
+            - xmlErrors
+            failedRules: 6
+            isCompliant: true
+            xmpErrors:
+            - xmpErrors
+            - xmpErrors
+            signatures:
+            - reason: reason
+              fieldName: fieldName
+              signingDate: signingDate
+              isValid: true
+              location: location
+              signer: signer
+            - reason: reason
+              fieldName: fieldName
+              signingDate: signingDate
+              isValid: true
+              location: location
+              signer: signer
+            pdfaWarnings:
+            - pdfaWarnings
+            - pdfaWarnings
+            xmlCompliant: true
+            pdfaErrors:
+            - pdfaErrors
+            - pdfaErrors
+            pdfaCompliant: true
+            validatedRules: 0
+            xmpPresent: true
+            xmpProfile: xmpProfile
+            signatureCount: 1
+            xmpFacturxCompliant: true
+            xmpMetadata:
+              key: ""
+            xmpVersion: xmpVersion
+          status: SUCCESS
+        taskId: taskId
+        status: PENDING
+      properties:
+        taskId:
+          title: Taskid
+          type: string
+        status:
+          $ref: "#/components/schemas/CeleryStatus"
+        result:
+          $ref: "#/components/schemas/ValidationTaskStatus_result"
+      required:
+      - status
+      - taskId
+      title: ValidationTaskStatus
     VerificationSuccessResponse:
       description: Successful verification response with unified data.
       example:
@@ -11640,6 +12641,99 @@ components:
       - complianceScore
       - isCompliant
       title: VerificationSuccessResponse
+    VerificationSuccessTaskResult:
+      description: Successful result from task_verify_pdf.
+      example:
+        verification_result:
+          complianceScore: 100.0
+          compliantFieldsCount: 12
+          facturxProfile: EN16931
+          fields:
+          - bbox:
+              height: 15.0
+              page: 0
+              width: 70.3
+              x0: 350.5
+              x1: 420.8
+              y0: 720.0
+              y1: 735.0
+            businessTerm: BT-1
+            confidence: 0.95
+            label: Invoice Number
+            message: Compliant
+            pdfValue: FACT-2024-001
+            source: native_pdf
+            status: COMPLIANT
+            xmlValue: FACT-2024-001
+          isCompliant: true
+          isFacturx: true
+          mandatoryNotes: []
+          pageDimensions:
+          - height: 841.8
+            width: 595.2
+          verifiedFieldsCount: 12
+          warnings: []
+        status: SUCCESS
+      properties:
+        status:
+          default: SUCCESS
+          enum:
+          - SUCCESS
+          title: Status
+          type: string
+        verification_result:
+          $ref: "#/components/schemas/VerificationSuccessResponse"
+      required:
+      - verification_result
+      title: VerificationSuccessTaskResult
+    VerificationTypedTaskStatus:
+      description: Typed task status for PDF/XML verification.
+      example:
+        result:
+          verification_result:
+            complianceScore: 100.0
+            compliantFieldsCount: 12
+            facturxProfile: EN16931
+            fields:
+            - bbox:
+                height: 15.0
+                page: 0
+                width: 70.3
+                x0: 350.5
+                x1: 420.8
+                y0: 720.0
+                y1: 735.0
+              businessTerm: BT-1
+              confidence: 0.95
+              label: Invoice Number
+              message: Compliant
+              pdfValue: FACT-2024-001
+              source: native_pdf
+              status: COMPLIANT
+              xmlValue: FACT-2024-001
+            isCompliant: true
+            isFacturx: true
+            mandatoryNotes: []
+            pageDimensions:
+            - height: 841.8
+              width: 595.2
+            verifiedFieldsCount: 12
+            warnings: []
+          status: SUCCESS
+        taskId: taskId
+        status: PENDING
+      properties:
+        taskId:
+          title: Taskid
+          type: string
+        status:
+          $ref: "#/components/schemas/CeleryStatus"
+        result:
+          $ref: "#/components/schemas/VerificationTypedTaskStatus_result"
+      required:
+      - status
+      - taskId
+      title: VerificationTypedTaskStatus
     VerifiedFieldSchema:
       description: A verified field with all its information (extraction + compliance
         + location).
@@ -11770,6 +12864,81 @@ components:
       required:
       - hasSecret
       title: WebhookSecretStatusResponse
+    facture_electronique__models__InvoiceTypeCode:
+      description: |-
+        Document type according to BR-FR-04 (UNTDID 1001 codes).
+
+        | Code | Name | Description |
+        |------|------|-------------|
+        | 380 | INVOICE | Commercial invoice |
+        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
+        | 393 | FACTORED_INVOICE | Factored invoice |
+        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
+        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
+        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
+        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
+        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
+        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
+        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
+        | 381 | CREDIT_NOTE | Credit note |
+        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
+        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
+        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
+        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
+        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+      enum:
+      - "380"
+      - "389"
+      - "393"
+      - "501"
+      - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
+      title: InvoiceTypeCode
+      type: string
+      x-enum-descriptions:
+      - Commercial Invoice
+      - Self-billed Invoice
+      - Factored Invoice
+      - Self-billed Factored Invoice
+      - Prepayment Invoice
+      - Self-billed Prepayment Invoice
+      - Corrective Invoice
+      - Self-billed Corrective Invoice
+      - Factored Corrective Invoice
+      - Self-billed Factored Corrective Invoice
+      - Credit Note
+      - Self-billed Credit Note
+      - Global Allowance Credit Note
+      - Factored Credit Note
+      - Self-billed Factored Credit Note
+      - Prepayment Credit Note
+      x-enum-varnames:
+      - INVOICE
+      - SELF_BILLED_INVOICE
+      - FACTORED_INVOICE
+      - SELF_BILLED_FACTORED_INVOICE
+      - PREPAYMENT_INVOICE
+      - SELF_BILLED_PREPAYMENT_INVOICE
+      - CORRECTIVE_INVOICE
+      - SELF_BILLED_CORRECTIVE_INVOICE
+      - FACTORED_CORRECTIVE_INVOICE
+      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
+      - CREDIT_NOTE
+      - SELF_BILLED_CREDIT_NOTE
+      - GLOBAL_ALLOWANCE_CREDIT_NOTE
+      - FACTORED_CREDIT_NOTE
+      - SELF_BILLED_FACTORED_CREDIT_NOTE
+      - PREPAYMENT_CREDIT_NOTE
     facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
       description: |-
         Chorus Pro credentials for Zero-Trust mode.
@@ -11820,16 +12989,6 @@ components:
       - pisteClientId
       - pisteClientSecret
       title: ChorusProCredentials
-    facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
-      description: Invoice type codes (UNTDID 1001).
-      enum:
-      - "380"
-      - "381"
-      - "384"
-      - "389"
-      - "386"
-      title: InvoiceTypeCode
-      type: string
     facture_electronique__rest_api__schemas__validation__ValidationErrorResponse:
       description: Response for validation errors.
       example:
@@ -16052,6 +17211,20 @@ components:
       description: Total VAT amount
       example: "2000.00"
       title: Taxamount
+    ConversionTaskStatus_result:
+      discriminator:
+        mapping:
+          ERROR: "#/components/schemas/ConversionErrorResult"
+          PENDING_INPUT: "#/components/schemas/ConversionPendingInputResult"
+          SUCCESS: "#/components/schemas/ConversionSuccessTaskResult"
+          VALIDATION_FAILED: "#/components/schemas/ConversionValidationFailedResult"
+        propertyName: status
+      nullable: true
+      oneOf:
+      - $ref: "#/components/schemas/ConversionSuccessTaskResult"
+      - $ref: "#/components/schemas/ConversionPendingInputResult"
+      - $ref: "#/components/schemas/ConversionValidationFailedResult"
+      - $ref: "#/components/schemas/ConversionErrorResult"
     Encaisseamount:
       anyOf:
       - type: number
@@ -16067,6 +17240,16 @@ components:
         type: string
       description: "Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)"
       title: Amount
+    GenerationTaskStatus_result:
+      discriminator:
+        mapping:
+          ERROR: "#/components/schemas/TaskErrorResult"
+          SUCCESS: "#/components/schemas/GenerationSuccessResult"
+        propertyName: status
+      nullable: true
+      oneOf:
+      - $ref: "#/components/schemas/GenerationSuccessResult"
+      - $ref: "#/components/schemas/TaskErrorResult"
     Sellercountry:
       anyOf:
       - $ref: "#/components/schemas/CountryCode"
@@ -16118,6 +17301,16 @@ components:
       description: Payment amount
       example: "12000.00"
       title: Amount
+    SignatureTaskStatus_result:
+      discriminator:
+        mapping:
+          ERROR: "#/components/schemas/TaskErrorResult"
+          SUCCESS: "#/components/schemas/SignatureSuccessResult"
+        propertyName: status
+      nullable: true
+      oneOf:
+      - $ref: "#/components/schemas/SignatureSuccessResult"
+      - $ref: "#/components/schemas/TaskErrorResult"
     Destination:
       description: Destination configuration (Chorus Pro or AFNOR)
       discriminator:
@@ -16187,6 +17380,26 @@ components:
       anyOf:
       - type: string
       - type: integer
+    ValidationTaskStatus_result:
+      discriminator:
+        mapping:
+          ERROR: "#/components/schemas/TaskErrorResult"
+          SUCCESS: "#/components/schemas/ValidationSuccessTaskResult"
+        propertyName: status
+      nullable: true
+      oneOf:
+      - $ref: "#/components/schemas/ValidationSuccessTaskResult"
+      - $ref: "#/components/schemas/TaskErrorResult"
+    VerificationTypedTaskStatus_result:
+      discriminator:
+        mapping:
+          ERROR: "#/components/schemas/TaskErrorResult"
+          SUCCESS: "#/components/schemas/VerificationSuccessTaskResult"
+        propertyName: status
+      nullable: true
+      oneOf:
+      - $ref: "#/components/schemas/VerificationSuccessTaskResult"
+      - $ref: "#/components/schemas/TaskErrorResult"
     Amount_2:
       anyOf:
       - type: number
