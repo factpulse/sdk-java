@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasChorusProChorusProCredentials;
+import org.openapitools.client.model.ChorusProCredentials;
 import org.openapitools.client.model.SubmitGrossAmount;
 import org.openapitools.client.model.SubmitNetAmount;
 import org.openapitools.client.model.SubmitVatAmount;

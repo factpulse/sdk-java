@@ -42,7 +42,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     DownloadsApi apiInstance = new DownloadsApi(defaultClient);
-    String downloadId = "downloadId_example"; // String | 
+    String downloadId = "downloadId_example"; // String | Unique identifier of the temporary file to check
     try {
       Object result = apiInstance.checkFileApiV1DownloadDownloadIdHead(downloadId);
       System.out.println(result);
@@ -61,7 +61,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **downloadId** | **String**|  | |
+| **downloadId** | **String**| Unique identifier of the temporary file to check | |
 
 ### Return type
 
@@ -119,7 +119,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     DownloadsApi apiInstance = new DownloadsApi(defaultClient);
-    String downloadId = "downloadId_example"; // String | 
+    String downloadId = "downloadId_example"; // String | Unique identifier of the temporary file to download
     Boolean deleteAfter = false; // Boolean | If true, delete the file after download (one-time download)
     try {
       Object result = apiInstance.downloadFileApiV1DownloadDownloadIdGet(downloadId, deleteAfter);
@@ -139,7 +139,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **downloadId** | **String**|  | |
+| **downloadId** | **String**| Unique identifier of the temporary file to download | |
 | **deleteAfter** | **Boolean**| If true, delete the file after download (one-time download) | [optional] [default to false] |
 
 ### Return type

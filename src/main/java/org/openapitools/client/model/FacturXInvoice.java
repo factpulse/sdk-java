@@ -67,7 +67,7 @@ import org.openapitools.client.JSON;
 /**
  * Data model for an invoice to be converted to Factur-X.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class FacturXInvoice {
   public static final String SERIALIZED_NAME_INVOICE_NUMBER = "invoice_number";
   @SerializedName(SERIALIZED_NAME_INVOICE_NUMBER)
@@ -101,7 +101,7 @@ public class FacturXInvoice {
 
   public static final String SERIALIZED_NAME_INVOICING_FRAMEWORK = "invoicing_framework";
   @SerializedName(SERIALIZED_NAME_INVOICING_FRAMEWORK)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private InvoicingFramework invoicingFramework;
 
   public static final String SERIALIZED_NAME_REFERENCES = "references";
@@ -336,7 +336,7 @@ public class FacturXInvoice {
   }
 
 
-  public FacturXInvoice invoicingFramework(@javax.annotation.Nonnull InvoicingFramework invoicingFramework) {
+  public FacturXInvoice invoicingFramework(@javax.annotation.Nullable InvoicingFramework invoicingFramework) {
     this.invoicingFramework = invoicingFramework;
     return this;
   }
@@ -345,12 +345,12 @@ public class FacturXInvoice {
    * Get invoicingFramework
    * @return invoicingFramework
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public InvoicingFramework getInvoicingFramework() {
     return invoicingFramework;
   }
 
-  public void setInvoicingFramework(@javax.annotation.Nonnull InvoicingFramework invoicingFramework) {
+  public void setInvoicingFramework(@javax.annotation.Nullable InvoicingFramework invoicingFramework) {
     this.invoicingFramework = invoicingFramework;
   }
 
@@ -956,7 +956,7 @@ public class FacturXInvoice {
     openapiFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "invoice_date", "submission_mode", "recipient", "supplier", "invoicing_framework", "references", "totals", "invoice_lines", "vat_lines", "notes", "comment", "current_user_id", "supplementary_attachments", "payee", "delivery_party", "tax_representative", "delivery_date", "billing_period_start", "billing_period_end", "payment_reference", "creditor_reference_id", "direct_debit_mandate_id", "debtor_iban", "payment_terms", "allowances_charges", "additional_documents", "buyer_accounting_reference", "payment_card"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "recipient", "supplier", "invoicing_framework", "references", "totals"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoice_number", "payment_due_date", "recipient", "supplier", "references", "totals"));
   }
 
   /**
@@ -1004,8 +1004,10 @@ public class FacturXInvoice {
       Recipient.validateJsonElement(jsonObj.get("recipient"));
       // validate the required field `supplier`
       Supplier.validateJsonElement(jsonObj.get("supplier"));
-      // validate the required field `invoicing_framework`
-      InvoicingFramework.validateJsonElement(jsonObj.get("invoicing_framework"));
+      // validate the optional field `invoicing_framework`
+      if (jsonObj.get("invoicing_framework") != null && !jsonObj.get("invoicing_framework").isJsonNull()) {
+        InvoicingFramework.validateJsonElement(jsonObj.get("invoicing_framework"));
+      }
       // validate the required field `references`
       InvoiceReferences.validateJsonElement(jsonObj.get("references"));
       // validate the required field `totals`

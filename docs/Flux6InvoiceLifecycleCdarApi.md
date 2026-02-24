@@ -6,6 +6,7 @@ All URIs are relative to *https://factpulse.fr*
 |------------- | ------------- | -------------|
 | [**generateCdarApiV1CdarGeneratePost**](Flux6InvoiceLifecycleCdarApi.md#generateCdarApiV1CdarGeneratePost) | **POST** /api/v1/cdar/generate | Generate a CDAR message |
 | [**getActionCodesApiV1CdarActionCodesGet**](Flux6InvoiceLifecycleCdarApi.md#getActionCodesApiV1CdarActionCodesGet) | **GET** /api/v1/cdar/action-codes | List of CDAR action codes |
+| [**getLifecycleApiV1CdarLifecycleGet**](Flux6InvoiceLifecycleCdarApi.md#getLifecycleApiV1CdarLifecycleGet) | **GET** /api/v1/cdar/lifecycle | [Simplified] Get lifecycle events for invoices |
 | [**getReasonCodesApiV1CdarReasonCodesGet**](Flux6InvoiceLifecycleCdarApi.md#getReasonCodesApiV1CdarReasonCodesGet) | **GET** /api/v1/cdar/reason-codes | List of CDAR reason codes |
 | [**getStatusCodesApiV1CdarStatusCodesGet**](Flux6InvoiceLifecycleCdarApi.md#getStatusCodesApiV1CdarStatusCodesGet) | **GET** /api/v1/cdar/status-codes | List of CDAR status codes |
 | [**submitCdarApiV1CdarSubmitPost**](Flux6InvoiceLifecycleCdarApi.md#submitCdarApiV1CdarSubmitPost) | **POST** /api/v1/cdar/submit | Generate and submit a CDAR message |
@@ -153,6 +154,87 @@ No authorization required
 | **400** | Invalid request |  -  |
 | **422** | Validation error |  -  |
 | **500** | Server error |  -  |
+
+<a id="getLifecycleApiV1CdarLifecycleGet"></a>
+# **getLifecycleApiV1CdarLifecycleGet**
+> LifecycleResponse getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret)
+
+[Simplified] Get lifecycle events for invoices
+
+Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - &#x60;days&#x60;: Number of days to look back (default: 7) - &#x60;invoiceId&#x60;: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.Flux6InvoiceLifecycleCdarApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://factpulse.fr");
+    
+    // Configure HTTP bearer authorization: HTTPBearer
+    HttpBearerAuth HTTPBearer = (HttpBearerAuth) defaultClient.getAuthentication("HTTPBearer");
+    HTTPBearer.setBearerToken("BEARER TOKEN");
+
+    Flux6InvoiceLifecycleCdarApi apiInstance = new Flux6InvoiceLifecycleCdarApi(defaultClient);
+    Integer days = 7; // Integer | Number of days to look back
+    String invoiceId = "invoiceId_example"; // String | Filter by invoice reference
+    String pdpFlowServiceUrl = "pdpFlowServiceUrl_example"; // String | PDP Flow Service URL
+    String pdpTokenUrl = "pdpTokenUrl_example"; // String | PDP OAuth token URL
+    String pdpClientId = "pdpClientId_example"; // String | PDP Client ID
+    String pdpClientSecret = "pdpClientSecret_example"; // String | PDP Client Secret
+    try {
+      LifecycleResponse result = apiInstance.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling Flux6InvoiceLifecycleCdarApi#getLifecycleApiV1CdarLifecycleGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **days** | **Integer**| Number of days to look back | [optional] [default to 7] |
+| **invoiceId** | **String**| Filter by invoice reference | [optional] |
+| **pdpFlowServiceUrl** | **String**| PDP Flow Service URL | [optional] |
+| **pdpTokenUrl** | **String**| PDP OAuth token URL | [optional] |
+| **pdpClientId** | **String**| PDP Client ID | [optional] |
+| **pdpClientSecret** | **String**| PDP Client Secret | [optional] |
+
+### Return type
+
+[**LifecycleResponse**](LifecycleResponse.md)
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful Response |  -  |
+| **400** | Invalid request |  -  |
+| **422** | Validation error |  -  |
+| **500** | Server error |  -  |
+| **401** | Authentication required - Invalid or missing JWT token |  -  |
 
 <a id="getReasonCodesApiV1CdarReasonCodesGet"></a>
 # **getReasonCodesApiV1CdarReasonCodesGet**

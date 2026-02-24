@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Rectangular area coordinates in PDF.  Coordinates are in PDF points (1 point &#x3D; 1/72 inch). Origin (0,0) is at the bottom-left of the page.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class BoundingBoxSchema {
   public static final String SERIALIZED_NAME_X0 = "x0";
   @SerializedName(SERIALIZED_NAME_X0)

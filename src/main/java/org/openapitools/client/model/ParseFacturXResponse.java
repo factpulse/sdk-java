@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Response from the /parse-facturx endpoint.  Contains the parsed invoice data, plus metadata about the detected format and profile.  **Response schema depends on source format:** - **CII / Factur-X**: &#x60;&#x60;invoice&#x60;&#x60; contains a &#x60;&#x60;FacturXInvoice&#x60;&#x60; dict — round-trip compatible   with &#x60;&#x60;/generate-invoice&#x60;&#x60;. - **UBL**: &#x60;&#x60;invoice&#x60;&#x60; contains an &#x60;&#x60;IncomingInvoice&#x60;&#x60; dict (simplified extraction with   supplier, amounts, dates). Not directly compatible with &#x60;&#x60;/generate-invoice&#x60;&#x60;.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class ParseFacturXResponse {
   /**
    * Parsing status

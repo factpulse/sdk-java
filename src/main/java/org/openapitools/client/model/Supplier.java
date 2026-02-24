@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Information about the supplier / seller (BG-4).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class Supplier {
   public static final String SERIALIZED_NAME_ELECTRONIC_ADDRESS = "electronic_address";
   @SerializedName(SERIALIZED_NAME_ELECTRONIC_ADDRESS)
@@ -63,8 +63,8 @@ public class Supplier {
 
   public static final String SERIALIZED_NAME_SUPPLIER_ID = "supplier_id";
   @SerializedName(SERIALIZED_NAME_SUPPLIER_ID)
-  @javax.annotation.Nonnull
-  private Integer supplierId;
+  @javax.annotation.Nullable
+  private Integer supplierId = 0;
 
   public static final String SERIALIZED_NAME_PRIVATE_ID = "private_id";
   @SerializedName(SERIALIZED_NAME_PRIVATE_ID)
@@ -168,21 +168,21 @@ public class Supplier {
   }
 
 
-  public Supplier supplierId(@javax.annotation.Nonnull Integer supplierId) {
+  public Supplier supplierId(@javax.annotation.Nullable Integer supplierId) {
     this.supplierId = supplierId;
     return this;
   }
 
   /**
-   * Get supplierId
+   * Chorus Pro supplier structure ID (idFournisseur). Only required for B2G.
    * @return supplierId
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public Integer getSupplierId() {
     return supplierId;
   }
 
-  public void setSupplierId(@javax.annotation.Nonnull Integer supplierId) {
+  public void setSupplierId(@javax.annotation.Nullable Integer supplierId) {
     this.supplierId = supplierId;
   }
 
@@ -591,7 +591,7 @@ public class Supplier {
     openapiFields = new HashSet<String>(Arrays.asList("electronic_address", "supplier_id", "private_id", "supplier_bank_account_code", "supplier_service_id", "name", "trading_business_name", "legal_description", "siren", "siret", "vat_number", "iban", "bic", "bank_account_name", "proprietaryId", "postal_address", "contact", "global_ids"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("supplier_id"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -612,13 +612,6 @@ public class Supplier {
       for (Map.Entry<String, JsonElement> entry : entries) {
         if (!Supplier.openapiFields.contains(entry.getKey())) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `Supplier` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : Supplier.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();

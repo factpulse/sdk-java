@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Typed task status for document conversion.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class ConversionTaskStatus {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
   @SerializedName(SERIALIZED_NAME_TASK_ID)

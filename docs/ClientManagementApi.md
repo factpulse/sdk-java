@@ -52,7 +52,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     try {
       ClientActivateResponse result = apiInstance.activateClientApiV1ClientsUidActiverPost(uid);
       System.out.println(result);
@@ -71,7 +71,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 
 ### Return type
 
@@ -210,7 +210,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     try {
       ClientActivateResponse result = apiInstance.deactivateClientApiV1ClientsUidDesactiverPost(uid);
       System.out.println(result);
@@ -229,7 +229,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 
 ### Return type
 
@@ -289,7 +289,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     try {
       WebhookSecretDeleteResponse result = apiInstance.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid);
       System.out.println(result);
@@ -308,7 +308,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 
 ### Return type
 
@@ -368,7 +368,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     try {
       WebhookSecretGenerateResponse result = apiInstance.generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid);
       System.out.println(result);
@@ -387,7 +387,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 
 ### Return type
 
@@ -447,7 +447,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     try {
       ClientDetail result = apiInstance.getClientApiV1ClientsUidGet(uid);
       System.out.println(result);
@@ -466,7 +466,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 
 ### Return type
 
@@ -526,7 +526,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     try {
       PDPConfigResponse result = apiInstance.getPdpConfigApiV1ClientsUidPdpConfigGet(uid);
       System.out.println(result);
@@ -545,7 +545,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 
 ### Return type
 
@@ -605,7 +605,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     try {
       WebhookSecretStatusResponse result = apiInstance.getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid);
       System.out.println(result);
@@ -624,7 +624,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 
 ### Return type
 
@@ -765,7 +765,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     KeyRotationRequest keyRotationRequest = new KeyRotationRequest(); // KeyRotationRequest | 
     try {
       KeyRotationResponse result = apiInstance.rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid, keyRotationRequest);
@@ -785,7 +785,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 | **keyRotationRequest** | [**KeyRotationRequest**](KeyRotationRequest.md)|  | |
 
 ### Return type
@@ -846,7 +846,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     ClientUpdateRequest clientUpdateRequest = new ClientUpdateRequest(); // ClientUpdateRequest | 
     try {
       ClientDetail result = apiInstance.updateClientApiV1ClientsUidPatch(uid, clientUpdateRequest);
@@ -866,7 +866,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 | **clientUpdateRequest** | [**ClientUpdateRequest**](ClientUpdateRequest.md)|  | |
 
 ### Return type
@@ -927,7 +927,7 @@ public class Example {
     HTTPBearer.setBearerToken("BEARER TOKEN");
 
     ClientManagementApi apiInstance = new ClientManagementApi(defaultClient);
-    UUID uid = UUID.randomUUID(); // UUID | 
+    UUID uid = UUID.randomUUID(); // UUID | Client unique identifier (UUID)
     PDPConfigUpdateRequest pdPConfigUpdateRequest = new PDPConfigUpdateRequest(); // PDPConfigUpdateRequest | 
     String xEncryptionKey = "xEncryptionKey_example"; // String | Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode='double'.
     try {
@@ -948,7 +948,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **uid** | **UUID**|  | |
+| **uid** | **UUID**| Client unique identifier (UUID) | |
 | **pdPConfigUpdateRequest** | [**PDPConfigUpdateRequest**](PDPConfigUpdateRequest.md)|  | |
 | **xEncryptionKey** | **String**| Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. | [optional] |
 

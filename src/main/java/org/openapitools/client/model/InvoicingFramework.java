@@ -51,11 +51,11 @@ import org.openapitools.client.JSON;
 /**
  * Defines the invoicing framework.  - invoicing_framework_code: Chorus Pro code (A1, A2, A9, A12) - used for B2G - operation_nature: Operation nature (B1, S1, M1, etc.) - priority for Factur-X  If operation_nature is provided, it will be used directly in Factur-X XML (BT-23). Otherwise, the code will be derived from invoicing_framework_code via automatic mapping.  Example:     &gt;&gt;&gt; framework &#x3D; InvoicingFramework(     ...     invoicing_framework_code&#x3D;InvoicingFrameworkCode.A1_SUPPLIER_INVOICE,     ...     operation_nature&#x3D;OperationNature.GOODS  # Forces B1 instead of S1     ... )
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class InvoicingFramework {
   public static final String SERIALIZED_NAME_INVOICING_FRAMEWORK_CODE = "invoicing_framework_code";
   @SerializedName(SERIALIZED_NAME_INVOICING_FRAMEWORK_CODE)
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private InvoicingFrameworkCode invoicingFrameworkCode;
 
   public static final String SERIALIZED_NAME_OPERATION_NATURE = "operation_nature";
@@ -76,21 +76,21 @@ public class InvoicingFramework {
   public InvoicingFramework() {
   }
 
-  public InvoicingFramework invoicingFrameworkCode(@javax.annotation.Nonnull InvoicingFrameworkCode invoicingFrameworkCode) {
+  public InvoicingFramework invoicingFrameworkCode(@javax.annotation.Nullable InvoicingFrameworkCode invoicingFrameworkCode) {
     this.invoicingFrameworkCode = invoicingFrameworkCode;
     return this;
   }
 
   /**
-   * Chorus Pro framework code (A1, A2, A9, A12)
+   * Get invoicingFrameworkCode
    * @return invoicingFrameworkCode
    */
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   public InvoicingFrameworkCode getInvoicingFrameworkCode() {
     return invoicingFrameworkCode;
   }
 
-  public void setInvoicingFrameworkCode(@javax.annotation.Nonnull InvoicingFrameworkCode invoicingFrameworkCode) {
+  public void setInvoicingFrameworkCode(@javax.annotation.Nullable InvoicingFrameworkCode invoicingFrameworkCode) {
     this.invoicingFrameworkCode = invoicingFrameworkCode;
   }
 
@@ -216,7 +216,7 @@ public class InvoicingFramework {
     openapiFields = new HashSet<String>(Arrays.asList("invoicing_framework_code", "operation_nature", "approver_service_code", "approver_structure_code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("invoicing_framework_code"));
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**
@@ -239,16 +239,11 @@ public class InvoicingFramework {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `InvoicingFramework` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : InvoicingFramework.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `invoicing_framework_code`
-      InvoicingFrameworkCode.validateJsonElement(jsonObj.get("invoicing_framework_code"));
+      // validate the optional field `invoicing_framework_code`
+      if (jsonObj.get("invoicing_framework_code") != null && !jsonObj.get("invoicing_framework_code").isJsonNull()) {
+        InvoicingFrameworkCode.validateJsonElement(jsonObj.get("invoicing_framework_code"));
+      }
       // validate the optional field `operation_nature`
       if (jsonObj.get("operation_nature") != null && !jsonObj.get("operation_nature").isJsonNull()) {
         OperationNature.validateJsonElement(jsonObj.get("operation_nature"));

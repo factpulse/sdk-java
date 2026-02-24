@@ -20,9 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,42 +46,106 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Response for validation errors.
+ * Single VATEX code entry.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
-public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse {
-  public static final String SERIALIZED_NAME_DETAIL = "detail";
-  @SerializedName(SERIALIZED_NAME_DETAIL)
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+public class VATEXCodeInfo {
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
   @javax.annotation.Nonnull
-  private List<String> detail = new ArrayList<>();
+  private String code;
 
-  public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse() {
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
+  private String name;
+
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nonnull
+  private String description;
+
+  public static final String SERIALIZED_NAME_CATEGORY = "category";
+  @SerializedName(SERIALIZED_NAME_CATEGORY)
+  @javax.annotation.Nonnull
+  private String category;
+
+  public VATEXCodeInfo() {
   }
 
-  public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse detail(@javax.annotation.Nonnull List<String> detail) {
-    this.detail = detail;
-    return this;
-  }
-
-  public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse addDetailItem(String detailItem) {
-    if (this.detail == null) {
-      this.detail = new ArrayList<>();
-    }
-    this.detail.add(detailItem);
+  public VATEXCodeInfo code(@javax.annotation.Nonnull String code) {
+    this.code = code;
     return this;
   }
 
   /**
-   * List of detected validation errors.
-   * @return detail
+   * VATEX code (e.g. VATEX-EU-IC)
+   * @return code
    */
   @javax.annotation.Nonnull
-  public List<String> getDetail() {
-    return detail;
+  public String getCode() {
+    return code;
   }
 
-  public void setDetail(@javax.annotation.Nonnull List<String> detail) {
-    this.detail = detail;
+  public void setCode(@javax.annotation.Nonnull String code) {
+    this.code = code;
+  }
+
+
+  public VATEXCodeInfo name(@javax.annotation.Nonnull String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Short name (e.g. &#39;Intra-Community supply&#39;)
+   * @return name
+   */
+  @javax.annotation.Nonnull
+  public String getName() {
+    return name;
+  }
+
+  public void setName(@javax.annotation.Nonnull String name) {
+    this.name = name;
+  }
+
+
+  public VATEXCodeInfo description(@javax.annotation.Nonnull String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Detailed description / remark
+   * @return description
+   */
+  @javax.annotation.Nonnull
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(@javax.annotation.Nonnull String description) {
+    this.description = description;
+  }
+
+
+  public VATEXCodeInfo category(@javax.annotation.Nonnull String category) {
+    this.category = category;
+    return this;
+  }
+
+  /**
+   * Associated VAT category code (E, AE, K, G, O)
+   * @return category
+   */
+  @javax.annotation.Nonnull
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(@javax.annotation.Nonnull String category) {
+    this.category = category;
   }
 
 
@@ -96,20 +158,26 @@ public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse 
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FactureElectroniqueRestApiSchemasValidationValidationErrorResponse factureElectroniqueRestApiSchemasValidationValidationErrorResponse = (FactureElectroniqueRestApiSchemasValidationValidationErrorResponse) o;
-    return Objects.equals(this.detail, factureElectroniqueRestApiSchemasValidationValidationErrorResponse.detail);
+    VATEXCodeInfo vaTEXCodeInfo = (VATEXCodeInfo) o;
+    return Objects.equals(this.code, vaTEXCodeInfo.code) &&
+        Objects.equals(this.name, vaTEXCodeInfo.name) &&
+        Objects.equals(this.description, vaTEXCodeInfo.description) &&
+        Objects.equals(this.category, vaTEXCodeInfo.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detail);
+    return Objects.hash(code, name, description, category);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse {\n");
-    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
+    sb.append("class VATEXCodeInfo {\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -131,45 +199,51 @@ public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse 
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("detail"));
+    openapiFields = new HashSet<String>(Arrays.asList("code", "name", "description", "category"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("detail"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("code", "name", "description", "category"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+   * @throws IOException if the JSON Element is invalid with respect to VATEXCodeInfo
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasValidationValidationErrorResponse is not found in the empty JSON string", FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiRequiredFields.toString()));
+        if (!VATEXCodeInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in VATEXCodeInfo is not found in the empty JSON string", VATEXCodeInfo.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasValidationValidationErrorResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!VATEXCodeInfo.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `VATEXCodeInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiRequiredFields) {
+      for (String requiredField : VATEXCodeInfo.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the required json array is present
-      if (jsonObj.get("detail") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("detail").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `detail` to be an array in the JSON string but got `%s`", jsonObj.get("detail").toString()));
+      if (!jsonObj.get("code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
+      }
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if (!jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if (!jsonObj.get("category").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `category` to be a primitive type in the JSON string but got `%s`", jsonObj.get("category").toString()));
       }
   }
 
@@ -177,22 +251,22 @@ public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse 
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasValidationValidationErrorResponse' and its subtypes
+       if (!VATEXCodeInfo.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'VATEXCodeInfo' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FactureElectroniqueRestApiSchemasValidationValidationErrorResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.class));
+       final TypeAdapter<VATEXCodeInfo> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(VATEXCodeInfo.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasValidationValidationErrorResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<VATEXCodeInfo>() {
            @Override
-           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasValidationValidationErrorResponse value) throws IOException {
+           public void write(JsonWriter out, VATEXCodeInfo value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse read(JsonReader in) throws IOException {
+           public VATEXCodeInfo read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -203,18 +277,18 @@ public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse 
   }
 
   /**
-   * Create an instance of FactureElectroniqueRestApiSchemasValidationValidationErrorResponse given an JSON string
+   * Create an instance of VATEXCodeInfo given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
-   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+   * @return An instance of VATEXCodeInfo
+   * @throws IOException if the JSON string is invalid with respect to VATEXCodeInfo
    */
-  public static FactureElectroniqueRestApiSchemasValidationValidationErrorResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.class);
+  public static VATEXCodeInfo fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, VATEXCodeInfo.class);
   }
 
   /**
-   * Convert an instance of FactureElectroniqueRestApiSchemasValidationValidationErrorResponse to an JSON string
+   * Convert an instance of VATEXCodeInfo to an JSON string
    *
    * @return JSON string
    */

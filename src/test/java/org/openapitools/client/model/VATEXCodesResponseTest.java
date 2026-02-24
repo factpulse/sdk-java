@@ -22,29 +22,46 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.client.model.VATEXCodeInfo;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+ * Model tests for VATEXCodesResponse
  */
-public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponseTest {
-    private final FactureElectroniqueRestApiSchemasValidationValidationErrorResponse model = new FactureElectroniqueRestApiSchemasValidationValidationErrorResponse();
+public class VATEXCodesResponseTest {
+    private final VATEXCodesResponse model = new VATEXCodesResponse();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+     * Model tests for VATEXCodesResponse
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasValidationValidationErrorResponse() {
-        // TODO: test FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+    public void testVATEXCodesResponse() {
+        // TODO: test VATEXCodesResponse
     }
 
     /**
-     * Test the property 'detail'
+     * Test the property 'codes'
      */
     @Test
-    public void detailTest() {
-        // TODO: test detail
+    public void codesTest() {
+        // TODO: test codes
+    }
+
+    /**
+     * Test the property 'count'
+     */
+    @Test
+    public void countTest() {
+        // TODO: test count
+    }
+
+    /**
+     * Test the property 'source'
+     */
+    @Test
+    public void sourceTest() {
+        // TODO: test source
     }
 
 }

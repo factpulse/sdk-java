@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Requête simplifiée pour soumettre un statut ENCAISSÉE (212).  **Usage** : Pour une facture ÉMISE (vous êtes vendeur). Le vendeur confirme l&#39;encaissement et envoie le statut à l&#39;acheteur.  Statut obligatoire PPF - Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-13T14:40:45.438308200Z[Etc/UTC]", comments = "Generator version: 7.20.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class EncaisseeRequest {
   public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
   @SerializedName(SERIALIZED_NAME_INVOICE_ID)

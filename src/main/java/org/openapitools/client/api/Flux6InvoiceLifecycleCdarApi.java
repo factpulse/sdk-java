@@ -33,6 +33,7 @@ import org.openapitools.client.model.CreateCDARRequest;
 import org.openapitools.client.model.EncaisseeRequest;
 import java.io.File;
 import org.openapitools.client.model.GenerateCDARResponse;
+import org.openapitools.client.model.LifecycleResponse;
 import org.openapitools.client.model.ReasonCodesResponse;
 import org.openapitools.client.model.RefuseeRequest;
 import org.openapitools.client.model.SimplifiedCDARResponse;
@@ -355,6 +356,187 @@ public class Flux6InvoiceLifecycleCdarApi {
 
         okhttp3.Call localVarCall = getActionCodesApiV1CdarActionCodesGetValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<ActionCodesResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getLifecycleApiV1CdarLifecycleGet
+     * @param days Number of days to look back (optional, default to 7)
+     * @param invoiceId Filter by invoice reference (optional)
+     * @param pdpFlowServiceUrl PDP Flow Service URL (optional)
+     * @param pdpTokenUrl PDP OAuth token URL (optional)
+     * @param pdpClientId PDP Client ID (optional)
+     * @param pdpClientSecret PDP Client Secret (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getLifecycleApiV1CdarLifecycleGetCall(@javax.annotation.Nullable Integer days, @javax.annotation.Nullable String invoiceId, @javax.annotation.Nullable String pdpFlowServiceUrl, @javax.annotation.Nullable String pdpTokenUrl, @javax.annotation.Nullable String pdpClientId, @javax.annotation.Nullable String pdpClientSecret, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/cdar/lifecycle";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (days != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("days", days));
+        }
+
+        if (invoiceId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("invoiceId", invoiceId));
+        }
+
+        if (pdpFlowServiceUrl != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pdpFlowServiceUrl", pdpFlowServiceUrl));
+        }
+
+        if (pdpTokenUrl != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pdpTokenUrl", pdpTokenUrl));
+        }
+
+        if (pdpClientId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pdpClientId", pdpClientId));
+        }
+
+        if (pdpClientSecret != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pdpClientSecret", pdpClientSecret));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "HTTPBearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getLifecycleApiV1CdarLifecycleGetValidateBeforeCall(@javax.annotation.Nullable Integer days, @javax.annotation.Nullable String invoiceId, @javax.annotation.Nullable String pdpFlowServiceUrl, @javax.annotation.Nullable String pdpTokenUrl, @javax.annotation.Nullable String pdpClientId, @javax.annotation.Nullable String pdpClientSecret, final ApiCallback _callback) throws ApiException {
+        return getLifecycleApiV1CdarLifecycleGetCall(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, _callback);
+
+    }
+
+    /**
+     * [Simplified] Get lifecycle events for invoices
+     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - &#x60;days&#x60;: Number of days to look back (default: 7) - &#x60;invoiceId&#x60;: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+     * @param days Number of days to look back (optional, default to 7)
+     * @param invoiceId Filter by invoice reference (optional)
+     * @param pdpFlowServiceUrl PDP Flow Service URL (optional)
+     * @param pdpTokenUrl PDP OAuth token URL (optional)
+     * @param pdpClientId PDP Client ID (optional)
+     * @param pdpClientSecret PDP Client Secret (optional)
+     * @return LifecycleResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public LifecycleResponse getLifecycleApiV1CdarLifecycleGet(@javax.annotation.Nullable Integer days, @javax.annotation.Nullable String invoiceId, @javax.annotation.Nullable String pdpFlowServiceUrl, @javax.annotation.Nullable String pdpTokenUrl, @javax.annotation.Nullable String pdpClientId, @javax.annotation.Nullable String pdpClientSecret) throws ApiException {
+        ApiResponse<LifecycleResponse> localVarResp = getLifecycleApiV1CdarLifecycleGetWithHttpInfo(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret);
+        return localVarResp.getData();
+    }
+
+    /**
+     * [Simplified] Get lifecycle events for invoices
+     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - &#x60;days&#x60;: Number of days to look back (default: 7) - &#x60;invoiceId&#x60;: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+     * @param days Number of days to look back (optional, default to 7)
+     * @param invoiceId Filter by invoice reference (optional)
+     * @param pdpFlowServiceUrl PDP Flow Service URL (optional)
+     * @param pdpTokenUrl PDP OAuth token URL (optional)
+     * @param pdpClientId PDP Client ID (optional)
+     * @param pdpClientSecret PDP Client Secret (optional)
+     * @return ApiResponse&lt;LifecycleResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<LifecycleResponse> getLifecycleApiV1CdarLifecycleGetWithHttpInfo(@javax.annotation.Nullable Integer days, @javax.annotation.Nullable String invoiceId, @javax.annotation.Nullable String pdpFlowServiceUrl, @javax.annotation.Nullable String pdpTokenUrl, @javax.annotation.Nullable String pdpClientId, @javax.annotation.Nullable String pdpClientSecret) throws ApiException {
+        okhttp3.Call localVarCall = getLifecycleApiV1CdarLifecycleGetValidateBeforeCall(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, null);
+        Type localVarReturnType = new TypeToken<LifecycleResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * [Simplified] Get lifecycle events for invoices (asynchronously)
+     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - &#x60;days&#x60;: Number of days to look back (default: 7) - &#x60;invoiceId&#x60;: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+     * @param days Number of days to look back (optional, default to 7)
+     * @param invoiceId Filter by invoice reference (optional)
+     * @param pdpFlowServiceUrl PDP Flow Service URL (optional)
+     * @param pdpTokenUrl PDP OAuth token URL (optional)
+     * @param pdpClientId PDP Client ID (optional)
+     * @param pdpClientSecret PDP Client Secret (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Server error </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication required - Invalid or missing JWT token </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getLifecycleApiV1CdarLifecycleGetAsync(@javax.annotation.Nullable Integer days, @javax.annotation.Nullable String invoiceId, @javax.annotation.Nullable String pdpFlowServiceUrl, @javax.annotation.Nullable String pdpTokenUrl, @javax.annotation.Nullable String pdpClientId, @javax.annotation.Nullable String pdpClientSecret, final ApiCallback<LifecycleResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getLifecycleApiV1CdarLifecycleGetValidateBeforeCall(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, _callback);
+        Type localVarReturnType = new TypeToken<LifecycleResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

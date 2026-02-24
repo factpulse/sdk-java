@@ -14,7 +14,7 @@ Data model for an invoice to be converted to Factur-X.
 |**submissionMode** | **SubmissionMode** |  |  [optional] |
 |**recipient** | [**Recipient**](Recipient.md) |  |  |
 |**supplier** | [**Supplier**](Supplier.md) |  |  |
-|**invoicingFramework** | [**InvoicingFramework**](InvoicingFramework.md) |  |  |
+|**invoicingFramework** | [**InvoicingFramework**](InvoicingFramework.md) |  |  [optional] |
 |**references** | [**InvoiceReferences**](InvoiceReferences.md) |  |  |
 |**totals** | [**InvoiceTotals**](InvoiceTotals.md) |  |  |
 |**invoiceLines** | [**List&lt;InvoiceLine&gt;**](InvoiceLine.md) |  |  [optional] |

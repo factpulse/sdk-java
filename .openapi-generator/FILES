@@ -178,9 +178,9 @@ docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
 docs/FacturXPdfXmlVerificationApi.md
 docs/FacturXValidationApi.md
-docs/FactureElectroniqueModelsInvoiceTypeCode.md
-docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
-docs/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.md
+docs/FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.md
+docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
+docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
 docs/FileInfo.md
 docs/FilesInfo.md
@@ -214,6 +214,7 @@ docs/IncomingSupplier.md
 docs/InvoiceFormat.md
 docs/InvoiceGenerationApi.md
 docs/InvoiceInput.md
+docs/InvoiceLifecycle.md
 docs/InvoiceLine.md
 docs/InvoiceLineAllowanceAmount.md
 docs/InvoiceNote.md
@@ -229,6 +230,8 @@ docs/InvoicingFrameworkCode.md
 docs/IssuerRoleCode.md
 docs/KeyRotationRequest.md
 docs/KeyRotationResponse.md
+docs/LifecycleEvent.md
+docs/LifecycleResponse.md
 docs/LineNetAmount.md
 docs/LineSubType.md
 docs/LineTotalAmount.md
@@ -265,6 +268,7 @@ docs/ReasonCodeInfo.md
 docs/ReasonCodesResponse.md
 docs/Recipient.md
 docs/RecipientInput.md
+docs/ReferencesApi.md
 docs/RefuseeRequest.md
 docs/ReportIssuer.md
 docs/ReportPeriod.md
@@ -332,6 +336,8 @@ docs/UnitOfMeasure.md
 docs/VATAccountingCode.md
 docs/VATAmount.md
 docs/VATCategory.md
+docs/VATEXCodeInfo.md
+docs/VATEXCodesResponse.md
 docs/VATLine.md
 docs/VATPointDateCode.md
 docs/ValidateCDARRequest.md
@@ -394,6 +400,7 @@ src/main/java/org/openapitools/client/api/Flux6InvoiceLifecycleCdarApi.java
 src/main/java/org/openapitools/client/api/HealthApi.java
 src/main/java/org/openapitools/client/api/InvoiceGenerationApi.java
 src/main/java/org/openapitools/client/api/ParseApi.java
+src/main/java/org/openapitools/client/api/ReferencesApi.java
 src/main/java/org/openapitools/client/api/ValidationApi.java
 src/main/java/org/openapitools/client/auth/ApiKeyAuth.java
 src/main/java/org/openapitools/client/auth/Authentication.java
@@ -561,9 +568,9 @@ src/main/java/org/openapitools/client/model/ErrorSource.java
 src/main/java/org/openapitools/client/model/ExtractionInfo.java
 src/main/java/org/openapitools/client/model/FacturXInvoice.java
 src/main/java/org/openapitools/client/model/FacturXPDFInfo.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCode.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.java
-src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.java
+src/main/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.java
 src/main/java/org/openapitools/client/model/FieldStatus.java
 src/main/java/org/openapitools/client/model/FileInfo.java
 src/main/java/org/openapitools/client/model/FilesInfo.java
@@ -593,6 +600,7 @@ src/main/java/org/openapitools/client/model/IncomingInvoice.java
 src/main/java/org/openapitools/client/model/IncomingSupplier.java
 src/main/java/org/openapitools/client/model/InvoiceFormat.java
 src/main/java/org/openapitools/client/model/InvoiceInput.java
+src/main/java/org/openapitools/client/model/InvoiceLifecycle.java
 src/main/java/org/openapitools/client/model/InvoiceLine.java
 src/main/java/org/openapitools/client/model/InvoiceLineAllowanceAmount.java
 src/main/java/org/openapitools/client/model/InvoiceNote.java
@@ -608,6 +616,8 @@ src/main/java/org/openapitools/client/model/InvoicingFrameworkCode.java
 src/main/java/org/openapitools/client/model/IssuerRoleCode.java
 src/main/java/org/openapitools/client/model/KeyRotationRequest.java
 src/main/java/org/openapitools/client/model/KeyRotationResponse.java
+src/main/java/org/openapitools/client/model/LifecycleEvent.java
+src/main/java/org/openapitools/client/model/LifecycleResponse.java
 src/main/java/org/openapitools/client/model/LineNetAmount.java
 src/main/java/org/openapitools/client/model/LineSubType.java
 src/main/java/org/openapitools/client/model/LineTotalAmount.java
@@ -710,6 +720,8 @@ src/main/java/org/openapitools/client/model/UnitOfMeasure.java
 src/main/java/org/openapitools/client/model/VATAccountingCode.java
 src/main/java/org/openapitools/client/model/VATAmount.java
 src/main/java/org/openapitools/client/model/VATCategory.java
+src/main/java/org/openapitools/client/model/VATEXCodeInfo.java
+src/main/java/org/openapitools/client/model/VATEXCodesResponse.java
 src/main/java/org/openapitools/client/model/VATLine.java
 src/main/java/org/openapitools/client/model/VATPointDateCode.java
 src/main/java/org/openapitools/client/model/ValidateCDARRequest.java
@@ -749,6 +761,7 @@ src/test/java/org/openapitools/client/api/Flux6InvoiceLifecycleCdarApiTest.java
 src/test/java/org/openapitools/client/api/HealthApiTest.java
 src/test/java/org/openapitools/client/api/InvoiceGenerationApiTest.java
 src/test/java/org/openapitools/client/api/ParseApiTest.java
+src/test/java/org/openapitools/client/api/ReferencesApiTest.java
 src/test/java/org/openapitools/client/api/ValidationApiTest.java
 src/test/java/org/openapitools/client/model/AFNORAcknowledgementDetailTest.java
 src/test/java/org/openapitools/client/model/AFNORAcknowledgementTest.java
@@ -911,9 +924,9 @@ src/test/java/org/openapitools/client/model/ErrorSourceTest.java
 src/test/java/org/openapitools/client/model/ExtractionInfoTest.java
 src/test/java/org/openapitools/client/model/FacturXInvoiceTest.java
 src/test/java/org/openapitools/client/model/FacturXPDFInfoTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueModelsInvoiceTypeCodeTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest.java
-src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasValidationValidationErrorResponseTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasCdarValidationErrorResponseTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCodeTest.java
+src/test/java/org/openapitools/client/model/FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest.java
 src/test/java/org/openapitools/client/model/FieldStatusTest.java
 src/test/java/org/openapitools/client/model/FileInfoTest.java
 src/test/java/org/openapitools/client/model/FilesInfoTest.java
@@ -943,6 +956,7 @@ src/test/java/org/openapitools/client/model/IncomingInvoiceTest.java
 src/test/java/org/openapitools/client/model/IncomingSupplierTest.java
 src/test/java/org/openapitools/client/model/InvoiceFormatTest.java
 src/test/java/org/openapitools/client/model/InvoiceInputTest.java
+src/test/java/org/openapitools/client/model/InvoiceLifecycleTest.java
 src/test/java/org/openapitools/client/model/InvoiceLineAllowanceAmountTest.java
 src/test/java/org/openapitools/client/model/InvoiceLineTest.java
 src/test/java/org/openapitools/client/model/InvoiceNoteTest.java
@@ -958,6 +972,8 @@ src/test/java/org/openapitools/client/model/InvoicingFrameworkTest.java
 src/test/java/org/openapitools/client/model/IssuerRoleCodeTest.java
 src/test/java/org/openapitools/client/model/KeyRotationRequestTest.java
 src/test/java/org/openapitools/client/model/KeyRotationResponseTest.java
+src/test/java/org/openapitools/client/model/LifecycleEventTest.java
+src/test/java/org/openapitools/client/model/LifecycleResponseTest.java
 src/test/java/org/openapitools/client/model/LineNetAmountTest.java
 src/test/java/org/openapitools/client/model/LineSubTypeTest.java
 src/test/java/org/openapitools/client/model/LineTotalAmountTest.java
@@ -1060,6 +1076,8 @@ src/test/java/org/openapitools/client/model/UnitOfMeasureTest.java
 src/test/java/org/openapitools/client/model/VATAccountingCodeTest.java
 src/test/java/org/openapitools/client/model/VATAmountTest.java
 src/test/java/org/openapitools/client/model/VATCategoryTest.java
+src/test/java/org/openapitools/client/model/VATEXCodeInfoTest.java
+src/test/java/org/openapitools/client/model/VATEXCodesResponseTest.java
 src/test/java/org/openapitools/client/model/VATLineTest.java
 src/test/java/org/openapitools/client/model/VATPointDateCodeTest.java
 src/test/java/org/openapitools/client/model/ValidateCDARRequestTest.java

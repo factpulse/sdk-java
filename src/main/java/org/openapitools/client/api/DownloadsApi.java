@@ -74,7 +74,7 @@ public class DownloadsApi {
 
     /**
      * Build call for checkFileApiV1DownloadDownloadIdHead
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to check (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -148,7 +148,7 @@ public class DownloadsApi {
     /**
      * Check if a file exists
      * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to check (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -170,7 +170,7 @@ public class DownloadsApi {
     /**
      * Check if a file exists
      * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to check (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -193,7 +193,7 @@ public class DownloadsApi {
     /**
      * Check if a file exists (asynchronously)
      * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to check (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -217,7 +217,7 @@ public class DownloadsApi {
     }
     /**
      * Build call for downloadFileApiV1DownloadDownloadIdGet
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to download (required)
      * @param deleteAfter If true, delete the file after download (one-time download) (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -299,7 +299,7 @@ public class DownloadsApi {
     /**
      * Download a temporary file
      * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using &#x60;webhook_mode: \&quot;download_url\&quot;&#x60; - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to download (required)
      * @param deleteAfter If true, delete the file after download (one-time download) (optional, default to false)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -322,7 +322,7 @@ public class DownloadsApi {
     /**
      * Download a temporary file
      * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using &#x60;webhook_mode: \&quot;download_url\&quot;&#x60; - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to download (required)
      * @param deleteAfter If true, delete the file after download (one-time download) (optional, default to false)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -346,7 +346,7 @@ public class DownloadsApi {
     /**
      * Download a temporary file (asynchronously)
      * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using &#x60;webhook_mode: \&quot;download_url\&quot;&#x60; - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-     * @param downloadId  (required)
+     * @param downloadId Unique identifier of the temporary file to download (required)
      * @param deleteAfter If true, delete the file after download (one-time download) (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

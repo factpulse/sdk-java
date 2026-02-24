@@ -87,7 +87,7 @@ public class ClientManagementApi {
 
     /**
      * Build call for activateClientApiV1ClientsUidActiverPost
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -163,7 +163,7 @@ public class ClientManagementApi {
     /**
      * Activate a client
      * Activate a deactivated client.  **Scope**: Client level (JWT with client_uid that must match {uid})
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ClientActivateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -187,7 +187,7 @@ public class ClientManagementApi {
     /**
      * Activate a client
      * Activate a deactivated client.  **Scope**: Client level (JWT with client_uid that must match {uid})
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ApiResponse&lt;ClientActivateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -212,7 +212,7 @@ public class ClientManagementApi {
     /**
      * Activate a client (asynchronously)
      * Activate a deactivated client.  **Scope**: Client level (JWT with client_uid that must match {uid})
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -389,7 +389,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for deactivateClientApiV1ClientsUidDesactiverPost
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -465,7 +465,7 @@ public class ClientManagementApi {
     /**
      * Deactivate a client
      * Deactivate an active client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Note**: A deactivated client cannot be used for API calls (AFNOR, Chorus Pro, etc.).
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ClientActivateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -489,7 +489,7 @@ public class ClientManagementApi {
     /**
      * Deactivate a client
      * Deactivate an active client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Note**: A deactivated client cannot be used for API calls (AFNOR, Chorus Pro, etc.).
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ApiResponse&lt;ClientActivateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -514,7 +514,7 @@ public class ClientManagementApi {
     /**
      * Deactivate a client (asynchronously)
      * Deactivate an active client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Note**: A deactivated client cannot be used for API calls (AFNOR, Chorus Pro, etc.).
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -540,7 +540,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -616,7 +616,7 @@ public class ClientManagementApi {
     /**
      * Delete webhook secret
      * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return WebhookSecretDeleteResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -640,7 +640,7 @@ public class ClientManagementApi {
     /**
      * Delete webhook secret
      * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ApiResponse&lt;WebhookSecretDeleteResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -665,7 +665,7 @@ public class ClientManagementApi {
     /**
      * Delete webhook secret (asynchronously)
      * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -691,7 +691,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -767,7 +767,7 @@ public class ClientManagementApi {
     /**
      * Generate webhook secret
      * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return WebhookSecretGenerateResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -791,7 +791,7 @@ public class ClientManagementApi {
     /**
      * Generate webhook secret
      * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ApiResponse&lt;WebhookSecretGenerateResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -816,7 +816,7 @@ public class ClientManagementApi {
     /**
      * Generate webhook secret (asynchronously)
      * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -842,7 +842,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for getClientApiV1ClientsUidGet
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -918,7 +918,7 @@ public class ClientManagementApi {
     /**
      * Get client details
      * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ClientDetail
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -942,7 +942,7 @@ public class ClientManagementApi {
     /**
      * Get client details
      * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ApiResponse&lt;ClientDetail&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -967,7 +967,7 @@ public class ClientManagementApi {
     /**
      * Get client details (asynchronously)
      * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -993,7 +993,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for getPdpConfigApiV1ClientsUidPdpConfigGet
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1069,7 +1069,7 @@ public class ClientManagementApi {
     /**
      * Get client PDP configuration
      * Get the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: The client secret is never returned. Only a status (&#x60;secretStatus&#x60;) indicates whether a secret is configured.  **Response**: - If configured: all config details (URLs, client_id, secret status) - If not configured: &#x60;isConfigured: false&#x60; with a message
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return PDPConfigResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1093,7 +1093,7 @@ public class ClientManagementApi {
     /**
      * Get client PDP configuration
      * Get the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: The client secret is never returned. Only a status (&#x60;secretStatus&#x60;) indicates whether a secret is configured.  **Response**: - If configured: all config details (URLs, client_id, secret status) - If not configured: &#x60;isConfigured: false&#x60; with a message
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ApiResponse&lt;PDPConfigResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1118,7 +1118,7 @@ public class ClientManagementApi {
     /**
      * Get client PDP configuration (asynchronously)
      * Get the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: The client secret is never returned. Only a status (&#x60;secretStatus&#x60;) indicates whether a secret is configured.  **Response**: - If configured: all config details (URLs, client_id, secret status) - If not configured: &#x60;isConfigured: false&#x60; with a message
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1144,7 +1144,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -1220,7 +1220,7 @@ public class ClientManagementApi {
     /**
      * Get webhook secret status
      * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return WebhookSecretStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1244,7 +1244,7 @@ public class ClientManagementApi {
     /**
      * Get webhook secret status
      * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @return ApiResponse&lt;WebhookSecretStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -1269,7 +1269,7 @@ public class ClientManagementApi {
     /**
      * Get webhook secret status (asynchronously)
      * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - &#x60;hasSecret&#x60;: Whether a webhook secret is configured - &#x60;createdAt&#x60;: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1452,7 +1452,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param keyRotationRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1535,7 +1535,7 @@ public class ClientManagementApi {
     /**
      * Rotate client encryption key
      * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param keyRotationRequest  (required)
      * @return KeyRotationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1560,7 +1560,7 @@ public class ClientManagementApi {
     /**
      * Rotate client encryption key
      * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param keyRotationRequest  (required)
      * @return ApiResponse&lt;KeyRotationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1586,7 +1586,7 @@ public class ClientManagementApi {
     /**
      * Rotate client encryption key (asynchronously)
      * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with &#x60;encryptionMode: \&quot;double\&quot;&#x60; are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param keyRotationRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1613,7 +1613,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for updateClientApiV1ClientsUidPatch
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param clientUpdateRequest  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -1696,7 +1696,7 @@ public class ClientManagementApi {
     /**
      * Update a client
      * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - &#x60;name&#x60;: Client name - &#x60;description&#x60;: Description - &#x60;siret&#x60;: SIRET (14 digits)  Only provided fields are updated.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param clientUpdateRequest  (required)
      * @return ClientDetail
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1721,7 +1721,7 @@ public class ClientManagementApi {
     /**
      * Update a client
      * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - &#x60;name&#x60;: Client name - &#x60;description&#x60;: Description - &#x60;siret&#x60;: SIRET (14 digits)  Only provided fields are updated.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param clientUpdateRequest  (required)
      * @return ApiResponse&lt;ClientDetail&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1747,7 +1747,7 @@ public class ClientManagementApi {
     /**
      * Update a client (asynchronously)
      * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - &#x60;name&#x60;: Client name - &#x60;description&#x60;: Description - &#x60;siret&#x60;: SIRET (14 digits)  Only provided fields are updated.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param clientUpdateRequest  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -1774,7 +1774,7 @@ public class ClientManagementApi {
     }
     /**
      * Build call for updatePdpConfigApiV1ClientsUidPdpConfigPut
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param pdPConfigUpdateRequest  (required)
      * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @param _callback Callback for upload/download progress
@@ -1863,7 +1863,7 @@ public class ClientManagementApi {
     /**
      * Configure client PDP
      * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param pdPConfigUpdateRequest  (required)
      * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @return PDPConfigResponse
@@ -1889,7 +1889,7 @@ public class ClientManagementApi {
     /**
      * Configure client PDP
      * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param pdPConfigUpdateRequest  (required)
      * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @return ApiResponse&lt;PDPConfigResponse&gt;
@@ -1916,7 +1916,7 @@ public class ClientManagementApi {
     /**
      * Configure client PDP (asynchronously)
      * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - &#x60;flowServiceUrl&#x60;: PDP Flow Service URL - &#x60;tokenUrl&#x60;: PDP OAuth token URL - &#x60;oauthClientId&#x60;: OAuth Client ID - &#x60;clientSecret&#x60;: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - &#x60;isActive&#x60;: Enable/disable the config (default: true) - &#x60;modeSandbox&#x60;: Sandbox mode (default: false) - &#x60;encryptionMode&#x60;: Encryption mode (default: \&quot;fernet\&quot;)   - \&quot;fernet\&quot;: Server-side encryption only   - \&quot;double\&quot;: Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When &#x60;encryptionMode&#x60; is set to \&quot;double\&quot;, you MUST also provide the &#x60;X-Encryption-Key&#x60; header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the &#x60;clientSecret&#x60; on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The &#x60;clientSecret&#x60; is stored encrypted on Django side and is never returned in API responses.
-     * @param uid  (required)
+     * @param uid Client unique identifier (UUID) (required)
      * @param pdPConfigUpdateRequest  (required)
      * @param xEncryptionKey Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;&#39;double&#39;. (optional)
      * @param _callback The callback to be executed when the API call finishes

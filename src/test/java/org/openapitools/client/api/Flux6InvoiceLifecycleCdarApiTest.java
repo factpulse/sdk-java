@@ -20,6 +20,7 @@ import org.openapitools.client.model.CreateCDARRequest;
 import org.openapitools.client.model.EncaisseeRequest;
 import java.io.File;
 import org.openapitools.client.model.GenerateCDARResponse;
+import org.openapitools.client.model.LifecycleResponse;
 import org.openapitools.client.model.ReasonCodesResponse;
 import org.openapitools.client.model.RefuseeRequest;
 import org.openapitools.client.model.SimplifiedCDARResponse;
@@ -69,6 +70,25 @@ public class Flux6InvoiceLifecycleCdarApiTest {
     @Test
     public void getActionCodesApiV1CdarActionCodesGetTest() throws ApiException {
         ActionCodesResponse response = api.getActionCodesApiV1CdarActionCodesGet();
+        // TODO: test validations
+    }
+
+    /**
+     * [Simplified] Get lifecycle events for invoices
+     *
+     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - &#x60;days&#x60;: Number of days to look back (default: 7) - &#x60;invoiceId&#x60;: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getLifecycleApiV1CdarLifecycleGetTest() throws ApiException {
+        Integer days = null;
+        String invoiceId = null;
+        String pdpFlowServiceUrl = null;
+        String pdpTokenUrl = null;
+        String pdpClientId = null;
+        String pdpClientSecret = null;
+        LifecycleResponse response = api.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret);
         // TODO: test validations
     }
 
