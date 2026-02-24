@@ -13,69 +13,20 @@
 
 package org.openapitools.client.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+ * Model tests for FactureElectroniqueModelsInvoiceTypeCode
  */
-public class FactureElectroniqueRestApiSchemasProcessingChorusProCredentialsTest {
-    private final FactureElectroniqueRestApiSchemasProcessingChorusProCredentials model = new FactureElectroniqueRestApiSchemasProcessingChorusProCredentials();
-
+public class FactureElectroniqueModelsInvoiceTypeCodeTest {
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
+     * Model tests for FactureElectroniqueModelsInvoiceTypeCode
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasProcessingChorusProCredentials() {
-        // TODO: test FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
-    }
-
-    /**
-     * Test the property 'pisteClientId'
-     */
-    @Test
-    public void pisteClientIdTest() {
-        // TODO: test pisteClientId
-    }
-
-    /**
-     * Test the property 'pisteClientSecret'
-     */
-    @Test
-    public void pisteClientSecretTest() {
-        // TODO: test pisteClientSecret
-    }
-
-    /**
-     * Test the property 'chorusLogin'
-     */
-    @Test
-    public void chorusLoginTest() {
-        // TODO: test chorusLogin
-    }
-
-    /**
-     * Test the property 'chorusPassword'
-     */
-    @Test
-    public void chorusPasswordTest() {
-        // TODO: test chorusPassword
-    }
-
-    /**
-     * Test the property 'sandboxMode'
-     */
-    @Test
-    public void sandboxModeTest() {
-        // TODO: test sandboxMode
+    public void testFactureElectroniqueModelsInvoiceTypeCode() {
+        // TODO: test FactureElectroniqueModelsInvoiceTypeCode
     }
 
 }

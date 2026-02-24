@@ -20,6 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -54,27 +55,27 @@ public class ChorusProCredentialsTest {
     }
 
     /**
-     * Test the property 'chorusProLogin'
+     * Test the property 'chorusLogin'
      */
     @Test
-    public void chorusProLoginTest() {
-        // TODO: test chorusProLogin
+    public void chorusLoginTest() {
+        // TODO: test chorusLogin
     }
 
     /**
-     * Test the property 'chorusProPassword'
+     * Test the property 'chorusPassword'
      */
     @Test
-    public void chorusProPasswordTest() {
-        // TODO: test chorusProPassword
+    public void chorusPasswordTest() {
+        // TODO: test chorusPassword
     }
 
     /**
-     * Test the property 'sandbox'
+     * Test the property 'sandboxMode'
      */
     @Test
-    public void sandboxTest() {
-        // TODO: test sandbox
+    public void sandboxModeTest() {
+        // TODO: test sandboxMode
     }
 
 }

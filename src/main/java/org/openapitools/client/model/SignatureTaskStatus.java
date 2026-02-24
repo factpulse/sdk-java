@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Typed task status for PDF signing.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class SignatureTaskStatus {
   public static final String SERIALIZED_NAME_TASK_ID = "taskId";
   @SerializedName(SERIALIZED_NAME_TASK_ID)

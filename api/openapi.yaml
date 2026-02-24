@@ -263,10 +263,8 @@ tags:
     \ after 1 hour\n\n### Security\n\n- JWT authentication required\n- Only the user\
     \ who initiated the task can download the file\n        "
   name: Downloads
-- description: "\n## 🏥 Health & Status\n\n**Endpoints for checking service availability\
-    \ and health.**\n\n### Endpoints\n\n- `GET /`: Quick API status check\n- `GET\
-    \ /healthcheck`: Docker/Kubernetes healthcheck\n- `GET /api/v1/me`: Current user\
-    \ info and quota\n        "
+- description: "\n## 🏥 Health & Status\n\n**Endpoint for checking current user info\
+    \ and quota.**\n        "
   name: Health
 - description: "\n## 📚 Reference Data\n\n**Endpoints for accessing reference data\
     \ (code lists, enumerations).**\n\n### Available references\n\n- **VATEX codes**:\
@@ -902,7 +900,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ValidationErrorResponse"
+                $ref: "#/components/schemas/facture_electronique__rest_api__schemas__validation__ValidationErrorResponse"
           description: XML does not comply with validation rules
         "422":
           content:
@@ -6631,56 +6629,6 @@ paths:
       - Client Management
       x-accepts:
       - application/json
-  /:
-    get:
-      description: |-
-        Health check endpoint to verify the API is responding.
-
-        Useful for:
-        - Availability monitoring
-        - Integration tests
-        - Load balancers
-      operationId: root__get
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: API is operational
-        "500":
-          description: Internal server error
-      summary: Check API status
-      tags:
-      - Health
-      x-accepts:
-      - application/json
-  /healthcheck:
-    get:
-      description: |-
-        Healthcheck endpoint for Docker and load balancers.
-
-        Useful for:
-        - Docker healthcheck
-        - Kubernetes liveness/readiness probes
-        - Load balancers (Nginx, HAProxy)
-        - Availability monitoring
-        - Zero downtime deployment
-
-        Returns a 200 code if the API is operational.
-      operationId: healthcheck_healthcheck_get
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: API is healthy
-        "500":
-          description: Internal server error
-      summary: Docker healthcheck endpoint
-      tags:
-      - Health
-      x-accepts:
-      - application/json
   /api/v1/me:
     get:
       description: |-
@@ -7520,53 +7468,39 @@ components:
       title: CertificateInfoResponse
     ChorusProCredentials:
       description: |-
-        Chorus Pro credentials for Zero-Trust mode.
+        Optional Chorus Pro credentials.
 
-        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+        **MODE 1 - JWT retrieval (recommended):**
+        Do not provide this `credentials` field in the payload.
+        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
 
-        **Security**:
-        - Credentials are never persisted in the database
-        - They are used only for the duration of the request
-        - Secure transmission via HTTPS
-
-        **Use cases**:
-        - High-security environments (banks, administrations)
-        - Strict GDPR compliance
-        - Tests with temporary credentials
-        - Users who don't want to store their credentials
+        **MODE 2 - Credentials in payload:**
+        Provide all required fields below.
+        Useful for tests or third-party integrations.
       example:
-        chorusProLogin: my_login@company.fr
-        chorusProPassword: MyPassword123!
-        pisteClientId: my_client_id
-        pisteClientSecret: my_secret
-        sandbox: true
+        chorusLogin: my_login@company.fr
+        chorusPassword: MyPassword123!
+        pisteClientId: my_piste_client_id
+        pisteClientSecret: my_piste_secret
+        sandboxMode: true
       properties:
         pisteClientId:
-          description: PISTE Client ID (government API portal)
-          title: Pisteclientid
+          nullable: true
           type: string
         pisteClientSecret:
-          description: PISTE Client Secret
-          title: Pisteclientsecret
+          nullable: true
           type: string
-        chorusProLogin:
-          description: Chorus Pro login
-          title: Chorusprologin
+        chorusLogin:
+          nullable: true
           type: string
-        chorusProPassword:
-          description: Chorus Pro password
-          title: Choruspropassword
+        chorusPassword:
+          nullable: true
           type: string
-        sandbox:
+        sandboxMode:
           default: true
-          description: Use sandbox environment (true) or production (false)
-          title: Sandbox
+          description: "[MODE 2] Use sandbox mode (default: True)"
+          title: Sandboxmode
           type: boolean
-      required:
-      - chorusProLogin
-      - chorusProPassword
-      - pisteClientId
-      - pisteClientSecret
       title: ChorusProCredentials
     ChorusProDestination:
       description: Specific configuration for Chorus Pro destination.
@@ -7579,7 +7513,7 @@ components:
           type: string
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__processing__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
       title: ChorusProDestination
     ChorusProResult:
@@ -9486,7 +9420,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         siret:
           description: Structure SIRET (14 digits)
@@ -9536,7 +9470,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         chorusInvoiceId:
           description: Chorus Pro invoice ID
@@ -9601,7 +9535,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureId:
           description: Chorus Pro structure ID
@@ -9862,7 +9796,7 @@ components:
           type: string
         typeCode:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode"
+          - $ref: "#/components/schemas/InvoiceTypeCode"
           default: "380"
           description: Invoice type code
         currency:
@@ -10025,80 +9959,15 @@ components:
       - label
       title: InvoiceStatus
     InvoiceTypeCode:
-      description: |-
-        Document type according to BR-FR-04 (UNTDID 1001 codes).
-
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
-        | 393 | FACTORED_INVOICE | Factored invoice |
-        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
-        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
-        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
-        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
-        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
-        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
-        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
-        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
-        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
-        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
-        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+      description: Invoice type codes (UNTDID 1001).
       enum:
       - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
       - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
+      - "384"
+      - "389"
+      - "386"
       title: InvoiceTypeCode
       type: string
-      x-enum-descriptions:
-      - Commercial Invoice
-      - Self-billed Invoice
-      - Factored Invoice
-      - Self-billed Factored Invoice
-      - Prepayment Invoice
-      - Self-billed Prepayment Invoice
-      - Corrective Invoice
-      - Self-billed Corrective Invoice
-      - Factored Corrective Invoice
-      - Self-billed Factored Corrective Invoice
-      - Credit Note
-      - Self-billed Credit Note
-      - Global Allowance Credit Note
-      - Factored Credit Note
-      - Self-billed Factored Credit Note
-      - Prepayment Credit Note
-      x-enum-varnames:
-      - INVOICE
-      - SELF_BILLED_INVOICE
-      - FACTORED_INVOICE
-      - SELF_BILLED_FACTORED_INVOICE
-      - PREPAYMENT_INVOICE
-      - SELF_BILLED_PREPAYMENT_INVOICE
-      - CORRECTIVE_INVOICE
-      - SELF_BILLED_CORRECTIVE_INVOICE
-      - FACTORED_CORRECTIVE_INVOICE
-      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
-      - CREDIT_NOTE
-      - SELF_BILLED_CREDIT_NOTE
-      - GLOBAL_ALLOWANCE_CREDIT_NOTE
-      - FACTORED_CREDIT_NOTE
-      - SELF_BILLED_FACTORED_CREDIT_NOTE
-      - PREPAYMENT_CREDIT_NOTE
     InvoiceTypeCode-Output:
       description: |-
         Document type according to BR-FR-04 (UNTDID 1001 codes).
@@ -11386,7 +11255,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         structureIdentifier:
           nullable: true
@@ -11729,7 +11598,7 @@ components:
           type: string
         invoiceType:
           allOf:
-          - $ref: "#/components/schemas/InvoiceTypeCode"
+          - $ref: "#/components/schemas/facture_electronique__models__InvoiceTypeCode"
           default: "380"
           description: "Document type (UNTDID 1001). Default: 380 (Invoice)."
         precedingInvoiceReference:
@@ -12364,7 +12233,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
           nullable: true
         invoiceNumber:
           description: Invoice number
@@ -12678,13 +12547,13 @@ components:
         errors:
           description: Liste des erreurs
           items:
-            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
+            $ref: "#/components/schemas/ValidationErrorResponse"
           title: Errors
           type: array
         warnings:
           description: Liste des avertissements
           items:
-            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
+            $ref: "#/components/schemas/ValidationErrorResponse"
           title: Warnings
           type: array
       required:
@@ -12815,20 +12684,32 @@ components:
       - reason
       title: ValidationErrorDetail
     ValidationErrorResponse:
-      description: Response for validation errors.
+      description: Erreur de validation.
       example:
-        detail:
-        - detail
-        - detail
+        severity: error
+        field: field
+        rule: rule
+        message: message
       properties:
-        detail:
-          description: List of detected validation errors.
-          items:
-            type: string
-          title: Detail
-          type: array
+        field:
+          description: Champ concerné
+          title: Field
+          type: string
+        message:
+          description: Message d'erreur
+          title: Message
+          type: string
+        rule:
+          nullable: true
+          type: string
+        severity:
+          default: error
+          description: Sévérité (error/warning)
+          title: Severity
+          type: string
       required:
-      - detail
+      - field
+      - message
       title: ValidationErrorResponse
     ValidationInfo:
       description: Informations sur la validation.
@@ -13342,80 +13223,147 @@ components:
       required:
       - hasSecret
       title: WebhookSecretStatusResponse
-    facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse:
-      description: Erreur de validation.
-      example:
-        severity: error
-        field: field
-        rule: rule
-        message: message
-      properties:
-        field:
-          description: Champ concerné
-          title: Field
-          type: string
-        message:
-          description: Message d'erreur
-          title: Message
-          type: string
-        rule:
-          nullable: true
-          type: string
-        severity:
-          default: error
-          description: Sévérité (error/warning)
-          title: Severity
-          type: string
-      required:
-      - field
-      - message
-      title: ValidationErrorResponse
-    facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
-      description: Invoice type codes (UNTDID 1001).
+    facture_electronique__models__InvoiceTypeCode:
+      description: |-
+        Document type according to BR-FR-04 (UNTDID 1001 codes).
+
+        | Code | Name | Description |
+        |------|------|-------------|
+        | 380 | INVOICE | Commercial invoice |
+        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
+        | 393 | FACTORED_INVOICE | Factored invoice |
+        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
+        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
+        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
+        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
+        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
+        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
+        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
+        | 381 | CREDIT_NOTE | Credit note |
+        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
+        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
+        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
+        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
+        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
       enum:
       - "380"
-      - "381"
-      - "384"
       - "389"
+      - "393"
+      - "501"
       - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
       title: InvoiceTypeCode
       type: string
-    facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
+      x-enum-descriptions:
+      - Commercial Invoice
+      - Self-billed Invoice
+      - Factored Invoice
+      - Self-billed Factored Invoice
+      - Prepayment Invoice
+      - Self-billed Prepayment Invoice
+      - Corrective Invoice
+      - Self-billed Corrective Invoice
+      - Factored Corrective Invoice
+      - Self-billed Factored Corrective Invoice
+      - Credit Note
+      - Self-billed Credit Note
+      - Global Allowance Credit Note
+      - Factored Credit Note
+      - Self-billed Factored Credit Note
+      - Prepayment Credit Note
+      x-enum-varnames:
+      - INVOICE
+      - SELF_BILLED_INVOICE
+      - FACTORED_INVOICE
+      - SELF_BILLED_FACTORED_INVOICE
+      - PREPAYMENT_INVOICE
+      - SELF_BILLED_PREPAYMENT_INVOICE
+      - CORRECTIVE_INVOICE
+      - SELF_BILLED_CORRECTIVE_INVOICE
+      - FACTORED_CORRECTIVE_INVOICE
+      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
+      - CREDIT_NOTE
+      - SELF_BILLED_CREDIT_NOTE
+      - GLOBAL_ALLOWANCE_CREDIT_NOTE
+      - FACTORED_CREDIT_NOTE
+      - SELF_BILLED_FACTORED_CREDIT_NOTE
+      - PREPAYMENT_CREDIT_NOTE
+    facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
       description: |-
-        Optional Chorus Pro credentials.
+        Chorus Pro credentials for Zero-Trust mode.
 
-        **MODE 1 - JWT retrieval (recommended):**
-        Do not provide this `credentials` field in the payload.
-        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
+        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
 
-        **MODE 2 - Credentials in payload:**
-        Provide all required fields below.
-        Useful for tests or third-party integrations.
+        **Security**:
+        - Credentials are never persisted in the database
+        - They are used only for the duration of the request
+        - Secure transmission via HTTPS
+
+        **Use cases**:
+        - High-security environments (banks, administrations)
+        - Strict GDPR compliance
+        - Tests with temporary credentials
+        - Users who don't want to store their credentials
       example:
-        chorusLogin: my_login@company.fr
-        chorusPassword: MyPassword123!
-        pisteClientId: my_piste_client_id
-        pisteClientSecret: my_piste_secret
-        sandboxMode: true
+        chorusProLogin: my_login@company.fr
+        chorusProPassword: MyPassword123!
+        pisteClientId: my_client_id
+        pisteClientSecret: my_secret
+        sandbox: true
       properties:
         pisteClientId:
-          nullable: true
+          description: PISTE Client ID (government API portal)
+          title: Pisteclientid
           type: string
         pisteClientSecret:
-          nullable: true
+          description: PISTE Client Secret
+          title: Pisteclientsecret
           type: string
-        chorusLogin:
-          nullable: true
+        chorusProLogin:
+          description: Chorus Pro login
+          title: Chorusprologin
           type: string
-        chorusPassword:
-          nullable: true
+        chorusProPassword:
+          description: Chorus Pro password
+          title: Choruspropassword
           type: string
-        sandboxMode:
+        sandbox:
           default: true
-          description: "[MODE 2] Use sandbox mode (default: True)"
-          title: Sandboxmode
+          description: Use sandbox environment (true) or production (false)
+          title: Sandbox
           type: boolean
+      required:
+      - chorusProLogin
+      - chorusProPassword
+      - pisteClientId
+      - pisteClientSecret
       title: ChorusProCredentials
+    facture_electronique__rest_api__schemas__validation__ValidationErrorResponse:
+      description: Response for validation errors.
+      example:
+        detail:
+        - detail
+        - detail
+      properties:
+        detail:
+          description: List of detected validation errors.
+          items:
+            type: string
+          title: Detail
+          type: array
+      required:
+      - detail
+      title: ValidationErrorResponse
     AdditionalDocument:
       description: |-
         Additional supporting document (BG-24).

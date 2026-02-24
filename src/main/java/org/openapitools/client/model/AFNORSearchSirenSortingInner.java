@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * A sorting criteria composed of a field and an order (ascending or descending).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORSearchSirenSortingInner {
   public static final String SERIALIZED_NAME_FIELD = "field";
   @SerializedName(SERIALIZED_NAME_FIELD)

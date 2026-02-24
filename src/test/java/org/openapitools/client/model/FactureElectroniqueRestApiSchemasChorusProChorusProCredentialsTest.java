@@ -20,54 +20,61 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
+ * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
  */
-public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponseTest {
-    private final FactureElectroniqueRestApiSchemasCdarValidationErrorResponse model = new FactureElectroniqueRestApiSchemasCdarValidationErrorResponse();
+public class FactureElectroniqueRestApiSchemasChorusProChorusProCredentialsTest {
+    private final FactureElectroniqueRestApiSchemasChorusProChorusProCredentials model = new FactureElectroniqueRestApiSchemasChorusProChorusProCredentials();
 
     /**
-     * Model tests for FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
+     * Model tests for FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
      */
     @Test
-    public void testFactureElectroniqueRestApiSchemasCdarValidationErrorResponse() {
-        // TODO: test FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
+    public void testFactureElectroniqueRestApiSchemasChorusProChorusProCredentials() {
+        // TODO: test FactureElectroniqueRestApiSchemasChorusProChorusProCredentials
     }
 
     /**
-     * Test the property 'field'
+     * Test the property 'pisteClientId'
      */
     @Test
-    public void fieldTest() {
-        // TODO: test field
+    public void pisteClientIdTest() {
+        // TODO: test pisteClientId
     }
 
     /**
-     * Test the property 'message'
+     * Test the property 'pisteClientSecret'
      */
     @Test
-    public void messageTest() {
-        // TODO: test message
+    public void pisteClientSecretTest() {
+        // TODO: test pisteClientSecret
     }
 
     /**
-     * Test the property 'rule'
+     * Test the property 'chorusProLogin'
      */
     @Test
-    public void ruleTest() {
-        // TODO: test rule
+    public void chorusProLoginTest() {
+        // TODO: test chorusProLogin
     }
 
     /**
-     * Test the property 'severity'
+     * Test the property 'chorusProPassword'
      */
     @Test
-    public void severityTest() {
-        // TODO: test severity
+    public void chorusProPasswordTest() {
+        // TODO: test chorusProPassword
+    }
+
+    /**
+     * Test the property 'sandbox'
+     */
+    @Test
+    public void sandboxTest() {
+        // TODO: test sandbox
     }
 
 }

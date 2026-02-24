@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.client.model.Buyercountry;
 import org.openapitools.client.model.Currency;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode;
+import org.openapitools.client.model.InvoiceTypeCode;
 import org.openapitools.client.model.Sellercountry;
 import org.openapitools.client.model.TaxBreakdownInput;
 import org.openapitools.client.model.Taxamount1;
@@ -59,7 +59,7 @@ import org.openapitools.client.JSON;
 /**
  * Invoice for B2B international reporting (flux 10.1).  Used for unitary declaration of international B2B invoices. Supports three scenarios: - B2Bi: French seller → Foreign buyer (issuer role &#x3D; SE) - Bi2B: Foreign seller → French buyer (issuer role &#x3D; BY) - Bi2Bi: Foreign seller → Foreign buyer (issuer role &#x3D; SE or BY)  Source: Annexe 6 v1.9, bloc TG-8 \&quot;Invoice\&quot;
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class InvoiceInput {
   public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
   @SerializedName(SERIALIZED_NAME_INVOICE_ID)
@@ -74,7 +74,7 @@ public class InvoiceInput {
   public static final String SERIALIZED_NAME_TYPE_CODE = "typeCode";
   @SerializedName(SERIALIZED_NAME_TYPE_CODE)
   @javax.annotation.Nullable
-  private FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode typeCode = FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode._380;
+  private InvoiceTypeCode typeCode = InvoiceTypeCode._380;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -187,7 +187,7 @@ public class InvoiceInput {
   }
 
 
-  public InvoiceInput typeCode(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode typeCode) {
+  public InvoiceInput typeCode(@javax.annotation.Nullable InvoiceTypeCode typeCode) {
     this.typeCode = typeCode;
     return this;
   }
@@ -197,11 +197,11 @@ public class InvoiceInput {
    * @return typeCode
    */
   @javax.annotation.Nullable
-  public FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode getTypeCode() {
+  public InvoiceTypeCode getTypeCode() {
     return typeCode;
   }
 
-  public void setTypeCode(@javax.annotation.Nullable FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode typeCode) {
+  public void setTypeCode(@javax.annotation.Nullable InvoiceTypeCode typeCode) {
     this.typeCode = typeCode;
   }
 
@@ -606,7 +606,7 @@ public class InvoiceInput {
       }
       // validate the optional field `typeCode`
       if (jsonObj.get("typeCode") != null && !jsonObj.get("typeCode").isJsonNull()) {
-        FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.validateJsonElement(jsonObj.get("typeCode"));
+        InvoiceTypeCode.validateJsonElement(jsonObj.get("typeCode"));
       }
       // validate the optional field `currency`
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) {

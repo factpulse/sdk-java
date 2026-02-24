@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Report issuer/declarant information (TT-12 to TT-16).  The issuer is the French company declaring the transactions. The role_code determines whether the company is: - SE (Seller): B2Bi case - French company sells to foreign buyer - BY (Buyer): Bi2B case - French company buys from foreign seller  Source: Annexe 6 v1.9, bloc Issuer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class ReportIssuer {
   public static final String SERIALIZED_NAME_SIREN = "siren";
   @SerializedName(SERIALIZED_NAME_SIREN)

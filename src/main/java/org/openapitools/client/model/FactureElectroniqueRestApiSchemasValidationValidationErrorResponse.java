@@ -20,8 +20,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,106 +48,42 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Erreur de validation.
+ * Response for validation errors.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T06:52:12.341674677Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
-public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
-  public static final String SERIALIZED_NAME_FIELD = "field";
-  @SerializedName(SERIALIZED_NAME_FIELD)
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+public class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse {
+  public static final String SERIALIZED_NAME_DETAIL = "detail";
+  @SerializedName(SERIALIZED_NAME_DETAIL)
   @javax.annotation.Nonnull
-  private String field;
+  private List<String> detail = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  @javax.annotation.Nonnull
-  private String message;
-
-  public static final String SERIALIZED_NAME_RULE = "rule";
-  @SerializedName(SERIALIZED_NAME_RULE)
-  @javax.annotation.Nullable
-  private String rule;
-
-  public static final String SERIALIZED_NAME_SEVERITY = "severity";
-  @SerializedName(SERIALIZED_NAME_SEVERITY)
-  @javax.annotation.Nullable
-  private String severity = "error";
-
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse() {
+  public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse() {
   }
 
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse field(@javax.annotation.Nonnull String field) {
-    this.field = field;
+  public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse detail(@javax.annotation.Nonnull List<String> detail) {
+    this.detail = detail;
+    return this;
+  }
+
+  public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse addDetailItem(String detailItem) {
+    if (this.detail == null) {
+      this.detail = new ArrayList<>();
+    }
+    this.detail.add(detailItem);
     return this;
   }
 
   /**
-   * Champ concerné
-   * @return field
+   * List of detected validation errors.
+   * @return detail
    */
   @javax.annotation.Nonnull
-  public String getField() {
-    return field;
+  public List<String> getDetail() {
+    return detail;
   }
 
-  public void setField(@javax.annotation.Nonnull String field) {
-    this.field = field;
-  }
-
-
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse message(@javax.annotation.Nonnull String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Message d&#39;erreur
-   * @return message
-   */
-  @javax.annotation.Nonnull
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(@javax.annotation.Nonnull String message) {
-    this.message = message;
-  }
-
-
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse rule(@javax.annotation.Nullable String rule) {
-    this.rule = rule;
-    return this;
-  }
-
-  /**
-   * Get rule
-   * @return rule
-   */
-  @javax.annotation.Nullable
-  public String getRule() {
-    return rule;
-  }
-
-  public void setRule(@javax.annotation.Nullable String rule) {
-    this.rule = rule;
-  }
-
-
-  public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse severity(@javax.annotation.Nullable String severity) {
-    this.severity = severity;
-    return this;
-  }
-
-  /**
-   * Sévérité (error/warning)
-   * @return severity
-   */
-  @javax.annotation.Nullable
-  public String getSeverity() {
-    return severity;
-  }
-
-  public void setSeverity(@javax.annotation.Nullable String severity) {
-    this.severity = severity;
+  public void setDetail(@javax.annotation.Nonnull List<String> detail) {
+    this.detail = detail;
   }
 
 
@@ -159,37 +96,20 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FactureElectroniqueRestApiSchemasCdarValidationErrorResponse factureElectroniqueRestApiSchemasCdarValidationErrorResponse = (FactureElectroniqueRestApiSchemasCdarValidationErrorResponse) o;
-    return Objects.equals(this.field, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.field) &&
-        Objects.equals(this.message, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.message) &&
-        Objects.equals(this.rule, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.rule) &&
-        Objects.equals(this.severity, factureElectroniqueRestApiSchemasCdarValidationErrorResponse.severity);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    FactureElectroniqueRestApiSchemasValidationValidationErrorResponse factureElectroniqueRestApiSchemasValidationValidationErrorResponse = (FactureElectroniqueRestApiSchemasValidationValidationErrorResponse) o;
+    return Objects.equals(this.detail, factureElectroniqueRestApiSchemasValidationValidationErrorResponse.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, message, rule, severity);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(detail);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {\n");
-    sb.append("    field: ").append(toIndentedString(field)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
-    sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
+    sb.append("class FactureElectroniqueRestApiSchemasValidationValidationErrorResponse {\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -211,51 +131,45 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("field", "message", "rule", "severity"));
+    openapiFields = new HashSet<String>(Arrays.asList("detail"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("field", "message"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("detail"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
+   * @throws IOException if the JSON Element is invalid with respect to FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasCdarValidationErrorResponse is not found in the empty JSON string", FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiRequiredFields.toString()));
+        if (!FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in FactureElectroniqueRestApiSchemasValidationValidationErrorResponse is not found in the empty JSON string", FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasCdarValidationErrorResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `FactureElectroniqueRestApiSchemasValidationValidationErrorResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.openapiRequiredFields) {
+      for (String requiredField : FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("field").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
-      }
-      if (!jsonObj.get("message").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
-      }
-      if ((jsonObj.get("rule") != null && !jsonObj.get("rule").isJsonNull()) && !jsonObj.get("rule").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `rule` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rule").toString()));
-      }
-      if ((jsonObj.get("severity") != null && !jsonObj.get("severity").isJsonNull()) && !jsonObj.get("severity").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `severity` to be a primitive type in the JSON string but got `%s`", jsonObj.get("severity").toString()));
+      // ensure the required json array is present
+      if (jsonObj.get("detail") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("detail").isJsonArray()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `detail` to be an array in the JSON string but got `%s`", jsonObj.get("detail").toString()));
       }
   }
 
@@ -263,22 +177,22 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasCdarValidationErrorResponse' and its subtypes
+       if (!FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FactureElectroniqueRestApiSchemasValidationValidationErrorResponse' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.class));
+       final TypeAdapter<FactureElectroniqueRestApiSchemasValidationValidationErrorResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<FactureElectroniqueRestApiSchemasValidationValidationErrorResponse>() {
            @Override
-           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasCdarValidationErrorResponse value) throws IOException {
+           public void write(JsonWriter out, FactureElectroniqueRestApiSchemasValidationValidationErrorResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public FactureElectroniqueRestApiSchemasCdarValidationErrorResponse read(JsonReader in) throws IOException {
+           public FactureElectroniqueRestApiSchemasValidationValidationErrorResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -289,18 +203,18 @@ public class FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
   }
 
   /**
-   * Create an instance of FactureElectroniqueRestApiSchemasCdarValidationErrorResponse given an JSON string
+   * Create an instance of FactureElectroniqueRestApiSchemasValidationValidationErrorResponse given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
-   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasCdarValidationErrorResponse
+   * @return An instance of FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
+   * @throws IOException if the JSON string is invalid with respect to FactureElectroniqueRestApiSchemasValidationValidationErrorResponse
    */
-  public static FactureElectroniqueRestApiSchemasCdarValidationErrorResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.class);
+  public static FactureElectroniqueRestApiSchemasValidationValidationErrorResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.class);
   }
 
   /**
-   * Convert an instance of FactureElectroniqueRestApiSchemasCdarValidationErrorResponse to an JSON string
+   * Convert an instance of FactureElectroniqueRestApiSchemasValidationValidationErrorResponse to an JSON string
    *
    * @return JSON string
    */

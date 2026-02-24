@@ -43,30 +43,4 @@ public class HealthApiTest {
         // TODO: test validations
     }
 
-    /**
-     * Docker healthcheck endpoint
-     *
-     * Healthcheck endpoint for Docker and load balancers.  Useful for: - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Availability monitoring - Zero downtime deployment  Returns a 200 code if the API is operational.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void healthcheckHealthcheckGetTest() throws ApiException {
-        Object response = api.healthcheckHealthcheckGet();
-        // TODO: test validations
-    }
-
-    /**
-     * Check API status
-     *
-     * Health check endpoint to verify the API is responding.  Useful for: - Availability monitoring - Integration tests - Load balancers
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void rootGetTest() throws ApiException {
-        Object response = api.rootGet();
-        // TODO: test validations
-    }
-
 }
