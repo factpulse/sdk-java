@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Request to rotate the client encryption key.  This operation re-encrypts all secrets from the old key to the new key. Both keys must be base64-encoded AES-256 keys (32 bytes each).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T09:34:21.413565394Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class KeyRotationRequest {
   public static final String SERIALIZED_NAME_OLD_KEY = "oldKey";
   @SerializedName(SERIALIZED_NAME_OLD_KEY)

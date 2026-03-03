@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Erreur de validation Schematron avec suggestion de correction.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T09:34:21.413565394Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class SchematronValidationError {
   public static final String SERIALIZED_NAME_RULE = "rule";
   @SerializedName(SERIALIZED_NAME_RULE)

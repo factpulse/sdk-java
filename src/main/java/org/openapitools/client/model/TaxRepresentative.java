@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Seller tax representative (BG-11).  The tax representative is required when the seller is not established in the country where VAT is due.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T09:34:21.413565394Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class TaxRepresentative {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
