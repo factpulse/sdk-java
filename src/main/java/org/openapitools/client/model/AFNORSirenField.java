@@ -37,7 +37,7 @@ public enum AFNORSirenField {
   
   ADMINISTRATIVE_STATUS("administrativeStatus"),
   
-  ID_INSTANCE("idInstance");
+  INSTRUCTIONS("instructions");
 
   private String value;
 

@@ -22,11 +22,11 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AFNORAddressRead;
-import org.openapitools.client.model.AFNORDiffusionStatus;
 import org.openapitools.client.model.AFNORFacilityAdministrativeStatus;
 import org.openapitools.client.model.AFNORFacilityPayloadHistoryUleB2gAdditionalData;
 import org.openapitools.client.model.AFNORFacilityType;
-import org.openapitools.client.model.AFNORLegalUnitPayloadIncludedNoSiren;
+import org.openapitools.client.model.AFNORLegalUnitPayloadIncluded;
+import org.openapitools.client.model.AFNORSiretInstructions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORFacilityPayloadHistory
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORFacilityPayloadHistory {
   public static final String SERIALIZED_NAME_SIRET = "siret";
   @SerializedName(SERIALIZED_NAME_SIRET)
@@ -76,15 +76,15 @@ public class AFNORFacilityPayloadHistory {
   @javax.annotation.Nullable
   private AFNORFacilityType facilityType;
 
-  public static final String SERIALIZED_NAME_DIFFUSIBLE = "diffusible";
-  @SerializedName(SERIALIZED_NAME_DIFFUSIBLE)
-  @javax.annotation.Nullable
-  private AFNORDiffusionStatus diffusible;
-
   public static final String SERIALIZED_NAME_ADMINISTRATIVE_STATUS = "administrativeStatus";
   @SerializedName(SERIALIZED_NAME_ADMINISTRATIVE_STATUS)
   @javax.annotation.Nullable
   private AFNORFacilityAdministrativeStatus administrativeStatus;
+
+  public static final String SERIALIZED_NAME_SIRET_INSTRUCTIONS = "siretInstructions";
+  @SerializedName(SERIALIZED_NAME_SIRET_INSTRUCTIONS)
+  @javax.annotation.Nullable
+  private AFNORSiretInstructions siretInstructions;
 
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
@@ -99,7 +99,7 @@ public class AFNORFacilityPayloadHistory {
   public static final String SERIALIZED_NAME_LEGAL_UNIT = "legalUnit";
   @SerializedName(SERIALIZED_NAME_LEGAL_UNIT)
   @javax.annotation.Nullable
-  private AFNORLegalUnitPayloadIncludedNoSiren legalUnit;
+  private AFNORLegalUnitPayloadIncluded legalUnit;
 
   public AFNORFacilityPayloadHistory() {
   }
@@ -180,25 +180,6 @@ public class AFNORFacilityPayloadHistory {
   }
 
 
-  public AFNORFacilityPayloadHistory diffusible(@javax.annotation.Nullable AFNORDiffusionStatus diffusible) {
-    this.diffusible = diffusible;
-    return this;
-  }
-
-  /**
-   * Get diffusible
-   * @return diffusible
-   */
-  @javax.annotation.Nullable
-  public AFNORDiffusionStatus getDiffusible() {
-    return diffusible;
-  }
-
-  public void setDiffusible(@javax.annotation.Nullable AFNORDiffusionStatus diffusible) {
-    this.diffusible = diffusible;
-  }
-
-
   public AFNORFacilityPayloadHistory administrativeStatus(@javax.annotation.Nullable AFNORFacilityAdministrativeStatus administrativeStatus) {
     this.administrativeStatus = administrativeStatus;
     return this;
@@ -215,6 +196,25 @@ public class AFNORFacilityPayloadHistory {
 
   public void setAdministrativeStatus(@javax.annotation.Nullable AFNORFacilityAdministrativeStatus administrativeStatus) {
     this.administrativeStatus = administrativeStatus;
+  }
+
+
+  public AFNORFacilityPayloadHistory siretInstructions(@javax.annotation.Nullable AFNORSiretInstructions siretInstructions) {
+    this.siretInstructions = siretInstructions;
+    return this;
+  }
+
+  /**
+   * Get siretInstructions
+   * @return siretInstructions
+   */
+  @javax.annotation.Nullable
+  public AFNORSiretInstructions getSiretInstructions() {
+    return siretInstructions;
+  }
+
+  public void setSiretInstructions(@javax.annotation.Nullable AFNORSiretInstructions siretInstructions) {
+    this.siretInstructions = siretInstructions;
   }
 
 
@@ -256,7 +256,7 @@ public class AFNORFacilityPayloadHistory {
   }
 
 
-  public AFNORFacilityPayloadHistory legalUnit(@javax.annotation.Nullable AFNORLegalUnitPayloadIncludedNoSiren legalUnit) {
+  public AFNORFacilityPayloadHistory legalUnit(@javax.annotation.Nullable AFNORLegalUnitPayloadIncluded legalUnit) {
     this.legalUnit = legalUnit;
     return this;
   }
@@ -266,11 +266,11 @@ public class AFNORFacilityPayloadHistory {
    * @return legalUnit
    */
   @javax.annotation.Nullable
-  public AFNORLegalUnitPayloadIncludedNoSiren getLegalUnit() {
+  public AFNORLegalUnitPayloadIncluded getLegalUnit() {
     return legalUnit;
   }
 
-  public void setLegalUnit(@javax.annotation.Nullable AFNORLegalUnitPayloadIncludedNoSiren legalUnit) {
+  public void setLegalUnit(@javax.annotation.Nullable AFNORLegalUnitPayloadIncluded legalUnit) {
     this.legalUnit = legalUnit;
   }
 
@@ -289,8 +289,8 @@ public class AFNORFacilityPayloadHistory {
         Objects.equals(this.siren, afNORFacilityPayloadHistory.siren) &&
         Objects.equals(this.name, afNORFacilityPayloadHistory.name) &&
         Objects.equals(this.facilityType, afNORFacilityPayloadHistory.facilityType) &&
-        Objects.equals(this.diffusible, afNORFacilityPayloadHistory.diffusible) &&
         Objects.equals(this.administrativeStatus, afNORFacilityPayloadHistory.administrativeStatus) &&
+        Objects.equals(this.siretInstructions, afNORFacilityPayloadHistory.siretInstructions) &&
         Objects.equals(this.address, afNORFacilityPayloadHistory.address) &&
         Objects.equals(this.b2gAdditionalData, afNORFacilityPayloadHistory.b2gAdditionalData) &&
         Objects.equals(this.legalUnit, afNORFacilityPayloadHistory.legalUnit);
@@ -298,7 +298,7 @@ public class AFNORFacilityPayloadHistory {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siret, siren, name, facilityType, diffusible, administrativeStatus, address, b2gAdditionalData, legalUnit);
+    return Objects.hash(siret, siren, name, facilityType, administrativeStatus, siretInstructions, address, b2gAdditionalData, legalUnit);
   }
 
   @Override
@@ -309,8 +309,8 @@ public class AFNORFacilityPayloadHistory {
     sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    facilityType: ").append(toIndentedString(facilityType)).append("\n");
-    sb.append("    diffusible: ").append(toIndentedString(diffusible)).append("\n");
     sb.append("    administrativeStatus: ").append(toIndentedString(administrativeStatus)).append("\n");
+    sb.append("    siretInstructions: ").append(toIndentedString(siretInstructions)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    b2gAdditionalData: ").append(toIndentedString(b2gAdditionalData)).append("\n");
     sb.append("    legalUnit: ").append(toIndentedString(legalUnit)).append("\n");
@@ -335,7 +335,7 @@ public class AFNORFacilityPayloadHistory {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("siret", "siren", "name", "facilityType", "diffusible", "administrativeStatus", "address", "b2gAdditionalData", "legalUnit"));
+    openapiFields = new HashSet<String>(Arrays.asList("siret", "siren", "name", "facilityType", "administrativeStatus", "siretInstructions", "address", "b2gAdditionalData", "legalUnit"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -375,13 +375,13 @@ public class AFNORFacilityPayloadHistory {
       if (jsonObj.get("facilityType") != null && !jsonObj.get("facilityType").isJsonNull()) {
         AFNORFacilityType.validateJsonElement(jsonObj.get("facilityType"));
       }
-      // validate the optional field `diffusible`
-      if (jsonObj.get("diffusible") != null && !jsonObj.get("diffusible").isJsonNull()) {
-        AFNORDiffusionStatus.validateJsonElement(jsonObj.get("diffusible"));
-      }
       // validate the optional field `administrativeStatus`
       if (jsonObj.get("administrativeStatus") != null && !jsonObj.get("administrativeStatus").isJsonNull()) {
         AFNORFacilityAdministrativeStatus.validateJsonElement(jsonObj.get("administrativeStatus"));
+      }
+      // validate the optional field `siretInstructions`
+      if (jsonObj.get("siretInstructions") != null && !jsonObj.get("siretInstructions").isJsonNull()) {
+        AFNORSiretInstructions.validateJsonElement(jsonObj.get("siretInstructions"));
       }
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
@@ -393,7 +393,7 @@ public class AFNORFacilityPayloadHistory {
       }
       // validate the optional field `legalUnit`
       if (jsonObj.get("legalUnit") != null && !jsonObj.get("legalUnit").isJsonNull()) {
-        AFNORLegalUnitPayloadIncludedNoSiren.validateJsonElement(jsonObj.get("legalUnit"));
+        AFNORLegalUnitPayloadIncluded.validateJsonElement(jsonObj.get("legalUnit"));
       }
   }
 

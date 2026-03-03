@@ -41,9 +41,7 @@ public enum AFNORRoutingCodeField {
   
   ADMINISTRATIVE_STATUS("administrativeStatus"),
   
-  ADDRESS("address"),
-  
-  ID_INSTANCE("idInstance");
+  ADDRESS("address");
 
   private String value;
 

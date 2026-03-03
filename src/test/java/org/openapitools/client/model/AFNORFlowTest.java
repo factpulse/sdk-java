@@ -45,30 +45,6 @@ public class AFNORFlowTest {
     }
 
     /**
-     * Test the property 'submittedAt'
-     */
-    @Test
-    public void submittedAtTest() {
-        // TODO: test submittedAt
-    }
-
-    /**
-     * Test the property 'updatedAt'
-     */
-    @Test
-    public void updatedAtTest() {
-        // TODO: test updatedAt
-    }
-
-    /**
-     * Test the property 'flowId'
-     */
-    @Test
-    public void flowIdTest() {
-        // TODO: test flowId
-    }
-
-    /**
      * Test the property 'trackingId'
      */
     @Test
@@ -77,11 +53,11 @@ public class AFNORFlowTest {
     }
 
     /**
-     * Test the property 'flowType'
+     * Test the property 'name'
      */
     @Test
-    public void flowTypeTest() {
-        // TODO: test flowType
+    public void nameTest() {
+        // TODO: test name
     }
 
     /**
@@ -90,22 +66,6 @@ public class AFNORFlowTest {
     @Test
     public void processingRuleTest() {
         // TODO: test processingRule
-    }
-
-    /**
-     * Test the property 'processingRuleSource'
-     */
-    @Test
-    public void processingRuleSourceTest() {
-        // TODO: test processingRuleSource
-    }
-
-    /**
-     * Test the property 'flowDirection'
-     */
-    @Test
-    public void flowDirectionTest() {
-        // TODO: test flowDirection
     }
 
     /**
@@ -122,6 +82,54 @@ public class AFNORFlowTest {
     @Test
     public void flowProfileTest() {
         // TODO: test flowProfile
+    }
+
+    /**
+     * Test the property 'flowId'
+     */
+    @Test
+    public void flowIdTest() {
+        // TODO: test flowId
+    }
+
+    /**
+     * Test the property 'submittedAt'
+     */
+    @Test
+    public void submittedAtTest() {
+        // TODO: test submittedAt
+    }
+
+    /**
+     * Test the property 'updatedAt'
+     */
+    @Test
+    public void updatedAtTest() {
+        // TODO: test updatedAt
+    }
+
+    /**
+     * Test the property 'flowType'
+     */
+    @Test
+    public void flowTypeTest() {
+        // TODO: test flowType
+    }
+
+    /**
+     * Test the property 'processingRuleSource'
+     */
+    @Test
+    public void processingRuleSourceTest() {
+        // TODO: test processingRuleSource
+    }
+
+    /**
+     * Test the property 'flowDirection'
+     */
+    @Test
+    public void flowDirectionTest() {
+        // TODO: test flowDirection
     }
 
     /**

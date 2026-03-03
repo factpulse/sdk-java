@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * - B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - OutOfScope          : Out of scope (not regulated flow) - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
+ * - B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - B2G                 : e-invoicing for B2G sales - B2GInt - OutOfScope          : Out of scope (not regulated flow) - B2GOutOfScope - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
  */
 @JsonAdapter(AFNORProcessingRule.Adapter.class)
 public enum AFNORProcessingRule {
@@ -35,7 +35,13 @@ public enum AFNORProcessingRule {
   
   B2_C("B2C"),
   
+  B2_G("B2G"),
+  
+  B2_G_INT("B2GInt"),
+  
   OUT_OF_SCOPE("OutOfScope"),
+  
+  B2_G_OUT_OF_SCOPE("B2GOutOfScope"),
   
   ARCHIVE_ONLY("ArchiveOnly"),
   

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AFNOREntityType;
 import org.openapitools.client.model.AFNORLegalUnitAdministrativeStatus;
+import org.openapitools.client.model.AFNORSirenInstructions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -69,6 +70,14 @@ public class AFNORLegalUnitPayloadHistoryTest {
     @Test
     public void administrativeStatusTest() {
         // TODO: test administrativeStatus
+    }
+
+    /**
+     * Test the property 'instructions'
+     */
+    @Test
+    public void instructionsTest() {
+        // TODO: test instructions
     }
 
 }

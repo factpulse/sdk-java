@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**op** | **AFNORContainsOperator** |  |  [optional] |
+|**op** | **AFNORContainsOrStrictOperator** |  |  [optional] |
 |**value** | **String** | Name of the routing code. |  [optional] |
 
 

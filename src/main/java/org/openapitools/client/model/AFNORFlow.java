@@ -55,37 +55,52 @@ import org.openapitools.client.JSON;
 /**
  * The properties of a Flow resource
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORFlow {
-  public static final String SERIALIZED_NAME_SUBMITTED_AT = "submittedAt";
-  @SerializedName(SERIALIZED_NAME_SUBMITTED_AT)
-  @javax.annotation.Nullable
-  private OffsetDateTime submittedAt;
-
-  public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
-  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  @javax.annotation.Nullable
-  private OffsetDateTime updatedAt;
-
-  public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
-  @SerializedName(SERIALIZED_NAME_FLOW_ID)
-  @javax.annotation.Nullable
-  private String flowId;
-
   public static final String SERIALIZED_NAME_TRACKING_ID = "trackingId";
   @SerializedName(SERIALIZED_NAME_TRACKING_ID)
   @javax.annotation.Nullable
   private String trackingId;
 
-  public static final String SERIALIZED_NAME_FLOW_TYPE = "flowType";
-  @SerializedName(SERIALIZED_NAME_FLOW_TYPE)
-  @javax.annotation.Nullable
-  private AFNORFlowType flowType;
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nonnull
+  private String name;
 
   public static final String SERIALIZED_NAME_PROCESSING_RULE = "processingRule";
   @SerializedName(SERIALIZED_NAME_PROCESSING_RULE)
   @javax.annotation.Nullable
   private AFNORProcessingRule processingRule;
+
+  public static final String SERIALIZED_NAME_FLOW_SYNTAX = "flowSyntax";
+  @SerializedName(SERIALIZED_NAME_FLOW_SYNTAX)
+  @javax.annotation.Nonnull
+  private AFNORFlowSyntax flowSyntax;
+
+  public static final String SERIALIZED_NAME_FLOW_PROFILE = "flowProfile";
+  @SerializedName(SERIALIZED_NAME_FLOW_PROFILE)
+  @javax.annotation.Nullable
+  private AFNORFlowProfile flowProfile;
+
+  public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
+  @SerializedName(SERIALIZED_NAME_FLOW_ID)
+  @javax.annotation.Nonnull
+  private String flowId;
+
+  public static final String SERIALIZED_NAME_SUBMITTED_AT = "submittedAt";
+  @SerializedName(SERIALIZED_NAME_SUBMITTED_AT)
+  @javax.annotation.Nonnull
+  private OffsetDateTime submittedAt;
+
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  @javax.annotation.Nonnull
+  private OffsetDateTime updatedAt;
+
+  public static final String SERIALIZED_NAME_FLOW_TYPE = "flowType";
+  @SerializedName(SERIALIZED_NAME_FLOW_TYPE)
+  @javax.annotation.Nonnull
+  private AFNORFlowType flowType;
 
   /**
    * Says whether the processing rule has been computed or the processing rule was an input parameter
@@ -141,88 +156,21 @@ public class AFNORFlow {
 
   public static final String SERIALIZED_NAME_PROCESSING_RULE_SOURCE = "processingRuleSource";
   @SerializedName(SERIALIZED_NAME_PROCESSING_RULE_SOURCE)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private ProcessingRuleSourceEnum processingRuleSource;
 
   public static final String SERIALIZED_NAME_FLOW_DIRECTION = "flowDirection";
   @SerializedName(SERIALIZED_NAME_FLOW_DIRECTION)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private AFNORFlowDirection flowDirection;
-
-  public static final String SERIALIZED_NAME_FLOW_SYNTAX = "flowSyntax";
-  @SerializedName(SERIALIZED_NAME_FLOW_SYNTAX)
-  @javax.annotation.Nullable
-  private AFNORFlowSyntax flowSyntax;
-
-  public static final String SERIALIZED_NAME_FLOW_PROFILE = "flowProfile";
-  @SerializedName(SERIALIZED_NAME_FLOW_PROFILE)
-  @javax.annotation.Nullable
-  private AFNORFlowProfile flowProfile;
 
   public static final String SERIALIZED_NAME_ACKNOWLEDGEMENT = "acknowledgement";
   @SerializedName(SERIALIZED_NAME_ACKNOWLEDGEMENT)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private AFNORAcknowledgement acknowledgement;
 
   public AFNORFlow() {
   }
-
-  public AFNORFlow submittedAt(@javax.annotation.Nullable OffsetDateTime submittedAt) {
-    this.submittedAt = submittedAt;
-    return this;
-  }
-
-  /**
-   * The flow submission date and time (the date and time when the flow was created on the system) 
-   * @return submittedAt
-   */
-  @javax.annotation.Nullable
-  public OffsetDateTime getSubmittedAt() {
-    return submittedAt;
-  }
-
-  public void setSubmittedAt(@javax.annotation.Nullable OffsetDateTime submittedAt) {
-    this.submittedAt = submittedAt;
-  }
-
-
-  public AFNORFlow updatedAt(@javax.annotation.Nullable OffsetDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-    return this;
-  }
-
-  /**
-   * The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated. 
-   * @return updatedAt
-   */
-  @javax.annotation.Nullable
-  public OffsetDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(@javax.annotation.Nullable OffsetDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
-
-  public AFNORFlow flowId(@javax.annotation.Nullable String flowId) {
-    this.flowId = flowId;
-    return this;
-  }
-
-  /**
-   * Unique identifier supporting UUID but not only, for flexibility purpose
-   * @return flowId
-   */
-  @javax.annotation.Nullable
-  public String getFlowId() {
-    return flowId;
-  }
-
-  public void setFlowId(@javax.annotation.Nullable String flowId) {
-    this.flowId = flowId;
-  }
-
 
   public AFNORFlow trackingId(@javax.annotation.Nullable String trackingId) {
     this.trackingId = trackingId;
@@ -230,7 +178,7 @@ public class AFNORFlow {
   }
 
   /**
-   * Unique identifier supporting UUID but not only, for flexibility purpose
+   * The tracking id is an external identifier and is used to track the flow by the sender
    * @return trackingId
    */
   @javax.annotation.Nullable
@@ -243,22 +191,22 @@ public class AFNORFlow {
   }
 
 
-  public AFNORFlow flowType(@javax.annotation.Nullable AFNORFlowType flowType) {
-    this.flowType = flowType;
+  public AFNORFlow name(@javax.annotation.Nonnull String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get flowType
-   * @return flowType
+   * Name of the file
+   * @return name
    */
-  @javax.annotation.Nullable
-  public AFNORFlowType getFlowType() {
-    return flowType;
+  @javax.annotation.Nonnull
+  public String getName() {
+    return name;
   }
 
-  public void setFlowType(@javax.annotation.Nullable AFNORFlowType flowType) {
-    this.flowType = flowType;
+  public void setName(@javax.annotation.Nonnull String name) {
+    this.name = name;
   }
 
 
@@ -281,45 +229,7 @@ public class AFNORFlow {
   }
 
 
-  public AFNORFlow processingRuleSource(@javax.annotation.Nullable ProcessingRuleSourceEnum processingRuleSource) {
-    this.processingRuleSource = processingRuleSource;
-    return this;
-  }
-
-  /**
-   * Says whether the processing rule has been computed or the processing rule was an input parameter
-   * @return processingRuleSource
-   */
-  @javax.annotation.Nullable
-  public ProcessingRuleSourceEnum getProcessingRuleSource() {
-    return processingRuleSource;
-  }
-
-  public void setProcessingRuleSource(@javax.annotation.Nullable ProcessingRuleSourceEnum processingRuleSource) {
-    this.processingRuleSource = processingRuleSource;
-  }
-
-
-  public AFNORFlow flowDirection(@javax.annotation.Nullable AFNORFlowDirection flowDirection) {
-    this.flowDirection = flowDirection;
-    return this;
-  }
-
-  /**
-   * Get flowDirection
-   * @return flowDirection
-   */
-  @javax.annotation.Nullable
-  public AFNORFlowDirection getFlowDirection() {
-    return flowDirection;
-  }
-
-  public void setFlowDirection(@javax.annotation.Nullable AFNORFlowDirection flowDirection) {
-    this.flowDirection = flowDirection;
-  }
-
-
-  public AFNORFlow flowSyntax(@javax.annotation.Nullable AFNORFlowSyntax flowSyntax) {
+  public AFNORFlow flowSyntax(@javax.annotation.Nonnull AFNORFlowSyntax flowSyntax) {
     this.flowSyntax = flowSyntax;
     return this;
   }
@@ -328,12 +238,12 @@ public class AFNORFlow {
    * Get flowSyntax
    * @return flowSyntax
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public AFNORFlowSyntax getFlowSyntax() {
     return flowSyntax;
   }
 
-  public void setFlowSyntax(@javax.annotation.Nullable AFNORFlowSyntax flowSyntax) {
+  public void setFlowSyntax(@javax.annotation.Nonnull AFNORFlowSyntax flowSyntax) {
     this.flowSyntax = flowSyntax;
   }
 
@@ -357,7 +267,121 @@ public class AFNORFlow {
   }
 
 
-  public AFNORFlow acknowledgement(@javax.annotation.Nullable AFNORAcknowledgement acknowledgement) {
+  public AFNORFlow flowId(@javax.annotation.Nonnull String flowId) {
+    this.flowId = flowId;
+    return this;
+  }
+
+  /**
+   * Unique identifier supporting UUID but not only, for flexibility purpose
+   * @return flowId
+   */
+  @javax.annotation.Nonnull
+  public String getFlowId() {
+    return flowId;
+  }
+
+  public void setFlowId(@javax.annotation.Nonnull String flowId) {
+    this.flowId = flowId;
+  }
+
+
+  public AFNORFlow submittedAt(@javax.annotation.Nonnull OffsetDateTime submittedAt) {
+    this.submittedAt = submittedAt;
+    return this;
+  }
+
+  /**
+   * The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues 
+   * @return submittedAt
+   */
+  @javax.annotation.Nonnull
+  public OffsetDateTime getSubmittedAt() {
+    return submittedAt;
+  }
+
+  public void setSubmittedAt(@javax.annotation.Nonnull OffsetDateTime submittedAt) {
+    this.submittedAt = submittedAt;
+  }
+
+
+  public AFNORFlow updatedAt(@javax.annotation.Nonnull OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+  /**
+   * The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated. 
+   * @return updatedAt
+   */
+  @javax.annotation.Nonnull
+  public OffsetDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(@javax.annotation.Nonnull OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
+
+  public AFNORFlow flowType(@javax.annotation.Nonnull AFNORFlowType flowType) {
+    this.flowType = flowType;
+    return this;
+  }
+
+  /**
+   * Get flowType
+   * @return flowType
+   */
+  @javax.annotation.Nonnull
+  public AFNORFlowType getFlowType() {
+    return flowType;
+  }
+
+  public void setFlowType(@javax.annotation.Nonnull AFNORFlowType flowType) {
+    this.flowType = flowType;
+  }
+
+
+  public AFNORFlow processingRuleSource(@javax.annotation.Nonnull ProcessingRuleSourceEnum processingRuleSource) {
+    this.processingRuleSource = processingRuleSource;
+    return this;
+  }
+
+  /**
+   * Says whether the processing rule has been computed or the processing rule was an input parameter
+   * @return processingRuleSource
+   */
+  @javax.annotation.Nonnull
+  public ProcessingRuleSourceEnum getProcessingRuleSource() {
+    return processingRuleSource;
+  }
+
+  public void setProcessingRuleSource(@javax.annotation.Nonnull ProcessingRuleSourceEnum processingRuleSource) {
+    this.processingRuleSource = processingRuleSource;
+  }
+
+
+  public AFNORFlow flowDirection(@javax.annotation.Nonnull AFNORFlowDirection flowDirection) {
+    this.flowDirection = flowDirection;
+    return this;
+  }
+
+  /**
+   * Get flowDirection
+   * @return flowDirection
+   */
+  @javax.annotation.Nonnull
+  public AFNORFlowDirection getFlowDirection() {
+    return flowDirection;
+  }
+
+  public void setFlowDirection(@javax.annotation.Nonnull AFNORFlowDirection flowDirection) {
+    this.flowDirection = flowDirection;
+  }
+
+
+  public AFNORFlow acknowledgement(@javax.annotation.Nonnull AFNORAcknowledgement acknowledgement) {
     this.acknowledgement = acknowledgement;
     return this;
   }
@@ -366,12 +390,12 @@ public class AFNORFlow {
    * Get acknowledgement
    * @return acknowledgement
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public AFNORAcknowledgement getAcknowledgement() {
     return acknowledgement;
   }
 
-  public void setAcknowledgement(@javax.annotation.Nullable AFNORAcknowledgement acknowledgement) {
+  public void setAcknowledgement(@javax.annotation.Nonnull AFNORAcknowledgement acknowledgement) {
     this.acknowledgement = acknowledgement;
   }
 
@@ -386,38 +410,40 @@ public class AFNORFlow {
       return false;
     }
     AFNORFlow afNORFlow = (AFNORFlow) o;
-    return Objects.equals(this.submittedAt, afNORFlow.submittedAt) &&
-        Objects.equals(this.updatedAt, afNORFlow.updatedAt) &&
-        Objects.equals(this.flowId, afNORFlow.flowId) &&
-        Objects.equals(this.trackingId, afNORFlow.trackingId) &&
-        Objects.equals(this.flowType, afNORFlow.flowType) &&
+    return Objects.equals(this.trackingId, afNORFlow.trackingId) &&
+        Objects.equals(this.name, afNORFlow.name) &&
         Objects.equals(this.processingRule, afNORFlow.processingRule) &&
-        Objects.equals(this.processingRuleSource, afNORFlow.processingRuleSource) &&
-        Objects.equals(this.flowDirection, afNORFlow.flowDirection) &&
         Objects.equals(this.flowSyntax, afNORFlow.flowSyntax) &&
         Objects.equals(this.flowProfile, afNORFlow.flowProfile) &&
+        Objects.equals(this.flowId, afNORFlow.flowId) &&
+        Objects.equals(this.submittedAt, afNORFlow.submittedAt) &&
+        Objects.equals(this.updatedAt, afNORFlow.updatedAt) &&
+        Objects.equals(this.flowType, afNORFlow.flowType) &&
+        Objects.equals(this.processingRuleSource, afNORFlow.processingRuleSource) &&
+        Objects.equals(this.flowDirection, afNORFlow.flowDirection) &&
         Objects.equals(this.acknowledgement, afNORFlow.acknowledgement);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(submittedAt, updatedAt, flowId, trackingId, flowType, processingRule, processingRuleSource, flowDirection, flowSyntax, flowProfile, acknowledgement);
+    return Objects.hash(trackingId, name, processingRule, flowSyntax, flowProfile, flowId, submittedAt, updatedAt, flowType, processingRuleSource, flowDirection, acknowledgement);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AFNORFlow {\n");
-    sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-    sb.append("    flowId: ").append(toIndentedString(flowId)).append("\n");
     sb.append("    trackingId: ").append(toIndentedString(trackingId)).append("\n");
-    sb.append("    flowType: ").append(toIndentedString(flowType)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    processingRule: ").append(toIndentedString(processingRule)).append("\n");
-    sb.append("    processingRuleSource: ").append(toIndentedString(processingRuleSource)).append("\n");
-    sb.append("    flowDirection: ").append(toIndentedString(flowDirection)).append("\n");
     sb.append("    flowSyntax: ").append(toIndentedString(flowSyntax)).append("\n");
     sb.append("    flowProfile: ").append(toIndentedString(flowProfile)).append("\n");
+    sb.append("    flowId: ").append(toIndentedString(flowId)).append("\n");
+    sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    flowType: ").append(toIndentedString(flowType)).append("\n");
+    sb.append("    processingRuleSource: ").append(toIndentedString(processingRuleSource)).append("\n");
+    sb.append("    flowDirection: ").append(toIndentedString(flowDirection)).append("\n");
     sb.append("    acknowledgement: ").append(toIndentedString(acknowledgement)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -440,10 +466,10 @@ public class AFNORFlow {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("submittedAt", "updatedAt", "flowId", "trackingId", "flowType", "processingRule", "processingRuleSource", "flowDirection", "flowSyntax", "flowProfile", "acknowledgement"));
+    openapiFields = new HashSet<String>(Arrays.asList("trackingId", "name", "processingRule", "flowSyntax", "flowProfile", "flowId", "submittedAt", "updatedAt", "flowType", "processingRuleSource", "flowDirection", "acknowledgement"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(0);
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("name", "flowSyntax", "flowId", "submittedAt", "updatedAt", "flowType", "processingRuleSource", "flowDirection", "acknowledgement"));
   }
 
   /**
@@ -466,44 +492,44 @@ public class AFNORFlow {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `AFNORFlow` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("flowId") != null && !jsonObj.get("flowId").isJsonNull()) && !jsonObj.get("flowId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flowId").toString()));
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : AFNORFlow.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
       }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("trackingId") != null && !jsonObj.get("trackingId").isJsonNull()) && !jsonObj.get("trackingId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `trackingId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trackingId").toString()));
       }
-      // validate the optional field `flowType`
-      if (jsonObj.get("flowType") != null && !jsonObj.get("flowType").isJsonNull()) {
-        AFNORFlowType.validateJsonElement(jsonObj.get("flowType"));
+      if (!jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       // validate the optional field `processingRule`
       if (jsonObj.get("processingRule") != null && !jsonObj.get("processingRule").isJsonNull()) {
         AFNORProcessingRule.validateJsonElement(jsonObj.get("processingRule"));
       }
-      if ((jsonObj.get("processingRuleSource") != null && !jsonObj.get("processingRuleSource").isJsonNull()) && !jsonObj.get("processingRuleSource").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `processingRuleSource` to be a primitive type in the JSON string but got `%s`", jsonObj.get("processingRuleSource").toString()));
-      }
-      // validate the optional field `processingRuleSource`
-      if (jsonObj.get("processingRuleSource") != null && !jsonObj.get("processingRuleSource").isJsonNull()) {
-        ProcessingRuleSourceEnum.validateJsonElement(jsonObj.get("processingRuleSource"));
-      }
-      // validate the optional field `flowDirection`
-      if (jsonObj.get("flowDirection") != null && !jsonObj.get("flowDirection").isJsonNull()) {
-        AFNORFlowDirection.validateJsonElement(jsonObj.get("flowDirection"));
-      }
-      // validate the optional field `flowSyntax`
-      if (jsonObj.get("flowSyntax") != null && !jsonObj.get("flowSyntax").isJsonNull()) {
-        AFNORFlowSyntax.validateJsonElement(jsonObj.get("flowSyntax"));
-      }
+      // validate the required field `flowSyntax`
+      AFNORFlowSyntax.validateJsonElement(jsonObj.get("flowSyntax"));
       // validate the optional field `flowProfile`
       if (jsonObj.get("flowProfile") != null && !jsonObj.get("flowProfile").isJsonNull()) {
         AFNORFlowProfile.validateJsonElement(jsonObj.get("flowProfile"));
       }
-      // validate the optional field `acknowledgement`
-      if (jsonObj.get("acknowledgement") != null && !jsonObj.get("acknowledgement").isJsonNull()) {
-        AFNORAcknowledgement.validateJsonElement(jsonObj.get("acknowledgement"));
+      if (!jsonObj.get("flowId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flowId").toString()));
       }
+      // validate the required field `flowType`
+      AFNORFlowType.validateJsonElement(jsonObj.get("flowType"));
+      if (!jsonObj.get("processingRuleSource").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `processingRuleSource` to be a primitive type in the JSON string but got `%s`", jsonObj.get("processingRuleSource").toString()));
+      }
+      // validate the required field `processingRuleSource`
+      ProcessingRuleSourceEnum.validateJsonElement(jsonObj.get("processingRuleSource"));
+      // validate the required field `flowDirection`
+      AFNORFlowDirection.validateJsonElement(jsonObj.get("flowDirection"));
+      // validate the required field `acknowledgement`
+      AFNORAcknowledgement.validateJsonElement(jsonObj.get("acknowledgement"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

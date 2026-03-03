@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**search** | [**AFNORSearchDirectoryLine**](AFNORSearchDirectoryLine.md) |  |  [optional] |
 |**totalNumberOfResults** | **Integer** | The total number of results |  [optional] |
-|**results** | [**List&lt;AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode&gt;**](AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode.md) |  |  [optional] |
+|**results** | [**List&lt;AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode&gt;**](AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode.md) |  |  [optional] |
 
 
 

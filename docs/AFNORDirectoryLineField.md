@@ -15,7 +15,5 @@
 
 * `ADDRESSING_SUFFIX` (value: `"addressingSuffix"`)
 
-* `ID_INSTANCE` (value: `"idInstance"`)
-
 
 

@@ -22,7 +22,6 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AFNORAddressRead;
-import org.openapitools.client.model.AFNORDiffusionStatus;
 import org.openapitools.client.model.AFNORFacilityAdministrativeStatus;
 import org.openapitools.client.model.AFNORFacilityPayloadHistoryUleB2gAdditionalData;
 import org.openapitools.client.model.AFNORFacilityType;
@@ -53,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORFacilityPayloadIncluded
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORFacilityPayloadIncluded {
   public static final String SERIALIZED_NAME_SIRET = "siret";
   @SerializedName(SERIALIZED_NAME_SIRET)
@@ -74,11 +73,6 @@ public class AFNORFacilityPayloadIncluded {
   @SerializedName(SERIALIZED_NAME_FACILITY_TYPE)
   @javax.annotation.Nullable
   private AFNORFacilityType facilityType;
-
-  public static final String SERIALIZED_NAME_DIFFUSIBLE = "diffusible";
-  @SerializedName(SERIALIZED_NAME_DIFFUSIBLE)
-  @javax.annotation.Nullable
-  private AFNORDiffusionStatus diffusible;
 
   public static final String SERIALIZED_NAME_ADMINISTRATIVE_STATUS = "administrativeStatus";
   @SerializedName(SERIALIZED_NAME_ADMINISTRATIVE_STATUS)
@@ -174,25 +168,6 @@ public class AFNORFacilityPayloadIncluded {
   }
 
 
-  public AFNORFacilityPayloadIncluded diffusible(@javax.annotation.Nullable AFNORDiffusionStatus diffusible) {
-    this.diffusible = diffusible;
-    return this;
-  }
-
-  /**
-   * Get diffusible
-   * @return diffusible
-   */
-  @javax.annotation.Nullable
-  public AFNORDiffusionStatus getDiffusible() {
-    return diffusible;
-  }
-
-  public void setDiffusible(@javax.annotation.Nullable AFNORDiffusionStatus diffusible) {
-    this.diffusible = diffusible;
-  }
-
-
   public AFNORFacilityPayloadIncluded administrativeStatus(@javax.annotation.Nullable AFNORFacilityAdministrativeStatus administrativeStatus) {
     this.administrativeStatus = administrativeStatus;
     return this;
@@ -264,7 +239,6 @@ public class AFNORFacilityPayloadIncluded {
         Objects.equals(this.siren, afNORFacilityPayloadIncluded.siren) &&
         Objects.equals(this.name, afNORFacilityPayloadIncluded.name) &&
         Objects.equals(this.facilityType, afNORFacilityPayloadIncluded.facilityType) &&
-        Objects.equals(this.diffusible, afNORFacilityPayloadIncluded.diffusible) &&
         Objects.equals(this.administrativeStatus, afNORFacilityPayloadIncluded.administrativeStatus) &&
         Objects.equals(this.address, afNORFacilityPayloadIncluded.address) &&
         Objects.equals(this.b2gAdditionalData, afNORFacilityPayloadIncluded.b2gAdditionalData);
@@ -272,7 +246,7 @@ public class AFNORFacilityPayloadIncluded {
 
   @Override
   public int hashCode() {
-    return Objects.hash(siret, siren, name, facilityType, diffusible, administrativeStatus, address, b2gAdditionalData);
+    return Objects.hash(siret, siren, name, facilityType, administrativeStatus, address, b2gAdditionalData);
   }
 
   @Override
@@ -283,7 +257,6 @@ public class AFNORFacilityPayloadIncluded {
     sb.append("    siren: ").append(toIndentedString(siren)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    facilityType: ").append(toIndentedString(facilityType)).append("\n");
-    sb.append("    diffusible: ").append(toIndentedString(diffusible)).append("\n");
     sb.append("    administrativeStatus: ").append(toIndentedString(administrativeStatus)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    b2gAdditionalData: ").append(toIndentedString(b2gAdditionalData)).append("\n");
@@ -308,7 +281,7 @@ public class AFNORFacilityPayloadIncluded {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("siret", "siren", "name", "facilityType", "diffusible", "administrativeStatus", "address", "b2gAdditionalData"));
+    openapiFields = new HashSet<String>(Arrays.asList("siret", "siren", "name", "facilityType", "administrativeStatus", "address", "b2gAdditionalData"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -347,10 +320,6 @@ public class AFNORFacilityPayloadIncluded {
       // validate the optional field `facilityType`
       if (jsonObj.get("facilityType") != null && !jsonObj.get("facilityType").isJsonNull()) {
         AFNORFacilityType.validateJsonElement(jsonObj.get("facilityType"));
-      }
-      // validate the optional field `diffusible`
-      if (jsonObj.get("diffusible") != null && !jsonObj.get("diffusible").isJsonNull()) {
-        AFNORDiffusionStatus.validateJsonElement(jsonObj.get("diffusible"));
       }
       // validate the optional field `administrativeStatus`
       if (jsonObj.get("administrativeStatus") != null && !jsonObj.get("administrativeStatus").isJsonNull()) {

@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AFNOREntityType;
 import org.openapitools.client.model.AFNORLegalUnitAdministrativeStatus;
+import org.openapitools.client.model.AFNORSirenInstructions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORLegalUnitPayloadHistory
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORLegalUnitPayloadHistory {
   public static final String SERIALIZED_NAME_SIREN = "siren";
   @SerializedName(SERIALIZED_NAME_SIREN)
@@ -71,6 +72,11 @@ public class AFNORLegalUnitPayloadHistory {
   @SerializedName(SERIALIZED_NAME_ADMINISTRATIVE_STATUS)
   @javax.annotation.Nullable
   private AFNORLegalUnitAdministrativeStatus administrativeStatus;
+
+  public static final String SERIALIZED_NAME_INSTRUCTIONS = "instructions";
+  @SerializedName(SERIALIZED_NAME_INSTRUCTIONS)
+  @javax.annotation.Nullable
+  private AFNORSirenInstructions instructions;
 
   public AFNORLegalUnitPayloadHistory() {
   }
@@ -151,6 +157,25 @@ public class AFNORLegalUnitPayloadHistory {
   }
 
 
+  public AFNORLegalUnitPayloadHistory instructions(@javax.annotation.Nullable AFNORSirenInstructions instructions) {
+    this.instructions = instructions;
+    return this;
+  }
+
+  /**
+   * Get instructions
+   * @return instructions
+   */
+  @javax.annotation.Nullable
+  public AFNORSirenInstructions getInstructions() {
+    return instructions;
+  }
+
+  public void setInstructions(@javax.annotation.Nullable AFNORSirenInstructions instructions) {
+    this.instructions = instructions;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -164,12 +189,13 @@ public class AFNORLegalUnitPayloadHistory {
     return Objects.equals(this.siren, afNORLegalUnitPayloadHistory.siren) &&
         Objects.equals(this.businessName, afNORLegalUnitPayloadHistory.businessName) &&
         Objects.equals(this.entityType, afNORLegalUnitPayloadHistory.entityType) &&
-        Objects.equals(this.administrativeStatus, afNORLegalUnitPayloadHistory.administrativeStatus);
+        Objects.equals(this.administrativeStatus, afNORLegalUnitPayloadHistory.administrativeStatus) &&
+        Objects.equals(this.instructions, afNORLegalUnitPayloadHistory.instructions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(siren, businessName, entityType, administrativeStatus);
+    return Objects.hash(siren, businessName, entityType, administrativeStatus, instructions);
   }
 
   @Override
@@ -180,6 +206,7 @@ public class AFNORLegalUnitPayloadHistory {
     sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
     sb.append("    administrativeStatus: ").append(toIndentedString(administrativeStatus)).append("\n");
+    sb.append("    instructions: ").append(toIndentedString(instructions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -201,7 +228,7 @@ public class AFNORLegalUnitPayloadHistory {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("siren", "businessName", "entityType", "administrativeStatus"));
+    openapiFields = new HashSet<String>(Arrays.asList("siren", "businessName", "entityType", "administrativeStatus", "instructions"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(0);
@@ -241,6 +268,10 @@ public class AFNORLegalUnitPayloadHistory {
       // validate the optional field `administrativeStatus`
       if (jsonObj.get("administrativeStatus") != null && !jsonObj.get("administrativeStatus").isJsonNull()) {
         AFNORLegalUnitAdministrativeStatus.validateJsonElement(jsonObj.get("administrativeStatus"));
+      }
+      // validate the optional field `instructions`
+      if (jsonObj.get("instructions") != null && !jsonObj.get("instructions").isJsonNull()) {
+        AFNORSirenInstructions.validateJsonElement(jsonObj.get("instructions"));
       }
   }
 

@@ -8,14 +8,14 @@ Identified Flow info: flow info + id + timestamp
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**trackingId** | **String** | Unique identifier supporting UUID but not only, for flexibility purpose |  [optional] |
-|**name** | **String** | Name of the file |  [optional] |
+|**flowId** | **String** | Unique identifier supporting UUID but not only, for flexibility purpose |  |
+|**submittedAt** | **OffsetDateTime** | The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues  |  |
+|**trackingId** | **String** | The tracking id is an external identifier and is used to track the flow by the sender |  [optional] |
+|**name** | **String** | Name of the file |  |
 |**processingRule** | **AFNORProcessingRule** |  |  [optional] |
 |**flowSyntax** | **AFNORFlowSyntax** |  |  |
 |**flowProfile** | **AFNORFlowProfile** |  |  [optional] |
-|**sha256** | **String** |  |  [optional] |
-|**flowId** | **String** | Unique identifier supporting UUID but not only, for flexibility purpose |  [optional] |
-|**submittedAt** | **OffsetDateTime** | The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues  |  [optional] |
+|**sha256** | **byte[]** | The sha256 is the fingerprint of the attached file: - if provided in the request: it should be checked once received - if not provided in the request: it may be computed and returned in the response  |  [optional] |
 
 
 

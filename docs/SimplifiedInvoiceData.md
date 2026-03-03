@@ -17,7 +17,7 @@ Simplified invoice data (minimal format for auto-enrichment).
 |**comment** | **String** |  |  [optional] |
 |**purchaseOrderReference** | **String** |  |  [optional] |
 |**contractReference** | **String** |  |  [optional] |
-|**invoiceType** | **FactureElectroniqueModelsInvoiceTypeCode** | Document type (UNTDID 1001). Default: 380 (Invoice). |  [optional] |
+|**invoiceType** | **InvoiceTypeCode** | Document type (UNTDID 1001). Default: 380 (Invoice). |  [optional] |
 |**precedingInvoiceReference** | **String** |  |  [optional] |
 |**operationNature** | **OperationNature** |  |  [optional] |
 |**invoicingFramework** | **InvoicingFrameworkCode** |  |  [optional] |

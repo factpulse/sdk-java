@@ -52,8 +52,18 @@ import org.openapitools.client.JSON;
 /**
  * Identified Flow info: flow info + id + timestamp
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORFullFlowInfo {
+  public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
+  @SerializedName(SERIALIZED_NAME_FLOW_ID)
+  @javax.annotation.Nonnull
+  private String flowId;
+
+  public static final String SERIALIZED_NAME_SUBMITTED_AT = "submittedAt";
+  @SerializedName(SERIALIZED_NAME_SUBMITTED_AT)
+  @javax.annotation.Nonnull
+  private OffsetDateTime submittedAt;
+
   public static final String SERIALIZED_NAME_TRACKING_ID = "trackingId";
   @SerializedName(SERIALIZED_NAME_TRACKING_ID)
   @javax.annotation.Nullable
@@ -61,7 +71,7 @@ public class AFNORFullFlowInfo {
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_PROCESSING_RULE = "processingRule";
@@ -82,20 +92,48 @@ public class AFNORFullFlowInfo {
   public static final String SERIALIZED_NAME_SHA256 = "sha256";
   @SerializedName(SERIALIZED_NAME_SHA256)
   @javax.annotation.Nullable
-  private String sha256;
-
-  public static final String SERIALIZED_NAME_FLOW_ID = "flowId";
-  @SerializedName(SERIALIZED_NAME_FLOW_ID)
-  @javax.annotation.Nullable
-  private String flowId;
-
-  public static final String SERIALIZED_NAME_SUBMITTED_AT = "submittedAt";
-  @SerializedName(SERIALIZED_NAME_SUBMITTED_AT)
-  @javax.annotation.Nullable
-  private OffsetDateTime submittedAt;
+  private byte[] sha256;
 
   public AFNORFullFlowInfo() {
   }
+
+  public AFNORFullFlowInfo flowId(@javax.annotation.Nonnull String flowId) {
+    this.flowId = flowId;
+    return this;
+  }
+
+  /**
+   * Unique identifier supporting UUID but not only, for flexibility purpose
+   * @return flowId
+   */
+  @javax.annotation.Nonnull
+  public String getFlowId() {
+    return flowId;
+  }
+
+  public void setFlowId(@javax.annotation.Nonnull String flowId) {
+    this.flowId = flowId;
+  }
+
+
+  public AFNORFullFlowInfo submittedAt(@javax.annotation.Nonnull OffsetDateTime submittedAt) {
+    this.submittedAt = submittedAt;
+    return this;
+  }
+
+  /**
+   * The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues 
+   * @return submittedAt
+   */
+  @javax.annotation.Nonnull
+  public OffsetDateTime getSubmittedAt() {
+    return submittedAt;
+  }
+
+  public void setSubmittedAt(@javax.annotation.Nonnull OffsetDateTime submittedAt) {
+    this.submittedAt = submittedAt;
+  }
+
 
   public AFNORFullFlowInfo trackingId(@javax.annotation.Nullable String trackingId) {
     this.trackingId = trackingId;
@@ -103,7 +141,7 @@ public class AFNORFullFlowInfo {
   }
 
   /**
-   * Unique identifier supporting UUID but not only, for flexibility purpose
+   * The tracking id is an external identifier and is used to track the flow by the sender
    * @return trackingId
    */
   @javax.annotation.Nullable
@@ -116,7 +154,7 @@ public class AFNORFullFlowInfo {
   }
 
 
-  public AFNORFullFlowInfo name(@javax.annotation.Nullable String name) {
+  public AFNORFullFlowInfo name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -125,12 +163,12 @@ public class AFNORFullFlowInfo {
    * Name of the file
    * @return name
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
@@ -192,60 +230,22 @@ public class AFNORFullFlowInfo {
   }
 
 
-  public AFNORFullFlowInfo sha256(@javax.annotation.Nullable String sha256) {
+  public AFNORFullFlowInfo sha256(@javax.annotation.Nullable byte[] sha256) {
     this.sha256 = sha256;
     return this;
   }
 
   /**
-   * Get sha256
+   * The sha256 is the fingerprint of the attached file: - if provided in the request: it should be checked once received - if not provided in the request: it may be computed and returned in the response 
    * @return sha256
    */
   @javax.annotation.Nullable
-  public String getSha256() {
+  public byte[] getSha256() {
     return sha256;
   }
 
-  public void setSha256(@javax.annotation.Nullable String sha256) {
+  public void setSha256(@javax.annotation.Nullable byte[] sha256) {
     this.sha256 = sha256;
-  }
-
-
-  public AFNORFullFlowInfo flowId(@javax.annotation.Nullable String flowId) {
-    this.flowId = flowId;
-    return this;
-  }
-
-  /**
-   * Unique identifier supporting UUID but not only, for flexibility purpose
-   * @return flowId
-   */
-  @javax.annotation.Nullable
-  public String getFlowId() {
-    return flowId;
-  }
-
-  public void setFlowId(@javax.annotation.Nullable String flowId) {
-    this.flowId = flowId;
-  }
-
-
-  public AFNORFullFlowInfo submittedAt(@javax.annotation.Nullable OffsetDateTime submittedAt) {
-    this.submittedAt = submittedAt;
-    return this;
-  }
-
-  /**
-   * The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues 
-   * @return submittedAt
-   */
-  @javax.annotation.Nullable
-  public OffsetDateTime getSubmittedAt() {
-    return submittedAt;
-  }
-
-  public void setSubmittedAt(@javax.annotation.Nullable OffsetDateTime submittedAt) {
-    this.submittedAt = submittedAt;
   }
 
 
@@ -259,33 +259,33 @@ public class AFNORFullFlowInfo {
       return false;
     }
     AFNORFullFlowInfo afNORFullFlowInfo = (AFNORFullFlowInfo) o;
-    return Objects.equals(this.trackingId, afNORFullFlowInfo.trackingId) &&
+    return Objects.equals(this.flowId, afNORFullFlowInfo.flowId) &&
+        Objects.equals(this.submittedAt, afNORFullFlowInfo.submittedAt) &&
+        Objects.equals(this.trackingId, afNORFullFlowInfo.trackingId) &&
         Objects.equals(this.name, afNORFullFlowInfo.name) &&
         Objects.equals(this.processingRule, afNORFullFlowInfo.processingRule) &&
         Objects.equals(this.flowSyntax, afNORFullFlowInfo.flowSyntax) &&
         Objects.equals(this.flowProfile, afNORFullFlowInfo.flowProfile) &&
-        Objects.equals(this.sha256, afNORFullFlowInfo.sha256) &&
-        Objects.equals(this.flowId, afNORFullFlowInfo.flowId) &&
-        Objects.equals(this.submittedAt, afNORFullFlowInfo.submittedAt);
+        Arrays.equals(this.sha256, afNORFullFlowInfo.sha256);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(trackingId, name, processingRule, flowSyntax, flowProfile, sha256, flowId, submittedAt);
+    return Objects.hash(flowId, submittedAt, trackingId, name, processingRule, flowSyntax, flowProfile, Arrays.hashCode(sha256));
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AFNORFullFlowInfo {\n");
+    sb.append("    flowId: ").append(toIndentedString(flowId)).append("\n");
+    sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
     sb.append("    trackingId: ").append(toIndentedString(trackingId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    processingRule: ").append(toIndentedString(processingRule)).append("\n");
     sb.append("    flowSyntax: ").append(toIndentedString(flowSyntax)).append("\n");
     sb.append("    flowProfile: ").append(toIndentedString(flowProfile)).append("\n");
     sb.append("    sha256: ").append(toIndentedString(sha256)).append("\n");
-    sb.append("    flowId: ").append(toIndentedString(flowId)).append("\n");
-    sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -307,10 +307,10 @@ public class AFNORFullFlowInfo {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("trackingId", "name", "processingRule", "flowSyntax", "flowProfile", "sha256", "flowId", "submittedAt"));
+    openapiFields = new HashSet<String>(Arrays.asList("flowId", "submittedAt", "trackingId", "name", "processingRule", "flowSyntax", "flowProfile", "sha256"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("flowSyntax"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("flowId", "submittedAt", "name", "flowSyntax"));
   }
 
   /**
@@ -341,10 +341,13 @@ public class AFNORFullFlowInfo {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("flowId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flowId").toString()));
+      }
       if ((jsonObj.get("trackingId") != null && !jsonObj.get("trackingId").isJsonNull()) && !jsonObj.get("trackingId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `trackingId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trackingId").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       // validate the optional field `processingRule`
@@ -356,12 +359,6 @@ public class AFNORFullFlowInfo {
       // validate the optional field `flowProfile`
       if (jsonObj.get("flowProfile") != null && !jsonObj.get("flowProfile").isJsonNull()) {
         AFNORFlowProfile.validateJsonElement(jsonObj.get("flowProfile"));
-      }
-      if ((jsonObj.get("sha256") != null && !jsonObj.get("sha256").isJsonNull()) && !jsonObj.get("sha256").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `sha256` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sha256").toString()));
-      }
-      if ((jsonObj.get("flowId") != null && !jsonObj.get("flowId").isJsonNull()) && !jsonObj.get("flowId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `flowId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flowId").toString()));
       }
   }
 

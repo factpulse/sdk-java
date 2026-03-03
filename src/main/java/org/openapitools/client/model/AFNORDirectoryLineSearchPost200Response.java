@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.openapitools.client.model.AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode;
+import org.openapitools.client.model.AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode;
 import org.openapitools.client.model.AFNORSearchDirectoryLine;
 
 import com.google.gson.Gson;
@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * AFNORDirectoryLineSearchPost200Response
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORDirectoryLineSearchPost200Response {
   public static final String SERIALIZED_NAME_SEARCH = "search";
   @SerializedName(SERIALIZED_NAME_SEARCH)
@@ -67,7 +67,7 @@ public class AFNORDirectoryLineSearchPost200Response {
   public static final String SERIALIZED_NAME_RESULTS = "results";
   @SerializedName(SERIALIZED_NAME_RESULTS)
   @javax.annotation.Nullable
-  private List<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> results = new ArrayList<>();
+  private List<AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode> results = new ArrayList<>();
 
   public AFNORDirectoryLineSearchPost200Response() {
   }
@@ -110,12 +110,12 @@ public class AFNORDirectoryLineSearchPost200Response {
   }
 
 
-  public AFNORDirectoryLineSearchPost200Response results(@javax.annotation.Nullable List<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> results) {
+  public AFNORDirectoryLineSearchPost200Response results(@javax.annotation.Nullable List<AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode> results) {
     this.results = results;
     return this;
   }
 
-  public AFNORDirectoryLineSearchPost200Response addResultsItem(AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode resultsItem) {
+  public AFNORDirectoryLineSearchPost200Response addResultsItem(AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode resultsItem) {
     if (this.results == null) {
       this.results = new ArrayList<>();
     }
@@ -128,11 +128,11 @@ public class AFNORDirectoryLineSearchPost200Response {
    * @return results
    */
   @javax.annotation.Nullable
-  public List<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> getResults() {
+  public List<AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode> getResults() {
     return results;
   }
 
-  public void setResults(@javax.annotation.Nullable List<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> results) {
+  public void setResults(@javax.annotation.Nullable List<AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode> results) {
     this.results = results;
   }
 
@@ -226,7 +226,7 @@ public class AFNORDirectoryLineSearchPost200Response {
 
           // validate the optional field `results` (array)
           for (int i = 0; i < jsonArrayresults.size(); i++) {
-            AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode.validateJsonElement(jsonArrayresults.get(i));
+            AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode.validateJsonElement(jsonArrayresults.get(i));
           };
         }
       }

@@ -900,7 +900,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/facture_electronique__rest_api__schemas__validation__ValidationErrorResponse"
+                $ref: "#/components/schemas/ValidationErrorResponse"
           description: XML does not comply with validation rules
         "422":
           content:
@@ -2255,6 +2255,328 @@ paths:
       - application/json
       - application/pdf
       - application/xml
+  /api/v1/afnor/flow/v1/webhooks:
+    get:
+      description: List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+      operationId: list_webhooks_proxy_api_v1_afnor_flow_v1_webhooks_get
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/AFNOR_Webhook"
+                type: array
+          description: OK - List of webhooks returned
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Authentication error - Missing or invalid token
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Forbidden - Insufficient permissions
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Too many requests - Rate limit exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Service unavailable - PDP temporarily unavailable
+      summary: List webhooks
+      tags:
+      - AFNOR PDP/PA - Flow Service
+      x-accepts:
+      - application/json
+    post:
+      description: Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+      operationId: create_webhook_proxy_api_v1_afnor_flow_v1_webhooks_post
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Webhook"
+          description: Created - Webhook registered successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Bad request - Invalid input parameters
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Authentication error - Missing or invalid token
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Forbidden - Insufficient permissions
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Unprocessable entity - Business rule validation failed
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Too many requests - Rate limit exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Service unavailable - PDP temporarily unavailable
+      summary: Create a webhook
+      tags:
+      - AFNOR PDP/PA - Flow Service
+      x-accepts:
+      - application/json
+  /api/v1/afnor/flow/v1/webhooks/{webhookUid}:
+    delete:
+      description: Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+      operationId: delete_webhook_proxy_api_v1_afnor_flow_v1_webhooks__webhookUid__delete
+      parameters:
+      - description: Webhook unique identifier (UUID)
+        explode: false
+        in: path
+        name: webhookUid
+        required: true
+        schema:
+          description: Webhook unique identifier (UUID)
+          title: Webhookuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "204":
+          description: Webhook deleted
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Authentication error - Missing or invalid token
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Forbidden - Insufficient permissions
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Resource not found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Too many requests - Rate limit exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Service unavailable - PDP temporarily unavailable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Delete a webhook
+      tags:
+      - AFNOR PDP/PA - Flow Service
+      x-accepts:
+      - application/json
+    get:
+      description: Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+      operationId: get_webhook_proxy_api_v1_afnor_flow_v1_webhooks__webhookUid__get
+      parameters:
+      - description: Webhook unique identifier (UUID)
+        explode: false
+        in: path
+        name: webhookUid
+        required: true
+        schema:
+          description: Webhook unique identifier (UUID)
+          title: Webhookuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Webhook"
+          description: OK - Webhook details returned
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Authentication error - Missing or invalid token
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Forbidden - Insufficient permissions
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Resource not found
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Too many requests - Rate limit exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Service unavailable - PDP temporarily unavailable
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+          description: Validation Error
+      summary: Get a webhook
+      tags:
+      - AFNOR PDP/PA - Flow Service
+      x-accepts:
+      - application/json
+    patch:
+      description: Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+      operationId: update_webhook_proxy_api_v1_afnor_flow_v1_webhooks__webhookUid__patch
+      parameters:
+      - description: Webhook unique identifier (UUID)
+        explode: false
+        in: path
+        name: webhookUid
+        required: true
+        schema:
+          description: Webhook unique identifier (UUID)
+          title: Webhookuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Webhook"
+          description: OK - Webhook updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Bad request - Invalid input parameters
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Authentication error - Missing or invalid token
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Forbidden - Insufficient permissions
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Resource not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Unprocessable entity - Business rule validation failed
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Too many requests - Rate limit exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AFNOR_Error"
+          description: Service unavailable - PDP temporarily unavailable
+      summary: Update a webhook
+      tags:
+      - AFNOR PDP/PA - Flow Service
+      x-accepts:
+      - application/json
   /api/v1/afnor/directory/v1/healthcheck:
     get:
       description: Check Directory Service availability (AFNOR XP Z12-013 compliant)
@@ -2314,6 +2636,8 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
+        "204":
+          description: No content
       summary: SIREN search (or legal unit)
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2368,55 +2692,6 @@ paths:
       - AFNOR PDP/PA - Directory Service
       x-accepts:
       - application/json
-  /api/v1/afnor/directory/v1/siren/id-instance:{id_instance}:
-    get:
-      description: Returns the details of a company (legal unit) identified by the
-        id-instance passed as a parameter.
-      operationId: get_siren_by_id_instance_proxy_api_v1_afnor_directory_v1_siren_id_instance__id_instance__get
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_legalUnitPayloadHistory"
-          description: Returns a routing code.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Gets a siren (legal unit) by instance ID
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
   /api/v1/afnor/directory/v1/siret/search:
     post:
       description: Multi-criteria search for facilities.
@@ -2458,6 +2733,8 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
+        "204":
+          description: No content
       summary: Search for a SIRET (facility)
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2511,96 +2788,6 @@ paths:
       - AFNOR PDP/PA - Directory Service
       x-accepts:
       - application/json
-  /api/v1/afnor/directory/v1/siret/id-instance:{id_instance}:
-    get:
-      description: Returns the details of a facility according to an instance-id.
-      operationId: get_siret_by_id_instance_proxy_api_v1_afnor_directory_v1_siret_id_instance__id_instance__get
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_facilityPayloadHistory"
-          description: Returns a routing code.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Gets a siret (facility) by id-instance
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
-  /api/v1/afnor/directory/v1/routing-code:
-    post:
-      description: Creating a routing code.
-      operationId: create_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_post
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_routingCodePost201Response"
-          description: A new resource has been created.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Create a routing code
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
   /api/v1/afnor/directory/v1/routing-code/search:
     post:
       description: Search for routing codes that meet all the criteria passed as parameters
@@ -2641,6 +2828,8 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
+        "204":
+          description: No content
       summary: Search for a routing code
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2705,197 +2894,6 @@ paths:
       - AFNOR PDP/PA - Directory Service
       x-accepts:
       - application/json
-  /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}:
-    get:
-      description: Retrieve the Routing Code data corresponding to the Instance ID.
-      operationId: get_routing_code_by_id_instance_proxy_api_v1_afnor_directory_v1_routing_code_id_instance__id_instance__get
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_routingCodePayloadHistoryLegalUnitFacility"
-          description: Returns a routing code.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Get a routing code by instance-id.
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
-    patch:
-      description: Partially update a private routing code.
-      operationId: patch_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_id_instance__id_instance__patch
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_routingCodePost201Response"
-          description: Request successful.
-        "206":
-          description: "Request processed without error, but the volume of information\
-            \ returned has been reduced."
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Partially update a private routing code.
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
-    put:
-      description: Completely update a private routing code.
-      operationId: put_routing_code_proxy_api_v1_afnor_directory_v1_routing_code_id_instance__id_instance__put
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_routingCodePost201Response"
-          description: Request successful.
-        "206":
-          description: "Request processed without error, but the volume of information\
-            \ returned has been reduced."
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Completely update a private routing code.
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
-  /api/v1/afnor/directory/v1/directory-line:
-    post:
-      description: "Creation of a new directory line for a SIREN, a SIRET or a ROUTING\
-        \ CODE."
-      operationId: create_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_post
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_directoryLinePost201Response"
-          description: A new resource has been created.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Creating a directory line
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
   /api/v1/afnor/directory/v1/directory-line/search:
     post:
       description: Search for directory lines that meet all the criteria passed as
@@ -2936,6 +2934,8 @@ paths:
           description: Not implemented.
         "503":
           description: Service unavailable.
+        "204":
+          description: No content
       summary: Search for a directory line
       tags:
       - AFNOR PDP/PA - Directory Service
@@ -2962,7 +2962,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCode"
+                $ref: "#/components/schemas/AFNOR_directoryLinePayloadLegalUnitFacilityRoutingCode"
           description: Retourns a directory line.
         "400":
           description: Bad request. The request is invalid or cannot be completed.
@@ -2986,150 +2986,6 @@ paths:
         "503":
           description: Service unavailable.
       summary: Get a directory line.
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
-  /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}:
-    delete:
-      description: Delete a directory line.
-      operationId: delete_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_id_instance__id_instance__delete
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "204":
-          description: OK. The resource has been deleted.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Delete a directory line
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
-    get:
-      description: Retrieve the data from the directory line corresponding to the
-        identifier passed in parameters.
-      operationId: get_directory_line_by_id_instance_proxy_api_v1_afnor_directory_v1_directory_line_id_instance__id_instance__get
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCode"
-          description: Returns a directory line.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Get a directory line.
-      tags:
-      - AFNOR PDP/PA - Directory Service
-      x-accepts:
-      - application/json
-    patch:
-      description: Partially updates a directory line.
-      operationId: patch_directory_line_proxy_api_v1_afnor_directory_v1_directory_line_id_instance__id_instance__patch
-      parameters:
-      - description: AFNOR instance ID (UUID)
-        explode: false
-        in: path
-        name: id_instance
-        required: true
-        schema:
-          description: AFNOR instance ID (UUID)
-          title: Id Instance
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AFNOR_directoryLinePost201Response"
-          description: Request successful.
-        "400":
-          description: Bad request. The request is invalid or cannot be completed.
-        "401":
-          description: Unauthorized. The request requires user authentication.
-        "403":
-          description: Forbidden. The server understood the request but denied access
-            or access is not authorized.
-        "404":
-          description: Not found. There is no resource at the given URI.
-        "408":
-          description: Request timeout exceeded.
-        "422":
-          description: Data validation error.
-        "429":
-          description: The client has issued too many calls within a given time frame.
-        "500":
-          description: Internal Server Error.
-        "501":
-          description: Not implemented.
-        "503":
-          description: Service unavailable.
-      summary: Partially updates a directory line..
       tags:
       - AFNOR PDP/PA - Directory Service
       x-accepts:
@@ -7468,39 +7324,53 @@ components:
       title: CertificateInfoResponse
     ChorusProCredentials:
       description: |-
-        Optional Chorus Pro credentials.
+        Chorus Pro credentials for Zero-Trust mode.
 
-        **MODE 1 - JWT retrieval (recommended):**
-        Do not provide this `credentials` field in the payload.
-        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
+        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
 
-        **MODE 2 - Credentials in payload:**
-        Provide all required fields below.
-        Useful for tests or third-party integrations.
+        **Security**:
+        - Credentials are never persisted in the database
+        - They are used only for the duration of the request
+        - Secure transmission via HTTPS
+
+        **Use cases**:
+        - High-security environments (banks, administrations)
+        - Strict GDPR compliance
+        - Tests with temporary credentials
+        - Users who don't want to store their credentials
       example:
-        chorusLogin: my_login@company.fr
-        chorusPassword: MyPassword123!
-        pisteClientId: my_piste_client_id
-        pisteClientSecret: my_piste_secret
-        sandboxMode: true
+        chorusProLogin: my_login@company.fr
+        chorusProPassword: MyPassword123!
+        pisteClientId: my_client_id
+        pisteClientSecret: my_secret
+        sandbox: true
       properties:
         pisteClientId:
-          nullable: true
+          description: PISTE Client ID (government API portal)
+          title: Pisteclientid
           type: string
         pisteClientSecret:
-          nullable: true
+          description: PISTE Client Secret
+          title: Pisteclientsecret
           type: string
-        chorusLogin:
-          nullable: true
+        chorusProLogin:
+          description: Chorus Pro login
+          title: Chorusprologin
           type: string
-        chorusPassword:
-          nullable: true
+        chorusProPassword:
+          description: Chorus Pro password
+          title: Choruspropassword
           type: string
-        sandboxMode:
+        sandbox:
           default: true
-          description: "[MODE 2] Use sandbox mode (default: True)"
-          title: Sandboxmode
+          description: Use sandbox environment (true) or production (false)
+          title: Sandbox
           type: boolean
+      required:
+      - chorusProLogin
+      - chorusProPassword
+      - pisteClientId
+      - pisteClientSecret
       title: ChorusProCredentials
     ChorusProDestination:
       description: Specific configuration for Chorus Pro destination.
@@ -7513,7 +7383,7 @@ components:
           type: string
         credentials:
           allOf:
-          - $ref: "#/components/schemas/ChorusProCredentials"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__processing__ChorusProCredentials"
           nullable: true
       title: ChorusProDestination
     ChorusProResult:
@@ -9420,7 +9290,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         siret:
           description: Structure SIRET (14 digits)
@@ -9470,7 +9340,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         chorusInvoiceId:
           description: Chorus Pro invoice ID
@@ -9535,7 +9405,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         structureId:
           description: Chorus Pro structure ID
@@ -9796,7 +9666,7 @@ components:
           type: string
         typeCode:
           allOf:
-          - $ref: "#/components/schemas/InvoiceTypeCode"
+          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode"
           default: "380"
           description: Invoice type code
         currency:
@@ -9959,15 +9829,80 @@ components:
       - label
       title: InvoiceStatus
     InvoiceTypeCode:
-      description: Invoice type codes (UNTDID 1001).
+      description: |-
+        Document type according to BR-FR-04 (UNTDID 1001 codes).
+
+        | Code | Name | Description |
+        |------|------|-------------|
+        | 380 | INVOICE | Commercial invoice |
+        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
+        | 393 | FACTORED_INVOICE | Factored invoice |
+        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
+        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
+        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
+        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
+        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
+        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
+        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
+        | 381 | CREDIT_NOTE | Credit note |
+        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
+        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
+        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
+        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
+        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
       enum:
       - "380"
-      - "381"
-      - "384"
       - "389"
+      - "393"
+      - "501"
       - "386"
+      - "500"
+      - "384"
+      - "471"
+      - "472"
+      - "473"
+      - "381"
+      - "261"
+      - "262"
+      - "396"
+      - "502"
+      - "503"
       title: InvoiceTypeCode
       type: string
+      x-enum-descriptions:
+      - Commercial Invoice
+      - Self-billed Invoice
+      - Factored Invoice
+      - Self-billed Factored Invoice
+      - Prepayment Invoice
+      - Self-billed Prepayment Invoice
+      - Corrective Invoice
+      - Self-billed Corrective Invoice
+      - Factored Corrective Invoice
+      - Self-billed Factored Corrective Invoice
+      - Credit Note
+      - Self-billed Credit Note
+      - Global Allowance Credit Note
+      - Factored Credit Note
+      - Self-billed Factored Credit Note
+      - Prepayment Credit Note
+      x-enum-varnames:
+      - INVOICE
+      - SELF_BILLED_INVOICE
+      - FACTORED_INVOICE
+      - SELF_BILLED_FACTORED_INVOICE
+      - PREPAYMENT_INVOICE
+      - SELF_BILLED_PREPAYMENT_INVOICE
+      - CORRECTIVE_INVOICE
+      - SELF_BILLED_CORRECTIVE_INVOICE
+      - FACTORED_CORRECTIVE_INVOICE
+      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
+      - CREDIT_NOTE
+      - SELF_BILLED_CREDIT_NOTE
+      - GLOBAL_ALLOWANCE_CREDIT_NOTE
+      - FACTORED_CREDIT_NOTE
+      - SELF_BILLED_FACTORED_CREDIT_NOTE
+      - PREPAYMENT_CREDIT_NOTE
     InvoiceTypeCode-Output:
       description: |-
         Document type according to BR-FR-04 (UNTDID 1001 codes).
@@ -10827,14 +10762,17 @@ components:
       title: ProcessingOptions
     ProcessingRule:
       description: |-
-        AFNOR XP Z12-013 ProcessingRule (Annexe A, lignes 212-216).
+        AFNOR XP Z12-013 ProcessingRule (Annexe A v1.2.0).
 
         Valeurs EXACTES de la spec (case-sensitive).
       enum:
       - B2B
       - B2BInt
       - B2C
+      - B2G
+      - B2GInt
       - OutOfScope
+      - B2GOutOfScope
       - ArchiveOnly
       - NotApplicable
       title: ProcessingRule
@@ -11255,7 +11193,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         structureIdentifier:
           nullable: true
@@ -11598,7 +11536,7 @@ components:
           type: string
         invoiceType:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__models__InvoiceTypeCode"
+          - $ref: "#/components/schemas/InvoiceTypeCode"
           default: "380"
           description: "Document type (UNTDID 1001). Default: 380 (Invoice)."
         precedingInvoiceReference:
@@ -12233,7 +12171,7 @@ components:
       properties:
         credentials:
           allOf:
-          - $ref: "#/components/schemas/facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials"
+          - $ref: "#/components/schemas/ChorusProCredentials"
           nullable: true
         invoiceNumber:
           description: Invoice number
@@ -12547,13 +12485,13 @@ components:
         errors:
           description: Liste des erreurs
           items:
-            $ref: "#/components/schemas/ValidationErrorResponse"
+            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
           title: Errors
           type: array
         warnings:
           description: Liste des avertissements
           items:
-            $ref: "#/components/schemas/ValidationErrorResponse"
+            $ref: "#/components/schemas/facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse"
           title: Warnings
           type: array
       required:
@@ -12684,32 +12622,20 @@ components:
       - reason
       title: ValidationErrorDetail
     ValidationErrorResponse:
-      description: Erreur de validation.
+      description: Response for validation errors.
       example:
-        severity: error
-        field: field
-        rule: rule
-        message: message
+        detail:
+        - detail
+        - detail
       properties:
-        field:
-          description: Champ concerné
-          title: Field
-          type: string
-        message:
-          description: Message d'erreur
-          title: Message
-          type: string
-        rule:
-          nullable: true
-          type: string
-        severity:
-          default: error
-          description: Sévérité (error/warning)
-          title: Severity
-          type: string
+        detail:
+          description: List of detected validation errors.
+          items:
+            type: string
+          title: Detail
+          type: array
       required:
-      - field
-      - message
+      - detail
       title: ValidationErrorResponse
     ValidationInfo:
       description: Informations sur la validation.
@@ -13223,147 +13149,80 @@ components:
       required:
       - hasSecret
       title: WebhookSecretStatusResponse
-    facture_electronique__models__InvoiceTypeCode:
-      description: |-
-        Document type according to BR-FR-04 (UNTDID 1001 codes).
-
-        | Code | Name | Description |
-        |------|------|-------------|
-        | 380 | INVOICE | Commercial invoice |
-        | 389 | SELF_BILLED_INVOICE | Self-billed invoice |
-        | 393 | FACTORED_INVOICE | Factored invoice |
-        | 501 | SELF_BILLED_FACTORED_INVOICE | Self-billed factored invoice |
-        | 386 | PREPAYMENT_INVOICE | Prepayment invoice |
-        | 500 | SELF_BILLED_PREPAYMENT_INVOICE | Self-billed prepayment invoice |
-        | 384 | CORRECTIVE_INVOICE | Corrective invoice |
-        | 471 | SELF_BILLED_CORRECTIVE_INVOICE | Self-billed corrective invoice |
-        | 472 | FACTORED_CORRECTIVE_INVOICE | Factored corrective invoice |
-        | 473 | SELF_BILLED_FACTORED_CORRECTIVE_INVOICE | Self-billed factored corrective invoice |
-        | 381 | CREDIT_NOTE | Credit note |
-        | 261 | SELF_BILLED_CREDIT_NOTE | Self-billed credit note |
-        | 262 | GLOBAL_ALLOWANCE_CREDIT_NOTE | Credit note for global allowance |
-        | 396 | FACTORED_CREDIT_NOTE | Factored credit note |
-        | 502 | SELF_BILLED_FACTORED_CREDIT_NOTE | Self-billed factored credit note |
-        | 503 | PREPAYMENT_CREDIT_NOTE | Credit note for prepayment invoice |
+    facture_electronique__rest_api__schemas__cdar__ValidationErrorResponse:
+      description: Erreur de validation.
+      example:
+        severity: error
+        field: field
+        rule: rule
+        message: message
+      properties:
+        field:
+          description: Champ concerné
+          title: Field
+          type: string
+        message:
+          description: Message d'erreur
+          title: Message
+          type: string
+        rule:
+          nullable: true
+          type: string
+        severity:
+          default: error
+          description: Sévérité (error/warning)
+          title: Severity
+          type: string
+      required:
+      - field
+      - message
+      title: ValidationErrorResponse
+    facture_electronique__rest_api__schemas__ereporting__InvoiceTypeCode:
+      description: Invoice type codes (UNTDID 1001).
       enum:
       - "380"
-      - "389"
-      - "393"
-      - "501"
-      - "386"
-      - "500"
-      - "384"
-      - "471"
-      - "472"
-      - "473"
       - "381"
-      - "261"
-      - "262"
-      - "396"
-      - "502"
-      - "503"
+      - "384"
+      - "389"
+      - "386"
       title: InvoiceTypeCode
       type: string
-      x-enum-descriptions:
-      - Commercial Invoice
-      - Self-billed Invoice
-      - Factored Invoice
-      - Self-billed Factored Invoice
-      - Prepayment Invoice
-      - Self-billed Prepayment Invoice
-      - Corrective Invoice
-      - Self-billed Corrective Invoice
-      - Factored Corrective Invoice
-      - Self-billed Factored Corrective Invoice
-      - Credit Note
-      - Self-billed Credit Note
-      - Global Allowance Credit Note
-      - Factored Credit Note
-      - Self-billed Factored Credit Note
-      - Prepayment Credit Note
-      x-enum-varnames:
-      - INVOICE
-      - SELF_BILLED_INVOICE
-      - FACTORED_INVOICE
-      - SELF_BILLED_FACTORED_INVOICE
-      - PREPAYMENT_INVOICE
-      - SELF_BILLED_PREPAYMENT_INVOICE
-      - CORRECTIVE_INVOICE
-      - SELF_BILLED_CORRECTIVE_INVOICE
-      - FACTORED_CORRECTIVE_INVOICE
-      - SELF_BILLED_FACTORED_CORRECTIVE_INVOICE
-      - CREDIT_NOTE
-      - SELF_BILLED_CREDIT_NOTE
-      - GLOBAL_ALLOWANCE_CREDIT_NOTE
-      - FACTORED_CREDIT_NOTE
-      - SELF_BILLED_FACTORED_CREDIT_NOTE
-      - PREPAYMENT_CREDIT_NOTE
-    facture_electronique__rest_api__schemas__chorus_pro__ChorusProCredentials:
+    facture_electronique__rest_api__schemas__processing__ChorusProCredentials:
       description: |-
-        Chorus Pro credentials for Zero-Trust mode.
+        Optional Chorus Pro credentials.
 
-        **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.
+        **MODE 1 - JWT retrieval (recommended):**
+        Do not provide this `credentials` field in the payload.
+        Credentials will be automatically retrieved via client_uid from JWT (0-trust).
 
-        **Security**:
-        - Credentials are never persisted in the database
-        - They are used only for the duration of the request
-        - Secure transmission via HTTPS
-
-        **Use cases**:
-        - High-security environments (banks, administrations)
-        - Strict GDPR compliance
-        - Tests with temporary credentials
-        - Users who don't want to store their credentials
+        **MODE 2 - Credentials in payload:**
+        Provide all required fields below.
+        Useful for tests or third-party integrations.
       example:
-        chorusProLogin: my_login@company.fr
-        chorusProPassword: MyPassword123!
-        pisteClientId: my_client_id
-        pisteClientSecret: my_secret
-        sandbox: true
+        chorusLogin: my_login@company.fr
+        chorusPassword: MyPassword123!
+        pisteClientId: my_piste_client_id
+        pisteClientSecret: my_piste_secret
+        sandboxMode: true
       properties:
         pisteClientId:
-          description: PISTE Client ID (government API portal)
-          title: Pisteclientid
+          nullable: true
           type: string
         pisteClientSecret:
-          description: PISTE Client Secret
-          title: Pisteclientsecret
+          nullable: true
           type: string
-        chorusProLogin:
-          description: Chorus Pro login
-          title: Chorusprologin
+        chorusLogin:
+          nullable: true
           type: string
-        chorusProPassword:
-          description: Chorus Pro password
-          title: Choruspropassword
+        chorusPassword:
+          nullable: true
           type: string
-        sandbox:
+        sandboxMode:
           default: true
-          description: Use sandbox environment (true) or production (false)
-          title: Sandbox
+          description: "[MODE 2] Use sandbox mode (default: True)"
+          title: Sandboxmode
           type: boolean
-      required:
-      - chorusProLogin
-      - chorusProPassword
-      - pisteClientId
-      - pisteClientSecret
       title: ChorusProCredentials
-    facture_electronique__rest_api__schemas__validation__ValidationErrorResponse:
-      description: Response for validation errors.
-      example:
-        detail:
-        - detail
-        - detail
-      properties:
-        detail:
-          description: List of detected validation errors.
-          items:
-            type: string
-          title: Detail
-          type: array
-      required:
-      - detail
-      title: ValidationErrorResponse
     AdditionalDocument:
       description: |-
         Additional supporting document (BG-24).
@@ -14532,7 +14391,7 @@ components:
       description: |-
         AFNOR XP Z12-013 FlowType enum.
 
-        Values from swagger specification v1.1.0:
+        Values from swagger specification v1.2.0:
         - Invoice flows (factures)
         - Lifecycle flows (cycle de vie)
         - E-reporting flows (transactions/paiements)
@@ -14753,14 +14612,20 @@ components:
         - B2B                 : e-invoicing
         - B2BInt              : International B2B e-reporting
         - B2C                 : B2C e-reporting
+        - B2G                 : e-invoicing for B2G sales
+        - B2GInt
         - OutOfScope          : Out of scope (not regulated flow)
+        - B2GOutOfScope
         - ArchiveOnly         : Archive only, no transmission
         - NotApplicable       : Not Applicable
       enum:
       - B2B
       - B2BInt
       - B2C
+      - B2G
+      - B2GInt
       - OutOfScope
+      - B2GOutOfScope
       - ArchiveOnly
       - NotApplicable
       type: string
@@ -14877,25 +14742,22 @@ components:
       type: string
     AFNOR_Algorithm:
       enum:
-      - RSA
+      - RS256
+      - HS256
       - ECDSA
-      - RSA_PSS
       - EDDSA_25519
+      - RSA_PSS
       - EDDSA_448
+      - null
       type: string
-    AFNOR_FlowInfo:
-      description: |
-        Signaling of the flow:
-        - The tracking id is an external identifier and is used to track the flow by the sender
-        - The sha256 is the fingerprint of the attached file:
-          - if provided in the request: it should be checked once received
-          - if not provided in the request: it should be computed and returned in the response
+    AFNOR_CoreFlowInfo:
+      description: "Core schema to build FlowInfo, FullFlowInfo, Flow schemas"
       properties:
         trackingId:
-          description: "Unique identifier supporting UUID but not only, for flexibility\
-            \ purpose"
-          maxLength: 36
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/AFNOR_NotOnlyUuid"
+          description: The tracking id is an external identifier and is used to track
+            the flow by the sender
         name:
           description: Name of the file
           maxLength: 255
@@ -14906,11 +14768,25 @@ components:
           $ref: "#/components/schemas/AFNOR_FlowSyntax"
         flowProfile:
           $ref: "#/components/schemas/AFNOR_FlowProfile"
-        sha256:
-          pattern: "^[a-f0-9]{64}$"
-          type: string
       required:
       - flowSyntax
+      - name
+    AFNOR_FlowInfoExtension:
+      description: Extension to build the FlowInfo
+      properties:
+        sha256:
+          description: |
+            The sha256 is the fingerprint of the attached file:
+            - if provided in the request: it should be checked once received
+            - if not provided in the request: it may be computed and returned in the response
+          format: byte
+          pattern: "^[a-f0-9]{64}$"
+          type: string
+    AFNOR_FlowInfo:
+      allOf:
+      - $ref: "#/components/schemas/AFNOR_CoreFlowInfo"
+      - $ref: "#/components/schemas/AFNOR_FlowInfoExtension"
+      description: Signaling of the flow
     AFNOR_SearchFlowParams:
       properties:
         limit:
@@ -14940,6 +14816,7 @@ components:
         trackingId: trackingId
       properties:
         updatedAfter:
+          description: "The comparison with current date is strict : updatedAt > updatedAfter"
           format: date-time
           type: string
         updatedBefore:
@@ -14964,17 +14841,26 @@ components:
           type: string
         ackStatus:
           $ref: "#/components/schemas/AFNOR_FlowAckStatus"
+    AFNOR_FullFlowInfoExtension:
+      description: "Extension schema to build FFullFlowInfo, Flow schemas"
+      properties:
+        flowId:
+          description: "Unique identifier supporting UUID but not only, for flexibility\
+            \ purpose"
+          maxLength: 36
+          type: string
+        submittedAt:
+          description: |
+            The flow submission date and time (the date and time when the flow was created on the system)
+            This property should be used by the API consumer as a time reference to avoid clock synchronization issues
+          format: date-time
+          type: string
+      required:
+      - flowId
+      - submittedAt
     AFNOR_FullFlowInfo:
       allOf:
-      - properties:
-          flowId:
-            $ref: "#/components/schemas/AFNOR_NotOnlyUuid"
-          submittedAt:
-            description: |
-              The flow submission date and time (the date and time when the flow was created on the system)
-              This property should be used by the API consumer as a time reference to avoid clock synchronization issues
-            format: date-time
-            type: string
+      - $ref: "#/components/schemas/AFNOR_FullFlowInfoExtension"
       - $ref: "#/components/schemas/AFNOR_FlowInfo"
       description: "Identified Flow info: flow info + id + timestamp"
       example:
@@ -14984,8 +14870,8 @@ components:
         name: name
         flowSyntax: CII
         submittedAt: 2000-01-23T04:56:07.000+00:00
-        flowId: null
-        trackingId: trackingId
+        flowId: flowId
+        trackingId: ""
     AFNOR_AcknowledgementDetail:
       example:
         item: item
@@ -15037,11 +14923,43 @@ components:
           type: array
       required:
       - status
+    AFNOR_FlowExtension:
+      description: Extension schema to build Flow schema
+      properties:
+        updatedAt:
+          description: |
+            The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt.
+            When the flow acknowledgment status is changed updatedAt date and time is updated.
+          format: date-time
+          type: string
+        flowType:
+          $ref: "#/components/schemas/AFNOR_FlowType"
+        processingRuleSource:
+          description: Says whether the processing rule has been computed or the processing
+            rule was an input parameter
+          enum:
+          - Input
+          - Computed
+          type: string
+        flowDirection:
+          $ref: "#/components/schemas/AFNOR_FlowDirection"
+        acknowledgement:
+          $ref: "#/components/schemas/AFNOR_Acknowledgement"
+      required:
+      - acknowledgement
+      - flowDirection
+      - flowType
+      - processingRuleSource
+      - updatedAt
     AFNOR_Flow:
+      allOf:
+      - $ref: "#/components/schemas/AFNOR_CoreFlowInfo"
+      - $ref: "#/components/schemas/AFNOR_FullFlowInfoExtension"
+      - $ref: "#/components/schemas/AFNOR_FlowExtension"
       description: The properties of a Flow resource
       example:
-        processingRuleSource: Input
         flowProfile: Basic
+        processingRuleSource: Input
         processingRule: null
         acknowledgement:
           details:
@@ -15055,53 +14973,13 @@ components:
             reasonCode: EmptyAttachement
           status: null
         flowDirection: Out
+        name: name
         flowSyntax: CII
         submittedAt: 2000-01-23T04:56:07.000+00:00
         flowId: flowId
+        trackingId: ""
         updatedAt: 2000-01-23T04:56:07.000+00:00
-        trackingId: trackingId
         flowType: SupplierInvoice
-      properties:
-        submittedAt:
-          description: |
-            The flow submission date and time (the date and time when the flow was created on the system)
-          format: date-time
-          type: string
-        updatedAt:
-          description: |
-            The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt.
-            When the flow acknowledgment status is changed updatedAt date and time is updated.
-          format: date-time
-          type: string
-        flowId:
-          description: "Unique identifier supporting UUID but not only, for flexibility\
-            \ purpose"
-          maxLength: 36
-          type: string
-        trackingId:
-          description: "Unique identifier supporting UUID but not only, for flexibility\
-            \ purpose"
-          maxLength: 36
-          type: string
-        flowType:
-          $ref: "#/components/schemas/AFNOR_FlowType"
-        processingRule:
-          $ref: "#/components/schemas/AFNOR_ProcessingRule"
-        processingRuleSource:
-          description: Says whether the processing rule has been computed or the processing
-            rule was an input parameter
-          enum:
-          - Input
-          - Computed
-          type: string
-        flowDirection:
-          $ref: "#/components/schemas/AFNOR_FlowDirection"
-        flowSyntax:
-          $ref: "#/components/schemas/AFNOR_FlowSyntax"
-        flowProfile:
-          $ref: "#/components/schemas/AFNOR_FlowProfile"
-        acknowledgement:
-          $ref: "#/components/schemas/AFNOR_Acknowledgement"
     AFNOR_SearchFlowContent:
       description: "A set of flows matching criterias, provided into the request"
       example:
@@ -15121,8 +14999,8 @@ components:
           - SupplierInvoice
           trackingId: trackingId
         results:
-        - processingRuleSource: Input
-          flowProfile: Basic
+        - flowProfile: Basic
+          processingRuleSource: Input
           processingRule: null
           acknowledgement:
             details:
@@ -15136,14 +15014,15 @@ components:
               reasonCode: EmptyAttachement
             status: null
           flowDirection: Out
+          name: name
           flowSyntax: CII
           submittedAt: 2000-01-23T04:56:07.000+00:00
           flowId: flowId
+          trackingId: ""
           updatedAt: 2000-01-23T04:56:07.000+00:00
-          trackingId: trackingId
           flowType: SupplierInvoice
-        - processingRuleSource: Input
-          flowProfile: Basic
+        - flowProfile: Basic
+          processingRuleSource: Input
           processingRule: null
           acknowledgement:
             details:
@@ -15157,11 +15036,12 @@ components:
               reasonCode: EmptyAttachement
             status: null
           flowDirection: Out
+          name: name
           flowSyntax: CII
           submittedAt: 2000-01-23T04:56:07.000+00:00
           flowId: flowId
+          trackingId: ""
           updatedAt: 2000-01-23T04:56:07.000+00:00
-          trackingId: trackingId
           flowType: SupplierInvoice
       properties:
         limit:
@@ -15172,11 +15052,174 @@ components:
           items:
             $ref: "#/components/schemas/AFNOR_Flow"
           type: array
+    AFNOR_CallbackParameters:
+      example:
+        headers:
+        - headerName: headerName
+          headerValue: headerValue
+        - headerName: headerName
+          headerValue: headerValue
+        signature:
+          algo: RS256
+          key: key
+        url: https://openapi-generator.tech
+        authentication:
+          authType: BASIC
+      properties:
+        url:
+          format: uri
+          type: string
+        headers:
+          items:
+            $ref: "#/components/schemas/AFNOR_CallbackHeader"
+          type: array
+        authentication:
+          $ref: "#/components/schemas/AFNOR_CallbackAuthentication"
+        signature:
+          $ref: "#/components/schemas/AFNOR_CallbackSignature"
+      required:
+      - url
+    AFNOR_CallbackHeader:
+      example:
+        headerName: headerName
+        headerValue: headerValue
+      properties:
+        headerName:
+          type: string
+        headerValue:
+          type: string
+      required:
+      - headerName
+      - headerValue
+    AFNOR_OAuth2Authentication:
+      properties:
+        tokenUrl:
+          format: uri
+          type: string
+        clientId:
+          type: string
+        clientSecret:
+          format: password
+          type: string
+      required:
+      - clientId
+      - clientSecret
+      - tokenUrl
+    AFNOR_BasicAuthentication:
+      properties:
+        userId:
+          type: string
+        userPassword:
+          format: password
+          type: string
+      required:
+      - userId
+      - userPassword
+    AFNOR_CallbackAuthentication:
+      description: The authentication mode required for the callback call
+      example:
+        authType: BASIC
+      oneOf:
+      - $ref: "#/components/schemas/AFNOR_BasicAuthentication"
+      - $ref: "#/components/schemas/AFNOR_OAuth2Authentication"
+      properties:
+        authType:
+          enum:
+          - BASIC
+          - OAUTH2
+          type: string
+      required:
+      - authType
+    AFNOR_CallbackSignature:
+      example:
+        algo: RS256
+        key: key
+      properties:
+        algo:
+          $ref: "#/components/schemas/AFNOR_Algorithm"
+        key:
+          description: Base 64 encoded string
+          format: byte
+          type: string
+      required:
+      - algo
+      - key
+    AFNOR_WebhookMetadata:
+      example:
+        processingRule: B2B
+        flowDirection: Out
+        ackStatus: Pending
+        flowType: SupplierInvoice
+      properties:
+        processingRule:
+          $ref: "#/components/schemas/AFNOR_ProcessingRule"
+        flowType:
+          $ref: "#/components/schemas/AFNOR_FlowType"
+        flowDirection:
+          $ref: "#/components/schemas/AFNOR_FlowDirection"
+        ackStatus:
+          $ref: "#/components/schemas/AFNOR_FlowAckStatus"
+      required:
+      - flowDirection
+      - flowType
+    AFNOR_WebhookParams:
+      properties:
+        callback:
+          $ref: "#/components/schemas/AFNOR_CallbackParameters"
+        metadata:
+          $ref: "#/components/schemas/AFNOR_WebhookMetadata"
+      required:
+      - callback
+      - metadata
+    AFNOR_WebhookId:
+      format: uuid
+      type: string
+    AFNOR_WebhookIdParam:
+      properties:
+        webhookId:
+          format: uuid
+          type: string
+    AFNOR_Webhook:
+      allOf:
+      - $ref: "#/components/schemas/AFNOR_WebhookIdParam"
+      - $ref: "#/components/schemas/AFNOR_WebhookParams"
+      example:
+        metadata:
+          processingRule: B2B
+          flowDirection: Out
+          ackStatus: Pending
+          flowType: SupplierInvoice
+        webhookId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        callback:
+          headers:
+          - headerName: headerName
+            headerValue: headerValue
+          - headerName: headerName
+            headerValue: headerValue
+          signature:
+            algo: RS256
+            key: key
+          url: https://openapi-generator.tech
+          authentication:
+            authType: BASIC
+    AFNOR_WebhookPatchPayload:
+      properties:
+        headers:
+          items:
+            $ref: "#/components/schemas/AFNOR_CallbackHeader"
+          type: array
+        authentication:
+          $ref: "#/components/schemas/AFNOR_CallbackAuthentication"
+        signature:
+          $ref: "#/components/schemas/AFNOR_CallbackSignature"
     AFNOR_Error:
       description: Error code
       example:
+        instance: /chemin/url-de-reference#instance-du-contexte
         errorMessage: Invalid request format
         errorCode: MISSING_REQUIRED_FIELD
+        details: Error detailed description
+        type: /path/reference-url
       properties:
         errorCode:
           description: Short numerical or alphanumerical code that identifies precisely
@@ -15189,13 +15232,20 @@ components:
             \ shall be found."
           example: Invalid request format
           type: string
+        type:
+          default: about:blank
+          example: /path/reference-url
+          format: uri-reference
+          type: string
+        details:
+          example: Error detailed description
+          type: string
+        instance:
+          example: /chemin/url-de-reference#instance-du-contexte
+          format: uri-reference
+          type: string
       required:
       - errorCode
-    AFNOR_WebhookCallbackContent:
-      description: ""
-      properties:
-        flowInfo:
-          $ref: "#/components/schemas/AFNOR_Flow"
     AFNOR_searchSiren:
       example:
         sorting:
@@ -15207,7 +15257,7 @@ components:
         ignore: 20
         filters:
           siren:
-            op: contains
+            op: strict
             value: "702042755"
           administrativeStatus:
             op: strict
@@ -15223,7 +15273,7 @@ components:
         - businessName
         - entityType
         - administrativeStatus
-        - idInstance
+        - instructions
       properties:
         filters:
           $ref: "#/components/schemas/AFNOR_searchSirenFilters"
@@ -15244,7 +15294,7 @@ components:
           - businessName
           - entityType
           - administrativeStatus
-          - idInstance
+          - instructions
           items:
             $ref: "#/components/schemas/AFNOR_sirenField"
           type: array
@@ -15266,6 +15316,8 @@ components:
       type: integer
     AFNOR_legalUnitPayloadHistory:
       example:
+        instructions:
+          isSalesProspectingForbidden: false
         siren: "702042755"
         administrativeStatus: A
         entityType: Public
@@ -15286,31 +15338,9 @@ components:
           $ref: "#/components/schemas/AFNOR_entityType"
         administrativeStatus:
           $ref: "#/components/schemas/AFNOR_legalUnitAdministrativeStatus"
+        instructions:
+          $ref: "#/components/schemas/AFNOR_sirenInstructions"
       title: legalUnitPayloadHistory
-    AFNOR_error:
-      properties:
-        type:
-          default: about:blank
-          example: /path/reference-url
-          format: uri-reference
-          type: string
-        message:
-          example: Error message
-          type: string
-        status:
-          description: |
-            The HTTP status code generated by the origin server for this occurrence of the problem.
-          format: int32
-          maximum: 600
-          minimum: 100
-          type: integer
-        details:
-          example: Error detailed description
-          type: string
-        instance:
-          example: /chemin/url-de-reference#instance-du-contexte
-          format: uri-reference
-          type: string
     AFNOR_sirenField:
       description: Fields of the Siren resource.
       enum:
@@ -15318,7 +15348,7 @@ components:
       - businessName
       - entityType
       - administrativeStatus
-      - idInstance
+      - instructions
       example: siren
       type: string
     AFNOR_searchSiret:
@@ -15326,24 +15356,24 @@ components:
         include:
         - siren
         sorting:
-        - champ: siret
+        - field: siret
           order: ascending
-        - champ: name
+        - field: name
           order: descending
         limit: 50
         ignore: 20
         filters:
           siren:
-            op: contains
+            op: strict
             value: "702042755"
           facilityType:
-            op: contains
+            op: strict
             value: P
           administrativeStatus:
             op: strict
             value: A
           postalCode:
-            op: contains
+            op: startWith
             value: "38100"
           name:
             op: contains
@@ -15355,35 +15385,34 @@ components:
             op: contains
             value: 16 BIS RUE HENRI BARBUSSE - CEDEX 1 - Bâtiment le Callipso
           siret:
-            op: contains
+            op: strict
             value: "70204275500000"
           countrySubdivision:
-            op: contains
+            op: strict
             value: Bretagne
         fields:
         - siret
         - siren
         - name
         - facilityType
-        - address
-        - diffusible
         - administrativeStatus
+        - siretInstructions
+        - address
         - pmStatus
         - pmOnly
         - managesPaymentStatus
         - managesLegalCommitment
         - managesLegalCommitmentOrService
         - serviceCodeStatus
-        - idInstance
       properties:
         filters:
           $ref: "#/components/schemas/AFNOR_searchSiretFilters"
         sorting:
           description: Sorting criteria on a field and an order (ascending or descending).
           example:
-          - champ: siret
+          - field: siret
             order: ascending
-          - champ: name
+          - field: name
             order: descending
           items:
             $ref: "#/components/schemas/AFNOR_searchSiretSortingInner"
@@ -15395,16 +15424,15 @@ components:
           - siren
           - name
           - facilityType
-          - address
-          - diffusible
           - administrativeStatus
+          - siretInstructions
+          - address
           - pmStatus
           - pmOnly
           - managesPaymentStatus
           - managesLegalCommitment
           - managesLegalCommitmentOrService
           - serviceCodeStatus
-          - idInstance
           items:
             $ref: "#/components/schemas/AFNOR_siretField"
           type: array
@@ -15439,7 +15467,6 @@ components:
           addressLine3: Bâtiment le Callipso
           countryName: France
           countrySubdivision: Bretagne
-        diffusible: O
         facilityType: P
         administrativeStatus: A
         b2gAdditionalData:
@@ -15449,8 +15476,11 @@ components:
           pm: true
           pmOnly: true
           serviceCodeStatus: true
+        siretInstructions:
+          isSalesProspectingForbidden: false
         name: Boulangerie Pascale
         legalUnit:
+          siren: "702042755"
           administrativeStatus: A
           entityType: Public
           businessName: Boulangerie Pascale
@@ -15475,16 +15505,16 @@ components:
           type: string
         facilityType:
           $ref: "#/components/schemas/AFNOR_facilityType"
-        diffusible:
-          $ref: "#/components/schemas/AFNOR_diffusionStatus"
         administrativeStatus:
           $ref: "#/components/schemas/AFNOR_facilityAdministrativeStatus"
+        siretInstructions:
+          $ref: "#/components/schemas/AFNOR_siretInstructions"
         address:
           $ref: "#/components/schemas/AFNOR_addressRead"
         b2gAdditionalData:
           $ref: "#/components/schemas/AFNOR_facilityPayloadHistoryUleB2gAdditionalData"
         legalUnit:
-          $ref: "#/components/schemas/AFNOR_legalUnitPayloadIncludedNoSiren"
+          $ref: "#/components/schemas/AFNOR_legalUnitPayloadIncluded"
       title: facilityPayloadHistory
     AFNOR_siretField:
       description: Fields of the Siret resource.
@@ -15493,71 +15523,42 @@ components:
       - siren
       - name
       - facilityType
-      - address
-      - diffusible
       - administrativeStatus
+      - siretInstructions
+      - address
       - pmStatus
       - pmOnly
       - managesPaymentStatus
       - managesLegalCommitment
       - managesLegalCommitmentOrService
       - serviceCodeStatus
-      - idInstance
       example: siret
       type: string
-    AFNOR_createRoutingCodeBody:
-      additionalProperties: {}
+    AFNOR_sirenInstructions:
+      description: Instructions regarding the SIREN
+      example:
+        isSalesProspectingForbidden: false
       properties:
-        facilityNature:
-          $ref: "#/components/schemas/AFNOR_facilityNature"
-        routingIdentifier:
-          description: Routing identifier od a routing code.
-          example: dcsc456sdcsdcs556
-          maxLength: 100
-          pattern: "^(?!\\s+$)[\\-_/a-zA-Z0-9]{1,100}$"
-          type: string
-        siret:
-          description: SIRET Number
-          example: "70204275500240"
-          maxLength: 14
-          pattern: "^([0-9]{14})$"
-          type: string
-        routingIdentifierType:
-          description: Routing Identifier type.
-          example: "0224"
-          maxLength: 4
-          pattern: ^(?!\s*$).+
-          type: string
-        routingCodeName:
-          description: Name of the directory line routing code. This attribute is
-            only returned if the directory line is defined at the SIREN / SIRET /
-            Routing code mesh.
-          example: Libellé Code routage
-          maxLength: 100
-          pattern: ^(?!\s*$).+
-          type: string
-        managesLegalCommitmentCode:
-          description: Indicates whether the public structure requires a legal commitment
-            number. This attribute is only returned if the directory line is defined
-            for a public structure at the SIREN / SIRET or SIREN / SIRET / Routing
-            code level.
-          example: true
+        isSalesProspectingForbidden:
+          description: Indicates whether the information is forbidden from being used
+            for sales prospecting purposes.
+          example: false
           type: boolean
-        administrativeStatus:
-          $ref: "#/components/schemas/AFNOR_routingCodeAdministrativeStatus"
-        address:
-          $ref: "#/components/schemas/AFNOR_addressEdit"
-      required:
-      - administrativeStatus
-      - facilityNature
-      - routingCodeName
-      - routingIdentifier
-      - siret
-      title: CreateRoutingCodeBody
-    AFNOR_idInstance:
-      description: Platform instance identifier in the directory
-      example: 120
-      type: integer
+    AFNOR_siretInstructions:
+      description: Instructions regarding the SIRET
+      example:
+        isSalesProspectingForbidden: false
+      properties:
+        isSalesProspectingForbidden:
+          description: Indicates whether the information is forbidden from being used
+            for sales prospecting purposes.
+          example: false
+          type: boolean
+    AFNOR_isSalesProspectingForbidden:
+      description: Indicates whether the information is forbidden from being used
+        for sales prospecting purposes.
+      example: false
+      type: boolean
     AFNOR_siret:
       description: SIRET Number
       example: "70204275500240"
@@ -15590,7 +15591,7 @@ components:
             op: strict
             value: A
           postalCode:
-            op: contains
+            op: startWith
             value: "38100"
           locality:
             op: contains
@@ -15599,7 +15600,7 @@ components:
             op: contains
             value: 16 BIS RUE HENRI BARBUSSE - CEDEX 1 - Bâtiment le Callipso
           siret:
-            op: contains
+            op: strict
             value: "70204275500000"
           routingCodeName:
             op: contains
@@ -15612,7 +15613,6 @@ components:
         - managesLegalCommitmentCode
         - administrativeStatus
         - address
-        - idInstance
       properties:
         filters:
           $ref: "#/components/schemas/AFNOR_routingCodeSearchFilters"
@@ -15636,7 +15636,6 @@ components:
           - managesLegalCommitmentCode
           - administrativeStatus
           - address
-          - idInstance
           items:
             $ref: "#/components/schemas/AFNOR_routingCodeField"
           type: array
@@ -15693,7 +15692,6 @@ components:
             addressLine3: Bâtiment le Callipso
             countryName: France
             countrySubdivision: Bretagne
-          diffusible: O
           facilityType: P
           administrativeStatus: A
           b2gAdditionalData:
@@ -15759,68 +15757,21 @@ components:
       - managesLegalCommitmentCode
       - administrativeStatus
       - address
-      - idInstance
       example: siret
       type: string
-    AFNOR_updatePutRoutingCodeBody:
-      properties:
-        routingIdentifierType:
-          description: Routing Identifier type.
-          example: "0224"
-          maxLength: 4
-          pattern: ^(?!\s*$).+
-          type: string
-        routingCodeName:
-          description: Name of the directory line routing code. This attribute is
-            only returned if the directory line is defined at the SIREN / SIRET /
-            Routing code mesh.
-          example: Libellé Code routage
-          maxLength: 100
-          pattern: ^(?!\s*$).+
-          type: string
-        administrativeStatus:
-          $ref: "#/components/schemas/AFNOR_routingCodeAdministrativeStatus"
-        address:
-          $ref: "#/components/schemas/AFNOR_addressPut"
-      required:
-      - administrativeStatus
-      - routingCodeName
-      - routingIdentifierType
-      title: updatePutRoutingCodeBody
-    AFNOR_updatePatchRoutingCodeBody:
-      properties:
-        routingIdentifierType:
-          description: Routing Identifier type.
-          example: "0224"
-          maxLength: 4
-          pattern: ^(?!\s*$).+
-          type: string
-        routingCodeName:
-          description: Name of the directory line routing code. This attribute is
-            only returned if the directory line is defined at the SIREN / SIRET /
-            Routing code mesh.
-          example: Libellé Code routage
-          maxLength: 100
-          pattern: ^(?!\s*$).+
-          type: string
-        administrativeStatus:
-          $ref: "#/components/schemas/AFNOR_routingCodeAdministrativeStatus"
-        address:
-          $ref: "#/components/schemas/AFNOR_addressPatch"
-      title: updatePatchRoutingCodeBody
     AFNOR_searchDirectoryLine:
       example:
         sorting:
-        - champ: addressingIdentifier
+        - field: addressingIdentifier
           order: ascending
         limit: 50
         ignore: 20
         filters:
           addressingSuffix:
-            op: strict
+            op: contains
             value: dcsc456sdcsdcs556
           siren:
-            op: contains
+            op: strict
             value: "702042755"
           routingIdentifier:
             op: contains
@@ -15829,21 +15780,20 @@ components:
             op: contains
             value: dcsc456sdcsdcs556
           siret:
-            op: contains
+            op: strict
             value: "70204275500000"
         fields:
         - addressingIdentifier
         - siren
         - siret
         - addressingSuffix
-        - idInstance
       properties:
         filters:
           $ref: "#/components/schemas/AFNOR_searchDirectoryLineFilters"
         sorting:
           description: Sorting criteria on a field and an order (ascending or descending).
           example:
-          - champ: addressingIdentifier
+          - field: addressingIdentifier
             order: ascending
           items:
             $ref: "#/components/schemas/AFNOR_searchDirectoryLineSortingInner"
@@ -15855,7 +15805,6 @@ components:
           - siren
           - siret
           - addressingSuffix
-          - idInstance
           items:
             $ref: "#/components/schemas/AFNOR_directoryLineField"
           type: array
@@ -15870,12 +15819,15 @@ components:
           format: int32
           type: integer
       title: searchDirectoryLine
-    AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCode:
+    AFNOR_directoryLinePayloadStatusLegalUnitFacilityRoutingCode:
       example:
         addressingSuffix: dcsc456sdcsdcs556
         siren: "702042755"
         addressingIdentifier: dcsc456sdcsdcs556
+        platformType: WK
+        directoryLineStatus: Enabled
         legalUnit:
+          siren: "702042755"
           administrativeStatus: A
           entityType: Public
           businessName: Boulangerie Pascale
@@ -15891,7 +15843,6 @@ components:
             addressLine3: Bâtiment le Callipso
             countryName: France
             countrySubdivision: Bretagne
-          diffusible: O
           facilityType: P
           administrativeStatus: A
           b2gAdditionalData:
@@ -15918,15 +15869,16 @@ components:
           administrativeStatus: A
           routingIdentifierType: "0224"
           routingCodeName: Libellé Code routage
-        platform:
-          platformType: WK
-          platformStatus: Enabled
       properties:
         addressingIdentifier:
           description: Addressing identifier of the directory line.
           example: dcsc456sdcsdcs556
           maxLength: 125
           type: string
+        platformType:
+          $ref: "#/components/schemas/AFNOR_recipientPlatformType"
+        directoryLineStatus:
+          $ref: "#/components/schemas/AFNOR_directoryLineStatus"
         siren:
           description: SIREN number
           example: "702042755"
@@ -15947,29 +15899,97 @@ components:
           type: string
         routingCode:
           $ref: "#/components/schemas/AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode"
-        platform:
-          $ref: "#/components/schemas/AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCodePlatform"
         legalUnit:
-          $ref: "#/components/schemas/AFNOR_legalUnitPayloadIncludedNoSiren"
+          $ref: "#/components/schemas/AFNOR_legalUnitPayloadIncluded"
         facility:
           $ref: "#/components/schemas/AFNOR_facilityPayloadIncluded"
       title: directoryLinePayloadHistoryLegalUnitFacilityRoutingCode
-    AFNOR_createDirectoryLineBody:
+    AFNOR_directoryLinePayloadLegalUnitFacilityRoutingCode:
+      example:
+        addressingSuffix: dcsc456sdcsdcs556
+        siren: "702042755"
+        addressingIdentifier: dcsc456sdcsdcs556
+        platformType: WK
+        legalUnit:
+          siren: "702042755"
+          administrativeStatus: A
+          entityType: Public
+          businessName: Boulangerie Pascale
+        siret: "70204275500240"
+        facility:
+          siren: "702042755"
+          address:
+            countryCode: FR
+            postalCode: "38100"
+            locality: Grenoble
+            addressLine1: 16 BIS RUE HENRI BARBUSSE
+            addressLine2: CEDEX 1
+            addressLine3: Bâtiment le Callipso
+            countryName: France
+            countrySubdivision: Bretagne
+          facilityType: P
+          administrativeStatus: A
+          b2gAdditionalData:
+            managesPaymentStatus: true
+            managesLegalCommitmentOrServiceCode: true
+            managesLegalCommitmentCode: true
+            pm: true
+            pmOnly: true
+            serviceCodeStatus: true
+          name: Boulangerie Pascale
+          siret: "70204275500240"
+        routingCode:
+          managesLegalCommitment: true
+          routingIdentifier: dcsc456sdcsdcs556
+          address:
+            countryCode: FR
+            postalCode: "38100"
+            locality: Grenoble
+            addressLine1: 16 BIS RUE HENRI BARBUSSE
+            addressLine2: CEDEX 1
+            addressLine3: Bâtiment le Callipso
+            countryName: France
+            countrySubdivision: Bretagne
+          administrativeStatus: A
+          routingIdentifierType: "0224"
+          routingCodeName: Libellé Code routage
       properties:
-        period:
-          $ref: "#/components/schemas/AFNOR_createDirectoryLineBodyPeriod"
-        addressingInformation:
-          $ref: "#/components/schemas/AFNOR_createDirectoryLineBodyAddressingInformation"
-      title: CreateDirectoryLineBody
+        addressingIdentifier:
+          description: Addressing identifier of the directory line.
+          example: dcsc456sdcsdcs556
+          maxLength: 125
+          type: string
+        platformType:
+          $ref: "#/components/schemas/AFNOR_recipientPlatformType"
+        siren:
+          description: SIREN number
+          example: "702042755"
+          maxLength: 9
+          pattern: "^([0-9]{9})$"
+          type: string
+        siret:
+          description: SIRET Number
+          example: "70204275500240"
+          maxLength: 14
+          pattern: "^([0-9]{14})$"
+          type: string
+        addressingSuffix:
+          description: suffix of the directory line which defines an address mesh
+            not attached to a facility
+          example: dcsc456sdcsdcs556
+          maxLength: 100
+          type: string
+        routingCode:
+          $ref: "#/components/schemas/AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode"
+        legalUnit:
+          $ref: "#/components/schemas/AFNOR_legalUnitPayloadIncluded"
+        facility:
+          $ref: "#/components/schemas/AFNOR_facilityPayloadIncluded"
+      title: directoryLinePayloadHistoryLegalUnitFacilityRoutingCode
     AFNOR_addressingIdentifier:
       description: Addressing identifier of the directory line.
       example: dcsc456sdcsdcs556
       maxLength: 125
-      type: string
-    AFNOR_dateFrom:
-      description: Effective start date of the directory line..
-      example: 2023-01-01
-      format: date
       type: string
     AFNOR_directoryLineField:
       description: Fields of the directory line resource
@@ -15979,23 +15999,33 @@ components:
       - siret
       - routingIdentifier
       - addressingSuffix
-      - idInstance
       example: siren
       type: string
-    AFNOR_updatePatchDirectoryLineBody:
-      properties:
-        dateTo:
-          description: Effective end date of the directory line.
-          example: 2023-01-31
-          format: date
-          type: string
-      title: updatePatchDirectoryLineBody
     AFNOR_containsOperator:
       description: \"contains\" comparison operator
       enum:
       - contains
       example: contains
-      title: opContient
+      type: string
+    AFNOR_containsOrStrictOperator:
+      description: \"contains\" or \"strict\" comparison operator
+      enum:
+      - contains
+      - strict
+      example: contains
+      type: string
+    AFNOR_strictOperator:
+      description: \"strict\" comparison operator
+      enum:
+      - strict
+      example: strict
+      type: string
+    AFNOR_strictOrStartWithOperator:
+      description: \"strict\" or \"startWith\" comparison operator
+      enum:
+      - startWith
+      - strict
+      example: startWith
       type: string
     AFNOR_sirenSearch:
       description: SIREN number to search for.
@@ -16007,13 +16037,6 @@ components:
       description: Business name
       example: Boulangerie Pascale
       maxLength: 150
-      type: string
-    AFNOR_strictOperator:
-      description: \"strict\" comparison operator
-      enum:
-      - strict
-      example: strict
-      title: opStrict
       type: string
     AFNOR_entityType:
       description: Business structure type
@@ -16107,14 +16130,6 @@ components:
       example: A
       maxLength: 1
       type: string
-    AFNOR_diffusionStatus:
-      description: "Diffusion status of the structure [O - Yes, P - Partially diffusible]"
-      enum:
-      - O
-      - P
-      example: O
-      maxLength: 1
-      type: string
     AFNOR_addressRead:
       description: Wrapper for postal addresses
       example:
@@ -16173,149 +16188,6 @@ components:
           example: France
           maxLength: 100
           type: string
-    AFNOR_addressEdit:
-      description: Wrapper for postal addresses without country name.
-      properties:
-        ligneAdresse1:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: 16 BIS RUE HENRI BARBUSSE
-          maxLength: 255
-          type: string
-        ligneAdresse2:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: CEDEX 1
-          maxLength: 255
-          type: string
-        ligneAdresse3:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: Bâtiment le Callipso
-          maxLength: 255
-          type: string
-        postalCode:
-          description: Service postal code
-          example: "38100"
-          maxLength: 5
-          pattern: "[0-9]*"
-          type: string
-        countrySubdivision:
-          description: Subdivision of the country
-          example: Bretagne
-          maxLength: 255
-          type: string
-        locality:
-          description: Municipality of the recipient structure having defined the
-            directory line(s).
-          example: Grenoble
-          maxLength: 100
-          type: string
-        codePays:
-          description: Corresponds to the country of the recipient structure.
-          example: FR
-          maxLength: 2
-          type: string
-    AFNOR_addressPut:
-      description: Wrapper for postal addresses
-      properties:
-        ligneAdresse1:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: 16 BIS RUE HENRI BARBUSSE
-          maxLength: 200
-          pattern: ^(?!\s*$).+
-          type: string
-        ligneAdresse2:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: CEDEX 1
-          maxLength: 255
-          type: string
-        ligneAdresse3:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: Bâtiment le Callipso
-          maxLength: 255
-          type: string
-        postalCode:
-          description: Service postal code
-          example: "38100"
-          maxLength: 5
-          pattern: "[0-9]*"
-          type: string
-        countrySubdivision:
-          description: Subdivision of the country
-          example: Bretagne
-          maxLength: 255
-          type: string
-        locality:
-          description: Corresponds to the municipality of the recipient structure
-            having defined the directory line(s).
-          example: Grenoble
-          maxLength: 100
-          pattern: ^(?!\s*$).+
-          type: string
-        codePays:
-          description: Corresponds to the country code of the recipient structure
-          example: FR
-          maxLength: 2
-          pattern: ^(?!\s*$).+
-          type: string
-      required:
-      - codePays
-      - countrySubdivision
-      - ligneAdresse1
-      - ligneAdresse2
-      - ligneAdresse3
-      - locality
-      - postalCode
-    AFNOR_addressPatch:
-      description: Wrapper for postal addresses
-      properties:
-        ligneAdresse1:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: 16 BIS RUE HENRI BARBUSSE
-          maxLength: 200
-          pattern: ^(?!\s*$).+
-          type: string
-        ligneAdresse2:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: CEDEX 1
-          maxLength: 255
-          type: string
-        ligneAdresse3:
-          description: Corresponds to the address of the recipient structure having
-            defined the directory line(s).
-          example: Bâtiment le Callipso
-          maxLength: 255
-          type: string
-        postalCode:
-          description: Service postal code
-          example: "38100"
-          maxLength: 5
-          pattern: "[0-9]*"
-          type: string
-        countrySubdivision:
-          description: Subdivision of the country
-          example: Bretagne
-          maxLength: 255
-          type: string
-        locality:
-          description: Corresponds to the municipality of the recipient structure
-            having defined the directory line(s).
-          example: Grenoble
-          maxLength: 100
-          pattern: ^(?!\s*$).+
-          type: string
-        codePays:
-          description: Corresponds to the country code of the recipient structure
-          example: FR
-          maxLength: 2
-          pattern: ^(?!\s*$).+
-          type: string
     AFNOR_pmStatus:
       description: Indicates whether the public structure acts as project manager
         for work invoices in addition to receiving simple invoices. This attribute
@@ -16356,30 +16228,6 @@ components:
         the SIREN / SIRET or SIREN / SIRET / Routing code level.
       example: true
       type: boolean
-    AFNOR_legalUnitPayloadIncludedNoSiren:
-      example:
-        administrativeStatus: A
-        entityType: Public
-        businessName: Boulangerie Pascale
-      properties:
-        businessName:
-          description: Business name
-          example: Boulangerie Pascale
-          maxLength: 150
-          type: string
-        entityType:
-          $ref: "#/components/schemas/AFNOR_entityType"
-        administrativeStatus:
-          $ref: "#/components/schemas/AFNOR_legalUnitAdministrativeStatus"
-      title: legalUnitPayloadIncluded
-    AFNOR_facilityNature:
-      description: facility nature (public ou private).
-      enum:
-      - Private
-      - Public
-      example: Privée
-      maxLength: 5
-      type: string
     AFNOR_routingIdentifierType:
       description: Routing Identifier type.
       example: "0224"
@@ -16449,7 +16297,6 @@ components:
           addressLine3: Bâtiment le Callipso
           countryName: France
           countrySubdivision: Bretagne
-        diffusible: O
         facilityType: P
         administrativeStatus: A
         b2gAdditionalData:
@@ -16481,8 +16328,6 @@ components:
           type: string
         facilityType:
           $ref: "#/components/schemas/AFNOR_facilityType"
-        diffusible:
-          $ref: "#/components/schemas/AFNOR_diffusionStatus"
         administrativeStatus:
           $ref: "#/components/schemas/AFNOR_facilityAdministrativeStatus"
         address:
@@ -16496,24 +16341,27 @@ components:
       example: dcsc456sdcsdcs556
       maxLength: 100
       type: string
-    AFNOR_dateTo:
-      description: Effective end date of the directory line.
-      example: 2023-01-31
-      format: date
-      type: string
     AFNOR_recipientPlatformType:
-      description: The type of platform for document reception
+      description: |
+        The type of platform for document reception (from UNCL 3035 list) :
+          - WK : Value added network provider (PA)
+          - DFH : Government service requestor (PPF)
       enum:
       - WK
       - DFH
       example: WK
       maxLength: 3
       type: string
-    AFNOR_platformStatus:
-      description: Status of the platform
+    AFNOR_directoryLineStatus:
+      description: |
+        Line status of the platform.
+          - Enabled : Active line linked to a platform
+          - Disabled : No platform linked to the line
+          - Upcoming : Line associated with a platform, with an effective date in the future
       enum:
       - Enabled
       - Disabled
+      - Upcoming
       example: Enabled
       maxLength: 7
       type: string
@@ -16546,26 +16394,6 @@ components:
       example: France
       maxLength: 100
       type: string
-    AFNOR_recipientAddressLine1Pattern:
-      description: Corresponds to the address of the recipient structure having defined
-        the directory line(s).
-      example: 16 BIS RUE HENRI BARBUSSE
-      maxLength: 200
-      pattern: ^(?!\s*$).+
-      type: string
-    AFNOR_localityPattern:
-      description: Corresponds to the municipality of the recipient structure having
-        defined the directory line(s).
-      example: Grenoble
-      maxLength: 100
-      pattern: ^(?!\s*$).+
-      type: string
-    AFNOR_recipientCountryCodePattern:
-      description: Corresponds to the country code of the recipient structure
-      example: FR
-      maxLength: 2
-      pattern: ^(?!\s*$).+
-      type: string
     AFNOR_sirenSearchPost200Response:
       example:
         totalNumberOfResults: 1500
@@ -16579,7 +16407,7 @@ components:
           ignore: 20
           filters:
             siren:
-              op: contains
+              op: strict
               value: "702042755"
             administrativeStatus:
               op: strict
@@ -16595,13 +16423,17 @@ components:
           - businessName
           - entityType
           - administrativeStatus
-          - idInstance
+          - instructions
         results:
-        - siren: "702042755"
+        - instructions:
+            isSalesProspectingForbidden: false
+          siren: "702042755"
           administrativeStatus: A
           entityType: Public
           businessName: Boulangerie Pascale
-        - siren: "702042755"
+        - instructions:
+            isSalesProspectingForbidden: false
+          siren: "702042755"
           administrativeStatus: A
           entityType: Public
           businessName: Boulangerie Pascale
@@ -16624,24 +16456,24 @@ components:
           include:
           - siren
           sorting:
-          - champ: siret
+          - field: siret
             order: ascending
-          - champ: name
+          - field: name
             order: descending
           limit: 50
           ignore: 20
           filters:
             siren:
-              op: contains
+              op: strict
               value: "702042755"
             facilityType:
-              op: contains
+              op: strict
               value: P
             administrativeStatus:
               op: strict
               value: A
             postalCode:
-              op: contains
+              op: startWith
               value: "38100"
             name:
               op: contains
@@ -16653,26 +16485,25 @@ components:
               op: contains
               value: 16 BIS RUE HENRI BARBUSSE - CEDEX 1 - Bâtiment le Callipso
             siret:
-              op: contains
+              op: strict
               value: "70204275500000"
             countrySubdivision:
-              op: contains
+              op: strict
               value: Bretagne
           fields:
           - siret
           - siren
           - name
           - facilityType
-          - address
-          - diffusible
           - administrativeStatus
+          - siretInstructions
+          - address
           - pmStatus
           - pmOnly
           - managesPaymentStatus
           - managesLegalCommitment
           - managesLegalCommitmentOrService
           - serviceCodeStatus
-          - idInstance
         results:
         - siren: "702042755"
           address:
@@ -16684,7 +16515,6 @@ components:
             addressLine3: Bâtiment le Callipso
             countryName: France
             countrySubdivision: Bretagne
-          diffusible: O
           facilityType: P
           administrativeStatus: A
           b2gAdditionalData:
@@ -16694,8 +16524,11 @@ components:
             pm: true
             pmOnly: true
             serviceCodeStatus: true
+          siretInstructions:
+            isSalesProspectingForbidden: false
           name: Boulangerie Pascale
           legalUnit:
+            siren: "702042755"
             administrativeStatus: A
             entityType: Public
             businessName: Boulangerie Pascale
@@ -16710,7 +16543,6 @@ components:
             addressLine3: Bâtiment le Callipso
             countryName: France
             countrySubdivision: Bretagne
-          diffusible: O
           facilityType: P
           administrativeStatus: A
           b2gAdditionalData:
@@ -16720,8 +16552,11 @@ components:
             pm: true
             pmOnly: true
             serviceCodeStatus: true
+          siretInstructions:
+            isSalesProspectingForbidden: false
           name: Boulangerie Pascale
           legalUnit:
+            siren: "702042755"
             administrativeStatus: A
             entityType: Public
             businessName: Boulangerie Pascale
@@ -16738,28 +16573,6 @@ components:
           items:
             $ref: "#/components/schemas/AFNOR_facilityPayloadHistory"
           type: array
-    AFNOR_routingCodePost201Response:
-      example:
-        routingIdentifier: dcsc456sdcsdcs556
-        idInstance: 120
-        siret: "70204275500240"
-      properties:
-        idInstance:
-          description: Platform instance identifier in the directory
-          example: 120
-          type: integer
-        siret:
-          description: SIRET Number
-          example: "70204275500240"
-          maxLength: 14
-          pattern: "^([0-9]{14})$"
-          type: string
-        routingIdentifier:
-          description: Routing identifier od a routing code.
-          example: dcsc456sdcsdcs556
-          maxLength: 100
-          pattern: "^(?!\\s+$)[\\-_/a-zA-Z0-9]{1,100}$"
-          type: string
     AFNOR_routingCodeSearchPost200Response:
       example:
         totalNumberOfResults: 1500
@@ -16782,7 +16595,7 @@ components:
               op: strict
               value: A
             postalCode:
-              op: contains
+              op: startWith
               value: "38100"
             locality:
               op: contains
@@ -16791,7 +16604,7 @@ components:
               op: contains
               value: 16 BIS RUE HENRI BARBUSSE - CEDEX 1 - Bâtiment le Callipso
             siret:
-              op: contains
+              op: strict
               value: "70204275500000"
             routingCodeName:
               op: contains
@@ -16804,7 +16617,6 @@ components:
           - managesLegalCommitmentCode
           - administrativeStatus
           - address
-          - idInstance
         results:
         - routingIdentifier: dcsc456sdcsdcs556
           address:
@@ -16836,7 +16648,6 @@ components:
               addressLine3: Bâtiment le Callipso
               countryName: France
               countrySubdivision: Bretagne
-            diffusible: O
             facilityType: P
             administrativeStatus: A
             b2gAdditionalData:
@@ -16879,7 +16690,6 @@ components:
               addressLine3: Bâtiment le Callipso
               countryName: France
               countrySubdivision: Bretagne
-            diffusible: O
             facilityType: P
             administrativeStatus: A
             b2gAdditionalData:
@@ -16909,16 +16719,16 @@ components:
         totalNumberOfResults: 1500
         search:
           sorting:
-          - champ: addressingIdentifier
+          - field: addressingIdentifier
             order: ascending
           limit: 50
           ignore: 20
           filters:
             addressingSuffix:
-              op: strict
+              op: contains
               value: dcsc456sdcsdcs556
             siren:
-              op: contains
+              op: strict
               value: "702042755"
             routingIdentifier:
               op: contains
@@ -16927,19 +16737,21 @@ components:
               op: contains
               value: dcsc456sdcsdcs556
             siret:
-              op: contains
+              op: strict
               value: "70204275500000"
           fields:
           - addressingIdentifier
           - siren
           - siret
           - addressingSuffix
-          - idInstance
         results:
         - addressingSuffix: dcsc456sdcsdcs556
           siren: "702042755"
           addressingIdentifier: dcsc456sdcsdcs556
+          platformType: WK
+          directoryLineStatus: Enabled
           legalUnit:
+            siren: "702042755"
             administrativeStatus: A
             entityType: Public
             businessName: Boulangerie Pascale
@@ -16955,7 +16767,6 @@ components:
               addressLine3: Bâtiment le Callipso
               countryName: France
               countrySubdivision: Bretagne
-            diffusible: O
             facilityType: P
             administrativeStatus: A
             b2gAdditionalData:
@@ -16982,13 +16793,13 @@ components:
             administrativeStatus: A
             routingIdentifierType: "0224"
             routingCodeName: Libellé Code routage
-          platform:
-            platformType: WK
-            platformStatus: Enabled
         - addressingSuffix: dcsc456sdcsdcs556
           siren: "702042755"
           addressingIdentifier: dcsc456sdcsdcs556
+          platformType: WK
+          directoryLineStatus: Enabled
           legalUnit:
+            siren: "702042755"
             administrativeStatus: A
             entityType: Public
             businessName: Boulangerie Pascale
@@ -17004,7 +16815,6 @@ components:
               addressLine3: Bâtiment le Callipso
               countryName: France
               countrySubdivision: Bretagne
-            diffusible: O
             facilityType: P
             administrativeStatus: A
             b2gAdditionalData:
@@ -17031,9 +16841,6 @@ components:
             administrativeStatus: A
             routingIdentifierType: "0224"
             routingCodeName: Libellé Code routage
-          platform:
-            platformType: WK
-            platformStatus: Enabled
       properties:
         search:
           $ref: "#/components/schemas/AFNOR_searchDirectoryLine"
@@ -17044,35 +16851,15 @@ components:
           type: integer
         results:
           items:
-            $ref: "#/components/schemas/AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCode"
+            $ref: "#/components/schemas/AFNOR_directoryLinePayloadStatusLegalUnitFacilityRoutingCode"
           type: array
-    AFNOR_directoryLinePost201Response:
-      example:
-        addressingIdentifier: dcsc456sdcsdcs556
-        idInstance: 120
-        dateFrom: 2023-01-01
-      properties:
-        idInstance:
-          description: Platform instance identifier in the directory
-          example: 120
-          type: integer
-        addressingIdentifier:
-          description: Addressing identifier of the directory line.
-          example: dcsc456sdcsdcs556
-          maxLength: 125
-          type: string
-        dateFrom:
-          description: Effective start date of the directory line..
-          example: 2023-01-01
-          format: date
-          type: string
     AFNOR_searchSirenFiltersSiren:
       example:
-        op: contains
+        op: strict
         value: "702042755"
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_strictOperator"
         value:
           description: SIREN number to search for.
           example: "702042755"
@@ -17085,7 +16872,7 @@ components:
         value: Boulangerie Pascale
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_containsOrStrictOperator"
         value:
           description: Business name
           example: Boulangerie Pascale
@@ -17112,7 +16899,7 @@ components:
     AFNOR_searchSirenFilters:
       example:
         siren:
-          op: contains
+          op: strict
           value: "702042755"
         administrativeStatus:
           op: strict
@@ -17136,7 +16923,7 @@ components:
       description: A sorting criteria composed of a field and an order (ascending
         or descending).
       example:
-        champ: siren
+        field: siren
         order: ascendant
       properties:
         field:
@@ -17145,11 +16932,11 @@ components:
           $ref: "#/components/schemas/AFNOR_sortingOrder"
     AFNOR_searchSiretFiltersSiret:
       example:
-        op: contains
+        op: strict
         value: "70204275500000"
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_strictOperator"
         value:
           description: SIRET number to search for.
           example: "70204275500000"
@@ -17158,11 +16945,11 @@ components:
           type: string
     AFNOR_searchSiretFiltersFacilityType:
       example:
-        op: contains
+        op: strict
         value: P
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_strictOperator"
         value:
           $ref: "#/components/schemas/AFNOR_facilityType"
     AFNOR_searchSiretFiltersName:
@@ -17171,7 +16958,7 @@ components:
         value: Boulangerie Pascale
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_containsOrStrictOperator"
         value:
           description: business name
           example: Boulangerie Pascale
@@ -17192,11 +16979,11 @@ components:
           type: string
     AFNOR_searchSiretFiltersPostalCode:
       example:
-        op: contains
+        op: startWith
         value: "38100"
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_strictOrStartWithOperator"
         value:
           description: Service postal code
           example: "38100"
@@ -17205,11 +16992,11 @@ components:
           type: string
     AFNOR_searchSiretFiltersCountrySubdivision:
       example:
-        op: contains
+        op: strict
         value: Bretagne
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_strictOperator"
         value:
           description: Subdivision of the country
           example: Bretagne
@@ -17221,7 +17008,7 @@ components:
         value: Grenoble
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_containsOrStrictOperator"
         value:
           description: Municipality of the recipient structure having defined the
             directory line(s).
@@ -17240,16 +17027,16 @@ components:
     AFNOR_searchSiretFilters:
       example:
         siren:
-          op: contains
+          op: strict
           value: "702042755"
         facilityType:
-          op: contains
+          op: strict
           value: P
         administrativeStatus:
           op: strict
           value: A
         postalCode:
-          op: contains
+          op: startWith
           value: "38100"
         name:
           op: contains
@@ -17261,10 +17048,10 @@ components:
           op: contains
           value: 16 BIS RUE HENRI BARBUSSE - CEDEX 1 - Bâtiment le Callipso
         siret:
-          op: contains
+          op: strict
           value: "70204275500000"
         countrySubdivision:
-          op: contains
+          op: strict
           value: Bretagne
       properties:
         siret:
@@ -17352,7 +17139,7 @@ components:
         value: dcsc456sdcsdcs556
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_containsOrStrictOperator"
         value:
           description: Routing identifier for a routing code.
           example: dcsc456sdcsdcs556
@@ -17365,7 +17152,7 @@ components:
         value: Libellé Code routage
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_containsOrStrictOperator"
         value:
           description: Name of the routing code.
           example: Libellé Code routage
@@ -17390,7 +17177,7 @@ components:
           op: strict
           value: A
         postalCode:
-          op: contains
+          op: startWith
           value: "38100"
         locality:
           op: contains
@@ -17399,7 +17186,7 @@ components:
           op: contains
           value: 16 BIS RUE HENRI BARBUSSE - CEDEX 1 - Bâtiment le Callipso
         siret:
-          op: contains
+          op: strict
           value: "70204275500000"
         routingCodeName:
           op: contains
@@ -17436,7 +17223,7 @@ components:
         value: dcsc456sdcsdcs556
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_containsOperator"
+          $ref: "#/components/schemas/AFNOR_containsOrStrictOperator"
         value:
           description: Addressing identifier of the directory line.
           example: dcsc456sdcsdcs556
@@ -17444,11 +17231,11 @@ components:
           type: string
     AFNOR_searchDirectoryLineFiltersAddressingSuffix:
       example:
-        op: strict
+        op: contains
         value: dcsc456sdcsdcs556
       properties:
         op:
-          $ref: "#/components/schemas/AFNOR_strictOperator"
+          $ref: "#/components/schemas/AFNOR_containsOrStrictOperator"
         value:
           description: suffix of the directory line which defines an address mesh
             not attached to a facility
@@ -17458,10 +17245,10 @@ components:
     AFNOR_searchDirectoryLineFilters:
       example:
         addressingSuffix:
-          op: strict
+          op: contains
           value: dcsc456sdcsdcs556
         siren:
-          op: contains
+          op: strict
           value: "702042755"
         routingIdentifier:
           op: contains
@@ -17470,7 +17257,7 @@ components:
           op: contains
           value: dcsc456sdcsdcs556
         siret:
-          op: contains
+          op: strict
           value: "70204275500000"
       properties:
         addressingIdentifier:
@@ -17487,7 +17274,7 @@ components:
       description: A sort criteria composed of a field and an order (ascending or
         descending).
       example:
-        champ: addressingIdentifier
+        field: addressingIdentifier
         order: ascending
       properties:
         field:
@@ -17542,58 +17329,6 @@ components:
           $ref: "#/components/schemas/AFNOR_routingCodeAdministrativeStatus"
         address:
           $ref: "#/components/schemas/AFNOR_addressRead"
-    AFNOR_directoryLinePayloadHistoryLegalUnitFacilityRoutingCodePlatform:
-      example:
-        platformType: WK
-        platformStatus: Enabled
-      properties:
-        platformType:
-          $ref: "#/components/schemas/AFNOR_recipientPlatformType"
-        platformStatus:
-          $ref: "#/components/schemas/AFNOR_platformStatus"
-    AFNOR_createDirectoryLineBodyPeriod:
-      properties:
-        dateFrom:
-          description: Effective start date of the directory line..
-          example: 2023-01-01
-          format: date
-          type: string
-        dateTo:
-          description: Effective end date of the directory line.
-          example: 2023-01-31
-          format: date
-          type: string
-      required:
-      - dateFrom
-    AFNOR_createDirectoryLineBodyAddressingInformation:
-      additionalProperties: false
-      properties:
-        siren:
-          description: SIREN number
-          example: "702042755"
-          maxLength: 9
-          pattern: "^([0-9]{9})$"
-          type: string
-        siret:
-          description: SIRET Number
-          example: "70204275500240"
-          maxLength: 14
-          pattern: "^([0-9]{14})$"
-          type: string
-        routingIdentifier:
-          description: Routing identifier od a routing code.
-          example: dcsc456sdcsdcs556
-          maxLength: 100
-          pattern: "^(?!\\s+$)[\\-_/a-zA-Z0-9]{1,100}$"
-          type: string
-        addressingSuffix:
-          description: suffix of the directory line which defines an address mesh
-            not attached to a facility
-          example: dcsc456sdcsdcs556
-          maxLength: 100
-          type: string
-      required:
-      - siren
     submit_flow_proxy_api_v1_afnor_flow_v1_flows_post_request:
       properties:
         flowInfo:

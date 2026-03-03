@@ -29,9 +29,9 @@ import java.io.IOException;
 
 import org.openapitools.client.model.APIError;
 import org.openapitools.client.model.APIProfile;
-import org.openapitools.client.model.FactureElectroniqueRestApiSchemasValidationValidationErrorResponse;
 import java.io.File;
 import org.openapitools.client.model.HTTPValidationError;
+import org.openapitools.client.model.ValidationErrorResponse;
 import org.openapitools.client.model.ValidationSuccessResponse;
 
 import java.lang.reflect.Type;

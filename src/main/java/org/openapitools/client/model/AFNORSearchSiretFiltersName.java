@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.AFNORContainsOperator;
+import org.openapitools.client.model.AFNORContainsOrStrictOperator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,12 +49,12 @@ import org.openapitools.client.JSON;
 /**
  * AFNORSearchSiretFiltersName
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORSearchSiretFiltersName {
   public static final String SERIALIZED_NAME_OP = "op";
   @SerializedName(SERIALIZED_NAME_OP)
   @javax.annotation.Nullable
-  private AFNORContainsOperator op;
+  private AFNORContainsOrStrictOperator op;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -64,7 +64,7 @@ public class AFNORSearchSiretFiltersName {
   public AFNORSearchSiretFiltersName() {
   }
 
-  public AFNORSearchSiretFiltersName op(@javax.annotation.Nullable AFNORContainsOperator op) {
+  public AFNORSearchSiretFiltersName op(@javax.annotation.Nullable AFNORContainsOrStrictOperator op) {
     this.op = op;
     return this;
   }
@@ -74,11 +74,11 @@ public class AFNORSearchSiretFiltersName {
    * @return op
    */
   @javax.annotation.Nullable
-  public AFNORContainsOperator getOp() {
+  public AFNORContainsOrStrictOperator getOp() {
     return op;
   }
 
-  public void setOp(@javax.annotation.Nullable AFNORContainsOperator op) {
+  public void setOp(@javax.annotation.Nullable AFNORContainsOrStrictOperator op) {
     this.op = op;
   }
 
@@ -177,7 +177,7 @@ public class AFNORSearchSiretFiltersName {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the optional field `op`
       if (jsonObj.get("op") != null && !jsonObj.get("op").isJsonNull()) {
-        AFNORContainsOperator.validateJsonElement(jsonObj.get("op"));
+        AFNORContainsOrStrictOperator.validateJsonElement(jsonObj.get("op"));
       }
       if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull()) && !jsonObj.get("value").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));

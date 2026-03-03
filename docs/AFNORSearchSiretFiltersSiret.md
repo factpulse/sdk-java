@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**op** | **AFNORContainsOperator** |  |  [optional] |
+|**op** | **AFNORStrictOperator** |  |  [optional] |
 |**value** | **String** | SIRET number to search for. |  [optional] |
 
 

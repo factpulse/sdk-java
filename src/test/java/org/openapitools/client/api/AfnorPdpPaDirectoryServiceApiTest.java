@@ -14,13 +14,11 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
-import org.openapitools.client.model.AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode;
-import org.openapitools.client.model.AFNORDirectoryLinePost201Response;
+import org.openapitools.client.model.AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode;
 import org.openapitools.client.model.AFNORDirectoryLineSearchPost200Response;
 import org.openapitools.client.model.AFNORFacilityPayloadHistory;
 import org.openapitools.client.model.AFNORLegalUnitPayloadHistory;
 import org.openapitools.client.model.AFNORRoutingCodePayloadHistoryLegalUnitFacility;
-import org.openapitools.client.model.AFNORRoutingCodePost201Response;
 import org.openapitools.client.model.AFNORRoutingCodeSearchPost200Response;
 import org.openapitools.client.model.AFNORSirenSearchPost200Response;
 import org.openapitools.client.model.AFNORSiretSearchPost200Response;
@@ -39,46 +37,6 @@ import java.util.Map;
 public class AfnorPdpPaDirectoryServiceApiTest {
 
     private final AfnorPdpPaDirectoryServiceApi api = new AfnorPdpPaDirectoryServiceApi();
-
-    /**
-     * Creating a directory line
-     *
-     * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostTest() throws ApiException {
-        Object response = api.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost();
-        // TODO: test validations
-    }
-
-    /**
-     * Create a routing code
-     *
-     * Creating a routing code.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostTest() throws ApiException {
-        Object response = api.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost();
-        // TODO: test validations
-    }
-
-    /**
-     * Delete a directory line
-     *
-     * Delete a directory line.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteTest() throws ApiException {
-        String idInstance = null;
-        Object response = api.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance);
-        // TODO: test validations
-    }
 
     /**
      * Healthcheck Directory Service
@@ -103,35 +61,7 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     @Test
     public void getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetTest() throws ApiException {
         String addressingIdentifier = null;
-        AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode response = api.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier);
-        // TODO: test validations
-    }
-
-    /**
-     * Get a directory line.
-     *
-     * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetTest() throws ApiException {
-        String idInstance = null;
-        AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode response = api.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance);
-        // TODO: test validations
-    }
-
-    /**
-     * Get a routing code by instance-id.
-     *
-     * Retrieve the Routing Code data corresponding to the Instance ID.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetTest() throws ApiException {
-        String idInstance = null;
-        AFNORRoutingCodePayloadHistoryLegalUnitFacility response = api.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance);
+        AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode response = api.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier);
         // TODO: test validations
     }
 
@@ -165,20 +95,6 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     }
 
     /**
-     * Gets a siren (legal unit) by instance ID
-     *
-     * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetTest() throws ApiException {
-        String idInstance = null;
-        AFNORLegalUnitPayloadHistory response = api.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance);
-        // TODO: test validations
-    }
-
-    /**
      * Gets a siret (facility) by SIRET number
      *
      * Returns the details of a facility associated to a SIRET.
@@ -189,62 +105,6 @@ public class AfnorPdpPaDirectoryServiceApiTest {
     public void getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetTest() throws ApiException {
         String siret = null;
         AFNORFacilityPayloadHistory response = api.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret);
-        // TODO: test validations
-    }
-
-    /**
-     * Gets a siret (facility) by id-instance
-     *
-     * Returns the details of a facility according to an instance-id.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetTest() throws ApiException {
-        String idInstance = null;
-        AFNORFacilityPayloadHistory response = api.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance);
-        // TODO: test validations
-    }
-
-    /**
-     * Partially updates a directory line..
-     *
-     * Partially updates a directory line.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchTest() throws ApiException {
-        String idInstance = null;
-        AFNORDirectoryLinePost201Response response = api.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance);
-        // TODO: test validations
-    }
-
-    /**
-     * Partially update a private routing code.
-     *
-     * Partially update a private routing code.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchTest() throws ApiException {
-        String idInstance = null;
-        AFNORRoutingCodePost201Response response = api.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance);
-        // TODO: test validations
-    }
-
-    /**
-     * Completely update a private routing code.
-     *
-     * Completely update a private routing code.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutTest() throws ApiException {
-        String idInstance = null;
-        AFNORRoutingCodePost201Response response = api.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance);
         // TODO: test validations
     }
 

@@ -13,7 +13,7 @@
 
 * `ADMINISTRATIVE_STATUS` (value: `"administrativeStatus"`)
 
-* `ID_INSTANCE` (value: `"idInstance"`)
+* `INSTRUCTIONS` (value: `"instructions"`)
 
 
 

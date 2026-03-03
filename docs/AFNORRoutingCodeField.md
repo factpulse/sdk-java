@@ -19,7 +19,5 @@
 
 * `ADDRESS` (value: `"address"`)
 
-* `ID_INSTANCE` (value: `"idInstance"`)
-
 
 

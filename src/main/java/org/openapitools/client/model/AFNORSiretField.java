@@ -37,11 +37,11 @@ public enum AFNORSiretField {
   
   FACILITY_TYPE("facilityType"),
   
-  ADDRESS("address"),
-  
-  DIFFUSIBLE("diffusible"),
-  
   ADMINISTRATIVE_STATUS("administrativeStatus"),
+  
+  SIRET_INSTRUCTIONS("siretInstructions"),
+  
+  ADDRESS("address"),
   
   PM_STATUS("pmStatus"),
   
@@ -53,9 +53,7 @@ public enum AFNORSiretField {
   
   MANAGES_LEGAL_COMMITMENT_OR_SERVICE("managesLegalCommitmentOrService"),
   
-  SERVICE_CODE_STATUS("serviceCodeStatus"),
-  
-  ID_INSTANCE("idInstance");
+  SERVICE_CODE_STATUS("serviceCodeStatus");
 
   private String value;
 

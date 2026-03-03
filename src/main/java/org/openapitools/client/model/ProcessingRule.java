@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * AFNOR XP Z12-013 ProcessingRule (Annexe A, lignes 212-216).  Valeurs EXACTES de la spec (case-sensitive).
+ * AFNOR XP Z12-013 ProcessingRule (Annexe A v1.2.0).  Valeurs EXACTES de la spec (case-sensitive).
  */
 @JsonAdapter(ProcessingRule.Adapter.class)
 public enum ProcessingRule {
@@ -35,7 +35,13 @@ public enum ProcessingRule {
   
   B2_C("B2C"),
   
+  B2_G("B2G"),
+  
+  B2_G_INT("B2GInt"),
+  
   OUT_OF_SCOPE("OutOfScope"),
+  
+  B2_G_OUT_OF_SCOPE("B2GOutOfScope"),
   
   ARCHIVE_ONLY("ArchiveOnly"),
   

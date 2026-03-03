@@ -13,11 +13,11 @@
 
 * `FACILITY_TYPE` (value: `"facilityType"`)
 
-* `ADDRESS` (value: `"address"`)
-
-* `DIFFUSIBLE` (value: `"diffusible"`)
-
 * `ADMINISTRATIVE_STATUS` (value: `"administrativeStatus"`)
+
+* `SIRET_INSTRUCTIONS` (value: `"siretInstructions"`)
+
+* `ADDRESS` (value: `"address"`)
 
 * `PM_STATUS` (value: `"pmStatus"`)
 
@@ -30,8 +30,6 @@
 * `MANAGES_LEGAL_COMMITMENT_OR_SERVICE` (value: `"managesLegalCommitmentOrService"`)
 
 * `SERVICE_CODE_STATUS` (value: `"serviceCodeStatus"`)
-
-* `ID_INSTANCE` (value: `"idInstance"`)
 
 
 

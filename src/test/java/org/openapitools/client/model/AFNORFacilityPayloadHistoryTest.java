@@ -21,11 +21,11 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AFNORAddressRead;
-import org.openapitools.client.model.AFNORDiffusionStatus;
 import org.openapitools.client.model.AFNORFacilityAdministrativeStatus;
 import org.openapitools.client.model.AFNORFacilityPayloadHistoryUleB2gAdditionalData;
 import org.openapitools.client.model.AFNORFacilityType;
-import org.openapitools.client.model.AFNORLegalUnitPayloadIncludedNoSiren;
+import org.openapitools.client.model.AFNORLegalUnitPayloadIncluded;
+import org.openapitools.client.model.AFNORSiretInstructions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -76,19 +76,19 @@ public class AFNORFacilityPayloadHistoryTest {
     }
 
     /**
-     * Test the property 'diffusible'
-     */
-    @Test
-    public void diffusibleTest() {
-        // TODO: test diffusible
-    }
-
-    /**
      * Test the property 'administrativeStatus'
      */
     @Test
     public void administrativeStatusTest() {
         // TODO: test administrativeStatus
+    }
+
+    /**
+     * Test the property 'siretInstructions'
+     */
+    @Test
+    public void siretInstructionsTest() {
+        // TODO: test siretInstructions
     }
 
     /**

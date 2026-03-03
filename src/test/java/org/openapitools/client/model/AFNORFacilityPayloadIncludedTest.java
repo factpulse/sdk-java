@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.client.model.AFNORAddressRead;
-import org.openapitools.client.model.AFNORDiffusionStatus;
 import org.openapitools.client.model.AFNORFacilityAdministrativeStatus;
 import org.openapitools.client.model.AFNORFacilityPayloadHistoryUleB2gAdditionalData;
 import org.openapitools.client.model.AFNORFacilityType;
@@ -72,14 +71,6 @@ public class AFNORFacilityPayloadIncludedTest {
     @Test
     public void facilityTypeTest() {
         // TODO: test facilityType
-    }
-
-    /**
-     * Test the property 'diffusible'
-     */
-    @Test
-    public void diffusibleTest() {
-        // TODO: test diffusible
     }
 
     /**

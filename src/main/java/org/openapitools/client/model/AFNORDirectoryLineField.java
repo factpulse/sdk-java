@@ -37,9 +37,7 @@ public enum AFNORDirectoryLineField {
   
   ROUTING_IDENTIFIER("routingIdentifier"),
   
-  ADDRESSING_SUFFIX("addressingSuffix"),
-  
-  ID_INSTANCE("idInstance");
+  ADDRESSING_SUFFIX("addressingSuffix");
 
   private String value;
 

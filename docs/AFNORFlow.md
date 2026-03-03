@@ -8,17 +8,18 @@ The properties of a Flow resource
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**submittedAt** | **OffsetDateTime** | The flow submission date and time (the date and time when the flow was created on the system)  |  [optional] |
-|**updatedAt** | **OffsetDateTime** | The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated.  |  [optional] |
-|**flowId** | **String** | Unique identifier supporting UUID but not only, for flexibility purpose |  [optional] |
-|**trackingId** | **String** | Unique identifier supporting UUID but not only, for flexibility purpose |  [optional] |
-|**flowType** | **AFNORFlowType** |  |  [optional] |
+|**trackingId** | **String** | The tracking id is an external identifier and is used to track the flow by the sender |  [optional] |
+|**name** | **String** | Name of the file |  |
 |**processingRule** | **AFNORProcessingRule** |  |  [optional] |
-|**processingRuleSource** | [**ProcessingRuleSourceEnum**](#ProcessingRuleSourceEnum) | Says whether the processing rule has been computed or the processing rule was an input parameter |  [optional] |
-|**flowDirection** | **AFNORFlowDirection** |  |  [optional] |
-|**flowSyntax** | **AFNORFlowSyntax** |  |  [optional] |
+|**flowSyntax** | **AFNORFlowSyntax** |  |  |
 |**flowProfile** | **AFNORFlowProfile** |  |  [optional] |
-|**acknowledgement** | [**AFNORAcknowledgement**](AFNORAcknowledgement.md) |  |  [optional] |
+|**flowId** | **String** | Unique identifier supporting UUID but not only, for flexibility purpose |  |
+|**submittedAt** | **OffsetDateTime** | The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues  |  |
+|**updatedAt** | **OffsetDateTime** | The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated.  |  |
+|**flowType** | **AFNORFlowType** |  |  |
+|**processingRuleSource** | [**ProcessingRuleSourceEnum**](#ProcessingRuleSourceEnum) | Says whether the processing rule has been computed or the processing rule was an input parameter |  |
+|**flowDirection** | **AFNORFlowDirection** |  |  |
+|**acknowledgement** | [**AFNORAcknowledgement**](AFNORAcknowledgement.md) |  |  |
 
 
 

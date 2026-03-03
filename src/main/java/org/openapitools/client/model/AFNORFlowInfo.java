@@ -49,9 +49,9 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * Signaling of the flow: - The tracking id is an external identifier and is used to track the flow by the sender - The sha256 is the fingerprint of the attached file:   - if provided in the request: it should be checked once received   - if not provided in the request: it should be computed and returned in the response 
+ * Signaling of the flow
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-24T07:51:30.518063011Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-03T08:37:03.593672048Z[Etc/UTC]", comments = "Generator version: 7.21.0-SNAPSHOT")
 public class AFNORFlowInfo {
   public static final String SERIALIZED_NAME_TRACKING_ID = "trackingId";
   @SerializedName(SERIALIZED_NAME_TRACKING_ID)
@@ -60,7 +60,7 @@ public class AFNORFlowInfo {
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_PROCESSING_RULE = "processingRule";
@@ -81,7 +81,7 @@ public class AFNORFlowInfo {
   public static final String SERIALIZED_NAME_SHA256 = "sha256";
   @SerializedName(SERIALIZED_NAME_SHA256)
   @javax.annotation.Nullable
-  private String sha256;
+  private byte[] sha256;
 
   public AFNORFlowInfo() {
   }
@@ -92,7 +92,7 @@ public class AFNORFlowInfo {
   }
 
   /**
-   * Unique identifier supporting UUID but not only, for flexibility purpose
+   * The tracking id is an external identifier and is used to track the flow by the sender
    * @return trackingId
    */
   @javax.annotation.Nullable
@@ -105,7 +105,7 @@ public class AFNORFlowInfo {
   }
 
 
-  public AFNORFlowInfo name(@javax.annotation.Nullable String name) {
+  public AFNORFlowInfo name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -114,12 +114,12 @@ public class AFNORFlowInfo {
    * Name of the file
    * @return name
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
@@ -181,21 +181,21 @@ public class AFNORFlowInfo {
   }
 
 
-  public AFNORFlowInfo sha256(@javax.annotation.Nullable String sha256) {
+  public AFNORFlowInfo sha256(@javax.annotation.Nullable byte[] sha256) {
     this.sha256 = sha256;
     return this;
   }
 
   /**
-   * Get sha256
+   * The sha256 is the fingerprint of the attached file: - if provided in the request: it should be checked once received - if not provided in the request: it may be computed and returned in the response 
    * @return sha256
    */
   @javax.annotation.Nullable
-  public String getSha256() {
+  public byte[] getSha256() {
     return sha256;
   }
 
-  public void setSha256(@javax.annotation.Nullable String sha256) {
+  public void setSha256(@javax.annotation.Nullable byte[] sha256) {
     this.sha256 = sha256;
   }
 
@@ -215,12 +215,12 @@ public class AFNORFlowInfo {
         Objects.equals(this.processingRule, afNORFlowInfo.processingRule) &&
         Objects.equals(this.flowSyntax, afNORFlowInfo.flowSyntax) &&
         Objects.equals(this.flowProfile, afNORFlowInfo.flowProfile) &&
-        Objects.equals(this.sha256, afNORFlowInfo.sha256);
+        Arrays.equals(this.sha256, afNORFlowInfo.sha256);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(trackingId, name, processingRule, flowSyntax, flowProfile, sha256);
+    return Objects.hash(trackingId, name, processingRule, flowSyntax, flowProfile, Arrays.hashCode(sha256));
   }
 
   @Override
@@ -257,7 +257,7 @@ public class AFNORFlowInfo {
     openapiFields = new HashSet<String>(Arrays.asList("trackingId", "name", "processingRule", "flowSyntax", "flowProfile", "sha256"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("flowSyntax"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("name", "flowSyntax"));
   }
 
   /**
@@ -291,7 +291,7 @@ public class AFNORFlowInfo {
       if ((jsonObj.get("trackingId") != null && !jsonObj.get("trackingId").isJsonNull()) && !jsonObj.get("trackingId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `trackingId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("trackingId").toString()));
       }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       // validate the optional field `processingRule`
@@ -303,9 +303,6 @@ public class AFNORFlowInfo {
       // validate the optional field `flowProfile`
       if (jsonObj.get("flowProfile") != null && !jsonObj.get("flowProfile").isJsonNull()) {
         AFNORFlowProfile.validateJsonElement(jsonObj.get("flowProfile"));
-      }
-      if ((jsonObj.get("sha256") != null && !jsonObj.get("sha256").isJsonNull()) && !jsonObj.get("sha256").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `sha256` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sha256").toString()));
       }
   }
 

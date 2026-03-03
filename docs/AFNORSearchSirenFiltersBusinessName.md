@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**op** | **AFNORContainsOperator** |  |  [optional] |
+|**op** | **AFNORContainsOrStrictOperator** |  |  [optional] |
 |**value** | **String** | Business name |  [optional] |
 
 

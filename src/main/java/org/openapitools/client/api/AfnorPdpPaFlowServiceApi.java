@@ -33,6 +33,7 @@ import org.openapitools.client.model.AFNORFlowInfo;
 import org.openapitools.client.model.AFNORFullFlowInfo;
 import org.openapitools.client.model.AFNORSearchFlowContent;
 import org.openapitools.client.model.AFNORSearchFlowParams;
+import org.openapitools.client.model.AFNORWebhook;
 import org.openapitools.client.model.DocType;
 import java.io.File;
 import org.openapitools.client.model.HTTPValidationError;
@@ -80,6 +81,314 @@ public class AfnorPdpPaFlowServiceApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    /**
+     * Build call for createWebhookProxyApiV1AfnorFlowV1WebhooksPost
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created - Webhook registered successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createWebhookProxyApiV1AfnorFlowV1WebhooksPostCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/afnor/flow/v1/webhooks";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createWebhookProxyApiV1AfnorFlowV1WebhooksPostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return createWebhookProxyApiV1AfnorFlowV1WebhooksPostCall(_callback);
+
+    }
+
+    /**
+     * Create a webhook
+     * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @return Object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created - Webhook registered successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public Object createWebhookProxyApiV1AfnorFlowV1WebhooksPost() throws ApiException {
+        ApiResponse<Object> localVarResp = createWebhookProxyApiV1AfnorFlowV1WebhooksPostWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * Create a webhook
+     * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created - Webhook registered successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Object> createWebhookProxyApiV1AfnorFlowV1WebhooksPostWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = createWebhookProxyApiV1AfnorFlowV1WebhooksPostValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create a webhook (asynchronously)
+     * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Created - Webhook registered successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createWebhookProxyApiV1AfnorFlowV1WebhooksPostAsync(final ApiCallback<Object> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createWebhookProxyApiV1AfnorFlowV1WebhooksPostValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Webhook deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteCall(@javax.annotation.Nonnull String webhookUid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/afnor/flow/v1/webhooks/{webhookUid}"
+            .replace("{" + "webhookUid" + "}", localVarApiClient.escapeString(webhookUid.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteValidateBeforeCall(@javax.annotation.Nonnull String webhookUid, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'webhookUid' is set
+        if (webhookUid == null) {
+            throw new ApiException("Missing the required parameter 'webhookUid' when calling deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(Async)");
+        }
+
+        return deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteCall(webhookUid, _callback);
+
+    }
+
+    /**
+     * Delete a webhook
+     * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @return Object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Webhook deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public Object deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(@javax.annotation.Nonnull String webhookUid) throws ApiException {
+        ApiResponse<Object> localVarResp = deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteWithHttpInfo(webhookUid);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete a webhook
+     * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Webhook deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Object> deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteWithHttpInfo(@javax.annotation.Nonnull String webhookUid) throws ApiException {
+        okhttp3.Call localVarCall = deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteValidateBeforeCall(webhookUid, null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete a webhook (asynchronously)
+     * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> Webhook deleted </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteAsync(@javax.annotation.Nonnull String webhookUid, final ApiCallback<Object> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteValidateBeforeCall(webhookUid, _callback);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet
      * @param flowId AFNOR flow identifier (UUID) (required)
@@ -371,6 +680,298 @@ public class AfnorPdpPaFlowServiceApi {
 
         okhttp3.Call localVarCall = flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGetValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook details returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetCall(@javax.annotation.Nonnull String webhookUid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/afnor/flow/v1/webhooks/{webhookUid}"
+            .replace("{" + "webhookUid" + "}", localVarApiClient.escapeString(webhookUid.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetValidateBeforeCall(@javax.annotation.Nonnull String webhookUid, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'webhookUid' is set
+        if (webhookUid == null) {
+            throw new ApiException("Missing the required parameter 'webhookUid' when calling getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(Async)");
+        }
+
+        return getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetCall(webhookUid, _callback);
+
+    }
+
+    /**
+     * Get a webhook
+     * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @return AFNORWebhook
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook details returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public AFNORWebhook getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(@javax.annotation.Nonnull String webhookUid) throws ApiException {
+        ApiResponse<AFNORWebhook> localVarResp = getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetWithHttpInfo(webhookUid);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get a webhook
+     * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @return ApiResponse&lt;AFNORWebhook&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook details returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AFNORWebhook> getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetWithHttpInfo(@javax.annotation.Nonnull String webhookUid) throws ApiException {
+        okhttp3.Call localVarCall = getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetValidateBeforeCall(webhookUid, null);
+        Type localVarReturnType = new TypeToken<AFNORWebhook>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get a webhook (asynchronously)
+     * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook details returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetAsync(@javax.annotation.Nonnull String webhookUid, final ApiCallback<AFNORWebhook> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetValidateBeforeCall(webhookUid, _callback);
+        Type localVarReturnType = new TypeToken<AFNORWebhook>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listWebhooksProxyApiV1AfnorFlowV1WebhooksGet
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - List of webhooks returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listWebhooksProxyApiV1AfnorFlowV1WebhooksGetCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/afnor/flow/v1/webhooks";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listWebhooksProxyApiV1AfnorFlowV1WebhooksGetValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return listWebhooksProxyApiV1AfnorFlowV1WebhooksGetCall(_callback);
+
+    }
+
+    /**
+     * List webhooks
+     * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+     * @return List&lt;AFNORWebhook&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - List of webhooks returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<AFNORWebhook> listWebhooksProxyApiV1AfnorFlowV1WebhooksGet() throws ApiException {
+        ApiResponse<List<AFNORWebhook>> localVarResp = listWebhooksProxyApiV1AfnorFlowV1WebhooksGetWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * List webhooks
+     * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+     * @return ApiResponse&lt;List&lt;AFNORWebhook&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - List of webhooks returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<AFNORWebhook>> listWebhooksProxyApiV1AfnorFlowV1WebhooksGetWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = listWebhooksProxyApiV1AfnorFlowV1WebhooksGetValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<List<AFNORWebhook>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List webhooks (asynchronously)
+     * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - List of webhooks returned </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listWebhooksProxyApiV1AfnorFlowV1WebhooksGetAsync(final ApiCallback<List<AFNORWebhook>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listWebhooksProxyApiV1AfnorFlowV1WebhooksGetValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<List<AFNORWebhook>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -706,6 +1307,165 @@ public class AfnorPdpPaFlowServiceApi {
 
         okhttp3.Call localVarCall = submitFlowProxyApiV1AfnorFlowV1FlowsPostValidateBeforeCall(flowInfo, _file, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook updated successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchCall(@javax.annotation.Nonnull String webhookUid, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/afnor/flow/v1/webhooks/{webhookUid}"
+            .replace("{" + "webhookUid" + "}", localVarApiClient.escapeString(webhookUid.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchValidateBeforeCall(@javax.annotation.Nonnull String webhookUid, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'webhookUid' is set
+        if (webhookUid == null) {
+            throw new ApiException("Missing the required parameter 'webhookUid' when calling updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(Async)");
+        }
+
+        return updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchCall(webhookUid, _callback);
+
+    }
+
+    /**
+     * Update a webhook
+     * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @return AFNORWebhook
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook updated successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public AFNORWebhook updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(@javax.annotation.Nonnull String webhookUid) throws ApiException {
+        ApiResponse<AFNORWebhook> localVarResp = updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchWithHttpInfo(webhookUid);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update a webhook
+     * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @return ApiResponse&lt;AFNORWebhook&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook updated successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AFNORWebhook> updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchWithHttpInfo(@javax.annotation.Nonnull String webhookUid) throws ApiException {
+        okhttp3.Call localVarCall = updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchValidateBeforeCall(webhookUid, null);
+        Type localVarReturnType = new TypeToken<AFNORWebhook>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update a webhook (asynchronously)
+     * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @param webhookUid Webhook unique identifier (UUID) (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK - Webhook updated successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad request - Invalid input parameters </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Authentication error - Missing or invalid token </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden - Insufficient permissions </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Resource not found </td><td>  -  </td></tr>
+        <tr><td> 422 </td><td> Unprocessable entity - Business rule validation failed </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too many requests - Rate limit exceeded </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+        <tr><td> 503 </td><td> Service unavailable - PDP temporarily unavailable </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchAsync(@javax.annotation.Nonnull String webhookUid, final ApiCallback<AFNORWebhook> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchValidateBeforeCall(webhookUid, _callback);
+        Type localVarReturnType = new TypeToken<AFNORWebhook>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -38,27 +38,27 @@ public class AFNORErrorTest {
     }
 
     /**
+     * Test the property 'errorCode'
+     */
+    @Test
+    public void errorCodeTest() {
+        // TODO: test errorCode
+    }
+
+    /**
+     * Test the property 'errorMessage'
+     */
+    @Test
+    public void errorMessageTest() {
+        // TODO: test errorMessage
+    }
+
+    /**
      * Test the property 'type'
      */
     @Test
     public void typeTest() {
         // TODO: test type
-    }
-
-    /**
-     * Test the property 'message'
-     */
-    @Test
-    public void messageTest() {
-        // TODO: test message
-    }
-
-    /**
-     * Test the property 'status'
-     */
-    @Test
-    public void statusTest() {
-        // TODO: test status
     }
 
     /**

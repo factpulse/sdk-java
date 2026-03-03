@@ -27,13 +27,11 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import org.openapitools.client.model.AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode;
-import org.openapitools.client.model.AFNORDirectoryLinePost201Response;
+import org.openapitools.client.model.AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode;
 import org.openapitools.client.model.AFNORDirectoryLineSearchPost200Response;
 import org.openapitools.client.model.AFNORFacilityPayloadHistory;
 import org.openapitools.client.model.AFNORLegalUnitPayloadHistory;
 import org.openapitools.client.model.AFNORRoutingCodePayloadHistoryLegalUnitFacility;
-import org.openapitools.client.model.AFNORRoutingCodePost201Response;
 import org.openapitools.client.model.AFNORRoutingCodeSearchPost200Response;
 import org.openapitools.client.model.AFNORSirenSearchPost200Response;
 import org.openapitools.client.model.AFNORSiretSearchPost200Response;
@@ -81,499 +79,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostCall(final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/directory-line";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostCall(_callback);
-
-    }
-
-    /**
-     * Creating a directory line
-     * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     * @return Object
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Object createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost() throws ApiException {
-        ApiResponse<Object> localVarResp = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostWithHttpInfo();
-        return localVarResp.getData();
-    }
-
-    /**
-     * Creating a directory line
-     * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     * @return ApiResponse&lt;Object&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Object> createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Creating a directory line (asynchronously)
-     * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostAsync(final ApiCallback<Object> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostCall(final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/routing-code";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostCall(_callback);
-
-    }
-
-    /**
-     * Create a routing code
-     * Creating a routing code.
-     * @return Object
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Object createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost() throws ApiException {
-        ApiResponse<Object> localVarResp = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostWithHttpInfo();
-        return localVarResp.getData();
-    }
-
-    /**
-     * Create a routing code
-     * Creating a routing code.
-     * @return ApiResponse&lt;Object&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Object> createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Create a routing code (asynchronously)
-     * Creating a routing code.
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 201 </td><td> A new resource has been created. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostAsync(final ApiCallback<Object> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> OK. The resource has been deleted. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(Async)");
-        }
-
-        return deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Delete a directory line
-     * Delete a directory line.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return Object
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> OK. The resource has been deleted. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Object deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<Object> localVarResp = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Delete a directory line
-     * Delete a directory line.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;Object&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> OK. The resource has been deleted. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Object> deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Delete a directory line (asynchronously)
-     * Delete a directory line.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> OK. The resource has been deleted. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<Object> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<Object>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
     /**
      * Build call for directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet
      * @param _callback Callback for upload/download progress
@@ -782,7 +287,7 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line.
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param addressingIdentifier Addressing identifier (SIREN, SIRET or routing code) (required)
-     * @return AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode
+     * @return AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -801,8 +306,8 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(@javax.annotation.Nonnull String addressingIdentifier) throws ApiException {
-        ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> localVarResp = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(addressingIdentifier);
+    public AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(@javax.annotation.Nonnull String addressingIdentifier) throws ApiException {
+        ApiResponse<AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode> localVarResp = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(addressingIdentifier);
         return localVarResp.getData();
     }
 
@@ -810,7 +315,7 @@ public class AfnorPdpPaDirectoryServiceApi {
      * Get a directory line.
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @param addressingIdentifier Addressing identifier (SIREN, SIRET or routing code) (required)
-     * @return ApiResponse&lt;AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode&gt;
+     * @return ApiResponse&lt;AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -829,9 +334,9 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(@javax.annotation.Nonnull String addressingIdentifier) throws ApiException {
+    public ApiResponse<AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode> getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetWithHttpInfo(@javax.annotation.Nonnull String addressingIdentifier) throws ApiException {
         okhttp3.Call localVarCall = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(addressingIdentifier, null);
-        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
+        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -859,344 +364,10 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetAsync(@javax.annotation.Nonnull String addressingIdentifier, final ApiCallback<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> _callback) throws ApiException {
+    public okhttp3.Call getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetAsync(@javax.annotation.Nonnull String addressingIdentifier, final ApiCallback<AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetValidateBeforeCall(addressingIdentifier, _callback);
-        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a directory line. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(Async)");
-        }
-
-        return getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Get a directory line.
-     * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a directory line. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> localVarResp = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get a directory line.
-     * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a directory line. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get a directory line. (asynchronously)
-     * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a directory line. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(Async)");
-        }
-
-        return getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Get a routing code by instance-id.
-     * Retrieve the Routing Code data corresponding to the Instance ID.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return AFNORRoutingCodePayloadHistoryLegalUnitFacility
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> localVarResp = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get a routing code by instance-id.
-     * Retrieve the Routing Code data corresponding to the Instance ID.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;AFNORRoutingCodePayloadHistoryLegalUnitFacility&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AFNORRoutingCodePayloadHistoryLegalUnitFacility> getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<AFNORRoutingCodePayloadHistoryLegalUnitFacility>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get a routing code by instance-id. (asynchronously)
-     * Retrieve the Routing Code data corresponding to the Instance ID.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORRoutingCodePayloadHistoryLegalUnitFacility> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<AFNORRoutingCodePayloadHistoryLegalUnitFacility>(){}.getType();
+        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1545,173 +716,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         return localVarCall;
     }
     /**
-     * Build call for getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/siren/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(Async)");
-        }
-
-        return getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Gets a siren (legal unit) by instance ID
-     * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return AFNORLegalUnitPayloadHistory
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AFNORLegalUnitPayloadHistory getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<AFNORLegalUnitPayloadHistory> localVarResp = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Gets a siren (legal unit) by instance ID
-     * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;AFNORLegalUnitPayloadHistory&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AFNORLegalUnitPayloadHistory> getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<AFNORLegalUnitPayloadHistory>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Gets a siren (legal unit) by instance ID (asynchronously)
-     * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORLegalUnitPayloadHistory> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<AFNORLegalUnitPayloadHistory>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet
      * @param siret 14-digit SIRET number (INSEE establishment identifier) (required)
      * @param _callback Callback for upload/download progress
@@ -1879,682 +883,6 @@ public class AfnorPdpPaDirectoryServiceApi {
         return localVarCall;
     }
     /**
-     * Build call for getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/siret/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(Async)");
-        }
-
-        return getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Gets a siret (facility) by id-instance
-     * Returns the details of a facility according to an instance-id.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return AFNORFacilityPayloadHistory
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AFNORFacilityPayloadHistory getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<AFNORFacilityPayloadHistory> localVarResp = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Gets a siret (facility) by id-instance
-     * Returns the details of a facility according to an instance-id.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;AFNORFacilityPayloadHistory&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AFNORFacilityPayloadHistory> getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<AFNORFacilityPayloadHistory>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Gets a siret (facility) by id-instance (asynchronously)
-     * Returns the details of a facility according to an instance-id.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a routing code. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORFacilityPayloadHistory> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<AFNORFacilityPayloadHistory>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(Async)");
-        }
-
-        return patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Partially updates a directory line..
-     * Partially updates a directory line.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return AFNORDirectoryLinePost201Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AFNORDirectoryLinePost201Response patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<AFNORDirectoryLinePost201Response> localVarResp = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Partially updates a directory line..
-     * Partially updates a directory line.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;AFNORDirectoryLinePost201Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AFNORDirectoryLinePost201Response> patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePost201Response>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Partially updates a directory line.. (asynchronously)
-     * Partially updates a directory line.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORDirectoryLinePost201Response> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<AFNORDirectoryLinePost201Response>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(Async)");
-        }
-
-        return patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Partially update a private routing code.
-     * Partially update a private routing code.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return AFNORRoutingCodePost201Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AFNORRoutingCodePost201Response patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<AFNORRoutingCodePost201Response> localVarResp = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Partially update a private routing code.
-     * Partially update a private routing code.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;AFNORRoutingCodePost201Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AFNORRoutingCodePost201Response> patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Partially update a private routing code. (asynchronously)
-     * Partially update a private routing code.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORRoutingCodePost201Response> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}"
-            .replace("{" + "id_instance" + "}", localVarApiClient.escapeString(idInstance.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(@javax.annotation.Nonnull String idInstance, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'idInstance' is set
-        if (idInstance == null) {
-            throw new ApiException("Missing the required parameter 'idInstance' when calling putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(Async)");
-        }
-
-        return putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutCall(idInstance, _callback);
-
-    }
-
-    /**
-     * Completely update a private routing code.
-     * Completely update a private routing code.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return AFNORRoutingCodePost201Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public AFNORRoutingCodePost201Response putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        ApiResponse<AFNORRoutingCodePost201Response> localVarResp = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutWithHttpInfo(idInstance);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Completely update a private routing code.
-     * Completely update a private routing code.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @return ApiResponse&lt;AFNORRoutingCodePost201Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<AFNORRoutingCodePost201Response> putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutWithHttpInfo(@javax.annotation.Nonnull String idInstance) throws ApiException {
-        okhttp3.Call localVarCall = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(idInstance, null);
-        Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Completely update a private routing code. (asynchronously)
-     * Completely update a private routing code.
-     * @param idInstance AFNOR instance ID (UUID) (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Request successful. </td><td>  -  </td></tr>
-        <tr><td> 206 </td><td> Request processed without error, but the volume of information returned has been reduced. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad request. The request is invalid or cannot be completed. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized. The request requires user authentication. </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> Forbidden. The server understood the request but denied access or access is not authorized. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not found. There is no resource at the given URI. </td><td>  -  </td></tr>
-        <tr><td> 408 </td><td> Request timeout exceeded. </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> Data validation error. </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> The client has issued too many calls within a given time frame. </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
-        <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutAsync(@javax.annotation.Nonnull String idInstance, final ApiCallback<AFNORRoutingCodePost201Response> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutValidateBeforeCall(idInstance, _callback);
-        Type localVarReturnType = new TypeToken<AFNORRoutingCodePost201Response>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2575,6 +903,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostCall(final ApiCallback _callback) throws ApiException {
@@ -2648,6 +977,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public AFNORDirectoryLineSearchPost200Response searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost() throws ApiException {
@@ -2676,6 +1006,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AFNORDirectoryLineSearchPost200Response> searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostWithHttpInfo() throws ApiException {
@@ -2706,6 +1037,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostAsync(final ApiCallback<AFNORDirectoryLineSearchPost200Response> _callback) throws ApiException {
@@ -2736,6 +1068,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostCall(final ApiCallback _callback) throws ApiException {
@@ -2809,6 +1142,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public AFNORRoutingCodeSearchPost200Response searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost() throws ApiException {
@@ -2837,6 +1171,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AFNORRoutingCodeSearchPost200Response> searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostWithHttpInfo() throws ApiException {
@@ -2867,6 +1202,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostAsync(final ApiCallback<AFNORRoutingCodeSearchPost200Response> _callback) throws ApiException {
@@ -2897,6 +1233,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostCall(final ApiCallback _callback) throws ApiException {
@@ -2970,6 +1307,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public AFNORSirenSearchPost200Response searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost() throws ApiException {
@@ -2998,6 +1336,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AFNORSirenSearchPost200Response> searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostWithHttpInfo() throws ApiException {
@@ -3028,6 +1367,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostAsync(final ApiCallback<AFNORSirenSearchPost200Response> _callback) throws ApiException {
@@ -3058,6 +1398,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostCall(final ApiCallback _callback) throws ApiException {
@@ -3131,6 +1472,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public AFNORSiretSearchPost200Response searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost() throws ApiException {
@@ -3159,6 +1501,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<AFNORSiretSearchPost200Response> searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostWithHttpInfo() throws ApiException {
@@ -3189,6 +1532,7 @@ public class AfnorPdpPaDirectoryServiceApi {
         <tr><td> 500 </td><td> Internal Server Error. </td><td>  -  </td></tr>
         <tr><td> 501 </td><td> Not implemented. </td><td>  -  </td></tr>
         <tr><td> 503 </td><td> Service unavailable. </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> No content </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostAsync(final ApiCallback<AFNORSiretSearchPost200Response> _callback) throws ApiException {

@@ -11,6 +11,7 @@
 |**businessName** | **String** | Business name |  [optional] |
 |**entityType** | **AFNOREntityType** |  |  [optional] |
 |**administrativeStatus** | **AFNORLegalUnitAdministrativeStatus** |  |  [optional] |
+|**instructions** | [**AFNORSirenInstructions**](AFNORSirenInstructions.md) |  |  [optional] |
 
 
 

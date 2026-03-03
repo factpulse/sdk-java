@@ -20,6 +20,7 @@ import org.openapitools.client.model.AFNORFlowInfo;
 import org.openapitools.client.model.AFNORFullFlowInfo;
 import org.openapitools.client.model.AFNORSearchFlowContent;
 import org.openapitools.client.model.AFNORSearchFlowParams;
+import org.openapitools.client.model.AFNORWebhook;
 import org.openapitools.client.model.DocType;
 import java.io.File;
 import org.openapitools.client.model.HTTPValidationError;
@@ -38,6 +39,33 @@ import java.util.Map;
 public class AfnorPdpPaFlowServiceApiTest {
 
     private final AfnorPdpPaFlowServiceApi api = new AfnorPdpPaFlowServiceApi();
+
+    /**
+     * Create a webhook
+     *
+     * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void createWebhookProxyApiV1AfnorFlowV1WebhooksPostTest() throws ApiException {
+        Object response = api.createWebhookProxyApiV1AfnorFlowV1WebhooksPost();
+        // TODO: test validations
+    }
+
+    /**
+     * Delete a webhook
+     *
+     * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDeleteTest() throws ApiException {
+        String webhookUid = null;
+        Object response = api.deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(webhookUid);
+        // TODO: test validations
+    }
 
     /**
      * Download a flow
@@ -68,6 +96,33 @@ public class AfnorPdpPaFlowServiceApiTest {
     }
 
     /**
+     * Get a webhook
+     *
+     * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGetTest() throws ApiException {
+        String webhookUid = null;
+        AFNORWebhook response = api.getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(webhookUid);
+        // TODO: test validations
+    }
+
+    /**
+     * List webhooks
+     *
+     * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void listWebhooksProxyApiV1AfnorFlowV1WebhooksGetTest() throws ApiException {
+        List<AFNORWebhook> response = api.listWebhooksProxyApiV1AfnorFlowV1WebhooksGet();
+        // TODO: test validations
+    }
+
+    /**
      * Search flows
      *
      * Search invoicing flows by criteria (AFNOR XP Z12-013 compliant)
@@ -93,6 +148,20 @@ public class AfnorPdpPaFlowServiceApiTest {
         AFNORFlowInfo flowInfo = null;
         File _file = null;
         Object response = api.submitFlowProxyApiV1AfnorFlowV1FlowsPost(flowInfo, _file);
+        // TODO: test validations
+    }
+
+    /**
+     * Update a webhook
+     *
+     * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatchTest() throws ApiException {
+        String webhookUid = null;
+        AFNORWebhook response = api.updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(webhookUid);
         // TODO: test validations
     }
 

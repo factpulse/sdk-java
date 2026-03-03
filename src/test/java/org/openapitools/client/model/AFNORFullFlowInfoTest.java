@@ -42,6 +42,22 @@ public class AFNORFullFlowInfoTest {
     }
 
     /**
+     * Test the property 'flowId'
+     */
+    @Test
+    public void flowIdTest() {
+        // TODO: test flowId
+    }
+
+    /**
+     * Test the property 'submittedAt'
+     */
+    @Test
+    public void submittedAtTest() {
+        // TODO: test submittedAt
+    }
+
+    /**
      * Test the property 'trackingId'
      */
     @Test
@@ -87,22 +103,6 @@ public class AFNORFullFlowInfoTest {
     @Test
     public void sha256Test() {
         // TODO: test sha256
-    }
-
-    /**
-     * Test the property 'flowId'
-     */
-    @Test
-    public void flowIdTest() {
-        // TODO: test flowId
-    }
-
-    /**
-     * Test the property 'submittedAt'
-     */
-    @Test
-    public void submittedAtTest() {
-        // TODO: test submittedAt
     }
 
 }

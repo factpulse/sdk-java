@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**op** | **AFNORContainsOperator** |  |  [optional] |
+|**op** | **AFNORStrictOrStartWithOperator** |  |  [optional] |
 |**value** | **String** | Service postal code |  [optional] |
 
 
